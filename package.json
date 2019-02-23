@@ -1,0 +1,29 @@
+{
+  "name": "colib",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Michael Großklaus <mail@mgrossklaus.de> (https://mgrossklaus.de)",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "chokidar": "^2.1.6",
+    "consolidate": "^0.15.1",
+    "directory-tree": "^2.2.3",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security",
+    "fs-readdir-recursive": "^1.1.0",
+    "handlebars": "^4.1.2",
+    "handlebars-layouts": "^3.1.4",
+    "helmet": "^3.18.0",
+    "http-server": "^0.11.1",
+    "socket.io": "^2.2.0",
+    "twig": "^1.13.3"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start": "npx nodemon index.js"
+  }
+}

@@ -1,0 +1,13 @@
+{{#extend "iframe"}}
+  {{#content "body"}}
+    {{#if html }}
+      <ol>
+        {{#each html}}
+          <li>
+            {{{this}}}
+          </li>
+        {{/each}}
+      </ol>
+    {{/if}}
+  {{/content}}
+{{/extend}}

@@ -1,0 +1,17 @@
+{{#extend "iframe"}}
+  {{#content "body"}}
+    <main class="Page-content">
+      {{#if html}}
+        <ol>
+          {{#each html}}
+          <li>
+            {{{this}}}
+          </li>
+          {{/each}}
+        </ol>
+      {{else}}
+        There are no patterns yet.
+      {{/if}}
+    </main>
+  {{/content}}
+{{/extend}}

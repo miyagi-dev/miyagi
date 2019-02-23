@@ -1,0 +1,43 @@
+.Navigation {
+  font-size: 1.4rem;
+}
+
+.Navigation > .Navigation-item > .Navigation:not(:first-child) {
+  margin-left: 1rem;
+  padding-top: 0.5rem;
+}
+
+.Navigation-item:not(:last-child) {
+  padding-bottom: 0.5rem;
+}
+
+.Navigation:first-child > .Navigation-item:not(:first-child) {
+  padding-top: 1rem;
+}
+
+.Navigation-link {
+  text-decoration: none;
+}
+
+.Navigation-link--variation {
+  color: #666;
+}
+
+.Navigation-link:hover,
+.Navigation-link:focus {
+  text-decoration: underline;
+}
+
+.Navigation-component {
+  font-weight: 500;
+}
+
+.Navigation .Navigation .Navigation-component.is-disabled {
+  color: #bbb;
+  font-style: italic;
+}
+
+.Navigation:first-child > .Navigation-item > .Navigation-component {
+  font-weight: bold;
+  padding: 0 0 0.5rem;
+}

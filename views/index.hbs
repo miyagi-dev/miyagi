@@ -1,0 +1,16 @@
+{{#extend "main"}}
+  {{#content "body"}}
+    <nav class="Page-nav">
+      {{#if folders.children}}
+        <a href="?pattern=all" target="content">Show all patterns</a>
+        <div class="Page-navList">
+          {{#renderMenu folders.children}}{{/renderMenu}}
+        </div>
+      {{/if}}
+    </nav>
+
+    <main class="Page-content">
+      <iframe id="iframe" src="{{iframeSrc}}" frameborder="0" name="content"></iframe>
+    </main>
+  {{/content}}
+{{/extend}}
