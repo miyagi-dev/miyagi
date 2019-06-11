@@ -1,4 +1,3 @@
-const engines = require("consolidate");
 const express = require("express");
 const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
@@ -12,6 +11,7 @@ const registerPartials = require("./hbs/registerPartials.js");
 const router = require("./router.js");
 const setState = require("./setState.js");
 const setConfig = require("./setConfig.js");
+const setEngines = require("./setEngines.js");
 const getPort = require("./getPort.js");
 
 module.exports = config => {
@@ -23,17 +23,14 @@ module.exports = config => {
 
   setConfig(app, config);
   setState(app);
+  setEngines(app);
   router(app);
 
-  registerHelpers(app, handlebars, express);
+  registerHelpers(app, handlebars);
   registerPartials(app, handlebars, true);
 
   handlebarsLayouts.register(handlebars);
 
-  app.engine("hbs", engines.handlebars);
-  app.engine(app.get("config").extension, engines[app.get("config").engine]);
-  app.set("view engine", "hbs");
-  app.set("view engine", app.get("config").extension);
   app.set("views", [
     path.join(__dirname, "../views"),
     path.join(process.cwd(), app.get("config").srcFolder)
