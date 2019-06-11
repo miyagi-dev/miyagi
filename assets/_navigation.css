@@ -20,7 +20,7 @@
 }
 
 .Navigation-link--variation {
-  color: #666;
+  color: #333;
 }
 
 .Navigation-link:hover,
@@ -33,7 +33,7 @@
 }
 
 .Navigation .Navigation .Navigation-component.is-disabled {
-  color: #bbb;
+  color: #707070;
   font-style: italic;
 }
 
