@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 let app;
+let expr;
 
 function partialPath(partial) {
   return partial;
@@ -126,9 +127,30 @@ function cssFiles() {
   return html;
 }
 
-module.exports = (appInstace, hbsInstance) => {
-  app = appInstace;
+function jsFiles() {
+  let html = "<script>";
+  app.get("config").jsFiles.forEach(file => {
+    const sanitizedFilePath = file.replace(/\0/g, "");
+    const filePath = path.join(process.cwd(), sanitizedFilePath);
+    let readFile;
+
+    try {
+      readFile = fs.readFileSync(filePath, "utf8");
+    } catch (e) {
+      console.log(`JS file ${filePath} not found.`);
+    }
+
+    html += readFile;
+  });
+  html += "</script>";
+  return html;
+}
+
+module.exports = (appInstance, hbsInstance, express) => {
+  app = appInstance;
+  expr = express;
   hbsInstance.registerHelper("partialPath", partialPath);
   hbsInstance.registerHelper("renderMenu", renderMenu);
   hbsInstance.registerHelper("cssFiles", cssFiles);
+  hbsInstance.registerHelper("jsFiles", jsFiles);
 };
