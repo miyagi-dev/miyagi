@@ -6,6 +6,7 @@ function resolveJsonURLs(req, data) {
     Object.entries(data).forEach(entry => {
       if (
         typeof entry[1] === "string" &&
+        entry[1].indexOf(".json") >= 0 &&
         entry[1].indexOf(".json") === entry[1].length - 5
       ) {
         const file = fs.readFileSync(
@@ -87,11 +88,11 @@ function renderPatternVariations(req, res, pattern) {
     const html = [];
     const promises = [];
 
-    context.forEach(entry => {
+    context.forEach((entry, i) => {
       promises.push(
         new Promise(resolve => {
           req.app.render(pattern, entry.data, (err, result) => {
-            html.push(result);
+            html[i] = result;
             resolve(result);
           });
         })
@@ -118,14 +119,14 @@ async function renderPatternOverview(req, res) {
     .get("state")
     .filePaths.map(path => [path, req.app.get("state").jsonData[path].data]);
 
-  patterns.forEach(pattern => {
+  patterns.forEach((pattern, i) => {
     promises.push(
       new Promise(resolve => {
         req.app.render(
           pattern[0],
           Object.assign({}, pattern[1]),
           (err, result) => {
-            html.push(result);
+            html[i] = result;
             resolve();
           }
         );
