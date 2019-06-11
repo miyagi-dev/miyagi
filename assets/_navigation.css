@@ -53,6 +53,8 @@
   color: #333;
 }
 
+.Nav-showAll:hover,
+.Nav-showAll:focus,
 .Nav-link:hover,
 .Nav-link:focus {
   text-decoration: underline;
