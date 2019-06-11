@@ -1,0 +1,48 @@
+const engines = require("consolidate");
+const express = require("express");
+const handlebars = require("handlebars");
+const handlebarsLayouts = require("handlebars-layouts");
+const helmet = require("helmet");
+const http = require("http");
+const path = require("path");
+
+const fileWatcher = require("./fileWatcher.js");
+const registerHelpers = require("./hbs/registerHelpers.js");
+const registerPartials = require("./hbs/registerPartials.js");
+const router = require("./router.js");
+const setState = require("./setState.js");
+const setConfig = require("./setConfig.js");
+const getPort = require("./getPort.js");
+
+module.exports = config => {
+  const port = getPort();
+  const app = express();
+  const server = http.createServer(app);
+
+  app.use(helmet());
+
+  setConfig(app, config);
+  setState(app);
+  router(app);
+
+  registerHelpers(app, handlebars, express);
+  registerPartials(app, handlebars, true);
+
+  handlebarsLayouts.register(handlebars);
+
+  app.engine("hbs", engines.handlebars);
+  app.engine(app.get("config").extension, engines[app.get("config").engine]);
+  app.set("view engine", "hbs");
+  app.set("view engine", app.get("config").extension);
+  app.set("views", [
+    path.join(__dirname, "../views"),
+    path.join(process.cwd(), app.get("config").srcFolder)
+  ]);
+  app.use(express.static(path.join(__dirname, "../assets")));
+
+  server.listen(port);
+
+  fileWatcher(server, app, handlebars);
+
+  console.log(`Running colib server at http://127.0.0.1:${port}`);
+};
