@@ -12,41 +12,43 @@ function getNavStructure(srcStructure) {
 
   (function restructure(str) {
     str.forEach(s => {
-      if (
-        s.children &&
-        s.children.length &&
-        s.children.filter(
-          child =>
-            child.name.replace(`.${app.get("config").extension}`, "") ===
-              s.name && child.extension === `.${app.get("config").extension}`
-        )[0]
-      ) {
-        const partial = s.children.filter(
-          child =>
-            child.name.replace(`.${app.get("config").extension}`, "") ===
-              s.name && child.extension === `.${app.get("config").extension}`
-        )[0];
+      if (s.type === "directory") {
+        if (
+          s.children &&
+          s.children.length &&
+          s.children.filter(
+            child =>
+              child.name.replace(`.${app.get("config").extension}`, "") ===
+                s.name && child.extension === `.${app.get("config").extension}`
+          )[0]
+        ) {
+          const partial = s.children.filter(
+            child =>
+              child.name.replace(`.${app.get("config").extension}`, "") ===
+                s.name && child.extension === `.${app.get("config").extension}`
+          )[0];
 
-        if (partial) {
+          if (partial) {
+            arr.push({
+              type: s.type,
+              name: partial.name,
+              path: partial.path,
+              shortPath: partial.shortPath,
+              extension: partial.extension,
+              variations: s.variations,
+              children: s.children
+            });
+          }
+        } else {
           arr.push({
-            type: partial.type,
+            type: s.type,
             name: s.name,
-            path: partial.path,
-            shortPath: partial.shortPath,
-            extension: partial.extension,
-            variations: s.variations,
+            path: s.path,
+            shortPath: s.shortPath,
+            extension: s.extension,
             children: s.children
           });
         }
-      } else if (s.type === "directory") {
-        arr.push({
-          type: s.type,
-          name: s.name,
-          path: s.path,
-          shortPath: s.shortPath,
-          extension: s.extension,
-          children: s.children
-        });
       }
 
       if (str.children && str.children.length > 1) {
@@ -70,14 +72,20 @@ function renderMenu(structure, currentPattern, currentVariation) {
 
       html += '<li class="Nav-item">';
 
-      if (child.type === "file") {
+      if (child.type === "directory") {
         if (currentPattern === child.shortPath && !currentVariation) {
           current = ' aria-current="page"';
         }
 
-        html += `<a class="Nav-link Nav-component" target="content" href="?pattern=${
-          child.shortPath
-        }"${current}>${child.name}</a>`;
+        if (child.shortPath) {
+          html += `<a class="Nav-component Nav-link" href="?pattern=${
+            child.shortPath
+          }">${child.name}</a>`;
+        } else {
+          html += `<span class="Nav-component is-disabled">${
+            child.name
+          }</span>`;
+        }
 
         if (child.variations && child.variations.length) {
           html += '<ul class="Nav-list">';
@@ -100,17 +108,17 @@ function renderMenu(structure, currentPattern, currentVariation) {
           });
           html += "</ul>";
         }
-      } else {
-        html += `<span class="Nav-component${
-          child.extension !== app.get("config").extension ? " is-disabled" : ""
-        }">${child.name}</span>`;
+      } else if (child.type === "file") {
+        if (currentPattern === child.shortPath && !currentVariation) {
+          current = ' aria-current="page"';
+        }
+
+        html += `<a class="Nav-link Nav-component" target="content" href="?pattern=${
+          child.shortPath
+        }"${current}>${child.name}</a>`;
       }
 
-      if (
-        child.children &&
-        child.children.length &&
-        child.children.filter(child => child.type === "directory").length
-      ) {
+      if (child.children) {
         html += renderMenu(child.children, currentPattern, currentVariation);
       }
 

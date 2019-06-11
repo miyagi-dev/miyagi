@@ -60,13 +60,16 @@ function getSourceStructure(app) {
             }
 
             if (fileData) {
-              const variations = JSON.parse(fileData, "utf8").variations;
+              const json = JSON.parse(fileData, "utf8");
+              const variations = json.variations;
 
               if (
                 variations &&
                 obj.name === jsonChild.name.replace(".json", "")
               ) {
-                obj.variations = variations;
+                obj.variations = [{ name: obj.name, data: json.data }].concat(
+                  variations
+                );
               }
             }
           }
