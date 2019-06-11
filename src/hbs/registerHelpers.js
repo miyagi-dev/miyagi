@@ -2,7 +2,6 @@ const fs = require("fs");
 const path = require("path");
 
 let app;
-let expr;
 
 function partialPath(partial) {
   return partial;
@@ -59,34 +58,50 @@ function getNavStructure(srcStructure) {
   return arr;
 }
 
-function renderMenu(structure) {
+function renderMenu(structure, currentPattern, currentVariation) {
   const list = getNavStructure(structure);
   let html = "";
 
   if (list) {
-    html += '<ul class="Navigation">';
+    html += '<ul class="Nav-list">';
 
     list.forEach(child => {
-      html += '<li class="Navigation-item">';
+      let current = "";
+
+      html += '<li class="Nav-item">';
 
       if (child.type === "file") {
-        html += `<a class="Navigation-link Navigation-component" target="content" href="?pattern=${
+        if (currentPattern === child.shortPath && !currentVariation) {
+          current = ' aria-current="page"';
+        }
+
+        html += `<a class="Nav-link Nav-component" target="content" href="?pattern=${
           child.shortPath
-        }">${child.name}</a>`;
+        }"${current}>${child.name}</a>`;
 
         if (child.variations && child.variations.length) {
-          html += '<ul class="Navigation Navigation--variations">';
+          html += '<ul class="Nav-list">';
           child.variations.forEach(variation => {
-            html += '<li class="Navigation-item">';
-            html += `<a class="Navigation-link Navigation-link--variation" target="content" href="?pattern=${
+            let current = "";
+            if (
+              currentPattern === child.shortPath &&
+              currentVariation === variation.name
+            ) {
+              current = ' aria-current="page"';
+            }
+
+            html += '<li class="Nav-item">';
+            html += `<a class="Nav-link Nav-link--variation" target="content" href="?pattern=${
               child.shortPath
-            }&variation=${encodeURI(variation.name)}">${variation.name}</a>`;
+            }&variation=${encodeURI(variation.name)}"${current}>${
+              variation.name
+            }</a>`;
             html += "</li>";
           });
           html += "</ul>";
         }
       } else {
-        html += `<span class="Navigation-component${
+        html += `<span class="Nav-component${
           child.extension !== app.get("config").extension ? " is-disabled" : ""
         }">${child.name}</span>`;
       }
@@ -96,7 +111,7 @@ function renderMenu(structure) {
         child.children.length &&
         child.children.filter(child => child.type === "directory").length
       ) {
-        html += renderMenu(child.children);
+        html += renderMenu(child.children, currentPattern, currentVariation);
       }
 
       html += "</li>";
@@ -118,7 +133,7 @@ function cssFiles() {
     try {
       readFile = fs.readFileSync(filePath, "utf8");
     } catch (e) {
-      console.log(`CSS file ${filePath} not found.`);
+      console.warn(`WARNING: CSS file ${filePath} not found.`);
     }
 
     html += readFile;
@@ -137,7 +152,7 @@ function jsFiles() {
     try {
       readFile = fs.readFileSync(filePath, "utf8");
     } catch (e) {
-      console.log(`JS file ${filePath} not found.`);
+      console.warn(`WARNING: JS file ${filePath} not found.`);
     }
 
     html += readFile;
@@ -146,9 +161,8 @@ function jsFiles() {
   return html;
 }
 
-module.exports = (appInstance, hbsInstance, express) => {
+module.exports = (appInstance, hbsInstance) => {
   app = appInstance;
-  expr = express;
   hbsInstance.registerHelper("partialPath", partialPath);
   hbsInstance.registerHelper("renderMenu", renderMenu);
   hbsInstance.registerHelper("cssFiles", cssFiles);

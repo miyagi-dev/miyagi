@@ -30,7 +30,8 @@ function resolveJsonURLs(req, data) {
 function renderMain(req, res) {
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
-    iframeSrc: `${req.protocol}://${req.headers.host}/?pattern=all`
+    iframeSrc: `${req.protocol}://${req.headers.host}/?pattern=all`,
+    showAll: true
   });
 }
 
@@ -43,7 +44,9 @@ function renderMainWithPattern(req, res, pattern, variation) {
 
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
-    iframeSrc
+    iframeSrc,
+    currentPattern: req.query.show,
+    currentVariation: req.query.variation
   });
 }
 

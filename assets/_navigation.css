@@ -1,43 +1,73 @@
-.Navigation {
+.Nav {
+  background: #f5f5f5;
+  height: 100vh;
+  overflow-y: scroll;
+  padding: 2rem;
+}
+
+.Nav-menu {
+  margin-top: 2rem;
+}
+
+.Nav-showAll,
+.Nav-link,
+.Nav-component {
+  display: block;
+  padding: 0 0.35rem;
+}
+
+.Nav-showAll,
+.Nav-link {
+  text-decoration: none;
+}
+
+.Nav-showAll {
+  font-weight: bold;
+}
+
+.Nav [aria-current] {
+  background: #0a374e;
+  border-radius: 0.25rem;
+  color: #fff;
+  display: inline-block;
+}
+
+.Nav-list {
   font-size: 1.4rem;
 }
 
-.Navigation > .Navigation-item > .Navigation:not(:first-child) {
+.Nav-list > .Nav-item > .Nav-list:not(:first-child) {
   margin-left: 1rem;
   padding-top: 0.5rem;
 }
 
-.Navigation-item:not(:last-child) {
+.Nav-item:not(:last-child) {
   padding-bottom: 0.5rem;
 }
 
-.Navigation:first-child > .Navigation-item:not(:first-child) {
+.Nav-list:first-child > .Nav-item:not(:first-child) {
   padding-top: 1rem;
 }
 
-.Navigation-link {
-  text-decoration: none;
-}
-
-.Navigation-link--variation {
+.Nav-link--variation {
   color: #333;
 }
 
-.Navigation-link:hover,
-.Navigation-link:focus {
+.Nav-link:hover,
+.Nav-link:focus {
   text-decoration: underline;
 }
 
-.Navigation-component {
+.Nav-component {
   font-weight: 500;
 }
 
-.Navigation .Navigation .Navigation-component.is-disabled {
+.Nav-list .Nav-list .Nav-component.is-disabled {
   color: #707070;
   font-style: italic;
 }
 
-.Navigation:first-child > .Navigation-item > .Navigation-component {
+.Nav-list:first-child > .Nav-item > .Nav-component {
   font-weight: bold;
-  padding: 0 0 0.5rem;
+  padding-bottom: 0.5rem;
 }
