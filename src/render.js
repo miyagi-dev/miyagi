@@ -91,14 +91,14 @@ function renderPatternVariations(req, res, pattern) {
       promises.push(
         new Promise(resolve => {
           req.app.render(pattern, entry.data, (err, result) => {
+            html.push(result);
             resolve(result);
           });
         })
       );
     });
 
-    Promise.all(promises).then(result => {
-      html.push(result);
+    Promise.all(promises).then(() => {
       res.render("pattern_variations.hbs", {
         html
       });
@@ -125,15 +125,15 @@ async function renderPatternOverview(req, res) {
           pattern[0],
           Object.assign({}, pattern[1]),
           (err, result) => {
-            resolve(result);
+            html.push(result);
+            resolve();
           }
         );
       })
     );
   });
 
-  Promise.all(promises).then(result => {
-    html.push(result);
+  Promise.all(promises).then(() => {
     res.render("pattern_overview.hbs", {
       html
     });
