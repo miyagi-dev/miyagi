@@ -2,14 +2,25 @@ const readDir = require("fs-readdir-recursive");
 const dirTree = require("directory-tree");
 const fs = require("fs");
 const path = require("path");
-const { pathEndsWithExtension } = require("./extensionHelper.js");
+const {
+  pathEndsWithExtension,
+  fileIsInFolderWithSameName
+} = require("./extensionHelper.js");
+
+function filterUnwantedFilePath(app, file) {
+  if (
+    pathEndsWithExtension(file, app.get("config").extension) &&
+    fileIsInFolderWithSameName(file, app.get("config").extension)
+  ) {
+    return true;
+  }
+  return false;
+}
 
 function getFilePaths(app) {
   const paths = readDir(
     path.join(process.cwd(), app.get("config").srcFolder)
-  ).filter(path => {
-    return pathEndsWithExtension(path, app.get("config").extension);
-  });
+  ).filter(file => filterUnwantedFilePath(app, file));
 
   return paths;
 }
