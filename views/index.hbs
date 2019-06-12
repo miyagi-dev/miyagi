@@ -6,7 +6,7 @@
           <a class="Nav-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
         </h1>
         <div class="Nav-menu">
-          {{#renderMenu folders.children currentPattern currentVariation null }}{{/renderMenu}}
+          {{#renderMenu folders.children currentPattern currentVariation null null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>

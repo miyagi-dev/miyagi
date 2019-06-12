@@ -70,18 +70,79 @@ function getNavStructure(srcStructure) {
   return arr;
 }
 
-function renderMenu(structure, currentPattern, currentVariation, id) {
+// Warn if overriding existing method
+if (Array.prototype.equals)
+  console.warn(
+    "Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code."
+  );
+// attach the .equals method to Array's prototype to call it on any array
+Array.prototype.equals = function(array) {
+  // if the other array is a falsy value, return
+  if (!array) return false;
+
+  // compare lengths - can save a lot of time
+  if (this.length != array.length) return false;
+
+  for (var i = 0, l = this.length; i < l; i++) {
+    // Check if we have nested arrays
+    if (this[i] instanceof Array && array[i] instanceof Array) {
+      // recurse into the nested arrays
+      if (!this[i].equals(array[i])) return false;
+    } else if (this[i] != array[i]) {
+      // Warning - two different object instances will never be equal: {x:20} != {x:20}
+      return false;
+    }
+  }
+  return true;
+};
+// Hide method from for-in loops
+Object.defineProperty(Array.prototype, "equals", { enumerable: false });
+
+function testIfCurrentPatternIsChildOfCurrentItem(shortPath, currentPattern) {
+  const currentPatternArr = currentPattern
+    .split(path.sep)
+    .slice(0, currentPattern.split(path.sep).length - 1);
+  const currentItemArr = shortPath
+    .split(path.sep)
+    .slice(0, shortPath.split(path.sep).length - 1);
+  const aLength = currentPatternArr.length;
+  const bLength = currentItemArr.length;
+  const diff = aLength - bLength;
+
+  return currentItemArr.equals(currentPatternArr.slice(0, aLength - diff));
+}
+
+function renderMenu(
+  structure,
+  currentPattern,
+  currentVariation,
+  id,
+  shortPath
+) {
   const list = getNavStructure(structure);
   let html = "";
 
   if (list.length) {
     let test = "";
+    let hidden = "";
+    let expanded = true;
 
     if (id) {
-      test = ` id="${id}" hidden`;
+      test = ` id="${id}"`;
     }
 
-    html += `<ul class="Nav-list"${test}>`;
+    if (shortPath) {
+      expanded = testIfCurrentPatternIsChildOfCurrentItem(
+        shortPath,
+        currentPattern
+      );
+    }
+
+    if (!expanded) {
+      hidden = " hidden";
+    }
+
+    html += `<ul class="Nav-list"${test}${hidden}>`;
 
     list.forEach(child => {
       let current = "";
@@ -89,11 +150,18 @@ function renderMenu(structure, currentPattern, currentVariation, id) {
       html += '<li class="Nav-item">';
 
       if (child.type === "directory") {
+        let expanded = false;
+
         if (currentPattern === child.shortPath && !currentVariation) {
           current = ' aria-current="page"';
         }
 
         if (child.shortPath) {
+          expanded = testIfCurrentPatternIsChildOfCurrentItem(
+            child.shortPath,
+            currentPattern
+          );
+
           if (
             (child.variations && child.variations.length) ||
             (child.children &&
@@ -101,12 +169,12 @@ function renderMenu(structure, currentPattern, currentVariation, id) {
           ) {
             html += `<button class="Nav-toggle" aria-controls="${
               child.id
-            }" aria-expanded="false" title="Toggle submenu"></button>`;
+            }" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
           }
 
           html += `<a class="Nav-component Nav-link" href="?pattern=${
             child.shortPath
-          }">${child.name}</a>`;
+          }"${current}>${child.name}</a>`;
         } else {
           html += `<span class="Nav-component is-disabled">${
             child.name
@@ -114,7 +182,9 @@ function renderMenu(structure, currentPattern, currentVariation, id) {
         }
 
         if (child.variations && child.variations.length) {
-          html += `<ul class="Nav-list" id="${child.id}" hidden>`;
+          html += `<ul class="Nav-list" id="${child.id}" ${
+            expanded ? "" : "hidden"
+          }>`;
           child.variations.forEach(variation => {
             let current = "";
             if (
@@ -149,7 +219,8 @@ function renderMenu(structure, currentPattern, currentVariation, id) {
           child.children,
           currentPattern,
           currentVariation,
-          child.id
+          child.id,
+          child.shortPath
         );
       }
 
