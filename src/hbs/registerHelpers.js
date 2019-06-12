@@ -36,7 +36,11 @@ function getNavStructure(srcStructure) {
               shortPath: partial.shortPath,
               extension: partial.extension,
               variations: s.variations,
-              children: s.children
+              children: s.children,
+              id: partial.shortPath
+                .replace(/\//g, "-")
+                .replace(/\./g, "-")
+                .replace(/_/g, "")
             });
           }
         } else {
@@ -46,7 +50,13 @@ function getNavStructure(srcStructure) {
             path: s.path,
             shortPath: s.shortPath,
             extension: s.extension,
-            children: s.children
+            children: s.children,
+            id: s.shortPath
+              ? s.shortPath
+                  .replace(/\//g, "-")
+                  .replace(/\./g, "-")
+                  .replace(/_/g, "")
+              : ""
           });
         }
       }
@@ -60,12 +70,18 @@ function getNavStructure(srcStructure) {
   return arr;
 }
 
-function renderMenu(structure, currentPattern, currentVariation) {
+function renderMenu(structure, currentPattern, currentVariation, id) {
   const list = getNavStructure(structure);
   let html = "";
 
-  if (list) {
-    html += '<ul class="Nav-list">';
+  if (list.length) {
+    let test = "";
+
+    if (id) {
+      test = ` id="${id}" hidden`;
+    }
+
+    html += `<ul class="Nav-list"${test}>`;
 
     list.forEach(child => {
       let current = "";
@@ -78,6 +94,16 @@ function renderMenu(structure, currentPattern, currentVariation) {
         }
 
         if (child.shortPath) {
+          if (
+            (child.variations && child.variations.length) ||
+            (child.children &&
+              child.children.filter(c => c.type === "directory").length)
+          ) {
+            html += `<button class="Nav-toggle" aria-controls="${
+              child.id
+            }" aria-expanded="false" title="Toggle submenu"></button>`;
+          }
+
           html += `<a class="Nav-component Nav-link" href="?pattern=${
             child.shortPath
           }">${child.name}</a>`;
@@ -88,7 +114,7 @@ function renderMenu(structure, currentPattern, currentVariation) {
         }
 
         if (child.variations && child.variations.length) {
-          html += '<ul class="Nav-list">';
+          html += `<ul class="Nav-list" id="${child.id}" hidden>`;
           child.variations.forEach(variation => {
             let current = "";
             if (
@@ -113,13 +139,18 @@ function renderMenu(structure, currentPattern, currentVariation) {
           current = ' aria-current="page"';
         }
 
-        html += `<a class="Nav-link Nav-component" target="content" href="?pattern=${
+        html += `<a class="Nav-component Nav-link" target="content" href="?pattern=${
           child.shortPath
         }"${current}>${child.name}</a>`;
       }
 
       if (child.children) {
-        html += renderMenu(child.children, currentPattern, currentVariation);
+        html += renderMenu(
+          child.children,
+          currentPattern,
+          currentVariation,
+          child.id
+        );
       }
 
       html += "</li>";

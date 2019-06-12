@@ -7,8 +7,28 @@ function updateIframe(iframe, src) {
 document.addEventListener("DOMContentLoaded", () => {
   const iframe = document.getElementById("iframe");
   const links = Array.from(document.querySelectorAll(".Nav a"));
+  const toggles = Array.from(document.querySelectorAll(".Nav-toggle"));
 
   history.pushState(null, null, document.location.href);
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener("click", e => {
+      e.preventDefault();
+
+      const el = e.target;
+      const expanded =
+        el.getAttribute("aria-expanded") === "true" ? false : true;
+      const target = document.getElementById(el.getAttribute("aria-controls"));
+
+      el.setAttribute("aria-expanded", expanded);
+
+      if (expanded) {
+        target.removeAttribute("hidden");
+      } else {
+        target.setAttribute("hidden", true);
+      }
+    });
+  });
 
   links.forEach(link => {
     link.addEventListener("click", e => {

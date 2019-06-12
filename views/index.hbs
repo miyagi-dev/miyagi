@@ -2,15 +2,17 @@
   {{#content "body"}}
     <nav class="Nav">
       {{#if folders.children}}
-        <a class="Nav-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
+        <h1>
+          <a class="Nav-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
+        </h1>
         <div class="Nav-menu">
-          {{#renderMenu folders.children currentPattern currentVariation }}{{/renderMenu}}
+          {{#renderMenu folders.children currentPattern currentVariation null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>
 
     <main class="Content">
-      <iframe id="iframe" src="{{iframeSrc}}" frameborder="0" name="content"></iframe>
+      <iframe id="iframe" src="{{iframeSrc}}" frameborder="0" name="iframe" title="Patterns"></iframe>
     </main>
   {{/content}}
 {{/extend}}

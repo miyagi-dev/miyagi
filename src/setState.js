@@ -54,7 +54,7 @@ function getSourceStructure(app) {
             try {
               fileData = fs.readFileSync(filePath);
             } catch (e) {
-              console.log(
+              console.warn(
                 `Couldn't find file ${filePath}. Is the 'srcFolder' in your styleguide.json correct?`
               );
             }

@@ -31,7 +31,7 @@ module.exports = function(app, hbs, initial) {
       try {
         readFile = fs.readFileSync(fullFilePath, "utf8");
       } catch (e) {
-        console.log(
+        console.warn(
           `Couldn't find file ${fullFilePath}. Is the 'srcFolder' in your styleguide.json correct?`
         );
       }

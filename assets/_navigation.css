@@ -36,8 +36,45 @@
   font-size: 1.4rem;
 }
 
+.Nav-item {
+  position: relative;
+}
+
+.Nav-toggle {
+  display: block;
+  font-size: 1.5em;
+  height: 1em;
+  position: absolute;
+  right: 100%;
+  text-indent: -9999em;
+  top: 0;
+  width: 1em;
+}
+
+.Nav-toggle::after {
+  border: 0 solid #000;
+  border-width: 0.2rem 0.2rem 0 0;
+  content: "";
+  display: block;
+  font-size: 0.25em;
+  height: 1em;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transition: transform 0.15s ease;
+  width: 1em;
+}
+
+.Nav-toggle[aria-expanded="false"]::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.Nav-toggle[aria-expanded="true"]::after {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
 .Nav-list > .Nav-item > .Nav-list:not(:first-child) {
-  margin-left: 1rem;
+  margin-left: 1.75rem;
   padding-top: 0.5rem;
 }
 
@@ -71,5 +108,4 @@
 
 .Nav-list:first-child > .Nav-item > .Nav-component {
   font-weight: bold;
-  padding-bottom: 0.5rem;
 }
