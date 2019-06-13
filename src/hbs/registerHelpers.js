@@ -99,6 +99,8 @@ Array.prototype.equals = function(array) {
 Object.defineProperty(Array.prototype, "equals", { enumerable: false });
 
 function testIfCurrentPatternIsChildOfCurrentItem(shortPath, currentPattern) {
+  if (!currentPattern) return false;
+
   const currentPatternArr = currentPattern
     .split(path.sep)
     .slice(0, currentPattern.split(path.sep).length - 1);
