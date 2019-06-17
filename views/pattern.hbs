@@ -1,5 +1,13 @@
 {{#extend "iframe"}}
   {{#content "body"}}
     {{{html}}}
+    <details class="A11yResults" hidden>
+      <summary class="A11yResults-summary">
+        Passed: <span class="A11yResults-result A11yResults-result--positive">0</span>
+        N/A: <span class="A11yResults-result A11yResults-result--neutral">0</span>
+        Failed: <span class="A11yResults-result A11yResults-result--negative">0</span>
+      </summary>
+      <div class="A11yResults-details"></div>
+    </details>
   {{/content}}
 {{/extend}}

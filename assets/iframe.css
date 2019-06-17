@@ -1,0 +1,36 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+.A11yResults {
+  background: rgba(255, 255, 255, 0.5);
+  bottom: 0;
+  left: 0;
+  padding: 0.5rem 1rem;
+  position: fixed;
+  right: 0;
+}
+
+.A11yResults-summary {
+  cursor: default;
+}
+
+.A11yResults-result:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.A11yResults-result--positive {
+  color: green;
+}
+
+.A11yResults-result--neutral {
+  color: grey;
+}
+
+.A11yResults-result--negative {
+  color: red;
+}

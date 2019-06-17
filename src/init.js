@@ -36,6 +36,11 @@ module.exports = config => {
     path.join(process.cwd(), app.get("config").srcFolder)
   ]);
   app.use(express.static(path.join(__dirname, "../assets")));
+  app.use(
+    express.static(
+      path.join(__dirname, "../accessibility-developer-tools/dist/js")
+    )
+  );
 
   server.listen(port);
 
