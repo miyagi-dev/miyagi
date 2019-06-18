@@ -21,6 +21,7 @@
     "twig": "^1.13.3"
   },
   "devDependencies": {
+    "axe-core": "^3.2.2",
     "nodemon": "^1.19.1"
   },
   "scripts": {

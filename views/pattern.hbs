@@ -1,13 +1,34 @@
 {{#extend "iframe"}}
   {{#content "body"}}
-    {{{html}}}
-    <details class="A11yResults" hidden>
-      <summary class="A11yResults-summary">
-        Passed: <span class="A11yResults-result A11yResults-result--positive">0</span>
-        N/A: <span class="A11yResults-result A11yResults-result--neutral">0</span>
-        Failed: <span class="A11yResults-result A11yResults-result--negative">0</span>
-      </summary>
-      <div class="A11yResults-details"></div>
-    </details>
+    <div id="Pattern">
+      {{{html}}}
+    </div>
+    <div class="A11yResultsContainer" hidden>
+      <b class="A11yResultsContainer-title">Accessibility tests</b>
+      <details class="A11yResults A11yResults--violations">
+        <summary class="A11yResults-summary">
+          Failed: <span class="A11yResults-result is-negative">0</span>
+        </summary>
+        <div class="A11yResults-details"></div>
+      </details>
+      <details class="A11yResults A11yResults--incomplete">
+        <summary class="A11yResults-summary">
+          Incomplete: <span class="A11yResults-result is-warning">0</span>
+        </summary>
+        <div class="A11yResults-details"></div>
+      </details>
+      <details class="A11yResults A11yResults--passes">
+        <summary class="A11yResults-summary">
+          Passed: <span class="A11yResults-result is-positive">0</span>
+        </summary>
+        <div class="A11yResults-details"></div>
+      </details>
+      <details class="A11yResults A11yResults--inapplicable">
+        <summary class="A11yResults-summary">
+          Not applicable: <span class="A11yResults-result is-neutral">0</span>
+        </summary>
+        <div class="A11yResults-details"></div>
+      </details>
+    </div>
   {{/content}}
 {{/extend}}

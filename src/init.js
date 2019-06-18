@@ -35,12 +35,9 @@ module.exports = config => {
     path.join(__dirname, "../views"),
     path.join(process.cwd(), app.get("config").srcFolder)
   ]);
-  app.use(express.static(path.join(__dirname, "../assets")));
-  app.use(
-    express.static(
-      path.join(__dirname, "../accessibility-developer-tools/dist/js")
-    )
-  );
+  app.use(express.static(path.join(__dirname, "../assets/js")));
+  app.use(express.static(path.join(__dirname, "../assets/css")));
+  app.use(express.static(path.join(__dirname, "../node_modules/axe-core")));
 
   server.listen(port);
 

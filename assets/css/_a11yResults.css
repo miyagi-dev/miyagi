@@ -1,0 +1,49 @@
+.A11yResults-summary {
+  cursor: default;
+}
+
+.A11yResults-result:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.A11yResults-details {
+  font-size: 1.4rem;
+  margin: 1rem 0 1rem 2.2rem;
+  max-height: 50vh;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
+
+.A11yResults-entry:not(:first-child) {
+  margin-top: 1rem;
+}
+
+.A11yResults-entry dt {
+  float: left;
+  font-weight: bold;
+  margin: 0 0.5em 0 0;
+}
+
+.A11yResults-entry a {
+  color: #0a374e;
+}
+
+.A11yResults-noResults {
+  font-style: italic;
+}
+
+.is-positive {
+  color: green;
+}
+
+.is-neutral {
+  color: grey;
+}
+
+.is-negative {
+  color: red;
+}
+
+.is-warning {
+  color: orange;
+}
