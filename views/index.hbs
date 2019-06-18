@@ -1,18 +1,62 @@
 {{#extend "main"}}
   {{#content "body"}}
-    <nav class="Nav">
+    <nav class="ComponentLibraryNav">
       {{#if folders.children}}
         <h1>
-          <a class="Nav-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
+          <a class="ComponentLibraryNav-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
         </h1>
-        <div class="Nav-menu">
+        <div class="ComponentLibraryNav-menu">
           {{#renderMenu folders.children currentPattern currentVariation null null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>
 
-    <main class="Content">
+    <main class="ComponentLibraryContent">
       <iframe id="iframe" src="{{iframeSrc}}" frameborder="0" name="iframe" title="Patterns"></iframe>
+      <div class="ComponentLibraryResults"{{#if patternOverview}} hidden{{/if}}>
+        <div class="ComponentLibraryA11yResultsContainer ComponentLibraryA11yResultsContainer--a11y" hidden>
+          <b class="ComponentLibraryA11yResultsContainer-title">Accessibility tests</b>
+          <details class="ComponentLibraryA11yResults ComponentLibraryA11yResults--violations">
+            <summary class="ComponentLibraryA11yResults-summary">
+              Failed: <span class="ComponentLibraryA11yResults-result is-negative">0</span>
+            </summary>
+            <div class="ComponentLibraryA11yResults-details"></div>
+          </details>
+          <details class="ComponentLibraryA11yResults ComponentLibraryA11yResults--incomplete">
+            <summary class="ComponentLibraryA11yResults-summary">
+              Incomplete: <span class="ComponentLibraryA11yResults-result is-warning">0</span>
+            </summary>
+            <div class="ComponentLibraryA11yResults-details"></div>
+          </details>
+          <details class="ComponentLibraryA11yResults ComponentLibraryA11yResults--passes">
+            <summary class="ComponentLibraryA11yResults-summary">
+              Passed: <span class="ComponentLibraryA11yResults-result is-positive">0</span>
+            </summary>
+            <div class="ComponentLibraryA11yResults-details"></div>
+          </details>
+          <details class="ComponentLibraryA11yResults ComponentLibraryA11yResults--inapplicable">
+            <summary class="ComponentLibraryA11yResults-summary">
+              Inapplicable: <span class="ComponentLibraryA11yResults-result is-neutral">0</span>
+            </summary>
+            <div class="ComponentLibraryA11yResults-details"></div>
+          </details>
+        </div>
+        <div class="ComponentLibraryA11yResultsContainer ComponentLibraryA11yResultsContainer--html" hidden>
+          <b class="ComponentLibraryA11yResultsContainer-title">HTML validation</b>
+          <details class="ComponentLibraryA11yResults ComponentLibraryA11yResults--error">
+            <summary class="ComponentLibraryA11yResults-summary">
+              Errors: <span class="ComponentLibraryA11yResults-result is-negative">0</span>
+            </summary>
+            <div class="ComponentLibraryA11yResults-details"></div>
+          </details>
+          <details class="ComponentLibraryA11yResults ComponentLibraryA11yResults--warning">
+            <summary class="ComponentLibraryA11yResults-summary">
+              Warnings: <span class="ComponentLibraryA11yResults-result is-warning">0</span>
+            </summary>
+            <div class="ComponentLibraryA11yResults-details"></div>
+          </details>
+        </div>
+      </div>
     </main>
   {{/content}}
 {{/extend}}

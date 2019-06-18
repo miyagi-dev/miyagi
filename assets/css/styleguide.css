@@ -1,5 +1,6 @@
 @import "./_reset.css";
 @import "./_nav.css";
+@import "./_a11yResults.css";
 
 * {
   box-sizing: border-box;
@@ -19,12 +20,31 @@ html {
   min-height: 100%;
 }
 
-.Content {
+.ComponentLibraryContent {
+  display: flex;
   flex-grow: 1;
 }
 
 iframe {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
   display: block;
-  height: 100%;
-  width: 100%;
+  flex: 1;
+  position: relative;
+}
+
+@media (max-width: 64em) {
+  .ComponentLibraryContent {
+    flex-direction: column;
+  }
+
+  .ComponentLibraryResults {
+    max-height: 50vh;
+  }
+}
+
+@media (min-width: 64.03125em) {
+  .ComponentLibraryResults {
+    max-height: 100vh;
+    max-width: 50rem;
+  }
 }

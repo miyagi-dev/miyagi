@@ -1,43 +1,61 @@
-.A11yResults-summary {
+.ComponentLibraryResults {
+  background: #f5f5f5;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.ComponentLibraryA11yResultsContainer {
+  font-size: 1.4rem;
+  margin: 0 0 2rem;
+}
+
+.ComponentLibraryA11yResultsContainer-title {
+  display: block;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+
+.ComponentLibraryA11yResults-extraxt {
+  font-family: monospace;
+}
+
+.ComponentLibraryA11yResults-summary {
   cursor: default;
 }
 
-.A11yResults-details {
-  font-size: 1.4rem;
+.ComponentLibraryA11yResults-details {
   margin: 1rem 0 1rem 2.2rem;
-  max-height: 50vh;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
 }
 
-.A11yResults-entry:not(:first-child) {
+.ComponentLibraryA11yResults-entry:not(:first-child) {
   margin-top: 1.5rem;
 }
 
-.A11yResults-entry dt {
+.ComponentLibraryA11yResults-entry dt {
   float: left;
   font-weight: bold;
   margin: 0 0.5em 0 0;
 }
 
-.A11yResults-entry dt::after {
+.ComponentLibraryA11yResults-entry dt::after {
   content: ":";
   display: inline;
 }
 
-.A11yResults-entry a {
+.ComponentLibraryA11yResults-entry a {
   color: #0a374e;
 }
 
-.A11yResults-noResults {
+.ComponentLibraryA11yResults-noResults {
   font-style: italic;
 }
 
-.A11yResults-result:not(:last-child) {
+.ComponentLibraryA11yResults-result:not(:last-child) {
   padding-right: 1rem;
 }
 
-.A11yResults-result.has-positiveValue {
+.ComponentLibraryA11yResults-result.has-positiveValue {
   border-radius: 0.25em;
   color: #fff;
   display: inline-block;
@@ -47,7 +65,7 @@
   text-align: center;
 }
 
-.A11yResults-result.has-positiveValue.is-positive {
+.ComponentLibraryA11yResults-result.has-positiveValue.is-positive {
   background: green;
 }
 
@@ -55,23 +73,23 @@
   color: green;
 }
 
-.A11yResults-result.has-positiveValue.is-neutral {
-  background: #767676;
+.ComponentLibraryA11yResults-result.has-positiveValue.is-neutral {
+  background: #707070;
 }
 
 .is-neutral {
-  color: #767676;
+  color: #707070;
 }
 
-.A11yResults-result.has-positiveValue.is-negative {
-  background: #e71d45;
+.ComponentLibraryA11yResults-result.has-positiveValue.is-negative {
+  background: #d9173e;
 }
 
 .is-negative {
-  color: #e71d45;
+  color: #d9173e;
 }
 
-.A11yResults-result.has-positiveValue.is-warning {
+.ComponentLibraryA11yResults-result.has-positiveValue.is-warning {
   background: purple;
 }
 
@@ -79,7 +97,7 @@
   color: purple;
 }
 
-.A11yResults-data {
+.ComponentLibraryA11yResults-data {
   border-left: 0.2rem solid #ccc;
   padding: 0 0 0 1rem;
 }

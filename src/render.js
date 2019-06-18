@@ -32,22 +32,26 @@ function renderMain(req, res) {
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
     iframeSrc: `${req.protocol}://${req.headers.host}/?pattern=all`,
-    showAll: true
+    showAll: true,
+    patternOverview: true
   });
 }
 
 function renderMainWithPattern(req, res, pattern, variation) {
   let iframeSrc = `${req.protocol}://${req.headers.host}/?pattern=${pattern}`;
+  let patternOverview = true;
 
   if (variation) {
     iframeSrc += `&variation=${variation}`;
+    patternOverview = false;
   }
 
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
     iframeSrc,
     currentPattern: req.query.show,
-    currentVariation: req.query.variation
+    currentVariation: req.query.variation,
+    patternOverview
   });
 }
 

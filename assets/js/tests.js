@@ -6,9 +6,11 @@ function escapeHtml(str) {
 
 function a11yTest() {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
-  const container = document.querySelector(".A11yResultsContainer--a11y");
+  const container = parent.document.querySelector(
+    ".ComponentLibraryA11yResultsContainer--a11y"
+  );
   const summaries = Array.from(
-    container.querySelectorAll(".A11yResults-summary")
+    container.querySelectorAll(".ComponentLibraryA11yResults-summary")
   );
 
   summaries.forEach(summary => {
@@ -24,12 +26,15 @@ function a11yTest() {
     });
   });
 
-  axe.run(document.getElementById("Pattern"), function(err, results) {
+  axe.run(document.getElementById("ComponentLibraryPattern"), function(
+    err,
+    results
+  ) {
     if (err) throw err;
 
     states.forEach(state => {
       const resultElement = container.querySelector(
-        `.A11yResults--${state} .A11yResults-result`
+        `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-result`
       );
       let html = "";
 
@@ -43,10 +48,10 @@ function a11yTest() {
       }
 
       if (results[state].length) {
-        html += '<ul class="A11yResults-entries">';
+        html += '<ul class="ComponentLibraryA11yResults-entries">';
         results[state].forEach(result => {
-          html += '<li class="A11yResults-entry">';
-          html += '<dl class="A11yResults-data">';
+          html += '<li class="ComponentLibraryA11yResults-entry">';
+          html += '<dl class="ComponentLibraryA11yResults-data">';
 
           if (result.description) {
             html += `<dt>Description</dt> <dd>${escapeHtml(
@@ -86,11 +91,11 @@ function a11yTest() {
         html += "</ul>";
       } else {
         html +=
-          '<p><i class="A11yResults-noResults">Nothing to report.</i></p>';
+          '<p><i class="ComponentLibraryA11yResults-noResults">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.A11yResults--${state} .A11yResults-details`
+        `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-details`
       ).innerHTML = html;
     });
 
@@ -99,7 +104,9 @@ function a11yTest() {
 }
 
 function htmlTest() {
-  const container = document.querySelector(".A11yResultsContainer--html");
+  const container = parent.document.querySelector(
+    ".ComponentLibraryA11yResultsContainer--html"
+  );
   const states = ["error", "warning"];
 
   fetch(location.href).then(response => {
@@ -124,7 +131,7 @@ function htmlTest() {
                 message => message.type === state
               );
               const resultElement = container.querySelector(
-                `.A11yResults--${state} .A11yResults-result`
+                `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-result`
               );
               let html = "";
 
@@ -135,10 +142,10 @@ function htmlTest() {
               }
 
               if (results.length) {
-                html += '<ul class="A11yResults-entries">';
+                html += '<ul class="ComponentLibraryA11yResults-entries">';
                 results.forEach(result => {
-                  html += '<li class="A11yResults-entry">';
-                  html += '<dl class="A11yResults-data">';
+                  html += '<li class="ComponentLibraryA11yResults-entry">';
+                  html += '<dl class="ComponentLibraryA11yResults-data">';
 
                   if (result.message) {
                     html += `<dt>Message</dt> <dd>${result.message}</dd>`;
@@ -158,7 +165,7 @@ function htmlTest() {
                       )
                     )}`;
 
-                    html += `<dt>Extract</dt> <dd><code class="extract">${markedExtract.replace(
+                    html += `<dt>Extract</dt> <dd><code class="ComponentLibraryA11yResults-extract">${markedExtract.replace(
                       /\n/g,
                       "↩"
                     )}</code></dd>`;
@@ -177,11 +184,11 @@ function htmlTest() {
                 html += "</ul>";
               } else {
                 html +=
-                  '<p><i class="A11yResults-noResults">Nothing to report.</i></p>';
+                  '<p><i class="ComponentLibraryA11yResults-noResults">Nothing to report.</i></p>';
               }
 
               container.querySelector(
-                `.A11yResults--${state} .A11yResults-details`
+                `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-details`
               ).innerHTML = html;
             });
 
@@ -193,8 +200,14 @@ function htmlTest() {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  if (document.getElementById("Pattern")) {
+  const results = parent.document.querySelector(".ComponentLibraryResults");
+
+  if (document.getElementById("ComponentLibraryPattern")) {
     a11yTest();
     htmlTest();
+
+    results.removeAttribute("hidden");
+  } else {
+    results.setAttribute("hidden", true);
   }
 });

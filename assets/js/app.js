@@ -1,13 +1,16 @@
-function updateIframe(iframe, src) {
+function updateIframe(content, iframe, src) {
   iframe.remove();
   iframe.src = src;
-  document.querySelector(".Content").appendChild(iframe);
+  content.insertBefore(iframe, content.lastElementChild);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelector(".ComponentLibraryContent");
   const iframe = document.getElementById("iframe");
-  const links = Array.from(document.querySelectorAll(".Nav a"));
-  const toggles = Array.from(document.querySelectorAll(".Nav-toggle"));
+  const links = Array.from(document.querySelectorAll(".ComponentLibraryNav a"));
+  const toggles = Array.from(
+    document.querySelectorAll(".ComponentLibraryNav-toggle")
+  );
 
   history.pushState(null, null, document.location.href);
 
@@ -44,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       e.target.setAttribute("aria-current", "page");
 
-      updateIframe(iframe, src);
+      updateIframe(content, iframe, src);
       history.pushState(null, null, src.replace("?pattern=", "?show="));
     });
   });
@@ -52,11 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("popstate", () => {
     if (document.location.search !== "") {
       updateIframe(
+        content,
         iframe,
         document.location.href.replace("?show=", "?pattern=")
       );
     } else {
-      updateIframe(iframe, `${document.location.href}?pattern=all`);
+      updateIframe(content, iframe, `${document.location.href}?pattern=all`);
     }
   });
 });

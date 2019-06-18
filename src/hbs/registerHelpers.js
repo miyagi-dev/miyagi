@@ -144,12 +144,12 @@ function renderMenu(
       hidden = " hidden";
     }
 
-    html += `<ul class="Nav-list"${test}${hidden}>`;
+    html += `<ul class="ComponentLibraryNav-list"${test}${hidden}>`;
 
     list.forEach(child => {
       let current = "";
 
-      html += '<li class="Nav-item">';
+      html += '<li class="ComponentLibraryNav-item">';
 
       if (child.type === "directory") {
         let expanded = false;
@@ -169,22 +169,22 @@ function renderMenu(
             (child.children &&
               child.children.filter(c => c.type === "directory").length)
           ) {
-            html += `<button class="Nav-toggle" aria-controls="${
+            html += `<button class="ComponentLibraryNav-toggle" aria-controls="${
               child.id
             }" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
           }
 
-          html += `<a class="Nav-component Nav-link" href="?pattern=${
+          html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" href="?pattern=${
             child.shortPath
           }"${current}>${child.name}</a>`;
         } else {
-          html += `<span class="Nav-component is-disabled">${
+          html += `<span class="ComponentLibraryNav-component is-disabled">${
             child.name
           }</span>`;
         }
 
         if (child.variations && child.variations.length) {
-          html += `<ul class="Nav-list" id="${child.id}" ${
+          html += `<ul class="ComponentLibraryNav-list" id="${child.id}" ${
             expanded ? "" : "hidden"
           }>`;
           child.variations.forEach(variation => {
@@ -196,8 +196,8 @@ function renderMenu(
               current = ' aria-current="page"';
             }
 
-            html += '<li class="Nav-item">';
-            html += `<a class="Nav-link Nav-link--variation" target="content" href="?pattern=${
+            html += '<li class="ComponentLibraryNav-item">';
+            html += `<a class="ComponentLibraryNav-link ComponentLibraryNav-link--variation" target="content" href="?pattern=${
               child.shortPath
             }&variation=${encodeURI(variation.name)}"${current}>${
               variation.name
@@ -211,7 +211,7 @@ function renderMenu(
           current = ' aria-current="page"';
         }
 
-        html += `<a class="Nav-component Nav-link" target="content" href="?pattern=${
+        html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" target="content" href="?pattern=${
           child.shortPath
         }"${current}>${child.name}</a>`;
       }
