@@ -7,7 +7,7 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
-    "chokidar": "^2.1.6",
+    "chokidar": "^3.0.1",
     "consolidate": "^0.15.1",
     "directory-tree": "^2.2.3",
     "express": "^4.17.1",
