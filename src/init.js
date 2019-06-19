@@ -6,13 +6,13 @@ const http = require("http");
 const path = require("path");
 
 const fileWatcher = require("./fileWatcher.js");
+const getPort = require("./getPort.js");
 const registerHelpers = require("./hbs/registerHelpers.js");
 const registerPartials = require("./hbs/registerPartials.js");
 const router = require("./router.js");
-const setState = require("./setState.js");
 const setConfig = require("./setConfig.js");
 const setEngines = require("./setEngines.js");
-const getPort = require("./getPort.js");
+const setState = require("./setState.js");
 
 module.exports = config => {
   const port = getPort();
