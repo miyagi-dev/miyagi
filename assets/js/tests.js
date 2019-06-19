@@ -9,7 +9,7 @@ function escapeHtml(str) {
 
 function addToggle(container) {
   const summaries = Array.from(
-    container.querySelectorAll(".ComponentLibraryComponentTest-summary")
+    container.querySelectorAll(".ComponentLibraryResults-summary")
   );
 
   summaries.forEach(summary => {
@@ -29,7 +29,7 @@ function addToggle(container) {
 function a11yTest() {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
   const container = parent.document.querySelector(
-    ".ComponentLibraryComponentTestContainer--a11y"
+    ".ComponentLibraryTest--a11y"
   );
 
   addToggle(container);
@@ -42,7 +42,7 @@ function a11yTest() {
 
     states.forEach(state => {
       const resultElement = container.querySelector(
-        `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-result`
+        `.ComponentLibraryResults--${state} .ComponentLibraryResults-value`
       );
       let html = "";
 
@@ -56,23 +56,25 @@ function a11yTest() {
       }
 
       if (results[state].length) {
-        html += '<ul class="ComponentLibraryComponentTest-entries">';
+        html += "<ul>";
         results[state].forEach(result => {
-          html += '<li class="ComponentLibraryComponentTest-entry">';
-          html += '<dl class="ComponentLibraryComponentTest-data">';
+          html += '<li class="ComponentLibraryResult">';
+          html += '<dl class="ComponentLibraryResult-data">';
 
           if (result.description) {
-            html += `<dt>Description</dt> <dd>${escapeHtml(
+            html += `<dt class="ComponentLibraryResult-attr">Description</dt> <dd>${escapeHtml(
               result.description
             )}</dd>`;
           }
 
           if (result.help) {
-            html += `<dt>Help</dt> <dd>${escapeHtml(result.help)}</dd>`;
+            html += `<dt class="ComponentLibraryResult-attr">Help</dt> <dd>${escapeHtml(
+              result.help
+            )}</dd>`;
           }
 
           if (result.helpUrl) {
-            html += `<dt>Link</dt> <dd><a href="${
+            html += `<dt class="ComponentLibraryResult-attr">Link</dt> <dd><a href="${
               result.helpUrl
             }" target="_blank">${result.helpUrl}</dd></a>`;
           }
@@ -82,13 +84,13 @@ function a11yTest() {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "is-negative";
+                impactClass = "ComponentLibraryResults-value--negative";
                 break;
               case "moderate":
-                impactClass = "is-warning";
+                impactClass = "ComponentLibraryResults-value--warning";
             }
 
-            html += `<dt>Impact</dt> <dd class="${impactClass}">${
+            html += `<dt class="ComponentLibraryResult-attr">Impact</dt> <dd class="${impactClass}">${
               result.impact
             }</dd>`;
           }
@@ -99,11 +101,11 @@ function a11yTest() {
         html += "</ul>";
       } else {
         html +=
-          '<p><i class="ComponentLibraryComponentTest-noResults">Nothing to report.</i></p>';
+          '<p><i class="ComponentLibraryResults-empty">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-details`
+        `.ComponentLibraryResults--${state} .ComponentLibraryResults-details`
       ).innerHTML = html;
     });
 
@@ -113,7 +115,7 @@ function a11yTest() {
 
 function htmlTest() {
   const container = parent.document.querySelector(
-    ".ComponentLibraryComponentTestContainer--html"
+    ".ComponentLibraryTest--html"
   );
   const states = ["error", "warning"];
 
@@ -142,7 +144,7 @@ function htmlTest() {
               );
 
               const resultElement = container.querySelector(
-                `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-result`
+                `.ComponentLibraryResults--${state} .ComponentLibraryResults-value`
               );
               let html = "";
 
@@ -151,13 +153,15 @@ function htmlTest() {
               if (results.length) {
                 resultElement.classList.add("has-positiveValue");
 
-                html += '<ul class="ComponentLibraryComponentTest-entries">';
+                html += "<ul>";
                 results.forEach(result => {
-                  html += '<li class="ComponentLibraryComponentTest-entry">';
-                  html += '<dl class="ComponentLibraryComponentTest-data">';
+                  html += '<li class="ComponentLibraryResult">';
+                  html += '<dl class="ComponentLibraryResult-data">';
 
                   if (result.message) {
-                    html += `<dt>Message</dt> <dd>${result.message}</dd>`;
+                    html += `<dt class="ComponentLibraryResult-attr">Message</dt> <dd>${
+                      result.message
+                    }</dd>`;
                   }
 
                   if (result.extract) {
@@ -174,18 +178,18 @@ function htmlTest() {
                       )
                     )}`;
 
-                    html += `<dt>Extract</dt> <dd><code class="ComponentLibraryComponentTest-extract">${markedExtract.replace(
+                    html += `<dt class="ComponentLibraryResult-attr">Extract</dt> <dd><code class="ComponentLibraryResult-extract">${markedExtract.replace(
                       /\n/g,
                       "↩"
                     )}</code></dd>`;
                   }
 
-                  html += `<dt>From</dt><dd>Line: ${
+                  html += `<dt class="ComponentLibraryResult-attr">From</dt><dd>Line: ${
                     result[result.firstLine ? "firstLine" : "lastLine"]
                   }, Column: ${result.firstColumn}</dd>`;
-                  html += `<dt>To</dt><dd>Line: ${result.lastLine}, Column: ${
-                    result.lastColumn
-                  }</dd>`;
+                  html += `<dt class="ComponentLibraryResult-attr">To</dt><dd>Line: ${
+                    result.lastLine
+                  }, Column: ${result.lastColumn}</dd>`;
 
                   html += "</dl>";
                   html += "</li>";
@@ -194,11 +198,11 @@ function htmlTest() {
               } else {
                 resultElement.classList.remove("has-positiveValue");
                 html +=
-                  '<p><i class="ComponentLibraryComponentTest-noResults">Nothing to report.</i></p>';
+                  '<p><i class="ComponentLibraryResults-empty">Nothing to report.</i></p>';
               }
 
               container.querySelector(
-                `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-details`
+                `.ComponentLibraryResults--${state} .ComponentLibraryResults-details`
               ).innerHTML = html;
             });
 
@@ -210,16 +214,16 @@ function htmlTest() {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  const results = parent.document.querySelector(".ComponentLibrary-tests");
+  const tests = parent.document.querySelector(".ComponentLibrary-tests");
 
-  if (parent.document.querySelector(".ComponentLibrary-tests")) {
+  if (tests) {
     if (document.getElementById("ComponentLibraryComponent")) {
       a11yTest();
       htmlTest();
 
-      results.removeAttribute("hidden");
+      tests.removeAttribute("hidden");
     } else {
-      results.setAttribute("hidden", true);
+      tests.setAttribute("hidden", true);
     }
   }
 });

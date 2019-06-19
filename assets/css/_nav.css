@@ -27,7 +27,7 @@
 
 .ComponentLibrary-link[aria-current] {
   background: var(--ComponentLibrary-color-link);
-  border-radius: 0.25rem;
+  border-radius: var(--ComponentLibrary-borderRadius);
   color: #fff;
   display: inline-block;
 }

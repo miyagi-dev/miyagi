@@ -1,0 +1,87 @@
+.ComponentLibraryResults-summary {
+  cursor: default;
+  list-style-type: none;
+  padding: 0 0 0 1.5rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.ComponentLibraryResults-summary::after {
+  border: var(--ComponentLibrary-toggle-border);
+  border-width: var(--ComponentLibrary-toggle-borderWidth);
+  content: "";
+  display: block;
+  font-size: var(--ComponentLibrary-toggle-fontSize);
+  height: var(--ComponentLibrary-toggle-height);
+  left: 0.25rem;
+  position: absolute;
+  top: 50%;
+  transition: var(--ComponentLibrary-toggle-transition);
+  width: var(--ComponentLibrary-toggle-width);
+}
+
+.ComponentLibraryResults-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ComponentLibraryResults:not([open]) .ComponentLibraryResults-summary::after {
+  transform: var(--ComponentLibrary-toggle-transition-closed);
+}
+
+.ComponentLibraryResults[open] .ComponentLibraryResults-summary::after {
+  transform: var(--ComponentLibrary-toggle-transition-opened);
+}
+
+.ComponentLibraryResults-value:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.ComponentLibraryResults-value.has-positiveValue {
+  border-radius: 0.25em;
+  color: #fff;
+  display: inline-block;
+  line-height: 1.2;
+  min-width: 1.2em;
+  padding: 0 0.5rem;
+  text-align: center;
+}
+
+.ComponentLibraryResults-value--positive {
+  color: var(--ComponentLibrary-color-positive);
+}
+
+.ComponentLibraryResults-value--positive.has-positiveValue {
+  background: var(--ComponentLibrary-color-positive);
+}
+
+.ComponentLibraryResults-value--neutral {
+  color: var(--ComponentLibrary-color-lightGray);
+}
+
+.ComponentLibraryResults-value--neutral.has-positiveValue {
+  background: var(--ComponentLibrary-color-lightGray);
+}
+
+.ComponentLibraryResults-value--negative {
+  color: var(--ComponentLibrary-color-negative);
+}
+
+.ComponentLibraryResults-value--negative.has-positiveValue {
+  background: var(--ComponentLibrary-color-negative);
+}
+
+.ComponentLibraryResults-value--warning {
+  color: var(--ComponentLibrary-color-warning);
+}
+
+.ComponentLibraryResults-value--warning.has-positiveValue {
+  background: var(--ComponentLibrary-color-warning);
+}
+
+.ComponentLibraryResults-details {
+  margin: 1rem 0 1rem 2.2rem;
+}
+
+.ComponentLibraryResults-empty {
+  font-style: italic;
+}

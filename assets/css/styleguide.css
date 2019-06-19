@@ -1,6 +1,8 @@
 @import "./_reset.css";
 @import "./_nav.css";
-@import "./_tests.css";
+@import "./_test.css";
+@import "./_results.css";
+@import "./_result.css";
 
 :root {
   --ComponentLibrary-color-bg: #f5f5f5;
@@ -11,6 +13,7 @@
   --ComponentLibrary-color-positive: green;
 
   --ComponentLibrary-spacing: 2rem;
+  --ComponentLibrary-borderRadius: 0.25rem;
 
   --ComponentLibrary-toggle-border: 0 solid #000;
   --ComponentLibrary-toggle-borderWidth: 0.2rem 0.2rem 0 0;

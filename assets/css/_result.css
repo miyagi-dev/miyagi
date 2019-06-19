@@ -1,0 +1,60 @@
+.ComponentLibraryResult:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.ComponentLibraryResult-data {
+  border-left: 0.2rem solid #ccc;
+  padding: 0 0 0 1rem;
+}
+
+.ComponentLibraryResult-attr {
+  float: left;
+  font-weight: bold;
+  margin: 0 0.5em 0 0;
+}
+
+.ComponentLibraryResult-attr::after {
+  content: ":";
+  display: inline;
+}
+
+.ComponentLibraryResult a {
+  color: var(--ComponentLibrary-color-link);
+  padding: 0 0.35rem 0 2rem;
+  position: relative;
+}
+
+.ComponentLibraryResult a::before {
+  background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyODQgMjg0Ij48cGF0aCBkPSJNMjY2IDBoLTk3YTE4IDE4IDAgMCAwIDAgMzVoNTVsLTkyIDkyYTE3IDE3IDAgMCAwIDAgMjUgMTcgMTcgMCAwIDAgMjUgMGw5Mi05MnY1NWExOCAxOCAwIDAgMCAzNSAwVjE4YzAtMTAtOC0xOC0xOC0xOHoiLz48cGF0aCBkPSJNMjAxIDI1NEgzMFY4M2gxMjlsMzAtMzBIMTVDNyA1MyAwIDYwIDAgNjh2MjAxYzAgOCA3IDE1IDE1IDE1aDIwMWM4IDAgMTUtNyAxNS0xNVY5NWwtMzAgMzB2MTI5eiIvPjwvc3ZnPg==);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  content: "";
+  display: inline-block;
+  font-size: 0.8em;
+  height: 1em;
+  left: 0;
+  margin: 0 0 0 0.5rem;
+  position: absolute;
+  top: 0.3rem;
+  width: 1em;
+}
+
+.ComponentLibraryResult a:hover,
+.ComponentLibraryResult a:focus,
+.ComponentLibraryResult a:active {
+  background: var(--ComponentLibrary-color-link);
+  border-radius: var(--ComponentLibrary-borderRadius);
+  box-shadow: 0 0.2rem 0 var(--ComponentLibrary-color-link);
+  color: #fff;
+  text-decoration: none;
+}
+
+.ComponentLibraryResult a:hover::before,
+.ComponentLibraryResult a:focus::before,
+.ComponentLibraryResult a:active::before {
+  filter: invert(1);
+}
+
+.ComponentLibraryResult-extract {
+  font-family: monospace;
+}
