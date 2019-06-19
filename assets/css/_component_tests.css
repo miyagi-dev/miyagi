@@ -1,0 +1,99 @@
+.ComponentLibraryComponentTestContainer {
+  font-size: 1.4rem;
+}
+
+.ComponentLibraryComponentTestContainer:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+.ComponentLibraryComponentTestContainer-title {
+  display: block;
+  font-weight: bold;
+  margin: 0 0 0.5rem;
+}
+
+.ComponentLibraryComponentTest-extraxt {
+  font-family: monospace;
+}
+
+.ComponentLibraryComponentTest-summary {
+  cursor: default;
+}
+
+.ComponentLibraryComponentTest-details {
+  margin: 1rem 0 1rem 2.2rem;
+}
+
+.ComponentLibraryComponentTest-entry:not(:first-child) {
+  margin-top: 1.5rem;
+}
+
+.ComponentLibraryComponentTest-entry dt {
+  float: left;
+  font-weight: bold;
+  margin: 0 0.5em 0 0;
+}
+
+.ComponentLibraryComponentTest-entry dt::after {
+  content: ":";
+  display: inline;
+}
+
+.ComponentLibraryComponentTest-entry a {
+  color: #0a374e;
+}
+
+.ComponentLibraryComponentTest-noResults {
+  font-style: italic;
+}
+
+.ComponentLibraryComponentTest-result:not(:last-child) {
+  padding-right: 1rem;
+}
+
+.ComponentLibraryComponentTest-result.has-positiveValue {
+  border-radius: 0.25em;
+  color: #fff;
+  display: inline-block;
+  line-height: 1.2;
+  min-width: 1.2em;
+  padding: 0 0.5rem;
+  text-align: center;
+}
+
+.ComponentLibraryComponentTest-result.has-positiveValue.is-positive {
+  background: green;
+}
+
+.is-positive {
+  color: green;
+}
+
+.ComponentLibraryComponentTest-result.has-positiveValue.is-neutral {
+  background: #707070;
+}
+
+.is-neutral {
+  color: #707070;
+}
+
+.ComponentLibraryComponentTest-result.has-positiveValue.is-negative {
+  background: #d9173e;
+}
+
+.is-negative {
+  color: #d9173e;
+}
+
+.ComponentLibraryComponentTest-result.has-positiveValue.is-warning {
+  background: purple;
+}
+
+.is-warning {
+  color: purple;
+}
+
+.ComponentLibraryComponentTest-data {
+  border-left: 0.2rem solid #ccc;
+  padding: 0 0 0 1rem;
+}

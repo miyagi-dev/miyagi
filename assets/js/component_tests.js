@@ -7,10 +7,10 @@ function escapeHtml(str) {
 function a11yTest() {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
   const container = parent.document.querySelector(
-    ".ComponentLibraryA11yResultsContainer--a11y"
+    ".ComponentLibraryComponentTestContainer--a11y"
   );
   const summaries = Array.from(
-    container.querySelectorAll(".ComponentLibraryA11yResults-summary")
+    container.querySelectorAll(".ComponentLibraryComponentTest-summary")
   );
 
   summaries.forEach(summary => {
@@ -34,7 +34,7 @@ function a11yTest() {
 
     states.forEach(state => {
       const resultElement = container.querySelector(
-        `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-result`
+        `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-result`
       );
       let html = "";
 
@@ -48,10 +48,10 @@ function a11yTest() {
       }
 
       if (results[state].length) {
-        html += '<ul class="ComponentLibraryA11yResults-entries">';
+        html += '<ul class="ComponentLibraryComponentTest-entries">';
         results[state].forEach(result => {
-          html += '<li class="ComponentLibraryA11yResults-entry">';
-          html += '<dl class="ComponentLibraryA11yResults-data">';
+          html += '<li class="ComponentLibraryComponentTest-entry">';
+          html += '<dl class="ComponentLibraryComponentTest-data">';
 
           if (result.description) {
             html += `<dt>Description</dt> <dd>${escapeHtml(
@@ -91,11 +91,11 @@ function a11yTest() {
         html += "</ul>";
       } else {
         html +=
-          '<p><i class="ComponentLibraryA11yResults-noResults">Nothing to report.</i></p>';
+          '<p><i class="ComponentLibraryComponentTest-noResults">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-details`
+        `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-details`
       ).innerHTML = html;
     });
 
@@ -105,7 +105,7 @@ function a11yTest() {
 
 function htmlTest() {
   const container = parent.document.querySelector(
-    ".ComponentLibraryA11yResultsContainer--html"
+    ".ComponentLibraryComponentTestContainer--html"
   );
   const states = ["error", "warning"];
 
@@ -130,8 +130,9 @@ function htmlTest() {
               const results = data.messages.filter(
                 message => message.type === state
               );
+
               const resultElement = container.querySelector(
-                `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-result`
+                `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-result`
               );
               let html = "";
 
@@ -139,13 +140,11 @@ function htmlTest() {
 
               if (results.length) {
                 resultElement.classList.add("has-positiveValue");
-              }
 
-              if (results.length) {
-                html += '<ul class="ComponentLibraryA11yResults-entries">';
+                html += '<ul class="ComponentLibraryComponentTest-entries">';
                 results.forEach(result => {
-                  html += '<li class="ComponentLibraryA11yResults-entry">';
-                  html += '<dl class="ComponentLibraryA11yResults-data">';
+                  html += '<li class="ComponentLibraryComponentTest-entry">';
+                  html += '<dl class="ComponentLibraryComponentTest-data">';
 
                   if (result.message) {
                     html += `<dt>Message</dt> <dd>${result.message}</dd>`;
@@ -165,7 +164,7 @@ function htmlTest() {
                       )
                     )}`;
 
-                    html += `<dt>Extract</dt> <dd><code class="ComponentLibraryA11yResults-extract">${markedExtract.replace(
+                    html += `<dt>Extract</dt> <dd><code class="ComponentLibraryComponentTest-extract">${markedExtract.replace(
                       /\n/g,
                       "↩"
                     )}</code></dd>`;
@@ -183,12 +182,13 @@ function htmlTest() {
                 });
                 html += "</ul>";
               } else {
+                resultElement.classList.remove("has-positiveValue");
                 html +=
-                  '<p><i class="ComponentLibraryA11yResults-noResults">Nothing to report.</i></p>';
+                  '<p><i class="ComponentLibraryComponentTest-noResults">Nothing to report.</i></p>';
               }
 
               container.querySelector(
-                `.ComponentLibraryA11yResults--${state} .ComponentLibraryA11yResults-details`
+                `.ComponentLibraryComponentTest--${state} .ComponentLibraryComponentTest-details`
               ).innerHTML = html;
             });
 
@@ -200,7 +200,9 @@ function htmlTest() {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  const results = parent.document.querySelector(".ComponentLibraryResults");
+  const results = parent.document.querySelector(
+    ".ComponentLibraryContent-tests"
+  );
 
   if (document.getElementById("ComponentLibraryPattern")) {
     a11yTest();

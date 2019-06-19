@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const componentTests = require("./componentTests.json");
 
 function resolveJsonURLs(req, data) {
   (function readJson(data) {
@@ -33,7 +34,8 @@ function renderMain(req, res) {
     folders: req.app.get("state").srcStructure,
     iframeSrc: `${req.protocol}://${req.headers.host}/?pattern=all`,
     showAll: true,
-    patternOverview: true
+    patternOverview: true,
+    componentTests
   });
 }
 
@@ -51,7 +53,8 @@ function renderMainWithPattern(req, res, pattern, variation) {
     iframeSrc,
     currentPattern: req.query.show,
     currentVariation: req.query.variation,
-    patternOverview
+    patternOverview,
+    componentTests
   });
 }
 
