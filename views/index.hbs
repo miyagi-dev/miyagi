@@ -3,7 +3,7 @@
     <nav class="ComponentLibrary-nav">
       {{#if folders.children}}
         <h1>
-          <a class="ComponentLibrary-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
+          <a class="ComponentLibrary-showAll" href="?pattern=all" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
         </h1>
         <div class="ComponentLibrary-menu">
           {{#renderMenu folders.children currentPattern currentVariation null null }}{{/renderMenu}}

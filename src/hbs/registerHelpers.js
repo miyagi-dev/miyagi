@@ -174,7 +174,7 @@ function renderMenu(
             }" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
           }
 
-          html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" href="?pattern=${
+          html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" target="iframe" href="?pattern=${
             child.shortPath
           }"${current}>${child.name}</a>`;
         } else {
@@ -197,7 +197,7 @@ function renderMenu(
             }
 
             html += '<li class="ComponentLibraryNav-item">';
-            html += `<a class="ComponentLibraryNav-link ComponentLibraryNav-link--variation" target="content" href="?pattern=${
+            html += `<a class="ComponentLibraryNav-link ComponentLibraryNav-link--variation" target="iframe" href="?pattern=${
               child.shortPath
             }&variation=${encodeURI(variation.name)}"${current}>${
               variation.name
@@ -211,7 +211,7 @@ function renderMenu(
           current = ' aria-current="page"';
         }
 
-        html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" target="content" href="?pattern=${
+        html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" target="iframe" href="?pattern=${
           child.shortPath
         }"${current}>${child.name}</a>`;
       }
