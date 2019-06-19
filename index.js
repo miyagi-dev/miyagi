@@ -4,7 +4,7 @@ const init = require("./src/init.js");
 let config;
 
 try {
-  config = JSON.parse(fs.readFileSync("./styleguide.json"));
+  config = JSON.parse(fs.readFileSync("./styleguide.json", "utf8"));
 } catch (error) {
   config = {};
 } finally {

@@ -52,7 +52,7 @@ function getSourceStructure(app) {
             const filePath = jsonChild.path;
 
             try {
-              fileData = fs.readFileSync(filePath);
+              fileData = fs.readFileSync(filePath, "utf8");
             } catch (e) {
               console.warn(
                 `Couldn't find file ${filePath}. Is the 'srcFolder' in your styleguide.json correct?`
