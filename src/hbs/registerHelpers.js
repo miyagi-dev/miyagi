@@ -128,12 +128,12 @@ function renderMenu(
   let html = "";
 
   if (list.length) {
-    let test = "";
+    let idAttr = "";
     let hidden = "";
     let expanded = true;
 
     if (id) {
-      test = ` id="${id}"`;
+      idAttr = ` id="${id}"`;
     }
 
     if (shortPath) {
@@ -147,7 +147,7 @@ function renderMenu(
       hidden = " hidden";
     }
 
-    html += `<ul class="ComponentLibrary-list"${test}${hidden}>`;
+    html += `<ul class="ComponentLibrary-list"${idAttr}${hidden}>`;
 
     list.forEach(child => {
       let current = "";
