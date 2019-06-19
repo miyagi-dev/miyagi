@@ -98,25 +98,28 @@ Array.prototype.equals = function(array) {
 // Hide method from for-in loops
 Object.defineProperty(Array.prototype, "equals", { enumerable: false });
 
-function testIfCurrentPatternIsChildOfCurrentItem(shortPath, currentPattern) {
-  if (!currentPattern) return false;
+function testIfCurrentComponentIsChildOfCurrentItem(
+  shortPath,
+  currentComponent
+) {
+  if (!currentComponent) return false;
 
-  const currentPatternArr = currentPattern
+  const currentComponentArr = currentComponent
     .split(path.sep)
-    .slice(0, currentPattern.split(path.sep).length - 1);
+    .slice(0, currentComponent.split(path.sep).length - 1);
   const currentItemArr = shortPath
     .split(path.sep)
     .slice(0, shortPath.split(path.sep).length - 1);
-  const aLength = currentPatternArr.length;
+  const aLength = currentComponentArr.length;
   const bLength = currentItemArr.length;
   const diff = aLength - bLength;
 
-  return currentItemArr.equals(currentPatternArr.slice(0, aLength - diff));
+  return currentItemArr.equals(currentComponentArr.slice(0, aLength - diff));
 }
 
 function renderMenu(
   structure,
-  currentPattern,
+  currentComponent,
   currentVariation,
   id,
   shortPath
@@ -134,9 +137,9 @@ function renderMenu(
     }
 
     if (shortPath) {
-      expanded = testIfCurrentPatternIsChildOfCurrentItem(
+      expanded = testIfCurrentComponentIsChildOfCurrentItem(
         shortPath,
-        currentPattern
+        currentComponent
       );
     }
 
@@ -144,24 +147,24 @@ function renderMenu(
       hidden = " hidden";
     }
 
-    html += `<ul class="ComponentLibraryNav-list"${test}${hidden}>`;
+    html += `<ul class="ComponentLibrary-list"${test}${hidden}>`;
 
     list.forEach(child => {
       let current = "";
 
-      html += '<li class="ComponentLibraryNav-item">';
+      html += '<li class="ComponentLibrary-listItem">';
 
       if (child.type === "directory") {
         let expanded = false;
 
-        if (currentPattern === child.shortPath && !currentVariation) {
+        if (currentComponent === child.shortPath && !currentVariation) {
           current = ' aria-current="page"';
         }
 
         if (child.shortPath) {
-          expanded = testIfCurrentPatternIsChildOfCurrentItem(
+          expanded = testIfCurrentComponentIsChildOfCurrentItem(
             child.shortPath,
-            currentPattern
+            currentComponent
           );
 
           if (
@@ -169,35 +172,35 @@ function renderMenu(
             (child.children &&
               child.children.filter(c => c.type === "directory").length)
           ) {
-            html += `<button class="ComponentLibraryNav-toggle" aria-controls="${
+            html += `<button class="ComponentLibrary-toggle" aria-controls="${
               child.id
             }" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
           }
 
-          html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" target="iframe" href="?pattern=${
+          html += `<a class="ComponentLibrary-component ComponentLibrary-link" target="iframe" href="?component=${
             child.shortPath
           }"${current}>${child.name}</a>`;
         } else {
-          html += `<span class="ComponentLibraryNav-component is-disabled">${
+          html += `<span class="ComponentLibrary-component is-disabled">${
             child.name
           }</span>`;
         }
 
         if (child.variations && child.variations.length) {
-          html += `<ul class="ComponentLibraryNav-list" id="${child.id}" ${
+          html += `<ul class="ComponentLibrary-list" id="${child.id}" ${
             expanded ? "" : "hidden"
           }>`;
           child.variations.forEach(variation => {
             let current = "";
             if (
-              currentPattern === child.shortPath &&
+              currentComponent === child.shortPath &&
               currentVariation === variation.name
             ) {
               current = ' aria-current="page"';
             }
 
-            html += '<li class="ComponentLibraryNav-item">';
-            html += `<a class="ComponentLibraryNav-link ComponentLibraryNav-link--variation" target="iframe" href="?pattern=${
+            html += '<li class="ComponentLibrary-listItem">';
+            html += `<a class="ComponentLibrary-link ComponentLibrary-link--variation" target="iframe" href="?component=${
               child.shortPath
             }&variation=${encodeURI(variation.name)}"${current}>${
               variation.name
@@ -207,11 +210,11 @@ function renderMenu(
           html += "</ul>";
         }
       } else if (child.type === "file") {
-        if (currentPattern === child.shortPath && !currentVariation) {
+        if (currentComponent === child.shortPath && !currentVariation) {
           current = ' aria-current="page"';
         }
 
-        html += `<a class="ComponentLibraryNav-component ComponentLibraryNav-link" target="iframe" href="?pattern=${
+        html += `<a class="ComponentLibrary-component ComponentLibrary-link" target="iframe" href="?component=${
           child.shortPath
         }"${current}>${child.name}</a>`;
       }
@@ -219,7 +222,7 @@ function renderMenu(
       if (child.children) {
         html += renderMenu(
           child.children,
-          currentPattern,
+          currentComponent,
           currentVariation,
           child.id,
           child.shortPath

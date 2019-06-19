@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const componentTests = require("./componentTests.json");
+const tests = require("./tests.json");
 
 function resolveJsonURLs(req, data) {
   (function readJson(data) {
@@ -32,35 +32,37 @@ function resolveJsonURLs(req, data) {
 function renderMain(req, res) {
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
-    iframeSrc: `${req.protocol}://${req.headers.host}/?pattern=all`,
+    iframeSrc: `${req.protocol}://${req.headers.host}/?component=all`,
     showAll: true,
-    patternOverview: true,
-    componentTests
+    componentOverview: true,
+    tests
   });
 }
 
-function renderMainWithPattern(req, res, pattern, variation) {
-  let iframeSrc = `${req.protocol}://${req.headers.host}/?pattern=${pattern}`;
-  let patternOverview = true;
+function renderMainWithComponent(req, res, component, variation) {
+  let iframeSrc = `${req.protocol}://${
+    req.headers.host
+  }/?component=${component}`;
+  let componentOverview = true;
 
   if (variation) {
     iframeSrc += `&variation=${variation}`;
-    patternOverview = false;
+    componentOverview = false;
   }
 
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
     iframeSrc,
-    currentPattern: req.query.show,
+    currentComponent: req.query.show,
     currentVariation: req.query.variation,
-    patternOverview,
-    componentTests
+    componentOverview,
+    tests
   });
 }
 
-function renderPattern(req, res, pattern, variation) {
-  const variations = req.app.get("state").jsonData[pattern].variations;
-  const patternData = req.app.get("state").jsonData[pattern].data;
+function renderComponent(req, res, component, variation) {
+  const variations = req.app.get("state").jsonData[component].variations;
+  const componentData = req.app.get("state").jsonData[component].data;
   let context;
 
   if (variations) {
@@ -71,25 +73,28 @@ function renderPattern(req, res, pattern, variation) {
       ? resolveJsonURLs(req, variationJson.data)
       : {};
 
-    context = Object.assign({}, patternData, variationData);
+    context = Object.assign({}, componentData, variationData);
   } else {
-    context = patternData;
+    context = componentData;
   }
 
-  req.app.render(pattern, context, (err, html) => {
-    res.render("pattern.hbs", { html });
+  req.app.render(component, context, (err, html) => {
+    res.render("component.hbs", { html });
   });
 }
 
-function renderPatternVariations(req, res, pattern) {
-  const json = req.app.get("state").jsonData[pattern];
+function renderComponentVariations(req, res, component) {
+  const json = req.app.get("state").jsonData[component];
   const data = json.data ? resolveJsonURLs(req, json.data) : {};
 
   if (json.variations) {
-    const context = [{ pattern, data }];
+    const context = [{ component, data }];
 
     json.variations.forEach(entry => {
-      context.push({ pattern, data: Object.assign({}, json.data, entry.data) });
+      context.push({
+        component,
+        data: Object.assign({}, json.data, entry.data)
+      });
     });
 
     const html = [];
@@ -98,7 +103,7 @@ function renderPatternVariations(req, res, pattern) {
     context.forEach((entry, i) => {
       promises.push(
         new Promise(resolve => {
-          req.app.render(pattern, entry.data, (err, result) => {
+          req.app.render(component, entry.data, (err, result) => {
             html[i] = result;
             resolve(result);
           });
@@ -107,31 +112,31 @@ function renderPatternVariations(req, res, pattern) {
     });
 
     Promise.all(promises).then(() => {
-      res.render("pattern_variations.hbs", {
+      res.render("component_variations.hbs", {
         html
       });
     });
   } else {
-    req.app.render(pattern, data, (err, html) => {
-      res.render("pattern.hbs", { html });
+    req.app.render(component, data, (err, html) => {
+      res.render("component.hbs", { html });
     });
   }
 }
 
-async function renderPatternOverview(req, res) {
+async function renderComponentOverview(req, res) {
   const html = [];
   const promises = [];
 
-  const patterns = req.app
+  const components = req.app
     .get("state")
     .filePaths.map(path => [path, req.app.get("state").jsonData[path].data]);
 
-  patterns.forEach((pattern, i) => {
+  components.forEach((component, i) => {
     promises.push(
       new Promise(resolve => {
         req.app.render(
-          pattern[0],
-          Object.assign({}, pattern[1]),
+          component[0],
+          Object.assign({}, component[1]),
           (err, result) => {
             html[i] = result;
             resolve();
@@ -142,7 +147,7 @@ async function renderPatternOverview(req, res) {
   });
 
   Promise.all(promises).then(() => {
-    res.render("pattern_overview.hbs", {
+    res.render("component_overview.hbs", {
       html
     });
   });
@@ -150,8 +155,8 @@ async function renderPatternOverview(req, res) {
 
 module.exports = {
   renderMain,
-  renderMainWithPattern,
-  renderPattern,
-  renderPatternVariations,
-  renderPatternOverview
+  renderMainWithComponent,
+  renderComponent,
+  renderComponentVariations,
+  renderComponentOverview
 };

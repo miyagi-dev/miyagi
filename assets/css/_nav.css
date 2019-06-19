@@ -2,38 +2,45 @@
   margin-top: 2rem;
 }
 
-.ComponentLibrary-showAll,
-.ComponentLibraryNav-link,
-.ComponentLibraryNav-component {
+.ComponentLibrary-link,
+.ComponentLibrary-component {
   display: block;
   padding: 0 0.35rem;
 }
 
-.ComponentLibrary-showAll,
-.ComponentLibraryNav-link {
+.ComponentLibrary-component {
+  font-weight: 500;
+}
+
+.ComponentLibrary-link {
   text-decoration: none;
 }
 
-.ComponentLibrary-showAll {
+.ComponentLibrary-link:hover,
+.ComponentLibrary-link:focus {
+  text-decoration: underline;
+}
+
+.ComponentLibrary-link--showAll {
   font-weight: bold;
 }
 
-.ComponentLibrary-nav [aria-current] {
-  background: #0a374e;
+.ComponentLibrary-link[aria-current] {
+  background: var(--ComponentLibrary-color-link);
   border-radius: 0.25rem;
   color: #fff;
   display: inline-block;
 }
 
-.ComponentLibraryNav-list {
+.ComponentLibrary-list {
   font-size: 1.4rem;
 }
 
-.ComponentLibraryNav-item {
+.ComponentLibrary-listItem {
   position: relative;
 }
 
-.ComponentLibraryNav-toggle {
+.ComponentLibrary-toggle {
   display: block;
   font-size: 1.5em;
   height: 1em;
@@ -44,68 +51,53 @@
   width: 1em;
 }
 
-.ComponentLibraryNav-toggle::after {
-  border: 0 solid #000;
-  border-width: 0.2rem 0.2rem 0 0;
+.ComponentLibrary-toggle::after {
+  border: var(--ComponentLibrary-toggle-border);
+  border-width: var(--ComponentLibrary-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: 0.5rem;
-  height: 1em;
+  font-size: var(--ComponentLibrary-toggle-fontSize);
+  height: var(--ComponentLibrary-toggle-height);
   left: 50%;
   position: absolute;
   top: 50%;
-  transition: transform 0.15s ease;
-  width: 1em;
+  transition: var(--ComponentLibrary-toggle-transition);
+  width: var(--ComponentLibrary-toggle-width);
 }
 
-.ComponentLibraryNav-toggle[aria-expanded="false"]::after {
-  transform: translate(-50%, -50%) rotate(45deg);
+.ComponentLibrary-toggle[aria-expanded="false"]::after {
+  transform: var(--ComponentLibrary-toggle-transition-closed);
 }
 
-.ComponentLibraryNav-toggle[aria-expanded="true"]::after {
-  transform: translate(-50%, -50%) rotate(135deg);
+.ComponentLibrary-toggle[aria-expanded="true"]::after {
+  transform: var(--ComponentLibrary-toggle-transition-opened);
 }
 
-.ComponentLibraryNav-list
-  > .ComponentLibraryNav-item
-  > .ComponentLibraryNav-list:not(:first-child) {
+.ComponentLibrary-list
+  > .ComponentLibrary-listItem
+  > .ComponentLibrary-list:not(:first-child) {
   margin-left: 1.75rem;
   padding-top: 0.5rem;
 }
 
-.ComponentLibraryNav-item:not(:last-child) {
+.ComponentLibrary-listItem:not(:last-child) {
   padding-bottom: 0.5rem;
 }
 
-.ComponentLibraryNav-list:first-child
-  > .ComponentLibraryNav-item:not(:first-child) {
+.ComponentLibrary-list:first-child
+  > .ComponentLibrary-listItem:not(:first-child) {
   padding-top: 1rem;
 }
 
-.ComponentLibraryNav-link--variation {
-  color: #333;
-}
-
-.ComponentLibrary-showAll:hover,
-.ComponentLibrary-showAll:focus,
-.ComponentLibraryNav-link:hover,
-.ComponentLibraryNav-link:focus {
-  text-decoration: underline;
-}
-
-.ComponentLibraryNav-component {
-  font-weight: 500;
-}
-
-.ComponentLibraryNav-list
-  .ComponentLibraryNav-list
-  .ComponentLibraryNav-component.is-disabled {
-  color: #707070;
+.ComponentLibrary-list
+  .ComponentLibrary-list
+  .ComponentLibrary-component.is-disabled {
+  color: var(--ComponentLibrary-color-lightGray);
   font-style: italic;
 }
 
-.ComponentLibraryNav-list:first-child
-  > .ComponentLibraryNav-item
-  > .ComponentLibraryNav-component {
+.ComponentLibrary-list:first-child
+  > .ComponentLibrary-listItem
+  > .ComponentLibrary-component {
   font-weight: bold;
 }

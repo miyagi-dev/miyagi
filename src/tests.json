@@ -2,7 +2,7 @@
   {
     "title": "Accessibility",
     "alias": "a11y",
-    "tests": [
+    "results": [
       {
         "label": "Failed",
         "class": "negative",
@@ -28,7 +28,7 @@
   {
     "title": "HTML",
     "alias": "html",
-    "tests": [
+    "results": [
       {
         "label": "Errors",
         "class": "negative",

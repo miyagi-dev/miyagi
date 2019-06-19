@@ -34,7 +34,7 @@ function a11yTest() {
 
   addToggle(container);
 
-  axe.run(document.getElementById("ComponentLibraryPattern"), function(
+  axe.run(document.getElementById("ComponentLibraryComponent"), function(
     err,
     results
   ) {
@@ -213,7 +213,7 @@ addEventListener("DOMContentLoaded", () => {
   const results = parent.document.querySelector(".ComponentLibrary-tests");
 
   if (parent.document.querySelector(".ComponentLibrary-tests")) {
-    if (document.getElementById("ComponentLibraryPattern")) {
+    if (document.getElementById("ComponentLibraryComponent")) {
       a11yTest();
       htmlTest();
 

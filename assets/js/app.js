@@ -5,11 +5,11 @@ function updateIframe(content, iframe, src) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const content = document.querySelector(".ComponentLibraryContent");
-  const iframe = document.getElementById("iframe");
-  const links = Array.from(document.querySelectorAll(".ComponentLibraryNav a"));
+  const content = document.querySelector(".ComponentLibrary-content");
+  const iframe = document.querySelector(".ComponentLibrary-frame");
+  const links = Array.from(document.querySelectorAll(".ComponentLibrary-link"));
   const toggles = Array.from(
-    document.querySelectorAll(".ComponentLibraryNav-toggle")
+    document.querySelectorAll(".ComponentLibrary-toggle")
   );
 
   history.pushState(null, null, document.location.href);
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       e.target.setAttribute("aria-current", "page");
 
       updateIframe(content, iframe, src);
-      history.pushState(null, null, src.replace("?pattern=", "?show="));
+      history.pushState(null, null, src.replace("?component=", "?show="));
     });
   });
 
@@ -57,10 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
       updateIframe(
         content,
         iframe,
-        document.location.href.replace("?show=", "?pattern=")
+        document.location.href.replace("?show=", "?component=")
       );
     } else {
-      updateIframe(content, iframe, `${document.location.href}?pattern=all`);
+      updateIframe(content, iframe, `${document.location.href}?component=all`);
     }
   });
 });

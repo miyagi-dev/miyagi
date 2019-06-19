@@ -1,0 +1,13 @@
+{{#extend "iframe"}}
+  {{#content "body"}}
+    {{#if html}}
+      {{#each html}}
+        <div>
+          {{{this}}}
+        </div>
+      {{/each}}
+    {{else}}
+      There are no components yet.
+    {{/if}}
+  {{/content}}
+{{/extend}}

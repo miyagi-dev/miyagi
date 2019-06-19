@@ -1,12 +1,32 @@
 @import "./_reset.css";
 @import "./_nav.css";
-@import "./_componentTests.css";
+@import "./_tests.css";
 
 :root {
-  --ComponentLibrary-bg: #f5f5f5;
+  --ComponentLibrary-color-bg: #f5f5f5;
+  --ComponentLibrary-color-lightGray: #707070;
+  --ComponentLibrary-color-link: #0a374e;
+  --ComponentLibrary-color-negative: #d9173e;
+  --ComponentLibrary-color-warning: purple;
+  --ComponentLibrary-color-positive: green;
+
+  --ComponentLibrary-spacing: 2rem;
+
+  --ComponentLibrary-toggle-border: 0 solid #000;
+  --ComponentLibrary-toggle-borderWidth: 0.2rem 0.2rem 0 0;
+  --ComponentLibrary-toggle-fontSize: 0.75rem;
+  --ComponentLibrary-toggle-height: 1em;
+  --ComponentLibrary-toggle-transition: transform 0.15s ease;
+  --ComponentLibrary-toggle-width: 1em;
+  --ComponentLibrary-toggle-transition-closed: translate(-50%, -50%)
+    rotate(45deg);
+  --ComponentLibrary-toggle-transition-opened: translate(-50%, -50%)
+    rotate(135deg);
 }
 
-* {
+*,
+*::after,
+*::before {
   box-sizing: border-box;
 }
 
@@ -25,11 +45,11 @@ html {
 }
 
 .ComponentLibrary-nav {
-  background: var(--ComponentLibrary-bg);
+  background: var(--ComponentLibrary-color-bg);
   grid-area: nav;
   height: 100vh;
   overflow-y: auto;
-  padding: 2rem;
+  padding: var(--ComponentLibrary-spacing);
 }
 
 .ComponentLibrary-content {
@@ -46,7 +66,7 @@ html {
 }
 
 .ComponentLibrary-tests {
-  background: var(--ComponentLibrary-bg);
+  background: var(--ComponentLibrary-color-bg);
   grid-area: tests;
   max-height: var(--maxHeight);
   -webkit-overflow-scrolling: touch;
