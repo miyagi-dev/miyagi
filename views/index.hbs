@@ -1,33 +1,33 @@
 {{#extend "main"}}
   {{#content "body"}}
-    <nav class="ComponentLibraryNav">
+    <nav class="ComponentLibrary-nav">
       {{#if folders.children}}
         <h1>
-          <a class="ComponentLibraryNav-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
+          <a class="ComponentLibrary-showAll" href="?pattern=all" target="content"{{#if showAll }} aria-current="page"{{/if}}>Pattern overview</a>
         </h1>
-        <div class="ComponentLibraryNav-menu">
+        <div class="ComponentLibrary-menu">
           {{#renderMenu folders.children currentPattern currentVariation null null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>
 
-    <main class="ComponentLibraryContent">
-      <iframe class="ComponentLibraryContent-frame" id="iframe" src="{{iframeSrc}}" frameborder="0" name="iframe" title="Patterns"></iframe>
-      <div class="ComponentLibraryContent-tests"{{#if patternOverview}} hidden{{/if}}>
-        {{#each componentTests}}
-          <div class="ComponentLibraryComponentTestContainer ComponentLibraryComponentTestContainer--{{this.alias}}" hidden>
-            <b class="ComponentLibraryComponentTestContainer-title">{{this.title}}</b>
-            {{#each this.tests}}
-              <details class="ComponentLibraryComponentTest ComponentLibraryComponentTest--{{this.alias}}">
-                <summary class="ComponentLibraryComponentTest-summary">
-                  {{this.label}}: <span class="ComponentLibraryComponentTest-result is-{{this.class}}">0</span>
-                </summary>
-                <div class="ComponentLibraryComponentTest-details"></div>
-              </details>
-            {{/each}}
-          </div>
-        {{/each}}
-      </div>
+    <main class="ComponentLibrary-content">
+      <iframe class="ComponentLibrary-frame" id="iframe" src="{{iframeSrc}}" frameborder="0" name="iframe" title="Patterns"></iframe>
     </main>
+    <aside class="ComponentLibrary-tests"{{#if patternOverview}} hidden{{/if}}>
+      {{#each componentTests}}
+        <div class="ComponentLibraryComponentTestContainer ComponentLibraryComponentTestContainer--{{this.alias}}" hidden>
+          <b class="ComponentLibraryComponentTestContainer-title">{{this.title}}</b>
+          {{#each this.tests}}
+            <details class="ComponentLibraryComponentTest ComponentLibraryComponentTest--{{this.alias}}">
+              <summary class="ComponentLibraryComponentTest-summary">
+                {{this.label}}: <span class="ComponentLibraryComponentTest-result is-{{this.class}}">0</span>
+              </summary>
+              <div class="ComponentLibraryComponentTest-details"></div>
+            </details>
+          {{/each}}
+        </div>
+      {{/each}}
+    </aside>
   {{/content}}
 {{/extend}}

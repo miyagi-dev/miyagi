@@ -1,9 +1,10 @@
 .ComponentLibraryComponentTestContainer {
   font-size: 1.4rem;
+  padding: 2rem 2rem 0;
 }
 
-.ComponentLibraryComponentTestContainer:not(:last-child) {
-  margin-bottom: 2rem;
+.ComponentLibraryComponentTestContainer:last-child {
+  padding-bottom: 2rem;
 }
 
 .ComponentLibraryComponentTestContainer-title {
@@ -18,6 +19,38 @@
 
 .ComponentLibraryComponentTest-summary {
   cursor: default;
+  list-style-type: none;
+  padding: 0 0 0 1.5rem;
+  position: relative;
+  white-space: nowrap;
+}
+
+.ComponentLibraryComponentTest-summary::after {
+  border: 0 solid #000;
+  border-width: 0.2rem 0.2rem 0 0;
+  content: "";
+  display: block;
+  font-size: 0.5rem;
+  height: 1em;
+  left: 0.25rem;
+  position: absolute;
+  top: 50%;
+  transition: transform 0.15s ease;
+  width: 1em;
+}
+
+.ComponentLibraryComponentTest:not([open])
+  .ComponentLibraryComponentTest-summary::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.ComponentLibraryComponentTest[open]
+  .ComponentLibraryComponentTest-summary::after {
+  transform: translate(-50%, -50%) rotate(135deg);
+}
+
+.ComponentLibraryComponentTest-summary::-webkit-details-marker {
+  display: none;
 }
 
 .ComponentLibraryComponentTest-details {

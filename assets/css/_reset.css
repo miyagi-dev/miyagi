@@ -84,27 +84,12 @@ time,
 mark,
 audio,
 video {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
-}
-
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
 }
 
 body {
@@ -139,12 +124,12 @@ table {
 input,
 button,
 textarea {
-  padding: 0;
-  margin: 0;
-  color: inherit;
-  font: inherit;
   background: none;
   border: none;
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 button,
@@ -162,23 +147,23 @@ a {
 }
 
 ::-webkit-input-placeholder {
-  opacity: 0.618;
   color: inherit;
+  opacity: 0.618;
 }
 
 ::-moz-placeholder {
-  opacity: 0.618;
   color: inherit;
+  opacity: 0.618;
 }
 
 :-ms-input-placeholder {
-  opacity: 0.618;
   color: inherit;
+  opacity: 0.618;
 }
 
 ::placeholder {
-  opacity: 0.618;
   color: inherit;
+  opacity: 0.618;
 }
 
 input[type="search"] {
@@ -191,8 +176,8 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 textarea {
-  resize: vertical;
   display: block;
+  resize: vertical;
 }
 
 /* Removes touch input lag from tappable things */
@@ -222,7 +207,7 @@ input::-moz-focus-inner {
   *::after,
   *::before {
     animation: none !important;
-    transition: none !important;
     scroll-behavior: auto !important;
+    transition: none !important;
   }
 }

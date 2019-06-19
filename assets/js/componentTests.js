@@ -1,14 +1,13 @@
+/* globals axe */
+import "/axe.js";
+
 function escapeHtml(str) {
   var div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
-function a11yTest() {
-  const states = ["passes", "inapplicable", "violations", "incomplete"];
-  const container = parent.document.querySelector(
-    ".ComponentLibraryComponentTestContainer--a11y"
-  );
+function addToggle(container) {
   const summaries = Array.from(
     container.querySelectorAll(".ComponentLibraryComponentTest-summary")
   );
@@ -25,6 +24,15 @@ function a11yTest() {
       });
     });
   });
+}
+
+function a11yTest() {
+  const states = ["passes", "inapplicable", "violations", "incomplete"];
+  const container = parent.document.querySelector(
+    ".ComponentLibraryComponentTestContainer--a11y"
+  );
+
+  addToggle(container);
 
   axe.run(document.getElementById("ComponentLibraryPattern"), function(
     err,
@@ -109,13 +117,15 @@ function htmlTest() {
   );
   const states = ["error", "warning"];
 
+  addToggle(container);
+
   fetch(location.href).then(response => {
     if (response.ok) {
       response.text().then(html => {
         const formData = new FormData();
         formData.append("out", "json");
         formData.append("content", html);
-        fetch("http://html5.validator.nu/", {
+        fetch("https://html5.validator.nu/", {
           method: "post",
           headers: {
             Accept: "application/json"
@@ -200,16 +210,16 @@ function htmlTest() {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  const results = parent.document.querySelector(
-    ".ComponentLibraryContent-tests"
-  );
+  const results = parent.document.querySelector(".ComponentLibrary-tests");
 
-  if (document.getElementById("ComponentLibraryPattern")) {
-    a11yTest();
-    htmlTest();
+  if (parent.document.querySelector(".ComponentLibrary-tests")) {
+    if (document.getElementById("ComponentLibraryPattern")) {
+      a11yTest();
+      htmlTest();
 
-    results.removeAttribute("hidden");
-  } else {
-    results.setAttribute("hidden", true);
+      results.removeAttribute("hidden");
+    } else {
+      results.setAttribute("hidden", true);
+    }
   }
 });
