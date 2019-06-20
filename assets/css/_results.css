@@ -1,3 +1,7 @@
+.ComponentLibraryResults + .ComponentLibraryResults {
+  margin-top: var(--results-spacing);
+}
+
 .ComponentLibraryResults-summary {
   cursor: default;
   list-style-type: none;
@@ -84,4 +88,16 @@
 
 .ComponentLibraryResults-empty {
   font-style: italic;
+}
+
+@media (pointer: coarse) {
+  .ComponentLibraryResults + .ComponentLibraryResults {
+    --results-spacing: 0.75rem;
+  }
+}
+
+@media (pointer: fine) {
+  .ComponentLibraryResults + .ComponentLibraryResults {
+    --results-spacing: 0.5rem;
+  }
 }

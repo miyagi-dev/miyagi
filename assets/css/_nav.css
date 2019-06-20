@@ -2,10 +2,22 @@
   margin-top: 2rem;
 }
 
+.ComponentLibrary-list
+  > .ComponentLibrary-listItem
+  > .ComponentLibrary-list:not(:first-child) {
+  padding-top: var(--spacingTop);
+}
+
+.ComponentLibrary-list
+  > .ComponentLibrary-listItem
+  > .ComponentLibrary-list:not(:first-child):not(.ComponentLibrary-list--variations) {
+  margin-left: var(--spacingLeft);
+}
+
 .ComponentLibrary-link,
 .ComponentLibrary-component {
   display: block;
-  padding: 0 0.35rem;
+  padding: 0 var(--ComponentLibrary-linkSpacing);
 }
 
 .ComponentLibrary-component {
@@ -45,7 +57,7 @@
   font-size: 1.5em;
   height: 1em;
   position: absolute;
-  right: calc(100% - 0.25rem);
+  right: calc(100% - var(--right));
   text-indent: -9999em;
   top: 0;
   width: 1em;
@@ -73,17 +85,6 @@
   transform: var(--ComponentLibrary-toggle-transition-opened);
 }
 
-.ComponentLibrary-list
-  > .ComponentLibrary-listItem
-  > .ComponentLibrary-list:not(:first-child) {
-  margin-left: 1.75rem;
-  padding-top: 0.5rem;
-}
-
-.ComponentLibrary-listItem:not(:last-child) {
-  padding-bottom: 0.5rem;
-}
-
 .ComponentLibrary-list:first-child
   > .ComponentLibrary-listItem:not(:first-child) {
   padding-top: 1rem;
@@ -100,4 +101,55 @@
   > .ComponentLibrary-listItem
   > .ComponentLibrary-component {
   font-weight: bold;
+}
+
+@media (pointer: coarse) {
+  .ComponentLibrary-list {
+    --spacingTop: 1.25rem;
+    --spacingLeft: 3.5rem;
+  }
+
+  .ComponentLibrary-list--variations {
+    margin-left: 2rem;
+  }
+
+  .ComponentLibrary-listItem:not(:last-child) {
+    padding-bottom: 1rem;
+  }
+
+  .ComponentLibrary-toggle {
+    --right: -0.75rem;
+  }
+
+  .ComponentLibrary-list:first-child
+    > .ComponentLibrary-listItem
+    > .ComponentLibrary-toggle {
+    --right: 0.25em !important;
+  }
+
+  .ComponentLibrary-list:first-child
+    > .ComponentLibrary-listItem
+    > .ComponentLibrary-toggle
+    + .ComponentLibrary-component {
+    margin-left: 1rem;
+  }
+}
+
+@media (pointer: fine) {
+  .ComponentLibrary-list {
+    --spacingTop: 0.5rem;
+    --spacingLeft: 2.5rem;
+  }
+
+  .ComponentLibrary-list--variations {
+    margin-left: 1.5rem;
+  }
+
+  .ComponentLibrary-listItem:not(:last-child) {
+    padding-bottom: 0.5rem;
+  }
+
+  .ComponentLibrary-toggle {
+    --right: 0rem;
+  }
 }

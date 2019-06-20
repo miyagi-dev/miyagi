@@ -5,6 +5,9 @@
 @import "./_result.css";
 
 :root {
+  --ComponentLibrary-fontSize: 1.6rem;
+  --ComponentLibrary-lineHeight: 1.5;
+
   --ComponentLibrary-color-bg: #f5f5f5;
   --ComponentLibrary-color-lightGray: #707070;
   --ComponentLibrary-color-link: #0a374e;
@@ -12,18 +15,18 @@
   --ComponentLibrary-color-warning: purple;
   --ComponentLibrary-color-positive: green;
 
-  --ComponentLibrary-spacing: 2rem;
   --ComponentLibrary-borderRadius: 0.25rem;
+  --ComponentLibrary-linkSpacing: 0.35rem;
 
   --ComponentLibrary-toggle-border: 0 solid #000;
-  --ComponentLibrary-toggle-borderWidth: 0.2rem 0.2rem 0 0;
+  --ComponentLibrary-toggle-borderWidth: 0.3em 0.3em 0 0;
   --ComponentLibrary-toggle-fontSize: 0.75rem;
   --ComponentLibrary-toggle-height: 1em;
   --ComponentLibrary-toggle-transition: transform 0.15s ease;
   --ComponentLibrary-toggle-width: 1em;
   --ComponentLibrary-toggle-transition-closed: translate(-50%, -50%)
     rotate(45deg);
-  --ComponentLibrary-toggle-transition-opened: translate(-50%, -50%)
+  --ComponentLibrary-toggle-transition-opened: translate(-25%, -75%)
     rotate(135deg);
 }
 
@@ -42,17 +45,17 @@ html {
   display: grid;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
-  font-size: 1.6rem;
-  line-height: 1.5;
+  font-size: var(--ComponentLibrary-fontSize);
+  line-height: var(--ComponentLibrary-lineHeight);
   min-height: 100%;
 }
 
 .ComponentLibrary-nav {
   background: var(--ComponentLibrary-color-bg);
   grid-area: nav;
-  height: 100vh;
   overflow-y: auto;
-  padding: var(--ComponentLibrary-spacing);
+  padding: var(--ComponentLibrary-spacing)
+    calc(var(--ComponentLibrary-spacing) - var(--ComponentLibrary-linkSpacing));
 }
 
 .ComponentLibrary-content {
@@ -71,12 +74,87 @@ html {
 .ComponentLibrary-tests {
   background: var(--ComponentLibrary-color-bg);
   grid-area: tests;
-  max-height: var(--maxHeight);
-  -webkit-overflow-scrolling: touch;
-  overflow-y: auto;
 }
 
-@media (max-width: 64em) {
+@media (max-width: 32em) {
+  :root {
+    --ComponentLibrary-spacing: 1.5rem;
+  }
+
+  .ComponentLibrary {
+    grid-template:
+      "nav"
+      "iframe" 1fr
+      "tests";
+  }
+
+  .ComponentLibrary-nav {
+    position: relative;
+  }
+
+  .ComponentLibrary-toggleMobileMenu {
+    --size: calc(
+      var(--ComponentLibrary-fontSize) * var(--ComponentLibrary-lineHeight) +
+        calc(2 * var(--ComponentLibrary-spacing))
+    );
+
+    display: block;
+    height: var(--size);
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: var(--size);
+  }
+
+  .ComponentLibrary-toggleMobileMenu::after {
+    border: var(--ComponentLibrary-toggle-border);
+    border-width: var(--ComponentLibrary-toggle-borderWidth);
+    content: "";
+    display: block;
+    font-size: 0.75em;
+    height: var(--ComponentLibrary-toggle-height);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transition: var(--ComponentLibrary-toggle-transition);
+    width: var(--ComponentLibrary-toggle-width);
+  }
+
+  .ComponentLibrary-toggleMobileMenu[aria-expanded="false"]::after {
+    transform: var(--ComponentLibrary-toggle-transition-closed);
+  }
+
+  .ComponentLibrary-toggleMobileMenu[aria-expanded="true"]::after {
+    transform: var(--ComponentLibrary-toggle-transition-opened);
+  }
+
+  .ComponentLibrary-toggleMobileMenu[aria-expanded="false"]
+    + .ComponentLibrary-menu {
+    display: none;
+  }
+}
+
+@media (min-width: 32.03125em) {
+  :root {
+    --ComponentLibrary-spacing: 2rem;
+  }
+
+  .ComponentLibrary-nav {
+    height: 100vh;
+  }
+
+  .ComponentLibrary-toggleMobileMenu {
+    display: none;
+  }
+
+  .ComponentLibrary-tests {
+    max-height: var(--maxHeight);
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: 32.03125em) and (max-width: 64em) {
   .ComponentLibrary {
     grid-template-areas:
       "nav iframe"

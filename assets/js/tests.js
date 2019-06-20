@@ -62,21 +62,21 @@ function a11yTest() {
           html += '<dl class="ComponentLibraryResult-data">';
 
           if (result.description) {
-            html += `<dt class="ComponentLibraryResult-attr">Description</dt> <dd>${escapeHtml(
+            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Description</dt> <dd class="ComponentLibraryResult-value">${escapeHtml(
               result.description
-            )}</dd>`;
+            )}</div></dd>`;
           }
 
           if (result.help) {
-            html += `<dt class="ComponentLibraryResult-attr">Help</dt> <dd>${escapeHtml(
+            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Help</dt> <dd class="ComponentLibraryResult-value">${escapeHtml(
               result.help
-            )}</dd>`;
+            )}</div></dd>`;
           }
 
           if (result.helpUrl) {
-            html += `<dt class="ComponentLibraryResult-attr">Link</dt> <dd><a href="${
+            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Link</dt> <dd class="ComponentLibraryResult-value"><a href="${
               result.helpUrl
-            }" target="_blank">${result.helpUrl}</dd></a>`;
+            }" target="_blank">${result.helpUrl}</div></dd></a>`;
           }
 
           if (result.impact) {
@@ -90,9 +90,9 @@ function a11yTest() {
                 impactClass = "ComponentLibraryResults-value--warning";
             }
 
-            html += `<dt class="ComponentLibraryResult-attr">Impact</dt> <dd class="${impactClass}">${
+            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Impact</dt> <dd class="${impactClass}">${
               result.impact
-            }</dd>`;
+            }</div></dd>`;
           }
 
           html += "</dl>";
@@ -159,9 +159,9 @@ function htmlTest() {
                   html += '<dl class="ComponentLibraryResult-data">';
 
                   if (result.message) {
-                    html += `<dt class="ComponentLibraryResult-attr">Message</dt> <dd>${
+                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Message</dt> <dd class="ComponentLibraryResult-value">${
                       result.message
-                    }</dd>`;
+                    }</div></dd>`;
                   }
 
                   if (result.extract) {
@@ -178,18 +178,18 @@ function htmlTest() {
                       )
                     )}`;
 
-                    html += `<dt class="ComponentLibraryResult-attr">Extract</dt> <dd><code class="ComponentLibraryResult-extract">${markedExtract.replace(
+                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Extract</dt> <dd class="ComponentLibraryResult-value"><code class="ComponentLibraryResult-extract">${markedExtract.replace(
                       /\n/g,
                       "↩"
-                    )}</code></dd>`;
+                    )}</code></div></dd>`;
                   }
 
-                  html += `<dt class="ComponentLibraryResult-attr">From</dt><dd>Line: ${
+                  html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">From</dt><dd class="ComponentLibraryResult-value">Line: ${
                     result[result.firstLine ? "firstLine" : "lastLine"]
-                  }, Column: ${result.firstColumn}</dd>`;
-                  html += `<dt class="ComponentLibraryResult-attr">To</dt><dd>Line: ${
+                  }, Column: ${result.firstColumn}</div></dd>`;
+                  html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">To</dt><dd class="ComponentLibraryResult-value">Line: ${
                     result.lastLine
-                  }, Column: ${result.lastColumn}</dd>`;
+                  }, Column: ${result.lastColumn}</div></dd>`;
 
                   html += "</dl>";
                   html += "</li>";

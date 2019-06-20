@@ -2,9 +2,10 @@
   {{#content "body"}}
     <nav class="ComponentLibrary-nav">
       {{#if folders}}
-        <h1>
+        <h1 class="ComponentLibrary-title">
           <a class="ComponentLibrary-link ComponentLibrary-link--showAll" href="?component=all" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>Components</a>
         </h1>
+        <button class="ComponentLibrary-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
         <div class="ComponentLibrary-menu">
           {{#renderMenu folders currentComponent currentVariation null null }}{{/renderMenu}}
         </div>

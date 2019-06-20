@@ -229,9 +229,9 @@ function renderMenu(
         }
 
         if (child.variations && child.variations.length) {
-          html += `<ul class="ComponentLibrary-list" id="${child.id}" ${
-            expanded ? "" : "hidden"
-          }>`;
+          html += `<ul class="ComponentLibrary-list ComponentLibrary-list--variations" id="${
+            child.id
+          }" ${expanded ? "" : "hidden"}>`;
           child.variations.forEach(variation => {
             let current = "";
             if (

@@ -8,11 +8,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.querySelector(".ComponentLibrary-content");
   const iframe = document.querySelector(".ComponentLibrary-frame");
   const links = Array.from(document.querySelectorAll(".ComponentLibrary-link"));
+  const menu = document.querySelector(".ComponentLibrary-menu");
   const toggles = Array.from(
     document.querySelectorAll(".ComponentLibrary-toggle")
   );
 
   history.pushState(null, null, document.location.href);
+
+  document
+    .querySelector(".ComponentLibrary-toggleMobileMenu")
+    .addEventListener("click", e => {
+      e.preventDefault();
+
+      const toggle = e.target;
+      let newValue;
+
+      if (toggle.getAttribute("aria-expanded") === "true") {
+        newValue = false;
+      } else {
+        newValue = true;
+      }
+      toggle.setAttribute("aria-expanded", newValue);
+    });
 
   toggles.forEach(toggle => {
     toggle.addEventListener("click", e => {
@@ -49,6 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       updateIframe(content, iframe, src);
       history.pushState(null, null, src.replace("?component=", "?show="));
+
+      if (window.innerWidth <= 512) {
+        document
+          .querySelector(".ComponentLibrary-toggleMobileMenu")
+          .setAttribute("aria-expanded", false);
+      }
     });
   });
 
