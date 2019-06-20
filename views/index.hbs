@@ -1,12 +1,12 @@
 {{#extend "main"}}
   {{#content "body"}}
     <nav class="ComponentLibrary-nav">
-      {{#if folders.children}}
+      {{#if folders}}
         <h1>
           <a class="ComponentLibrary-link ComponentLibrary-link--showAll" href="?component=all" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>Components</a>
         </h1>
         <div class="ComponentLibrary-menu">
-          {{#renderMenu folders.children currentComponent currentVariation null null }}{{/renderMenu}}
+          {{#renderMenu folders currentComponent currentVariation null null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>

@@ -37,6 +37,7 @@ function getNavStructure(srcStructure) {
               extension: partial.extension,
               variations: s.variations,
               children: s.children,
+              index: s.index,
               id: partial.shortPath
                 .replace(/\//g, "-")
                 .replace(/\./g, "-")
@@ -48,15 +49,14 @@ function getNavStructure(srcStructure) {
             type: s.type,
             name: s.name,
             path: s.path,
-            shortPath: s.shortPath,
-            extension: s.extension,
             children: s.children,
-            id: s.shortPath
-              ? s.shortPath
-                  .replace(/\//g, "-")
-                  .replace(/\./g, "-")
-                  .replace(/_/g, "")
-              : ""
+            index: s.index,
+            id: s.path
+              .replace(process.cwd().slice(1), "")
+              .slice(1)
+              .replace(/\//g, "-")
+              .replace(/\./g, "-")
+              .replace(/_/g, "")
           });
         }
       }
@@ -117,12 +117,28 @@ function testIfCurrentComponentIsChildOfCurrentItem(
   return currentItemArr.equals(currentComponentArr.slice(0, aLength - diff));
 }
 
+function testIfCurrentFolderIsChildOfCurrentItem(shortPath, currentComponent) {
+  if (!currentComponent) return false;
+
+  const currentComponentArr = currentComponent
+    .split(path.sep)
+    .slice(0, currentComponent.split(path.sep).length - 1);
+  const currentItemArr = shortPath.split(path.sep);
+  const aLength = currentComponentArr.length;
+  const bLength = currentItemArr.length;
+  const diff = aLength - bLength;
+
+  return currentItemArr.equals(currentComponentArr.slice(0, aLength - diff));
+}
+
 function renderMenu(
   structure,
   currentComponent,
   currentVariation,
   id,
-  shortPath
+  shortPath,
+  index,
+  folderShortPath
 ) {
   const list = getNavStructure(structure);
   let html = "";
@@ -141,6 +157,11 @@ function renderMenu(
         shortPath,
         currentComponent
       );
+    } else if (index > 0) {
+      expanded = testIfCurrentFolderIsChildOfCurrentItem(
+        folderShortPath,
+        currentComponent
+      );
     }
 
     if (!expanded) {
@@ -151,7 +172,6 @@ function renderMenu(
 
     list.forEach(child => {
       let current = "";
-
       html += '<li class="ComponentLibrary-listItem">';
 
       if (child.type === "directory") {
@@ -181,9 +201,31 @@ function renderMenu(
             child.shortPath
           }"${current}>${child.name}</a>`;
         } else {
-          html += `<span class="ComponentLibrary-component is-disabled">${
-            child.name
-          }</span>`;
+          if (
+            child.children &&
+            child.children.filter(child => child.type === "directory").length &&
+            child.index > 0
+          ) {
+            if (child.index === 0) {
+              expanded = true;
+            } else {
+              expanded = testIfCurrentFolderIsChildOfCurrentItem(
+                child.path.replace(process.cwd().slice(1), "").slice(1),
+                currentComponent
+              );
+            }
+
+            html += `<button class="ComponentLibrary-toggle" aria-controls="${
+              child.id
+            }" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
+            html += `<span class="ComponentLibrary-component">${
+              child.name
+            }</span>`;
+          } else {
+            html += `<span class="ComponentLibrary-component is-disabled">${
+              child.name
+            }</span>`;
+          }
         }
 
         if (child.variations && child.variations.length) {
@@ -225,7 +267,9 @@ function renderMenu(
           currentComponent,
           currentVariation,
           child.id,
-          child.shortPath
+          child.shortPath,
+          child.index,
+          child.path.replace(process.cwd().slice(1), "").slice(1)
         );
       }
 

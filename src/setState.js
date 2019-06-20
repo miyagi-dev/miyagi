@@ -95,7 +95,17 @@ function getSourceStructure(app) {
     })(tree);
   }
 
-  return tree;
+  (function loop(obj, index) {
+    obj.index = index;
+
+    if (obj.children) {
+      obj.children.forEach(child => {
+        loop(child, index + 1);
+      });
+    }
+  })(tree, -1);
+
+  return tree.children;
 }
 
 function getJsonData(app, paths) {
