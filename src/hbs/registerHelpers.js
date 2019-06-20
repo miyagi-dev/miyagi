@@ -283,40 +283,20 @@ function renderMenu(
 }
 
 function cssFiles() {
-  let html = "<style>";
+  let html = "";
   app.get("config").cssFiles.forEach(file => {
-    const sanitizedFilePath = file.replace(/\0/g, "");
-    const filePath = path.join(process.cwd(), sanitizedFilePath);
-    let readFile;
-
-    try {
-      readFile = fs.readFileSync(filePath, "utf8");
-    } catch (e) {
-      console.warn(`WARNING: CSS file ${filePath} not found.`);
-    }
-
-    html += readFile;
+    html += `<link rel="stylesheet" href="${file}">`;
   });
-  html += "</style>";
+
   return html;
 }
 
 function jsFiles() {
-  let html = "<script>";
+  let html = "";
   app.get("config").jsFiles.forEach(file => {
-    const sanitizedFilePath = file.replace(/\0/g, "");
-    const filePath = path.join(process.cwd(), sanitizedFilePath);
-    let readFile;
-
-    try {
-      readFile = fs.readFileSync(filePath, "utf8");
-    } catch (e) {
-      console.warn(`WARNING: JS file ${filePath} not found.`);
-    }
-
-    html += readFile;
+    html += `<script src="${file}"></script>`;
   });
-  html += "</script>";
+
   return html;
 }
 

@@ -35,6 +35,7 @@ module.exports = config => {
     path.join(__dirname, "../views"),
     path.join(process.cwd(), app.get("config").srcFolder)
   ]);
+  app.use(express.static(process.cwd()));
   app.use(express.static(path.join(__dirname, "../assets/js")));
   app.use(express.static(path.join(__dirname, "../assets/css")));
   app.use(express.static(path.join(__dirname, "../node_modules/axe-core")));
