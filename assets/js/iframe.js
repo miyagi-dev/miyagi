@@ -1,6 +1,5 @@
 import "./_socket.js";
 import "./_tests.js";
-import "/axe.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   Array.from(

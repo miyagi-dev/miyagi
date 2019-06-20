@@ -40,7 +40,6 @@ module.exports = config => {
   app.use(express.static(process.cwd()));
   app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
   app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
-  app.use(express.static(path.join(process.cwd(), "node_modules/axe-core")));
 
   server.listen(port);
 
