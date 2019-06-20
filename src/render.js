@@ -84,27 +84,47 @@ function renderComponent(req, res, component, variation) {
 }
 
 function renderComponentVariations(req, res, component) {
+  const variationsArr = [];
   const json = req.app.get("state").jsonData[component];
   const data = json.data ? resolveJsonURLs(req, json.data) : {};
 
   if (json.variations) {
-    const context = [{ component, data }];
+    const splittedPath = component.split(path.sep);
+    const fileName = splittedPath[splittedPath.length - 1];
+    const context = [
+      { component, data, name: fileName.slice(0, fileName.lastIndexOf(".")) }
+    ];
 
     json.variations.forEach(entry => {
       context.push({
         component,
-        data: Object.assign({}, json.data, entry.data)
+        data: Object.assign({}, json.data, entry.data),
+        name: entry.name
       });
     });
 
-    const html = [];
     const promises = [];
 
     context.forEach((entry, i) => {
       promises.push(
         new Promise(resolve => {
           req.app.render(component, entry.data, (err, result) => {
-            html[i] = result;
+            let html;
+
+            if (result) {
+              html = result;
+            } else {
+              html = `<p class="ComponentLibraryError">${err}</p>`;
+            }
+
+            variationsArr[i] = {
+              file: context[i].component,
+              html,
+              variation: context[i].name
+                ? context[i].name
+                : context[i].component
+            };
+
             resolve(result);
           });
         })
@@ -113,7 +133,7 @@ function renderComponentVariations(req, res, component) {
 
     Promise.all(promises).then(() => {
       res.render("component_variations.hbs", {
-        html
+        variationsArr
       });
     });
   } else {
@@ -124,7 +144,7 @@ function renderComponentVariations(req, res, component) {
 }
 
 async function renderComponentOverview(req, res) {
-  const html = [];
+  const componentsArr = [];
   const promises = [];
 
   const components = req.app
@@ -138,17 +158,28 @@ async function renderComponentOverview(req, res) {
           component[0],
           Object.assign({}, component[1]),
           (err, result) => {
-            html[i] = result;
+            let html;
+
+            if (result) {
+              html = result;
+            } else {
+              html = `<p class="ComponentLibraryError">${err}</p>`;
+            }
+
+            componentsArr[i] = {
+              file: components[i][0],
+              html
+            };
+
             resolve();
           }
         );
       })
     );
   });
-
   Promise.all(promises).then(() => {
     res.render("component_overview.hbs", {
-      html
+      componentsArr
     });
   });
 }

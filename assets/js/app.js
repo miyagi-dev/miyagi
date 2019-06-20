@@ -1,17 +1,80 @@
+let links;
+
+window.onPageChanged = function(query) {
+  const target = setActiveStateInNav(query, true);
+  closeOtherOpenedMenus(target);
+  openParentMenus(target);
+  history.pushState(null, null, query.replace("?component=", "?show="));
+};
+
 function updateIframe(content, iframe, src) {
   iframe.remove();
   iframe.src = src;
   content.insertBefore(iframe, content.lastElementChild);
 }
 
+function closeOtherOpenedMenus(target) {
+  Array.from(
+    document.querySelectorAll('.ComponentLibrary-toggle[aria-expanded="true"]')
+  ).forEach(toggle => {
+    if (!toggle.closest(".ComponentLibrary-listItem").contains(target)) {
+      toggle.setAttribute("aria-expanded", false);
+    }
+  });
+}
+
+function openParentMenus(target) {
+  (function openParent(el) {
+    const list = el.closest(".ComponentLibrary-list");
+
+    if (list) {
+      const link = list.previousElementSibling;
+
+      if (link) {
+        const toggle = link.previousElementSibling;
+
+        if (toggle && toggle.getAttribute("aria-expanded") === "false") {
+          toggle.setAttribute("aria-expanded", true);
+
+          if (toggle.closest(".ComponentLibrary-listItem")) {
+            openParent(toggle.closest(".ComponentLibrary-listItem"));
+          }
+        }
+      }
+    }
+  })(target);
+}
+
+function setActiveStateInNav(query) {
+  const target = links.filter(link => link.getAttribute("href") === query)[0];
+  const current = links.filter(link => link.getAttribute("aria-current"))[0];
+  const prevEl = target.previousElementSibling;
+  const toggle =
+    prevEl && prevEl.classList.contains("ComponentLibrary-toggle")
+      ? prevEl
+      : null;
+
+  if (current) {
+    current.removeAttribute("aria-current");
+  }
+
+  target.setAttribute("aria-current", "page");
+
+  if (toggle) {
+    toggle.setAttribute("aria-expanded", true);
+  }
+
+  return target;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const content = document.querySelector(".ComponentLibrary-content");
   const iframe = document.querySelector(".ComponentLibrary-frame");
-  const links = Array.from(document.querySelectorAll(".ComponentLibrary-link"));
-  const menu = document.querySelector(".ComponentLibrary-menu");
   const toggles = Array.from(
     document.querySelectorAll(".ComponentLibrary-toggle")
   );
+
+  links = Array.from(document.querySelectorAll(".ComponentLibrary-link"));
 
   history.pushState(null, null, document.location.href);
 
@@ -53,18 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
   links.forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
+
       const src = e.target.getAttribute("href");
-      const current = links.filter(link =>
-        link.getAttribute("aria-current")
-      )[0];
-
-      if (current) {
-        current.removeAttribute("aria-current");
-      }
-
-      e.target.setAttribute("aria-current", "page");
-
+      const target = setActiveStateInNav(src);
+      closeOtherOpenedMenus(target);
       updateIframe(content, iframe, src);
+
       history.pushState(null, null, src.replace("?component=", "?show="));
 
       if (window.innerWidth <= 512) {

@@ -5,3 +5,62 @@ html {
 body {
   min-height: 100%;
 }
+
+.ComponentLibraryComponents {
+  padding: var(--spacing) 0;
+}
+
+.ComponentLibraryComponent {
+  margin: 0 var(--spacing);
+}
+
+.ComponentLibraryComponent-file {
+  align-items: center;
+  color: #767676;
+  display: flex;
+  font-size: 0.875em;
+  text-decoration: none;
+}
+
+.ComponentLibraryComponent-file:hover,
+.ComponentLibraryComponent-file:focus,
+.ComponentLibraryComponent-file:active {
+  color: #0a374e;
+  text-decoration: underline;
+}
+
+.ComponentLibraryComponent-file::before,
+.ComponentLibraryComponent-file::after {
+  background: #ddd;
+  content: "";
+  flex: 1;
+  height: 0.1rem;
+}
+
+.ComponentLibraryComponent-file::before {
+  margin-right: 1.5rem;
+}
+
+.ComponentLibraryComponent-file::after {
+  margin-left: 1.5rem;
+}
+
+.ComponentLibraryComponent-html {
+  padding: var(--spacing) 0;
+}
+
+.ComponentLibraryError {
+  color: #d9173e;
+}
+
+@media (max-width: 32em) {
+  .ComponentLibraryComponents {
+    --spacing: 1rem;
+  }
+}
+
+@media (min-width: 32.03125em) {
+  .ComponentLibraryComponents {
+    --spacing: 2.5rem;
+  }
+}

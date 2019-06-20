@@ -48,6 +48,14 @@
   font-size: 1.4rem;
 }
 
+[aria-expanded="true"] ~ .ComponentLibrary-list {
+  display: block;
+}
+
+[aria-expanded="false"] ~ .ComponentLibrary-list {
+  display: none;
+}
+
 .ComponentLibrary-listItem {
   position: relative;
 }
@@ -94,7 +102,6 @@
   .ComponentLibrary-list
   .ComponentLibrary-component.is-disabled {
   color: var(--ComponentLibrary-color-lightGray);
-  font-style: italic;
 }
 
 .ComponentLibrary-list:first-child

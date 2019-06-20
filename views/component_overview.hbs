@@ -1,13 +1,18 @@
 {{#extend "iframe"}}
   {{#content "body"}}
-    {{#if html}}
-      {{#each html}}
-        <div>
-          {{{this}}}
-        </div>
-      {{/each}}
-    {{else}}
-      There are no components yet.
-    {{/if}}
+    <div class="ComponentLibraryComponents">
+      {{#if componentsArr}}
+        {{#each componentsArr}}
+          <div class="ComponentLibraryComponent">
+            <a href="?component={{this.file}}" class="ComponentLibraryComponent-file">{{this.file}}</a>
+            <div class="ComponentLibraryComponent-html">
+              {{{this.html}}}
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
+        There are no components yet.
+      {{/if}}
+    </div>
   {{/content}}
 {{/extend}}

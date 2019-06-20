@@ -131,44 +131,18 @@ function testIfCurrentFolderIsChildOfCurrentItem(shortPath, currentComponent) {
   return currentItemArr.equals(currentComponentArr.slice(0, aLength - diff));
 }
 
-function renderMenu(
-  structure,
-  currentComponent,
-  currentVariation,
-  id,
-  shortPath,
-  index,
-  folderShortPath
-) {
+function renderMenu(structure, currentComponent, currentVariation, id) {
   const list = getNavStructure(structure);
   let html = "";
 
   if (list.length) {
     let idAttr = "";
-    let hidden = "";
-    let expanded = true;
 
     if (id) {
       idAttr = ` id="${id}"`;
     }
 
-    if (shortPath) {
-      expanded = testIfCurrentComponentIsChildOfCurrentItem(
-        shortPath,
-        currentComponent
-      );
-    } else if (index > 0) {
-      expanded = testIfCurrentFolderIsChildOfCurrentItem(
-        folderShortPath,
-        currentComponent
-      );
-    }
-
-    if (!expanded) {
-      hidden = " hidden";
-    }
-
-    html += `<ul class="ComponentLibrary-list"${idAttr}${hidden}>`;
+    html += `<ul class="ComponentLibrary-list"${idAttr}>`;
 
     list.forEach(child => {
       let current = "";
@@ -231,7 +205,7 @@ function renderMenu(
         if (child.variations && child.variations.length) {
           html += `<ul class="ComponentLibrary-list ComponentLibrary-list--variations" id="${
             child.id
-          }" ${expanded ? "" : "hidden"}>`;
+          }">`;
           child.variations.forEach(variation => {
             let current = "";
             if (

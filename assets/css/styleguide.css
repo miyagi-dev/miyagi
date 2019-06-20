@@ -136,7 +136,7 @@ html {
 
 @media (min-width: 32.03125em) {
   :root {
-    --ComponentLibrary-spacing: 2rem;
+    --ComponentLibrary-spacing: 2.5rem;
   }
 
   .ComponentLibrary-nav {

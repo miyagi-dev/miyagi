@@ -1,11 +1,14 @@
 {{#extend "iframe"}}
   {{#content "body"}}
-    {{#if html}}
-      {{#each html}}
-        <div>
-          {{{this}}}
+    <div class="ComponentLibraryComponents">
+      {{#each variationsArr}}
+        <div class="ComponentLibraryComponent">
+          <a href="?component={{this.file}}&variation={{this.variation}}" class="ComponentLibraryComponent-file">{{this.variation}}</a>
+          <div class="ComponentLibraryComponent-html">
+            {{{this.html}}}
+          </div>
         </div>
       {{/each}}
-    {{/if}}
+    </div>
   {{/content}}
 {{/extend}}
