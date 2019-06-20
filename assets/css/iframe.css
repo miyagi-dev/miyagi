@@ -53,14 +53,18 @@ body {
   color: #d9173e;
 }
 
+.ComponentLibraryComponentView {
+  padding: var(--spacing);
+}
+
 @media (max-width: 32em) {
-  .ComponentLibraryComponents {
+  .ComponentLibraryIframe {
     --spacing: 1rem;
   }
 }
 
 @media (min-width: 32.03125em) {
-  .ComponentLibraryComponents {
+  .ComponentLibraryIframe {
     --spacing: 2.5rem;
   }
 }
