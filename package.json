@@ -7,6 +7,7 @@
   "license": "ISC",
   "private": true,
   "dependencies": {
+    "axe-core": "^3.2.2",
     "chokidar": "^3.0.1",
     "consolidate": "^0.15.1",
     "directory-tree": "^2.2.3",
@@ -21,7 +22,6 @@
     "twig": "^1.13.3"
   },
   "devDependencies": {
-    "axe-core": "^3.2.2",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1"
   },
