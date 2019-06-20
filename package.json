@@ -1,11 +1,18 @@
 {
   "name": "colib",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
-  "author": "Michael Großklaus <mail@mgrossklaus.de> (https://mgrossklaus.de)",
-  "license": "ISC",
+  "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
+  "license": "MIT",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mgrsskls/component-library.git"
+  },
+  "files": [
+    "dist/"
+  ],
   "dependencies": {
     "axe-core": "^3.2.2",
     "chokidar": "^3.0.1",
@@ -26,7 +33,6 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
-    "start": "npx nodemon index.js",
     "test": "jest --testPathPattern=tests --collectCoverage"
   },
   "jest": {
