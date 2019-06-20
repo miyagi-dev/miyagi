@@ -18,7 +18,8 @@ module.exports = config => {
   const port = getPort();
   const app = express();
   const server = http.createServer(app);
-
+  const assetFolder =
+    process.env.NODE_ENV === "development" ? "assets" : "dist";
   app.use(helmet());
 
   setConfig(app, config);
@@ -37,8 +38,8 @@ module.exports = config => {
   ]);
 
   app.use(express.static(process.cwd()));
-  app.use(express.static(path.join(__dirname, "../assets/js")));
-  app.use(express.static(path.join(__dirname, "../assets/css")));
+  app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
+  app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
   app.use(express.static(path.join(process.cwd(), "node_modules/axe-core")));
 
   server.listen(port);

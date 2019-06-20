@@ -1,5 +1,4 @@
 /* globals axe */
-import "/axe.js";
 
 function escapeHtml(str) {
   var div = document.createElement("div");
