@@ -100,7 +100,8 @@ function getSourceStructure(app) {
 
     if (obj.children) {
       obj.children.forEach(child => {
-        loop(child, index + 1);
+        const newIndex = child.type === "directory" ? index + 1 : index;
+        loop(child, newIndex);
       });
     }
   })(tree, -1);

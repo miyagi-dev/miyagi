@@ -2,15 +2,31 @@
   margin-top: 2rem;
 }
 
-.ComponentLibrary-list
-  > .ComponentLibrary-listItem
-  > .ComponentLibrary-list:not(:first-child) {
+.ComponentLibrary-list {
+  font-size: 1.4rem;
+}
+
+[aria-expanded="true"] ~ .ComponentLibrary-list {
+  display: block;
+}
+
+[aria-expanded="false"] ~ .ComponentLibrary-list {
+  display: none;
+}
+
+.ComponentLibrary-listItem {
+  position: relative;
+}
+
+.ComponentLibrary-listItem--lvl0:not(:last-child) {
+  padding-bottom: 2rem;
+}
+
+.ComponentLibrary-list:not(.ComponentLibrary-list--lvl0) {
   padding-top: var(--spacingTop);
 }
 
-.ComponentLibrary-list
-  > .ComponentLibrary-listItem
-  > .ComponentLibrary-list:not(:first-child):not(.ComponentLibrary-list--variations) {
+.ComponentLibrary-list--components:not(.ComponentLibrary-list--lvl0) {
   margin-left: var(--spacingLeft);
 }
 
@@ -22,6 +38,14 @@
 
 .ComponentLibrary-component {
   font-weight: 500;
+}
+
+.ComponentLibrary-component--lvl0 {
+  font-weight: bold;
+}
+
+.ComponentLibrary-component:not(.ComponentLibrary-component--lvl0).is-disabled {
+  color: var(--ComponentLibrary-color-lightGray);
 }
 
 .ComponentLibrary-link {
@@ -42,22 +66,6 @@
   border-radius: var(--ComponentLibrary-borderRadius);
   color: #fff;
   display: inline-block;
-}
-
-.ComponentLibrary-list {
-  font-size: 1.4rem;
-}
-
-[aria-expanded="true"] ~ .ComponentLibrary-list {
-  display: block;
-}
-
-[aria-expanded="false"] ~ .ComponentLibrary-list {
-  display: none;
-}
-
-.ComponentLibrary-listItem {
-  position: relative;
 }
 
 .ComponentLibrary-toggle {
@@ -93,23 +101,6 @@
   transform: var(--ComponentLibrary-toggle-transition-opened);
 }
 
-.ComponentLibrary-list:first-child
-  > .ComponentLibrary-listItem:not(:first-child) {
-  padding-top: 1rem;
-}
-
-.ComponentLibrary-list
-  .ComponentLibrary-list
-  .ComponentLibrary-component.is-disabled {
-  color: var(--ComponentLibrary-color-lightGray);
-}
-
-.ComponentLibrary-list:first-child
-  > .ComponentLibrary-listItem
-  > .ComponentLibrary-component {
-  font-weight: bold;
-}
-
 @media (pointer: coarse) {
   .ComponentLibrary-list {
     --spacingTop: 1.25rem;
@@ -120,7 +111,7 @@
     margin-left: 2rem;
   }
 
-  .ComponentLibrary-listItem:not(:last-child) {
+  .ComponentLibrary-listItem:not(.ComponentLibrary-listItem--lvl0):not(:last-child) {
     padding-bottom: 1rem;
   }
 
@@ -128,16 +119,11 @@
     --right: -0.75rem;
   }
 
-  .ComponentLibrary-list:first-child
-    > .ComponentLibrary-listItem
-    > .ComponentLibrary-toggle {
+  .ComponentLibrary-toggle--lvl0 {
     --right: 0.25em !important;
   }
 
-  .ComponentLibrary-list:first-child
-    > .ComponentLibrary-listItem
-    > .ComponentLibrary-toggle
-    + .ComponentLibrary-component {
+  .ComponentLibrary-component--lvl0 {
     margin-left: 1rem;
   }
 }
@@ -152,7 +138,7 @@
     margin-left: 1.5rem;
   }
 
-  .ComponentLibrary-listItem:not(:last-child) {
+  .ComponentLibrary-listItem:not(.ComponentLibrary-listItem--lvl0):not(:last-child) {
     padding-bottom: 0.5rem;
   }
 
