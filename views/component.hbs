@@ -1,5 +1,11 @@
 {{#extend "iframe"}}
   {{#content "body"}}
+    {{#if cssFile}}
+      <link rel="stylesheet" href="{{cssFile}}">
+    {{/if}}
+    {{#if jsFile}}
+      <script src="{{jsFile}}"></script>
+    {{/if}}
     <div id="ComponentLibraryComponent" class="ComponentLibraryComponent">
       {{{html}}}
     </div>

@@ -3,6 +3,12 @@
     <div class="ComponentLibraryComponents">
       {{#if componentsArr}}
         {{#each componentsArr}}
+          {{#if this.cssFile}}
+            <link rel="stylesheet" href="{{this.cssFile}}">
+          {{/if}}
+          {{#if this.jsFile}}
+            <script src="{{this.jsFile}}"></script>
+          {{/if}}
           <div class="ComponentLibraryComponent">
             <a href="?component={{this.file}}" class="ComponentLibraryComponent-file">{{this.file}}</a>
             <div class="ComponentLibraryComponent-html">

@@ -2,6 +2,15 @@ const fs = require("fs");
 const path = require("path");
 const tests = require("./tests.json");
 
+function getAsset(req, component, type) {
+  const assetPath = `${req.app.get("config").srcFolder}${component.slice(
+    0,
+    component.lastIndexOf(req.app.get("config").extension)
+  )}${type}`;
+
+  return fs.existsSync(assetPath) ? assetPath : null;
+}
+
 function resolveJsonURLs(req, data) {
   (function readJson(data) {
     Object.entries(data).forEach(entry => {
@@ -65,6 +74,9 @@ function renderComponent(req, res, component, variation) {
   const componentData = req.app.get("state").jsonData[component].data;
   let context;
 
+  const cssFile = getAsset(req, component, "css");
+  const jsFile = getAsset(req, component, "js");
+
   if (variations) {
     const variationJson = variations.filter(
       vari => vari.name === decodeURI(variation)
@@ -79,7 +91,11 @@ function renderComponent(req, res, component, variation) {
   }
 
   req.app.render(component, context, (err, html) => {
-    res.render("component.hbs", { html });
+    res.render("component.hbs", {
+      html,
+      cssFile,
+      jsFile
+    });
   });
 }
 
@@ -87,6 +103,9 @@ function renderComponentVariations(req, res, component) {
   const variationsArr = [];
   const json = req.app.get("state").jsonData[component];
   const data = json.data ? resolveJsonURLs(req, json.data) : {};
+
+  const cssFile = getAsset(req, component, "css");
+  const jsFile = getAsset(req, component, "js");
 
   if (json.variations) {
     const splittedPath = component.split(path.sep);
@@ -133,12 +152,18 @@ function renderComponentVariations(req, res, component) {
 
     Promise.all(promises).then(() => {
       res.render("component_variations.hbs", {
-        variationsArr
+        variationsArr,
+        cssFile,
+        jsFile
       });
     });
   } else {
     req.app.render(component, data, (err, html) => {
-      res.render("component.hbs", { html });
+      res.render("component.hbs", {
+        html,
+        cssFile,
+        jsFile
+      });
     });
   }
 }
@@ -151,7 +176,13 @@ async function renderComponentOverview(req, res) {
     .get("state")
     .filePaths.map(path => [path, req.app.get("state").jsonData[path].data]);
 
+  const cssFiles = [];
+  const jsFiles = [];
+
   components.forEach((component, i) => {
+    cssFiles[i] = getAsset(req, component[0], "css");
+    jsFiles[i] = getAsset(req, component[0], "js");
+
     promises.push(
       new Promise(resolve => {
         req.app.render(
@@ -168,7 +199,9 @@ async function renderComponentOverview(req, res) {
 
             componentsArr[i] = {
               file: components[i][0],
-              html
+              html,
+              cssFile: cssFiles[i],
+              jsFile: jsFiles[i]
             };
 
             resolve();
