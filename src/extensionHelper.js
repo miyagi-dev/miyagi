@@ -1,3 +1,4 @@
+const config = require("./config.json");
 const path = require("path");
 
 function pathEndsWithExtension(file, ext) {
@@ -10,7 +11,10 @@ function fileIsInFolderWithSameName(file, ext) {
 
   if (!isValid) {
     console.warn(
-      `WARNING: ${file} has not been rendered because it doesn't live in a folder with the same name.`
+      config.messages.fileNotRenderedDueToUnmatchingFolderName.replace(
+        "${file}",
+        file
+      )
     );
   }
 

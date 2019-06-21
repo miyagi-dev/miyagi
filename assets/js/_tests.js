@@ -207,7 +207,7 @@ function htmlTest() {
               container.removeAttribute("hidden");
             });
           } else {
-            console.log(
+            console.warn(
               "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting."
             );
           }

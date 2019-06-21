@@ -5,6 +5,7 @@ const helmet = require("helmet");
 const http = require("http");
 const path = require("path");
 
+const config = require("./config.json");
 const fileWatcher = require("./fileWatcher.js");
 const getPort = require("./getPort.js");
 const registerHelpers = require("./hbs/registerHelpers.js");
@@ -14,15 +15,17 @@ const setConfig = require("./setConfig.js");
 const setEngines = require("./setEngines.js");
 const setState = require("./setState.js");
 
-module.exports = config => {
+module.exports = cnf => {
   const port = getPort();
   const app = express();
   const server = http.createServer(app);
   const assetFolder =
-    process.env.NODE_ENV === "development" ? "assets" : "dist";
+    process.env.NODE_ENV === "development"
+      ? config.folders.assets
+      : config.folders.dist;
   app.use(helmet());
 
-  setConfig(app, config);
+  setConfig(app, cnf);
   setState(app);
   setEngines(app);
   router(app);
@@ -33,7 +36,7 @@ module.exports = config => {
   handlebarsLayouts.register(handlebars);
 
   app.set("views", [
-    path.join(__dirname, "../views"),
+    path.join(__dirname, `../${config.folders.views}`),
     path.join(process.cwd(), app.get("config").srcFolder)
   ]);
 
@@ -45,5 +48,5 @@ module.exports = config => {
 
   fileWatcher(server, app, handlebars);
 
-  console.log(`Running colib server at http://127.0.0.1:${port}`);
+  console.log(config.messages.serverStarted.replace("${port}", port));
 };

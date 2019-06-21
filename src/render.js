@@ -1,3 +1,4 @@
+const config = require("./config.json");
 const fs = require("fs");
 const path = require("path");
 const tests = require("./tests.json");
@@ -10,7 +11,9 @@ function getVariationJson(req, componentData, variationData) {
           fs.readFileSync(
             path.join(
               process.cwd(),
-              `${req.app.get("config").srcFolder}/${entry[1].component}.json`
+              `${req.app.get("config").srcFolder}/${entry[1].component}.${
+                config.dataFileType
+              }`
             ),
             "utf8"
           )
@@ -44,8 +47,8 @@ function resolveJsonURLs(req, data) {
     Object.entries(data).forEach(entry => {
       if (
         typeof entry[1] === "string" &&
-        entry[1].indexOf(".json") >= 0 &&
-        entry[1].indexOf(".json") === entry[1].length - 5
+        entry[1].indexOf(`.${config.dataFileType}`) >= 0 &&
+        entry[1].indexOf(`.${config.dataFileType}`) === entry[1].length - 5
       ) {
         const file = fs.readFileSync(
           path.join(

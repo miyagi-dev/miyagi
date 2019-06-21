@@ -1,3 +1,4 @@
+const config = require("./config.json");
 const readDir = require("fs-readdir-recursive");
 const dirTree = require("directory-tree");
 const fs = require("fs");
@@ -29,7 +30,9 @@ function getSourceStructure(app) {
   const tree = dirTree(
     path.join(process.cwd(), app.get("config").srcFolder),
     {
-      extensions: new RegExp(`.(${app.get("config").extension}|json)$`)
+      extensions: new RegExp(
+        `.(${app.get("config").extension}|${config.dataFileType})$`
+      )
     },
     item => {
       item.shortPath = item.path.replace(
@@ -45,7 +48,7 @@ function getSourceStructure(app) {
         if (obj) {
           if (obj.type === "directory" && obj.children.length) {
             const jsonChild = obj.children.filter(
-              o => o.extension === ".json"
+              o => o.extension === `.${config.dataFileType}`
             )[0];
             let fileData;
 
@@ -56,7 +59,7 @@ function getSourceStructure(app) {
                 fileData = fs.readFileSync(filePath, "utf8");
               } catch (e) {
                 console.warn(
-                  `Couldn't find file ${filePath}. Is the 'srcFolder' in your styleguide.json correct?`
+                  config.messages.fileNotFound.replace("${filePath}", filePath)
                 );
               }
 
@@ -66,7 +69,8 @@ function getSourceStructure(app) {
 
                 if (
                   variations &&
-                  obj.name === jsonChild.name.replace(".json", "")
+                  obj.name ===
+                    jsonChild.name.replace(`.${config.dataFileType}`, "")
                 ) {
                   obj.variations = [{ name: obj.name, data: json.data }].concat(
                     variations
@@ -119,7 +123,7 @@ function getJsonData(app, paths) {
   paths.forEach(filePath => {
     const jsonPath = `${app.get("config").srcFolder}/${filePath.replace(
       `.${app.get("config").extension}`,
-      ".json"
+      `.${config.dataFileType}`
     )}`;
 
     try {

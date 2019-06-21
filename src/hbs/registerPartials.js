@@ -1,3 +1,4 @@
+const config = require("../config.json");
 const fs = require("fs");
 const path = require("path");
 const { pathEndsWithExtension } = require("../extensionHelper.js");
@@ -9,7 +10,7 @@ function register(hbs, name, fullFilePath) {
     readFile = fs.readFileSync(fullFilePath, "utf8");
   } catch (e) {
     console.warn(
-      `Couldn't find file ${fullFilePath}. Is the 'srcFolder' in your styleguide.json correct?`
+      config.messages.fileNotFound.replace("${fullFilePath}", fullFilePath)
     );
   }
 
@@ -20,11 +21,15 @@ function register(hbs, name, fullFilePath) {
 
 module.exports = function(app, hbs, initial) {
   if (initial) {
-    register(hbs, "main", path.join(__dirname, "../../views/layouts/main.hbs"));
+    register(
+      hbs,
+      "main",
+      path.join(__dirname, `../../${config.folders.views}/layouts/main.hbs`)
+    );
     register(
       hbs,
       "iframe",
-      path.join(__dirname, "../../views/layouts/iframe.hbs")
+      path.join(__dirname, `../../${config.folders.views}/layouts/iframe.hbs`)
     );
   }
 

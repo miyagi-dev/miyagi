@@ -1,22 +1,19 @@
+const config = require("./src/config.json");
 const fs = require("fs");
 const init = require("./src/init.js");
 
-let config;
+let cnf;
 
 try {
-  config = JSON.parse(fs.readFileSync("./styleguide.json", "utf8"));
+  cnf = JSON.parse(fs.readFileSync(`./${config.userConfigFile}`, "utf8"));
 } catch (error) {
-  config = {};
+  cnf = {};
 } finally {
-  if (!config.extension) {
-    console.error(
-      "Please specify the file extension of your components in styleguide.json (key: 'extension', type: String)"
-    );
-  } else if (!config.srcFolder) {
-    console.error(
-      "Please specify the location of your components in styleguide.json (key: 'srcFolder', type: String)"
-    );
+  if (!cnf.extension) {
+    console.error(config.messages.missingFileExtension);
+  } else if (!cnf.srcFolder) {
+    console.error(config.messages.missingComponentLocation);
   } else {
-    init(config);
+    init(cnf);
   }
 }
