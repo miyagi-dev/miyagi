@@ -1,6 +1,6 @@
 const path = require("path");
 const getNavStructure = require("./_getNavStructure.js");
-require("./_helpers.js");
+require("../arrayEquals.js");
 
 const classes = {
   toggle: "ComponentLibrary-toggle",
