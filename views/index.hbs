@@ -7,7 +7,7 @@
         </h1>
         <button class="ComponentLibrary-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
         <div class="ComponentLibrary-menu">
-          {{#renderMenu folders currentComponent currentVariation null null }}{{/renderMenu}}
+          {{#renderMenu folders requestedComponent requestedVariation null null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>
@@ -15,7 +15,7 @@
     <main class="ComponentLibrary-content">
       <iframe class="ComponentLibrary-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
     </main>
-    <aside class="ComponentLibrary-tests"{{#if componentOverview}} hidden{{/if}}>
+    <aside class="ComponentLibrary-tests"{{#if isComponentOverview}} hidden{{/if}}>
       {{#each tests}}
         <div class="ComponentLibraryTest ComponentLibraryTest--{{this.alias}}" hidden>
           <b class="ComponentLibraryTest-title">{{this.title}}</b>

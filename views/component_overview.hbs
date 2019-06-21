@@ -1,8 +1,8 @@
 {{#extend "iframe"}}
   {{#content "body"}}
     <div class="ComponentLibraryComponents">
-      {{#if componentsArr}}
-        {{#each componentsArr}}
+      {{#if components}}
+        {{#each components}}
           {{#if this.cssFile}}
             <link rel="stylesheet" href="{{this.cssFile}}">
           {{/if}}
