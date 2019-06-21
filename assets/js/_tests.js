@@ -133,81 +133,85 @@ function htmlTest() {
             Accept: "application/json"
           },
           body: formData
-        })
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(data) {
-            states.forEach(state => {
-              const results = data.messages.filter(
-                message => message.type === state
-              );
+        }).then(function(response) {
+          if (response.ok) {
+            response.json().then(data => {
+              states.forEach(state => {
+                const results = data.messages.filter(
+                  message => message.type === state
+                );
 
-              const resultElement = container.querySelector(
-                `.ComponentLibraryResults--${state} .ComponentLibraryResults-value`
-              );
-              let html = "";
+                const resultElement = container.querySelector(
+                  `.ComponentLibraryResults--${state} .ComponentLibraryResults-value`
+                );
+                let html = "";
 
-              resultElement.innerText = results.length;
+                resultElement.innerText = results.length;
 
-              if (results.length) {
-                resultElement.classList.add("has-positiveValue");
+                if (results.length) {
+                  resultElement.classList.add("has-positiveValue");
 
-                html += "<ul>";
-                results.forEach(result => {
-                  html += '<li class="ComponentLibraryResult">';
-                  html += '<dl class="ComponentLibraryResult-data">';
+                  html += "<ul>";
+                  results.forEach(result => {
+                    html += '<li class="ComponentLibraryResult">';
+                    html += '<dl class="ComponentLibraryResult-data">';
 
-                  if (result.message) {
-                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Message</dt> <dd class="ComponentLibraryResult-value">${
-                      result.message
-                    }</div></dd>`;
-                  }
+                    if (result.message) {
+                      html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Message</dt> <dd class="ComponentLibraryResult-value">${
+                        result.message
+                      }</div></dd>`;
+                    }
 
-                  if (result.extract) {
-                    const markedExtract = `${escapeHtml(
-                      result.extract.slice(0, result.hiliteStart)
-                    )}<mark>${escapeHtml(
-                      result.extract.slice(
-                        result.hiliteStart,
-                        result.hiliteStart + result.hiliteLength
-                      )
-                    )}</mark>${escapeHtml(
-                      result.extract.slice(
-                        result.hiliteStart + result.hiliteLength
-                      )
-                    )}`;
+                    if (result.extract) {
+                      const markedExtract = `${escapeHtml(
+                        result.extract.slice(0, result.hiliteStart)
+                      )}<mark>${escapeHtml(
+                        result.extract.slice(
+                          result.hiliteStart,
+                          result.hiliteStart + result.hiliteLength
+                        )
+                      )}</mark>${escapeHtml(
+                        result.extract.slice(
+                          result.hiliteStart + result.hiliteLength
+                        )
+                      )}`;
 
-                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Extract</dt> <dd class="ComponentLibraryResult-value"><code class="ComponentLibraryResult-extract">${markedExtract.replace(
-                      /\n/g,
-                      "↩"
-                    )}</code></div></dd>`;
-                  }
+                      html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Extract</dt> <dd class="ComponentLibraryResult-value"><code class="ComponentLibraryResult-extract">${markedExtract.replace(
+                        /\n/g,
+                        "↩"
+                      )}</code></div></dd>`;
+                    }
 
-                  html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">From</dt><dd class="ComponentLibraryResult-value">Line: ${
-                    result[result.firstLine ? "firstLine" : "lastLine"]
-                  }, Column: ${result.firstColumn}</div></dd>`;
-                  html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">To</dt><dd class="ComponentLibraryResult-value">Line: ${
-                    result.lastLine
-                  }, Column: ${result.lastColumn}</div></dd>`;
+                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">From</dt><dd class="ComponentLibraryResult-value">Line: ${
+                      result[result.firstLine ? "firstLine" : "lastLine"]
+                    }, Column: ${result.firstColumn}</div></dd>`;
+                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">To</dt><dd class="ComponentLibraryResult-value">Line: ${
+                      result.lastLine
+                    }, Column: ${result.lastColumn}</div></dd>`;
 
-                  html += "</dl>";
-                  html += "</li>";
-                });
-                html += "</ul>";
-              } else {
-                resultElement.classList.remove("has-positiveValue");
-                html +=
-                  '<p><i class="ComponentLibraryResults-empty">Nothing to report.</i></p>';
-              }
+                    html += "</dl>";
+                    html += "</li>";
+                  });
+                  html += "</ul>";
+                } else {
+                  resultElement.classList.remove("has-positiveValue");
+                  html +=
+                    '<p><i class="ComponentLibraryResults-empty">Nothing to report.</i></p>';
+                }
 
-              container.querySelector(
-                `.ComponentLibraryResults--${state} .ComponentLibraryResults-details`
-              ).innerHTML = html;
+                container.querySelector(
+                  `.ComponentLibraryResults--${state} .ComponentLibraryResults-details`
+                ).innerHTML = html;
+              });
+
+              container.removeAttribute("hidden");
             });
-
-            container.removeAttribute("hidden");
-          });
+          } else {
+            console.log(
+              "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting."
+            );
+          }
+        });
       });
     }
   });
