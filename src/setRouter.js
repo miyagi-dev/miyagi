@@ -4,7 +4,7 @@ const {
   renderComponentVariations,
   renderMainWithComponent,
   renderMain
-} = require("./render.js");
+} = require("./render/index.js");
 
 function checkIfRequestedComponentIsValid(app, component) {
   return app.get("state").filePaths.indexOf(component) >= 0;
