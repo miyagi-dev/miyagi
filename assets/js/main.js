@@ -118,8 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
 
       const src = e.target.getAttribute("href");
-      const target = setActiveStateInNav(src);
-      closeOtherOpenedMenus(target);
+
+      setActiveStateInNav(src);
       updateIframe(content, iframe, src);
 
       history.pushState(null, null, src.replace("?component=", "?show="));
