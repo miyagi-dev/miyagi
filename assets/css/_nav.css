@@ -48,7 +48,7 @@
   font-weight: bold;
 }
 
-.ComponentLibrary-component:not(.ComponentLibrary-component--lvl0).is-disabled {
+.ComponentLibrary-component:not(.ComponentLibrary-component--lvl0):not(.ComponentLibrary-link) {
   color: var(--ComponentLibrary-color-lightGray);
 }
 

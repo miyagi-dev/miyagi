@@ -2,168 +2,231 @@ const path = require("path");
 const getNavStructure = require("./_getNavStructure.js");
 require("./_helpers.js");
 
-function testIfCurrentComponentIsChildOfCurrentItem(
-  shortPath,
-  currentComponent
+const classes = {
+  toggle: "ComponentLibrary-toggle",
+  component: "ComponentLibrary-component",
+  link: "ComponentLibrary-link",
+  list: "ComponentLibrary-list",
+  listItem: "ComponentLibrary-listItem"
+};
+const activeState = ' aria-current="page"';
+
+function reduceArrayToSameLengthOfOtherArray(a, b) {
+  const aLength = a.length;
+
+  return a.slice(0, aLength - (aLength - b.length));
+}
+
+function getFoldersArrayFromFolderPath(folderPath, isFile) {
+  let folders = folderPath.split(path.sep);
+
+  if (isFile) {
+    folders = folders.slice(0, folderPath.split(path.sep).length - 1);
+  }
+
+  return folders;
+}
+
+function getFoldersArrayFromFilePath(filePath) {
+  return filePath.split(path.sep).slice(0, filePath.split(path.sep).length - 1);
+}
+
+function pathIsPartofRequestedPath(
+  currentPath,
+  requestedPath,
+  currentPathIsFile
 ) {
-  if (!currentComponent) return false;
+  if (!requestedPath) return false;
 
-  const currentComponentArr = currentComponent
-    .split(path.sep)
-    .slice(0, currentComponent.split(path.sep).length - 1);
-  const currentItemArr = shortPath
-    .split(path.sep)
-    .slice(0, shortPath.split(path.sep).length - 1);
-  const aLength = currentComponentArr.length;
-  const bLength = currentItemArr.length;
-  const diff = aLength - bLength;
+  let requestedPathFolders = getFoldersArrayFromFilePath(requestedPath);
+  let currentPathFolders = getFoldersArrayFromFolderPath(
+    currentPath,
+    currentPathIsFile
+  );
 
-  return currentItemArr.equals(currentComponentArr.slice(0, aLength - diff));
+  requestedPathFolders = reduceArrayToSameLengthOfOtherArray(
+    requestedPathFolders,
+    currentPathFolders
+  );
+
+  return currentPathFolders.equals(requestedPathFolders);
 }
 
-function testIfCurrentFolderIsChildOfCurrentItem(shortPath, currentComponent) {
-  if (!currentComponent) return false;
-
-  const currentComponentArr = currentComponent
-    .split(path.sep)
-    .slice(0, currentComponent.split(path.sep).length - 1);
-  const currentItemArr = shortPath.split(path.sep);
-  const aLength = currentComponentArr.length;
-  const bLength = currentItemArr.length;
-  const diff = aLength - bLength;
-
-  return currentItemArr.equals(currentComponentArr.slice(0, aLength - diff));
+function pathEqualsRequest(path, variation, request) {
+  return request.path === path && request.variation === variation.name;
 }
 
-function renderToggle(id, expanded, index) {
-  return `<button class="ComponentLibrary-toggle ComponentLibrary-toggle--lvl${index}" aria-controls="${id}" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
+function hasDirectoryAsChild(folder) {
+  return (
+    folder.children &&
+    folder.children.filter(child => child.type === "directory").length
+  );
 }
 
-function renderLink(path, name, current, index) {
-  return `<a class="ComponentLibrary-component ComponentLibrary-component--lvl${index} ComponentLibrary-link ComponentLibrary-link--lvl${index}" target="iframe" href="?component=${path}"${current}>${name}</a>`;
+function hasVariations(component) {
+  return component.variations && component.variations.length;
 }
 
-function getMenuHtml(
-  app,
-  structure,
-  currentComponent,
-  currentVariation,
-  id,
-  index = 0
-) {
-  const list = getNavStructure(structure, app.get("config").extension);
-  let html = "";
+function isNotTopLevel(folder) {
+  return folder.index > 0;
+}
 
-  if (list.length) {
-    let idAttr = "";
+function isComponent(folder) {
+  return folder.shortPath;
+}
 
-    if (id) {
-      idAttr = ` id="${id}"`;
+function getToggleHtml(id, expanded, index) {
+  return `<button class="${classes.toggle} ${
+    classes.toggle
+  }--lvl${index}" aria-controls="${id}" aria-expanded="${expanded}" title="Toggle submenu"></button>`;
+}
+
+function getListHtml(type, index, id) {
+  let idAttr = "";
+
+  if (id) {
+    idAttr = ` id="${id}"`;
+  }
+
+  return `<ul class="${classes.list} ${classes.list}--lvl${index} ${
+    classes.list
+  }--${type}"${idAttr}>`;
+}
+
+function getListItemHtml(child) {
+  return `<li class="${classes.listItem} ${classes.listItem}--lvl${
+    child.index
+  }">`;
+}
+
+function getLinkHtml(path, name, current, index) {
+  return `<a class="${classes.component} ${classes.component}--lvl${index} ${
+    classes.link
+  } ${
+    classes.link
+  }--lvl${index}" target="iframe" href="?component=${path}"${current}>${name}</a>`;
+}
+
+function getVariationLinkHtml(child, variation, current) {
+  return `<a class="${classes.link} ${classes.link}--lvl${child.index} ${
+    classes.link
+  }--variation" target="iframe" href="?component=${
+    child.shortPath
+  }&variation=${encodeURI(variation.name)}"${current}>${variation.name}</a>`;
+}
+
+function getVariationsHtml(child, request) {
+  let html = getListHtml("variations", child.index, child.id);
+
+  child.variations.forEach(variation => {
+    let current = "";
+
+    if (pathEqualsRequest(child.shortPath, variation, request)) {
+      current = activeState;
     }
 
-    html += `<ul class="ComponentLibrary-list ComponentLibrary-list--lvl${index} ComponentLibrary-list--components"${idAttr}>`;
+    html += getListItemHtml(child);
+    html += getVariationLinkHtml(child, variation, current);
+    html += "</li>";
+  });
+  html += "</ul>";
 
-    list.forEach(child => {
-      let current = "";
-      html += `<li class="ComponentLibrary-listItem ComponentLibrary-listItem--lvl${
-        child.index
-      }">`;
+  return html;
+}
 
-      if (child.type === "directory") {
-        let expanded = false;
+function getDisabledComponentHtml(child) {
+  return `<span class="${classes.component} ${classes.component}--lvl${
+    child.index
+  }">${child.name}</span>`;
+}
 
-        if (currentComponent === child.shortPath && !currentVariation) {
-          current = ' aria-current="page"';
-        }
+function getComponentFolderHtml(folder, request) {
+  let html = "";
+  let current =
+    request.path === folder.shortPath && !request.variation ? activeState : "";
 
-        if (child.shortPath) {
-          expanded = testIfCurrentComponentIsChildOfCurrentItem(
-            child.shortPath,
-            currentComponent
-          );
+  if (hasVariations(folder) || hasDirectoryAsChild(folder)) {
+    const expanded = pathIsPartofRequestedPath(
+      folder.shortPath,
+      request.path,
+      true
+    );
 
-          if (
-            (child.variations && child.variations.length) ||
-            (child.children &&
-              child.children.filter(c => c.type === "directory").length)
-          ) {
-            html += renderToggle(child.id, expanded, child.index);
-          }
+    html += getToggleHtml(folder.id, expanded, folder.index);
+  }
 
-          html += renderLink(child.shortPath, child.name, current, child.index);
-        } else {
-          if (
-            child.children &&
-            child.children.filter(child => child.type === "directory").length &&
-            child.index > 0
-          ) {
-            if (child.index === 0) {
-              expanded = true;
-            } else {
-              expanded = testIfCurrentFolderIsChildOfCurrentItem(
-                child.path.replace(process.cwd().slice(1), "").slice(1),
-                currentComponent
-              );
-            }
+  html += getLinkHtml(folder.shortPath, folder.name, current, folder.index);
 
-            html += renderToggle(child.id, expanded, child.index);
-            html += `<span class="ComponentLibrary-component ComponentLibrary-component--lvl${
-              child.index
-            }">${child.name}</span>`;
-          } else {
-            html += `<span class="ComponentLibrary-component ComponentLibrary-component--lvl${
-              child.index
-            } is-disabled">${child.name}</span>`;
-          }
-        }
+  return html;
+}
 
-        if (child.variations && child.variations.length) {
-          html += `<ul class="ComponentLibrary-list ComponentLibrary-list--lvl${
-            child.index
-          } ComponentLibrary-list--variations" id="${child.id}">`;
-          child.variations.forEach(variation => {
-            let current = "";
-            if (
-              currentComponent === child.shortPath &&
-              currentVariation === variation.name
-            ) {
-              current = ' aria-current="page"';
-            }
+function getFolderHtml(folder, request) {
+  let html = "";
 
-            html += `<li class="ComponentLibrary-listItem ComponentLibrary-listItem--lvl${
-              child.index
-            }">`;
-            html += `<a class="ComponentLibrary-link ComponentLibrary-link--lvl${
-              child.index
-            } ComponentLibrary-link--variation" target="iframe" href="?component=${
-              child.shortPath
-            }&variation=${encodeURI(variation.name)}"${current}>${
-              variation.name
-            }</a>`;
-            html += "</li>";
-          });
-          html += "</ul>";
-        }
-      } else if (child.type === "file") {
-        if (currentComponent === child.shortPath && !currentVariation) {
-          current = ' aria-current="page"';
-        }
+  if (isComponent(folder)) {
+    html += getComponentFolderHtml(folder, request);
+  } else {
+    if (hasDirectoryAsChild(folder) && isNotTopLevel(folder)) {
+      const expanded = pathIsPartofRequestedPath(
+        folder.path.replace(process.cwd().slice(1), "").slice(1),
+        request.path
+      );
 
-        html += renderLink(child.shortPath, child.name, current, child.index);
-      }
+      html += getToggleHtml(folder.id, expanded, folder.index);
+    }
 
-      if (child.children) {
-        html += getMenuHtml(
-          app,
-          child.children,
-          currentComponent,
-          currentVariation,
-          child.id,
-          child.children.length ? child.children[0].index : null
-        );
-      }
+    html += getDisabledComponentHtml(folder);
+  }
 
-      html += "</li>";
+  if (hasVariations(folder)) {
+    html += getVariationsHtml(folder, request);
+  }
+
+  return html;
+}
+
+function getFileHtml(child, request) {
+  let current = "";
+
+  if (request.path === child.shortPath && !request.variation) {
+    current = activeState;
+  }
+
+  return getLinkHtml(child.shortPath, child.name, current, child.index);
+}
+
+function getChildHtml(child, request, app) {
+  let html = getListItemHtml(child);
+
+  html += (child.type === "directory" ? getFolderHtml : getFileHtml)(
+    child,
+    request
+  );
+
+  if (child.children) {
+    html += getHtml(
+      app,
+      child.children,
+      request,
+      child.id,
+      child.children.length ? child.children[0].index : null
+    );
+  }
+
+  html += "</li>";
+
+  return html;
+}
+
+function getHtml(app, structure, request, id, index = 0) {
+  const children = getNavStructure(structure, app.get("config").extension);
+  let html = "";
+
+  if (children.length) {
+    html += getListHtml("components", index, id);
+
+    children.forEach(child => {
+      html += getChildHtml(child, request, app);
     });
 
     html += "</ul>";
@@ -172,4 +235,4 @@ function getMenuHtml(
   return html;
 }
 
-module.exports = getMenuHtml;
+module.exports = getHtml;

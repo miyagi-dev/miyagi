@@ -6,8 +6,8 @@ function partialPath(partial) {
   return partial;
 }
 
-function renderMenu(structure, currentComponent, currentVariation, id) {
-  return getMenuHtml(app, structure, currentComponent, currentVariation, id);
+function renderMenu(structure, path, variation, id) {
+  return getMenuHtml(app, structure, { path, variation }, id);
 }
 
 function cssFiles() {
