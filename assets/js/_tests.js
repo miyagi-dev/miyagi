@@ -127,7 +127,7 @@ function htmlTest() {
         const formData = new FormData();
         formData.append("out", "json");
         formData.append("content", html);
-        fetch("https://html5.validator.nu/", {
+        fetch("https://validator.w3.org/nu/", {
           method: "post",
           headers: {
             Accept: "application/json"
