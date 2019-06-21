@@ -4,35 +4,30 @@ const path = require("path");
 const { pathEndsWithExtension } = require("../extensionHelper.js");
 
 function register(hbs, name, fullFilePath) {
-  let readFile;
-
   try {
-    readFile = fs.readFileSync(fullFilePath, "utf8");
+    const readFile = fs.readFileSync(fullFilePath, "utf8");
+    hbs.registerPartial(name, hbs.compile(readFile.toString()));
   } catch (e) {
     console.warn(
       config.messages.fileNotFound.replace("${fullFilePath}", fullFilePath)
     );
   }
-
-  if (readFile) {
-    hbs.registerPartial(name, hbs.compile(readFile.toString()));
-  }
 }
 
-module.exports = function(app, hbs, initial) {
-  if (initial) {
+function registerLayouts(hbs) {
+  ["main", "iframe"].forEach(layout => {
     register(
       hbs,
-      "main",
-      path.join(__dirname, `../../${config.folders.views}/layouts/main.hbs`)
+      layout,
+      path.join(
+        __dirname,
+        `../../${config.folders.views}/layouts/${layout}.hbs`
+      )
     );
-    register(
-      hbs,
-      "iframe",
-      path.join(__dirname, `../../${config.folders.views}/layouts/iframe.hbs`)
-    );
-  }
+  });
+}
 
+function registerComponents(hbs, app) {
   app.get("state").filePaths.forEach(filePath => {
     if (pathEndsWithExtension(filePath, app.get("config").extension)) {
       const fullFilePath = path.join(
@@ -43,4 +38,12 @@ module.exports = function(app, hbs, initial) {
       register(hbs, filePath, fullFilePath);
     }
   });
+}
+
+module.exports = function(app, hbs, initial) {
+  if (initial) {
+    registerLayouts(hbs);
+  }
+
+  registerComponents(hbs, app);
 };
