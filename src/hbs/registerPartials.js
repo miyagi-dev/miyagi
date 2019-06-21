@@ -1,7 +1,7 @@
 const config = require("../config.json");
 const fs = require("fs");
 const path = require("path");
-const { pathEndsWithExtension } = require("../extensionHelper.js");
+const { pathEndsWithExtension } = require("../helpers.js");
 
 function register(hbs, name, fullFilePath) {
   try {

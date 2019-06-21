@@ -1,6 +1,5 @@
 const path = require("path");
 const getNavStructure = require("./_getNavStructure.js");
-require("../arrayEquals.js");
 
 const classes = {
   toggle: "ComponentLibrary-toggle",
@@ -10,6 +9,27 @@ const classes = {
   listItem: "ComponentLibrary-listItem"
 };
 const activeState = ' aria-current="page"';
+
+/* Based on https://stackoverflow.com/a/14853974 */
+function arraysAreEqual(a, b) {
+  // if the other array is a falsy value, return
+  if (!b) return false;
+
+  // compare lengths - can save a lot of time
+  if (a.length != b.length) return false;
+
+  for (var i = 0, l = a.length; i < l; i++) {
+    // Check if we have nested arrays
+    if (a[i] instanceof Array && b[i] instanceof Array) {
+      // recurse into the nested arrays
+      if (!arraysAreEqual(a[i], b[i])) return false;
+    } else if (a[i] != b[i]) {
+      // Warning - two different object instances will never be equal: {x:20} != {x:20}
+      return false;
+    }
+  }
+  return true;
+}
 
 function reduceArrayToSameLengthOfOtherArray(a, b) {
   const aLength = a.length;
@@ -49,7 +69,7 @@ function pathIsPartofRequestedPath(
     currentPathFolders
   );
 
-  return currentPathFolders.equals(requestedPathFolders);
+  return arraysAreEqual(currentPathFolders, requestedPathFolders);
 }
 
 function pathEqualsRequest(path, variation, request) {

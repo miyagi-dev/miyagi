@@ -3,10 +3,22 @@ const readDir = require("fs-readdir-recursive");
 const dirTree = require("directory-tree");
 const fs = require("fs");
 const path = require("path");
-const {
-  pathEndsWithExtension,
-  fileIsInFolderWithSameName
-} = require("./extensionHelper.js");
+const { pathEndsWithExtension } = require("./helpers.js");
+
+function fileIsInFolderWithSameName(file, ext) {
+  const isValid = path.dirname(file).endsWith(path.basename(file, `.${ext}`));
+
+  if (!isValid) {
+    console.warn(
+      config.messages.fileNotRenderedDueToUnmatchingFolderName.replace(
+        "${file}",
+        file
+      )
+    );
+  }
+
+  return isValid;
+}
 
 function filterUnwantedFilePath(app, file) {
   if (
