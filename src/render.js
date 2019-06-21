@@ -2,6 +2,34 @@ const fs = require("fs");
 const path = require("path");
 const tests = require("./tests.json");
 
+function getVariationJson(req, componentData, variationData) {
+  Object.entries(variationData).forEach(entry => {
+    if (typeof entry[1] === "object") {
+      if (entry[1].component) {
+        let embeddedJson = JSON.parse(
+          fs.readFileSync(
+            path.join(
+              process.cwd(),
+              `${req.app.get("config").srcFolder}/${entry[1].component}.json`
+            ),
+            "utf8"
+          )
+        );
+
+        if (entry[1].variation) {
+          embeddedJson = embeddedJson.variations.filter(
+            vari => vari.name === entry[1].variation
+          )[0];
+        }
+
+        variationData[entry[0]] = embeddedJson.data;
+      }
+    }
+  });
+
+  return Object.assign({}, componentData, variationData);
+}
+
 function getAsset(req, component, type) {
   const assetPath = `${req.app.get("config").srcFolder}${component.slice(
     0,
@@ -81,16 +109,24 @@ function renderComponent(req, res, component, variation) {
     const variationJson = variations.filter(
       vari => vari.name === decodeURI(variation)
     )[0];
-    const variationData = variationJson
+    let variationData = variationJson
       ? resolveJsonURLs(req, variationJson.data)
       : {};
 
-    context = Object.assign({}, componentData, variationData);
+    context = getVariationJson(req, componentData, variationData);
   } else {
     context = componentData;
   }
 
-  req.app.render(component, context, (err, html) => {
+  req.app.render(component, context, (err, result) => {
+    let html;
+
+    if (result) {
+      html = result;
+    } else {
+      html = `<p class="ComponentLibraryError">${err}</p>`;
+    }
+
     res.render("component.hbs", {
       html,
       cssFile,
@@ -117,7 +153,7 @@ function renderComponentVariations(req, res, component) {
     json.variations.forEach(entry => {
       context.push({
         component,
-        data: Object.assign({}, json.data, entry.data),
+        data: getVariationJson(req, json.Data, entry.data),
         name: entry.name
       });
     });
@@ -158,7 +194,15 @@ function renderComponentVariations(req, res, component) {
       });
     });
   } else {
-    req.app.render(component, data, (err, html) => {
+    req.app.render(component, data, (err, result) => {
+      let html;
+
+      if (result) {
+        html = result;
+      } else {
+        html = `<p class="ComponentLibraryError">${err}</p>`;
+      }
+
       res.render("component.hbs", {
         html,
         cssFile,

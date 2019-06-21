@@ -42,37 +42,41 @@ function getSourceStructure(app) {
   if (tree) {
     (function(obj) {
       function removeCustomPath(obj) {
-        if (obj.type === "directory" && obj.children.length) {
-          const jsonChild = obj.children.filter(
-            o => o.extension === ".json"
-          )[0];
-          let fileData;
+        if (obj) {
+          if (obj.type === "directory" && obj.children.length) {
+            const jsonChild = obj.children.filter(
+              o => o.extension === ".json"
+            )[0];
+            let fileData;
 
-          if (jsonChild) {
-            const filePath = jsonChild.path;
+            if (jsonChild) {
+              const filePath = jsonChild.path;
 
-            try {
-              fileData = fs.readFileSync(filePath, "utf8");
-            } catch (e) {
-              console.warn(
-                `Couldn't find file ${filePath}. Is the 'srcFolder' in your styleguide.json correct?`
-              );
-            }
-
-            if (fileData) {
-              const json = JSON.parse(fileData, "utf8");
-              const variations = json.variations;
-
-              if (
-                variations &&
-                obj.name === jsonChild.name.replace(".json", "")
-              ) {
-                obj.variations = [{ name: obj.name, data: json.data }].concat(
-                  variations
+              try {
+                fileData = fs.readFileSync(filePath, "utf8");
+              } catch (e) {
+                console.warn(
+                  `Couldn't find file ${filePath}. Is the 'srcFolder' in your styleguide.json correct?`
                 );
+              }
+
+              if (fileData) {
+                const json = JSON.parse(fileData, "utf8");
+                const variations = json.variations;
+
+                if (
+                  variations &&
+                  obj.name === jsonChild.name.replace(".json", "")
+                ) {
+                  obj.variations = [{ name: obj.name, data: json.data }].concat(
+                    variations
+                  );
+                }
               }
             }
           }
+        } else {
+          obj = {};
         }
 
         Object.keys(obj).forEach(a => {
