@@ -40,6 +40,10 @@
   font-weight: 500;
 }
 
+.ComponentLibrary-component:not(.ComponentLibrary-component--lvl0):not(.ComponentLibrary-link) {
+  color: #707070;
+}
+
 .ComponentLibrary-component--lvl0 {
   font-weight: bold;
 }
