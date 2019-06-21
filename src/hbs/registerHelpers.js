@@ -8,7 +8,7 @@ function renderMenu(app, structure, path, variation, id) {
   return getMenuHtml(app, structure, { path, variation }, id);
 }
 
-function getCssFiles(app) {
+function getCssFilesHtml(app) {
   let html = "";
 
   app.get("config").cssFiles.forEach(file => {
@@ -18,7 +18,7 @@ function getCssFiles(app) {
   return html;
 }
 
-function getJsFiles(app) {
+function getJsFilesHtml(app) {
   let html = "";
 
   app.get("config").jsFiles.forEach(file => {
@@ -36,10 +36,10 @@ module.exports = (app, hbs) => {
   });
 
   hbs.registerHelper("cssFiles", () => {
-    return getCssFiles(app);
+    return getCssFilesHtml(app);
   });
 
   hbs.registerHelper("jsFiles", () => {
-    return getJsFiles(app);
+    return getJsFilesHtml(app);
   });
 };
