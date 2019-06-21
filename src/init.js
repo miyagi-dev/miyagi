@@ -10,9 +10,9 @@ const fileWatcher = require("./fileWatcher.js");
 const getPort = require("./getPort.js");
 const registerHelpers = require("./hbs/registerHelpers.js");
 const registerPartials = require("./hbs/registerPartials.js");
-const router = require("./router.js");
 const setConfig = require("./setConfig.js");
 const setEngines = require("./setEngines.js");
+const setRouter = require("./setRouter.js");
 const setState = require("./setState.js");
 
 module.exports = cnf => {
@@ -28,7 +28,7 @@ module.exports = cnf => {
   setConfig(app, cnf);
   setState(app);
   setEngines(app);
-  router(app);
+  setRouter(app);
 
   registerHelpers(app, handlebars);
   registerPartials(app, handlebars, true);
