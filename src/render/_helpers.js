@@ -52,8 +52,10 @@ function resolveJsonURLs(req, data) {
   (function readJson(data) {
     Object.entries(data).forEach(entry => {
       const value = entry[1];
+
       if (
         typeof value === "string" &&
+        value.lastIndexOf(`.${config.dataFileType}`) > 0 &&
         value.lastIndexOf(`.${config.dataFileType}`) === value.length - 5
       ) {
         const json = getJsonFromFile(req, value.replace(/\0/g, ""));
