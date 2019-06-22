@@ -1,5 +1,5 @@
 {
-  "userConfigFile": "styleguide.json",
+  "userConfigFile": "roundup.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
   "folders": {
@@ -8,11 +8,11 @@
     "views": "views"
   },
   "messages": {
-    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your styleguide.json correct?",
+    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your roundup.json correct?",
     "fileNotRenderedDueToUnmatchingFolderName": "WARNING: ${file} has not been rendered because it doesn't live in a folder with the same name.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingFileExtension": "Please specify the file extension of your components in styleguide.json (key: 'extension', type: String)",
-    "missingComponentLocation": "Please specify the location of your components in styleguide.json (key: 'srcFolder', type: String)",
-    "serverStarted": "Running colib server at http://127.0.0.1:${port}`"
+    "missingFileExtension": "Please specify the file extension of your components in roundup.json (key: 'extension', type: String)",
+    "missingComponentLocation": "Please specify the location of your components in roundup.json (key: 'srcFolder', type: String)",
+    "serverStarted": "Running roundup server at http://127.0.0.1:${port}`"
   }
 }

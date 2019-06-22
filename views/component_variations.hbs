@@ -6,11 +6,11 @@
     {{#if jsFile}}
       <script src="{{jsFile}}"></script>
     {{/if}}
-    <div class="ComponentLibraryComponents">
+    <div class="RoundupComponents">
       {{#each variations}}
-        <div class="ComponentLibraryComponent">
-          <a href="?component={{this.file}}&variation={{this.variation}}" class="ComponentLibraryComponent-file">{{this.variation}}</a>
-          <div class="ComponentLibraryComponent-html">
+        <div class="RoundupComponent">
+          <a href="?component={{this.file}}&variation={{this.variation}}" class="RoundupComponent-file">{{this.variation}}</a>
+          <div class="RoundupComponent-html">
             {{{this.html}}}
           </div>
         </div>

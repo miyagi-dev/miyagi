@@ -1,13 +1,13 @@
-.ComponentLibraryTest {
+.RoundupTest {
   font-size: 1.4rem;
-  padding: var(--ComponentLibrary-spacing) var(--ComponentLibrary-spacing) 0;
+  padding: var(--Roundup-spacing) var(--Roundup-spacing) 0;
 }
 
-.ComponentLibraryTest:last-child {
-  padding-bottom: var(--ComponentLibrary-spacing);
+.RoundupTest:last-child {
+  padding-bottom: var(--Roundup-spacing);
 }
 
-.ComponentLibraryTest-title {
+.RoundupTest-title {
   display: block;
   font-weight: bold;
   margin: 0 0 0.5rem;

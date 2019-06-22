@@ -1,6 +1,6 @@
 {{#extend "iframe"}}
   {{#content "body"}}
-    <div class="ComponentLibraryComponents">
+    <div class="RoundupComponents">
       {{#if components}}
         {{#each components}}
           {{#if this.cssFile}}
@@ -9,9 +9,9 @@
           {{#if this.jsFile}}
             <script src="{{this.jsFile}}"></script>
           {{/if}}
-          <div class="ComponentLibraryComponent">
-            <a href="?component={{this.file}}" class="ComponentLibraryComponent-file">{{this.file}}</a>
-            <div class="ComponentLibraryComponent-html">
+          <div class="RoundupComponent">
+            <a href="?component={{this.file}}" class="RoundupComponent-file">{{this.file}}</a>
+            <div class="RoundupComponent-html">
               {{{this.html}}}
             </div>
           </div>

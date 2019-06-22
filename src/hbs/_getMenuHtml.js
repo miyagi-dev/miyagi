@@ -2,11 +2,11 @@ const path = require("path");
 const getNavStructure = require("./_getNavStructure.js");
 
 const classes = {
-  toggle: "ComponentLibrary-toggle",
-  component: "ComponentLibrary-component",
-  link: "ComponentLibrary-link",
-  list: "ComponentLibrary-list",
-  listItem: "ComponentLibrary-listItem"
+  toggle: "Roundup-toggle",
+  component: "Roundup-component",
+  link: "Roundup-link",
+  list: "Roundup-list",
+  listItem: "Roundup-listItem"
 };
 const activeState = ' aria-current="page"';
 

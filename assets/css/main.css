@@ -5,29 +5,27 @@
 @import "./_result.css";
 
 :root {
-  --ComponentLibrary-fontSize: 1.6rem;
-  --ComponentLibrary-lineHeight: 1.5;
+  --Roundup-fontSize: 1.6rem;
+  --Roundup-lineHeight: 1.5;
 
-  --ComponentLibrary-color-bg: #f5f5f5;
-  --ComponentLibrary-color-lightGray: #707070;
-  --ComponentLibrary-color-link: #0a374e;
-  --ComponentLibrary-color-negative: #d9173e;
-  --ComponentLibrary-color-warning: purple;
-  --ComponentLibrary-color-positive: green;
+  --Roundup-color-bg: #f5f5f5;
+  --Roundup-color-lightGray: #707070;
+  --Roundup-color-link: #0a374e;
+  --Roundup-color-negative: #d9173e;
+  --Roundup-color-warning: purple;
+  --Roundup-color-positive: green;
 
-  --ComponentLibrary-borderRadius: 0.25rem;
-  --ComponentLibrary-linkSpacing: 0.35rem;
+  --Roundup-borderRadius: 0.25rem;
+  --Roundup-linkSpacing: 0.35rem;
 
-  --ComponentLibrary-toggle-border: 0 solid #000;
-  --ComponentLibrary-toggle-borderWidth: 0.3em 0.3em 0 0;
-  --ComponentLibrary-toggle-fontSize: 0.75rem;
-  --ComponentLibrary-toggle-height: 1em;
-  --ComponentLibrary-toggle-transition: transform 0.15s ease;
-  --ComponentLibrary-toggle-width: 1em;
-  --ComponentLibrary-toggle-transition-closed: translate(-50%, -50%)
-    rotate(45deg);
-  --ComponentLibrary-toggle-transition-opened: translate(-25%, -75%)
-    rotate(135deg);
+  --Roundup-toggle-border: 0 solid #000;
+  --Roundup-toggle-borderWidth: 0.3em 0.3em 0 0;
+  --Roundup-toggle-fontSize: 0.75rem;
+  --Roundup-toggle-height: 1em;
+  --Roundup-toggle-transition: transform 0.15s ease;
+  --Roundup-toggle-width: 1em;
+  --Roundup-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
+  --Roundup-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
 }
 
 *,
@@ -41,61 +39,61 @@ html {
   height: 100%;
 }
 
-.ComponentLibrary {
+.Roundup {
   display: grid;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
-  font-size: var(--ComponentLibrary-fontSize);
-  line-height: var(--ComponentLibrary-lineHeight);
+  font-size: var(--Roundup-fontSize);
+  line-height: var(--Roundup-lineHeight);
   min-height: 100%;
 }
 
-.ComponentLibrary-nav {
-  background: var(--ComponentLibrary-color-bg);
+.Roundup-nav {
+  background: var(--Roundup-color-bg);
   grid-area: nav;
   overflow-y: auto;
-  padding: var(--ComponentLibrary-spacing)
-    calc(var(--ComponentLibrary-spacing) - var(--ComponentLibrary-linkSpacing));
+  padding: var(--Roundup-spacing)
+    calc(var(--Roundup-spacing) - var(--Roundup-linkSpacing));
 }
 
-.ComponentLibrary-content {
+.Roundup-content {
   display: flex;
   flex-grow: 1;
   grid-area: iframe;
 }
 
-.ComponentLibrary-frame {
+.Roundup-frame {
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
   display: block;
   flex: 1;
   position: relative;
 }
 
-.ComponentLibrary-tests {
-  background: var(--ComponentLibrary-color-bg);
+.Roundup-tests {
+  background: var(--Roundup-color-bg);
   grid-area: tests;
 }
 
 @media (max-width: 32em) {
   :root {
-    --ComponentLibrary-spacing: 1.5rem;
+    --Roundup-spacing: 1.5rem;
   }
 
-  .ComponentLibrary {
+  .Roundup {
     grid-template:
       "nav"
       "iframe" 1fr
       "tests";
   }
 
-  .ComponentLibrary-nav {
+  .Roundup-nav {
     position: relative;
   }
 
-  .ComponentLibrary-toggleMobileMenu {
+  .Roundup-toggleMobileMenu {
     --size: calc(
-      var(--ComponentLibrary-fontSize) * var(--ComponentLibrary-lineHeight) +
-        calc(2 * var(--ComponentLibrary-spacing))
+      var(--Roundup-fontSize) * var(--Roundup-lineHeight) +
+        calc(2 * var(--Roundup-spacing))
     );
 
     display: block;
@@ -106,48 +104,47 @@ html {
     width: var(--size);
   }
 
-  .ComponentLibrary-toggleMobileMenu::after {
-    border: var(--ComponentLibrary-toggle-border);
-    border-width: var(--ComponentLibrary-toggle-borderWidth);
+  .Roundup-toggleMobileMenu::after {
+    border: var(--Roundup-toggle-border);
+    border-width: var(--Roundup-toggle-borderWidth);
     content: "";
     display: block;
     font-size: 0.75em;
-    height: var(--ComponentLibrary-toggle-height);
+    height: var(--Roundup-toggle-height);
     left: 50%;
     position: absolute;
     top: 50%;
-    transition: var(--ComponentLibrary-toggle-transition);
-    width: var(--ComponentLibrary-toggle-width);
+    transition: var(--Roundup-toggle-transition);
+    width: var(--Roundup-toggle-width);
   }
 
-  .ComponentLibrary-toggleMobileMenu[aria-expanded="false"]::after {
-    transform: var(--ComponentLibrary-toggle-transition-closed);
+  .Roundup-toggleMobileMenu[aria-expanded="false"]::after {
+    transform: var(--Roundup-toggle-transition-closed);
   }
 
-  .ComponentLibrary-toggleMobileMenu[aria-expanded="true"]::after {
-    transform: var(--ComponentLibrary-toggle-transition-opened);
+  .Roundup-toggleMobileMenu[aria-expanded="true"]::after {
+    transform: var(--Roundup-toggle-transition-opened);
   }
 
-  .ComponentLibrary-toggleMobileMenu[aria-expanded="false"]
-    + .ComponentLibrary-menu {
+  .Roundup-toggleMobileMenu[aria-expanded="false"] + .Roundup-menu {
     display: none;
   }
 }
 
 @media (min-width: 32.03125em) {
   :root {
-    --ComponentLibrary-spacing: 2.5rem;
+    --Roundup-spacing: 2.5rem;
   }
 
-  .ComponentLibrary-nav {
+  .Roundup-nav {
     height: 100vh;
   }
 
-  .ComponentLibrary-toggleMobileMenu {
+  .Roundup-toggleMobileMenu {
     display: none;
   }
 
-  .ComponentLibrary-tests {
+  .Roundup-tests {
     max-height: var(--maxHeight);
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
@@ -155,7 +152,7 @@ html {
 }
 
 @media (min-width: 32.03125em) and (max-width: 64em) {
-  .ComponentLibrary {
+  .Roundup {
     grid-template-areas:
       "nav iframe"
       "nav tests";
@@ -163,26 +160,26 @@ html {
     grid-template-rows: 1fr auto;
   }
 
-  .ComponentLibrary-nav {
+  .Roundup-nav {
     max-width: 40vw;
   }
 
-  .ComponentLibrary-tests {
+  .Roundup-tests {
     --maxHeight: 50vh;
   }
 }
 
 @media (min-width: 64.03125em) {
-  .ComponentLibrary {
+  .Roundup {
     grid-template-areas: "nav iframe tests";
     grid-template-columns: auto 1fr auto;
   }
 
-  .ComponentLibrary-nav {
+  .Roundup-nav {
     max-width: 20vw;
   }
 
-  .ComponentLibrary-tests {
+  .Roundup-tests {
     --maxHeight: 100vh;
 
     max-width: 40vw;

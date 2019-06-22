@@ -6,15 +6,15 @@ body {
   min-height: 100%;
 }
 
-.ComponentLibraryComponents {
+.RoundupComponents {
   padding: var(--spacing) 0;
 }
 
-.ComponentLibraryComponent {
+.RoundupComponent {
   margin: 0 var(--spacing);
 }
 
-.ComponentLibraryComponent-file {
+.RoundupComponent-file {
   align-items: center;
   color: #767676;
   display: flex;
@@ -22,49 +22,49 @@ body {
   text-decoration: none;
 }
 
-.ComponentLibraryComponent-file:hover,
-.ComponentLibraryComponent-file:focus,
-.ComponentLibraryComponent-file:active {
+.RoundupComponent-file:hover,
+.RoundupComponent-file:focus,
+.RoundupComponent-file:active {
   color: #0a374e;
   text-decoration: underline;
 }
 
-.ComponentLibraryComponent-file::before,
-.ComponentLibraryComponent-file::after {
+.RoundupComponent-file::before,
+.RoundupComponent-file::after {
   background: #ddd;
   content: "";
   flex: 1;
   height: 0.1rem;
 }
 
-.ComponentLibraryComponent-file::before {
+.RoundupComponent-file::before {
   margin-right: 1.5rem;
 }
 
-.ComponentLibraryComponent-file::after {
+.RoundupComponent-file::after {
   margin-left: 1.5rem;
 }
 
-.ComponentLibraryComponent-html {
+.RoundupComponent-html {
   padding: var(--spacing) 0;
 }
 
-.ComponentLibraryError {
+.RoundupError {
   color: #d9173e;
 }
 
-.ComponentLibraryComponentView {
+.RoundupComponentView {
   padding: var(--spacing);
 }
 
 @media (max-width: 32em) {
-  .ComponentLibraryIframe {
+  .RoundupIframe {
     --spacing: 1rem;
   }
 }
 
 @media (min-width: 32.03125em) {
-  .ComponentLibraryIframe {
+  .RoundupIframe {
     --spacing: 2.5rem;
   }
 }

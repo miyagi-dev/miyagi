@@ -1,8 +1,8 @@
-.ComponentLibraryResults + .ComponentLibraryResults {
+.RoundupResults + .RoundupResults {
   margin-top: var(--results-spacing);
 }
 
-.ComponentLibraryResults-summary {
+.RoundupResults-summary {
   cursor: default;
   list-style-type: none;
   padding: 0 0 0 1.5rem;
@@ -10,37 +10,37 @@
   white-space: nowrap;
 }
 
-.ComponentLibraryResults-summary::after {
-  border: var(--ComponentLibrary-toggle-border);
-  border-width: var(--ComponentLibrary-toggle-borderWidth);
+.RoundupResults-summary::after {
+  border: var(--Roundup-toggle-border);
+  border-width: var(--Roundup-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: var(--ComponentLibrary-toggle-fontSize);
-  height: var(--ComponentLibrary-toggle-height);
+  font-size: var(--Roundup-toggle-fontSize);
+  height: var(--Roundup-toggle-height);
   left: 0.25rem;
   position: absolute;
   top: 50%;
-  transition: var(--ComponentLibrary-toggle-transition);
-  width: var(--ComponentLibrary-toggle-width);
+  transition: var(--Roundup-toggle-transition);
+  width: var(--Roundup-toggle-width);
 }
 
-.ComponentLibraryResults-summary::-webkit-details-marker {
+.RoundupResults-summary::-webkit-details-marker {
   display: none;
 }
 
-.ComponentLibraryResults:not([open]) .ComponentLibraryResults-summary::after {
-  transform: var(--ComponentLibrary-toggle-transition-closed);
+.RoundupResults:not([open]) .RoundupResults-summary::after {
+  transform: var(--Roundup-toggle-transition-closed);
 }
 
-.ComponentLibraryResults[open] .ComponentLibraryResults-summary::after {
-  transform: var(--ComponentLibrary-toggle-transition-opened);
+.RoundupResults[open] .RoundupResults-summary::after {
+  transform: var(--Roundup-toggle-transition-opened);
 }
 
-.ComponentLibraryResults-value:not(:last-child) {
+.RoundupResults-value:not(:last-child) {
   padding-right: 1rem;
 }
 
-.ComponentLibraryResults-value.has-positiveValue {
+.RoundupResults-value.has-positiveValue {
   border-radius: 0.25em;
   color: #fff;
   display: inline-block;
@@ -50,54 +50,54 @@
   text-align: center;
 }
 
-.ComponentLibraryResults-value--positive {
-  color: var(--ComponentLibrary-color-positive);
+.RoundupResults-value--positive {
+  color: var(--Roundup-color-positive);
 }
 
-.ComponentLibraryResults-value--positive.has-positiveValue {
-  background: var(--ComponentLibrary-color-positive);
+.RoundupResults-value--positive.has-positiveValue {
+  background: var(--Roundup-color-positive);
 }
 
-.ComponentLibraryResults-value--neutral {
-  color: var(--ComponentLibrary-color-lightGray);
+.RoundupResults-value--neutral {
+  color: var(--Roundup-color-lightGray);
 }
 
-.ComponentLibraryResults-value--neutral.has-positiveValue {
-  background: var(--ComponentLibrary-color-lightGray);
+.RoundupResults-value--neutral.has-positiveValue {
+  background: var(--Roundup-color-lightGray);
 }
 
-.ComponentLibraryResults-value--negative {
-  color: var(--ComponentLibrary-color-negative);
+.RoundupResults-value--negative {
+  color: var(--Roundup-color-negative);
 }
 
-.ComponentLibraryResults-value--negative.has-positiveValue {
-  background: var(--ComponentLibrary-color-negative);
+.RoundupResults-value--negative.has-positiveValue {
+  background: var(--Roundup-color-negative);
 }
 
-.ComponentLibraryResults-value--warning {
-  color: var(--ComponentLibrary-color-warning);
+.RoundupResults-value--warning {
+  color: var(--Roundup-color-warning);
 }
 
-.ComponentLibraryResults-value--warning.has-positiveValue {
-  background: var(--ComponentLibrary-color-warning);
+.RoundupResults-value--warning.has-positiveValue {
+  background: var(--Roundup-color-warning);
 }
 
-.ComponentLibraryResults-details {
+.RoundupResults-details {
   margin: 1rem 0 1rem 2.2rem;
 }
 
-.ComponentLibraryResults-empty {
+.RoundupResults-empty {
   font-style: italic;
 }
 
 @media (pointer: coarse) {
-  .ComponentLibraryResults + .ComponentLibraryResults {
+  .RoundupResults + .RoundupResults {
     --results-spacing: 0.75rem;
   }
 }
 
 @media (pointer: fine) {
-  .ComponentLibraryResults + .ComponentLibraryResults {
+  .RoundupResults + .RoundupResults {
     --results-spacing: 0.5rem;
   }
 }

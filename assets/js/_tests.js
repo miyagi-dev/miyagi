@@ -9,7 +9,7 @@ function escapeHtml(str) {
 
 function addToggle(container) {
   const summaries = Array.from(
-    container.querySelectorAll(".ComponentLibraryResults-summary")
+    container.querySelectorAll(".RoundupResults-summary")
   );
 
   summaries.forEach(summary => {
@@ -28,21 +28,16 @@ function addToggle(container) {
 
 function a11yTest() {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
-  const container = parent.document.querySelector(
-    ".ComponentLibraryTest--a11y"
-  );
+  const container = parent.document.querySelector(".RoundupTest--a11y");
 
   addToggle(container);
 
-  axe.run(document.getElementById("ComponentLibraryComponent"), function(
-    err,
-    results
-  ) {
+  axe.run(document.getElementById("RoundupComponent"), function(err, results) {
     if (err) throw err;
 
     states.forEach(state => {
       const resultElement = container.querySelector(
-        `.ComponentLibraryResults--${state} .ComponentLibraryResults-value`
+        `.RoundupResults--${state} .RoundupResults-value`
       );
       let html = "";
 
@@ -58,23 +53,23 @@ function a11yTest() {
       if (results[state].length) {
         html += "<ul>";
         results[state].forEach(result => {
-          html += '<li class="ComponentLibraryResult">';
-          html += '<dl class="ComponentLibraryResult-data">';
+          html += '<li class="RoundupResult">';
+          html += '<dl class="RoundupResult-data">';
 
           if (result.description) {
-            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Description</dt> <dd class="ComponentLibraryResult-value">${escapeHtml(
+            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Description</dt> <dd class="RoundupResult-value">${escapeHtml(
               result.description
             )}</div></dd>`;
           }
 
           if (result.help) {
-            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Help</dt> <dd class="ComponentLibraryResult-value">${escapeHtml(
+            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Help</dt> <dd class="RoundupResult-value">${escapeHtml(
               result.help
             )}</div></dd>`;
           }
 
           if (result.helpUrl) {
-            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Link</dt> <dd class="ComponentLibraryResult-value"><a href="${
+            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Link</dt> <dd class="RoundupResult-value"><a href="${
               result.helpUrl
             }" target="_blank">${result.helpUrl}</div></dd></a>`;
           }
@@ -84,13 +79,13 @@ function a11yTest() {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "ComponentLibraryResults-value--negative";
+                impactClass = "RoundupResults-value--negative";
                 break;
               case "moderate":
-                impactClass = "ComponentLibraryResults-value--warning";
+                impactClass = "RoundupResults-value--warning";
             }
 
-            html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Impact</dt> <dd class="${impactClass}">${
+            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Impact</dt> <dd class="${impactClass}">${
               result.impact
             }</div></dd>`;
           }
@@ -100,12 +95,11 @@ function a11yTest() {
         });
         html += "</ul>";
       } else {
-        html +=
-          '<p><i class="ComponentLibraryResults-empty">Nothing to report.</i></p>';
+        html += '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.ComponentLibraryResults--${state} .ComponentLibraryResults-details`
+        `.RoundupResults--${state} .RoundupResults-details`
       ).innerHTML = html;
     });
 
@@ -114,9 +108,7 @@ function a11yTest() {
 }
 
 function htmlTest() {
-  const container = parent.document.querySelector(
-    ".ComponentLibraryTest--html"
-  );
+  const container = parent.document.querySelector(".RoundupTest--html");
   const states = ["error", "warning"];
 
   addToggle(container);
@@ -142,7 +134,7 @@ function htmlTest() {
                 );
 
                 const resultElement = container.querySelector(
-                  `.ComponentLibraryResults--${state} .ComponentLibraryResults-value`
+                  `.RoundupResults--${state} .RoundupResults-value`
                 );
                 let html = "";
 
@@ -153,11 +145,11 @@ function htmlTest() {
 
                   html += "<ul>";
                   results.forEach(result => {
-                    html += '<li class="ComponentLibraryResult">';
-                    html += '<dl class="ComponentLibraryResult-data">';
+                    html += '<li class="RoundupResult">';
+                    html += '<dl class="RoundupResult-data">';
 
                     if (result.message) {
-                      html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Message</dt> <dd class="ComponentLibraryResult-value">${
+                      html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Message</dt> <dd class="RoundupResult-value">${
                         result.message
                       }</div></dd>`;
                     }
@@ -176,16 +168,16 @@ function htmlTest() {
                         )
                       )}`;
 
-                      html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">Extract</dt> <dd class="ComponentLibraryResult-value"><code class="ComponentLibraryResult-extract">${markedExtract.replace(
+                      html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Extract</dt> <dd class="RoundupResult-value"><code class="RoundupResult-extract">${markedExtract.replace(
                         /\n/g,
                         "↩"
                       )}</code></div></dd>`;
                     }
 
-                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">From</dt><dd class="ComponentLibraryResult-value">Line: ${
+                    html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">From</dt><dd class="RoundupResult-value">Line: ${
                       result[result.firstLine ? "firstLine" : "lastLine"]
                     }, Column: ${result.firstColumn}</div></dd>`;
-                    html += `<div class="ComponentLibraryResult-wrapper"><dt class="ComponentLibraryResult-attr">To</dt><dd class="ComponentLibraryResult-value">Line: ${
+                    html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">To</dt><dd class="RoundupResult-value">Line: ${
                       result.lastLine
                     }, Column: ${result.lastColumn}</div></dd>`;
 
@@ -196,11 +188,11 @@ function htmlTest() {
                 } else {
                   resultElement.classList.remove("has-positiveValue");
                   html +=
-                    '<p><i class="ComponentLibraryResults-empty">Nothing to report.</i></p>';
+                    '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
                 }
 
                 container.querySelector(
-                  `.ComponentLibraryResults--${state} .ComponentLibraryResults-details`
+                  `.RoundupResults--${state} .RoundupResults-details`
                 ).innerHTML = html;
               });
 
@@ -218,10 +210,10 @@ function htmlTest() {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  const tests = parent.document.querySelector(".ComponentLibrary-tests");
+  const tests = parent.document.querySelector(".Roundup-tests");
 
   if (tests) {
-    if (document.getElementById("ComponentLibraryComponent")) {
+    if (document.getElementById("RoundupComponent")) {
       a11yTest();
       htmlTest();
 

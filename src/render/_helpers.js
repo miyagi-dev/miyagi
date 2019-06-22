@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 
 function getComponentErrorHtml(err) {
-  return `<p class="ComponentLibraryError">${err}</p>`;
+  return `<p class="RoundupError">${err}</p>`;
 }
 
 function getJsonFromFile(req, fileName) {
