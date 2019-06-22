@@ -1,11 +1,14 @@
+const path = require("path");
 const tests = require("./_tests.json");
+const config = require("../config.json");
 const {
-  getComponentErrorHtml,
-  resolveJsonURLs,
   getAssetPath,
+  getComponentErrorHtml,
   mergeComponentDataWithVariation,
+  overwriteDataWithDataFromFile,
   renderSingleComponent,
-  renderVariations
+  renderVariations,
+  resolveJsonURLs
 } = require("./_helpers.js");
 
 function renderMain(req, res) {
@@ -91,7 +94,20 @@ async function renderComponentOverview(req, res) {
 
   components.forEach((component, i) => {
     const componentPath = component[0];
-    const componentData = Object.assign({}, component[1]);
+    const componentData = component[1];
+
+    Object.entries(componentData).forEach(entry => {
+      const value = entry[1];
+      if (
+        typeof value === "object" &&
+        value.component &&
+        value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
+        value.component.lastIndexOf(`.${config.dataFileType}`) ===
+          value.component.length - 5
+      ) {
+        componentData[entry[0]] = overwriteDataWithDataFromFile(req, value);
+      }
+    });
 
     cssFiles[i] = getAssetPath(req, componentPath, "css");
     jsFiles[i] = getAssetPath(req, componentPath, "js");

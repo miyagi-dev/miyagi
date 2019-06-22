@@ -23,6 +23,7 @@ module.exports = cnf => {
     process.env.NODE_ENV === "development"
       ? config.folders.assets
       : config.folders.dist;
+
   app.use(helmet());
 
   setConfig(app, cnf);

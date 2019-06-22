@@ -71,6 +71,19 @@ function resolveJsonURLs(req, data) {
 }
 
 function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
+  Object.entries(context).forEach(entry => {
+    const value = entry[1];
+    if (
+      typeof value === "object" &&
+      value.component &&
+      value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
+      value.component.lastIndexOf(`.${config.dataFileType}`) ===
+        value.component.length - 5
+    ) {
+      context[entry[0]] = overwriteDataWithDataFromFile(req, value);
+    }
+  });
+
   req.app.render(component, context, (err, result) => {
     res.render("component.hbs", {
       html: result || getComponentErrorHtml(err),
@@ -81,6 +94,19 @@ function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
 }
 
 function renderVariations(req, res, component, data, json, cssFile, jsFile) {
+  Object.entries(json.data).forEach(entry => {
+    const value = entry[1];
+    if (
+      typeof value === "object" &&
+      value.component &&
+      value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
+      value.component.lastIndexOf(`.${config.dataFileType}`) ===
+        value.component.length - 5
+    ) {
+      json.data[entry[0]] = overwriteDataWithDataFromFile(req, value);
+    }
+  });
+
   const variations = [];
   const splittedPath = component.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
@@ -88,11 +114,11 @@ function renderVariations(req, res, component, data, json, cssFile, jsFile) {
     { component, data, name: fileName.slice(0, fileName.lastIndexOf(".")) }
   ];
 
-  json.variations.forEach(entry => {
+  json.variations.forEach(variation => {
     context.push({
       component,
-      data: mergeComponentDataWithVariation(req, json.data, entry.data),
-      name: entry.name
+      data: mergeComponentDataWithVariation(req, json.data, variation.data),
+      name: variation.name
     });
   });
 
@@ -124,10 +150,11 @@ function renderVariations(req, res, component, data, json, cssFile, jsFile) {
 }
 
 module.exports = {
-  getComponentErrorHtml,
-  resolveJsonURLs,
   getAssetPath,
+  getComponentErrorHtml,
   mergeComponentDataWithVariation,
+  overwriteDataWithDataFromFile,
   renderSingleComponent,
-  renderVariations
+  renderVariations,
+  resolveJsonURLs
 };
