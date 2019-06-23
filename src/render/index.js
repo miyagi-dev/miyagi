@@ -118,7 +118,8 @@ async function renderComponentOverview(req, res) {
           componentPath,
           Object.assign({}, componentData, {
             partials: req.app.get("state").partials,
-            basedir: path.join(process.cwd(), req.app.get("config").srcFolder) // for pug
+            basedir: path.join(process.cwd(), req.app.get("config").srcFolder), // for pug
+            root: path.join(process.cwd(), req.app.get("config").srcFolder) // for ect
           }),
           (err, result) => {
             arr[i] = {
