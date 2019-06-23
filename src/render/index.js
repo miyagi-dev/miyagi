@@ -96,18 +96,20 @@ async function renderComponentOverview(req, res) {
     const componentPath = component[0];
     const componentData = component[1];
 
-    Object.entries(componentData).forEach(entry => {
-      const value = entry[1];
-      if (
-        typeof value === "object" &&
-        value.component &&
-        value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-        value.component.lastIndexOf(`.${config.dataFileType}`) ===
-          value.component.length - 5
-      ) {
-        componentData[entry[0]] = overwriteDataWithDataFromFile(req, value);
-      }
-    });
+    if (componentData) {
+      Object.entries(componentData).forEach(entry => {
+        const value = entry[1];
+        if (
+          typeof value === "object" &&
+          value.component &&
+          value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
+          value.component.lastIndexOf(`.${config.dataFileType}`) ===
+            value.component.length - 5
+        ) {
+          componentData[entry[0]] = overwriteDataWithDataFromFile(req, value);
+        }
+      });
+    }
 
     cssFiles[i] = getAssetPath(req, componentPath, "css");
     jsFiles[i] = getAssetPath(req, componentPath, "js");
