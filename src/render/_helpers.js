@@ -3,7 +3,9 @@ const fs = require("fs");
 const path = require("path");
 
 function getComponentErrorHtml(err) {
-  return `<p class="RoundupError">${err}</p>`;
+  return `<p class="RoundupError">${
+    err === null ? config.messages.componentCouldNotBeRendered : err
+  }</p>`;
 }
 
 function getJsonFromFile(req, fileName) {
