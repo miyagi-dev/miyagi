@@ -86,13 +86,19 @@ function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
     }
   });
 
-  req.app.render(component, context, (err, result) => {
-    res.render("component.hbs", {
-      html: result || getComponentErrorHtml(err),
-      cssFile,
-      jsFile
-    });
-  });
+  req.app.render(
+    component,
+    Object.assign({}, context, {
+      partials: req.app.get("state").partials
+    }),
+    (err, result) => {
+      res.render("component.hbs", {
+        html: result || getComponentErrorHtml(err),
+        cssFile,
+        jsFile
+      });
+    }
+  );
 }
 
 function renderVariations(req, res, component, data, json, cssFile, jsFile) {
@@ -129,15 +135,23 @@ function renderVariations(req, res, component, data, json, cssFile, jsFile) {
   context.forEach((entry, i) => {
     promises.push(
       new Promise(resolve => {
-        req.app.render(component, entry.data, (err, result) => {
-          variations[i] = {
-            file: context[i].component,
-            html: result || getComponentErrorHtml(err),
-            variation: context[i].name ? context[i].name : context[i].component
-          };
+        req.app.render(
+          component,
+          Object.assign({}, entry.data, {
+            partials: req.app.get("state").partials
+          }),
+          (err, result) => {
+            variations[i] = {
+              file: context[i].component,
+              html: result || getComponentErrorHtml(err),
+              variation: context[i].name
+                ? context[i].name
+                : context[i].component
+            };
 
-          resolve(result);
-        });
+            resolve(result);
+          }
+        );
       })
     );
   });

@@ -153,15 +153,30 @@ function getJsonData(app, paths) {
   return jsonData;
 }
 
+function getPartials(app, filePaths) {
+  const partials = {};
+
+  filePaths.forEach(filePath => {
+    partials[filePath] = path.join(
+      process.cwd(),
+      `${app.get("config").srcFolder}/${filePath}`
+    );
+  });
+
+  return partials;
+}
+
 function setState(app) {
   const srcStructure = getSourceStructure(app);
   const filePaths = getFilePaths(app);
   const jsonData = getJsonData(app, filePaths);
+  const partials = getPartials(app, filePaths);
 
   app.set("state", {
     srcStructure,
     filePaths,
-    jsonData
+    jsonData,
+    partials
   });
 }
 

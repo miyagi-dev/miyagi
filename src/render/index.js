@@ -114,16 +114,22 @@ async function renderComponentOverview(req, res) {
 
     promises.push(
       new Promise(resolve => {
-        req.app.render(componentPath, componentData, (err, result) => {
-          arr[i] = {
-            file: components[i][0],
-            html: result || getComponentErrorHtml(err),
-            cssFile: cssFiles[i],
-            jsFile: jsFiles[i]
-          };
+        req.app.render(
+          componentPath,
+          Object.assign({}, componentData, {
+            partials: req.app.get("state").partials
+          }),
+          (err, result) => {
+            arr[i] = {
+              file: components[i][0],
+              html: result || getComponentErrorHtml(err),
+              cssFile: cssFiles[i],
+              jsFile: jsFiles[i]
+            };
 
-          resolve();
-        });
+            resolve();
+          }
+        );
       })
     );
   });

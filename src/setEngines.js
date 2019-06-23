@@ -15,7 +15,8 @@ module.exports = app => {
         this,
         arguments[0],
         Object.assign({}, arguments[1], {
-          path: path.join(process.cwd(), app.get("config").srcFolder)
+          path: path.join(process.cwd(), app.get("config").srcFolder),
+          allowInlineIncludes: true
         }),
         arguments[2]
       );
