@@ -1,10 +1,14 @@
-function sanitizePath(path) {
+function sanitizePath(path, isFolder) {
   while (path.indexOf("../") === 0) {
     path = path.slice(3);
   }
 
   if (path.indexOf("/") === 0) {
     path = path.slice(1);
+  }
+
+  if (isFolder && path.lastIndexOf("/") !== path.length) {
+    path += "/";
   }
 
   return path;
@@ -21,7 +25,7 @@ function sanitizeAssetFiles(files) {
 }
 
 module.exports = (app, config) => {
-  config.srcFolder = sanitizePath(config.srcFolder);
+  config.srcFolder = sanitizePath(config.srcFolder, true);
 
   if (config.cssFiles) {
     config.cssFiles = sanitizeAssetFiles(config.cssFiles);
