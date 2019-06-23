@@ -1,3 +1,4 @@
+const config = require("./config.json");
 const path = require("path");
 const engines = require("consolidate");
 
@@ -5,7 +6,13 @@ module.exports = app => {
   app.engine("hbs", engines.handlebars);
   app.set("view engine", "hbs");
 
-  app.engine(app.get("config").extension, engines[app.get("config").engine]);
+  try {
+    app.engine(app.get("config").extension, engines[app.get("config").engine]);
+  } catch (e) {
+    console.error(config.messages.settingEngineFailed);
+    return false;
+  }
+
   app.set("view engine", app.get("config").extension);
 
   if (app.get("config").engine === "twig") {
@@ -24,4 +31,6 @@ module.exports = app => {
 
     app.render = render;
   }
+
+  return true;
 };

@@ -16,38 +16,41 @@ const setRouter = require("./setRouter.js");
 const setState = require("./setState.js");
 
 module.exports = cnf => {
-  const port = getPort();
   const app = express();
-  const server = http.createServer(app);
-  const assetFolder =
-    process.env.NODE_ENV === "development"
-      ? config.folders.assets
-      : config.folders.dist;
-
-  app.use(helmet());
 
   setConfig(app, cnf);
-  setState(app);
-  setEngines(app);
-  setRouter(app);
 
-  registerHelpers(app, handlebars);
-  registerPartials(app, handlebars, true);
+  if (setEngines(app)) {
+    const port = getPort();
+    const server = http.createServer(app);
+    const assetFolder =
+      process.env.NODE_ENV === "development"
+        ? config.folders.assets
+        : config.folders.dist;
 
-  handlebarsLayouts.register(handlebars);
+    app.use(helmet());
 
-  app.set("views", [
-    path.join(__dirname, `../${config.folders.views}`),
-    path.join(process.cwd(), app.get("config").srcFolder)
-  ]);
+    setState(app);
+    setRouter(app);
 
-  app.use(express.static(process.cwd()));
-  app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
-  app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
+    registerHelpers(app, handlebars);
+    registerPartials(app, handlebars, true);
 
-  server.listen(port);
+    handlebarsLayouts.register(handlebars);
 
-  fileWatcher(server, app, handlebars);
+    app.set("views", [
+      path.join(__dirname, `../${config.folders.views}`),
+      path.join(process.cwd(), app.get("config").srcFolder)
+    ]);
 
-  console.log(config.messages.serverStarted.replace("${port}", port));
+    app.use(express.static(process.cwd()));
+    app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
+    app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
+
+    server.listen(port);
+
+    fileWatcher(server, app, handlebars);
+
+    console.log(config.messages.serverStarted.replace("${port}", port));
+  }
 };
