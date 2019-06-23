@@ -89,7 +89,8 @@ function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
   req.app.render(
     component,
     Object.assign({}, context, {
-      partials: req.app.get("state").partials
+      partials: req.app.get("state").partials,
+      basedir: path.join(process.cwd(), req.app.get("config").srcFolder) // for pug
     }),
     (err, result) => {
       res.render("component.hbs", {
@@ -138,7 +139,8 @@ function renderVariations(req, res, component, data, json, cssFile, jsFile) {
         req.app.render(
           component,
           Object.assign({}, entry.data, {
-            partials: req.app.get("state").partials
+            partials: req.app.get("state").partials,
+            basedir: path.join(process.cwd(), req.app.get("config").srcFolder) // for pug
           }),
           (err, result) => {
             variations[i] = {
