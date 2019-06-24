@@ -11,7 +11,8 @@
     "url": "git@github.com:mgrsskls/roundup.git"
   },
   "engines": {
-    "node": "12.x"
+    "node": "12.4.0",
+    "npm": "6.9.0"
   },
   "dependencies": {
     "axe-core": "^3.2.2",
