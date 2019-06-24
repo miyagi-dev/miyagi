@@ -7,7 +7,7 @@ function sanitizePath(path, isFolder) {
     path = path.slice(1);
   }
 
-  if (isFolder && path.lastIndexOf("/") !== path.length) {
+  if (isFolder && path.slice(-1) !== "/") {
     path += "/";
   }
 
