@@ -46,8 +46,12 @@ function renderComponent(req, res, component, variation) {
   const componentJson = req.app.get("state").jsonData[component];
   const variations = componentJson.variations;
   const componentData = componentJson.data;
-  const cssFile = getAssetPath(req, component, "css");
-  const jsFile = getAssetPath(req, component, "js");
+  const cssFile =
+    req.app.get("config").includeComponentCss &&
+    getAssetPath(req, component, "css");
+  const jsFile =
+    req.app.get("config").includeComponentJs &&
+    getAssetPath(req, component, "js");
   let context;
 
   if (variations) {
@@ -73,8 +77,12 @@ function renderComponent(req, res, component, variation) {
 function renderComponentVariations(req, res, component) {
   const json = req.app.get("state").jsonData[component];
   const data = json.data ? resolveJsonURLs(req, json.data) : {};
-  const cssFile = getAssetPath(req, component, "css");
-  const jsFile = getAssetPath(req, component, "js");
+  const cssFile =
+    req.app.get("config").includeComponentCss &&
+    getAssetPath(req, component, "css");
+  const jsFile =
+    req.app.get("config").includeComponentJs &&
+    getAssetPath(req, component, "js");
 
   if (json.variations) {
     renderVariations(req, res, component, data, json, cssFile, jsFile);

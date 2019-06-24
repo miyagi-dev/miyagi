@@ -31,19 +31,19 @@ Create a `roundup.json` in your project folder with the following options:
 // roundup.json
 
 {
-  "extension": "hbs",         /* the file extension of your components */
-  "engine": "handlebars",     /* the rendering engine for your components */
-  "srcFolder": "src/",        /* the source folder for your components */
-  "includeComponentCss": true /* tell roundup to include the css file from your components directories or not */
-  "includeComponentJs": true  /* tell roundup to include the js file from your components directories or not */
-  "cssFiles": [               /* additional css files you want to be included */
+  "extension": "hbs",         /* required; the file extension of your components */
+  "engine": "handlebars",     /* required; the rendering engine for your components */
+  "srcFolder": "src/",        /* required; the source folder for your components */
+  "includeComponentCss": true /* optional, default: true; tell roundup to include the css file from your components directories or not */
+  "includeComponentJs": true  /* optional, default: true; tell roundup to include the js file from your components directories or not */
+  "cssFiles": [               /* optional; additional css files you want to be included */
     "src/reset.css",
     "src/index.css"
   ],
-  "jsFiles": ["src/index.js"] /* additional js files you want to be included */
+  "jsFiles": ["src/index.js"] /* optional; additional js files you want to be included */
   "validations": {
-    "html": true,
-    "accessibility": true
+    "html": true,             /* optional, default: true; tell roundup to validate your component's html */
+    "accessibility": true     /* optional, default: true; tell roundup to test your component for accessibility violations */
   }
 }
 ```

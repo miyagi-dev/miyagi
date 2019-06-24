@@ -38,10 +38,15 @@ module.exports = (app, config) => {
   app.set(
     "config",
     Object.assign(
-      {},
       {
+        includeComponentCss: true,
+        includeComponentJs: true,
         cssFiles: [],
-        jsFiles: []
+        jsFiles: [],
+        validations: {
+          html: true,
+          accessibility: true
+        }
       },
       config
     )

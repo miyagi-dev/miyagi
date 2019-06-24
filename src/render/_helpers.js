@@ -102,7 +102,9 @@ function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
       res.render("component.hbs", {
         html: result || getComponentErrorHtml(err),
         cssFile,
-        jsFile
+        jsFile,
+        htmlValidation: req.app.get("config").validations.html,
+        accessibilityValidation: req.app.get("config").validations.accessibility
       });
     }
   );

@@ -214,8 +214,13 @@ addEventListener("DOMContentLoaded", () => {
 
   if (tests) {
     if (document.getElementById("RoundupComponent")) {
-      a11yTest();
-      htmlTest();
+      if (validations.accessibility) {
+        a11yTest();
+      }
+
+      if (validations.html) {
+        htmlTest();
+      }
 
       tests.removeAttribute("hidden");
     } else {
