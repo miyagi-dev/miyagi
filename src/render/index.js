@@ -14,7 +14,7 @@ const {
 function renderMain(req, res) {
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
-    iframeSrc: `${req.protocol}://${req.headers.host}/?component=all`,
+    iframeSrc: "?component=all",
     showAll: true,
     isComponentOverview: true,
     tests
@@ -22,9 +22,7 @@ function renderMain(req, res) {
 }
 
 function renderMainWithComponent(req, res, component, variation) {
-  let iframeSrc = `${req.protocol}://${
-    req.headers.host
-  }/?component=${component}`;
+  let iframeSrc = `?component=${component}`;
   let isComponentOverview = true;
 
   if (variation) {
