@@ -28,6 +28,7 @@ module.exports = cnf => {
         : config.folders.dist;
 
     app.use(helmet());
+    app.set("port", port);
 
     setState(app);
     setRouter(app);
@@ -46,7 +47,7 @@ module.exports = cnf => {
     app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
     app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
 
-    server.listen(port);
+    server.listen(app.get("port"));
 
     fileWatcher(server, app, handlebars);
 

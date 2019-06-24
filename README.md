@@ -48,7 +48,7 @@ Create a `roundup.json` in your project folder with the following options:
 }
 ```
 
-Start _roundup_ with `node node_modules/roundup`. This will serve _roundup_ at `http://127.0.0.1:8000`. You can change the port with `node node_modules/roundup port=1234`.
+Start _roundup_ with `node node_modules/roundup`. This will serve _roundup_ at `http://127.0.0.1:5000`. You can change the port with `PORT=1234 node node_modules/roundup`.
 
 ### Organizing your components
 
