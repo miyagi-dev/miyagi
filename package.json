@@ -10,9 +10,6 @@
     "type": "git",
     "url": "git@github.com:mgrsskls/roundup.git"
   },
-  "files": [
-    "dist/"
-  ],
   "dependencies": {
     "axe-core": "^3.2.2",
     "chokidar": "^3.0.1",
