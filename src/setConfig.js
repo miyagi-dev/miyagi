@@ -1,3 +1,5 @@
+const deepMerge = require("deepmerge");
+
 function sanitizePath(path, isFolder) {
   while (path.indexOf("../") === 0) {
     path = path.slice(3);
@@ -37,7 +39,7 @@ module.exports = (app, config) => {
 
   app.set(
     "config",
-    Object.assign(
+    deepMerge(
       {
         includeComponentCss: true,
         includeComponentJs: true,
