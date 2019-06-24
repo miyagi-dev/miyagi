@@ -1,14 +1,12 @@
+const cloneDeep = require("clone-deep");
 const path = require("path");
 const tests = require("./_tests.json");
-const config = require("../config.json");
 const {
   getAssetPath,
   getComponentErrorHtml,
-  mergeComponentDataWithVariation,
-  overwriteDataWithDataFromFile,
-  renderSingleComponent,
-  renderVariations,
-  resolveJsonURLs
+  getDataForRenderFunction,
+  mergeRootDataWithVariationData,
+  overwriteJsonLinksWithJsonData
 } = require("./_helpers.js");
 
 function renderMain(req, res) {
@@ -41,51 +39,82 @@ function renderMainWithComponent(req, res, component, variation) {
 }
 
 function renderComponent(req, res, component, variation) {
-  const componentJson = req.app.get("state").jsonData[component];
-  const variations = componentJson.variations;
-  const componentData = componentJson.data;
+  const componentJson = cloneDeep(req.app.get("state").jsonData[component]);
+  const componentVariations = componentJson.variations;
   const cssFile =
     req.app.get("config").includeComponentCss &&
     getAssetPath(req, component, "css");
   const jsFile =
     req.app.get("config").includeComponentJs &&
     getAssetPath(req, component, "js");
-  let context;
 
-  if (variations) {
-    const variationJson = variations.filter(
+  let componentData = componentJson.data;
+
+  if (componentVariations && variation) {
+    const variationJson = componentVariations.filter(
       vari => vari.name === decodeURI(variation)
     )[0];
-    let variationData = variationJson
-      ? resolveJsonURLs(req, variationJson.data)
-      : {};
 
-    context = mergeComponentDataWithVariation(
-      req,
-      componentData,
-      variationData
-    );
-  } else {
-    context = componentData;
+    if (variationJson) {
+      componentData = mergeRootDataWithVariationData(
+        componentData,
+        variationJson.data ? variationJson.data : {}
+      );
+    }
   }
 
-  renderSingleComponent(req, res, component, context, cssFile, jsFile);
+  componentData = overwriteJsonLinksWithJsonData(req, componentData);
+
+  renderSingleComponent(req, res, component, componentData, cssFile, jsFile);
 }
 
-function renderComponentVariations(req, res, component) {
-  const json = req.app.get("state").jsonData[component];
-  const data = json.data ? resolveJsonURLs(req, json.data) : {};
+function renderComponentVariations(req, res, componentPath) {
+  const componentJson = cloneDeep(req.app.get("state").jsonData[componentPath]);
+  const componentVariations = componentJson.variations;
   const cssFile =
     req.app.get("config").includeComponentCss &&
-    getAssetPath(req, component, "css");
+    getAssetPath(req, componentPath, "css");
   const jsFile =
     req.app.get("config").includeComponentJs &&
-    getAssetPath(req, component, "js");
+    getAssetPath(req, componentPath, "js");
+  const splittedPath = componentPath.split(path.sep);
+  const fileName = splittedPath[splittedPath.length - 1];
+  const context = [
+    {
+      component: componentPath,
+      data: componentJson.data || {},
+      name: fileName.slice(0, fileName.lastIndexOf("."))
+    }
+  ];
 
-  if (json.variations) {
-    renderVariations(req, res, component, data, json, cssFile, jsFile);
+  let componentData = componentJson.data || {};
+
+  if (componentVariations) {
+    componentVariations.forEach(variationJson => {
+      context.push({
+        component: componentPath,
+        data: mergeRootDataWithVariationData(
+          componentData,
+          variationJson.data ? variationJson.data : {}
+        ),
+        name: variationJson.name
+      });
+    });
+
+    context.forEach((entry, i) => {
+      context[i].data = overwriteJsonLinksWithJsonData(req, entry.data);
+    });
+
+    renderVariations(req, res, componentPath, context, cssFile, jsFile);
   } else {
-    renderSingleComponent(req, res, component, data, cssFile, jsFile);
+    renderSingleComponent(
+      req,
+      res,
+      componentPath,
+      overwriteJsonLinksWithJsonData(req, componentData),
+      cssFile,
+      jsFile
+    );
   }
 }
 
@@ -96,25 +125,17 @@ async function renderComponentOverview(req, res) {
   const jsFiles = [];
   const components = req.app
     .get("state")
-    .filePaths.map(path => [path, req.app.get("state").jsonData[path].data]);
+    .filePaths.map(path => [
+      path,
+      cloneDeep(req.app.get("state").jsonData[path].data)
+    ]);
 
   components.forEach((component, i) => {
     const componentPath = component[0];
-    const componentData = component[1];
+    let componentData = component[1];
 
     if (componentData) {
-      Object.entries(componentData).forEach(entry => {
-        const value = entry[1];
-        if (
-          typeof value === "object" &&
-          value.component &&
-          value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-          value.component.lastIndexOf(`.${config.dataFileType}`) ===
-            value.component.length - 5
-        ) {
-          componentData[entry[0]] = overwriteDataWithDataFromFile(req, value);
-        }
-      });
+      componentData = overwriteJsonLinksWithJsonData(req, componentData);
     }
 
     cssFiles[i] = getAssetPath(req, componentPath, "css");
@@ -124,14 +145,7 @@ async function renderComponentOverview(req, res) {
       new Promise(resolve => {
         req.app.render(
           componentPath,
-          Object.assign({}, componentData, {
-            partials: req.app.get("state").partials,
-            basedir: path.join(process.cwd(), req.app.get("config").srcFolder), // for pug
-            root: path.join(process.cwd(), req.app.get("config").srcFolder), // for ect
-            settings: {
-              views: path.join(process.cwd(), req.app.get("config").srcFolder) // for dust
-            }
-          }),
+          getDataForRenderFunction(req, componentData),
           (err, result) => {
             arr[i] = {
               file: components[i][0],
@@ -150,6 +164,55 @@ async function renderComponentOverview(req, res) {
   Promise.all(promises).then(() => {
     res.render("component_overview.hbs", {
       components: arr
+    });
+  });
+}
+
+function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
+  req.app.render(
+    component,
+    getDataForRenderFunction(req, context),
+    (err, result) => {
+      res.render("component.hbs", {
+        html: result || getComponentErrorHtml(err),
+        cssFile,
+        jsFile,
+        htmlValidation: req.app.get("config").validations.html,
+        accessibilityValidation: req.app.get("config").validations.accessibility
+      });
+    }
+  );
+}
+
+function renderVariations(req, res, component, data, cssFile, jsFile) {
+  const variations = [];
+  const promises = [];
+
+  data.forEach((entry, i) => {
+    promises.push(
+      new Promise(resolve => {
+        req.app.render(
+          component,
+          getDataForRenderFunction(req, entry.data),
+          (err, result) => {
+            variations[i] = {
+              file: data[i].component,
+              html: result || getComponentErrorHtml(err),
+              variation: data[i].name ? data[i].name : data[i].component
+            };
+
+            resolve(result);
+          }
+        );
+      })
+    );
+  });
+
+  Promise.all(promises).then(() => {
+    res.render("component_variations.hbs", {
+      variations,
+      cssFile,
+      jsFile
     });
   });
 }

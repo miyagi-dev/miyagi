@@ -1,6 +1,7 @@
 const config = require("../config.json");
 const fs = require("fs");
 const path = require("path");
+const deepMerge = require("deepmerge");
 
 function getComponentErrorHtml(err) {
   return `<p class="RoundupError">${
@@ -17,28 +18,93 @@ function getJsonFromFile(req, fileName) {
   return fileContent ? JSON.parse(fileContent) : {};
 }
 
-function overwriteDataWithDataFromFile(req, value) {
-  let embeddedJson = getJsonFromFile(req, `${value.component}`);
+function checkIfJsonIsLinked(value) {
+  if (!value) return;
 
-  if (value.variation && embeddedJson.variations) {
-    embeddedJson = embeddedJson.variations.filter(
-      variation => variation.name === value.variation
-    )[0];
+  if (
+    typeof value === "object" &&
+    value.component &&
+    typeof value.component === "string" &&
+    value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
+    value.component.lastIndexOf(`.${config.dataFileType}`) ===
+      value.component.length - 5
+  ) {
+    return true;
   }
 
-  return embeddedJson.data;
+  if (typeof value === "string" && value && valueIsJsonLink(value)) {
+    return true;
+  }
+
+  return false;
 }
 
-function mergeComponentDataWithVariation(req, componentData, variationData) {
-  Object.entries(variationData).forEach(data => {
-    const value = data[1];
+function resolveJson(req, value) {
+  const val = value.component || value;
 
-    if (typeof value === "object" && value.component) {
-      variationData[data[0]] = overwriteDataWithDataFromFile(req, value);
-    }
-  });
+  let embeddedJson = getJsonFromFile(req, `${val.replace(/\0/g, "")}`);
 
-  return Object.assign({}, componentData, variationData);
+  if (value.variation && embeddedJson.variations) {
+    return embeddedJson.variations.filter(
+      variation => variation.name === value.variation
+    )[0].data;
+  } else {
+    return embeddedJson.data;
+  }
+}
+
+function valueIsJsonLink(value) {
+  if (typeof value !== "string") return false;
+
+  return (
+    value.lastIndexOf(`.${config.dataFileType}`) > 0 &&
+    value.lastIndexOf(`.${config.dataFileType}`) === value.length - 5
+  );
+}
+
+function overwriteJsonLinksWithJsonData(req, data) {
+  (function readJson(data) {
+    Object.entries(data).forEach(entry => {
+      let value = entry[1];
+
+      if (value instanceof Array) {
+        readJson(value);
+      } else if (typeof value === "string") {
+        if (valueIsJsonLink(value)) {
+          data[entry[0]] = resolveJson(req, value);
+          readJson(data[entry[0]]);
+        } else {
+          data[entry[0]] = value;
+        }
+      } else if (typeof value === "object") {
+        if (value.component) {
+          if (valueIsJsonLink(value.component)) {
+            data[entry[0]] = resolveJson(req, value);
+            readJson(data[entry[0]]);
+          } else {
+            data[entry[0]] = value;
+          }
+        } else {
+          Object.entries(value).forEach(val => {
+            if (valueIsJsonLink(val[1])) {
+              data[entry[0][val[0]]] = resolveJson(req, val[1]);
+              readJson(data[entry[0][val[0]]]);
+            } else {
+              data[entry[0][val[0]]] = val[1];
+            }
+          });
+        }
+      }
+    });
+
+    return data;
+  })(data);
+
+  return data;
+}
+
+function mergeRootDataWithVariationData(rootData, variationData) {
+  return deepMerge(rootData, variationData);
 }
 
 function getAssetPath(req, component, type) {
@@ -50,141 +116,21 @@ function getAssetPath(req, component, type) {
   return fs.existsSync(assetPath) ? assetPath : null;
 }
 
-function resolveJsonURLs(req, data) {
-  (function readJson(data) {
-    Object.entries(data).forEach(entry => {
-      const value = entry[1];
-
-      if (
-        typeof value === "string" &&
-        value.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-        value.lastIndexOf(`.${config.dataFileType}`) === value.length - 5
-      ) {
-        const json = getJsonFromFile(req, value.replace(/\0/g, ""));
-
-        if (json.data) {
-          data[entry[0]] = json.data;
-
-          readJson(data[entry[0]]);
-        }
-      }
-    });
-  })(data);
-
-  return data;
-}
-
-function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
-  Object.entries(context).forEach(entry => {
-    const value = entry[1];
-    if (
-      typeof value === "object" &&
-      value.component &&
-      value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-      value.component.lastIndexOf(`.${config.dataFileType}`) ===
-        value.component.length - 5
-    ) {
-      context[entry[0]] = overwriteDataWithDataFromFile(req, value);
+function getDataForRenderFunction(req, data) {
+  return Object.assign({}, data, {
+    partials: req.app.get("state").partials,
+    basedir: path.join(process.cwd(), req.app.get("config").srcFolder), // for pug
+    root: path.join(process.cwd(), req.app.get("config").srcFolder), // for ect
+    settings: {
+      views: path.join(process.cwd(), req.app.get("config").srcFolder) // for dust
     }
-  });
-
-  req.app.render(
-    component,
-    Object.assign({}, context, {
-      partials: req.app.get("state").partials,
-      basedir: path.join(process.cwd(), req.app.get("config").srcFolder), // for pug,
-      root: path.join(process.cwd(), req.app.get("config").srcFolder), // for ect
-      settings: {
-        views: path.join(process.cwd(), req.app.get("config").srcFolder) // for dust
-      }
-    }),
-    (err, result) => {
-      res.render("component.hbs", {
-        html: result || getComponentErrorHtml(err),
-        cssFile,
-        jsFile,
-        htmlValidation: req.app.get("config").validations.html,
-        accessibilityValidation: req.app.get("config").validations.accessibility
-      });
-    }
-  );
-}
-
-function renderVariations(req, res, component, data, json, cssFile, jsFile) {
-  Object.entries(json.data).forEach(entry => {
-    const value = entry[1];
-    if (
-      typeof value === "object" &&
-      value.component &&
-      value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-      value.component.lastIndexOf(`.${config.dataFileType}`) ===
-        value.component.length - 5
-    ) {
-      json.data[entry[0]] = overwriteDataWithDataFromFile(req, value);
-    }
-  });
-
-  const variations = [];
-  const splittedPath = component.split(path.sep);
-  const fileName = splittedPath[splittedPath.length - 1];
-  const context = [
-    { component, data, name: fileName.slice(0, fileName.lastIndexOf(".")) }
-  ];
-
-  json.variations.forEach(variation => {
-    context.push({
-      component,
-      data: mergeComponentDataWithVariation(req, json.data, variation.data),
-      name: variation.name
-    });
-  });
-
-  const promises = [];
-
-  context.forEach((entry, i) => {
-    promises.push(
-      new Promise(resolve => {
-        req.app.render(
-          component,
-          Object.assign({}, entry.data, {
-            partials: req.app.get("state").partials,
-            basedir: path.join(process.cwd(), req.app.get("config").srcFolder), // for pug
-            root: path.join(process.cwd(), req.app.get("config").srcFolder), // for ect
-            settings: {
-              views: path.join(process.cwd(), req.app.get("config").srcFolder) // for dust
-            }
-          }),
-          (err, result) => {
-            variations[i] = {
-              file: context[i].component,
-              html: result || getComponentErrorHtml(err),
-              variation: context[i].name
-                ? context[i].name
-                : context[i].component
-            };
-
-            resolve(result);
-          }
-        );
-      })
-    );
-  });
-
-  Promise.all(promises).then(() => {
-    res.render("component_variations.hbs", {
-      variations,
-      cssFile,
-      jsFile
-    });
   });
 }
 
 module.exports = {
   getAssetPath,
   getComponentErrorHtml,
-  mergeComponentDataWithVariation,
-  overwriteDataWithDataFromFile,
-  renderSingleComponent,
-  renderVariations,
-  resolveJsonURLs
+  getDataForRenderFunction,
+  mergeRootDataWithVariationData,
+  overwriteJsonLinksWithJsonData
 };
