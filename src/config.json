@@ -1,4 +1,5 @@
 {
+  "defaultPort": 5000,
   "userConfigFile": "roundup.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",

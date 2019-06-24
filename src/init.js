@@ -7,7 +7,6 @@ const path = require("path");
 
 const config = require("./config.json");
 const fileWatcher = require("./fileWatcher.js");
-const getPort = require("./getPort.js");
 const registerHelpers = require("./hbs/registerHelpers.js");
 const registerPartials = require("./hbs/registerPartials.js");
 const setConfig = require("./setConfig.js");
@@ -21,7 +20,7 @@ module.exports = cnf => {
   setConfig(app, cnf);
 
   if (setEngines(app)) {
-    const port = getPort();
+    const port = process.env.PORT || config.defaultPort;
     const server = http.createServer(app);
     const assetFolder =
       process.env.NODE_ENV === "development"
