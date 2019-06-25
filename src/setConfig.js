@@ -1,4 +1,5 @@
 const deepMerge = require("deepmerge");
+const config = require("./config.json");
 
 function sanitizePath(path, isFolder) {
   while (path.indexOf("../") === 0) {
@@ -26,21 +27,22 @@ function sanitizeAssetFiles(files) {
   return arr;
 }
 
-module.exports = (app, config) => {
-  config.srcFolder = sanitizePath(config.srcFolder, true);
+module.exports = (app, userConfig) => {
+  userConfig.srcFolder = sanitizePath(userConfig.srcFolder, true);
 
-  if (config.cssFiles) {
-    config.cssFiles = sanitizeAssetFiles(config.cssFiles);
+  if (userConfig.cssFiles) {
+    userConfig.cssFiles = sanitizeAssetFiles(userConfig.cssFiles);
   }
 
-  if (config.jsFiles) {
-    config.jsFiles = sanitizeAssetFiles(config.jsFiles);
+  if (userConfig.jsFiles) {
+    userConfig.jsFiles = sanitizeAssetFiles(userConfig.jsFiles);
   }
 
   app.set(
     "config",
     deepMerge(
       {
+        projectName: config.projectName,
         cssFiles: [],
         jsFiles: [],
         validations: {
@@ -48,7 +50,7 @@ module.exports = (app, config) => {
           accessibility: true
         }
       },
-      config
+      userConfig
     )
   );
 };

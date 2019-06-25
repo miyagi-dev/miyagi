@@ -2,7 +2,6 @@ const cloneDeep = require("clone-deep");
 const path = require("path");
 const tests = require("./_tests.json");
 const {
-  getAssetPath,
   getComponentErrorHtml,
   getDataForRenderFunction,
   mergeRootDataWithVariationData,
@@ -15,7 +14,8 @@ function renderMain(req, res) {
     iframeSrc: "?component=all",
     showAll: true,
     isComponentOverview: true,
-    tests
+    tests,
+    projectName: req.app.get("config").projectName
   });
 }
 
@@ -34,7 +34,8 @@ function renderMainWithComponent(req, res, component, variation) {
     requestedComponent: req.query.show,
     requestedVariation: req.query.variation,
     isComponentOverview,
-    tests
+    tests,
+    projectName: req.app.get("config").projectName
   });
 }
 
