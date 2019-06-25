@@ -1,0 +1,13 @@
+{{#extend "iframe"}}
+  {{#content "body"}}
+    <div id="RoundupComponent" class="RoundupComponentView">
+      {{{html}}}
+    </div>
+    <script>
+      const validations = {
+        html: {{htmlValidation}},
+        accessibility: {{accessibilityValidation}},
+      }
+    </script>
+  {{/content}}
+{{/extend}}

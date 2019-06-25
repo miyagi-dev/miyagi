@@ -165,7 +165,7 @@ function renderSingleComponent(req, res, component, context, standaloneUrl) {
     component,
     getDataForRenderFunction(req, context),
     (err, result) => {
-      res.render("component.hbs", {
+      res.render(standaloneUrl ? "component_frame.hbs" : "component.hbs", {
         html: result || getComponentErrorHtml(err),
         htmlValidation: req.app.get("config").validations.html,
         accessibilityValidation: req.app.get("config").validations
