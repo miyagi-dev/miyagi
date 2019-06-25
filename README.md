@@ -34,8 +34,6 @@ Create a `roundup.json` in your project folder with the following options:
   "extension": "hbs",         /* required; the file extension of your components */
   "engine": "handlebars",     /* required; the rendering engine for your components */
   "srcFolder": "src/",        /* required; the source folder for your components */
-  "includeComponentCss": true /* optional, default: true; tell roundup to include the css file from your components directories or not */
-  "includeComponentJs": true  /* optional, default: true; tell roundup to include the js file from your components directories or not */
   "cssFiles": [               /* optional; additional css files you want to be included */
     "src/reset.css",
     "src/index.css"

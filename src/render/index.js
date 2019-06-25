@@ -41,12 +41,6 @@ function renderMainWithComponent(req, res, component, variation) {
 function renderComponent(req, res, component, variation) {
   const componentJson = cloneDeep(req.app.get("state").jsonData[component]);
   const componentVariations = componentJson.variations;
-  const cssFile =
-    req.app.get("config").includeComponentCss &&
-    getAssetPath(req, component, "css");
-  const jsFile =
-    req.app.get("config").includeComponentJs &&
-    getAssetPath(req, component, "js");
 
   let componentData = componentJson.data;
 
@@ -65,18 +59,12 @@ function renderComponent(req, res, component, variation) {
 
   componentData = overwriteJsonLinksWithJsonData(req, componentData);
 
-  renderSingleComponent(req, res, component, componentData, cssFile, jsFile);
+  renderSingleComponent(req, res, component, componentData);
 }
 
 function renderComponentVariations(req, res, componentPath) {
   const componentJson = cloneDeep(req.app.get("state").jsonData[componentPath]);
   const componentVariations = componentJson.variations;
-  const cssFile =
-    req.app.get("config").includeComponentCss &&
-    getAssetPath(req, componentPath, "css");
-  const jsFile =
-    req.app.get("config").includeComponentJs &&
-    getAssetPath(req, componentPath, "js");
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
   const context = [
@@ -105,15 +93,13 @@ function renderComponentVariations(req, res, componentPath) {
       context[i].data = overwriteJsonLinksWithJsonData(req, entry.data);
     });
 
-    renderVariations(req, res, componentPath, context, cssFile, jsFile);
+    renderVariations(req, res, componentPath, context);
   } else {
     renderSingleComponent(
       req,
       res,
       componentPath,
-      overwriteJsonLinksWithJsonData(req, componentData),
-      cssFile,
-      jsFile
+      overwriteJsonLinksWithJsonData(req, componentData)
     );
   }
 }
@@ -121,8 +107,6 @@ function renderComponentVariations(req, res, componentPath) {
 async function renderComponentOverview(req, res) {
   const arr = [];
   const promises = [];
-  const cssFiles = [];
-  const jsFiles = [];
   const components = req.app
     .get("state")
     .filePaths.map(path => [
@@ -138,9 +122,6 @@ async function renderComponentOverview(req, res) {
       componentData = overwriteJsonLinksWithJsonData(req, componentData);
     }
 
-    cssFiles[i] = getAssetPath(req, componentPath, "css");
-    jsFiles[i] = getAssetPath(req, componentPath, "js");
-
     promises.push(
       new Promise(resolve => {
         req.app.render(
@@ -149,9 +130,7 @@ async function renderComponentOverview(req, res) {
           (err, result) => {
             arr[i] = {
               file: components[i][0],
-              html: result || getComponentErrorHtml(err),
-              cssFile: cssFiles[i],
-              jsFile: jsFiles[i]
+              html: result || getComponentErrorHtml(err)
             };
 
             resolve();
@@ -168,15 +147,13 @@ async function renderComponentOverview(req, res) {
   });
 }
 
-function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
+function renderSingleComponent(req, res, component, context) {
   req.app.render(
     component,
     getDataForRenderFunction(req, context),
     (err, result) => {
       res.render("component.hbs", {
         html: result || getComponentErrorHtml(err),
-        cssFile,
-        jsFile,
         htmlValidation: req.app.get("config").validations.html,
         accessibilityValidation: req.app.get("config").validations.accessibility
       });
@@ -184,7 +161,7 @@ function renderSingleComponent(req, res, component, context, cssFile, jsFile) {
   );
 }
 
-function renderVariations(req, res, component, data, cssFile, jsFile) {
+function renderVariations(req, res, component, data) {
   const variations = [];
   const promises = [];
 
@@ -210,9 +187,7 @@ function renderVariations(req, res, component, data, cssFile, jsFile) {
 
   Promise.all(promises).then(() => {
     res.render("component_variations.hbs", {
-      variations,
-      cssFile,
-      jsFile
+      variations
     });
   });
 }

@@ -3,12 +3,6 @@
     <div class="RoundupComponents">
       {{#if components}}
         {{#each components}}
-          {{#if this.cssFile}}
-            <link rel="stylesheet" href="{{this.cssFile}}">
-          {{/if}}
-          {{#if this.jsFile}}
-            <script src="{{this.jsFile}}"></script>
-          {{/if}}
           <div class="RoundupComponent">
             <a href="?component={{this.file}}" class="RoundupComponent-file">{{this.file}}</a>
             <div class="RoundupComponent-html">

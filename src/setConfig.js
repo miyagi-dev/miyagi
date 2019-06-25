@@ -41,8 +41,6 @@ module.exports = (app, config) => {
     "config",
     deepMerge(
       {
-        includeComponentCss: true,
-        includeComponentJs: true,
         cssFiles: [],
         jsFiles: [],
         validations: {
