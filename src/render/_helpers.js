@@ -23,7 +23,11 @@ function resolveJson(req, value) {
 
   let embeddedJson = getJsonFromFile(req, `${val.replace(/\0/g, "")}`);
 
-  if (value.variation && embeddedJson.variations) {
+  if (
+    value.variation &&
+    embeddedJson.variations &&
+    embeddedJson.variations.length
+  ) {
     return embeddedJson.variations.filter(
       variation => variation.name === value.variation
     )[0].data;

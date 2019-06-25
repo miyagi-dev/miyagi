@@ -62,7 +62,6 @@ function getSourceStructure(app) {
             const jsonChild = obj.children.filter(
               o => o.extension === `.${config.dataFileType}`
             )[0];
-            let fileData;
 
             if (jsonChild) {
               const filePath = jsonChild.path;
@@ -82,6 +81,7 @@ function getSourceStructure(app) {
 
                     if (
                       variations &&
+                      variations.length &&
                       obj.name ===
                         jsonChild.name.replace(`.${config.dataFileType}`, "")
                     ) {
