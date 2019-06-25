@@ -43,11 +43,11 @@ function a11yTest() {
 
       resultElement.innerText = results[state].length;
 
-      if (
-        (state === "violations" || state === "incomplete") &&
-        results[state].length
-      ) {
-        resultElement.classList.add("has-positiveValue");
+      if (state === "violations" || state === "incomplete") {
+        resultElement.classList.toggle(
+          "has-positiveValue",
+          results[state].length
+        );
       }
 
       if (results[state].length) {
