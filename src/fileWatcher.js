@@ -11,8 +11,9 @@ function fileWatcher(server, app, hbs) {
     })
     .on("all", () => {
       io.emit("fileChanged");
-      setState(app);
-      registerPartials(app, hbs);
+      setState(app, () => {
+        registerPartials(app, hbs);
+      });
     });
 }
 

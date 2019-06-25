@@ -3,28 +3,50 @@ const fs = require("fs");
 const path = require("path");
 const { pathEndsWithExtension } = require("../helpers.js");
 
-function register(hbs, name, fullFilePath) {
-  try {
-    const readFile = fs.readFileSync(fullFilePath, "utf8");
-    hbs.registerPartial(name, hbs.compile(readFile.toString()));
-  } catch (e) {
-    console.warn(
-      config.messages.fileNotFound.replace("${fullFilePath}", fullFilePath)
-    );
-  }
+async function register(hbs, name, fullFilePath) {
+  new Promise(resolve => {
+    try {
+      fs.readFile(fullFilePath, "utf8", (err, data) => {
+        if (err) {
+          console.warn(
+            config.messages.fileNotFound.replace(
+              "${fullFilePath}",
+              fullFilePath
+            )
+          );
+        } else {
+          hbs.registerPartial(name, hbs.compile(data.toString()));
+        }
+        resolve();
+      });
+    } catch (e) {
+      console.warn(
+        config.messages.fileNotFound.replace("${fullFilePath}", fullFilePath)
+      );
+      resolve();
+    }
+  });
 }
 
-function registerLayouts(hbs) {
+async function registerLayouts(hbs) {
+  const promises = [];
+
   ["main", "iframe"].forEach(layout => {
-    register(
-      hbs,
-      layout,
-      path.join(
-        __dirname,
-        `../../${config.folders.views}/layouts/${layout}.hbs`
-      )
+    promises.push(
+      new Promise(resolve => {
+        register(
+          hbs,
+          layout,
+          path.join(
+            __dirname,
+            `../../${config.folders.views}/layouts/${layout}.hbs`
+          )
+        ).then(resolve);
+      })
     );
   });
+
+  return await Promise.all(promises);
 }
 
 function registerComponents(hbs, app) {

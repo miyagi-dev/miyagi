@@ -56,7 +56,7 @@ function getSourceStructure(app) {
 
   if (tree) {
     (function(obj) {
-      function removeCustomPath(obj) {
+      async function removeCustomPath(obj) {
         if (obj) {
           if (obj.type === "directory" && obj.children.length) {
             const jsonChild = obj.children.filter(
@@ -68,26 +68,33 @@ function getSourceStructure(app) {
               const filePath = jsonChild.path;
 
               try {
-                fileData = fs.readFileSync(filePath, "utf8");
+                fs.readFile(filePath, "utf8", (err, data) => {
+                  if (err) {
+                    console.warn(
+                      config.messages.fileNotFound.replace(
+                        "${filePath}",
+                        filePath
+                      )
+                    );
+                  } else {
+                    const json = JSON.parse(data, "utf8");
+                    const variations = json.variations;
+
+                    if (
+                      variations &&
+                      obj.name ===
+                        jsonChild.name.replace(`.${config.dataFileType}`, "")
+                    ) {
+                      obj.variations = [
+                        { name: obj.name, data: json.data }
+                      ].concat(variations);
+                    }
+                  }
+                });
               } catch (e) {
                 console.warn(
                   config.messages.fileNotFound.replace("${filePath}", filePath)
                 );
-              }
-
-              if (fileData) {
-                const json = JSON.parse(fileData, "utf8");
-                const variations = json.variations;
-
-                if (
-                  variations &&
-                  obj.name ===
-                    jsonChild.name.replace(`.${config.dataFileType}`, "")
-                ) {
-                  obj.variations = [{ name: obj.name, data: json.data }].concat(
-                    variations
-                  );
-                }
               }
             }
           }
@@ -129,28 +136,37 @@ function getSourceStructure(app) {
   return tree.children;
 }
 
-function getJsonData(app, paths) {
+async function getJsonData(app, paths) {
   const jsonData = {};
+  const promises = [];
 
   paths.forEach(filePath => {
-    const jsonPath = `${app.get("config").srcFolder}/${filePath.replace(
-      `.${app.get("config").extension}`,
-      `.${config.dataFileType}`
-    )}`;
+    promises.push(
+      new Promise(resolve => {
+        const jsonPath = `${app.get("config").srcFolder}/${filePath.replace(
+          `.${app.get("config").extension}`,
+          `.${config.dataFileType}`
+        )}`;
 
-    try {
-      jsonData[filePath] = JSON.parse(
-        fs.readFileSync(
-          path.join(process.cwd(), jsonPath.replace(/\0/g, "")),
-          "utf8"
-        )
-      );
-    } catch (error) {
-      jsonData[filePath] = {};
-    }
+        try {
+          fs.readFile(
+            path.join(process.cwd(), jsonPath.replace(/\0/g, "")),
+            "utf8",
+            function(err, data) {
+              jsonData[filePath] = err ? {} : JSON.parse(data);
+              resolve();
+            }
+          );
+        } catch (error) {
+          jsonData[filePath] = {};
+        }
+      })
+    );
   });
 
-  return jsonData;
+  return await Promise.all(promises).then(() => {
+    return jsonData;
+  });
 }
 
 function getPartials(app, filePaths) {
@@ -166,10 +182,10 @@ function getPartials(app, filePaths) {
   return partials;
 }
 
-function setState(app) {
+async function setState(app, cb) {
   const srcStructure = getSourceStructure(app);
   const filePaths = getFilePaths(app);
-  const jsonData = getJsonData(app, filePaths);
+  const jsonData = await getJsonData(app, filePaths);
   const partials = getPartials(app, filePaths);
 
   app.set("state", {
@@ -178,6 +194,8 @@ function setState(app) {
     jsonData,
     partials
   });
+
+  cb();
 }
 
 module.exports = setState;

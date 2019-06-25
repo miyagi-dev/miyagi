@@ -30,27 +30,28 @@ module.exports = cnf => {
     app.use(helmet());
     app.set("port", port);
 
-    setState(app);
-    setRouter(app);
+    setState(app, () => {
+      setRouter(app);
 
-    registerHelpers(app, handlebars);
-    registerPartials(app, handlebars, true);
+      registerHelpers(app, handlebars);
+      registerPartials(app, handlebars, true);
 
-    handlebarsLayouts.register(handlebars);
+      handlebarsLayouts.register(handlebars);
 
-    app.set("views", [
-      path.join(__dirname, `../${config.folders.views}`),
-      path.join(process.cwd(), app.get("config").srcFolder)
-    ]);
+      app.set("views", [
+        path.join(__dirname, `../${config.folders.views}`),
+        path.join(process.cwd(), app.get("config").srcFolder)
+      ]);
 
-    app.use(express.static(process.cwd()));
-    app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
-    app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
+      app.use(express.static(process.cwd()));
+      app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
+      app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
 
-    server.listen(app.get("port"));
+      server.listen(app.get("port"));
 
-    fileWatcher(server, app, handlebars);
+      fileWatcher(server, app, handlebars);
 
-    console.log(config.messages.serverStarted.replace("${port}", port));
+      console.log(config.messages.serverStarted.replace("${port}", port));
+    });
   }
 };

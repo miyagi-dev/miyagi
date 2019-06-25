@@ -18,27 +18,6 @@ function getJsonFromFile(req, fileName) {
   return fileContent ? JSON.parse(fileContent) : {};
 }
 
-function checkIfJsonIsLinked(value) {
-  if (!value) return;
-
-  if (
-    typeof value === "object" &&
-    value.component &&
-    typeof value.component === "string" &&
-    value.component.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-    value.component.lastIndexOf(`.${config.dataFileType}`) ===
-      value.component.length - 5
-  ) {
-    return true;
-  }
-
-  if (typeof value === "string" && value && valueIsJsonLink(value)) {
-    return true;
-  }
-
-  return false;
-}
-
 function resolveJson(req, value) {
   const val = value.component || value;
 
