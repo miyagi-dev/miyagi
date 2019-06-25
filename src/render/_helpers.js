@@ -20,9 +20,14 @@ function getJsonFromFile(req, fileName) {
       ),
       "utf8"
     );
-    fileContent = fileContent ? JSON.parse(fileContent) : {};
+
+    try {
+      fileContent = fileContent ? JSON.parse(fileContent) : {};
+    } catch (e) {
+      fileContent = {};
+    }
   } catch (e) {
-    fileContent = "";
+    fileContent = {};
   }
 
   return fileContent;
@@ -38,9 +43,10 @@ function resolveJson(req, value) {
     embeddedJson.variations &&
     embeddedJson.variations.length
   ) {
-    return embeddedJson.variations.filter(
+    const variant = embeddedJson.variations.filter(
       variation => variation.name === value.variation
-    )[0].data;
+    )[0];
+    return variant && variant.data ? variant.data : {};
   } else {
     return embeddedJson.data;
   }
@@ -99,6 +105,14 @@ function overwriteJsonLinksWithJsonData(req, data) {
 }
 
 function mergeRootDataWithVariationData(rootData, variationData) {
+  if (!rootData) {
+    return variationData;
+  }
+
+  if (!variationData) {
+    return rootData;
+  }
+
   return deepMerge(rootData, variationData);
 }
 

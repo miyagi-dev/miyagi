@@ -27,7 +27,7 @@ function sanitizeAssetFiles(files) {
   return arr;
 }
 
-module.exports = (app, userConfig) => {
+module.exports = (app, userConfig = {}) => {
   userConfig.srcFolder = sanitizePath(userConfig.srcFolder, true);
 
   if (userConfig.cssFiles) {
