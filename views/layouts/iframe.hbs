@@ -12,5 +12,8 @@
   </head>
   <body class="RoundupIframe">
     {{#block "body"}}{{/block}}
+    {{#if standaloneUrl}}
+      <a class="RoundupIframe-newTabLink" href="{{standaloneUrl}}" target="_blank">Open in new tab</a>
+    {{/if}}
   </body>
 </html>

@@ -185,3 +185,12 @@ html {
     max-width: 40vw;
   }
 }
+
+@media screen and (prefers-reduced-motion) {
+  *,
+  *::after,
+  *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+}

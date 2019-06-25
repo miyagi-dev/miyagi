@@ -1,4 +1,4 @@
-/* globals axe */
+/* globals axe, validations */
 import "../../node_modules/axe-core/axe.js";
 
 function escapeHtml(str) {

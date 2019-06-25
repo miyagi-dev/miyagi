@@ -124,7 +124,7 @@ function getLinkHtml(path, name, current, index) {
     classes.link
   } ${
     classes.link
-  }--lvl${index}" target="iframe" href="?component=${path}"${current}>${name}</a>`;
+  }--lvl${index}" target="iframe" href="?component=${path}&embedded=true"${current}>${name}</a>`;
 }
 
 function getVariationLinkHtml(child, variation, current) {
@@ -132,7 +132,9 @@ function getVariationLinkHtml(child, variation, current) {
     classes.link
   }--variation" target="iframe" href="?component=${
     child.shortPath
-  }&variation=${encodeURI(variation.name)}"${current}>${variation.name}</a>`;
+  }&variation=${encodeURI(variation.name)}&embedded=true"${current}>${
+    variation.name
+  }</a>`;
 }
 
 function getVariationsHtml(child, request) {

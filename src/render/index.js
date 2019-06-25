@@ -11,7 +11,7 @@ const {
 function renderMain(req, res) {
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
-    iframeSrc: "?component=all",
+    iframeSrc: "?component=all&embedded=true",
     showAll: true,
     isComponentOverview: true,
     tests,
@@ -28,6 +28,8 @@ function renderMainWithComponent(req, res, component, variation) {
     isComponentOverview = false;
   }
 
+  iframeSrc += "&embedded=true";
+
   res.render("index.hbs", {
     folders: req.app.get("state").srcStructure,
     iframeSrc,
@@ -39,10 +41,9 @@ function renderMainWithComponent(req, res, component, variation) {
   });
 }
 
-function renderComponent(req, res, component, variation) {
+function renderComponent(req, res, component, variation, embedded) {
   const componentJson = cloneDeep(req.app.get("state").jsonData[component]);
   const componentVariations = componentJson.variations;
-
   let componentData = componentJson.data;
 
   if (componentVariations && variation) {
@@ -60,14 +61,23 @@ function renderComponent(req, res, component, variation) {
 
   componentData = overwriteJsonLinksWithJsonData(req, componentData);
 
-  renderSingleComponent(req, res, component, componentData);
+  renderSingleComponent(
+    req,
+    res,
+    component,
+    componentData,
+    embedded
+      ? `?component=${req.query.component}&variation=${req.query.variation}`
+      : null
+  );
 }
 
-function renderComponentVariations(req, res, componentPath) {
+function renderComponentVariations(req, res, componentPath, embedded) {
   const componentJson = cloneDeep(req.app.get("state").jsonData[componentPath]);
   const componentVariations = componentJson.variations;
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
+  const standaloneUrl = embedded ? `?component=${req.query.component}` : null;
   const context = [
     {
       component: componentPath,
@@ -94,18 +104,19 @@ function renderComponentVariations(req, res, componentPath) {
       context[i].data = overwriteJsonLinksWithJsonData(req, entry.data);
     });
 
-    renderVariations(req, res, componentPath, context);
+    renderVariations(req, res, componentPath, context, standaloneUrl);
   } else {
     renderSingleComponent(
       req,
       res,
       componentPath,
-      overwriteJsonLinksWithJsonData(req, componentData)
+      overwriteJsonLinksWithJsonData(req, componentData),
+      standaloneUrl
     );
   }
 }
 
-async function renderComponentOverview(req, res) {
+async function renderComponentOverview(req, res, embedded) {
   const arr = [];
   const promises = [];
   const components = req.app
@@ -143,12 +154,13 @@ async function renderComponentOverview(req, res) {
 
   Promise.all(promises).then(() => {
     res.render("component_overview.hbs", {
-      components: arr
+      components: arr,
+      standaloneUrl: embedded ? "?component=all" : null
     });
   });
 }
 
-function renderSingleComponent(req, res, component, context) {
+function renderSingleComponent(req, res, component, context, standaloneUrl) {
   req.app.render(
     component,
     getDataForRenderFunction(req, context),
@@ -156,13 +168,15 @@ function renderSingleComponent(req, res, component, context) {
       res.render("component.hbs", {
         html: result || getComponentErrorHtml(err),
         htmlValidation: req.app.get("config").validations.html,
-        accessibilityValidation: req.app.get("config").validations.accessibility
+        accessibilityValidation: req.app.get("config").validations
+          .accessibility,
+        standaloneUrl
       });
     }
   );
 }
 
-function renderVariations(req, res, component, data) {
+function renderVariations(req, res, component, data, standaloneUrl) {
   const variations = [];
   const promises = [];
 
@@ -188,7 +202,8 @@ function renderVariations(req, res, component, data) {
 
   Promise.all(promises).then(() => {
     res.render("component_variations.hbs", {
-      variations
+      variations,
+      standaloneUrl
     });
   });
 }
