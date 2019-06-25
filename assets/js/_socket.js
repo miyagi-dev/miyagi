@@ -6,8 +6,12 @@ const socket = io.connect(
   }`
 );
 
-socket.on("fileChanged", () => {
+socket.on("fileChanged", reloadParent => {
   setTimeout(() => {
-    window.location.reload();
+    if (reloadParent) {
+      parent.window.location.reload();
+    } else {
+      window.location.reload();
+    }
   }, 500);
 });
