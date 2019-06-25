@@ -23,9 +23,9 @@ module.exports = cnf => {
     const port = process.env.PORT || config.defaultPort;
     const server = http.createServer(app);
     const assetFolder =
-      process.env.NODE_ENV === "development"
-        ? config.folders.assets
-        : config.folders.dist;
+      process.env.NODE_ENV === "production"
+        ? config.folders.dist
+        : config.folders.assets;
 
     app.use(helmet());
     app.set("port", port);
