@@ -46,6 +46,8 @@ function valueIsJsonLink(value) {
 }
 
 function overwriteJsonLinksWithJsonData(req, data) {
+  if (!data) return {};
+
   (function readJson(data) {
     Object.entries(data).forEach(entry => {
       let value = entry[1];
