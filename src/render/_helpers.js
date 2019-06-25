@@ -10,12 +10,22 @@ function getComponentErrorHtml(err) {
 }
 
 function getJsonFromFile(req, fileName) {
-  const fileContent = fs.readFileSync(
-    path.join(process.cwd(), `${req.app.get("config").srcFolder}/${fileName}`),
-    "utf8"
-  );
+  let fileContent;
 
-  return fileContent ? JSON.parse(fileContent) : {};
+  try {
+    fileContent = fs.readFileSync(
+      path.join(
+        process.cwd(),
+        `${req.app.get("config").srcFolder}/${fileName}`
+      ),
+      "utf8"
+    );
+    fileContent = fileContent ? JSON.parse(fileContent) : {};
+  } catch (e) {
+    fileContent = "";
+  }
+
+  return fileContent;
 }
 
 function resolveJson(req, value) {
@@ -46,9 +56,9 @@ function valueIsJsonLink(value) {
 }
 
 function overwriteJsonLinksWithJsonData(req, data) {
-  if (!data) return {};
-
   (function readJson(data) {
+    if (!data) return {};
+
     Object.entries(data).forEach(entry => {
       let value = entry[1];
 
