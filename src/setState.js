@@ -76,7 +76,7 @@ function getSourceStructure(app) {
                       )
                     );
                   } else {
-                    const json = JSON.parse(data, "utf8");
+                    const json = data ? JSON.parse(data) : {};
                     const variations = json.variations;
 
                     if (
@@ -153,7 +153,7 @@ async function getJsonData(app, paths) {
             path.join(process.cwd(), jsonPath.replace(/\0/g, "")),
             "utf8",
             function(err, data) {
-              jsonData[filePath] = err ? {} : JSON.parse(data);
+              jsonData[filePath] = data ? JSON.parse(data) : {};
               resolve();
             }
           );
