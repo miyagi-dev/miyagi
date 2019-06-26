@@ -4,6 +4,7 @@ const handlebarsLayouts = require("handlebars-layouts");
 const helmet = require("helmet");
 const http = require("http");
 const path = require("path");
+const compression = require("compression");
 
 const config = require("./config.json");
 const fileWatcher = require("./fileWatcher.js");
@@ -28,6 +29,7 @@ module.exports = cnf => {
         : config.folders.assets;
 
     app.use(helmet());
+    app.use(compression());
     app.set("port", port);
 
     setState(app, () => {

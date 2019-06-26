@@ -18,6 +18,7 @@
     "axe-core": "^3.2.2",
     "chokidar": "^3.0.1",
     "clone-deep": "^4.0.1",
+    "compression": "^1.7.4",
     "consolidate": "https://github.com/mgrsskls/consolidate.js.git",
     "deepmerge": "^3.3.0",
     "directory-tree": "^2.2.3",
