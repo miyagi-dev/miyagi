@@ -18,12 +18,15 @@ module.exports = (app, express) => {
   registerUserFiles(app, express, app.get("config").cssFiles);
   registerUserFiles(app, express, app.get("config").jsFiles);
 
-  app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
-  app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
+  app.use(express.static(path.join(__dirname, `../${assetFolder}`)));
   app.use(
+    "/js",
     express.static(
       path.join(process.cwd(), "node_modules/socket.io-client/dist")
     )
   );
-  app.use(express.static(path.join(process.cwd(), "node_modules/axe-core")));
+  app.use(
+    "/js",
+    express.static(path.join(process.cwd(), "node_modules/axe-core"))
+  );
 };
