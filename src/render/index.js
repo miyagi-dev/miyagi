@@ -78,24 +78,29 @@ function renderComponentVariations(req, res, componentPath, embedded) {
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
   const standaloneUrl = embedded ? `?component=${req.query.component}` : null;
-  const context = [
-    {
-      component: componentPath,
-      data: componentJson.data || {},
-      name: fileName.slice(0, fileName.lastIndexOf("."))
-    }
-  ];
+  const context = [];
+  let componentData = componentJson.data;
 
-  let componentData = componentJson.data || {};
+  if (componentData) {
+    context.push({
+      component: componentPath,
+      data: componentData,
+      name: fileName.slice(0, fileName.lastIndexOf("."))
+    });
+  }
 
   if (componentVariations) {
     componentVariations.forEach(variationJson => {
       context.push({
         component: componentPath,
-        data: mergeRootDataWithVariationData(
-          componentData,
-          variationJson.data ? variationJson.data : {}
-        ),
+        data: componentData
+          ? mergeRootDataWithVariationData(
+              componentData,
+              variationJson.data ? variationJson.data : {}
+            )
+          : variationJson.data
+          ? variationJson.data
+          : {},
         name: variationJson.name
       });
     });
@@ -116,15 +121,32 @@ function renderComponentVariations(req, res, componentPath, embedded) {
   }
 }
 
+function getFallbackData(variations) {
+  for (let i = 0; i < variations.length; i += 1) {
+    if (variations[i].data) {
+      return variations[i].data;
+    }
+  }
+
+  return {};
+}
+
 async function renderComponentOverview(req, res, embedded) {
   const arr = [];
   const promises = [];
-  const components = req.app
-    .get("state")
-    .filePaths.map(path => [
-      path,
-      cloneDeep(req.app.get("state").jsonData[path].data)
-    ]);
+
+  const components = req.app.get("state").filePaths.map(path => {
+    let componentJson = req.app.get("state").jsonData[path];
+    let componentData;
+
+    if (componentJson.data) {
+      componentData = componentJson.data;
+    } else if (componentJson.variations && componentJson.variations.length) {
+      componentData = getFallbackData(componentJson.variations);
+    }
+
+    return [path, cloneDeep(componentData)];
+  });
 
   components.forEach((component, i) => {
     const componentPath = component[0];

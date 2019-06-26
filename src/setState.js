@@ -90,9 +90,13 @@ function getSourceStructure(app) {
                       obj.name ===
                         jsonChild.name.replace(`.${config.dataFileType}`, "")
                     ) {
-                      obj.variations = [
-                        { name: obj.name, data: json.data }
-                      ].concat(variations);
+                      if (json.data) {
+                        obj.variations = [
+                          { name: obj.name, data: json.data }
+                        ].concat(variations);
+                      } else {
+                        obj.variations = variations;
+                      }
                     }
                   }
                 });
