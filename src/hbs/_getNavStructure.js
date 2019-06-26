@@ -24,7 +24,7 @@ function hasComponentFileWithCorrectNameAsChild(folder, templateExtension) {
 function getDataForLinkedFolder(folder, partial) {
   return {
     type: folder.type,
-    name: partial.name,
+    name: folder.name,
     path: partial.path,
     shortPath: partial.shortPath,
     extension: partial.extension,
