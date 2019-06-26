@@ -8,41 +8,21 @@ function renderMenu(app, structure, path, variation, id) {
   return getMenuHtml(app, structure, { path, variation }, id);
 }
 
-function getCssFilesHtml(app) {
+function getCssFilesHtml(files) {
   let html = "";
 
-  app.get("config").cssFiles.forEach(file => {
-    html += `<link rel="stylesheet" href="${file}" as="stylesheet">`;
+  files.forEach(file => {
+    html += `<link rel="stylesheet" href="${file}">`;
   });
 
   return html;
 }
 
-function getCssFilesPreloadHtml(app) {
+function getJsFilesHtml(files) {
   let html = "";
 
-  app.get("config").cssFiles.forEach(file => {
-    html += `<link rel="preload" href="${file}">`;
-  });
-
-  return html;
-}
-
-function getJsFilesHtml(app) {
-  let html = "";
-
-  app.get("config").jsFiles.forEach(file => {
+  files.forEach(file => {
     html += `<script src="${file}" defer></script>`;
-  });
-
-  return html;
-}
-
-function getJsFilesPreloadHtml(app) {
-  let html = "";
-
-  app.get("config").jsFiles.forEach(file => {
-    html += `<link rel="preload" href="${file}" as="script">`;
   });
 
   return html;
@@ -56,18 +36,10 @@ module.exports = (app, hbs) => {
   });
 
   hbs.registerHelper("cssFiles", () => {
-    return getCssFilesHtml(app);
-  });
-
-  hbs.registerHelper("cssFilesPreload", () => {
-    return getCssFilesPreloadHtml(app);
+    return getCssFilesHtml(app.get("config").cssFiles);
   });
 
   hbs.registerHelper("jsFiles", () => {
-    return getJsFilesHtml(app);
-  });
-
-  hbs.registerHelper("jsFilesPreload", () => {
-    return getJsFilesPreloadHtml(app);
+    return getJsFilesHtml(app.get("config").jsFiles);
   });
 };
