@@ -2,6 +2,7 @@ const config = require("../config.json");
 const fs = require("fs");
 const path = require("path");
 const deepMerge = require("deepmerge");
+const cloneDeep = require("clone-deep");
 
 function getComponentErrorHtml(err) {
   return `<p class="RoundupError">${
@@ -80,7 +81,17 @@ function overwriteJsonLinksWithJsonData(req, data) {
       } else if (typeof value === "object") {
         if (value.component) {
           if (valueIsJsonLink(value.component)) {
-            data[entry[0]] = resolveJson(req, value);
+            let dataWithoutComponentAndVariation = cloneDeep(value);
+            let resolvedJson = resolveJson(req, {
+              component: value.component,
+              variation: value.variation
+            });
+
+            delete dataWithoutComponentAndVariation.component;
+            delete dataWithoutComponentAndVariation.variation;
+
+            data[entry[0]] = deepMerge(resolvedJson, value);
+
             readJson(data[entry[0]]);
           } else {
             data[entry[0]] = value;
