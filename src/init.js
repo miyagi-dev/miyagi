@@ -52,6 +52,11 @@ module.exports = cnf => {
       app.use(express.static(process.cwd()));
       app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
       app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
+      app.use(
+        express.static(
+          path.join(__dirname, "../node_modules/socket.io-client/dist")
+        )
+      );
 
       server.listen(app.get("port"));
 
