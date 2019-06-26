@@ -54,10 +54,12 @@ module.exports = cnf => {
       app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
       app.use(
         express.static(
-          path.join(__dirname, "../node_modules/socket.io-client/dist")
+          path.join(process.cwd(), "node_modules/socket.io-client/dist")
         )
       );
-      app.use(express.static(path.join(__dirname, "../node_modules/axe-core")));
+      app.use(
+        express.static(path.join(process.cwd(), "node_modules/axe-core"))
+      );
 
       server.listen(app.get("port"));
 
