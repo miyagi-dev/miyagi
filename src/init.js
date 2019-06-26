@@ -57,6 +57,7 @@ module.exports = cnf => {
           path.join(__dirname, "../node_modules/socket.io-client/dist")
         )
       );
+      app.use(express.static(path.join(__dirname, "../node_modules/axe-core")));
 
       server.listen(app.get("port"));
 

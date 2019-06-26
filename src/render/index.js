@@ -179,7 +179,8 @@ async function renderComponentOverview(req, res, embedded) {
       components: arr,
       standaloneUrl: embedded ? "?component=all" : null,
       dev: process.env.NODE_ENV !== "production",
-      prod: process.env.NODE_ENV === "production"
+      prod: process.env.NODE_ENV === "production",
+      a11yTestsPreload: req.app.get("config").validations.accessibility
     });
   });
 }
@@ -196,7 +197,8 @@ function renderSingleComponent(req, res, component, context, standaloneUrl) {
           .accessibility,
         standaloneUrl,
         dev: process.env.NODE_ENV !== "production",
-        prod: process.env.NODE_ENV === "production"
+        prod: process.env.NODE_ENV === "production",
+        a11yTests: req.app.get("config").validations.accessibility
       });
     }
   );
@@ -231,7 +233,8 @@ function renderVariations(req, res, component, data, standaloneUrl) {
       variations,
       standaloneUrl,
       dev: process.env.NODE_ENV !== "production",
-      prod: process.env.NODE_ENV === "production"
+      prod: process.env.NODE_ENV === "production",
+      a11yTestsPreload: req.app.get("config").validations.accessibility
     });
   });
 }

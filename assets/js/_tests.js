@@ -1,5 +1,4 @@
 /* globals axe, validations */
-import "../../node_modules/axe-core/axe.js";
 
 function escapeHtml(str) {
   var div = document.createElement("div");
