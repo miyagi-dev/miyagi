@@ -29,7 +29,11 @@ module.exports = cnf => {
         : config.folders.assets;
 
     app.use(helmet());
-    app.use(compression());
+    app.use(
+      compression({
+        threshold: 0
+      })
+    );
     app.set("port", port);
 
     setState(app, () => {
