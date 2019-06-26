@@ -177,7 +177,9 @@ async function renderComponentOverview(req, res, embedded) {
   Promise.all(promises).then(() => {
     res.render("component_overview.hbs", {
       components: arr,
-      standaloneUrl: embedded ? "?component=all" : null
+      standaloneUrl: embedded ? "?component=all" : null,
+      dev: process.env.NODE_ENV !== "production",
+      prod: process.env.NODE_ENV === "production"
     });
   });
 }
@@ -192,7 +194,9 @@ function renderSingleComponent(req, res, component, context, standaloneUrl) {
         htmlValidation: req.app.get("config").validations.html,
         accessibilityValidation: req.app.get("config").validations
           .accessibility,
-        standaloneUrl
+        standaloneUrl,
+        dev: process.env.NODE_ENV !== "production",
+        prod: process.env.NODE_ENV === "production"
       });
     }
   );
@@ -225,7 +229,9 @@ function renderVariations(req, res, component, data, standaloneUrl) {
   Promise.all(promises).then(() => {
     res.render("component_variations.hbs", {
       variations,
-      standaloneUrl
+      standaloneUrl,
+      dev: process.env.NODE_ENV !== "production",
+      prod: process.env.NODE_ENV === "production"
     });
   });
 }

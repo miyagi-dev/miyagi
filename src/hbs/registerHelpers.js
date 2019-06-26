@@ -12,7 +12,17 @@ function getCssFilesHtml(app) {
   let html = "";
 
   app.get("config").cssFiles.forEach(file => {
-    html += `<link rel="stylesheet" href="${file}">`;
+    html += `<link rel="stylesheet" href="${file}" as="stylesheet">`;
+  });
+
+  return html;
+}
+
+function getCssFilesPreloadHtml(app) {
+  let html = "";
+
+  app.get("config").cssFiles.forEach(file => {
+    html += `<link rel="preload" href="${file}">`;
   });
 
   return html;
@@ -22,7 +32,17 @@ function getJsFilesHtml(app) {
   let html = "";
 
   app.get("config").jsFiles.forEach(file => {
-    html += `<script src="${file}"></script>`;
+    html += `<script src="${file}" defer></script>`;
+  });
+
+  return html;
+}
+
+function getJsFilesPreloadHtml(app) {
+  let html = "";
+
+  app.get("config").jsFiles.forEach(file => {
+    html += `<link rel="preload" href="${file}" as="script">`;
   });
 
   return html;
@@ -39,7 +59,15 @@ module.exports = (app, hbs) => {
     return getCssFilesHtml(app);
   });
 
+  hbs.registerHelper("cssFilesPreload", () => {
+    return getCssFilesPreloadHtml(app);
+  });
+
   hbs.registerHelper("jsFiles", () => {
     return getJsFilesHtml(app);
+  });
+
+  hbs.registerHelper("jsFilesPreload", () => {
+    return getJsFilesPreloadHtml(app);
   });
 };
