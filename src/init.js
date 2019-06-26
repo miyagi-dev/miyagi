@@ -3,7 +3,6 @@ const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
 const helmet = require("helmet");
 const http = require("http");
-const path = require("path");
 const compression = require("compression");
 
 const config = require("./config.json");
@@ -14,6 +13,8 @@ const setConfig = require("./setConfig.js");
 const setEngines = require("./setEngines.js");
 const setRouter = require("./setRouter.js");
 const setState = require("./setState.js");
+const setStaticFiles = require("./setStaticFiles.js");
+const setViews = require("./setViews.js");
 
 module.exports = cnf => {
   const app = express();
@@ -23,10 +24,6 @@ module.exports = cnf => {
   if (setEngines(app)) {
     const port = process.env.PORT || config.defaultPort;
     const server = http.createServer(app);
-    const assetFolder =
-      process.env.NODE_ENV === "production"
-        ? config.folders.dist
-        : config.folders.assets;
 
     app.use(helmet());
     app.use(
@@ -38,28 +35,12 @@ module.exports = cnf => {
 
     setState(app, () => {
       setRouter(app);
+      setStaticFiles(app, express);
+      setViews(app, express);
 
       registerHelpers(app, handlebars);
       registerPartials(app, handlebars, true);
-
       handlebarsLayouts.register(handlebars);
-
-      app.set("views", [
-        path.join(__dirname, `../${config.folders.views}`),
-        path.join(process.cwd(), app.get("config").srcFolder)
-      ]);
-
-      app.use(express.static(process.cwd()));
-      app.use(express.static(path.join(__dirname, `../${assetFolder}/js`)));
-      app.use(express.static(path.join(__dirname, `../${assetFolder}/css`)));
-      app.use(
-        express.static(
-          path.join(process.cwd(), "node_modules/socket.io-client/dist")
-        )
-      );
-      app.use(
-        express.static(path.join(process.cwd(), "node_modules/axe-core"))
-      );
 
       server.listen(app.get("port"));
 
