@@ -53,23 +53,15 @@
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.4",
     "rollup-plugin-terser": "^5.0.0",
+    "supertest": "^4.0.2",
     "twig": "^1.13.3",
     "underscore": "^1.9.1"
   },
   "scripts": {
     "build": "gulp build",
-    "test": "jest --testPathPattern=tests --collectCoverage"
+    "test": "jest --colors --passWithNoTests"
   },
   "jest": {
-    "roots": [
-      "tests/"
-    ],
-    "moduleFileExtensions": [
-      "js"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
-    },
     "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.js",

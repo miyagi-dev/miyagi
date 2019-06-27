@@ -16,7 +16,7 @@ const setState = require("./setState.js");
 const setStaticFiles = require("./setStaticFiles.js");
 const setViews = require("./setViews.js");
 
-module.exports = cnf => {
+function start(cnf) {
   const app = express();
 
   setConfig(app, cnf);
@@ -35,8 +35,8 @@ module.exports = cnf => {
 
     setState(app, () => {
       setRouter(app);
-      setStaticFiles(app, express);
-      setViews(app, express);
+      setStaticFiles(app, config);
+      setViews(app);
 
       registerHelpers(app, handlebars);
       registerPartials(app, handlebars, true);
@@ -49,4 +49,8 @@ module.exports = cnf => {
       console.log(config.messages.serverStarted.replace("${port}", port));
     });
   }
+}
+
+module.exports = {
+  start
 };

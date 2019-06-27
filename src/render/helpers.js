@@ -78,7 +78,7 @@ function overwriteJsonLinksWithJsonData(req, data) {
         } else {
           data[entry[0]] = value;
         }
-      } else if (typeof value === "object") {
+      } else if (value !== null && typeof value === "object") {
         if (value.component) {
           if (valueIsJsonLink(value.component)) {
             let dataWithoutComponentAndVariation = cloneDeep(value);

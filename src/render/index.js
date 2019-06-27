@@ -1,12 +1,12 @@
 const cloneDeep = require("clone-deep");
 const path = require("path");
-const tests = require("./_tests.json");
+const tests = require("./tests.json");
 const {
   getComponentErrorHtml,
   getDataForRenderFunction,
   mergeRootDataWithVariationData,
   overwriteJsonLinksWithJsonData
-} = require("./_helpers.js");
+} = require("./helpers.js");
 
 function renderMain(req, res) {
   res.render("index.hbs", {

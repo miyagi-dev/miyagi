@@ -65,7 +65,7 @@ function hasChildren(item) {
   return item.children && item.children.length > 1;
 }
 
-module.exports = (srcStructure, templateExtension) => {
+function getStructure(srcStructure, templateExtension) {
   const arr = [];
 
   (function restructure(structure) {
@@ -81,4 +81,8 @@ module.exports = (srcStructure, templateExtension) => {
   })(srcStructure);
 
   return arr;
+}
+
+module.exports = {
+  getStructure
 };

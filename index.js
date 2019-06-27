@@ -2,18 +2,20 @@ const config = require("./src/config.json");
 const fs = require("fs");
 const init = require("./src/init.js");
 
-let cnf;
+fs.readFile(`./${config.userConfigFile}`, "utf8", (err, result) => {
+  if (result) {
+    const cnf = JSON.parse(result);
 
-try {
-  cnf = JSON.parse(fs.readFileSync(`./${config.userConfigFile}`, "utf8"));
-} catch (error) {
-  cnf = {};
-} finally {
-  if (!cnf.extension) {
-    console.error(config.messages.missingFileExtension);
-  } else if (!cnf.srcFolder) {
-    console.error(config.messages.missingComponentLocation);
+    if (!cnf.extension) {
+      console.error(config.messages.missingFileExtension);
+    } else if (!cnf.srcFolder) {
+      console.error(config.messages.missingComponentLocation);
+    } else if (!cnf.engine) {
+      console.error(config.messages.missingEngine);
+    } else {
+      init.start(cnf);
+    }
   } else {
-    init(cnf);
+    console.error(config.messages.roundupJsonNotFound);
   }
-}
+});

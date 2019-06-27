@@ -6,8 +6,8 @@
   "dataFileType": "json",
   "folders": {
     "assets": {
-      "development": "assets",
-      "production": "dist"
+      "development": "tests/mocks/roundup/dev",
+      "production": "tests/mocks/roundup/prod"
     },
     "views": "views"
   },
