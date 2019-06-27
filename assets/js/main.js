@@ -46,7 +46,12 @@ function openParentMenus(target) {
 }
 
 function setActiveStateInNav(query) {
-  const target = links.filter(link => link.getAttribute("href") === query)[0];
+  const embeddedParam = "&embedded=true";
+  const target = links.filter(
+    link =>
+      link.getAttribute("href").replace(embeddedParam, "") ===
+      query.replace(embeddedParam, "")
+  )[0];
   const current = links.filter(link => link.getAttribute("aria-current"))[0];
   const prevEl = target.previousElementSibling;
   const toggle =
