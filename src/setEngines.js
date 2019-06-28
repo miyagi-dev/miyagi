@@ -1,6 +1,7 @@
 const config = require("./config.json");
 const path = require("path");
 const engines = require("consolidate");
+const logger = require("./logger.js");
 
 module.exports = app => {
   app.engine("hbs", engines.handlebars);
@@ -9,7 +10,7 @@ module.exports = app => {
   try {
     app.engine(app.get("config").extension, engines[app.get("config").engine]);
   } catch (e) {
-    console.error(config.messages.settingEngineFailed);
+    logger.log("error", config.messages.settingEngineFailed);
     return false;
   }
 

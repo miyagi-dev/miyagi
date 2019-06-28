@@ -14,13 +14,13 @@
   "messages": {
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your roundup.json correct?",
-    "fileNotRenderedDueToUnmatchingFolderName": "WARNING: ${file} can not be rendered because it doesn't live in a folder with the same name.",
+    "fileNotRenderedDueToUnmatchingFolderName": "${file} can not be rendered because it doesn't live in a folder with the same name.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingExtension": "ERROR: Please specify the file extension of your components in roundup.json (key: 'extension', type: String)",
-    "missingSrcFolder": "ERROR: Please specify the location of your components in roundup.json (key: 'srcFolder', type: String)",
-    "missingEngine": "ERROR: Please specify your javascript engine in roundup.json (key: 'engine', type: String)",
+    "missingExtension": "Please specify the file extension of your components in roundup.json (key: 'extension', type: String)",
+    "missingSrcFolder": "Please specify the location of your components in roundup.json (key: 'srcFolder', type: String)",
+    "missingEngine": "Please specify your javascript engine in roundup.json (key: 'engine', type: String)",
     "serverStarted": "Running roundup server at http://127.0.0.1:${port}`",
-    "settingEngineFailed": "ERROR: Setting the rendering engine failed. Are you sure the engine defined in your roundup.json is correct?",
-    "roundupJsonNotFound": "ERROR: Couldn't find the file roundup.json."
+    "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your roundup.json is correct?",
+    "roundupJsonNotFound": "Couldn't find the file roundup.json."
   }
 }

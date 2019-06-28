@@ -3,13 +3,15 @@ const readDir = require("fs-readdir-recursive");
 const dirTree = require("directory-tree");
 const fs = require("fs");
 const path = require("path");
+const logger = require("./logger.js");
 const { pathEndsWithExtension } = require("./helpers.js");
 
 function fileIsInFolderWithSameName(file, ext) {
   const isValid = path.dirname(file).endsWith(path.basename(file, `.${ext}`));
 
   if (!isValid) {
-    console.warn(
+    logger.log(
+      "warn",
       config.messages.fileNotRenderedDueToUnmatchingFolderName.replace(
         "${file}",
         file
@@ -69,7 +71,8 @@ function getSourceStructure(app) {
               try {
                 fs.readFile(filePath, "utf8", (err, data) => {
                   if (err) {
-                    console.warn(
+                    logger.log(
+                      "warn",
                       config.messages.fileNotFound.replace(
                         "${filePath}",
                         filePath
@@ -101,7 +104,8 @@ function getSourceStructure(app) {
                   }
                 });
               } catch (e) {
-                console.warn(
+                logger.log(
+                  "warn",
                   config.messages.fileNotFound.replace("${filePath}", filePath)
                 );
               }

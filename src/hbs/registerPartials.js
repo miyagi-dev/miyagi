@@ -1,6 +1,7 @@
 const config = require("../config.json");
 const fs = require("fs");
 const path = require("path");
+const logger = require("../logger.js");
 const { pathEndsWithExtension } = require("../helpers.js");
 
 async function register(hbs, name, fullFilePath) {
@@ -8,7 +9,8 @@ async function register(hbs, name, fullFilePath) {
     try {
       fs.readFile(fullFilePath, "utf8", (err, data) => {
         if (err) {
-          console.warn(
+          logger.log(
+            "warn",
             config.messages.fileNotFound.replace(
               "${fullFilePath}",
               fullFilePath
@@ -20,7 +22,8 @@ async function register(hbs, name, fullFilePath) {
         resolve();
       });
     } catch (e) {
-      console.warn(
+      logger.log(
+        "warn",
         config.messages.fileNotFound.replace("${fullFilePath}", fullFilePath)
       );
       resolve();

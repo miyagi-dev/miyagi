@@ -1,5 +1,6 @@
 const deepMerge = require("deepmerge");
 const config = require("./config.json");
+const logger = require("./logger.js");
 
 function sanitizePath(path, isFolder) {
   while (path.indexOf("../") === 0) {
@@ -44,7 +45,8 @@ module.exports = (app, userConfig = {}) => {
             userConfig[`${assetType}Files`][env]
           );
         } else {
-          console.error(
+          logger.log(
+            "error",
             `Please define your css files for the ${env} environment.`
           );
         }

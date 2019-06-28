@@ -30,11 +30,12 @@ describe("index", () => {
     });
 
     describe("without extension defined in roundup.json", () => {
-      test("it calls console.log with the correct error msg", () => {
+      test("it calls logger.log with the correct error msg", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
+        const logger = require("../src/logger.js");
 
-        console.error = jest.fn();
+        logger.log = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"engine": "handlebars","srcFolder": "src/"}');
@@ -42,8 +43,9 @@ describe("index", () => {
 
         require("../index.js");
 
-        expect(console.error).toHaveBeenCalledWith(
-          config.messages.missingFileExtension
+        expect(logger.log).toHaveBeenCalledWith(
+          "error",
+          config.messages.missingExtension
         );
       });
 
@@ -51,7 +53,6 @@ describe("index", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
 
-        console.error = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"engine": "handlebars","srcFolder": "src/"}');
@@ -64,11 +65,12 @@ describe("index", () => {
     });
 
     describe("without engine defined in roundup.json", () => {
-      test("it calls console.log with the correct error msg", () => {
+      test("it calls logger.log with the correct error msg", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
+        const logger = require("../src/logger.js");
 
-        console.error = jest.fn();
+        logger.log = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"extension": "hbs","srcFolder": "src/"}');
@@ -76,7 +78,8 @@ describe("index", () => {
 
         require("../index.js");
 
-        expect(console.error).toHaveBeenCalledWith(
+        expect(logger.log).toHaveBeenCalledWith(
+          "error",
           config.messages.missingEngine
         );
       });
@@ -85,7 +88,6 @@ describe("index", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
 
-        console.error = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"extension": "hbs","srcFolder": "src/"}');
@@ -98,11 +100,12 @@ describe("index", () => {
     });
 
     describe("without srcFolfer defined in roundup.json", () => {
-      test("it calls console.log with the correct error msg", () => {
+      test("it calls logger.log with the correct error msg", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
+        const logger = require("../src/logger.js");
 
-        console.error = jest.fn();
+        logger.log = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"engine": "handlebars","extension": "hbs"}');
@@ -110,8 +113,9 @@ describe("index", () => {
 
         require("../index.js");
 
-        expect(console.error).toHaveBeenCalledWith(
-          config.messages.missingComponentLocation
+        expect(logger.log).toHaveBeenCalledWith(
+          "error",
+          config.messages.missingSrcFolder
         );
       });
 
@@ -119,7 +123,6 @@ describe("index", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
 
-        console.error = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"engine": "handlebars","extension": "hbs"}');
@@ -133,11 +136,12 @@ describe("index", () => {
   });
 
   describe("without roundup.json", () => {
-    test("it calls console.log with the correct error msg", () => {
+    test("it calls logger.log with the correct error msg", () => {
       const init = require("../src/init.js");
       const fs = require("fs");
+      const logger = require("../src/logger.js");
 
-      console.error = jest.fn();
+      logger.log = jest.fn();
       init.start = jest.fn();
       fs.readFile = jest.fn((file, encoding, cb) => {
         cb("", undefined);
@@ -145,7 +149,8 @@ describe("index", () => {
 
       require("../index.js");
 
-      expect(console.error).toHaveBeenCalledWith(
+      expect(logger.log).toHaveBeenCalledWith(
+        "error",
         config.messages.roundupJsonNotFound
       );
     });

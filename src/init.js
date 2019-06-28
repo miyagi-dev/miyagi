@@ -7,6 +7,7 @@ const compression = require("compression");
 
 const config = require("./config.json");
 const fileWatcher = require("./fileWatcher.js");
+const logger = require("./logger.js");
 const registerHelpers = require("./hbs/registerHelpers.js");
 const registerPartials = require("./hbs/registerPartials.js");
 const setConfig = require("./setConfig.js");
@@ -46,7 +47,10 @@ function start(cnf) {
 
       fileWatcher(server, app, handlebars);
 
-      console.log(config.messages.serverStarted.replace("${port}", port));
+      logger.log(
+        "info",
+        config.messages.serverStarted.replace("${port}", port)
+      );
     });
   }
 }
