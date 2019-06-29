@@ -1,15 +1,11 @@
 const config = require("../src/config.json");
 
+beforeEach(() => {
+  jest.resetModules();
+});
+
 describe("index", () => {
-  beforeEach(() => {
-    jest.resetModules();
-  });
-
   describe("with roundup.json", () => {
-    beforeEach(() => {
-      jest.resetModules();
-    });
-
     describe("with extension, srcFolder and engine defined in roundup.json", () => {
       test("calls src/init with parsed config", () => {
         const init = require("../src/init.js");
@@ -52,7 +48,9 @@ describe("index", () => {
       test("doesn't call src/init", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
+        const logger = require("../src/logger.js");
 
+        logger.log = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"engine": "handlebars","srcFolder": "src/"}');
@@ -87,7 +85,9 @@ describe("index", () => {
       test("doesn't call src/init", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
+        const logger = require("../src/logger.js");
 
+        logger.log = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"extension": "hbs","srcFolder": "src/"}');
@@ -122,7 +122,9 @@ describe("index", () => {
       test("doesn't call src/init", () => {
         const init = require("../src/init.js");
         const fs = require("fs");
+        const logger = require("../src/logger.js");
 
+        logger.log = jest.fn();
         init.start = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
           cb("", '{"engine": "handlebars","extension": "hbs"}');

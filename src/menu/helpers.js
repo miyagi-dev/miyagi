@@ -24,17 +24,17 @@ function reduceArrayToSameLengthOfOtherArray(a, b) {
   return a.slice(0, aLength - (aLength - b.length));
 }
 
-function getFoldersArrayFromFolderPath(folderPath, isFile) {
-  let folders = folderPath.split(path.sep);
+function getDirectoriesArrayFromDirectoryPath(directoryPath, isFile) {
+  let directorys = directoryPath.split(path.sep);
 
   if (isFile) {
-    folders = folders.slice(0, folderPath.split(path.sep).length - 1);
+    directorys = directorys.slice(0, directoryPath.split(path.sep).length - 1);
   }
 
-  return folders;
+  return directorys;
 }
 
-function getFoldersArrayFromFilePath(filePath) {
+function getDirectoriesArrayFromFilePath(filePath) {
   return filePath.split(path.sep).slice(0, filePath.split(path.sep).length - 1);
 }
 
@@ -47,26 +47,29 @@ const activeState = ' aria-current="page"';
 function pathIsChildOfSecondPath(child, parent, childIsFile) {
   if (!parent) return false;
 
-  let parentFolders = getFoldersArrayFromFilePath(parent);
-  let childFolders = getFoldersArrayFromFolderPath(child, childIsFile);
-
-  parentFolders = reduceArrayToSameLengthOfOtherArray(
-    parentFolders,
-    childFolders
+  let parentDirectories = getDirectoriesArrayFromFilePath(parent);
+  let childDirectories = getDirectoriesArrayFromDirectoryPath(
+    child,
+    childIsFile
   );
 
-  return arraysAreEqual(childFolders, parentFolders);
+  parentDirectories = reduceArrayToSameLengthOfOtherArray(
+    parentDirectories,
+    childDirectories
+  );
+
+  return arraysAreEqual(childDirectories, parentDirectories);
 }
 
 function pathEqualsRequest(path, variation, request) {
   return request.path === path && request.variation === variation.name;
 }
 
-function childrenOfFolderContainDirectory(folder) {
+function childrenOfDirectoryContainDirectory(directory) {
   return (
-    folder.hasOwnProperty("children") &&
-    typeof folder.children !== "undefined" &&
-    folder.children.filter(child => child.type === "directory").length > 0
+    directory.hasOwnProperty("children") &&
+    typeof directory.children !== "undefined" &&
+    directory.children.filter(child => child.type === "directory").length > 0
   );
 }
 
@@ -78,24 +81,24 @@ function componentHasVariations(component) {
   );
 }
 
-function folderIsNotTopLevel(folder) {
-  return folder.index > 0;
+function directoryIsNotTopLevel(directory) {
+  return directory.index > 0;
 }
 
-function folderIsComponent(folder) {
+function directoryHasComponent(directory) {
   return (
-    folder.hasOwnProperty("shortPath") &&
-    typeof folder.shortPath !== "undefined" &&
-    folder.shortPath.length > 0
+    directory.hasOwnProperty("shortPath") &&
+    typeof directory.shortPath !== "undefined" &&
+    directory.shortPath.length > 0
   );
 }
 
 module.exports = {
   activeState,
-  childrenOfFolderContainDirectory,
+  childrenOfDirectoryContainDirectory,
   componentHasVariations,
-  folderIsComponent,
-  folderIsNotTopLevel,
+  directoryHasComponent,
+  directoryIsNotTopLevel,
   pathEqualsRequest,
   pathIsChildOfSecondPath
 };

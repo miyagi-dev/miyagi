@@ -1,4 +1,4 @@
-const menu = require("./getMenuHtml/index.js");
+const menu = require("../menu/index.js");
 
 function partialPath(partial) {
   return partial;

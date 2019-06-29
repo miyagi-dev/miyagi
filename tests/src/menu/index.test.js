@@ -1,6 +1,6 @@
-describe("hbs/getMenuHtml", () => {
-  const index = require("../../../../src/hbs/getMenuHtml/index.js");
-  const menu = require("../../../../src/hbs/getMenuHtml/elements/index.js");
+describe("menu/index", () => {
+  const index = require("../../../src/menu/index.js");
+  const menu = require("../../../src/menu/elements/menu.js");
   menu.render = jest.fn();
 
   const app = "app";

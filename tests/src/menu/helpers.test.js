@@ -1,6 +1,6 @@
-const helpers = require("../../../../src/hbs/getMenuHtml/helpers.js");
+const helpers = require("../../../src/menu/helpers.js");
 
-describe("src/hbs/getMenuHtml/helpers", () => {
+describe("src/menu/helpers", () => {
   describe("pathIsChildOfSecondPath()", () => {
     describe("child is a not file", () => {
       describe("path is parent of child", () => {
@@ -98,11 +98,11 @@ describe("src/hbs/getMenuHtml/helpers", () => {
     });
   });
 
-  describe("childrenOfFolderContainDirectory()", () => {
+  describe("childrenOfDirectoryContainDirectory()", () => {
     describe("with children containing a directory", () => {
       test("returns true", () => {
         expect(
-          helpers.childrenOfFolderContainDirectory({
+          helpers.childrenOfDirectoryContainDirectory({
             children: [{ type: "directory" }]
           })
         ).toBe(true);
@@ -111,15 +111,15 @@ describe("src/hbs/getMenuHtml/helpers", () => {
 
     describe("with children not containing a directory", () => {
       test("returns false", () => {
-        expect(helpers.childrenOfFolderContainDirectory({})).toBe(false);
+        expect(helpers.childrenOfDirectoryContainDirectory({})).toBe(false);
         expect(
-          helpers.childrenOfFolderContainDirectory({ children: undefined })
+          helpers.childrenOfDirectoryContainDirectory({ children: undefined })
         ).toBe(false);
-        expect(helpers.childrenOfFolderContainDirectory({ children: [] })).toBe(
-          false
-        );
         expect(
-          helpers.childrenOfFolderContainDirectory({
+          helpers.childrenOfDirectoryContainDirectory({ children: [] })
+        ).toBe(false);
+        expect(
+          helpers.childrenOfDirectoryContainDirectory({
             children: [{ type: "file" }]
           })
         ).toBe(false);
@@ -145,32 +145,34 @@ describe("src/hbs/getMenuHtml/helpers", () => {
     });
   });
 
-  describe("folderIsNotTopLevel()", () => {
+  describe("directoryIsNotTopLevel()", () => {
     describe("index >= 1", () => {
       test("returns true", () => {
-        expect(helpers.folderIsNotTopLevel({ index: 1 })).toBe(true);
+        expect(helpers.directoryIsNotTopLevel({ index: 1 })).toBe(true);
       });
     });
 
     describe("is not top level", () => {
       test("index < 1", () => {
-        expect(helpers.folderIsNotTopLevel({ index: 0 })).toBe(false);
+        expect(helpers.directoryIsNotTopLevel({ index: 0 })).toBe(false);
       });
     });
   });
 
-  describe("folderIsComponent()", () => {
+  describe("directoryHasComponent()", () => {
     describe("has shortPath", () => {
       test("returns true", () => {
-        expect(helpers.folderIsComponent({ shortPath: "foo" })).toBe(true);
+        expect(helpers.directoryHasComponent({ shortPath: "foo" })).toBe(true);
       });
     });
 
     describe("doesn't have a shortPath", () => {
       test("returns false", () => {
-        expect(helpers.folderIsComponent({})).toBe(false);
-        expect(helpers.folderIsComponent({ shortPath: undefined })).toBe(false);
-        expect(helpers.folderIsComponent({ shortPath: "" })).toBe(false);
+        expect(helpers.directoryHasComponent({})).toBe(false);
+        expect(helpers.directoryHasComponent({ shortPath: undefined })).toBe(
+          false
+        );
+        expect(helpers.directoryHasComponent({ shortPath: "" })).toBe(false);
       });
     });
   });
