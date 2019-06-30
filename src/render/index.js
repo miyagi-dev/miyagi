@@ -180,7 +180,8 @@ async function renderComponentOverview(req, res, embedded) {
       standaloneUrl: embedded ? "?component=all" : null,
       dev: process.env.NODE_ENV !== "production",
       prod: process.env.NODE_ENV === "production",
-      a11yTestsPreload: req.app.get("config").validations.accessibility
+      a11yTestsPreload: req.app.get("config").validations.accessibility,
+      projectName: req.app.get("config").projectName
     });
   });
 }
@@ -198,7 +199,8 @@ function renderSingleComponent(req, res, component, context, standaloneUrl) {
         standaloneUrl,
         dev: process.env.NODE_ENV !== "production",
         prod: process.env.NODE_ENV === "production",
-        a11yTests: req.app.get("config").validations.accessibility
+        a11yTests: req.app.get("config").validations.accessibility,
+        projectName: req.app.get("config").projectName
       });
     }
   );
@@ -234,7 +236,8 @@ function renderVariations(req, res, component, data, standaloneUrl) {
       standaloneUrl,
       dev: process.env.NODE_ENV !== "production",
       prod: process.env.NODE_ENV === "production",
-      a11yTestsPreload: req.app.get("config").validations.accessibility
+      a11yTestsPreload: req.app.get("config").validations.accessibility,
+      projectName: req.app.get("config").projectName
     });
   });
 }

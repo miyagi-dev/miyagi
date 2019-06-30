@@ -6,16 +6,16 @@
     <title>Component</title>
     {{{jsFiles}}}
     {{#if dev}}
-      <script src="roundup/js/socket.io.slim.js" defer></script>
+      <script src="{{projectName}}/js/socket.io.slim.js" defer></script>
     {{/if}}
     {{#if a11yTests}}
-      <script src="roundup/js/axe.min.js" defer></script>
+      <script src="{{projectName}}/js/axe.min.js" defer></script>
     {{/if}}
-    <script src="roundup/js/iframe.js"{{#if dev}} type="module"{{/if}}{{#if prod}} defer{{/if}}></script>
+    <script src="{{projectName}}/js/iframe.js"{{#if dev}} type="module"{{/if}}{{#if prod}} defer{{/if}}></script>
     {{{cssFiles}}}
-    <link rel="stylesheet" href="roundup/css/iframe.css">
+    <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
     {{#if a11yTestsPreload}}
-      <link rel="prefetch" href="roundup/js/axe.min.js">
+      <link rel="prefetch" href="{{projectName}}/js/axe.min.js">
     {{/if}}
   </head>
   <body class="RoundupIframe">

@@ -21,6 +21,6 @@
     "missingEngine": "Please specify your javascript engine in roundup.json (key: 'engine', type: String)",
     "serverStarted": "Running roundup server at http://127.0.0.1:${port}`",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your roundup.json is correct?",
-    "roundupJsonNotFound": "Couldn't find the file roundup.json."
+    "userConfigNotFound": "Couldn't find the file roundup.json."
   }
 }

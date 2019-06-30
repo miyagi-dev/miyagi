@@ -153,7 +153,7 @@ describe("index", () => {
 
       expect(logger.log).toHaveBeenCalledWith(
         "error",
-        config.messages.roundupJsonNotFound
+        config.messages.userConfigNotFound
       );
     });
   });

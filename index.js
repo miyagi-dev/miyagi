@@ -23,6 +23,6 @@ fs.readFile(`./${config.userConfigFile}`, "utf8", (err, result) => {
       }
     }
   } else {
-    logger.log("error", config.messages.roundupJsonNotFound);
+    logger.log("error", config.messages.userConfigNotFound);
   }
 });
