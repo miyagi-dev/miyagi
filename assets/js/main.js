@@ -74,14 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const content = document.querySelector(".Roundup-content");
   const iframe = document.querySelector(".Roundup-frame");
   const toggles = Array.from(document.querySelectorAll(".Roundup-toggle"));
+  const toggleMenu = document.querySelector(".Roundup-toggleMobileMenu");
 
   links = Array.from(document.querySelectorAll(".Roundup-link"));
 
   history.pushState(null, null, document.location.href);
 
-  document
-    .querySelector(".Roundup-toggleMobileMenu")
-    .addEventListener("click", e => {
+  if (toggleMenu) {
+    toggleMenu.addEventListener("click", e => {
       e.preventDefault();
 
       const toggle = e.target;
@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       toggle.setAttribute("aria-expanded", newValue);
     });
+  }
 
   toggles.forEach(toggle => {
     toggle.addEventListener("click", e => {

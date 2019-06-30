@@ -1,10 +1,10 @@
 {{#extend "main"}}
   {{#content "body"}}
     <nav class="Roundup-nav">
+      <h1 class="Roundup-title">
+        <a class="Roundup-link Roundup-link--showAll" href="?component=all&embedded=true" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>{{projectName}}</a>
+      </h1>
       {{#if folders}}
-        <h1 class="Roundup-title">
-          <a class="Roundup-link Roundup-link--showAll" href="?component=all&embedded=true" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>{{projectName}}</a>
-        </h1>
         <button class="Roundup-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
         <div class="Roundup-menu">
           {{#renderMenu folders requestedComponent requestedVariation null null }}{{/renderMenu}}
