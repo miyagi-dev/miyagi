@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  margin: 0;
   min-height: 100%;
 }
 
@@ -24,7 +25,7 @@ body {
   align-items: center;
   color: #767676;
   display: flex;
-  font-size: 0.875em;
+  font-size: 14px;
   text-decoration: none;
 }
 
@@ -40,15 +41,15 @@ body {
   background: #ddd;
   content: "";
   flex: 1;
-  height: 0.1rem;
+  height: 1px;
 }
 
 .RoundupComponent-file::before {
-  margin-right: 1.5rem;
+  margin-right: 20px;
 }
 
 .RoundupComponent-file::after {
-  margin-left: 1.5rem;
+  margin-left: 20px;
 }
 
 .RoundupComponent-html {
@@ -66,16 +67,16 @@ body {
 .RoundupIframe-newTabLink {
   align-items: center;
   background: var(--Roundup-color-bg);
-  border: 0.3rem solid rgba(0, 0, 0, 0.025);
+  border: 3px solid rgba(0, 0, 0, 0.025);
   border-radius: 50%;
   display: flex;
-  font-size: 4rem;
+  font-size: 40px;
   height: 1em;
   justify-content: center;
   position: fixed;
-  right: 1.5rem;
+  right: 20px;
   text-indent: -9999em;
-  top: 1.5rem;
+  top: 20px;
   transition: var(--Roundup-transition);
   width: 1em;
 }
@@ -100,13 +101,13 @@ body {
 
 @media (max-width: 32em) {
   .RoundupIframe {
-    --spacing: 1rem;
+    --spacing: 15px;
   }
 }
 
 @media (min-width: 32.03125em) {
   .RoundupIframe {
-    --spacing: 2.5rem;
+    --spacing: 30px;
   }
 }
 
