@@ -11,7 +11,7 @@ function sanitizePath(path, isFolder) {
     path = path.slice(1);
   }
 
-  if (isFolder && path.slice(-1) !== "/") {
+  if (isFolder && path.length > 0 && path.slice(-1) !== "/") {
     path += "/";
   }
 
@@ -61,6 +61,8 @@ module.exports = (app, userConfig = {}) => {
         projectName: config.projectName,
         cssFiles: [],
         jsFiles: [],
+        srcFolderIgnores: config.srcFolderIgnores,
+        watch: config.watch.concat([userConfig.extension]),
         validations: {
           html: true,
           accessibility: true

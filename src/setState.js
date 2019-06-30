@@ -4,7 +4,7 @@ const dirTree = require("directory-tree");
 const fs = require("fs");
 const path = require("path");
 const logger = require("./logger.js");
-const { pathEndsWithExtension } = require("./helpers.js");
+const { pathEndsWithExtension, isNotIgnored } = require("./helpers.js");
 
 function fileIsInFolderWithSameName(file, ext) {
   const isValid = path.dirname(file).endsWith(path.basename(file, `.${ext}`));
@@ -23,12 +23,15 @@ function fileIsInFolderWithSameName(file, ext) {
 }
 
 function filterUnwantedFilePath(app, file) {
-  if (
-    pathEndsWithExtension(file, app.get("config").extension) &&
-    fileIsInFolderWithSameName(file, app.get("config").extension)
-  ) {
-    return true;
+  if (isNotIgnored(file, app.get("config").srcFolderIgnores)) {
+    if (
+      pathEndsWithExtension(file, app.get("config").extension) &&
+      fileIsInFolderWithSameName(file, app.get("config").extension)
+    ) {
+      return true;
+    }
   }
+
   return false;
 }
 
@@ -41,12 +44,19 @@ function getFilePaths(app) {
 }
 
 function getSourceStructure(app) {
+  const exclude = [];
+
+  app.get("config").srcFolderIgnores.forEach(ignore => {
+    exclude.push(new RegExp(ignore));
+  });
+
   const tree = dirTree(
     path.join(process.cwd(), app.get("config").srcFolder),
     {
       extensions: new RegExp(
         `.(${app.get("config").extension}|${config.dataFileType})$`
-      )
+      ),
+      exclude
     },
     item => {
       item.shortPath = item.path.replace(

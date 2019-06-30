@@ -1,3 +1,4 @@
+const path = require("path");
 const chokidar = require("chokidar");
 const config = require("./config.json");
 const setState = require("./setState.js");
@@ -32,10 +33,23 @@ function onFilesChanged(io, app, hbs, event, path) {
 
 function fileWatcher(server, app, hbs) {
   const io = require("socket.io").listen(server);
+  const ignored = [];
+  const watch = [];
+
+  app.get("config").watch.forEach(extension => {
+    watch.push(
+      `${process.cwd()}/${app.get("config").srcFolder}**/*.${extension}`
+    );
+  });
+
+  app.get("config").srcFolderIgnores.forEach(dir => {
+    ignored.push(path.join(process.cwd(), dir));
+  });
 
   chokidar
-    .watch(app.get("config").srcFolder, {
-      ignoreInitial: true
+    .watch(watch, {
+      ignoreInitial: true,
+      ignored
     })
     .on("all", (event, path) => {
       onFilesChanged(io, app, hbs, event, path);
