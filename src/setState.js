@@ -136,17 +136,19 @@ function getSourceStructure(app) {
   }
 
   (function loop(obj, index) {
-    obj.index = index;
+    if (obj) {
+      obj.index = index;
 
-    if (obj.children) {
-      obj.children.forEach(child => {
-        const newIndex = child.type === "directory" ? index + 1 : index;
-        loop(child, newIndex);
-      });
+      if (obj.children) {
+        obj.children.forEach(child => {
+          const newIndex = child.type === "directory" ? index + 1 : index;
+          loop(child, newIndex);
+        });
+      }
     }
   })(tree, -1);
 
-  return tree.children;
+  return tree && tree.children ? tree.children : [];
 }
 
 async function getJsonData(app, paths) {
