@@ -1,7 +1,10 @@
 const render = require("./render/index.js");
 
 function checkIfRequestedComponentIsValid(app, component) {
-  return app.get("state").filePaths.indexOf(component) >= 0;
+  return (
+    app.get("state").partials.hasOwnProperty(component) &&
+    app.get("state").partials[component] !== "undefined"
+  );
 }
 
 module.exports = function(app) {

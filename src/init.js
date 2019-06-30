@@ -34,23 +34,24 @@ function start(cnf) {
     );
     app.set("port", port);
 
-    setState(app, () => {
+    setState(app, { structure: true, partials: true, data: true }, () => {
       setRouter(app);
       setStaticFiles(app, config);
       setViews(app);
 
       registerHelpers(app, handlebars);
-      registerPartials(app, handlebars, true);
-      handlebarsLayouts.register(handlebars);
+      registerPartials.registerAll(app, handlebars, true).then(() => {
+        handlebarsLayouts.register(handlebars);
 
-      server.listen(app.get("port"));
+        server.listen(app.get("port"));
 
-      fileWatcher(server, app, handlebars);
+        fileWatcher(server, app, handlebars);
 
-      logger.log(
-        "info",
-        config.messages.serverStarted.replace("${port}", port)
-      );
+        logger.log(
+          "info",
+          config.messages.serverStarted.replace("${port}", port)
+        );
+      });
     });
   }
 }

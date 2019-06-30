@@ -42,7 +42,7 @@ function renderMainWithComponent(req, res, component, variation) {
 }
 
 function renderComponent(req, res, component, variation, embedded) {
-  const componentJson = cloneDeep(req.app.get("state").jsonData[component]);
+  const componentJson = cloneDeep(req.app.get("state").data[component]);
   const componentVariations = componentJson.variations;
   let componentData = componentJson.data;
 
@@ -73,7 +73,7 @@ function renderComponent(req, res, component, variation, embedded) {
 }
 
 function renderComponentVariations(req, res, componentPath, embedded) {
-  const componentJson = cloneDeep(req.app.get("state").jsonData[componentPath]);
+  const componentJson = cloneDeep(req.app.get("state").data[componentPath]);
   const componentVariations = componentJson.variations;
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
@@ -135,8 +135,8 @@ async function renderComponentOverview(req, res, embedded) {
   const arr = [];
   const promises = [];
 
-  const components = req.app.get("state").filePaths.map(path => {
-    let componentJson = req.app.get("state").jsonData[path];
+  const components = Object.keys(req.app.get("state").partials).map(path => {
+    let componentJson = req.app.get("state").data[path];
     let componentData;
 
     if (componentJson.data) {

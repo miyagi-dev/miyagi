@@ -1,34 +1,35 @@
 const path = require("path");
 const chokidar = require("chokidar");
-const config = require("./config.json");
 const setState = require("./setState.js");
+const { storeFileContentInCache } = require("./state/data.js");
+const helpers = require("./helpers.js");
 const registerPartials = require("./hbs/registerPartials.js");
 
-function onFilesChanged(io, app, hbs, event, path) {
-  let reloadParent = false;
-
-  if (event === "addDir" || event === "unlinkDir") {
-    reloadParent = true;
-  } else if (
-    path.lastIndexOf(`.${config.dataFileType}`) ===
-      path.length - `.${config.dataFileType}`.length &&
-    (event === "add" || event === "unlink" || event === "change")
-  ) {
-    reloadParent = true;
-  } else if (
-    (path.lastIndexOf(`.${app.get("config").extension}`) ===
-      path.length - `.${app.get("config").extension}` &&
-      event === "add") ||
-    event == "unlink"
-  ) {
-    reloadParent = true;
-  }
-
+function changeFileCallback(io, reloadParent) {
   io.emit("fileChanged", reloadParent);
+}
 
-  setState(app, () => {
-    registerPartials(app, hbs);
+function onDataFileChanged(io, app, event, changedPath) {
+  storeFileContentInCache(app, changedPath, () => {
+    setState(app, { structure: true, data: true }, () => {
+      changeFileCallback(
+        io,
+        event === "add" || event === "unlink" || event === "change"
+      );
+    });
   });
+}
+
+function onTemplateFileChanged(io, app, hbs, event, changedPath) {
+  if (event === "add" || event === "unlink") {
+    setState(app, { structure: true, partials: true, data: true }, () => {
+      registerPartials.registerPartial(app, hbs, changedPath).then(() => {
+        changeFileCallback(io, true);
+      });
+    });
+  } else {
+    changeFileCallback(io);
+  }
 }
 
 function fileWatcher(server, app, hbs) {
@@ -51,8 +52,20 @@ function fileWatcher(server, app, hbs) {
       ignoreInitial: true,
       ignored
     })
-    .on("all", (event, path) => {
-      onFilesChanged(io, app, hbs, event, path);
+    .on("all", (event, changedPath) => {
+      if (helpers.fileIsDataFile(changedPath)) {
+        onDataFileChanged(io, app, event, changedPath);
+      } else if (helpers.fileIsTemplateFile(app, changedPath)) {
+        onTemplateFileChanged(io, app, hbs, event, changedPath);
+      } else {
+        setState(app, { structure: true, data: true }, () => {
+          changeFileCallback(
+            io,
+            app,
+            event === "addDir" || event === "unlinkDir"
+          );
+        });
+      }
     });
 }
 

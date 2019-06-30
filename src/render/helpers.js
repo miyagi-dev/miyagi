@@ -1,4 +1,5 @@
 const config = require("../config.json");
+const helpers = require("../helpers.js");
 const fs = require("fs");
 const path = require("path");
 const deepMerge = require("deepmerge");
@@ -53,15 +54,6 @@ function resolveJson(req, value) {
   }
 }
 
-function valueIsJsonLink(value) {
-  if (typeof value !== "string") return false;
-
-  return (
-    value.lastIndexOf(`.${config.dataFileType}`) > 0 &&
-    value.lastIndexOf(`.${config.dataFileType}`) === value.length - 5
-  );
-}
-
 function overwriteJsonLinksWithJsonData(req, data) {
   (function readJson(data) {
     if (!data) return {};
@@ -72,7 +64,7 @@ function overwriteJsonLinksWithJsonData(req, data) {
       if (value instanceof Array) {
         readJson(value);
       } else if (typeof value === "string") {
-        if (valueIsJsonLink(value)) {
+        if (helpers.fileIsDataFile(value)) {
           data[entry[0]] = resolveJson(req, value);
           readJson(data[entry[0]]);
         } else {
@@ -80,7 +72,7 @@ function overwriteJsonLinksWithJsonData(req, data) {
         }
       } else if (value !== null && typeof value === "object") {
         if (value.component) {
-          if (valueIsJsonLink(value.component)) {
+          if (helpers.fileIsDataFile(value.component)) {
             let dataWithoutComponentAndVariation = cloneDeep(value);
             let resolvedJson = resolveJson(req, {
               component: value.component,
@@ -98,7 +90,7 @@ function overwriteJsonLinksWithJsonData(req, data) {
           }
         } else {
           Object.entries(value).forEach(val => {
-            if (valueIsJsonLink(val[1])) {
+            if (helpers.fileIsDataFile(val[1])) {
               data[entry[0][val[0]]] = resolveJson(req, val[1]);
               readJson(data[entry[0][val[0]]]);
             } else {

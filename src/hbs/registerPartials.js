@@ -52,23 +52,60 @@ async function registerLayouts(hbs) {
   return await Promise.all(promises);
 }
 
-function registerComponents(hbs, app) {
-  app.get("state").filePaths.forEach(filePath => {
-    if (pathEndsWithExtension(filePath, app.get("config").extension)) {
-      const fullFilePath = path.join(
-        process.cwd(),
-        `${app.get("config").srcFolder}/${filePath}`
-      );
+async function registerComponents(hbs, app) {
+  const promises = [];
 
-      register(hbs, filePath, fullFilePath);
+  Object.keys(app.get("state").partials).forEach(filePath => {
+    if (pathEndsWithExtension(filePath, app.get("config").extension)) {
+      promises.push(
+        new Promise(resolve => {
+          register(
+            hbs,
+            filePath,
+            path.join(
+              process.cwd(),
+              `${app.get("config").srcFolder}/${filePath}`
+            )
+          ).then(resolve);
+        })
+      );
     }
+  });
+
+  return await Promise.all(promises);
+}
+
+async function registerPartial(app, hbs, filePath) {
+  return new Promise(resolve => {
+    register(
+      hbs,
+      filePath,
+      path.join(process.cwd(), `${app.get("config").srcFolder}/${filePath}`)
+    ).then(resolve);
   });
 }
 
-module.exports = function(app, hbs, initial) {
+async function registerAll(app, hbs, initial) {
+  const promises = [];
+
   if (initial) {
-    registerLayouts(hbs);
+    promises.push(
+      new Promise(resolve => {
+        registerLayouts(hbs).then(resolve);
+      })
+    );
   }
 
-  registerComponents(hbs, app);
+  promises.push(
+    new Promise(resolve => {
+      registerComponents(hbs, app).then(resolve);
+    })
+  );
+
+  return await Promise.all(promises);
+}
+
+module.exports = {
+  registerPartial,
+  registerAll
 };
