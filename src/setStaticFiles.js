@@ -1,5 +1,6 @@
 const path = require("path");
 const express = require("express");
+const config = require("./config.json");
 
 function registerUserFiles(app, files) {
   app.get("config")[files].forEach(file => {
@@ -12,7 +13,7 @@ function registerUserFiles(app, files) {
 
 function registerNodeModule(app, nodeModule) {
   app.use(
-    "/roundup/js",
+    `/${config.projectName}/js`,
     express.static(path.join(process.cwd(), `node_modules/${nodeModule}`))
   );
 }
