@@ -1,7 +1,8 @@
-const setRouter = require("../../src/setRouter.js");
-const render = require("../../src/render/index.js");
 const express = require("express");
 const request = require("supertest");
+const setRouter = require("../../src/setRouter.js");
+const render = require("../../src/render/index.js");
+
 const component = "components/component/component.hbs";
 
 render.renderMain = jest.fn(done => done());
@@ -13,7 +14,9 @@ describe("setRouter()", () => {
   const app = express();
 
   app.set("state", {
-    filePaths: [component]
+    partials: {
+      "components/component/component.hbs": "components/component/component.hbs"
+    }
   });
 
   setRouter(app);
@@ -115,7 +118,7 @@ describe("setRouter()", () => {
 
         request(app)
           .get("/")
-          .query(`show=invalidVomponent`)
+          .query(`show=invalidComponent`)
           .expect(() => {
             return expect(render.renderMain).toHaveBeenCalled();
           })

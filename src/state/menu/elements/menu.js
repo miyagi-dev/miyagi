@@ -1,12 +1,6 @@
-const menuStructure = require("../structure.js");
 const list = require("./list.js");
 
-function render(app, structure, request, id, index) {
-  const children = menuStructure.getStructure(
-    structure,
-    app.get("config").extension
-  );
-
+function render(app, children, request, id, index) {
   if (children.length) {
     return list.render(
       "components",

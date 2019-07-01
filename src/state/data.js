@@ -1,6 +1,18 @@
 const path = require("path");
 const fs = require("fs");
+const readDir = require("fs-readdir-recursive");
 const config = require("../config.json");
+const { filterFilesWithoutUnwantedFileType } = require("./helpers.js");
+
+function getFilePaths(app) {
+  const paths = readDir(
+    path.join(process.cwd(), app.get("config").srcFolder)
+  ).filter(file =>
+    filterFilesWithoutUnwantedFileType(app, file, config.dataFileType)
+  );
+
+  return paths;
+}
 
 async function getData(app) {
   const jsonData = {};
@@ -10,19 +22,20 @@ async function getData(app) {
     app.set("cache", {});
   }
 
-  Object.keys(app.get("state").partials).forEach(filePath => {
+  getFilePaths(app).forEach(filePath => {
     promises.push(
       new Promise(resolve => {
-        const jsonPath = `${app.get("config").srcFolder}/${filePath.replace(
-          `.${app.get("config").extension}`,
-          `.${config.dataFileType}`
+        const jsonPath = `${app.get("config").srcFolder}${filePath}`;
+        const templatePath = `${filePath.replace(
+          `.${config.dataFileType}`,
+          `.${app.get("config").extension}`
         )}`;
 
         getFile(
           app,
           path.join(process.cwd(), jsonPath.replace(/\0/g, "")),
           (err, data) => {
-            jsonData[filePath] = data;
+            jsonData[templatePath] = data;
             resolve();
           }
         );
@@ -44,22 +57,26 @@ function getFile(app, fileName, cb) {
 }
 
 function storeFileContentInCache(app, fileName, cb) {
-  fs.readFile(fileName, "utf8", (err, result) => {
-    const cache = {};
-    let data;
+  try {
+    fs.readFile(fileName, "utf8", (err, result) => {
+      const cache = {};
+      let data;
 
-    if (err) {
-      data = {};
-    } else {
-      data = JSON.parse(result);
-    }
+      if (err) {
+        data = {};
+      } else {
+        data = result ? JSON.parse(result) : {};
+      }
 
-    cache[fileName] = data;
+      cache[fileName] = data;
 
-    app.set("cache", Object.assign(app.get("cache"), cache));
+      app.set("cache", Object.assign(app.get("cache"), cache));
 
-    return cb(null, data);
-  });
+      return cb(null, data);
+    });
+  } catch (e) {
+    return cb(null, {});
+  }
 }
 
 module.exports = {

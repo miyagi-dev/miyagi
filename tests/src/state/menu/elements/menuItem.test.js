@@ -1,5 +1,7 @@
+const helpersSrc = "../../../../../src/state/menu/helpers.js";
+
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../src/menu/elements/${componentName}`);
+  let component = require(`../../../../../src/state/menu/elements/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -68,7 +70,7 @@ describe("src/menu/elements/menuItem", () => {
     const directoryObject = {};
 
     test("calls component.render with the correct params", () => {
-      const helpers = require("../../../../src/menu/helpers.js");
+      const helpers = require(helpersSrc);
       const menuItem = requireComponent("menuItem");
       const component = requireComponent("component", true);
       helpers.directoryHasComponent = jest.fn(() => true);
@@ -79,7 +81,7 @@ describe("src/menu/elements/menuItem", () => {
     });
 
     test("adds the menuItem html to the return value", () => {
-      const helpers = require("../../../../src/menu/helpers.js");
+      const helpers = require(helpersSrc);
       const menuItem = requireComponent("menuItem");
       helpers.directoryHasComponent = jest.fn(() => true);
 
@@ -92,7 +94,7 @@ describe("src/menu/elements/menuItem", () => {
   });
 
   describe("item isn't a component", () => {
-    const helpers = require("../../../../src/menu/helpers.js");
+    const helpers = require(helpersSrc);
     const request = "request";
     const directoryObject = {};
 

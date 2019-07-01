@@ -1,4 +1,3 @@
-const path = require("path");
 const config = require("./config.json");
 
 function pathEndsWithExtension(file, ext) {
@@ -8,20 +7,6 @@ function pathEndsWithExtension(file, ext) {
     file.indexOf(extension) > 0 &&
     file.indexOf(extension) === file.length - extension.length
   );
-}
-
-function isNotIgnored(file, ignoredFolders) {
-  for (let i = 0; i < ignoredFolders.length; i += 1) {
-    if (
-      path
-        .join(process.cwd(), file)
-        .indexOf(path.join(process.cwd(), ignoredFolders[i])) === 0
-    ) {
-      return false;
-    }
-  }
-
-  return true;
 }
 
 function fileIsOfGivenType(file, extension) {
@@ -44,6 +29,5 @@ function fileIsTemplateFile(app, file) {
 module.exports = {
   fileIsDataFile,
   fileIsTemplateFile,
-  isNotIgnored,
   pathEndsWithExtension
 };

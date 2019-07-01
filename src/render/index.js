@@ -10,7 +10,7 @@ const {
 
 function renderMain(req, res) {
   res.render("index.hbs", {
-    folders: req.app.get("state").srcStructure,
+    folders: req.app.get("state").menu,
     iframeSrc: "?component=all&embedded=true",
     showAll: true,
     isComponentOverview: true,
@@ -31,7 +31,7 @@ function renderMainWithComponent(req, res, component, variation) {
   iframeSrc += "&embedded=true";
 
   res.render("index.hbs", {
-    folders: req.app.get("state").srcStructure,
+    folders: req.app.get("state").menu,
     iframeSrc,
     requestedComponent: req.query.show,
     requestedVariation: req.query.variation,
@@ -139,10 +139,14 @@ async function renderComponentOverview(req, res, embedded) {
     let componentJson = req.app.get("state").data[path];
     let componentData;
 
-    if (componentJson.data) {
-      componentData = componentJson.data;
-    } else if (componentJson.variations && componentJson.variations.length) {
-      componentData = getFallbackData(componentJson.variations);
+    if (componentJson) {
+      if (componentJson.data) {
+        componentData = componentJson.data;
+      } else if (componentJson.variations && componentJson.variations.length) {
+        componentData = getFallbackData(componentJson.variations);
+      }
+    } else {
+      componentData = {};
     }
 
     return [path, cloneDeep(componentData)];

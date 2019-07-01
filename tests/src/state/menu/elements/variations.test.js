@@ -1,5 +1,7 @@
+const helpersSrc = "../../../../../src/state/menu/helpers.js";
+
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../src/menu/elements/${componentName}`);
+  let component = require(`../../../../../src/state/menu/elements/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -62,7 +64,7 @@ describe("src/menu/elements/variations", () => {
       test("calls variationLink.render with the correct params", () => {
         const variations = requireComponent("variations");
         const variationLink = requireComponent("variationLink", true);
-        const helpers = require("../../../../src/menu/helpers.js");
+        const helpers = require(helpersSrc);
         helpers.pathEqualsRequest = jest.fn(() => true);
 
         variations.render(component, {});
@@ -79,7 +81,7 @@ describe("src/menu/elements/variations", () => {
       test("calls variationLink.render with the correct params", () => {
         const variations = requireComponent("variations");
         const variationLink = requireComponent("variationLink", true);
-        const helpers = require("../../../../src/menu/helpers.js");
+        const helpers = require(helpersSrc);
 
         helpers.pathEqualsRequest = jest.fn(() => false);
 

@@ -1,13 +1,13 @@
-const getSourceStructure = require("./state/structure.js");
 const getPartials = require("./state/partials.js");
 const { getData } = require("./state/data.js");
+const { getStructure } = require("./state/menu/index.js");
 
 async function setState(app, methods, cb) {
-  if (methods.structure) {
+  if (methods.menu) {
     app.set(
       "state",
       Object.assign({}, app.get("state"), {
-        srcStructure: getSourceStructure(app)
+        menu: await getStructure(app)
       })
     );
   }

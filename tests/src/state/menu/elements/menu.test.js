@@ -1,5 +1,5 @@
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../src/menu/elements/${componentName}`);
+  let component = require(`../../../../../src/state/menu/elements/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -14,7 +14,6 @@ beforeEach(() => {
 
 describe("src/menu/elements/menu", () => {
   const app = require("express")();
-  const structure = "structure";
   const request = "request";
   const id = "id";
   const index = "index";
@@ -28,15 +27,14 @@ describe("src/menu/elements/menu", () => {
     test("calls menuItem.render for each menuItem", () => {
       const menu = requireComponent("menu");
       const menuItem = requireComponent("menuItem", true);
-      const structure = require("../../../../src/menu/structure.js");
 
-      structure.getStructure = jest.fn(() => [
-        menuItemObject,
-        menuItemObject,
-        menuItemObject
-      ]);
-
-      menu.render(app, structure, request, id, index);
+      menu.render(
+        app,
+        [menuItemObject, menuItemObject, menuItemObject],
+        request,
+        id,
+        index
+      );
 
       expect(menuItem.render).toHaveBeenCalledTimes(3);
     });
@@ -44,15 +42,14 @@ describe("src/menu/elements/menu", () => {
     test("calls menuItem.render with the correct params", () => {
       const menu = requireComponent("menu");
       const menuItem = requireComponent("menuItem", true);
-      const structure = require("../../../../src/menu/structure.js");
 
-      structure.getStructure = jest.fn(() => [
-        menuItemObject,
-        menuItemObject,
-        menuItemObject
-      ]);
-
-      menu.render(app, structure, request, id, index);
+      menu.render(
+        app,
+        [menuItemObject, menuItemObject, menuItemObject],
+        request,
+        id,
+        index
+      );
 
       expect(menuItem.render).toHaveBeenCalledWith(
         menuItemObject,
@@ -63,19 +60,18 @@ describe("src/menu/elements/menu", () => {
 
     test("adds the menuItem html to the return value", () => {
       const menu = requireComponent("menu");
-      const structure = require("../../../../src/menu/structure.js");
       requireComponent("menuItem", true);
-
-      structure.getStructure = jest.fn(() => [
-        menuItemObject,
-        menuItemObject,
-        menuItemObject
-      ]);
 
       expect(
         (
           menu
-            .render(app, structure, request, id, index)
+            .render(
+              app,
+              [menuItemObject, menuItemObject, menuItemObject],
+              request,
+              id,
+              index
+            )
             .match(/menuItemHtml/g) || []
         ).length
       ).toBe(3);
@@ -85,11 +81,7 @@ describe("src/menu/elements/menu", () => {
   describe("without children", () => {
     test("returns an empty string", () => {
       const menu = requireComponent("menu");
-      const structure = require("../../../../src/menu/structure.js");
-
-      structure.getStructure = jest.fn(() => []);
-
-      expect(menu.render(app, structure, request, id, index)).toEqual("");
+      expect(menu.render(app, [], request, id, index)).toEqual("");
     });
   });
 });

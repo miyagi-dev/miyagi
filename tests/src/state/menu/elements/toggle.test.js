@@ -1,4 +1,4 @@
-const toggle = require("../../../../src/menu/elements/toggle.js");
+const toggle = require("../../../../../src/state/menu/elements/toggle.js");
 
 beforeEach(() => {
   jest.resetModules();

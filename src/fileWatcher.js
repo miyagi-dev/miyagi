@@ -11,7 +11,7 @@ function changeFileCallback(io, reloadParent) {
 
 function onDataFileChanged(io, app, event, changedPath) {
   storeFileContentInCache(app, changedPath, () => {
-    setState(app, { structure: true, data: true }, () => {
+    setState(app, { menu: true, data: true }, () => {
       changeFileCallback(
         io,
         event === "add" || event === "unlink" || event === "change"
@@ -22,7 +22,7 @@ function onDataFileChanged(io, app, event, changedPath) {
 
 function onTemplateFileChanged(io, app, hbs, event, changedPath) {
   if (event === "add" || event === "unlink") {
-    setState(app, { structure: true, partials: true, data: true }, () => {
+    setState(app, { menu: true, partials: true, data: true }, () => {
       registerPartials.registerPartial(app, hbs, changedPath).then(() => {
         changeFileCallback(io, true);
       });
@@ -58,7 +58,7 @@ function fileWatcher(server, app, hbs) {
       } else if (helpers.fileIsTemplateFile(app, changedPath)) {
         onTemplateFileChanged(io, app, hbs, event, changedPath);
       } else {
-        setState(app, { structure: true, data: true }, () => {
+        setState(app, { menu: true, data: true }, () => {
           changeFileCallback(
             io,
             app,

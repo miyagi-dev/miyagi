@@ -1,3 +1,5 @@
+const getSourceStructure = require("./structure.js");
+
 function normalizePath(path) {
   return path
     .replace(/\//g, "-")
@@ -17,7 +19,7 @@ function hasComponentFileWithCorrectNameAsChild(directory, templateExtension) {
   return (
     directory.children &&
     directory.children.length &&
-    getComponentFile(directory, templateExtension)
+    typeof getComponentFile(directory, templateExtension) !== "undefined"
   );
 }
 
@@ -29,7 +31,6 @@ function getDataForLinkedDirectory(directory, partial) {
     shortPath: partial.shortPath,
     extension: partial.extension,
     variations: directory.variations,
-    children: directory.children,
     index: directory.index,
     id: normalizePath(partial.shortPath)
   };
@@ -40,7 +41,6 @@ function getDataForDirectory(directory) {
     type: directory.type,
     name: directory.name,
     path: directory.path,
-    children: directory.children,
     index: directory.index,
     id: normalizePath(
       directory.path.replace(process.cwd().slice(1), "").slice(1)
@@ -67,20 +67,25 @@ function hasChildren(item) {
   return item.children && item.children.length > 1;
 }
 
-function getStructure(srcStructure, templateExtension) {
+async function getStructure(app) {
+  const srcStructure = await getSourceStructure(app);
+  const templateExtension = app.get("config").extension;
   const arr = [];
 
-  (function restructure(structure) {
+  (function restructure(structure, array) {
     structure.forEach(item => {
       if (item.type === "directory") {
-        arr.push(restructureDirectory(item, templateExtension));
-      }
+        const restructured = restructureDirectory(item, templateExtension);
 
-      if (hasChildren(structure)) {
-        restructure(structure);
+        if (hasChildren(item)) {
+          restructured.children = [];
+          restructure(item.children, restructured.children);
+        }
+
+        array.push(restructured);
       }
     });
-  })(srcStructure);
+  })(srcStructure, arr);
 
   return arr;
 }

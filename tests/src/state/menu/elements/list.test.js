@@ -1,4 +1,4 @@
-const list = require("../../../../src/menu/elements/list.js");
+const list = require("../../../../../src/state/menu/elements/list.js");
 
 beforeEach(() => {
   jest.resetModules();

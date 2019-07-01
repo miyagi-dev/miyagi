@@ -1,11 +1,11 @@
-const menu = require("../menu/index.js");
+const menu = require("../state/menu/elements/menu.js");
 
 function partialPath(partial) {
   return partial;
 }
 
-function renderMenu(app, structure, path, variation, id) {
-  return menu.render(app, structure, { path, variation }, id);
+function renderMenu(app, children, path, variation, id) {
+  return menu.render(app, children, { path, variation }, id);
 }
 
 function getCssFilesHtml(files) {

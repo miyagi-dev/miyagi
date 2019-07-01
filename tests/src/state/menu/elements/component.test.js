@@ -1,4 +1,4 @@
-const helpersSrc = "../../../../src/menu/helpers.js";
+const helpersSrc = "../../../../../src/state/menu/helpers.js";
 const directoryIndex = 1;
 const directoryId = 2;
 const directoryShortPath = "foo/bar";
@@ -11,7 +11,7 @@ const directory = {
 };
 
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../src/menu/elements/${componentName}`);
+  let component = require(`../../../../../src/state/menu/elements/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);

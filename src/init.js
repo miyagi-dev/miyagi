@@ -34,7 +34,7 @@ function start(cnf) {
     );
     app.set("port", port);
 
-    setState(app, { structure: true, partials: true, data: true }, () => {
+    setState(app, { menu: true, partials: true, data: true }, () => {
       setRouter(app);
       setStaticFiles(app, config);
       setViews(app);

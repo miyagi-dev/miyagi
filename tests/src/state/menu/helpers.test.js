@@ -1,4 +1,4 @@
-const helpers = require("../../../src/menu/helpers.js");
+const helpers = require("../../../../src/state/menu/helpers.js");
 
 describe("src/menu/helpers", () => {
   describe("pathIsChildOfSecondPath()", () => {
