@@ -11,10 +11,7 @@ async function register(hbs, name, fullFilePath) {
         if (err) {
           logger.log(
             "warn",
-            config.messages.fileNotFound.replace(
-              "${fullFilePath}",
-              fullFilePath
-            )
+            config.messages.fileNotFound.replace("${filePath}", name)
           );
         } else {
           hbs.registerPartial(name, hbs.compile(data.toString()));
@@ -24,7 +21,7 @@ async function register(hbs, name, fullFilePath) {
     } catch (e) {
       logger.log(
         "warn",
-        config.messages.fileNotFound.replace("${fullFilePath}", fullFilePath)
+        config.messages.fileNotFound.replace("${filePath}", name)
       );
       resolve();
     }
@@ -79,8 +76,10 @@ async function registerPartial(app, hbs, filePath) {
   return new Promise(resolve => {
     register(
       hbs,
-      filePath,
-      path.join(process.cwd(), `${app.get("config").srcFolder}/${filePath}`)
+      filePath
+        .replace(process.cwd(), "")
+        .replace(app.get("config").srcFolder, ""),
+      filePath
     ).then(resolve);
   });
 }

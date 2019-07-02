@@ -4,6 +4,10 @@ const { getStructure } = require("./state/menu/index.js");
 
 async function setState(app, methods, cb) {
   if (methods.menu) {
+    if (app.get("state") && app.get("state").menu) {
+      delete app.get("state").menu;
+    }
+
     app.set(
       "state",
       Object.assign({}, app.get("state"), {
@@ -13,6 +17,10 @@ async function setState(app, methods, cb) {
   }
 
   if (methods.partials) {
+    if (app.get("state") && app.get("state").partials) {
+      delete app.get("state").partials;
+    }
+
     app.set(
       "state",
       Object.assign({}, app.get("state"), {
@@ -22,6 +30,10 @@ async function setState(app, methods, cb) {
   }
 
   if (methods.data) {
+    if (app.get("state") && app.get("state").data) {
+      delete app.get("state").data;
+    }
+
     app.set(
       "state",
       Object.assign({}, app.get("state"), {

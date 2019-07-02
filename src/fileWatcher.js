@@ -5,66 +5,72 @@ const { storeFileContentInCache } = require("./state/data.js");
 const helpers = require("./helpers.js");
 const registerPartials = require("./hbs/registerPartials.js");
 
+let triggeredEvents = [];
+let triggered = false;
+
 function changeFileCallback(io, reloadParent) {
   io.emit("fileChanged", reloadParent);
-}
-
-function onDataFileChanged(io, app, event, changedPath) {
-  storeFileContentInCache(app, changedPath, () => {
-    setState(app, { menu: true, data: true }, () => {
-      changeFileCallback(
-        io,
-        event === "add" || event === "unlink" || event === "change"
-      );
-    });
-  });
-}
-
-function onTemplateFileChanged(io, app, hbs, event, changedPath) {
-  if (event === "add" || event === "unlink") {
-    setState(app, { menu: true, partials: true, data: true }, () => {
-      registerPartials.registerPartial(app, hbs, changedPath).then(() => {
-        changeFileCallback(io, true);
-      });
-    });
-  } else {
-    changeFileCallback(io);
-  }
+  triggeredEvents = [];
 }
 
 function fileWatcher(server, app, hbs) {
   const io = require("socket.io").listen(server);
   const ignored = [];
-  const watch = [];
 
-  app.get("config").watch.forEach(extension => {
-    watch.push(
-      `${process.cwd()}/${app.get("config").srcFolder}**/*.${extension}`
-    );
-  });
+  // ignore dotfiles
+  ignored.push(/(^|[\/\\])\../); /* eslint-disable-line */
 
   app.get("config").srcFolderIgnores.forEach(dir => {
     ignored.push(path.join(process.cwd(), dir));
   });
 
   chokidar
-    .watch(watch, {
+    .watch(`${process.cwd()}/${app.get("config").srcFolder}`, {
       ignoreInitial: true,
       ignored
     })
     .on("all", (event, changedPath) => {
-      if (helpers.fileIsDataFile(changedPath)) {
-        onDataFileChanged(io, app, event, changedPath);
-      } else if (helpers.fileIsTemplateFile(app, changedPath)) {
-        onTemplateFileChanged(io, app, hbs, event, changedPath);
-      } else {
-        setState(app, { menu: true, data: true }, () => {
-          changeFileCallback(
-            io,
-            app,
-            event === "addDir" || event === "unlinkDir"
-          );
-        });
+      triggeredEvents.push(event);
+
+      if (!triggered) {
+        triggered = true;
+        setTimeout(() => {
+          triggered = false;
+
+          if (
+            triggeredEvents.includes("addDir") ||
+            triggeredEvents.includes("unlinkDir")
+          ) {
+            setState(app, { menu: true, data: true, partials: true }, () => {
+              changeFileCallback(io, true);
+            });
+          } else if (
+            helpers.fileIsTemplateFile(app, changedPath) &&
+            (triggeredEvents.includes("add") ||
+              triggeredEvents.includes("unlink"))
+          ) {
+            setState(app, { menu: true, data: true, partials: true }, () => {
+              registerPartials
+                .registerPartial(app, hbs, changedPath)
+                .then(() => {
+                  changeFileCallback(io, true);
+                });
+            });
+          } else if (helpers.fileIsDataFile(changedPath)) {
+            storeFileContentInCache(app, changedPath, () => {
+              setState(app, { menu: true, data: true }, () => {
+                changeFileCallback(
+                  io,
+                  triggeredEvents.includes("add") ||
+                    triggeredEvents.includes("unlink") ||
+                    triggeredEvents.includes("change")
+                );
+              });
+            });
+          } else {
+            changeFileCallback(io);
+          }
+        }, 100);
       }
     });
 }

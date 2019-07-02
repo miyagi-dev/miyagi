@@ -13,7 +13,10 @@ function handleFileResult(data, obj, filePath, jsonChild) {
   if (err) {
     logger.log(
       "warn",
-      config.messages.fileNotFound.replace("${filePath}", filePath)
+      config.messages.fileNotFound.replace(
+        "${filePath}",
+        filePath.replace(process.cwd(), "")
+      )
     );
 
     return obj;

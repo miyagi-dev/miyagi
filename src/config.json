@@ -5,7 +5,6 @@
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
   "srcFolderIgnores": ["node_modules", ".git"],
-  "watch": ["js", "css", "json"],
   "folders": {
     "assets": {
       "development": "assets",

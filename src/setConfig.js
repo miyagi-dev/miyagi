@@ -62,7 +62,6 @@ module.exports = (app, userConfig = {}) => {
         cssFiles: [],
         jsFiles: [],
         srcFolderIgnores: config.srcFolderIgnores,
-        watch: config.watch.concat([userConfig.extension]),
         validations: {
           html: true,
           accessibility: true
