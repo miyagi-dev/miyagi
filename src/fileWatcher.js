@@ -41,31 +41,48 @@ function fileWatcher(server, app, hbs) {
             triggeredEvents.includes("addDir") ||
             triggeredEvents.includes("unlinkDir")
           ) {
-            setState(app, { menu: true, data: true, partials: true }, () => {
-              changeFileCallback(io, true);
-            });
+            setState(
+              app,
+              { sourceTree: true, menu: true, data: true, partials: true },
+              () => {
+                changeFileCallback(io, true);
+              }
+            );
           } else if (
             helpers.fileIsTemplateFile(app, changedPath) &&
             (triggeredEvents.includes("add") ||
               triggeredEvents.includes("unlink"))
           ) {
-            setState(app, { menu: true, data: true, partials: true }, () => {
-              registerPartials
-                .registerPartial(app, hbs, changedPath)
-                .then(() => {
-                  changeFileCallback(io, true);
-                });
-            });
+            setState(
+              app,
+              { sourceTree: true, menu: true, data: true, partials: true },
+              () => {
+                registerPartials
+                  .registerPartial(app, hbs, changedPath)
+                  .then(() => {
+                    changeFileCallback(io, true);
+                  });
+              }
+            );
           } else if (helpers.fileIsDataFile(changedPath)) {
             storeFileContentInCache(app, changedPath, () => {
-              setState(app, { menu: true, data: true }, () => {
-                changeFileCallback(
-                  io,
-                  triggeredEvents.includes("add") ||
-                    triggeredEvents.includes("unlink") ||
-                    triggeredEvents.includes("change")
-                );
-              });
+              setState(
+                app,
+                {
+                  sourceTree:
+                    triggeredEvents.includes("add") ||
+                    triggeredEvents.includes("unlink"),
+                  menu: true
+                },
+                () => {
+                  changeFileCallback(
+                    io,
+                    triggeredEvents.includes("add") ||
+                      triggeredEvents.includes("unlink") ||
+                      triggeredEvents.includes("change")
+                  );
+                }
+              );
             });
           } else {
             changeFileCallback(io);
