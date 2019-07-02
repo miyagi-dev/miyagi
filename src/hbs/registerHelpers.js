@@ -5,7 +5,7 @@ function partialPath(partial) {
 }
 
 function renderMenu(app, children, path, variation, id) {
-  return menu.render(app, children, { path, variation }, id);
+  return menu.render(app, children, { path, variation }, id, 0);
 }
 
 function getCssFilesHtml(files) {

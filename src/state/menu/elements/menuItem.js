@@ -23,7 +23,8 @@ function render(dir, request, app) {
           dir.children,
           request,
           dir.id,
-          dir.children[0].index
+          dir.children.filter(child => typeof child.index !== "undefined")[0]
+            .index
         );
       }
 
