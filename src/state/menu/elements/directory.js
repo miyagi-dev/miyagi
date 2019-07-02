@@ -9,8 +9,10 @@ function render(directory, request) {
     helpers.childrenOfDirectoryContainDirectory(directory) &&
     helpers.directoryIsNotTopLevel(directory)
   ) {
+    let child = directory.path.replace(process.cwd().slice(1), "");
+
     const expanded = helpers.pathIsChildOfSecondPath(
-      directory.path.replace(process.cwd().slice(1), "").slice(1),
+      child.slice(-1) === "/" ? child.slice(1) : child,
       request.path
     );
 
