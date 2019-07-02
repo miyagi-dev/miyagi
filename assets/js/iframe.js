@@ -12,3 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+
+if (
+  location.href.indexOf("/component?") >= 0 &&
+  location.href.indexOf("&embedded=true") >= 0
+) {
+  if (window.self === window.top) {
+    window.location = location.href.replace("&embedded=true", "");
+  }
+}

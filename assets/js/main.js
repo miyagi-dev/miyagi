@@ -4,7 +4,7 @@ window.onPageChanged = function(query) {
   const target = setActiveStateInNav(query, true);
   closeOtherOpenedMenus(target);
   openParentMenus(target);
-  history.pushState(null, null, query.replace("?component=", "?show="));
+  history.pushState(null, null, query.replace("/component?", "/show?"));
 };
 
 function updateIframe(content, iframe, src) {
@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
       setActiveStateInNav(src);
       updateIframe(content, iframe, src);
 
-      history.pushState(null, null, src.replace("?component=", "?show="));
+      history.pushState(null, null, src.replace("/component?", "/show?"));
 
       if (window.innerWidth <= 512) {
         document
@@ -139,10 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
       updateIframe(
         content,
         iframe,
-        document.location.href.replace("?show=", "?component=")
+        document.location.href.replace("/show?", "/component?")
       );
     } else {
-      updateIframe(content, iframe, `${document.location.href}?component=all`);
+      updateIframe(content, iframe, `${document.location.href}/`);
     }
   });
 });

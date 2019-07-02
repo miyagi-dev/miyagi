@@ -12,7 +12,7 @@ const {
 function renderMain(req, res) {
   res.render("index.hbs", {
     folders: req.app.get("state").menu,
-    iframeSrc: "?component=all&embedded=true",
+    iframeSrc: "/component?file=all&embedded=true",
     showAll: true,
     isComponentOverview: true,
     tests,
@@ -22,7 +22,7 @@ function renderMain(req, res) {
 }
 
 function renderMainWithComponent(req, res, component, variation) {
-  let iframeSrc = `?component=${component}`;
+  let iframeSrc = `/component?file=${component}`;
   let isComponentOverview = true;
 
   if (variation) {
@@ -35,10 +35,30 @@ function renderMainWithComponent(req, res, component, variation) {
   res.render("index.hbs", {
     folders: req.app.get("state").menu,
     iframeSrc,
-    requestedComponent: req.query.show,
+    requestedComponent: req.query.file,
     requestedVariation: req.query.variation,
     isComponentOverview,
     tests,
+    projectName: config.projectName,
+    userProjectName: req.app.get("config").projectName
+  });
+}
+
+function renderMainWith404(req, res, component, variation) {
+  let iframeSrc = `/component?file=${component}`;
+
+  if (variation) {
+    iframeSrc += `&variation=${variation}`;
+  }
+
+  iframeSrc += "&embedded=true";
+
+  res.render("index.hbs", {
+    folders: req.app.get("state").menu,
+    iframeSrc,
+    requestedComponent: null,
+    requestedVariation: null,
+    isComponentOverview: false,
     projectName: config.projectName,
     userProjectName: req.app.get("config").projectName
   });
@@ -70,7 +90,7 @@ function renderComponent(req, res, component, variation, embedded) {
     component,
     componentData,
     embedded
-      ? `?component=${req.query.component}&variation=${req.query.variation}`
+      ? `/component?file=${req.query.file}&variation=${req.query.variation}`
       : null
   );
 }
@@ -81,7 +101,7 @@ function renderComponentVariations(req, res, componentPath, embedded) {
   const componentVariations = componentJson.variations;
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
-  const standaloneUrl = embedded ? `?component=${req.query.component}` : null;
+  const standaloneUrl = embedded ? `/component?file=${req.query.file}` : null;
   const context = [];
   let componentData = componentJson.data;
 
@@ -185,7 +205,7 @@ async function renderComponentOverview(req, res, embedded) {
   Promise.all(promises).then(() => {
     res.render("component_overview.hbs", {
       components: arr,
-      standaloneUrl: embedded ? "?component=all" : null,
+      standaloneUrl: embedded ? "/component?file=all" : null,
       dev: process.env.NODE_ENV !== "production",
       prod: process.env.NODE_ENV === "production",
       a11yTestsPreload: req.app.get("config").validations.accessibility,
@@ -253,10 +273,23 @@ function renderVariations(req, res, component, data, standaloneUrl) {
   });
 }
 
+function renderComponentNotFound(req, res, embedded, target) {
+  res.render(embedded ? "component_frame.hbs" : "component.hbs", {
+    html: `<p class="RoundupError">${target} not found.</p>`,
+    standaloneUrl: null,
+    dev: process.env.NODE_ENV !== "production",
+    prod: process.env.NODE_ENV === "production",
+    projectName: config.projectName,
+    userProjectName: req.app.get("config").projectName
+  });
+}
+
 module.exports = {
   renderMain,
   renderMainWithComponent,
+  renderMainWith404,
   renderComponent,
   renderComponentVariations,
-  renderComponentOverview
+  renderComponentOverview,
+  renderComponentNotFound
 };

@@ -23,9 +23,9 @@ function render(component, request) {
     component.index
   } ${classes.link} ${classes.link}--lvl${
     component.index
-  }" target="iframe" href="?component=${component.shortPath}&embedded=true"${
-    current ? helpers.activeState : ""
-  }>${component.name}</a>`;
+  }" target="iframe" href="/component?file=${
+    component.shortPath
+  }&embedded=true"${current ? helpers.activeState : ""}>${component.name}</a>`;
 
   if (hasVariations) {
     html += list.render(

@@ -1,3 +1,4 @@
+const path = require("path");
 const render = require("./render/index.js");
 
 function checkIfRequestedComponentIsValid(app, component) {
@@ -7,45 +8,102 @@ function checkIfRequestedComponentIsValid(app, component) {
   );
 }
 
+function checkIfRequestedVariationIsValid(app, component, variation) {
+  const data = app.get("state").data[component];
+  const basename = path.basename(component, `.${app.get("config").extension}`);
+
+  return (
+    data.hasOwnProperty("variations") &&
+    data.variations.length > 0 &&
+    (data.variations.filter(variant => variant.name === variation).length > 0 ||
+      variation === basename)
+  );
+}
+
 module.exports = function(app) {
-  app.get("/", (req, res) => {
-    if (req.query.component) {
-      if (req.query.component === "all") {
-        render.renderComponentOverview(req, res, req.query.embedded);
-      } else if (checkIfRequestedComponentIsValid(app, req.query.component)) {
-        if (req.query.variation) {
+  app.get("/show", (req, res) => {
+    if (req.query.file === "all") {
+      render.renderMain(req, res);
+    } else if (checkIfRequestedComponentIsValid(app, req.query.file)) {
+      if (req.query.variation) {
+        if (
+          checkIfRequestedVariationIsValid(
+            app,
+            req.query.file,
+            req.query.variation
+          )
+        ) {
+          render.renderMainWithComponent(
+            req,
+            res,
+            req.query.file,
+            req.query.variation
+          );
+        } else {
+          render.renderMainWith404(
+            req,
+            res,
+            req.query.file,
+            req.query.variation,
+            "Variation"
+          );
+        }
+      } else {
+        render.renderMainWithComponent(req, res, req.query.file);
+      }
+    } else {
+      render.renderMainWith404(
+        req,
+        res,
+        req.query.file,
+        req.query.variation,
+        "Component"
+      );
+    }
+  });
+
+  app.get("/component", (req, res) => {
+    if (req.query.file === "all") {
+      render.renderComponentOverview(req, res, req.query.embedded);
+    } else if (checkIfRequestedComponentIsValid(app, req.query.file)) {
+      if (req.query.variation) {
+        if (
+          checkIfRequestedVariationIsValid(
+            app,
+            req.query.file,
+            req.query.variation
+          )
+        ) {
           render.renderComponent(
             req,
             res,
-            req.query.component,
+            req.query.file,
             req.query.variation,
             req.query.embedded
           );
         } else {
-          render.renderComponentVariations(
+          render.renderComponentNotFound(
             req,
             res,
-            req.query.component,
-            req.query.embedded
+            req.query.embedded,
+            "Variation"
           );
         }
       } else {
-        render.renderMain(req, res);
-      }
-    } else if (req.query.show) {
-      if (checkIfRequestedComponentIsValid(app, req.query.show)) {
-        render.renderMainWithComponent(
+        render.renderComponentVariations(
           req,
           res,
-          req.query.show,
-          req.query.variation
+          req.query.file,
+          req.query.embedded
         );
-      } else {
-        render.renderMain(req, res);
       }
     } else {
-      render.renderMain(req, res);
+      render.renderComponentNotFound(req, res, req.query.embedded, "Component");
     }
+  });
+
+  app.get("/", (req, res) => {
+    render.renderMain(req, res);
   });
 
   app.all("*", (req, res) => {
