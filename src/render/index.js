@@ -76,7 +76,8 @@ function renderComponent(req, res, component, variation, embedded) {
 }
 
 function renderComponentVariations(req, res, componentPath, embedded) {
-  const componentJson = cloneDeep(req.app.get("state").data[componentPath]);
+  const componentJson =
+    cloneDeep(req.app.get("state").data[componentPath]) || {};
   const componentVariations = componentJson.variations;
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
