@@ -47,4 +47,8 @@ module.exports = function(app) {
       render.renderMain(req, res);
     }
   });
+
+  app.all("*", (req, res) => {
+    res.redirect("/");
+  });
 };

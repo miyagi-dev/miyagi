@@ -38,8 +38,8 @@ function start(cnf) {
       app,
       { sourceTree: true, menu: true, partials: true, data: true },
       () => {
-        setRouter(app);
         setStaticFiles(app, config);
+        setRouter(app);
         setViews(app);
 
         registerHelpers(app, handlebars);
