@@ -1,6 +1,7 @@
 const cloneDeep = require("clone-deep");
 const path = require("path");
 const tests = require("./tests.json");
+const config = require("../config.json");
 const {
   getComponentErrorHtml,
   getDataForRenderFunction,
@@ -15,7 +16,8 @@ function renderMain(req, res) {
     showAll: true,
     isComponentOverview: true,
     tests,
-    projectName: req.app.get("config").projectName
+    projectName: config.projectName,
+    userProjectName: req.app.get("config").projectName
   });
 }
 
@@ -37,7 +39,8 @@ function renderMainWithComponent(req, res, component, variation) {
     requestedVariation: req.query.variation,
     isComponentOverview,
     tests,
-    projectName: req.app.get("config").projectName
+    projectName: config.projectName,
+    userProjectName: req.app.get("config").projectName
   });
 }
 
@@ -185,7 +188,8 @@ async function renderComponentOverview(req, res, embedded) {
       dev: process.env.NODE_ENV !== "production",
       prod: process.env.NODE_ENV === "production",
       a11yTestsPreload: req.app.get("config").validations.accessibility,
-      projectName: req.app.get("config").projectName
+      projectName: config.projectName,
+      userProjectName: req.app.get("config").projectName
     });
   });
 }
@@ -204,7 +208,8 @@ function renderSingleComponent(req, res, component, context, standaloneUrl) {
         dev: process.env.NODE_ENV !== "production",
         prod: process.env.NODE_ENV === "production",
         a11yTests: req.app.get("config").validations.accessibility,
-        projectName: req.app.get("config").projectName
+        projectName: config.projectName,
+        userProjectName: req.app.get("config").projectName
       });
     }
   );
@@ -241,7 +246,8 @@ function renderVariations(req, res, component, data, standaloneUrl) {
       dev: process.env.NODE_ENV !== "production",
       prod: process.env.NODE_ENV === "production",
       a11yTestsPreload: req.app.get("config").validations.accessibility,
-      projectName: req.app.get("config").projectName
+      projectName: config.projectName,
+      userProjectName: req.app.get("config").projectName
     });
   });
 }
