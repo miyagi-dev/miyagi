@@ -29,7 +29,8 @@ function render(dir, request, app) {
       }
 
       return html;
-    })()
+    })(),
+    "directory"
   );
 }
 

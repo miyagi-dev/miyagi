@@ -75,7 +75,9 @@ async function getFileContent(app, obj, jsonChild) {
 
 async function addVariations(app, obj) {
   const jsonChild = obj.children.filter(
-    o => o.extension === `.${config.dataFileType}`
+    o =>
+      path.basename(o.name, `.${config.dataFileType}`) === obj.name &&
+      o.extension === `.${config.dataFileType}`
   )[0];
   if (jsonChild) {
     return await getFileContent(app, obj, jsonChild);

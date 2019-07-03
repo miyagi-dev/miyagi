@@ -18,12 +18,18 @@
   position: relative;
 }
 
-.Roundup-listItem--lvl0:not(:last-child) {
+.Roundup-listItem--directory.Roundup-listItem--lvl0:not(:last-child) {
   padding-bottom: 2rem;
 }
 
-.Roundup-list:not(.Roundup-list--lvl0) {
+.Roundup-list--variations,
+.Roundup-list--components:not(.Roundup-list--lvl0) {
   padding-top: var(--spacingTop);
+}
+
+.Roundup-list--variations + .Roundup-list--components {
+  padding-bottom: 0.5rem;
+  padding-top: 1rem;
 }
 
 .Roundup-list--components:not(.Roundup-list--lvl0) {

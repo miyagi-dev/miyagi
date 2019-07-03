@@ -31,7 +31,7 @@ function render(component, request) {
     html += list.render(
       "variations",
       component.index,
-      component.id,
+      `${component.id}-variations`,
       variations.render(component, request)
     );
   }

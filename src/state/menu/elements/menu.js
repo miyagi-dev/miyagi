@@ -5,7 +5,7 @@ function render(app, children, request, id, index) {
     return list.render(
       "components",
       index,
-      id,
+      `${id}-components`,
       (() => {
         let html = "";
 

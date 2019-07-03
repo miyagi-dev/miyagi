@@ -14,7 +14,8 @@ function render(component, request) {
 
     html += listItem.render(
       component,
-      variationLink.render(component, variation, current)
+      variationLink.render(component, variation, current),
+      "variation"
     );
   });
 
