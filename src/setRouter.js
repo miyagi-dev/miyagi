@@ -1,4 +1,5 @@
 const path = require("path");
+const helpers = require("./helpers.js");
 const render = require("./render/index.js");
 
 function checkIfRequestedComponentIsValid(app, component) {
@@ -9,8 +10,18 @@ function checkIfRequestedComponentIsValid(app, component) {
 }
 
 function checkIfRequestedVariationIsValid(app, component, variation) {
-  const data = app.get("state").data[component];
+  const data = app.get("state").data[
+    helpers.getFullPathFromShortPath(
+      app,
+      helpers.getDataPathFromTemplatePath(app, component)
+    )
+  ];
+
   const basename = path.basename(component, `.${app.get("config").extension}`);
+
+  if (!data) {
+    return false;
+  }
 
   return (
     data.hasOwnProperty("variations") &&

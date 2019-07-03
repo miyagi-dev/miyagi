@@ -53,5 +53,6 @@ function filterFilesWithoutUnwantedFileType(app, file, extension, logError) {
 }
 
 module.exports = {
-  filterFilesWithoutUnwantedFileType
+  filterFilesWithoutUnwantedFileType,
+  isNotIgnored
 };

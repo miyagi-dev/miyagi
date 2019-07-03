@@ -3,7 +3,19 @@ const fs = require("fs");
 const readDir = require("fs-readdir-recursive");
 const config = require("../config.json");
 const helpers = require("../helpers.js");
-const { filterFilesWithoutUnwantedFileType } = require("./helpers.js");
+const stateHelpers = require("./helpers.js");
+const { promisify } = require("util");
+const readFileAsync = promisify(fs.readFile);
+
+function filterFilesWithoutUnwantedFileType(app, file, extension) {
+  if (stateHelpers.isNotIgnored(file, app.get("config").srcFolderIgnores)) {
+    if (helpers.pathEndsWithExtension(file, extension)) {
+      return true;
+    }
+  }
+
+  return false;
+}
 
 function getFilePaths(app) {
   const paths = readDir(
@@ -19,27 +31,21 @@ async function getData(app) {
   const jsonData = {};
   const promises = [];
 
-  if (!app.get("cache")) {
-    app.set("cache", {});
+  if (!app.get("state")) {
+    app.set("state", {});
+  }
+
+  if (!app.get("state").data) {
+    app.set("state", Object.assign({}, app.get("state"), { data: {} }));
   }
 
   getFilePaths(app).forEach(shortPath => {
     promises.push(
-      new Promise(resolve => {
-        const jsonPath = `${app.get("config").srcFolder}${shortPath}`;
-        const templatePath = helpers.getTemplatePathFromDataPath(
-          app,
-          shortPath
-        );
-
-        getFile(
-          app,
-          path.join(process.cwd(), jsonPath.replace(/\0/g, "")),
-          (err, data) => {
-            jsonData[templatePath] = data;
-            resolve();
-          }
-        );
+      new Promise(async resolve => {
+        const fullPath = helpers.getFullPathFromShortPath(app, shortPath);
+        const data = await getFile(app, fullPath.replace(/\0/g, ""));
+        jsonData[fullPath] = data;
+        resolve();
       })
     );
   });
@@ -49,38 +55,57 @@ async function getData(app) {
   });
 }
 
-function getFile(app, fileName, cb) {
-  if (app.get("cache")[fileName]) {
-    return cb(null, app.get("cache")[fileName]);
+async function getFile(app, fileName) {
+  if (app.get("state").data[fileName]) {
+    return app.get("state").data[fileName];
   }
 
-  return storeFileContentInCache(app, fileName, cb);
+  return await storeFileContentInCache(app, fileName);
 }
 
-function storeFileContentInCache(app, fileName, cb) {
+async function storeFileContentInCache(app, fileName) {
+  let result;
+
   try {
-    fs.readFile(fileName, "utf8", (err, result) => {
-      const cache = {};
-      let data;
+    result = await readFileAsync(fileName, "utf8");
 
-      if (err) {
-        data = {};
-      } else {
-        data = result ? JSON.parse(result) : {};
-      }
+    if (result) {
+      const data = app.get("state").data ? app.get("state").data : {};
+      result = result ? JSON.parse(result) : {};
 
-      cache[fileName] = data;
+      data[fileName] = result;
 
-      app.set("cache", Object.assign(app.get("cache"), cache));
-
-      return cb(null, data);
-    });
+      app.set(
+        "state",
+        Object.assign(app.get("state"), {
+          data
+        })
+      );
+    } else {
+      result = {};
+    }
   } catch (e) {
-    return cb(null, {});
+    result = {};
   }
+
+  return result;
+}
+
+function removeFileFromCache(app, fullPath) {
+  const data = app.get("state").data;
+
+  delete data[fullPath];
+
+  app.set(
+    "state",
+    Object.assign(app.get("state"), {
+      data
+    })
+  );
 }
 
 module.exports = {
   getData,
-  storeFileContentInCache
+  storeFileContentInCache,
+  removeFileFromCache
 };

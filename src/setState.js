@@ -3,7 +3,7 @@ const { getData } = require("./state/data.js");
 const { getStructure } = require("./state/menu/index.js");
 const getSourceTree = require("./state/sourceTree.js");
 
-async function setState(app, methods, cb) {
+async function setState(app, methods) {
   if (methods.data) {
     if (app.get("state") && app.get("state").data) {
       delete app.get("state").data;
@@ -56,7 +56,7 @@ async function setState(app, methods, cb) {
     );
   }
 
-  cb();
+  return true;
 }
 
 module.exports = setState;

@@ -45,9 +45,17 @@ function getTemplatePathFromDataPath(app, filePath) {
   )}`;
 }
 
+function getDataPathFromTemplatePath(app, filePath) {
+  return `${filePath.replace(
+    `.${app.get("config").extension}`,
+    `.${config.dataFileType}`
+  )}`;
+}
+
 module.exports = {
   fileIsDataFile,
   fileIsTemplateFile,
+  getDataPathFromTemplatePath,
   getFullPathFromShortPath,
   getShortPathFromFullPath,
   getTemplatePathFromDataPath,

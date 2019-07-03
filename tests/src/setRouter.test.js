@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const request = require("supertest");
 const setRouter = require("../../src/setRouter.js");
@@ -8,23 +9,24 @@ const component = "components/component/component.hbs";
 describe("setRouter()", () => {
   const app = express();
 
+  const componentJsonFullPath = path.join(
+    process.cwd(),
+    `srcFolder/${component}`
+  );
+  const data = {};
+  data[componentJsonFullPath.replace(".hbs", ".json")] = {
+    variations: [{ name: "someVariation", data: {} }]
+  };
+
   app.set("state", {
     partials: {
-      "components/component/component.hbs": "components/component/component.hbs"
+      "components/component/component.hbs": component
     },
-    data: {
-      "components/component/component.hbs": {
-        variations: [
-          {
-            name: "someVariation",
-            data: {}
-          }
-        ]
-      }
-    }
+    data
   });
   app.set("config", {
-    extension: "hbs"
+    extension: "hbs",
+    srcFolder: "srcFolder/"
   });
 
   setRouter(app);

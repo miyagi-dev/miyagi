@@ -2,6 +2,7 @@ const cloneDeep = require("clone-deep");
 const path = require("path");
 const tests = require("./tests.json");
 const config = require("../config.json");
+const helpers = require("../helpers.js");
 const {
   getComponentErrorHtml,
   getDataForRenderFunction,
@@ -65,7 +66,14 @@ function renderMainWith404(req, res, component, variation) {
 }
 
 function renderComponent(req, res, component, variation, embedded) {
-  const componentJson = cloneDeep(req.app.get("state").data[component]);
+  const componentJson = cloneDeep(
+    req.app.get("state").data[
+      helpers.getFullPathFromShortPath(
+        req.app,
+        helpers.getDataPathFromTemplatePath(req.app, component)
+      )
+    ] || {}
+  );
   const componentVariations = componentJson.variations;
   let componentData = componentJson.data;
 
@@ -96,8 +104,14 @@ function renderComponent(req, res, component, variation, embedded) {
 }
 
 function renderComponentVariations(req, res, componentPath, embedded) {
-  const componentJson =
-    cloneDeep(req.app.get("state").data[componentPath]) || {};
+  const componentJson = cloneDeep(
+    req.app.get("state").data[
+      helpers.getFullPathFromShortPath(
+        req.app,
+        helpers.getDataPathFromTemplatePath(req.app, componentPath)
+      )
+    ] || {}
+  );
   const componentVariations = componentJson.variations;
   const splittedPath = componentPath.split(path.sep);
   const fileName = splittedPath[splittedPath.length - 1];
@@ -160,7 +174,13 @@ async function renderComponentOverview(req, res, embedded) {
   const promises = [];
 
   const components = Object.keys(req.app.get("state").partials).map(path => {
-    let componentJson = req.app.get("state").data[path];
+    let componentJson =
+      req.app.get("state").data[
+        helpers.getFullPathFromShortPath(
+          req.app,
+          helpers.getDataPathFromTemplatePath(req.app, path)
+        )
+      ] || {};
     let componentData;
 
     if (componentJson) {

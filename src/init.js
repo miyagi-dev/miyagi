@@ -17,7 +17,7 @@ const setState = require("./setState.js");
 const setStaticFiles = require("./setStaticFiles.js");
 const setViews = require("./setViews.js");
 
-function start(cnf) {
+async function start(cnf) {
   const app = express();
 
   setConfig(app, cnf);
@@ -34,29 +34,24 @@ function start(cnf) {
     );
     app.set("port", port);
 
-    setState(
-      app,
-      { sourceTree: true, menu: true, partials: true, data: true },
-      () => {
-        setStaticFiles(app, config);
-        setRouter(app);
-        setViews(app);
+    await setState(app, {
+      sourceTree: true,
+      menu: true,
+      partials: true,
+      data: true
+    });
+    setStaticFiles(app, config);
+    setRouter(app);
+    setViews(app);
+    registerHelpers(app, handlebars);
+    await registerPartials.registerAll(app, handlebars, true);
+    handlebarsLayouts.register(handlebars);
 
-        registerHelpers(app, handlebars);
-        registerPartials.registerAll(app, handlebars, true).then(() => {
-          handlebarsLayouts.register(handlebars);
+    server.listen(app.get("port"));
 
-          server.listen(app.get("port"));
+    fileWatcher(server, app, handlebars);
 
-          fileWatcher(server, app, handlebars);
-
-          logger.log(
-            "info",
-            config.messages.serverStarted.replace("${port}", port)
-          );
-        });
-      }
-    );
+    logger.log("info", config.messages.serverStarted.replace("${port}", port));
   }
 }
 
