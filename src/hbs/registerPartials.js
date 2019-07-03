@@ -53,17 +53,14 @@ async function registerLayouts(hbs) {
 async function registerComponents(hbs, app) {
   const promises = [];
 
-  Object.keys(app.get("state").partials).forEach(filePath => {
-    if (pathEndsWithExtension(filePath, app.get("config").extension)) {
+  Object.keys(app.get("state").partials).forEach(shortPath => {
+    if (pathEndsWithExtension(shortPath, app.get("config").extension)) {
       promises.push(
         new Promise(resolve => {
           register(
             hbs,
-            filePath,
-            path.join(
-              process.cwd(),
-              `${app.get("config").srcFolder}/${filePath}`
-            )
+            shortPath,
+            helpers.getFullPathFromShortPath(app, shortPath)
           ).then(resolve);
         })
       );

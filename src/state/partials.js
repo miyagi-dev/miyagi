@@ -20,10 +20,10 @@ function getFilePaths(app) {
 module.exports = function getPartials(app) {
   const partials = {};
 
-  getFilePaths(app).forEach(filePath => {
-    partials[filePath] = path.join(
+  getFilePaths(app).forEach(shortPath => {
+    partials[shortPath] = path.join(
       process.cwd(),
-      `${app.get("config").srcFolder}/${filePath}`
+      `${app.get("config").srcFolder}/${shortPath}`
     );
   });
 

@@ -1,3 +1,4 @@
+const path = require("path");
 const config = require("./config.json");
 
 function pathEndsWithExtension(file, ext) {
@@ -26,6 +27,10 @@ function fileIsTemplateFile(app, file) {
   return fileIsOfGivenType(file, app.get("config").extension);
 }
 
+function getFullPathFromShortPath(app, shortPath) {
+  return path.join(process.cwd(), `${app.get("config").srcFolder}${shortPath}`);
+}
+
 function getShortPathFromFullPath(app, fullPath) {
   return fullPath.replace(
     `${process.cwd()}/${app.get("config").srcFolder}`,
@@ -43,6 +48,7 @@ function getTemplatePathFromDataPath(app, filePath) {
 module.exports = {
   fileIsDataFile,
   fileIsTemplateFile,
+  getFullPathFromShortPath,
   getShortPathFromFullPath,
   getTemplatePathFromDataPath,
   pathEndsWithExtension
