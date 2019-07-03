@@ -13,7 +13,7 @@ function render(dir, request, app) {
       if (helpers.directoryHasComponent(dir)) {
         html += component.render(dir, request);
       } else {
-        html += directory.render(dir, request);
+        html += directory.render(app, dir, request);
       }
 
       // starts recursion

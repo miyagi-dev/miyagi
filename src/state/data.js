@@ -2,6 +2,7 @@ const path = require("path");
 const fs = require("fs");
 const readDir = require("fs-readdir-recursive");
 const config = require("../config.json");
+const helpers = require("../helpers.js");
 const { filterFilesWithoutUnwantedFileType } = require("./helpers.js");
 
 function getFilePaths(app) {
@@ -22,14 +23,14 @@ async function getData(app) {
     app.set("cache", {});
   }
 
-  getFilePaths(app).forEach(filePath => {
+  getFilePaths(app).forEach(shortPath => {
     promises.push(
       new Promise(resolve => {
-        const jsonPath = `${app.get("config").srcFolder}${filePath}`;
-        const templatePath = `${filePath.replace(
-          `.${config.dataFileType}`,
-          `.${app.get("config").extension}`
-        )}`;
+        const jsonPath = `${app.get("config").srcFolder}${shortPath}`;
+        const templatePath = helpers.getTemplatePathFromDataPath(
+          app,
+          shortPath
+        );
 
         getFile(
           app,

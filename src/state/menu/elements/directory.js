@@ -1,18 +1,17 @@
 const toggle = require("./toggle.js");
-const helpers = require("../helpers.js");
+const menuHelpers = require("../helpers.js");
+const helpers = require("../../../helpers.js");
 const classes = require("../classes.js");
 
-function render(directory, request) {
+function render(app, directory, request) {
   let html = "";
 
   if (
-    helpers.childrenOfDirectoryContainDirectory(directory) &&
-    helpers.directoryIsNotTopLevel(directory)
+    menuHelpers.childrenOfDirectoryContainDirectory(directory) &&
+    menuHelpers.directoryIsNotTopLevel(directory)
   ) {
-    let child = directory.path.replace(process.cwd().slice(1), "");
-
-    const expanded = helpers.pathIsChildOfSecondPath(
-      child.slice(-1) === "/" ? child.slice(1) : child,
+    const expanded = menuHelpers.pathIsChildOfSecondPath(
+      helpers.getShortPathFromFullPath(app, directory.fullPath),
       request.path
     );
 

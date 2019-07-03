@@ -1,16 +1,19 @@
 const fs = require("fs");
+const path = require("path");
 const config = require("../../config.json");
 const logger = require("../../logger.js");
+const helpers = require("../../helpers.js");
 const { promisify } = require("util");
 const readFileAsync = promisify(fs.readFile);
 
-function handleFileResult(json, obj, filePath, jsonChild) {
+function handleFileResult(app, json, obj, fullPath, jsonChild) {
   const variations = json.variations;
+  const shortPath = helpers.getShortPathFromFullPath(app, fullPath);
 
   if (
     variations &&
     variations.length &&
-    obj.name === jsonChild.name.replace(`.${config.dataFileType}`, "")
+    obj.name === path.basename(jsonChild.name, `.${config.dataFileType}`)
   ) {
     if (json.data) {
       obj.variations = [{ name: obj.name, data: json.data }].concat(variations);
@@ -26,14 +29,14 @@ function handleFileResult(json, obj, filePath, jsonChild) {
             "warn",
             config.messages.noNameSetForVariation
               .replace("${i}", i)
-              .replace("${file}", filePath.replace(process.cwd(), ""))
+              .replace("${file}", shortPath)
           );
         } else {
           logger.log(
             "warn",
             config.messages.noDataSetForVariation
               .replace("${variation}", variation.name)
-              .replace("${file}", filePath.replace(process.cwd(), ""))
+              .replace("${file}", shortPath)
           );
         }
         return false;
@@ -45,18 +48,15 @@ function handleFileResult(json, obj, filePath, jsonChild) {
 }
 
 async function getFileContent(app, obj, jsonChild) {
-  const filePath = jsonChild.path;
-  const shortPath = filePath.replace(
-    `${process.cwd()}/${app.get("config").srcFolder}`,
-    ""
-  );
+  const fullPath = jsonChild.path;
+  const shortPath = helpers.getShortPathFromFullPath(app, fullPath);
   let result;
 
-  if (app.get("cache") && app.get("cache")[filePath]) {
-    result = app.get("cache")[filePath];
+  if (app.get("cache") && app.get("cache")[fullPath]) {
+    result = app.get("cache")[fullPath];
   } else {
     try {
-      result = await readFileAsync(filePath, "utf8");
+      result = await readFileAsync(fullPath, "utf8");
       result = JSON.parse(result) || {};
     } catch (e) {
       logger.log(
@@ -67,7 +67,7 @@ async function getFileContent(app, obj, jsonChild) {
   }
 
   if (result) {
-    obj = handleFileResult(result, obj, filePath, jsonChild);
+    obj = handleFileResult(app, result, obj, fullPath, jsonChild);
   }
 
   return obj;
@@ -77,7 +77,6 @@ async function addVariations(app, obj) {
   const jsonChild = obj.children.filter(
     o => o.extension === `.${config.dataFileType}`
   )[0];
-
   if (jsonChild) {
     return await getFileContent(app, obj, jsonChild);
   } else {
@@ -86,13 +85,6 @@ async function addVariations(app, obj) {
 }
 
 async function updateSourceObject(app, obj) {
-  // if (obj.path) {
-  //   obj.path = obj.path.replace(
-  //     `${process.cwd()}/${app.get("config").srcFolder}`,
-  //     ""
-  //   );
-  // }
-
   if (obj.children) {
     obj = await addVariations(app, obj);
 

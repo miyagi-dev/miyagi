@@ -15,12 +15,12 @@ beforeEach(() => {
 });
 
 describe("src/menu/elements/directory", () => {
-  const path = "foo/bar";
+  const fullPath = "foo/bar";
   const id = 1;
   const index = 2;
   const name = "name";
   const directoryObject = {
-    path,
+    fullPath,
     id,
     index,
     name
@@ -29,13 +29,17 @@ describe("src/menu/elements/directory", () => {
     path: "foo/bar",
     variation: "baz"
   };
+  const app = require("express")();
+  app.set("config", {
+    srcFolder: "srcFolder"
+  });
 
   test("adds the component name with correct index to the html", () => {
     const directory = requireComponent("directory");
 
     expect(
       directory
-        .render(directoryObject, request)
+        .render(app, directoryObject, request)
         .indexOf(
           '<span class="Roundup-component Roundup-component--lvl2">name</span>'
         )
@@ -54,7 +58,7 @@ describe("src/menu/elements/directory", () => {
         helpers.directoryIsNotTopLevel = jest.fn(() => true);
         helpers.pathIsChildOfSecondPath = jest.fn(() => true);
 
-        directory.render(directoryObject, request);
+        directory.render(app, directoryObject, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
           directoryObject.id,
@@ -75,7 +79,7 @@ describe("src/menu/elements/directory", () => {
         helpers.directoryIsNotTopLevel = jest.fn(() => true);
         helpers.pathIsChildOfSecondPath = jest.fn(() => false);
 
-        directory.render(directoryObject, request);
+        directory.render(app, directoryObject, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
           directoryObject.id,
@@ -95,7 +99,7 @@ describe("src/menu/elements/directory", () => {
       helpers.directoryIsNotTopLevel = jest.fn(() => true);
 
       expect(
-        directory.render(directoryObject, request).indexOf("toggleHtml")
+        directory.render(app, directoryObject, request).indexOf("toggleHtml")
       ).toBeGreaterThanOrEqual(0);
     });
   });

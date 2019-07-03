@@ -26,8 +26,24 @@ function fileIsTemplateFile(app, file) {
   return fileIsOfGivenType(file, app.get("config").extension);
 }
 
+function getShortPathFromFullPath(app, fullPath) {
+  return fullPath.replace(
+    `${process.cwd()}/${app.get("config").srcFolder}`,
+    ""
+  );
+}
+
+function getTemplatePathFromDataPath(app, filePath) {
+  return `${filePath.replace(
+    `.${config.dataFileType}`,
+    `.${app.get("config").extension}`
+  )}`;
+}
+
 module.exports = {
   fileIsDataFile,
   fileIsTemplateFile,
+  getShortPathFromFullPath,
+  getTemplatePathFromDataPath,
   pathEndsWithExtension
 };

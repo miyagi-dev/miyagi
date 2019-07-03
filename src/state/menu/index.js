@@ -1,3 +1,4 @@
+const path = require("path");
 const getSourceStructure = require("./structure.js");
 
 function normalizePath(path) {
@@ -10,7 +11,7 @@ function normalizePath(path) {
 function getComponentFile(directory, templateExtension) {
   return directory.children.filter(
     child =>
-      child.name.replace(`.${templateExtension}`, "") === directory.name &&
+      path.basename(child.name, `.${templateExtension}`) === directory.name &&
       child.extension === `.${templateExtension}`
   )[0];
 }
@@ -27,7 +28,7 @@ function getDataForLinkedDirectory(directory, partial) {
   return {
     type: directory.type,
     name: directory.name,
-    path: partial.path,
+    fullPath: partial.path,
     shortPath: partial.shortPath,
     extension: partial.extension,
     variations: directory.variations,
@@ -40,11 +41,9 @@ function getDataForDirectory(directory) {
   return {
     type: directory.type,
     name: directory.name,
-    path: directory.path,
+    fullPath: directory.path,
     index: directory.index,
-    id: normalizePath(
-      directory.path.replace(process.cwd().slice(1), "").slice(1)
-    )
+    id: normalizePath(directory.path.replace(process.cwd(), ""))
   };
 }
 

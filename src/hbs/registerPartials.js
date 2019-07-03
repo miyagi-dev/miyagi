@@ -2,6 +2,7 @@ const config = require("../config.json");
 const fs = require("fs");
 const path = require("path");
 const logger = require("../logger.js");
+const helpers = require("../helpers.js");
 const { pathEndsWithExtension } = require("../helpers.js");
 
 async function register(hbs, name, fullFilePath) {
@@ -72,14 +73,12 @@ async function registerComponents(hbs, app) {
   return await Promise.all(promises);
 }
 
-async function registerPartial(app, hbs, filePath) {
+async function registerPartial(app, hbs, fullPath) {
   return new Promise(resolve => {
     register(
       hbs,
-      filePath
-        .replace(process.cwd(), "")
-        .replace(app.get("config").srcFolder, ""),
-      filePath
+      helpers.getShortPathFromFullPath(app, fullPath),
+      fullPath
     ).then(resolve);
   });
 }

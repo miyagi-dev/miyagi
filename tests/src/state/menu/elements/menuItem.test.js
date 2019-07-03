@@ -106,7 +106,11 @@ describe("src/menu/elements/menuItem", () => {
 
       menuItem.render(directoryObject, request, app);
 
-      expect(directory.render).toHaveBeenCalledWith(directoryObject, request);
+      expect(directory.render).toHaveBeenCalledWith(
+        app,
+        directoryObject,
+        request
+      );
     });
 
     test("adds the menuItem html to the return value", () => {

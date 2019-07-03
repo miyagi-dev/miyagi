@@ -1,6 +1,7 @@
 const dirTree = require("directory-tree");
 const path = require("path");
 const config = require("../config.json");
+const helpers = require("../helpers.js");
 
 module.exports = app => {
   const exclude = [];
@@ -18,10 +19,7 @@ module.exports = app => {
       exclude
     },
     item => {
-      item.shortPath = item.path.replace(
-        `${process.cwd()}/${app.get("config").srcFolder}`,
-        ""
-      );
+      item.shortPath = helpers.getShortPathFromFullPath(app, item.path);
     }
   );
 };

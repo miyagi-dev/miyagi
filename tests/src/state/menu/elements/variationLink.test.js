@@ -14,7 +14,7 @@ describe("src/menu/elements/variationLink", () => {
           true
         )
       ).toEqual(
-        `<a class="Roundup-link Roundup-link--lvl1 Roundup-link--variation" target="iframe" href="?component=foo/bar&variation=baz&embedded=true" aria-current="page">baz</a>`
+        `<a class="Roundup-link Roundup-link--lvl1 Roundup-link--variation" target="iframe" href="/component?file=foo/bar&variation=baz&embedded=true" aria-current="page">baz</a>`
       );
     });
   });
@@ -28,7 +28,7 @@ describe("src/menu/elements/variationLink", () => {
           false
         )
       ).toEqual(
-        `<a class="Roundup-link Roundup-link--lvl1 Roundup-link--variation" target="iframe" href="?component=foo/bar&variation=baz&embedded=true">baz</a>`
+        `<a class="Roundup-link Roundup-link--lvl1 Roundup-link--variation" target="iframe" href="/component?file=foo/bar&variation=baz&embedded=true">baz</a>`
       );
     });
   });
