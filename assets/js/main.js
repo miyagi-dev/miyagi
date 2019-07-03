@@ -1,10 +1,29 @@
+const classes = {
+  list: "Roundup-list",
+  listItem: "Roundup-listItem",
+  content: "Roundup-content",
+  iframe: "Roundup-frame",
+  toggle: "Roundup-toggle",
+  toggleMenu: "Roundup-toggleMobileMenu",
+  link: "Roundup-link"
+};
+const paths = {
+  embedded: "/component?",
+  container: "/show?"
+};
 let links;
+let toggles;
 
 window.onPageChanged = function(query) {
-  const target = setActiveStateInNav(query, true);
+  const target = setActiveStateInNav(query);
+
   closeOtherOpenedMenus(target);
   openParentMenus(target);
-  history.pushState(null, null, query.replace("/component?", "/show?"));
+  history.pushState(
+    null,
+    query,
+    query.replace(paths.embedded, paths.container)
+  );
 };
 
 function updateIframe(content, iframe, src) {
@@ -14,30 +33,35 @@ function updateIframe(content, iframe, src) {
 }
 
 function closeOtherOpenedMenus(target) {
-  Array.from(
-    document.querySelectorAll('.Roundup-toggle[aria-expanded="true"]')
-  ).forEach(toggle => {
-    if (!toggle.closest(".Roundup-listItem").contains(target)) {
-      toggle.setAttribute("aria-expanded", false);
-    }
-  });
+  toggles
+    .filter(toggle => toggle.getAttribute("aria-expanded") === "true")
+    .forEach(toggle => {
+      if (!toggle.closest(`.${classes.listItem}`).contains(target)) {
+        toggle.setAttribute("aria-expanded", false);
+      }
+    });
 }
 
 function openParentMenus(target) {
   (function openParent(el) {
-    const list = el.closest(".Roundup-list");
-
+    const list = el.closest(`.${classes.list}`);
     if (list) {
-      const link = list.previousElementSibling;
+      let link = list.previousElementSibling;
 
       if (link) {
-        const toggle = link.previousElementSibling;
+        while (!link.classList.contains(classes.link)) {
+          link = link.previousElementSibling;
+        }
 
-        if (toggle && toggle.getAttribute("aria-expanded") === "false") {
-          toggle.setAttribute("aria-expanded", true);
+        if (link) {
+          const toggle = link.previousElementSibling;
 
-          if (toggle.closest(".Roundup-listItem")) {
-            openParent(toggle.closest(".Roundup-listItem"));
+          if (toggle && toggle.getAttribute("aria-expanded") === "false") {
+            toggle.setAttribute("aria-expanded", true);
+
+            if (toggle.closest(`.${classes.listItem}`)) {
+              openParent(toggle.closest(`.${classes.listItem}`));
+            }
           }
         }
       }
@@ -49,13 +73,19 @@ function setActiveStateInNav(query) {
   const embeddedParam = "&embedded=true";
   const target = links.filter(
     link =>
-      link.getAttribute("href").replace(embeddedParam, "") ===
-      query.replace(embeddedParam, "")
+      link
+        .getAttribute("href")
+        .replace(embeddedParam, "")
+        .indexOf(
+          query
+            .replace(paths.container, paths.embedded)
+            .replace(embeddedParam, "")
+        ) >= 0
   )[0];
   const current = links.filter(link => link.getAttribute("aria-current"))[0];
   const prevEl = target.previousElementSibling;
   const toggle =
-    prevEl && prevEl.classList.contains("Roundup-toggle") ? prevEl : null;
+    prevEl && prevEl.classList.contains(classes.toggle) ? prevEl : null;
 
   if (current) {
     current.removeAttribute("aria-current");
@@ -70,29 +100,80 @@ function setActiveStateInNav(query) {
   return target;
 }
 
+function onToggleMenuClick(toggle) {
+  let newValue;
+
+  if (toggle.getAttribute("aria-expanded") === "true") {
+    newValue = false;
+  } else {
+    newValue = true;
+  }
+  toggle.setAttribute("aria-expanded", newValue);
+}
+
+function onToggleClick(toggle) {
+  const expanded =
+    toggle.getAttribute("aria-expanded") === "true" ? false : true;
+  const target = document.getElementById(toggle.getAttribute("aria-controls"));
+
+  toggle.setAttribute("aria-expanded", expanded);
+
+  if (expanded) {
+    target.removeAttribute("hidden");
+  } else {
+    target.setAttribute("hidden", true);
+  }
+}
+
+function onLinkClick(link, content, iframe) {
+  const src = link.getAttribute("href");
+
+  setActiveStateInNav(src);
+  updateIframe(content, iframe, src);
+
+  history.pushState(null, src, src.replace(paths.embedded, paths.container));
+
+  if (window.innerWidth <= 512) {
+    document
+      .querySelector(`.${classes.toggleMenu}`)
+      .setAttribute("aria-expanded", false);
+  }
+}
+
+function onPopState(content, iframe) {
+  if (document.location.search !== "") {
+    updateIframe(
+      content,
+      iframe,
+      document.location.href.replace(paths.container, paths.embedded)
+    );
+  } else {
+    updateIframe(content, iframe, `${paths.embedded}file=all&embedded=true`);
+  }
+
+  const target = setActiveStateInNav(
+    document.location.href
+      .replace(location.origin, "")
+      .replace(paths.container, paths.embedded)
+  );
+
+  closeOtherOpenedMenus(target);
+  openParentMenus(target);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const content = document.querySelector(".Roundup-content");
-  const iframe = document.querySelector(".Roundup-frame");
-  const toggles = Array.from(document.querySelectorAll(".Roundup-toggle"));
-  const toggleMenu = document.querySelector(".Roundup-toggleMobileMenu");
+  const content = document.querySelector(`.${classes.content}`);
+  const iframe = document.querySelector(`.${classes.iframe}`);
+  const toggleMenu = document.querySelector(`.${classes.toggleMenu}`);
 
-  links = Array.from(document.querySelectorAll(".Roundup-link"));
-
-  history.pushState(null, null, document.location.href);
+  links = Array.from(document.querySelectorAll(`.${classes.link}`));
+  toggles = Array.from(document.querySelectorAll(`.${classes.toggle}`));
 
   if (toggleMenu) {
     toggleMenu.addEventListener("click", e => {
       e.preventDefault();
 
-      const toggle = e.target;
-      let newValue;
-
-      if (toggle.getAttribute("aria-expanded") === "true") {
-        newValue = false;
-      } else {
-        newValue = true;
-      }
-      toggle.setAttribute("aria-expanded", newValue);
+      onToggleMenuClick(e.target);
     });
   }
 
@@ -100,18 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     toggle.addEventListener("click", e => {
       e.preventDefault();
 
-      const el = e.target;
-      const expanded =
-        el.getAttribute("aria-expanded") === "true" ? false : true;
-      const target = document.getElementById(el.getAttribute("aria-controls"));
-
-      el.setAttribute("aria-expanded", expanded);
-
-      if (expanded) {
-        target.removeAttribute("hidden");
-      } else {
-        target.setAttribute("hidden", true);
-      }
+      onToggleClick(e.target);
     });
   });
 
@@ -119,30 +189,9 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", e => {
       e.preventDefault();
 
-      const src = e.target.getAttribute("href");
-
-      setActiveStateInNav(src);
-      updateIframe(content, iframe, src);
-
-      history.pushState(null, null, src.replace("/component?", "/show?"));
-
-      if (window.innerWidth <= 512) {
-        document
-          .querySelector(".Roundup-toggleMobileMenu")
-          .setAttribute("aria-expanded", false);
-      }
+      onLinkClick(e.target, content, iframe);
     });
   });
 
-  window.addEventListener("popstate", () => {
-    if (document.location.search !== "") {
-      updateIframe(
-        content,
-        iframe,
-        document.location.href.replace("/show?", "/component?")
-      );
-    } else {
-      updateIframe(content, iframe, `${document.location.href}/`);
-    }
-  });
+  window.addEventListener("popstate", () => onPopState(content, iframe));
 });

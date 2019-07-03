@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     link => {
       link.addEventListener("click", e => {
         if (parent.window && parent.window.onPageChanged) {
+          history.replaceState(null, null, e.target.href); // see http://www.webdeveasy.com/back-button-behavior-on-a-page-with-an-iframe/
           parent.window.onPageChanged(encodeURI(e.target.getAttribute("href")));
         }
       });

@@ -3,7 +3,7 @@
     <div class="RoundupComponents">
       {{#each variations}}
         <div class="RoundupComponent">
-          <a href="/component?file={{this.file}}&variation={{this.variation}}" class="RoundupComponent-file">{{this.variation}}</a>
+          <a href="/component?file={{this.file}}&variation={{this.variation}}&embedded=true" class="RoundupComponent-file">{{this.variation}}</a>
           <div class="RoundupComponent-html">
             {{{this.html}}}
           </div>
