@@ -72,7 +72,7 @@ function hasChildren(item) {
   return item.children && item.children.length > 1;
 }
 
-async function getStructure(app) {
+async function getMenu(app) {
   const srcStructure = await getSourceStructure(app);
   const templateExtension = app.get("config").extension;
   const arr = [];
@@ -96,5 +96,5 @@ async function getStructure(app) {
 }
 
 module.exports = {
-  getStructure
+  getMenu
 };

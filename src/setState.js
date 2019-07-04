@@ -1,18 +1,28 @@
 const getPartials = require("./state/partials.js");
 const { getData } = require("./state/data.js");
-const { getStructure } = require("./state/menu/index.js");
+const { getMenu } = require("./state/menu/index.js");
 const getSourceTree = require("./state/sourceTree.js");
 
 async function setState(app, methods) {
+  const promises = [];
+
   if (methods.data) {
     if (app.get("state") && app.get("state").data) {
       delete app.get("state").data;
     }
 
-    app.set(
-      "state",
-      Object.assign({}, app.get("state"), {
-        data: await getData(app)
+    promises.push(
+      new Promise(async resolve => {
+        const data = await getData(app);
+
+        app.set(
+          "state",
+          Object.assign({}, app.get("state"), {
+            data
+          })
+        );
+
+        resolve(data);
       })
     );
   }
@@ -22,10 +32,12 @@ async function setState(app, methods) {
       delete app.get("state").sourceTree;
     }
 
+    const sourceTree = getSourceTree(app);
+
     app.set(
       "state",
       Object.assign({}, app.get("state"), {
-        sourceTree: getSourceTree(app)
+        sourceTree
       })
     );
   }
@@ -35,10 +47,18 @@ async function setState(app, methods) {
       delete app.get("state").menu;
     }
 
-    app.set(
-      "state",
-      Object.assign({}, app.get("state"), {
-        menu: await getStructure(app)
+    promises.push(
+      new Promise(async resolve => {
+        const menu = await getMenu(app);
+
+        app.set(
+          "state",
+          Object.assign({}, app.get("state"), {
+            menu
+          })
+        );
+
+        resolve(menu);
       })
     );
   }
@@ -47,16 +67,19 @@ async function setState(app, methods) {
     if (app.get("state") && app.get("state").partials) {
       delete app.get("state").partials;
     }
+    const partials = getPartials(app);
 
     app.set(
       "state",
       Object.assign({}, app.get("state"), {
-        partials: getPartials(app)
+        partials
       })
     );
   }
 
-  return true;
+  return await Promise.all(promises).then(() => {
+    return app.get("state");
+  });
 }
 
 module.exports = setState;
