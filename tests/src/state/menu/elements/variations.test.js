@@ -43,7 +43,8 @@ describe("src/menu/elements/variations", () => {
 
       expect(listItem.render).toHaveBeenCalledWith(
         component,
-        variationLink.render()
+        variationLink.render(),
+        "variation"
       );
     });
 
