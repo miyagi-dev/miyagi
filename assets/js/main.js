@@ -112,17 +112,10 @@ function onToggleMenuClick(toggle) {
 }
 
 function onToggleClick(toggle) {
-  const expanded =
-    toggle.getAttribute("aria-expanded") === "true" ? false : true;
-  const target = document.getElementById(toggle.getAttribute("aria-controls"));
-
-  toggle.setAttribute("aria-expanded", expanded);
-
-  if (expanded) {
-    target.removeAttribute("hidden");
-  } else {
-    target.setAttribute("hidden", true);
-  }
+  toggle.setAttribute(
+    "aria-expanded",
+    toggle.getAttribute("aria-expanded") === "true" ? false : true
+  );
 }
 
 function onLinkClick(link, content, iframe) {
