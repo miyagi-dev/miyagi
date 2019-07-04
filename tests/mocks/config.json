@@ -4,6 +4,7 @@
   "userConfigFile": "roundup.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
+  "srcFolderIgnores": ["node_modules", ".git"],
   "folders": {
     "assets": {
       "development": "tests/mocks/roundup/dev",

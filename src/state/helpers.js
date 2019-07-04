@@ -1,7 +1,7 @@
 const path = require("path");
 const config = require("../config.json");
 const logger = require("../logger.js");
-const { pathEndsWithExtension } = require("../helpers.js");
+const { fileIsOfGivenType } = require("../helpers.js");
 
 function fileIsInFolderWithSameName(app, file, ext, logError) {
   const pathFolder =
@@ -42,7 +42,7 @@ function isNotIgnored(file, ignoredFolders) {
 function filterFilesWithoutUnwantedFileType(app, file, extension, logError) {
   if (isNotIgnored(file, app.get("config").srcFolderIgnores)) {
     if (
-      pathEndsWithExtension(file, extension) &&
+      fileIsOfGivenType(file, extension) &&
       fileIsInFolderWithSameName(app, file, extension, logError)
     ) {
       return true;

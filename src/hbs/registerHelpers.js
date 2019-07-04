@@ -36,10 +36,36 @@ module.exports = (app, hbs) => {
   });
 
   hbs.registerHelper("cssFiles", () => {
-    return getCssFilesHtml(app.get("config").cssFiles);
+    const cssFiles =
+      app.get("config").cssFiles instanceof Array
+        ? app.get("config").cssFiles
+        : app.get("config").cssFiles[process.env.NODE_ENV];
+
+    if (cssFiles) {
+      return getCssFilesHtml(
+        app.get("config").cssFiles instanceof Array
+          ? app.get("config").cssFiles
+          : app.get("config").cssFiles[process.env.NODE_ENV]
+      );
+    } else {
+      return "";
+    }
   });
 
   hbs.registerHelper("jsFiles", () => {
-    return getJsFilesHtml(app.get("config").jsFiles);
+    const jsFiles =
+      app.get("config").jsFiles instanceof Array
+        ? app.get("config").jsFiles
+        : app.get("config").jsFiles[process.env.NODE_ENV];
+
+    if (jsFiles) {
+      return getJsFilesHtml(
+        app.get("config").jsFiles instanceof Array
+          ? app.get("config").jsFiles
+          : app.get("config").jsFiles[process.env.NODE_ENV]
+      );
+    } else {
+      return "";
+    }
   });
 };

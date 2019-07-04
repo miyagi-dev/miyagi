@@ -40,7 +40,7 @@ async function start(cnf) {
       partials: true,
       data: true
     });
-    setStaticFiles(app, config);
+    setStaticFiles(app);
     setRouter(app);
     setViews(app);
     registerHelpers(app, handlebars);

@@ -1,15 +1,6 @@
 const path = require("path");
 const config = require("./config.json");
 
-function pathEndsWithExtension(file, ext) {
-  const extension = `.${ext}`;
-
-  return (
-    file.indexOf(extension) > 0 &&
-    file.indexOf(extension) === file.length - extension.length
-  );
-}
-
 function fileIsOfGivenType(file, extension) {
   if (typeof file !== "string") return false;
 
@@ -20,11 +11,11 @@ function fileIsOfGivenType(file, extension) {
 }
 
 function fileIsDataFile(file) {
-  return fileIsOfGivenType(file, config.dataFileType);
+  return helpers.fileIsOfGivenType(file, config.dataFileType);
 }
 
 function fileIsTemplateFile(app, file) {
-  return fileIsOfGivenType(file, app.get("config").extension);
+  return helpers.fileIsOfGivenType(file, app.get("config").extension);
 }
 
 function getFullPathFromShortPath(app, shortPath) {
@@ -52,12 +43,14 @@ function getDataPathFromTemplatePath(app, filePath) {
   )}`;
 }
 
-module.exports = {
+const helpers = {
+  fileIsOfGivenType,
   fileIsDataFile,
   fileIsTemplateFile,
   getDataPathFromTemplatePath,
   getFullPathFromShortPath,
   getShortPathFromFullPath,
-  getTemplatePathFromDataPath,
-  pathEndsWithExtension
+  getTemplatePathFromDataPath
 };
+
+module.exports = helpers;

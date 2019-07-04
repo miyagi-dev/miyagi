@@ -29,9 +29,19 @@ function sanitizeAssetFiles(files) {
 }
 
 module.exports = (app, userConfig = {}) => {
-  const env = process.env.NODE_ENV || "development";
+  if (userConfig.srcFolder) {
+    userConfig.srcFolder = sanitizePath(userConfig.srcFolder, true);
+  }
 
-  userConfig.srcFolder = sanitizePath(userConfig.srcFolder, true);
+  if (userConfig.srcFolderIgnores) {
+    userConfig.srcFolderIgnores =
+      typeof userConfig.srcFolderIgnores === "string"
+        ? [userConfig.srcFolderIgnores]
+        : userConfig.srcFolderIgnores;
+    userConfig.srcFolderIgnores = userConfig.srcFolderIgnores.map(folder =>
+      sanitizePath(folder, true)
+    );
+  }
 
   ["css", "js"].forEach(assetType => {
     if (userConfig[`${assetType}Files`]) {
@@ -40,14 +50,19 @@ module.exports = (app, userConfig = {}) => {
           userConfig[`${assetType}Files`]
         );
       } else {
-        if (userConfig[`${assetType}Files`][env]) {
-          userConfig[`${assetType}Files`] = sanitizeAssetFiles(
-            userConfig[`${assetType}Files`][env]
+        if (userConfig[`${assetType}Files`][process.env.NODE_ENV]) {
+          userConfig[`${assetType}Files`][
+            process.env.NODE_ENV
+          ] = sanitizeAssetFiles(
+            userConfig[`${assetType}Files`][process.env.NODE_ENV]
           );
         } else {
+          userConfig[`${assetType}Files`] = {};
           logger.log(
-            "error",
-            `Please define your css files for the ${env} environment.`
+            "warn",
+            config.messages.nodeEndAndKeysDontMatch
+              .replace("${nodeEnv}", process.env.NODE_ENV)
+              .replace("${assetType}", assetType)
           );
         }
       }
@@ -59,6 +74,7 @@ module.exports = (app, userConfig = {}) => {
     deepMerge(
       {
         projectName: config.projectName,
+        srcFolder: "/",
         cssFiles: [],
         jsFiles: [],
         srcFolderIgnores: config.srcFolderIgnores,

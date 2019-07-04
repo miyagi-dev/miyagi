@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const logger = require("../logger.js");
 const helpers = require("../helpers.js");
-const { pathEndsWithExtension } = require("../helpers.js");
+const { fileIsOfGivenType } = require("../helpers.js");
 
 async function register(hbs, name, fullFilePath) {
   new Promise(resolve => {
@@ -54,7 +54,7 @@ async function registerComponents(hbs, app) {
   const promises = [];
 
   Object.keys(app.get("state").partials).forEach(shortPath => {
-    if (pathEndsWithExtension(shortPath, app.get("config").extension)) {
+    if (fileIsOfGivenType(shortPath, app.get("config").extension)) {
       promises.push(
         new Promise(resolve => {
           register(

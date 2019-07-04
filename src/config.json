@@ -21,6 +21,8 @@
     "missingExtension": "Please specify the file extension of your components in roundup.json (key: 'extension', type: String)",
     "missingSrcFolder": "Please specify the location of your components in roundup.json (key: 'srcFolder', type: String)",
     "noDataSetForVariation": "No data defined for variation \"${variation}\" in ${file}",
+    "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your roundup.json, so roundup is not able to deliver your ${assetType} files.",
+    "nodeEnvNotDefined": "Please define your NODE_ENV.",
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}",
     "serverStarted": "Running roundup server at http://127.0.0.1:${port}`",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your roundup.json is correct?",

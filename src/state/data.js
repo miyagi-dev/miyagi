@@ -9,7 +9,7 @@ const readFileAsync = promisify(fs.readFile);
 
 function filterFilesWithoutUnwantedFileType(app, file, extension) {
   if (stateHelpers.isNotIgnored(file, app.get("config").srcFolderIgnores)) {
-    if (helpers.pathEndsWithExtension(file, extension)) {
+    if (helpers.fileIsOfGivenType(file, extension)) {
       return true;
     }
   }
