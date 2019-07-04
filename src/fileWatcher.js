@@ -27,7 +27,6 @@ function triggeredEventsIncludes(triggeredEvents, events) {
 
   return false;
 }
-
 async function handleFileChange(app, hbs, io) {
   if (triggeredEventsIncludes(triggeredEvents, ["addDir", "unlinkDir"])) {
     await setState(app, {
@@ -39,7 +38,9 @@ async function handleFileChange(app, hbs, io) {
 
     changeFileCallback(io, true);
   } else if (
-    helpers.fileIsTemplateFile(app, triggeredEvents[0].changedPath) &&
+    triggeredEvents.filter(event =>
+      helpers.fileIsTemplateFile(app, event.changedPath)
+    ).length > 0 &&
     triggeredEventsIncludes(triggeredEvents, ["add", "unlink"])
   ) {
     await setState(app, {
