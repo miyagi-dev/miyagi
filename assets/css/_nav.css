@@ -150,6 +150,6 @@
   }
 
   .Roundup-toggle {
-    --right: 0rem;
+    --right: 0rem; /* stylelint-disable-line */
   }
 }
