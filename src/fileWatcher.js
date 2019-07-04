@@ -29,8 +29,17 @@ function triggeredEventsIncludes(triggeredEvents, events) {
 }
 async function handleFileChange(app, hbs, io) {
   if (triggeredEventsIncludes(triggeredEvents, ["addDir", "unlinkDir"])) {
+    await triggeredEvents.forEach(async event => {
+      if (helpers.fileIsDataFile(event.changedPath)) {
+        if (event.event === "add") {
+          await storeFileContentInCache(app, event.changedPath);
+        } else if (event.event === "unlink") {
+          removeFileFromCache(app, event.changedPath);
+        }
+      }
+    });
+
     await setState(app, {
-      data: true,
       sourceTree: true,
       menu: true,
       partials: true
