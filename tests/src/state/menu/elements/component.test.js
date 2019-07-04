@@ -100,7 +100,7 @@ describe("src/menu/elements/component", () => {
         component.render(directory, {});
 
         expect(toggle.render).toHaveBeenCalledWith(
-          directoryId,
+          `${directoryId}-variations`,
           true,
           directoryIndex
         );
@@ -120,7 +120,7 @@ describe("src/menu/elements/component", () => {
         component.render(directory, {});
 
         expect(toggle.render).toHaveBeenCalledWith(
-          directoryId,
+          `${directoryId}-variations`,
           false,
           directoryIndex
         );
@@ -142,7 +142,7 @@ describe("src/menu/elements/component", () => {
       ).toBeGreaterThanOrEqual(0);
     });
 
-    describe("equest directory is parent of current directory", () => {
+    describe("request directory is parent of current directory", () => {
       const request = {
         path: directoryShortPath
       };
@@ -158,7 +158,7 @@ describe("src/menu/elements/component", () => {
         component.render(directory, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
-          directoryId,
+          `${directoryId}-variations`,
           true,
           directoryIndex
         );
@@ -181,7 +181,7 @@ describe("src/menu/elements/component", () => {
         component.render(directory, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
-          directoryId,
+          `${directoryId}-variations`,
           false,
           directoryIndex
         );

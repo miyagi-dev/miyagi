@@ -61,7 +61,7 @@ describe("src/menu/elements/directory", () => {
         directory.render(app, directoryObject, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
-          directoryObject.id,
+          `${directoryObject.id}-components`,
           true,
           directoryObject.index
         );
@@ -82,7 +82,7 @@ describe("src/menu/elements/directory", () => {
         directory.render(app, directoryObject, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
-          directoryObject.id,
+          `${directoryObject.id}-components`,
           false,
           directoryObject.index
         );

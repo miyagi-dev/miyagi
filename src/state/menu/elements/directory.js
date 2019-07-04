@@ -15,7 +15,11 @@ function render(app, directory, request) {
       request.path
     );
 
-    html += toggle.render(directory.id, expanded, directory.index);
+    html += toggle.render(
+      `${directory.id}-components`,
+      expanded,
+      directory.index
+    );
   }
 
   html += `<span class="${classes.component} ${classes.component}--lvl${

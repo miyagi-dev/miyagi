@@ -16,7 +16,11 @@ function render(component, request) {
       true
     );
 
-    html += toggle.render(component.id, expanded, component.index);
+    html += toggle.render(
+      `${component.id}-variations`,
+      expanded,
+      component.index
+    );
   }
 
   html += `<a class="${classes.component} ${classes.component}--lvl${
