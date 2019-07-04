@@ -2,10 +2,16 @@ const path = require("path");
 const getSourceStructure = require("./structure.js");
 
 function normalizePath(path) {
-  return path
+  let result = path
     .replace(/\//g, "-")
     .replace(/\./g, "-")
     .replace(/_/g, "");
+
+  if (!result.slice(0, 1).match(new RegExp("^[A-Za-z]"))) {
+    result = result.slice(1);
+  }
+
+  return result;
 }
 
 function getComponentFile(directory, templateExtension) {
