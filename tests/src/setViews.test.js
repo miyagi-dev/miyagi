@@ -2,6 +2,11 @@ const setViews = require("../../src/setViews.js");
 const express = require("express");
 const path = require("path");
 
+beforeEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+});
+
 describe("setViews()", () => {
   const app = express();
   app.set("config", {

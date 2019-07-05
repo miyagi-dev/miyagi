@@ -10,6 +10,7 @@ function requireComponent(componentName, mock) {
 
 beforeEach(() => {
   jest.resetModules();
+  jest.resetAllMocks();
 });
 
 describe("src/menu/elements/menu", () => {

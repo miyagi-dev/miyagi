@@ -62,7 +62,7 @@
   },
   "scripts": {
     "build": "gulp build",
-    "test": "jest --colors --passWithNoTests",
+    "test": "jest --colors",
     "lint": "stylelint assets/css/ && eslint src/ && eslint assets/js/"
   },
   "jest": {

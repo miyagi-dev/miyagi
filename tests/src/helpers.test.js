@@ -1,6 +1,11 @@
 const config = require("../mocks/config.json");
 const helpers = require("../../src/helpers.js");
 
+beforeEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+});
+
 describe("src/helpers", () => {
   const app = require("express")();
   app.set("config", { srcFolder: "srcFolder/", extension: "hbs" });

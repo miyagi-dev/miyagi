@@ -1,5 +1,4 @@
 const deepMerge = require("deepmerge");
-const config = require("./config.json");
 const logger = require("./logger.js");
 
 function sanitizePath(path, isFolder) {
@@ -28,7 +27,7 @@ function sanitizeAssetFiles(files) {
   return arr;
 }
 
-module.exports = (app, userConfig = {}) => {
+module.exports = (app, appConfig, userConfig = {}) => {
   if (userConfig.srcFolder) {
     userConfig.srcFolder = sanitizePath(userConfig.srcFolder, true);
   }
@@ -60,7 +59,7 @@ module.exports = (app, userConfig = {}) => {
           userConfig[`${assetType}Files`] = {};
           logger.log(
             "warn",
-            config.messages.nodeEndAndKeysDontMatch
+            appConfig.messages.nodeEndAndKeysDontMatch
               .replace("${nodeEnv}", process.env.NODE_ENV)
               .replace("${assetType}", assetType)
           );
@@ -73,11 +72,11 @@ module.exports = (app, userConfig = {}) => {
     "config",
     deepMerge(
       {
-        projectName: config.projectName,
+        projectName: appConfig.projectName,
         srcFolder: "/",
         cssFiles: [],
         jsFiles: [],
-        srcFolderIgnores: config.srcFolderIgnores,
+        srcFolderIgnores: appConfig.srcFolderIgnores,
         validations: {
           html: true,
           accessibility: true

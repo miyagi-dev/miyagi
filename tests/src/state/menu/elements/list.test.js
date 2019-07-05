@@ -2,6 +2,7 @@ const list = require("../../../../../src/state/menu/elements/list.js");
 
 beforeEach(() => {
   jest.resetModules();
+  jest.resetAllMocks();
 });
 
 describe("src/menu/elements/list", () => {

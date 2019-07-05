@@ -2,6 +2,7 @@ const variationLink = require("../../../../../src/state/menu/elements/variationL
 
 beforeEach(() => {
   jest.resetModules();
+  jest.resetAllMocks();
 });
 
 describe("src/menu/elements/variationLink", () => {

@@ -3,6 +3,11 @@ const dirTree = require("directory-tree");
 
 jest.mock("directory-tree");
 
+beforeEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+});
+
 describe("src/state/sourceTree", () => {
   const app = require("express")();
   app.set("config", {

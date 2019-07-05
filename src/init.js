@@ -5,7 +5,6 @@ const helmet = require("helmet");
 const http = require("http");
 const compression = require("compression");
 
-const config = require("./config.json");
 const fileWatcher = require("./fileWatcher.js");
 const logger = require("./logger.js");
 const registerHelpers = require("./hbs/registerHelpers.js");
@@ -17,13 +16,12 @@ const setState = require("./setState.js");
 const setStaticFiles = require("./setStaticFiles.js");
 const setViews = require("./setViews.js");
 
-async function start(cnf) {
+module.exports = async function(appConfig, userConfig) {
   const app = express();
-
-  setConfig(app, cnf);
+  setConfig(app, appConfig, userConfig);
 
   if (setEngines(app)) {
-    const port = process.env.PORT || config.defaultPort;
+    const port = process.env.PORT || appConfig.defaultPort;
     const server = http.createServer(app);
 
     app.use(helmet());
@@ -46,15 +44,15 @@ async function start(cnf) {
     registerHelpers(app, handlebars);
     await registerPartials.registerAll(app, handlebars, true);
     handlebarsLayouts.register(handlebars);
-
     server.listen(app.get("port"));
 
     fileWatcher(server, app, handlebars);
 
-    logger.log("info", config.messages.serverStarted.replace("${port}", port));
-  }
-}
+    logger.log(
+      "info",
+      appConfig.messages.serverStarted.replace("${port}", port)
+    );
 
-module.exports = {
-  start
+    return server;
+  }
 };

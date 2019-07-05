@@ -1,26 +1,31 @@
 {
   "projectName": "roundup",
-  "defaultPort": 5000,
+  "defaultPort": 1234,
   "userConfigFile": "roundup.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
   "srcFolderIgnores": ["node_modules", ".git"],
   "folders": {
     "assets": {
-      "development": "tests/mocks/roundup/dev",
-      "production": "tests/mocks/roundup/prod"
+      "development": "assets",
+      "production": "dist"
     },
     "views": "views"
   },
   "messages": {
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your roundup.json correct?",
-    "fileNotRenderedDueToUnmatchingFolderName": "${file} can not be rendered because it doesn't live in a folder with the same name.",
+    "fileNotRenderedDueToUnmatchingFolderName": "${file} ignored because the parent directory doesn't have the same name.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingExtension": "Please specify the file extension of your components in roundup.json (key: 'extension', type: String)",
-    "missingSrcFolder": "Please specify the location of your components in roundup.json (key: 'srcFolder', type: String)",
-    "missingEngine": "Please specify your javascript engine in roundup.json (key: 'engine', type: String)",
-    "serverStarted": "Running roundup server at http://127.0.0.1:${port}`",
+    "missingEngine": "Please specify your javascript engine in roundup.json (key: 'engine', type: String).",
+    "missingExtension": "Please specify the file extension of your components in roundup.json (key: 'extension', type: String).",
+    "missingSrcFolder": "Please specify the location of your components in roundup.json (key: 'srcFolder', type: String).",
+    "noDataSetForVariation": "No data defined for variation \"${variation}\" in ${file}.",
+    "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your roundup.json, so roundup is not able to deliver your ${assetType} files.",
+    "nodeEnvNotDefined": "Please define your NODE_ENV.",
+    "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
+    "serverStarted": "Running roundup server at http://127.0.0.1:${port}.",
+    "serverStartedButUserConfigUnparseable": "Roundup wasn't able to parse your config file.",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your roundup.json is correct?",
     "userConfigNotFound": "Couldn't find the file roundup.json."
   }

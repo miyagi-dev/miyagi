@@ -3,21 +3,23 @@ const express = require("express");
 const request = require("supertest");
 const setRouter = require("../../src/setRouter.js");
 const render = require("../../src/render/index.js");
-
 const component = "components/component/component.hbs";
 
-describe("setRouter()", () => {
-  const app = express();
+let app;
+let server;
 
+beforeEach(done => {
+  app = express();
+  server = app.listen(0, done);
+
+  const data = {};
   const componentJsonFullPath = path.join(
     process.cwd(),
     `srcFolder/${component}`
   );
-  const data = {};
   data[componentJsonFullPath.replace(".hbs", ".json")] = {
     variations: [{ name: "someVariation", data: {} }]
   };
-
   app.set("state", {
     partials: {
       "components/component/component.hbs": component
@@ -30,7 +32,15 @@ describe("setRouter()", () => {
   });
 
   setRouter(app);
+});
 
+afterEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+  server.close();
+});
+
+describe("setRouter()", () => {
   describe("GET /", () => {
     test("calls renderMain()", done => {
       render.renderMain = jest.fn(done => done());

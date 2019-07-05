@@ -2,6 +2,7 @@ const toggle = require("../../../../../src/state/menu/elements/toggle.js");
 
 beforeEach(() => {
   jest.resetModules();
+  jest.resetAllMocks();
 });
 
 describe("src/menu/elements/toggle", () => {

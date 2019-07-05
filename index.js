@@ -1,34 +1,39 @@
-const config = require("./src/config.json");
 const fs = require("fs");
+const appConfig = require("./src/config.json");
 const init = require("./src/init.js");
 const logger = require("./src/logger.js");
 
-(() => {
-  if (process.env.NODE_ENV === undefined) {
-    return logger.log("error", config.messages.nodeEnvNotDefined);
-  }
+function Roundup() {
+  if (process.env.NODE_ENV) {
+    fs.readFile(`./${appConfig.userConfigFile}`, "utf8", (err, result) => {
+      if (result) {
+        let userConfig;
 
-  fs.readFile(`./${config.userConfigFile}`, "utf8", (err, result) => {
-    if (result) {
-      let cnf;
+        try {
+          userConfig = JSON.parse(result);
 
-      try {
-        cnf = JSON.parse(result);
-      } catch (e) {
-        cnf = {};
-      } finally {
-        if (!cnf.extension) {
-          logger.log("error", config.messages.missingExtension);
-        } else if (!cnf.srcFolder) {
-          logger.log("error", config.messages.missingSrcFolder);
-        } else if (!cnf.engine) {
-          logger.log("error", config.messages.missingEngine);
-        } else {
-          init.start(cnf);
+          if (!userConfig.extension) {
+            logger.log("error", appConfig.messages.missingExtension);
+          } else if (!userConfig.srcFolder) {
+            logger.log("error", appConfig.messages.missingSrcFolder);
+          } else if (!userConfig.engine) {
+            logger.log("error", appConfig.messages.missingEngine);
+          } else {
+            init(appConfig, userConfig);
+          }
+        } catch (e) {
+          return logger.log(
+            "error",
+            appConfig.messages.serverStartedButUserConfigUnparseable
+          );
         }
+      } else {
+        logger.log("error", appConfig.messages.userConfigNotFound);
       }
-    } else {
-      logger.log("error", config.messages.userConfigNotFound);
-    }
-  });
-})();
+    });
+  } else {
+    return logger.log("error", appConfig.messages.nodeEnvNotDefined);
+  }
+}
+
+module.exports = new Roundup();

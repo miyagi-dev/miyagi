@@ -7,6 +7,11 @@ const {
 jest.mock("fs-readdir-recursive");
 jest.mock("../../../src/state/helpers.js");
 
+beforeEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+});
+
 describe("src/state/partials", () => {
   const app = require("express")();
   app.set("config", {

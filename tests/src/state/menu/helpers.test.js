@@ -1,5 +1,10 @@
 const helpers = require("../../../../src/state/menu/helpers.js");
 
+beforeEach(() => {
+  jest.resetModules();
+  jest.resetAllMocks();
+});
+
 describe("src/menu/helpers", () => {
   describe("pathIsChildOfSecondPath()", () => {
     describe("child is a not file", () => {
