@@ -28,6 +28,8 @@
     "serverStarted": "Running roundup server at http://127.0.0.1:${port}.",
     "serverStartedButUserConfigUnparseable": "Roundup wasn't able to parse your config file.",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your roundup.json is correct?",
-    "userConfigNotFound": "Couldn't find the file roundup.json."
+    "userConfigNotFound": "Couldn't find the file roundup.json.",
+    "updatingDone": "Updating done!",
+    "updatingStarted": "A file has been changed, roundup is updating the state."
   }
 }
