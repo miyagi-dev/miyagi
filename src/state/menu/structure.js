@@ -57,12 +57,25 @@ async function getFileContent(app, obj, jsonChild) {
   } else {
     try {
       result = await readFileAsync(fullPath, "utf8");
-      result = JSON.parse(result) || {};
+
+      try {
+        result = JSON.parse(result);
+      } catch (e) {
+        logger.log(
+          "warn",
+          config.messages.dataFileHasInvalidFormat.replace(
+            "${filePath}",
+            shortPath
+          )
+        );
+        result = {};
+      }
     } catch (e) {
       logger.log(
         "warn",
         config.messages.fileNotFound.replace("${filePath}", shortPath)
       );
+      result = {};
     }
   }
 

@@ -5,27 +5,21 @@ const logger = require("../logger.js");
 const helpers = require("../helpers.js");
 const { fileIsOfGivenType } = require("../helpers.js");
 
-async function register(hbs, name, fullFilePath) {
+async function register(hbs, name, fullFilePath, log) {
   new Promise(resolve => {
-    try {
-      fs.readFile(fullFilePath, "utf8", (err, data) => {
-        if (err) {
+    fs.readFile(fullFilePath, "utf8", (err, data) => {
+      if (err) {
+        if (log) {
           logger.log(
             "warn",
             config.messages.fileNotFound.replace("${filePath}", name)
           );
-        } else {
-          hbs.registerPartial(name, hbs.compile(data.toString()));
         }
-        resolve();
-      });
-    } catch (e) {
-      logger.log(
-        "warn",
-        config.messages.fileNotFound.replace("${filePath}", name)
-      );
+      } else {
+        hbs.registerPartial(name, hbs.compile(data.toString()));
+      }
       resolve();
-    }
+    });
   });
 }
 
@@ -60,7 +54,8 @@ async function registerComponents(hbs, app) {
           register(
             hbs,
             shortPath,
-            helpers.getFullPathFromShortPath(app, shortPath)
+            helpers.getFullPathFromShortPath(app, shortPath),
+            true
           ).then(resolve);
         })
       );
@@ -75,7 +70,8 @@ async function registerPartial(app, hbs, fullPath) {
     register(
       hbs,
       helpers.getShortPathFromFullPath(app, fullPath),
-      fullPath
+      fullPath,
+      true
     ).then(resolve);
   });
 }
