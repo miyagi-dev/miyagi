@@ -15,11 +15,15 @@
     "npm": ">=6.9.0"
   },
   "files": [
+    "bin",
     "dist",
+    "index.js",
     "src",
-    "views",
-    "index.js"
+    "views"
   ],
+  "bin": {
+    "roundup": "./bin/roundup.js"
+  },
   "dependencies": {
     "axe-core": "^3.2.2",
     "chokidar": "^3.0.1",
