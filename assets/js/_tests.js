@@ -25,9 +25,8 @@ function addToggle(container) {
   });
 }
 
-function a11yTest() {
+function a11yTest(container) {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
-  const container = parent.document.querySelector(".RoundupTest--a11y");
 
   addToggle(container);
 
@@ -106,8 +105,7 @@ function a11yTest() {
   });
 }
 
-function htmlTest() {
-  const container = parent.document.querySelector(".RoundupTest--html");
+function htmlTest(container) {
   const states = ["error", "warning"];
 
   addToggle(container);
@@ -213,12 +211,23 @@ addEventListener("DOMContentLoaded", () => {
 
   if (tests) {
     if (document.getElementById("RoundupComponent")) {
-      if (validations.accessibility) {
-        a11yTest();
+      const a11yContainer = parent.document.querySelector(".RoundupTest--a11y");
+      const htmlContainer = parent.document.querySelector(".RoundupTest--html");
+
+      if (a11yContainer) {
+        if (validations.accessibility) {
+          a11yTest(a11yContainer);
+        } else {
+          a11yContainer.remove();
+        }
       }
 
-      if (validations.html) {
-        htmlTest();
+      if (htmlContainer) {
+        if (validations.html) {
+          htmlTest(htmlContainer);
+        } else {
+          htmlContainer.remove();
+        }
       }
 
       tests.removeAttribute("hidden");
