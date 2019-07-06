@@ -7,7 +7,7 @@ const setEngines = require("../../../lib/init/engines.js");
 const setPartials = require("../../../lib/init/partials.js");
 const setRouter = require("../../../lib/init/router.js");
 const setState = require("../../../lib/state/index.js");
-const setStaticFiles = require("../../../lib/init/static.js");
+const setStatic = require("../../../lib/init/static.js");
 const setViewHelpers = require("../../../lib/init/view-helpers.js");
 const setViews = require("../../../lib/init/views.js");
 const init = require("../../../lib/init/index.js");
@@ -59,7 +59,7 @@ describe("lib/init", () => {
         Object.assign({}, appConfig, { defaultPort: getRandomPort() })
       );
       expect(setState).toHaveBeenCalled();
-      expect(setStaticFiles).toHaveBeenCalled();
+      expect(setStatic).toHaveBeenCalled();
       expect(setRouter).toHaveBeenCalled();
       expect(setViews).toHaveBeenCalled();
       expect(setViewHelpers).toHaveBeenCalled();
@@ -110,7 +110,7 @@ describe("lib/init", () => {
         Object.assign({}, appConfig, { defaultPort: getRandomPort() })
       );
       expect(setState).not.toHaveBeenCalled();
-      expect(setStaticFiles).not.toHaveBeenCalled();
+      expect(setStatic).not.toHaveBeenCalled();
       expect(setRouter).not.toHaveBeenCalled();
       expect(setViews).not.toHaveBeenCalled();
       expect(setViewHelpers).not.toHaveBeenCalled();
