@@ -3,7 +3,7 @@
 _roundup_ gives you an overview over all your components and allows you to develop them independently from a backend.
 For maximum convenience, you can define json data which can be inherited and reused from including components. _roundup_ uses [consolidate.js](https://github.com/tj/consolidate.js) under the hood, so it automatically supports a lot of rendering engines.
 
-[![Build Status](https://travis-ci.com/mgrsskls/roundup.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/roundup)
+[![Build Status](https://travis-ci.com/mgrsskls/roundup.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/roundup) [![codecov](https://codecov.io/gh/mgrsskls/roundup/branch/master/graph/badge.svg?token=h0X0KpG03T)](https://codecov.io/gh/mgrsskls/roundup)
 
 ## Demo
 

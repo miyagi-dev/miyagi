@@ -32,6 +32,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "codecov": "^3.5.0",
     "cssnano": "^4.1.10",
     "del": "^4.1.1",
     "dustjs-linkedin": "^2.7.5",
@@ -62,7 +63,7 @@
   },
   "scripts": {
     "build": "gulp build",
-    "test": "jest --colors",
+    "test": "jest --colors --detectOpenHandles",
     "lint": "stylelint assets/css/ && eslint src/ && eslint assets/js/"
   },
   "jest": {

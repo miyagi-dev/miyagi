@@ -39,7 +39,7 @@ describe("setStaticFiles()", () => {
     });
 
     describe("GET /js/socket.io.slim.js", () => {
-      test("returns 200", () => {
+      test("returns 200", done => {
         app.set("config", {
           cssFiles: [],
           jsFiles: []
@@ -48,12 +48,12 @@ describe("setStaticFiles()", () => {
         setStaticFiles(app);
         request(app)
           .get(`/${config.projectName}/js/socket.io.slim.js`)
-          .expect(200);
+          .expect(200, done);
       });
     });
 
     describe("GET /js/axe.min.js", () => {
-      test("returns 200", () => {
+      test("returns 200", done => {
         app.set("config", {
           cssFiles: [],
           jsFiles: []
@@ -62,12 +62,12 @@ describe("setStaticFiles()", () => {
         setStaticFiles(app);
         request(app)
           .get(`/${config.projectName}/js/axe.min.js`)
-          .expect(200);
+          .expect(200, done);
       });
     });
 
     describe("GET other requests", () => {
-      test("return 404", () => {
+      test("return 404", done => {
         app.set("config", {
           cssFiles: [],
           jsFiles: []
@@ -76,14 +76,14 @@ describe("setStaticFiles()", () => {
         setStaticFiles(app);
         request(app)
           .get("/gulpfile.js")
-          .expect(404);
+          .expect(404, done);
       });
     });
   });
 
   describe("with arrays in config.cssFiles/jsFiles", () => {
     describe("GET entries from user cssFiles", () => {
-      test("return 200", () => {
+      test("returns 200", done => {
         app.set("config", {
           cssFiles: ["tests/mocks/user/css/index.css"],
           jsFiles: ["tests/mocks/user/js/index.js"]
@@ -92,12 +92,12 @@ describe("setStaticFiles()", () => {
         setStaticFiles(app);
         request(app)
           .get("/tests/mocks/user/css/index.css")
-          .expect(200);
+          .expect(200, done);
       });
     });
 
     describe("GET entries from user jsFiles", () => {
-      test("return 200", () => {
+      test("returns 200", done => {
         app.set("config", {
           cssFiles: ["tests/mocks/user/css/index.css"],
           jsFiles: ["tests/mocks/user/js/index.js"]
@@ -106,14 +106,14 @@ describe("setStaticFiles()", () => {
         setStaticFiles(app);
         request(app)
           .get("/tests/mocks/user/js/index.js")
-          .expect(200);
+          .expect(200, done);
       });
     });
   });
 
   describe("with objects in config.cssFiles/jsFiles", () => {
     describe("GET entries from user cssFiles", () => {
-      test("return 200", () => {
+      test("returns 200", done => {
         app.set("config", {
           cssFiles: {
             test: ["tests/mocks/user/css/index.css"]
@@ -126,12 +126,12 @@ describe("setStaticFiles()", () => {
         setStaticFiles(app);
         request(app)
           .get("/tests/mocks/user/css/index.css")
-          .expect(200);
+          .expect(200, done);
       });
     });
 
     describe("GET entries from user jsFiles", () => {
-      test("return 200", () => {
+      test("returns 200", done => {
         app.set("config", {
           cssFiles: {
             test: ["tests/mocks/user/css/index.css"]
@@ -145,7 +145,7 @@ describe("setStaticFiles()", () => {
 
         request(app)
           .get("/tests/mocks/user/js/index.js")
-          .expect(200);
+          .expect(200, done);
       });
     });
   });
