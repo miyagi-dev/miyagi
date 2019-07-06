@@ -18,8 +18,7 @@
     "bin",
     "dist",
     "index.js",
-    "src",
-    "views"
+    "lib"
   ],
   "bin": {
     "roundup": "./bin/roundup.js"
@@ -74,12 +73,13 @@
   "scripts": {
     "build": "gulp build",
     "test": "jest --colors --detectOpenHandles",
-    "lint": "stylelint assets/css/ && eslint src/ && eslint assets/js/"
+    "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/"
   },
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.js",
+      "assets/**/*.js",
+      "lib/**/*.js",
       "index.js"
     ]
   },

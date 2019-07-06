@@ -1,4 +1,4 @@
-const appConfig = require("../src/config.json");
+const appConfig = require("../lib/config.json");
 const nodeEnv = process.env.NODE_ENV;
 
 afterEach(() => {
@@ -10,7 +10,7 @@ afterEach(() => {
 describe("index", () => {
   describe("without process.env.NODE_ENV defined", () => {
     test("returns an error message", () => {
-      const logger = require("../src/logger.js");
+      const logger = require("../lib/logger.js");
 
       logger.log = jest.fn();
       delete process.env.NODE_ENV;
@@ -26,10 +26,10 @@ describe("index", () => {
     describe("with roundup.json", () => {
       describe("with parseable result from roundup.json", () => {
         describe("with extension, srcFolder and engine defined in roundup.json", () => {
-          test("calls src/init with parsed config", () => {
+          test("calls lib/init with parsed config", () => {
             const fs = require("fs");
-            const init = require("../src/init.js");
-            jest.mock("../src/init.js");
+            const init = require("../lib/init/index.js");
+            jest.mock("../lib/init/index.js");
 
             fs.readFile = jest.fn((file, encoding, cb) => {
               cb(
@@ -51,7 +51,7 @@ describe("index", () => {
         describe("without extension defined in roundup.json", () => {
           test("it calls logger.log with the correct error msg", () => {
             const fs = require("fs");
-            const logger = require("../src/logger.js");
+            const logger = require("../lib/logger.js");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -66,11 +66,11 @@ describe("index", () => {
             );
           });
 
-          test("doesn't call src/init", () => {
+          test("doesn't call lib/init", () => {
             const fs = require("fs");
-            const logger = require("../src/logger.js");
-            const init = require("../src/init.js");
-            jest.mock("../src/init.js");
+            const logger = require("../lib/logger.js");
+            const init = require("../lib/init/index.js");
+            jest.mock("../lib/init/index.js");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -86,7 +86,7 @@ describe("index", () => {
         describe("without engine defined in roundup.json", () => {
           test("it calls logger.log with the correct error msg", () => {
             const fs = require("fs");
-            const logger = require("../src/logger.js");
+            const logger = require("../lib/logger.js");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -101,11 +101,11 @@ describe("index", () => {
             );
           });
 
-          test("doesn't call src/init", () => {
+          test("doesn't call lib/init", () => {
             const fs = require("fs");
-            const logger = require("../src/logger.js");
-            const init = require("../src/init.js");
-            jest.mock("../src/init.js");
+            const logger = require("../lib/logger.js");
+            const init = require("../lib/init/index.js");
+            jest.mock("../lib/init/index.js");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -121,7 +121,7 @@ describe("index", () => {
         describe("without srcFolfer defined in roundup.json", () => {
           test("it calls logger.log with the correct error msg", () => {
             const fs = require("fs");
-            const logger = require("../src/logger.js");
+            const logger = require("../lib/logger.js");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -136,11 +136,11 @@ describe("index", () => {
             );
           });
 
-          test("doesn't call src/init", () => {
+          test("doesn't call lib/init", () => {
             const fs = require("fs");
-            const logger = require("../src/logger.js");
-            const init = require("../src/init.js");
-            jest.mock("../src/init.js");
+            const logger = require("../lib/logger.js");
+            const init = require("../lib/init/index.js");
+            jest.mock("../lib/init/index.js");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -157,7 +157,7 @@ describe("index", () => {
       describe("with roundup.json not being parseable", () => {
         test("it calls logger.log with the correct error msg", () => {
           const fs = require("fs");
-          const logger = require("../src/logger.js");
+          const logger = require("../lib/logger.js");
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
@@ -177,7 +177,7 @@ describe("index", () => {
     describe("without roundup.json", () => {
       test("it calls logger.log with the correct error msg", () => {
         const fs = require("fs");
-        const logger = require("../src/logger.js");
+        const logger = require("../lib/logger.js");
 
         logger.log = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
