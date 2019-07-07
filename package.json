@@ -11,7 +11,7 @@
     "url": "git@github.com:mgrsskls/roundup.git"
   },
   "engines": {
-    "node": ">=12.5.0",
+    "node": ">=10.16.0",
     "npm": ">=6.9.0"
   },
   "files": [
