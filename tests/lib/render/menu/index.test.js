@@ -1,5 +1,5 @@
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../../lib/state/menu/elements/${componentName}`);
+  let component = require(`../../../../lib/render/menu/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -26,7 +26,7 @@ describe("lib/menu/elements/menu", () => {
 
   describe("with children", () => {
     test("calls menuItem.render for each menuItem", () => {
-      const menu = requireComponent("menu");
+      const menu = requireComponent("index");
       const menuItem = requireComponent("menu-item", true);
 
       menu.render(
@@ -41,7 +41,7 @@ describe("lib/menu/elements/menu", () => {
     });
 
     test("calls menuItem.render with the correct params", () => {
-      const menu = requireComponent("menu");
+      const menu = requireComponent("index");
       const menuItem = requireComponent("menu-item", true);
 
       menu.render(
@@ -60,7 +60,7 @@ describe("lib/menu/elements/menu", () => {
     });
 
     test("adds the menuItem html to the return value", () => {
-      const menu = requireComponent("menu");
+      const menu = requireComponent("index");
       requireComponent("menu-item", true);
 
       expect(
@@ -81,7 +81,7 @@ describe("lib/menu/elements/menu", () => {
 
   describe("without children", () => {
     test("returns an empty string", () => {
-      const menu = requireComponent("menu");
+      const menu = requireComponent("index");
       expect(menu.render(app, [], request, id, index)).toEqual("");
     });
   });

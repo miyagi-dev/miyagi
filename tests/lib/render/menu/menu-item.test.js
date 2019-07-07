@@ -1,7 +1,7 @@
-const helpersSrc = "../../../../../lib/state/menu/elements/_helpers.js";
+const helpersSrc = "../../../../lib/render/menu/_helpers.js";
 
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../../lib/state/menu/elements/${componentName}`);
+  let component = require(`../../../../lib/render/menu/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -42,7 +42,7 @@ describe("lib/menu/elements/menu-item", () => {
 
     test("calls menu.render with the correct params", () => {
       const menuItem = requireComponent("menu-item");
-      const menu = requireComponent("menu", true);
+      const menu = requireComponent("index", true);
 
       menuItem.render(directoryObject, request, app);
 
@@ -58,10 +58,10 @@ describe("lib/menu/elements/menu-item", () => {
     test("adds the menu html to the return value", () => {
       const menuItem = requireComponent("menu-item");
 
-      requireComponent("menu", true);
+      requireComponent("index", true);
 
       expect(
-        menuItem.render(directoryObject, request, app).indexOf("menuHtml")
+        menuItem.render(directoryObject, request, app).indexOf("indexHtml")
       ).toBeGreaterThanOrEqual(0);
     });
   });

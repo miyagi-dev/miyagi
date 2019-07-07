@@ -1,4 +1,4 @@
-const helpers = require("../../../../../lib/state/menu/elements/_helpers.js");
+const helpers = require("../../../../lib/render/menu/_helpers.js");
 
 beforeEach(() => {
   jest.resetModules();

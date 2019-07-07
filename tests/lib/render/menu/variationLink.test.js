@@ -1,4 +1,4 @@
-const variationLink = require("../../../../../lib/state/menu/elements/variation-link.js");
+const variationLink = require("../../../../lib/render/menu/variation-link.js");
 
 beforeEach(() => {
   jest.resetModules();
