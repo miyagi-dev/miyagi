@@ -15,7 +15,7 @@
   position: relative;
 }
 
-.Roundup-listItem--directory.Roundup-listItem--lvl0:not(:last-child) {
+.Roundup-listItem--directory.Roundup-listItem--lvl0 {
   padding-bottom: 2rem;
 }
 
