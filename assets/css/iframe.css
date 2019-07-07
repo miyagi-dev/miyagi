@@ -65,14 +65,12 @@ body {
 }
 
 .RoundupIframe-newTabLink {
-  align-items: center;
   background: var(--Roundup-color-bg);
   border: 3px solid rgba(0, 0, 0, 0.025);
   border-radius: 50%;
-  display: flex;
+  display: block;
   font-size: 40px;
   height: 1em;
-  justify-content: center;
   position: fixed;
   right: 20px;
   text-indent: -9999em;
@@ -92,6 +90,10 @@ body {
   content: "";
   display: block;
   height: 100%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
 }
 
