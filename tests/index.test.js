@@ -29,6 +29,8 @@ describe("index", () => {
           test("calls lib/init with parsed config", () => {
             const fs = require("fs");
             const init = require("../lib/init/index.js");
+            const logger = require("../lib/logger.js");
+            logger.log = jest.fn();
             jest.mock("../lib/init/index.js");
 
             fs.readFile = jest.fn((file, encoding, cb) => {
