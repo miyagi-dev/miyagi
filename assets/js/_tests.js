@@ -1,4 +1,4 @@
-/* globals axe, validations */
+/* globals axe */
 
 function escapeHtml(str) {
   var div = document.createElement("div");
@@ -215,7 +215,7 @@ addEventListener("DOMContentLoaded", () => {
       const htmlContainer = parent.document.querySelector(".RoundupTest--html");
 
       if (a11yContainer) {
-        if (validations.accessibility) {
+        if (window.validations.accessibility) {
           a11yTest(a11yContainer);
         } else {
           a11yContainer.remove();
@@ -223,7 +223,7 @@ addEventListener("DOMContentLoaded", () => {
       }
 
       if (htmlContainer) {
-        if (validations.html) {
+        if (window.validations.html) {
           htmlTest(htmlContainer);
         } else {
           htmlContainer.remove();
