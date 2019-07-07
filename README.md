@@ -13,7 +13,7 @@ For maximum convenience, you can define json data which can be inherited and reu
 
 ### Variation inheritance
 
-For every component, you can define variations. These variations inherit data from the base definition, which can then easily be overwritten or extended.
+For every component, you can define variations. These variations inherit data from the base definition (if defined), which can then easily be overwritten or extended.
 
 ### Data inclusion
 
@@ -29,24 +29,14 @@ or
 
 Create a `roundup.json` in your project folder with the following options:
 
-```js
-// roundup.json
-
-{
-  "extension": "hbs",         /* required; the file extension of your components */
-  "engine": "handlebars",     /* required; the rendering engine for your components */
-  "srcFolder": "src/",        /* required; the source folder for your components */
-  "cssFiles": [               /* optional; additional css files you want to be included */
-    "src/reset.css",
-    "src/index.css"
-  ],
-  "jsFiles": ["src/index.js"] /* optional; additional js files you want to be included */
-  "validations": {
-    "html": true,             /* optional, default: true; tell roundup to validate your component's html */
-    "accessibility": true     /* optional, default: true; tell roundup to test your component for accessibility violations */
-  }
-}
-```
+| option             | required/optional | type            | default                               | Note                                                                                                                                                    |
+| ------------------ | ----------------- | --------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectName`      | required          | String          | -                                     |
+| `srcFolder`        | required          | String          | `/`                                   |
+| `srcFolderIgnores` | optional          | Array           | `[".git", "node_modules"]`            | Values will be merged with the default value                                                                                                            |
+| `cssFiles`         | optional          | Array or Object | `[]`                                  | Can either be an array of files or an object with the NODE_ENVs as key, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
+| `jsFiles`          | optional          | Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                         |
+| `validations`      | optional          | Object          | `{ html: true, accessibility: true }` |
 
 Start _roundup_ with `node node_modules/roundup`. This will serve _roundup_ at `http://127.0.0.1:5000`. You can change the port with `PORT=1234 node node_modules/roundup`.
 
@@ -133,7 +123,9 @@ Create a `json` file in your component folder with a structure like this:
     {
       "name": "With CTA",
       "data": {
-        "cta": "components/button/button.json"
+        "cta": {
+          "component": "components/button/button.json"
+        }
       }
     },
     {
@@ -150,14 +142,26 @@ Create a `json` file in your component folder with a structure like this:
           "variation": "Teaser 2"
         }
       }
+    },
+    {
+      "name": "With overwritte teaser variation",
+      "data": {
+        "teaser": {
+          "component": "components/teaser/teaser.json",
+          "variation": "Teaser 2",
+          "title": "Overwritten title"
+        }
+      }
     }
   ]
 }
 ```
 
-The simplest way is to just a have a `data` key in which you have some dummy values for your variables.
+The simplest way is to just a have a `data` key in which you have some values for your variables.
 
 Additionally you can create variations (using the `variations` key obviously). Each entry needs a `name` key and its own `data` key in which you overwrite or add variables for your variation. All variables, that are not overwritten, will be inherited by the root `data` key.
+
+_**NOTE**: The default `data` key is optinal, that means you can also create variations only._
 
 **Instead of defining data manually, you can also use data from included components:**
 
@@ -173,7 +177,9 @@ If you have variations defined in this file, you can tell _roundup_ to use any o
 }
 ```
 
-This would use the variation with the name `Teaser 2` from `components/teaser/teaser.json`. If you omit the variation key, it uses the root `data` key.
+This would use the variation with the name `Teaser 2` from `components/teaser/teaser.json`. If you omit the variation key, it uses the default `data` of the component.
+
+_**Note:** You can also load overwrite values of the imported data (see last variation in the `homepage.json` example above)_
 
 The `teaser.json` example above would be resolved like this:
 
@@ -210,6 +216,14 @@ The `teaser.json` example above would be resolved like this:
       "data": {
         "teaser":  {
           "title": "Teaser 2 title"
+        }
+      }
+    },
+    {
+      "name": "With teaser variation",
+      "data": {
+        "teaser":  {
+          "title": "Overwritten title"
         }
       }
     }
@@ -279,6 +293,5 @@ _**Note:** Just because the accessibility validation doesn't result in any error
 ## Good to know
 
 - Your component is automatically reloaded as soon as you change it.
-- Your components are rendered inside an iframe. If you want to work directly on your component without the iframe, the menu and the validations, you can do so by opening it via the menu in a new tab (right click) or by replacing the `?show` parameter of the url by `?component`.
 - The start page of _roundup_ renders all your components, but without variations. Opening a component either renders an overview of all of its variations or the component directly if it doesn't have any variations.
 - Folders, that don't include a file with the same name and the given file extension (defined in `roundup.json`), are shown in the menu, but disabled.
