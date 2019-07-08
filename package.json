@@ -75,6 +75,12 @@
     "test": "jest --colors --detectOpenHandles",
     "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/"
   },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-standard",
+      "stylelint-config-prettier"
+    ]
+  },
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [

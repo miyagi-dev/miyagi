@@ -1,10 +1,13 @@
 const babel = require("gulp-babel");
+const cssnano = require("cssnano");
 const del = require("del");
 const gulp = require("gulp");
 const postcss = require("gulp-postcss");
-const rollupResolve = require("rollup-plugin-node-resolve");
-const rollupCommonJs = require("rollup-plugin-commonjs");
+const postcssImport = require("postcss-import");
+const postcssPresetEnv = require("postcss-preset-env");
 const rollup = require("rollup");
+const rollupCommonJs = require("rollup-plugin-commonjs");
+const rollupResolve = require("rollup-plugin-node-resolve");
 const terser = require("rollup-plugin-terser");
 
 const buildFolder = "dist/";
@@ -47,7 +50,7 @@ gulp.task("build:js", () => {
 gulp.task("build:css", () =>
   gulp
     .src(cssFiles)
-    .pipe(postcss())
+    .pipe(postcss([postcssImport, postcssPresetEnv, cssnano]))
     .pipe(gulp.dest(cssDist))
 );
 
