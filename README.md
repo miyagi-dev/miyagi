@@ -32,8 +32,8 @@ Create a `roundup.json` in your project folder with the following options:
 | option             | required/optional | type            | default                               | Note                                                                                                                                                    |
 | ------------------ | ----------------- | --------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `projectName`      | required          | String          | -                                     |
-| `srcFolder`        | required          | String          | `/`                                   |
-| `srcFolderIgnores` | optional          | Array           | `[".git", "node_modules"]`            | Values will be merged with the default value                                                                                                            |
+| `srcFolder`        | required          | String          | `/`                                   | Setting this value to a folder with nothing else but components is optimal, while using your root folder decreases performance.                         |
+| `srcFolderIgnores` | optional          | Array           | `[".git", "node_modules"]`            | Values will be merged with the default. value                                                                                                           |
 | `cssFiles`         | optional          | Array or Object | `[]`                                  | Can either be an array of files or an object with the NODE_ENVs as key, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
 | `jsFiles`          | optional          | Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                         |
 | `validations`      | optional          | Object          | `{ html: true, accessibility: true }` |
@@ -157,9 +157,9 @@ Create a `json` file in your component folder with a structure like this:
 }
 ```
 
-The simplest way is to just a have a `data` key in which you have some values for your variables.
+The simplest way is to just a have a `data` key in which you have some key/value pairs.
 
-Additionally you can create variations (using the `variations` key obviously). Each entry needs a `name` key and its own `data` key in which you overwrite or add variables for your variation. All variables, that are not overwritten, will be inherited by the root `data` key.
+Additionally you can create `variations`. Each entry needs a `name` key and its own `data` key in which you overwrite or add variables for your variation. All variables, that are not overwritten, will be inherited by the root `data` key.
 
 _**NOTE**: The default `data` key is optinal, that means you can also create variations only._
 
