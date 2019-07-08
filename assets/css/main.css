@@ -5,24 +5,24 @@
 @import "./_result.css";
 
 :root {
-  --Roundup-fontSize: 1.6rem;
-  --Roundup-lineHeight: 1.5;
-  --Roundup-color-bg: #f5f5f5;
-  --Roundup-color-lightGray: #707070;
-  --Roundup-color-link: #0a374e;
-  --Roundup-color-negative: #d9173e;
-  --Roundup-color-warning: purple;
-  --Roundup-color-positive: green;
-  --Roundup-borderRadius: 0.25rem;
-  --Roundup-linkSpacing: 0.35rem;
-  --Roundup-toggle-border: 0 solid #000;
-  --Roundup-toggle-borderWidth: 0.3em 0.3em 0 0;
-  --Roundup-toggle-fontSize: 0.75rem;
-  --Roundup-toggle-height: 1em;
-  --Roundup-toggle-transition: transform 0.15s ease;
-  --Roundup-toggle-width: 1em;
-  --Roundup-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
-  --Roundup-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
+  --Freitag-fontSize: 1.6rem;
+  --Freitag-lineHeight: 1.5;
+  --Freitag-color-bg: #f5f5f5;
+  --Freitag-color-lightGray: #707070;
+  --Freitag-color-link: #0a374e;
+  --Freitag-color-negative: #d9173e;
+  --Freitag-color-warning: purple;
+  --Freitag-color-positive: green;
+  --Freitag-borderRadius: 0.25rem;
+  --Freitag-linkSpacing: 0.35rem;
+  --Freitag-toggle-border: 0 solid #000;
+  --Freitag-toggle-borderWidth: 0.3em 0.3em 0 0;
+  --Freitag-toggle-fontSize: 0.75rem;
+  --Freitag-toggle-height: 1em;
+  --Freitag-toggle-transition: transform 0.15s ease;
+  --Freitag-toggle-width: 1em;
+  --Freitag-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
+  --Freitag-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
 }
 
 *,
@@ -36,61 +36,61 @@ html {
   height: 100%;
 }
 
-.Roundup {
+.Freitag {
   display: grid;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif;
-  font-size: var(--Roundup-fontSize);
-  line-height: var(--Roundup-lineHeight);
+  font-size: var(--Freitag-fontSize);
+  line-height: var(--Freitag-lineHeight);
   min-height: 100%;
 }
 
-.Roundup-nav {
-  background: var(--Roundup-color-bg);
+.Freitag-nav {
+  background: var(--Freitag-color-bg);
   grid-area: nav;
   overflow-y: auto;
-  padding: var(--Roundup-spacing)
-    calc(var(--Roundup-spacing) - var(--Roundup-linkSpacing));
+  padding: var(--Freitag-spacing)
+    calc(var(--Freitag-spacing) - var(--Freitag-linkSpacing));
 }
 
-.Roundup-content {
+.Freitag-content {
   display: flex;
   flex-grow: 1;
   grid-area: iframe;
 }
 
-.Roundup-frame {
+.Freitag-frame {
   box-shadow: 0 0 2rem rgba(0, 0, 0, 0.1);
   display: block;
   flex: 1;
   position: relative;
 }
 
-.Roundup-tests {
-  background: var(--Roundup-color-bg);
+.Freitag-tests {
+  background: var(--Freitag-color-bg);
   grid-area: tests;
 }
 
 @media (max-width: 32em) {
   :root {
-    --Roundup-spacing: 1.5rem;
+    --Freitag-spacing: 1.5rem;
   }
 
-  .Roundup {
+  .Freitag {
     grid-template:
       "nav"
       "iframe" 1fr
       "tests";
   }
 
-  .Roundup-nav {
+  .Freitag-nav {
     position: relative;
   }
 
-  .Roundup-toggleMobileMenu {
+  .Freitag-toggleMobileMenu {
     --size: calc(
-      var(--Roundup-fontSize) * var(--Roundup-lineHeight) +
-        calc(2 * var(--Roundup-spacing))
+      var(--Freitag-fontSize) * var(--Freitag-lineHeight) +
+        calc(2 * var(--Freitag-spacing))
     );
 
     display: block;
@@ -101,47 +101,47 @@ html {
     width: var(--size);
   }
 
-  .Roundup-toggleMobileMenu::after {
-    border: var(--Roundup-toggle-border);
-    border-width: var(--Roundup-toggle-borderWidth);
+  .Freitag-toggleMobileMenu::after {
+    border: var(--Freitag-toggle-border);
+    border-width: var(--Freitag-toggle-borderWidth);
     content: "";
     display: block;
     font-size: 0.75em;
-    height: var(--Roundup-toggle-height);
+    height: var(--Freitag-toggle-height);
     left: 50%;
     position: absolute;
     top: 50%;
-    transition: var(--Roundup-toggle-transition);
-    width: var(--Roundup-toggle-width);
+    transition: var(--Freitag-toggle-transition);
+    width: var(--Freitag-toggle-width);
   }
 
-  .Roundup-toggleMobileMenu[aria-expanded="false"]::after {
-    transform: var(--Roundup-toggle-transition-closed);
+  .Freitag-toggleMobileMenu[aria-expanded="false"]::after {
+    transform: var(--Freitag-toggle-transition-closed);
   }
 
-  .Roundup-toggleMobileMenu[aria-expanded="true"]::after {
-    transform: var(--Roundup-toggle-transition-opened);
+  .Freitag-toggleMobileMenu[aria-expanded="true"]::after {
+    transform: var(--Freitag-toggle-transition-opened);
   }
 
-  .Roundup-toggleMobileMenu[aria-expanded="false"] + .Roundup-menu {
+  .Freitag-toggleMobileMenu[aria-expanded="false"] + .Freitag-menu {
     display: none;
   }
 }
 
 @media (min-width: 32.03125em) {
   :root {
-    --Roundup-spacing: 2.5rem;
+    --Freitag-spacing: 2.5rem;
   }
 
-  .Roundup-nav {
+  .Freitag-nav {
     height: 100vh;
   }
 
-  .Roundup-toggleMobileMenu {
+  .Freitag-toggleMobileMenu {
     display: none;
   }
 
-  .Roundup-tests {
+  .Freitag-tests {
     max-height: var(--maxHeight);
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
@@ -149,7 +149,7 @@ html {
 }
 
 @media (min-width: 32.03125em) and (max-width: 64em) {
-  .Roundup {
+  .Freitag {
     grid-template-areas:
       "nav iframe"
       "nav tests";
@@ -157,26 +157,26 @@ html {
     grid-template-rows: 1fr auto;
   }
 
-  .Roundup-nav {
+  .Freitag-nav {
     max-width: 40vw;
   }
 
-  .Roundup-tests {
+  .Freitag-tests {
     --maxHeight: 50vh;
   }
 }
 
 @media (min-width: 64.03125em) {
-  .Roundup {
+  .Freitag {
     grid-template-areas: "nav iframe tests";
     grid-template-columns: auto 1fr auto;
   }
 
-  .Roundup-nav {
+  .Freitag-nav {
     max-width: 20vw;
   }
 
-  .Roundup-tests {
+  .Freitag-tests {
     --maxHeight: 100vh;
 
     max-width: 40vw;

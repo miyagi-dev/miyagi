@@ -1,7 +1,7 @@
 :root {
-  --Roundup-color-bg: #f5f5f5;
-  --Roundup-color-link: #0a374e;
-  --Roundup-transition: all 0.15s ease;
+  --Freitag-color-bg: #f5f5f5;
+  --Freitag-color-link: #0a374e;
+  --Freitag-transition: all 0.15s ease;
 }
 
 html {
@@ -13,15 +13,15 @@ body {
   min-height: 100%;
 }
 
-.RoundupComponents {
+.FreitagComponents {
   padding: var(--spacing) 0;
 }
 
-.RoundupComponent {
+.FreitagComponent {
   margin: 0 var(--spacing);
 }
 
-.RoundupComponent-file {
+.FreitagComponent-file {
   align-items: center;
   color: #767676;
   display: flex;
@@ -29,43 +29,43 @@ body {
   text-decoration: none;
 }
 
-.RoundupComponent-file:hover,
-.RoundupComponent-file:focus,
-.RoundupComponent-file:active {
-  color: var(--Roundup-color-link);
+.FreitagComponent-file:hover,
+.FreitagComponent-file:focus,
+.FreitagComponent-file:active {
+  color: var(--Freitag-color-link);
   text-decoration: underline;
 }
 
-.RoundupComponent-file::before,
-.RoundupComponent-file::after {
+.FreitagComponent-file::before,
+.FreitagComponent-file::after {
   background: #ddd;
   content: "";
   flex: 1;
   height: 1px;
 }
 
-.RoundupComponent-file::before {
+.FreitagComponent-file::before {
   margin-right: 20px;
 }
 
-.RoundupComponent-file::after {
+.FreitagComponent-file::after {
   margin-left: 20px;
 }
 
-.RoundupComponent-html {
+.FreitagComponent-html {
   padding: var(--spacing) 0;
 }
 
-.RoundupError {
+.FreitagError {
   color: #d9173e;
 }
 
-.RoundupComponentView {
+.FreitagComponentView {
   padding: var(--spacing);
 }
 
-.RoundupIframe-newTabLink {
-  background: var(--Roundup-color-bg);
+.FreitagIframe-newTabLink {
+  background: var(--Freitag-color-bg);
   border: 3px solid rgba(0, 0, 0, 0.025);
   border-radius: 50%;
   display: block;
@@ -75,15 +75,15 @@ body {
   right: 20px;
   text-indent: -9999em;
   top: 20px;
-  transition: var(--Roundup-transition);
+  transition: var(--Freitag-transition);
   width: 1em;
 }
 
-.RoundupIframe-newTabLink:hover {
-  background-color: var(--Roundup-color-link);
+.FreitagIframe-newTabLink:hover {
+  background-color: var(--Freitag-color-link);
 }
 
-.RoundupIframe-newTabLink::after {
+.FreitagIframe-newTabLink::after {
   background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyODQgMjg0Ij48cGF0aCBkPSJNMjY2IDBoLTk3YTE4IDE4IDAgMCAwIDAgMzVoNTVsLTkyIDkyYTE3IDE3IDAgMCAwIDAgMjUgMTcgMTcgMCAwIDAgMjUgMGw5Mi05MnY1NWExOCAxOCAwIDAgMCAzNSAwVjE4YzAtMTAtOC0xOC0xOC0xOHoiLz48cGF0aCBkPSJNMjAxIDI1NEgzMFY4M2gxMjlsMzAtMzBIMTVDNyA1MyAwIDYwIDAgNjh2MjAxYzAgOCA3IDE1IDE1IDE1aDIwMWM4IDAgMTUtNyAxNS0xNVY5NWwtMzAgMzB2MTI5eiIvPjwvc3ZnPg==)
     no-repeat center;
   background-size: 50%;
@@ -97,18 +97,18 @@ body {
   width: 100%;
 }
 
-.RoundupIframe-newTabLink:hover::after {
+.FreitagIframe-newTabLink:hover::after {
   filter: invert(1);
 }
 
 @media (max-width: 32em) {
-  .RoundupIframe {
+  .FreitagIframe {
     --spacing: 15px;
   }
 }
 
 @media (min-width: 32.03125em) {
-  .RoundupIframe {
+  .FreitagIframe {
     --spacing: 30px;
   }
 }

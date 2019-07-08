@@ -78,7 +78,7 @@ describe("lib/init", () => {
         );
         expect(logger.log).toHaveBeenCalledWith(
           "info",
-          "Running roundup server at http://127.0.0.1:1234."
+          "Running freitag server at http://127.0.0.1:1234."
         );
         server.close();
         done();
@@ -95,7 +95,7 @@ describe("lib/init", () => {
         const server = await init(config);
         expect(logger.log).toHaveBeenCalledWith(
           "info",
-          `Running roundup server at http://127.0.0.1:${config.defaultPort}.`
+          `Running freitag server at http://127.0.0.1:${config.defaultPort}.`
         );
         server.close();
         done();

@@ -1,10 +1,10 @@
 {{#extend "iframe"}}
   {{#content "body"}}
-    <div class="RoundupComponents">
+    <div class="FreitagComponents">
       {{#each variations}}
-        <div class="RoundupComponent">
-          <a href="/component?file={{this.file}}&variation={{this.variation}}&embedded=true" class="RoundupComponent-file">{{this.variation}}</a>
-          <div class="RoundupComponent-html">
+        <div class="FreitagComponent">
+          <a href="/component?file={{this.file}}&variation={{this.variation}}&embedded=true" class="FreitagComponent-file">{{this.variation}}</a>
+          <div class="FreitagComponent-html">
             {{{this.html}}}
           </div>
         </div>

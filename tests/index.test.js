@@ -23,9 +23,9 @@ describe("index", () => {
   });
 
   describe("with process.env.NODE_ENV defined", () => {
-    describe("with roundup.json", () => {
-      describe("with parseable result from roundup.json", () => {
-        describe("with extension, srcFolder and engine defined in roundup.json", () => {
+    describe("with freitag.json", () => {
+      describe("with parseable result from freitag.json", () => {
+        describe("with extension, srcFolder and engine defined in freitag.json", () => {
           test("calls lib/init with parsed config", () => {
             const fs = require("fs");
             const init = require("../lib/init/index.js");
@@ -50,7 +50,7 @@ describe("index", () => {
           });
         });
 
-        describe("without extension defined in roundup.json", () => {
+        describe("without extension defined in freitag.json", () => {
           test("it calls logger.log with the correct error msg", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
@@ -85,7 +85,7 @@ describe("index", () => {
           });
         });
 
-        describe("without engine defined in roundup.json", () => {
+        describe("without engine defined in freitag.json", () => {
           test("it calls logger.log with the correct error msg", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
@@ -120,7 +120,7 @@ describe("index", () => {
           });
         });
 
-        describe("without srcFolfer defined in roundup.json", () => {
+        describe("without srcFolfer defined in freitag.json", () => {
           test("it calls logger.log with the correct error msg", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
@@ -156,7 +156,7 @@ describe("index", () => {
         });
       });
 
-      describe("with roundup.json not being parseable", () => {
+      describe("with freitag.json not being parseable", () => {
         test("it calls logger.log with the correct error msg", () => {
           const fs = require("fs");
           const logger = require("../lib/logger.js");
@@ -168,15 +168,16 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(logger.log).toHaveBeenCalledWith(
+          expect(logger.log).toHaveBeenNthCalledWith(
+            2,
             "error",
-            "Roundup wasn't able to parse your config file."
+            "freitag wasn't able to parse your config file."
           );
         });
       });
     });
 
-    describe("without roundup.json", () => {
+    describe("without freitag.json", () => {
       test("it calls logger.log with the correct error msg", () => {
         const fs = require("fs");
         const logger = require("../lib/logger.js");

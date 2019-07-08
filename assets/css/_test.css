@@ -1,13 +1,13 @@
-.RoundupTest {
+.FreitagTest {
   font-size: 1.4rem;
-  padding: var(--Roundup-spacing) var(--Roundup-spacing) 0;
+  padding: var(--Freitag-spacing) var(--Freitag-spacing) 0;
 }
 
-.RoundupTest:last-child {
-  padding-bottom: var(--Roundup-spacing);
+.FreitagTest:last-child {
+  padding-bottom: var(--Freitag-spacing);
 }
 
-.RoundupTest-title {
+.FreitagTest-title {
   display: block;
   font-weight: bold;
   margin: 0 0 0.5rem;

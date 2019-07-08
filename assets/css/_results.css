@@ -1,8 +1,8 @@
-.RoundupResults + .RoundupResults {
+.FreitagResults + .FreitagResults {
   margin-top: var(--results-spacing);
 }
 
-.RoundupResults-summary {
+.FreitagResults-summary {
   cursor: default;
   list-style-type: none;
   padding: 0 0 0 1.5rem;
@@ -10,37 +10,37 @@
   white-space: nowrap;
 }
 
-.RoundupResults-summary::after {
-  border: var(--Roundup-toggle-border);
-  border-width: var(--Roundup-toggle-borderWidth);
+.FreitagResults-summary::after {
+  border: var(--Freitag-toggle-border);
+  border-width: var(--Freitag-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: var(--Roundup-toggle-fontSize);
-  height: var(--Roundup-toggle-height);
+  font-size: var(--Freitag-toggle-fontSize);
+  height: var(--Freitag-toggle-height);
   left: 0.25rem;
   position: absolute;
   top: 50%;
-  transition: var(--Roundup-toggle-transition);
-  width: var(--Roundup-toggle-width);
+  transition: var(--Freitag-toggle-transition);
+  width: var(--Freitag-toggle-width);
 }
 
-.RoundupResults-summary::-webkit-details-marker {
+.FreitagResults-summary::-webkit-details-marker {
   display: none;
 }
 
-.RoundupResults:not([open]) .RoundupResults-summary::after {
-  transform: var(--Roundup-toggle-transition-closed);
+.FreitagResults:not([open]) .FreitagResults-summary::after {
+  transform: var(--Freitag-toggle-transition-closed);
 }
 
-.RoundupResults[open] .RoundupResults-summary::after {
-  transform: var(--Roundup-toggle-transition-opened);
+.FreitagResults[open] .FreitagResults-summary::after {
+  transform: var(--Freitag-toggle-transition-opened);
 }
 
-.RoundupResults-value:not(:last-child) {
+.FreitagResults-value:not(:last-child) {
   padding-right: 1rem;
 }
 
-.RoundupResults-value.has-positiveValue {
+.FreitagResults-value.has-positiveValue {
   border-radius: 0.25em;
   color: #fff;
   display: inline-block;
@@ -50,54 +50,54 @@
   text-align: center;
 }
 
-.RoundupResults-value--positive {
-  color: var(--Roundup-color-positive);
+.FreitagResults-value--positive {
+  color: var(--Freitag-color-positive);
 }
 
-.RoundupResults-value--positive.has-positiveValue {
-  background: var(--Roundup-color-positive);
+.FreitagResults-value--positive.has-positiveValue {
+  background: var(--Freitag-color-positive);
 }
 
-.RoundupResults-value--neutral {
-  color: var(--Roundup-color-lightGray);
+.FreitagResults-value--neutral {
+  color: var(--Freitag-color-lightGray);
 }
 
-.RoundupResults-value--neutral.has-positiveValue {
-  background: var(--Roundup-color-lightGray);
+.FreitagResults-value--neutral.has-positiveValue {
+  background: var(--Freitag-color-lightGray);
 }
 
-.RoundupResults-value--negative {
-  color: var(--Roundup-color-negative);
+.FreitagResults-value--negative {
+  color: var(--Freitag-color-negative);
 }
 
-.RoundupResults-value--negative.has-positiveValue {
-  background: var(--Roundup-color-negative);
+.FreitagResults-value--negative.has-positiveValue {
+  background: var(--Freitag-color-negative);
 }
 
-.RoundupResults-value--warning {
-  color: var(--Roundup-color-warning);
+.FreitagResults-value--warning {
+  color: var(--Freitag-color-warning);
 }
 
-.RoundupResults-value--warning.has-positiveValue {
-  background: var(--Roundup-color-warning);
+.FreitagResults-value--warning.has-positiveValue {
+  background: var(--Freitag-color-warning);
 }
 
-.RoundupResults-details {
+.FreitagResults-details {
   margin: 1rem 0 1rem 2.2rem;
 }
 
-.RoundupResults-empty {
+.FreitagResults-empty {
   font-style: italic;
 }
 
 @media (pointer: coarse) {
-  .RoundupResults + .RoundupResults {
+  .FreitagResults + .FreitagResults {
     --results-spacing: 0.75rem;
   }
 }
 
 @media (pointer: fine) {
-  .RoundupResults + .RoundupResults {
+  .FreitagResults + .FreitagResults {
     --results-spacing: 0.5rem;
   }
 }

@@ -8,7 +8,7 @@ function escapeHtml(str) {
 
 function addToggle(container) {
   const summaries = Array.from(
-    container.querySelectorAll(".RoundupResults-summary")
+    container.querySelectorAll(".FreitagResults-summary")
   );
 
   summaries.forEach(summary => {
@@ -30,12 +30,12 @@ function a11yTest(container) {
 
   addToggle(container);
 
-  axe.run(document.getElementById("RoundupComponent"), function(err, results) {
+  axe.run(document.getElementById("FreitagComponent"), function(err, results) {
     if (err) throw err;
 
     states.forEach(state => {
       const resultElement = container.querySelector(
-        `.RoundupResults--${state} .RoundupResults-value`
+        `.FreitagResults--${state} .FreitagResults-value`
       );
       let html = "";
 
@@ -51,23 +51,23 @@ function a11yTest(container) {
       if (results[state].length) {
         html += "<ul>";
         results[state].forEach(result => {
-          html += '<li class="RoundupResult">';
-          html += '<dl class="RoundupResult-data">';
+          html += '<li class="FreitagResult">';
+          html += '<dl class="FreitagResult-data">';
 
           if (result.description) {
-            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Description</dt> <dd class="RoundupResult-value">${escapeHtml(
+            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Description</dt> <dd class="FreitagResult-value">${escapeHtml(
               result.description
             )}</div></dd>`;
           }
 
           if (result.help) {
-            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Help</dt> <dd class="RoundupResult-value">${escapeHtml(
+            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Help</dt> <dd class="FreitagResult-value">${escapeHtml(
               result.help
             )}</div></dd>`;
           }
 
           if (result.helpUrl) {
-            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Link</dt> <dd class="RoundupResult-value"><a href="${
+            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Link</dt> <dd class="FreitagResult-value"><a href="${
               result.helpUrl
             }" target="_blank">${result.helpUrl}</div></dd></a>`;
           }
@@ -77,13 +77,13 @@ function a11yTest(container) {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "RoundupResults-value--negative";
+                impactClass = "FreitagResults-value--negative";
                 break;
               case "moderate":
-                impactClass = "RoundupResults-value--warning";
+                impactClass = "FreitagResults-value--warning";
             }
 
-            html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Impact</dt> <dd class="${impactClass}">${
+            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Impact</dt> <dd class="${impactClass}">${
               result.impact
             }</div></dd>`;
           }
@@ -93,11 +93,11 @@ function a11yTest(container) {
         });
         html += "</ul>";
       } else {
-        html += '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
+        html += '<p><i class="FreitagResults-empty">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.RoundupResults--${state} .RoundupResults-details`
+        `.FreitagResults--${state} .FreitagResults-details`
       ).innerHTML = html;
     });
 
@@ -131,7 +131,7 @@ function htmlTest(container) {
                 );
 
                 const resultElement = container.querySelector(
-                  `.RoundupResults--${state} .RoundupResults-value`
+                  `.FreitagResults--${state} .FreitagResults-value`
                 );
                 let html = "";
 
@@ -142,11 +142,11 @@ function htmlTest(container) {
 
                   html += "<ul>";
                   results.forEach(result => {
-                    html += '<li class="RoundupResult">';
-                    html += '<dl class="RoundupResult-data">';
+                    html += '<li class="FreitagResult">';
+                    html += '<dl class="FreitagResult-data">';
 
                     if (result.message) {
-                      html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Message</dt> <dd class="RoundupResult-value">${
+                      html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Message</dt> <dd class="FreitagResult-value">${
                         result.message
                       }</div></dd>`;
                     }
@@ -165,16 +165,16 @@ function htmlTest(container) {
                         )
                       )}`;
 
-                      html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">Extract</dt> <dd class="RoundupResult-value"><code class="RoundupResult-extract">${markedExtract.replace(
+                      html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Extract</dt> <dd class="FreitagResult-value"><code class="FreitagResult-extract">${markedExtract.replace(
                         /\n/g,
                         "↩"
                       )}</code></div></dd>`;
                     }
 
-                    html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">From</dt><dd class="RoundupResult-value">Line: ${
+                    html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">From</dt><dd class="FreitagResult-value">Line: ${
                       result[result.firstLine ? "firstLine" : "lastLine"]
                     }, Column: ${result.firstColumn}</div></dd>`;
-                    html += `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">To</dt><dd class="RoundupResult-value">Line: ${
+                    html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">To</dt><dd class="FreitagResult-value">Line: ${
                       result.lastLine
                     }, Column: ${result.lastColumn}</div></dd>`;
 
@@ -185,11 +185,11 @@ function htmlTest(container) {
                 } else {
                   resultElement.classList.remove("has-positiveValue");
                   html +=
-                    '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
+                    '<p><i class="FreitagResults-empty">Nothing to report.</i></p>';
                 }
 
                 container.querySelector(
-                  `.RoundupResults--${state} .RoundupResults-details`
+                  `.FreitagResults--${state} .FreitagResults-details`
                 ).innerHTML = html;
               });
 
@@ -207,12 +207,12 @@ function htmlTest(container) {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  const tests = parent.document.querySelector(".Roundup-tests");
+  const tests = parent.document.querySelector(".Freitag-tests");
 
   if (tests) {
-    if (document.getElementById("RoundupComponent")) {
-      const a11yContainer = parent.document.querySelector(".RoundupTest--a11y");
-      const htmlContainer = parent.document.querySelector(".RoundupTest--html");
+    if (document.getElementById("FreitagComponent")) {
+      const a11yContainer = parent.document.querySelector(".FreitagTest--a11y");
+      const htmlContainer = parent.document.querySelector(".FreitagTest--html");
 
       if (a11yContainer) {
         if (window.validations.accessibility) {

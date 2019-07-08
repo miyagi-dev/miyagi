@@ -1,13 +1,13 @@
-# roundup
+# freitag
 
-_roundup_ gives you an overview over all your components and allows you to develop them independently from a backend.
-For maximum convenience, you can define json data which can be inherited and reused from including components. _roundup_ uses [consolidate.js](https://github.com/tj/consolidate.js) under the hood, so it automatically supports a lot of rendering engines.
+_freitag_ gives you an overview over all your components and allows you to develop them independently from a backend.
+For maximum convenience, you can define json data which can be inherited and reused from including components. _freitag_ uses [consolidate.js](https://github.com/tj/consolidate.js) under the hood, so it automatically supports a lot of rendering engines.
 
-[![Build Status](https://travis-ci.com/mgrsskls/roundup.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/roundup) [![codecov](https://codecov.io/gh/mgrsskls/roundup/branch/master/graph/badge.svg?token=h0X0KpG03T)](https://codecov.io/gh/mgrsskls/roundup)
+[![Build Status](https://travis-ci.com/mgrsskls/freitag.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/freitag) [![codecov](https://codecov.io/gh/mgrsskls/freitag/branch/master/graph/badge.svg?token=h0X0KpG03T)](https://codecov.io/gh/mgrsskls/freitag)
 
 ## Demo
 
-[roundup-demo.mgrossklaus.de](https://roundup-demo.mgrossklaus.de)
+[freitag.mgrossklaus.de](https://freitag.mgrossklaus.de)
 
 ## Data reusage
 
@@ -21,13 +21,13 @@ If you have a component, that includes another component, you can easily include
 
 ## Installation
 
-`npm install roundup`
+`npm install freitag`
 or
-`yarn install roundup`
+`yarn install freitag`
 
 ## Usage
 
-Create a `roundup.json` in your project folder with the following options:
+Create a `freitag.json` in your project folder with the following options:
 
 | option             | required/optional | type            | default                               | Note                                                                                                                                                    |
 | ------------------ | ----------------- | --------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -38,11 +38,11 @@ Create a `roundup.json` in your project folder with the following options:
 | `jsFiles`          | optional          | Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                         |
 | `validations`      | optional          | Object          | `{ html: true, accessibility: true }` |
 
-Start _roundup_ with `node node_modules/roundup`. This will serve _roundup_ at `http://127.0.0.1:5000`. You can change the port with `PORT=1234 node node_modules/roundup`.
+Start _freitag_ with `node node_modules/freitag`. This will serve _freitag_ at `http://127.0.0.1:5000`. You can change the port with `PORT=1234 node node_modules/freitag`.
 
 ### Organizing your components
 
-_roundup_ assumes that you have a dedicated folder for each of your components, including a template-, css- and js file, all named like the folder.
+_freitag_ assumes that you have a dedicated folder for each of your components, including a template-, css- and js file, all named like the folder.
 
 #### Example
 
@@ -165,8 +165,8 @@ _**NOTE**: The default `data` key is optinal, that means you can also create var
 
 **Instead of defining data manually, you can also use data from included components:**
 
-The example above uses `"components/teaser/teaser.json"` as the value for `data.teaser` in `templates/homepage/homepage.json`. _roundup_ detects that this is a data file for your component and doesn't interpret it as a simple string, but uses the data from this file for `data.teaser`.
-If you have variations defined in this file, you can tell _roundup_ to use any of them like this:
+The example above uses `"components/teaser/teaser.json"` as the value for `data.teaser` in `templates/homepage/homepage.json`. _freitag_ detects that this is a data file for your component and doesn't interpret it as a simple string, but uses the data from this file for `data.teaser`.
+If you have variations defined in this file, you can tell _freitag_ to use any of them like this:
 
 ```js
 {
@@ -231,14 +231,14 @@ The `teaser.json` example above would be resolved like this:
 }
 ```
 
-_roundup_'s concept of inheriting data works best with rendering engines which allow you to pass data objects into an include.
+_freitag_'s concept of inheriting data works best with rendering engines which allow you to pass data objects into an include.
 Please check the section [Rendering engines](#rendering-engines) for limitations with certain rendering engines.
 
 _**Note:** There is no way to create a variation of a variation. Variations can only go one level deep._
 
 ### Rendering engines
 
-As _roundup_ uses [consolidate.js](https://github.com/tj/consolidate.js), most of its rendering engines should work out of the box.
+As _freitag_ uses [consolidate.js](https://github.com/tj/consolidate.js), most of its rendering engines should work out of the box.
 
 The following rendering engines have been tested and seem to work with without problems:
 
@@ -261,22 +261,22 @@ Due to their implementations, their might be some constraints though.
 - [mustache.js](https://github.com/janl/mustache.js)
 - [pug](https://github.com/pugjs/pug)
 
-Because of that, _roundup_'s concept of data inclusion doesn't work. Nevertheless, you can still define all variables manually in your data files. These variables will then be available in your included components.
+Because of that, _freitag_'s concept of data inclusion doesn't work. Nevertheless, you can still define all variables manually in your data files. These variables will then be available in your included components.
 
-If you use `pug`, you could also use a `mixin` and would then be able to use data inclusion. However, _roundup_ is not able to render mixins independently, so you could only render them in the context of the including file.
+If you use `pug`, you could also use a `mixin` and would then be able to use data inclusion. However, _freitag_ is not able to render mixins independently, so you could only render them in the context of the including file.
 
 **The following engines don't allow passing data into includes and the data is not globally available:**
 
 - [nunjucks](https://github.com/mozilla/nunjucks)
 
-If you use `nunjucks`, you could set a variable in your component (e.g. `{% set myVar = myData.myVar %}` which creates a global variable. This would be available in the included component. Alternatively you could use a `macro`, but _roundup_ is not able to render these independently, so you could only render them in the context of the including file.
+If you use `nunjucks`, you could set a variable in your component (e.g. `{% set myVar = myData.myVar %}` which creates a global variable. This would be available in the included component. Alternatively you could use a `macro`, but _freitag_ is not able to render these independently, so you could only render them in the context of the including file.
 
 **Engines that don't support includes at all:**
 
 - [underscore](https://github.com/jashkenas/underscore)
 - [haml.js](https://github.com/tj/haml.js)
 
-**_roundup_ doesn't work with the following rendering engines:**
+**_freitag_ doesn't work with the following rendering engines:**
 
 - [doT](https://github.com/olado/doT)
 - [marko](https://github.com/marko-js/marko)
@@ -293,5 +293,5 @@ _**Note:** Just because the accessibility validation doesn't result in any error
 ## Good to know
 
 - Your component is automatically reloaded as soon as you change it.
-- The start page of _roundup_ renders all your components, but without variations. Opening a component either renders an overview of all of its variations or the component directly if it doesn't have any variations.
-- Folders, that don't include a file with the same name and the given file extension (defined in `roundup.json`), are shown in the menu, but disabled.
+- The start page of _freitag_ renders all your components, but without variations. Opening a component either renders an overview of all of its variations or the component directly if it doesn't have any variations.
+- Folders, that don't include a file with the same name and the given file extension (defined in `freitag.json`), are shown in the menu, but disabled.

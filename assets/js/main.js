@@ -1,11 +1,11 @@
 const classes = {
-  list: "Roundup-list",
-  listItem: "Roundup-listItem",
-  content: "Roundup-content",
-  iframe: "Roundup-frame",
-  toggle: "Roundup-toggle",
-  toggleMenu: "Roundup-toggleMobileMenu",
-  link: "Roundup-link"
+  list: "Freitag-list",
+  listItem: "Freitag-listItem",
+  content: "Freitag-content",
+  iframe: "Freitag-frame",
+  toggle: "Freitag-toggle",
+  toggleMenu: "Freitag-toggleMobileMenu",
+  link: "Freitag-link"
 };
 const paths = {
   embedded: "/component?",

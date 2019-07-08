@@ -42,7 +42,7 @@ describe("lib/menu/elements/directory", () => {
       directory
         .render(app, directoryObject, request)
         .indexOf(
-          '<span class="Roundup-component Roundup-component--lvl2">name</span>'
+          '<span class="Freitag-component Freitag-component--lvl2">name</span>'
         )
     ).toBeGreaterThanOrEqual(0);
   });
