@@ -1,8 +1,6 @@
 const getPartials = require("../../../lib/state/partials.js");
 const readDir = require("fs-readdir-recursive");
-const {
-  filterFilesWithoutUnwantedFileType
-} = require("../../../lib/state/_helpers.js");
+const { getOnlyWantedFiles } = require("../../../lib/state/_helpers.js");
 
 jest.mock("fs-readdir-recursive");
 jest.mock("../../../lib/state/_helpers.js");
@@ -35,7 +33,7 @@ describe("lib/state/partials", () => {
         `directory2/directory2.hbs`,
         `directory3/directory3.hbs`
       ]);
-      filterFilesWithoutUnwantedFileType.mockImplementation(() => true);
+      getOnlyWantedFiles.mockImplementation(() => true);
 
       expect(getPartials(app)).toEqual({
         "directory1/directory1.hbs": `${process.cwd()}/tests/mocks/files/directory1/directory1.hbs`,
@@ -52,7 +50,7 @@ describe("lib/state/partials", () => {
         `directory2/directory2.hbs`,
         `directory3/directory3.hbs`
       ]);
-      filterFilesWithoutUnwantedFileType.mockImplementation(() => false);
+      getOnlyWantedFiles.mockImplementation(() => false);
 
       expect(getPartials(app)).toEqual({});
     });

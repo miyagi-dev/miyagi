@@ -10,6 +10,64 @@ afterEach(() => {
 });
 
 describe("lib/init/config", () => {
+  describe("with strings for user cssFiles and user jsFiles", () => {
+    test("merges given user config and app config and sets app.config", () => {
+      const app = require("express")();
+
+      setConfig(app, appConfig, {
+        projectName: "userName",
+        srcFolderIgnores: ["user/ignores/"],
+        srcFolder: "user/srcFolder/",
+        cssFiles: "user/css/index.css",
+        jsFiles: "user/js/index.js",
+        validations: {
+          html: false,
+          accessibility: false
+        }
+      });
+
+      expect(app.get("config")).toEqual({
+        projectName: "userName",
+        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+        srcFolder: "user/srcFolder/",
+        cssFiles: ["user/css/index.css"],
+        jsFiles: ["user/js/index.js"],
+        validations: {
+          html: false,
+          accessibility: false
+        }
+      });
+    });
+
+    test("sanitizes all given paths by the user", () => {
+      const app = require("express")();
+
+      setConfig(app, appConfig, {
+        projectName: "userName",
+        srcFolderIgnores: "../../user/ignores",
+        srcFolder: "/user/srcFolder",
+        cssFiles: "../../../../user/css/index.css",
+        jsFiles: "/user/js/index.js",
+        validations: {
+          html: false,
+          accessibility: false
+        }
+      });
+
+      expect(app.get("config")).toEqual({
+        projectName: "userName",
+        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+        srcFolder: "user/srcFolder/",
+        cssFiles: ["user/css/index.css"],
+        jsFiles: ["user/js/index.js"],
+        validations: {
+          html: false,
+          accessibility: false
+        }
+      });
+    });
+  });
+
   describe("with arrays for user cssFiles and user jsFiles", () => {
     test("merges given user config and app config and sets app.config", () => {
       const app = require("express")();
@@ -69,75 +127,127 @@ describe("lib/init/config", () => {
   });
 
   describe("with an object for user cssFiles and user jsFiles", () => {
-    test("merges given user config and app config and sets app.config", () => {
-      const app = require("express")();
+    describe("values are arrays", () => {
+      test("merges given user config and app config and sets app.config", () => {
+        const app = require("express")();
 
-      setConfig(app, appConfig, {
-        projectName: "userName",
-        srcFolderIgnores: ["user/ignores/"],
-        srcFolder: "user/srcFolder/",
-        cssFiles: {
-          test: ["user/dev/css/index.css"]
-        },
-        jsFiles: {
-          test: ["user/dev/js/index.js"]
-        },
-        validations: {
-          html: false,
-          accessibility: false
-        }
+        setConfig(app, appConfig, {
+          projectName: "userName",
+          srcFolderIgnores: ["user/ignores/"],
+          srcFolder: "user/srcFolder/",
+          cssFiles: {
+            test: ["user/dev/css/index.css"]
+          },
+          jsFiles: {
+            test: ["user/dev/js/index.js"]
+          },
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
+
+        expect(app.get("config")).toEqual({
+          projectName: "userName",
+          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolder: "user/srcFolder/",
+          cssFiles: ["user/dev/css/index.css"],
+          jsFiles: ["user/dev/js/index.js"],
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
       });
 
-      expect(app.get("config")).toEqual({
-        projectName: "userName",
-        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
-        srcFolder: "user/srcFolder/",
-        cssFiles: {
-          test: ["user/dev/css/index.css"]
-        },
-        jsFiles: {
-          test: ["user/dev/js/index.js"]
-        },
-        validations: {
-          html: false,
-          accessibility: false
-        }
+      test("sanitizes all given paths by the user", () => {
+        const app = require("express")();
+
+        setConfig(app, appConfig, {
+          projectName: "userName",
+          srcFolderIgnores: "../../user/ignores",
+          srcFolder: "/user/srcFolder",
+          cssFiles: ["../../../../user/css/index.css"],
+          jsFiles: ["/user/js/index.js"],
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
+
+        expect(app.get("config")).toEqual({
+          projectName: "userName",
+          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolder: "user/srcFolder/",
+          cssFiles: ["user/css/index.css"],
+          jsFiles: ["user/js/index.js"],
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
       });
     });
 
-    test("sanitizes all given paths by the user", () => {
-      const app = require("express")();
+    describe("values are strings", () => {
+      test("merges given user config and app config and sets app.config", () => {
+        const app = require("express")();
 
-      setConfig(app, appConfig, {
-        projectName: "userName",
-        srcFolderIgnores: "../../user/ignores",
-        srcFolder: "/user/srcFolder",
-        cssFiles: {
-          test: ["../../../../user/css/index.css"]
-        },
-        jsFiles: {
-          test: ["/user/js/index.js"]
-        },
-        validations: {
-          html: false,
-          accessibility: false
-        }
+        setConfig(app, appConfig, {
+          projectName: "userName",
+          srcFolderIgnores: ["user/ignores/"],
+          srcFolder: "user/srcFolder/",
+          cssFiles: {
+            test: "user/dev/css/index.css"
+          },
+          jsFiles: {
+            test: "user/dev/js/index.js"
+          },
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
+
+        expect(app.get("config")).toEqual({
+          projectName: "userName",
+          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolder: "user/srcFolder/",
+          cssFiles: ["user/dev/css/index.css"],
+          jsFiles: ["user/dev/js/index.js"],
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
       });
 
-      expect(app.get("config")).toEqual({
-        projectName: "userName",
-        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
-        srcFolder: "user/srcFolder/",
-        cssFiles: {
-          test: ["user/css/index.css"]
-        },
-        jsFiles: {
-          test: ["user/js/index.js"]
-        },
-        validations: {
-          html: false,
-          accessibility: false
-        }
+      test("sanitizes all given paths by the user", () => {
+        const app = require("express")();
+
+        setConfig(app, appConfig, {
+          projectName: "userName",
+          srcFolderIgnores: "../../user/ignores",
+          srcFolder: "/user/srcFolder",
+          cssFiles: "../../../../user/css/index.css",
+          jsFiles: "/user/js/index.js",
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
+
+        expect(app.get("config")).toEqual({
+          projectName: "userName",
+          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolder: "user/srcFolder/",
+          cssFiles: ["user/css/index.css"],
+          jsFiles: ["user/js/index.js"],
+          validations: {
+            html: false,
+            accessibility: false
+          }
+        });
       });
     });
 
@@ -169,7 +279,7 @@ describe("lib/init/config", () => {
         );
       });
 
-      test("it sets the asset keys to {}", () => {
+      test("it sets the asset keys to []", () => {
         logger.log = jest.fn();
 
         setConfig(app, appConfig, {
@@ -180,8 +290,8 @@ describe("lib/init/config", () => {
             foo: ["user/js/index.js"]
           }
         });
-        expect(app.get("config").cssFiles).toEqual({});
-        expect(app.get("config").jsFiles).toEqual({});
+        expect(app.get("config").cssFiles).toEqual([]);
+        expect(app.get("config").jsFiles).toEqual([]);
       });
     });
   });
@@ -194,7 +304,7 @@ describe("lib/init/config", () => {
 
       expect(app.get("config")).toEqual({
         projectName: "freitag",
-        srcFolder: "/",
+        srcFolder: "",
         cssFiles: [],
         jsFiles: [],
         srcFolderIgnores: ["node_modules", ".git"],
@@ -203,6 +313,30 @@ describe("lib/init/config", () => {
           accessibility: true
         }
       });
+    });
+  });
+
+  describe("with srcFolder === '.'", () => {
+    test("it sets srcFolder to ''", () => {
+      const app = require("express")();
+
+      setConfig(app, appConfig, {
+        srcFolder: "."
+      });
+
+      expect(app.get("config").srcFolder).toEqual("");
+    });
+  });
+
+  describe("with srcFolder === '/'", () => {
+    test("it sets srcFolder to ''", () => {
+      const app = require("express")();
+
+      setConfig(app, appConfig, {
+        srcFolder: "/"
+      });
+
+      expect(app.get("config").srcFolder).toEqual("");
     });
   });
 });

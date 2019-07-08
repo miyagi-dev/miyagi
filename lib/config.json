@@ -4,7 +4,13 @@
   "userConfigFile": "freitag.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
-  "srcFolderIgnores": ["node_modules", ".git"],
+  "srcFolderIgnores": [
+    "node_modules",
+    ".git",
+    "package.json",
+    "package-lock.json",
+    "freitag.json"
+  ],
   "folders": {
     "assets": {
       "development": "assets",

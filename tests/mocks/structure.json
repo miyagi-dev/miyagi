@@ -1,0 +1,1590 @@
+[
+  {
+    "path": "/freitag/tests/dist",
+    "name": "dist",
+    "children": [
+      {
+        "path": "/freitag/tests/dist/css",
+        "name": "css",
+        "children": [],
+        "size": 0,
+        "type": "directory",
+        "shortPath": "dist/css",
+        "index": 1
+      },
+      {
+        "path": "/freitag/tests/dist/js",
+        "name": "js",
+        "children": [],
+        "size": 0,
+        "type": "directory",
+        "shortPath": "dist/js",
+        "index": 1
+      }
+    ],
+    "size": 0,
+    "type": "directory",
+    "shortPath": "dist",
+    "index": 0
+  },
+  {
+    "path": "/freitag/tests/src",
+    "name": "src",
+    "children": [
+      {
+        "path": "/freitag/tests/src/components",
+        "name": "components",
+        "children": [
+          {
+            "path": "/freitag/tests/src/components/button",
+            "name": "button",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/button/button.hbs",
+                "name": "button.hbs",
+                "size": 137,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/components/button/button.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/components/button/button.json",
+                "name": "button.json",
+                "size": 815,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/button/button.json",
+                "index": 2
+              }
+            ],
+            "size": 952,
+            "type": "directory",
+            "shortPath": "src/components/button",
+            "variations": [
+              {
+                "name": "button",
+                "data": {
+                  "label": "Regular button",
+                  "type": "submit"
+                }
+              },
+              {
+                "name": "small",
+                "data": {
+                  "label": "Small button",
+                  "modifiers": ["small"]
+                }
+              },
+              {
+                "name": "secondary",
+                "data": {
+                  "label": "Secondary button",
+                  "modifiers": ["secondary"]
+                }
+              },
+              {
+                "name": "small/secondary",
+                "data": {
+                  "label": "Small secondary button",
+                  "modifiers": ["small", "secondary"]
+                }
+              },
+              {
+                "name": "disabled",
+                "data": {
+                  "label": "Disabled button",
+                  "disabled": true
+                }
+              },
+              {
+                "name": "disabled/secondary",
+                "data": {
+                  "label": "Disabled secondary button",
+                  "disabled": true,
+                  "modifiers": ["secondary"]
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/component-1.hbs",
+            "name": "component-1.hbs",
+            "size": 22,
+            "extension": ".hbs",
+            "type": "file",
+            "shortPath": "src/components/component-1.hbs",
+            "index": 1
+          },
+          {
+            "path": "/freitag/tests/src/components/component-1.json",
+            "name": "component-1.json",
+            "size": 146,
+            "extension": ".json",
+            "type": "file",
+            "shortPath": "src/components/component-1.json",
+            "index": 1
+          },
+          {
+            "path": "/freitag/tests/src/components/component-a",
+            "name": "component-a",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/component-a/component-a.json",
+                "name": "component-a.json",
+                "size": 273,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/component-a/component-a.json",
+                "index": 2
+              }
+            ],
+            "size": 273,
+            "type": "directory",
+            "shortPath": "src/components/component-a",
+            "variations": [
+              {
+                "name": "component-a",
+                "data": {
+                  "name": "Component A",
+                  "prop": "1",
+                  "arr": ["foo", "bar", "baz"]
+                }
+              },
+              {
+                "name": "a2",
+                "data": {
+                  "prop": "2"
+                }
+              },
+              {
+                "name": "a3",
+                "data": {
+                  "prop": "3"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/component-b",
+            "name": "component-b",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/component-b/_footer",
+                "name": "_footer",
+                "children": [
+                  {
+                    "path": "/freitag/tests/src/components/component-b/_footer/_footer.hbs",
+                    "name": "_footer.hbs",
+                    "size": 64,
+                    "extension": ".hbs",
+                    "type": "file",
+                    "shortPath": "src/components/component-b/_footer/_footer.hbs",
+                    "index": 3
+                  },
+                  {
+                    "path": "/freitag/tests/src/components/component-b/_footer/_footer.json",
+                    "name": "_footer.json",
+                    "size": 167,
+                    "extension": ".json",
+                    "type": "file",
+                    "shortPath": "src/components/component-b/_footer/_footer.json",
+                    "index": 3
+                  }
+                ],
+                "size": 231,
+                "type": "directory",
+                "shortPath": "src/components/component-b/_footer",
+                "index": 3
+              },
+              {
+                "path": "/freitag/tests/src/components/component-b/_header",
+                "name": "_header",
+                "children": [
+                  {
+                    "path": "/freitag/tests/src/components/component-b/_header/_header.hbs",
+                    "name": "_header.hbs",
+                    "size": 64,
+                    "extension": ".hbs",
+                    "type": "file",
+                    "shortPath": "src/components/component-b/_header/_header.hbs",
+                    "index": 3
+                  },
+                  {
+                    "path": "/freitag/tests/src/components/component-b/_header/_header.json",
+                    "name": "_header.json",
+                    "size": 167,
+                    "extension": ".json",
+                    "type": "file",
+                    "shortPath": "src/components/component-b/_header/_header.json",
+                    "index": 3
+                  }
+                ],
+                "size": 231,
+                "type": "directory",
+                "shortPath": "src/components/component-b/_header",
+                "variations": [
+                  {
+                    "name": "_header",
+                    "data": {
+                      "header": "header1"
+                    }
+                  },
+                  {
+                    "name": "Component B Header",
+                    "data": {
+                      "header": "header2"
+                    }
+                  }
+                ],
+                "index": 3
+              },
+              {
+                "path": "/freitag/tests/src/components/component-b/component-b.hbs",
+                "name": "component-b.hbs",
+                "size": 190,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/components/component-b/component-b.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/components/component-b/component-b.json",
+                "name": "component-b.json",
+                "size": 766,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/component-b/component-b.json",
+                "index": 2
+              }
+            ],
+            "size": 1418,
+            "type": "directory",
+            "shortPath": "src/components/component-b",
+            "variations": [
+              {
+                "name": "component-b",
+                "data": {
+                  "name": "B"
+                }
+              },
+              {
+                "name": "With header",
+                "data": {
+                  "name": "B with header",
+                  "header": {
+                    "component": "components/component-b/_header/_header.json"
+                  }
+                }
+              },
+              {
+                "name": "With footer",
+                "data": {
+                  "name": "B with footer",
+                  "footer": {
+                    "component": "components/component-b/_footer/_footer.json"
+                  }
+                }
+              },
+              {
+                "name": "With header/footer",
+                "data": {
+                  "name": "B with header/footer",
+                  "footer": {
+                    "component": "components/component-b/_footer/_footer.json"
+                  },
+                  "header": {
+                    "component": "components/component-b/_header/_header.json"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/component-d",
+            "name": "component-d",
+            "children": [],
+            "size": 0,
+            "type": "directory",
+            "shortPath": "src/components/component-d",
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/components.hbs",
+            "name": "components.hbs",
+            "size": 31,
+            "extension": ".hbs",
+            "type": "file",
+            "shortPath": "src/components/components.hbs",
+            "index": 1
+          },
+          {
+            "path": "/freitag/tests/src/components/components.json",
+            "name": "components.json",
+            "size": 136,
+            "extension": ".json",
+            "type": "file",
+            "shortPath": "src/components/components.json",
+            "index": 1
+          },
+          {
+            "path": "/freitag/tests/src/components/input",
+            "name": "input",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/input/input.hbs",
+                "name": "input.hbs",
+                "size": 330,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/components/input/input.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/components/input/input.json",
+                "name": "input.json",
+                "size": 512,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/input/input.json",
+                "index": 2
+              }
+            ],
+            "size": 842,
+            "type": "directory",
+            "shortPath": "src/components/input",
+            "variations": [
+              {
+                "name": "input",
+                "data": {
+                  "label": "Name",
+                  "type": "text",
+                  "id": "input"
+                }
+              },
+              {
+                "name": "disabled",
+                "data": {
+                  "disabled": true,
+                  "id": "input-disabled",
+                  "value": "disabled"
+                }
+              },
+              {
+                "name": "error",
+                "data": {
+                  "invalid": true,
+                  "id": "input-invalid",
+                  "value": "invalid"
+                }
+              },
+              {
+                "name": "value",
+                "data": {
+                  "value": "Some value",
+                  "id": "input-value"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/teaser",
+            "name": "teaser",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/teaser/teaser.hbs",
+                "name": "teaser.hbs",
+                "size": 80,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/components/teaser/teaser.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/components/teaser/teaser.json",
+                "name": "teaser.json",
+                "size": 479,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/teaser/teaser.json",
+                "index": 2
+              }
+            ],
+            "size": 559,
+            "type": "directory",
+            "shortPath": "src/components/teaser",
+            "variations": [
+              {
+                "name": "teaser",
+                "data": {
+                  "name": "Teaser without CTA"
+                }
+              },
+              {
+                "name": "Teaser with CTA",
+                "data": {
+                  "name": "Teaser with CTA",
+                  "cta": {
+                    "type": "button",
+                    "label": "Click me!"
+                  }
+                }
+              },
+              {
+                "name": "Teaser with another CTA",
+                "data": {
+                  "name": "Teaser with another CTA",
+                  "cta": {
+                    "type": "button",
+                    "label": "Don't click me!"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/teaser-list",
+            "name": "teaser-list",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/teaser-list/teaser-list.hbs",
+                "name": "teaser-list.hbs",
+                "size": 92,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/components/teaser-list/teaser-list.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/components/teaser-list/teaser-list.json",
+                "name": "teaser-list.json",
+                "size": 449,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/teaser-list/teaser-list.json",
+                "index": 2
+              }
+            ],
+            "size": 541,
+            "type": "directory",
+            "shortPath": "src/components/teaser-list",
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/components/test",
+            "name": "test",
+            "children": [
+              {
+                "path": "/freitag/tests/src/components/test/test.hbs",
+                "name": "test.hbs",
+                "size": 47,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/components/test/test.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/components/test/test.json",
+                "name": "test.json",
+                "size": 216,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/components/test/test.json",
+                "index": 2
+              }
+            ],
+            "size": 263,
+            "type": "directory",
+            "shortPath": "src/components/test",
+            "variations": [
+              {
+                "name": "bar",
+                "data": {
+                  "bar": "bar"
+                }
+              },
+              {
+                "name": "baz",
+                "data": {
+                  "baz": "baz"
+                }
+              }
+            ],
+            "index": 2
+          }
+        ],
+        "size": 5183,
+        "type": "directory",
+        "shortPath": "src/components",
+        "variations": [
+          {
+            "name": "bla",
+            "data": {}
+          },
+          {
+            "name": "blaaaaaaaaaa",
+            "data": {}
+          }
+        ],
+        "index": 1
+      },
+      {
+        "path": "/freitag/tests/src/engines",
+        "name": "engines",
+        "children": [
+          {
+            "path": "/freitag/tests/src/engines/dust",
+            "name": "dust",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/dust/dust.json",
+                "name": "dust.json",
+                "size": 364,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/dust/dust.json",
+                "index": 2
+              }
+            ],
+            "size": 364,
+            "type": "directory",
+            "shortPath": "src/engines/dust",
+            "variations": [
+              {
+                "name": "dust",
+                "data": {
+                  "engine": "dust",
+                  "testInclude": {
+                    "component": "includes/dust/dust.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "dust variation",
+                  "testInclude": {
+                    "component": "includes/dust/dust.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/ect",
+            "name": "ect",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/ect/ect.json",
+                "name": "ect.json",
+                "size": 358,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/ect/ect.json",
+                "index": 2
+              }
+            ],
+            "size": 358,
+            "type": "directory",
+            "shortPath": "src/engines/ect",
+            "variations": [
+              {
+                "name": "ect",
+                "data": {
+                  "engine": "ect",
+                  "testInclude": {
+                    "component": "includes/ect/ect.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "ect variation",
+                  "testInclude": {
+                    "component": "includes/ect/ect.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/ejs",
+            "name": "ejs",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/ejs/ejs.json",
+                "name": "ejs.json",
+                "size": 358,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/ejs/ejs.json",
+                "index": 2
+              }
+            ],
+            "size": 358,
+            "type": "directory",
+            "shortPath": "src/engines/ejs",
+            "variations": [
+              {
+                "name": "ejs",
+                "data": {
+                  "engine": "ejs",
+                  "testInclude": {
+                    "component": "includes/ejs/ejs.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "ejs variation",
+                  "testInclude": {
+                    "component": "includes/ejs/ejs.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/haml",
+            "name": "haml",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/haml/haml.json",
+                "name": "haml.json",
+                "size": 364,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/haml/haml.json",
+                "index": 2
+              }
+            ],
+            "size": 364,
+            "type": "directory",
+            "shortPath": "src/engines/haml",
+            "variations": [
+              {
+                "name": "haml",
+                "data": {
+                  "engine": "haml",
+                  "testInclude": {
+                    "component": "includes/haml/haml.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "haml variation",
+                  "testInclude": {
+                    "component": "includes/haml/haml.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/handlebars",
+            "name": "handlebars",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/handlebars/handlebars.hbs",
+                "name": "handlebars.hbs",
+                "size": 105,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/engines/handlebars/handlebars.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/engines/handlebars/handlebars.json",
+                "name": "handlebars.json",
+                "size": 400,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/handlebars/handlebars.json",
+                "index": 2
+              }
+            ],
+            "size": 505,
+            "type": "directory",
+            "shortPath": "src/engines/handlebars",
+            "variations": [
+              {
+                "name": "handlebars",
+                "data": {
+                  "engine": "handlebars",
+                  "testInclude": {
+                    "component": "includes/handlebars/handlebars.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "handlebars variation",
+                  "testInclude": {
+                    "component": "includes/handlebars/handlebars.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/hogan",
+            "name": "hogan",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/hogan/hogan.json",
+                "name": "hogan.json",
+                "size": 248,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/hogan/hogan.json",
+                "index": 2
+              }
+            ],
+            "size": 248,
+            "type": "directory",
+            "shortPath": "src/engines/hogan",
+            "variations": [
+              {
+                "name": "hogan",
+                "data": {
+                  "engine": "hogan",
+                  "engineInclude": "hogan include"
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "hogan variation",
+                  "engineInclude": "Another variation"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/mustache",
+            "name": "mustache",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/mustache/mustache.json",
+                "name": "mustache.json",
+                "size": 264,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/mustache/mustache.json",
+                "index": 2
+              }
+            ],
+            "size": 264,
+            "type": "directory",
+            "shortPath": "src/engines/mustache",
+            "variations": [
+              {
+                "name": "mustache",
+                "data": {
+                  "engine": "mustache",
+                  "engineInclude": "mustache include"
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "mustache variation",
+                  "engineInclude": "Another mustache include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/nunjucks",
+            "name": "nunjucks",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/nunjucks/nunjucks.json",
+                "name": "nunjucks.json",
+                "size": 388,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/nunjucks/nunjucks.json",
+                "index": 2
+              }
+            ],
+            "size": 388,
+            "type": "directory",
+            "shortPath": "src/engines/nunjucks",
+            "variations": [
+              {
+                "name": "nunjucks",
+                "data": {
+                  "engine": "nunjucks",
+                  "testInclude": {
+                    "component": "includes/nunjucks/nunjucks.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "nunjucks variation",
+                  "testInclude": {
+                    "component": "includes/nunjucks/nunjucks.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/pug",
+            "name": "pug",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/pug/pug.json",
+                "name": "pug.json",
+                "size": 244,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/pug/pug.json",
+                "index": 2
+              }
+            ],
+            "size": 244,
+            "type": "directory",
+            "shortPath": "src/engines/pug",
+            "variations": [
+              {
+                "name": "pug",
+                "data": {
+                  "engine": "pug",
+                  "engineInclude": "pug include"
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "pug variation",
+                  "engineInclude": "Another pug include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/twig",
+            "name": "twig",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/twig/twig.json",
+                "name": "twig.json",
+                "size": 364,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/twig/twig.json",
+                "index": 2
+              }
+            ],
+            "size": 364,
+            "type": "directory",
+            "shortPath": "src/engines/twig",
+            "variations": [
+              {
+                "name": "twig",
+                "data": {
+                  "engine": "twig",
+                  "testInclude": {
+                    "component": "includes/twig/twig.json"
+                  }
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "twig variation",
+                  "testInclude": {
+                    "component": "includes/twig/twig.json",
+                    "variation": "Another variation"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/engines/underscore",
+            "name": "underscore",
+            "children": [
+              {
+                "path": "/freitag/tests/src/engines/underscore/underscore.json",
+                "name": "underscore.json",
+                "size": 174,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/engines/underscore/underscore.json",
+                "index": 2
+              }
+            ],
+            "size": 174,
+            "type": "directory",
+            "shortPath": "src/engines/underscore",
+            "variations": [
+              {
+                "name": "underscore",
+                "data": {
+                  "engine": "underscore"
+                }
+              },
+              {
+                "name": "variation",
+                "data": {
+                  "engine": "underscore variation"
+                }
+              }
+            ],
+            "index": 2
+          }
+        ],
+        "size": 3631,
+        "type": "directory",
+        "shortPath": "src/engines",
+        "index": 1
+      },
+      {
+        "path": "/freitag/tests/src/includes",
+        "name": "includes",
+        "children": [
+          {
+            "path": "/freitag/tests/src/includes/dust",
+            "name": "dust",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/dust/dust.json",
+                "name": "dust.json",
+                "size": 198,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/dust/dust.json",
+                "index": 2
+              }
+            ],
+            "size": 198,
+            "type": "directory",
+            "shortPath": "src/includes/dust",
+            "variations": [
+              {
+                "name": "dust",
+                "data": {
+                  "engineInclude": "dust include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another dust include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/ect",
+            "name": "ect",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/ect/ect.json",
+                "name": "ect.json",
+                "size": 196,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/ect/ect.json",
+                "index": 2
+              }
+            ],
+            "size": 196,
+            "type": "directory",
+            "shortPath": "src/includes/ect",
+            "variations": [
+              {
+                "name": "ect",
+                "data": {
+                  "engineInclude": "ect include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another ect include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/ejs",
+            "name": "ejs",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/ejs/ejs.json",
+                "name": "ejs.json",
+                "size": 196,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/ejs/ejs.json",
+                "index": 2
+              }
+            ],
+            "size": 196,
+            "type": "directory",
+            "shortPath": "src/includes/ejs",
+            "variations": [
+              {
+                "name": "ejs",
+                "data": {
+                  "engineInclude": "ejs include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another ejs include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/handlebars",
+            "name": "handlebars",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/handlebars/handlebars.hbs",
+                "name": "handlebars.hbs",
+                "size": 20,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/includes/handlebars/handlebars.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/includes/handlebars/handlebars.json",
+                "name": "handlebars.json",
+                "size": 210,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/handlebars/handlebars.json",
+                "index": 2
+              }
+            ],
+            "size": 230,
+            "type": "directory",
+            "shortPath": "src/includes/handlebars",
+            "variations": [
+              {
+                "name": "handlebars",
+                "data": {
+                  "engineInclude": "handlebars include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another handlebars include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/hogan",
+            "name": "hogan",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/hogan/hogan.json",
+                "name": "hogan.json",
+                "size": 200,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/hogan/hogan.json",
+                "index": 2
+              }
+            ],
+            "size": 200,
+            "type": "directory",
+            "shortPath": "src/includes/hogan",
+            "variations": [
+              {
+                "name": "hogan",
+                "data": {
+                  "engineInclude": "hogan include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another hogan include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/mustache",
+            "name": "mustache",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/mustache/mustache.json",
+                "name": "mustache.json",
+                "size": 206,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/mustache/mustache.json",
+                "index": 2
+              }
+            ],
+            "size": 206,
+            "type": "directory",
+            "shortPath": "src/includes/mustache",
+            "variations": [
+              {
+                "name": "mustache",
+                "data": {
+                  "engineInclude": "mustache include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another mustache include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/nunjucks",
+            "name": "nunjucks",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/nunjucks/nunjucks.json",
+                "name": "nunjucks.json",
+                "size": 206,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/nunjucks/nunjucks.json",
+                "index": 2
+              }
+            ],
+            "size": 206,
+            "type": "directory",
+            "shortPath": "src/includes/nunjucks",
+            "variations": [
+              {
+                "name": "nunjucks",
+                "data": {
+                  "engineInclude": "nunjucks include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another nunjucks include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/pug",
+            "name": "pug",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/pug/pug.json",
+                "name": "pug.json",
+                "size": 196,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/pug/pug.json",
+                "index": 2
+              }
+            ],
+            "size": 196,
+            "type": "directory",
+            "shortPath": "src/includes/pug",
+            "variations": [
+              {
+                "name": "pug",
+                "data": {
+                  "engineInclude": "pug include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another pug include"
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/includes/twig",
+            "name": "twig",
+            "children": [
+              {
+                "path": "/freitag/tests/src/includes/twig/twig.json",
+                "name": "twig.json",
+                "size": 198,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/includes/twig/twig.json",
+                "index": 2
+              }
+            ],
+            "size": 198,
+            "type": "directory",
+            "shortPath": "src/includes/twig",
+            "variations": [
+              {
+                "name": "twig",
+                "data": {
+                  "engineInclude": "twig include"
+                }
+              },
+              {
+                "name": "Another variation",
+                "data": {
+                  "engineInclude": "Another twig include"
+                }
+              }
+            ],
+            "index": 2
+          }
+        ],
+        "size": 1826,
+        "type": "directory",
+        "shortPath": "src/includes",
+        "index": 1
+      },
+      {
+        "path": "/freitag/tests/src/src.hbs",
+        "name": "src.hbs",
+        "size": 0,
+        "extension": ".hbs",
+        "type": "file",
+        "shortPath": "src/src.hbs",
+        "index": 0
+      },
+      {
+        "path": "/freitag/tests/src/src.json",
+        "name": "src.json",
+        "size": 29,
+        "extension": ".json",
+        "type": "file",
+        "shortPath": "src/src.json",
+        "index": 0
+      },
+      {
+        "path": "/freitag/tests/src/templates",
+        "name": "templates",
+        "children": [
+          {
+            "path": "/freitag/tests/src/templates/_includes",
+            "name": "_includes",
+            "children": [
+              {
+                "path": "/freitag/tests/src/templates/_includes/_footer",
+                "name": "_footer",
+                "children": [
+                  {
+                    "path": "/freitag/tests/src/templates/_includes/_footer/_footer.hbs",
+                    "name": "_footer.hbs",
+                    "size": 25,
+                    "extension": ".hbs",
+                    "type": "file",
+                    "shortPath": "src/templates/_includes/_footer/_footer.hbs",
+                    "index": 3
+                  }
+                ],
+                "size": 25,
+                "type": "directory",
+                "shortPath": "src/templates/_includes/_footer",
+                "index": 3
+              },
+              {
+                "path": "/freitag/tests/src/templates/_includes/_header",
+                "name": "_header",
+                "children": [
+                  {
+                    "path": "/freitag/tests/src/templates/_includes/_header/_header.hbs",
+                    "name": "_header.hbs",
+                    "size": 88,
+                    "extension": ".hbs",
+                    "type": "file",
+                    "shortPath": "src/templates/_includes/_header/_header.hbs",
+                    "index": 3
+                  },
+                  {
+                    "path": "/freitag/tests/src/templates/_includes/_header/_logo",
+                    "name": "_logo",
+                    "children": [
+                      {
+                        "path": "/freitag/tests/src/templates/_includes/_header/_logo/_logo.hbs",
+                        "name": "_logo.hbs",
+                        "size": 30,
+                        "extension": ".hbs",
+                        "type": "file",
+                        "shortPath": "src/templates/_includes/_header/_logo/_logo.hbs",
+                        "index": 4
+                      }
+                    ],
+                    "size": 30,
+                    "type": "directory",
+                    "shortPath": "src/templates/_includes/_header/_logo",
+                    "index": 4
+                  }
+                ],
+                "size": 118,
+                "type": "directory",
+                "shortPath": "src/templates/_includes/_header",
+                "index": 3
+              }
+            ],
+            "size": 143,
+            "type": "directory",
+            "shortPath": "src/templates/_includes",
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/templates/template-a",
+            "name": "template-a",
+            "children": [
+              {
+                "path": "/freitag/tests/src/templates/template-a/template-a.hbs",
+                "name": "template-a.hbs",
+                "size": 206,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/templates/template-a/template-a.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/templates/template-a/template-a.json",
+                "name": "template-a.json",
+                "size": 226,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/templates/template-a/template-a.json",
+                "index": 2
+              }
+            ],
+            "size": 432,
+            "type": "directory",
+            "shortPath": "src/templates/template-a",
+            "variations": [
+              {
+                "name": "template-a",
+                "data": {
+                  "name": "A"
+                }
+              },
+              {
+                "name": "With component",
+                "data": {
+                  "componentB": {
+                    "component": "components/component-b/component-b.json"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/templates/template-b",
+            "name": "template-b",
+            "children": [
+              {
+                "path": "/freitag/tests/src/templates/template-b/template-b.hbs",
+                "name": "template-b.hbs",
+                "size": 247,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/templates/template-b/template-b.hbs",
+                "index": 2
+              },
+              {
+                "path": "/freitag/tests/src/templates/template-b/template-b.json",
+                "name": "template-b.json",
+                "size": 1226,
+                "extension": ".json",
+                "type": "file",
+                "shortPath": "src/templates/template-b/template-b.json",
+                "index": 2
+              }
+            ],
+            "size": 1473,
+            "type": "directory",
+            "shortPath": "src/templates/template-b",
+            "variations": [
+              {
+                "name": "template-b",
+                "data": {
+                  "name": "B",
+                  "teaserList": {
+                    "component": "components/teaser-list/teaser-list.json"
+                  },
+                  "componentB": {
+                    "component": "components/component-b/component-b.json"
+                  }
+                }
+              },
+              {
+                "name": "With component B with custom data",
+                "data": {
+                  "componentB": {
+                    "name": "Custom name",
+                    "header": true,
+                    "footer": null
+                  }
+                }
+              },
+              {
+                "name": "With component B with data as url",
+                "data": {
+                  "componentB": {
+                    "component": "components/component-b/componendt-b.json"
+                  }
+                }
+              },
+              {
+                "name": "With component B with json key and variation with header",
+                "data": {
+                  "componentB": {
+                    "variation": "With header"
+                  }
+                }
+              },
+              {
+                "name": "With component B with json key and variation with footer",
+                "data": {
+                  "componentB": {
+                    "variation": "With footer"
+                  }
+                }
+              },
+              {
+                "name": "With component B with json key and variation with header/footer",
+                "data": {
+                  "componentB": {
+                    "variation": "With header/footer",
+                    "name": "Overwritten name"
+                  }
+                }
+              }
+            ],
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/templates/template-c",
+            "name": "template-c",
+            "children": [
+              {
+                "path": "/freitag/tests/src/templates/template-c/test.hbs",
+                "name": "test.hbs",
+                "size": 47,
+                "extension": ".hbs",
+                "type": "file",
+                "shortPath": "src/templates/template-c/test.hbs",
+                "index": 2
+              }
+            ],
+            "size": 47,
+            "type": "directory",
+            "shortPath": "src/templates/template-c",
+            "index": 2
+          },
+          {
+            "path": "/freitag/tests/src/templates/template-d",
+            "name": "template-d",
+            "children": [],
+            "size": 0,
+            "type": "directory",
+            "shortPath": "src/templates/template-d",
+            "index": 2
+          }
+        ],
+        "size": 2095,
+        "type": "directory",
+        "shortPath": "src/templates",
+        "index": 1
+      },
+      {
+        "path": "/freitag/tests/src/test2",
+        "name": "test2",
+        "children": [
+          {
+            "path": "/freitag/tests/src/test2/test2.hbs",
+            "name": "test2.hbs",
+            "size": 13,
+            "extension": ".hbs",
+            "type": "file",
+            "shortPath": "src/test2/test2.hbs",
+            "index": 1
+          },
+          {
+            "path": "/freitag/tests/src/test2/test2.json",
+            "name": "test2.json",
+            "size": 185,
+            "extension": ".json",
+            "type": "file",
+            "shortPath": "src/test2/test2.json",
+            "index": 1
+          }
+        ],
+        "size": 198,
+        "type": "directory",
+        "shortPath": "src/test2",
+        "variations": [
+          {
+            "name": "blubb",
+            "data": {
+              "foo": "FOO"
+            }
+          },
+          {
+            "name": "bar",
+            "data": {
+              "foo": "bar"
+            }
+          }
+        ],
+        "index": 1
+      }
+    ],
+    "size": 12962,
+    "type": "directory",
+    "shortPath": "src",
+    "variations": [],
+    "index": 0
+  }
+]

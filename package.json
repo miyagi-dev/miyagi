@@ -24,11 +24,11 @@
     "freitag": "./bin/freitag.js"
   },
   "dependencies": {
-    "axe-core": "^3.2.2",
+    "axe-core": "^3.3.0",
     "chokidar": "^3.0.2",
     "clone-deep": "^4.0.1",
     "compression": "^1.7.4",
-    "consolidate": "git+https://github.com/mgrsskls/consolidate.js.git",
+    "consolidate": "git+https://github.com/tj/consolidate.js.git",
     "deepmerge": "^3.3.0",
     "directory-tree": "^2.2.3",
     "express": "^4.17.1",
@@ -41,6 +41,9 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
+    "babel-jest": "^24.8.0",
     "codecov": "^3.5.0",
     "cssnano": "^4.1.10",
     "del": "^4.1.1",
@@ -93,5 +96,17 @@
   "pre-commit": [
     "test",
     "lint"
-  ]
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  }
 }

@@ -115,6 +115,32 @@ describe("lib/init/router()", () => {
             .end(done);
         });
       });
+
+      describe("with variation value, but empty data saved for the component", () => {
+        test("calls renderComponentNotFound()", done => {
+          render.renderComponentNotFound = jest.fn(done => done());
+          const state = app.get("state");
+
+          app.get("state").data[
+            path.join(
+              process.cwd(),
+              `srcFolder/${component.replace(".hbs", ".json")}`
+            )
+          ] = "";
+
+          request(app)
+            .get("/component")
+            .query(`file=${component}`)
+            .query(`variation=someVariation`)
+            .expect(() => {
+              return expect(render.renderComponentNotFound).toHaveBeenCalled();
+            })
+            .end(() => {
+              app.set("state", state);
+              done();
+            });
+        });
+      });
     });
 
     describe("with invalid file value", () => {

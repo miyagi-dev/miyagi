@@ -1,4 +1,4 @@
-const sourceTree = require("../../../lib/state/source-tree.js");
+const { getSourceTree } = require("../../../lib/state/source-tree.js");
 const dirTree = require("directory-tree");
 
 jest.mock("directory-tree");
@@ -19,7 +19,7 @@ describe("lib/state/source-tree", () => {
   test("srcFolder() calls dirTree()", () => {
     dirTree.mockImplementationOnce(() => {});
 
-    sourceTree(app);
+    getSourceTree(app);
 
     expect(dirTree).toHaveBeenCalledWith(
       `${process.cwd()}/userFolder`,
@@ -38,6 +38,6 @@ describe("lib/state/source-tree", () => {
 
     dirTree.mockImplementationOnce(() => result);
 
-    expect(sourceTree(app)).toEqual(result);
+    expect(getSourceTree(app)).toEqual(result);
   });
 });

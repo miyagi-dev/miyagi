@@ -1,0 +1,648 @@
+{
+  "/freitag/tests/src/components/component-1.json": {
+    "data": {
+      "number": 1
+    },
+    "variations": [
+      {
+        "name": "Component 1.2",
+        "data": {
+          "number": 2
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/button/button.json": {
+    "data": {
+      "label": "Regular button",
+      "type": "submit"
+    },
+    "variations": [
+      {
+        "name": "small",
+        "data": {
+          "label": "Small button",
+          "modifiers": ["small"]
+        }
+      },
+      {
+        "name": "secondary",
+        "data": {
+          "label": "Secondary button",
+          "modifiers": ["secondary"]
+        }
+      },
+      {
+        "name": "small/secondary",
+        "data": {
+          "label": "Small secondary button",
+          "modifiers": ["small", "secondary"]
+        }
+      },
+      {
+        "name": "disabled",
+        "data": {
+          "label": "Disabled button",
+          "disabled": true
+        }
+      },
+      {
+        "name": "disabled/secondary",
+        "data": {
+          "label": "Disabled secondary button",
+          "disabled": true,
+          "modifiers": ["secondary"]
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/component-b/_header/_header.json": {
+    "data": {
+      "header": "header1"
+    },
+    "variations": [
+      {
+        "name": "Component B Header",
+        "data": {
+          "header": "header2"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/component-a/component-a.json": {
+    "data": {
+      "name": "Component A",
+      "prop": "1",
+      "arr": ["foo", "bar", "baz"]
+    },
+    "variations": [
+      {
+        "name": "a2",
+        "data": {
+          "prop": "2"
+        }
+      },
+      {
+        "name": "a3",
+        "data": {
+          "prop": "3"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/component-b/component-b.json": {
+    "data": {
+      "name": "B"
+    },
+    "variations": [
+      {
+        "name": "With header",
+        "data": {
+          "name": "B with header",
+          "header": {
+            "component": "components/component-b/_header/_header.json"
+          }
+        }
+      },
+      {
+        "name": "With footer",
+        "data": {
+          "name": "B with footer",
+          "footer": {
+            "component": "components/component-b/_footer/_footer.json"
+          }
+        }
+      },
+      {
+        "name": "With header/footer",
+        "data": {
+          "name": "B with header/footer",
+          "footer": {
+            "component": "components/component-b/_footer/_footer.json"
+          },
+          "header": {
+            "component": "components/component-b/_header/_header.json"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/components.json": {
+    "variations": [
+      {
+        "name": "bla",
+        "data": {}
+      },
+      {
+        "name": "blaaaaaaaaaa",
+        "data": {}
+      }
+    ]
+  },
+  "/freitag/tests/src/components/input/input.json": {
+    "data": {
+      "label": "Name",
+      "type": "text",
+      "id": "input"
+    },
+    "variations": [
+      {
+        "name": "disabled",
+        "data": {
+          "disabled": true,
+          "id": "input-disabled",
+          "value": "disabled"
+        }
+      },
+      {
+        "name": "error",
+        "data": {
+          "invalid": true,
+          "id": "input-invalid",
+          "value": "invalid"
+        }
+      },
+      {
+        "name": "value",
+        "data": {
+          "value": "Some value",
+          "id": "input-value"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/teaser/teaser.json": {
+    "data": {
+      "name": "Teaser without CTA"
+    },
+    "variations": [
+      {
+        "name": "Teaser with CTA",
+        "data": {
+          "name": "Teaser with CTA",
+          "cta": {
+            "type": "button",
+            "label": "Click me!"
+          }
+        }
+      },
+      {
+        "name": "Teaser with another CTA",
+        "data": {
+          "name": "Teaser with another CTA",
+          "cta": {
+            "type": "button",
+            "label": "Don't click me!"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/test/test.json": {
+    "variations": [
+      {
+        "name": "foo"
+      },
+      {
+        "name": "bar",
+        "data": {
+          "bar": "bar"
+        }
+      },
+      {
+        "name": "baz",
+        "data": {
+          "baz": "baz"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/components/teaser-list/teaser-list.json": {
+    "data": {
+      "list": [
+        {
+          "component": "components/teaser/teaser.json"
+        },
+        {
+          "component": "components/teaser/teaser.json",
+          "variation": "Teaser with CTA"
+        },
+        {
+          "component": "components/teaser/teaser.json",
+          "variation": "Teaser with another CTA"
+        },
+        {
+          "name": "Custom teaser",
+          "cta": {
+            "label": "Custom button"
+          }
+        }
+      ]
+    }
+  },
+  "/freitag/tests/src/engines/dust/dust.json": {
+    "data": {
+      "engine": "dust",
+      "testInclude": {
+        "component": "includes/dust/dust.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "dust variation",
+          "testInclude": {
+            "component": "includes/dust/dust.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/ect/ect.json": {
+    "data": {
+      "engine": "ect",
+      "testInclude": {
+        "component": "includes/ect/ect.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "ect variation",
+          "testInclude": {
+            "component": "includes/ect/ect.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/haml/haml.json": {
+    "data": {
+      "engine": "haml",
+      "testInclude": {
+        "component": "includes/haml/haml.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "haml variation",
+          "testInclude": {
+            "component": "includes/haml/haml.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/ejs/ejs.json": {
+    "data": {
+      "engine": "ejs",
+      "testInclude": {
+        "component": "includes/ejs/ejs.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "ejs variation",
+          "testInclude": {
+            "component": "includes/ejs/ejs.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/handlebars/handlebars.json": {
+    "data": {
+      "engine": "handlebars",
+      "testInclude": {
+        "component": "includes/handlebars/handlebars.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "handlebars variation",
+          "testInclude": {
+            "component": "includes/handlebars/handlebars.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/hogan/hogan.json": {
+    "data": {
+      "engine": "hogan",
+      "engineInclude": "hogan include"
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "hogan variation",
+          "engineInclude": "Another variation"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/mustache/mustache.json": {
+    "data": {
+      "engine": "mustache",
+      "engineInclude": "mustache include"
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "mustache variation",
+          "engineInclude": "Another mustache include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/nunjucks/nunjucks.json": {
+    "data": {
+      "engine": "nunjucks",
+      "testInclude": {
+        "component": "includes/nunjucks/nunjucks.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "nunjucks variation",
+          "testInclude": {
+            "component": "includes/nunjucks/nunjucks.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/twig/twig.json": {
+    "data": {
+      "engine": "twig",
+      "testInclude": {
+        "component": "includes/twig/twig.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "twig variation",
+          "testInclude": {
+            "component": "includes/twig/twig.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/pug/pug.json": {
+    "data": {
+      "engine": "pug",
+      "engineInclude": "pug include"
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "pug variation",
+          "engineInclude": "Another pug include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/engines/underscore/underscore.json": {
+    "data": {
+      "engine": "underscore"
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "underscore variation"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/ect/ect.json": {
+    "data": {
+      "engineInclude": "ect include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another ect include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/dust/dust.json": {
+    "data": {
+      "engineInclude": "dust include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another dust include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/ejs/ejs.json": {
+    "data": {
+      "engineInclude": "ejs include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another ejs include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/handlebars/handlebars.json": {
+    "data": {
+      "engineInclude": "handlebars include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another handlebars include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/hogan/hogan.json": {
+    "data": {
+      "engineInclude": "hogan include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another hogan include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/mustache/mustache.json": {
+    "data": {
+      "engineInclude": "mustache include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another mustache include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/nunjucks/nunjucks.json": {
+    "data": {
+      "engineInclude": "nunjucks include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another nunjucks include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/pug/pug.json": {
+    "data": {
+      "engineInclude": "pug include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another pug include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/includes/twig/twig.json": {
+    "data": {
+      "engineInclude": "twig include"
+    },
+    "variations": [
+      {
+        "name": "Another variation",
+        "data": {
+          "engineInclude": "Another twig include"
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/src.json": {
+    "variations": [{}, {}]
+  },
+  "/freitag/tests/src/templates/template-a/template-a.json": {
+    "data": {
+      "name": "A"
+    },
+    "variations": [
+      {
+        "name": "With component",
+        "data": {
+          "componentB": {
+            "component": "components/component-b/component-b.json"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/templates/template-b/template-b.json": {
+    "data": {
+      "name": "B",
+      "teaserList": {
+        "component": "components/teaser-list/teaser-list.json"
+      },
+      "componentB": {
+        "component": "components/component-b/component-b.json"
+      }
+    },
+    "variations": [
+      {
+        "name": "With component B with custom data",
+        "data": {
+          "componentB": {
+            "name": "Custom name",
+            "header": true,
+            "footer": null
+          }
+        }
+      },
+      {
+        "name": "With component B with data as url",
+        "data": {
+          "componentB": {
+            "component": "components/component-b/componendt-b.json"
+          }
+        }
+      },
+      {
+        "name": "With component B with json key and variation with header",
+        "data": {
+          "componentB": {
+            "variation": "With header"
+          }
+        }
+      },
+      {
+        "name": "With component B with json key and variation with footer",
+        "data": {
+          "componentB": {
+            "variation": "With footer"
+          }
+        }
+      },
+      {
+        "name": "With component B with json key and variation with header/footer",
+        "data": {
+          "componentB": {
+            "variation": "With header/footer",
+            "name": "Overwritten name"
+          }
+        }
+      }
+    ]
+  },
+  "/freitag/tests/src/test2/test2.json": {
+    "variations": [
+      {
+        "name": "blubb",
+        "data": {
+          "foo": "FOO"
+        }
+      },
+      {
+        "name": "bar",
+        "data": {
+          "foo": "bar"
+        }
+      }
+    ]
+  }
+}
