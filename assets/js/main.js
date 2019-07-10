@@ -49,10 +49,11 @@ function openParentMenus(target) {
       let link = list.previousElementSibling;
 
       if (link) {
-        while (!link.classList.contains(classes.link)) {
+        while (link && !link.classList.contains(classes.link)) {
           link = link.previousElementSibling;
         }
 
+        console.log(link);
         if (link) {
           const toggle = link.previousElementSibling;
 
