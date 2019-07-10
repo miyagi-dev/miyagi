@@ -66,15 +66,15 @@ body {
 
 .FreitagIframe-newTabLink {
   background: var(--Freitag-color-bg);
-  border: 3px solid rgba(0, 0, 0, 0.025);
+  border: 5px solid #fff;
   border-radius: 50%;
   display: block;
-  font-size: 40px;
+  font-size: 50px;
   height: 1em;
   position: fixed;
-  right: 20px;
+  right: 15px;
   text-indent: -9999em;
-  top: 20px;
+  top: 15px;
   transition: var(--Freitag-transition);
   width: 1em;
 }
@@ -86,7 +86,7 @@ body {
 .FreitagIframe-newTabLink::after {
   background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyODQgMjg0Ij48cGF0aCBkPSJNMjY2IDBoLTk3YTE4IDE4IDAgMCAwIDAgMzVoNTVsLTkyIDkyYTE3IDE3IDAgMCAwIDAgMjUgMTcgMTcgMCAwIDAgMjUgMGw5Mi05MnY1NWExOCAxOCAwIDAgMCAzNSAwVjE4YzAtMTAtOC0xOC0xOC0xOHoiLz48cGF0aCBkPSJNMjAxIDI1NEgzMFY4M2gxMjlsMzAtMzBIMTVDNyA1MyAwIDYwIDAgNjh2MjAxYzAgOCA3IDE1IDE1IDE1aDIwMWM4IDAgMTUtNyAxNS0xNVY5NWwtMzAgMzB2MTI5eiIvPjwvc3ZnPg==)
     no-repeat center;
-  background-size: 50%;
+  background-size: 45%;
   content: "";
   display: block;
   height: 100%;
