@@ -88,7 +88,6 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "assets/**/*.js",
       "lib/**/*.js",
       "index.js"
     ]
