@@ -37,6 +37,7 @@ Create a `freitag.json` in your project folder with the following options:
 | `cssFiles`         | optional          | Array or Object | `[]`                                  | Can either be an array of files or an object with the NODE_ENVs as key, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
 | `jsFiles`          | optional          | Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                         |
 | `validations`      | optional          | Object          | `{ html: true, accessibility: true }` |
+| `reload`           | optional          | Boolean         | `true`                                | Defines if your component automatically reloads after saving                                                                                            |
 
 Start _freitag_ with `node node_modules/freitag`. This will serve _freitag_ at `http://127.0.0.1:5000`. You can change the port with `PORT=1234 node node_modules/freitag`.
 
@@ -292,6 +293,7 @@ _**Note:** Just because the accessibility validation doesn't result in any error
 
 ## Good to know
 
+- `freitag` doesn't actually use the CSS- and JS-files from your component folders. That's because `freitag` can't know which other components are included in your component, hence doesn't know which other files to load additionally. If you rely on a build task for your includes asset files (see `cssFiles` and `jsFiles` in the options), you can turn off the automatic reloading of your component (`reload` in the options).
 - Your component is automatically reloaded as soon as you change it.
 - The start page of _freitag_ renders all your components, but without variations. Opening a component either renders an overview of all of its variations or the component directly if it doesn't have any variations.
 - Folders, that don't include a file with the same name and the given file extension (defined in `freitag.json`), are shown in the menu, but disabled.

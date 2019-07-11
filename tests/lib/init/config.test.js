@@ -23,7 +23,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
 
       expect(app.get("config")).toEqual({
@@ -35,7 +36,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
     });
 
@@ -51,7 +53,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
 
       expect(app.get("config")).toEqual({
@@ -63,7 +66,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
     });
   });
@@ -81,7 +85,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
 
       expect(app.get("config")).toEqual({
@@ -93,7 +98,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
     });
 
@@ -109,7 +115,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
 
       expect(app.get("config")).toEqual({
@@ -121,7 +128,8 @@ describe("lib/init/config", () => {
         validations: {
           html: false,
           accessibility: false
-        }
+        },
+        reload: false
       });
     });
   });
@@ -144,7 +152,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
 
         expect(app.get("config")).toEqual({
@@ -156,7 +165,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
       });
 
@@ -172,7 +182,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
 
         expect(app.get("config")).toEqual({
@@ -184,7 +195,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
       });
     });
@@ -206,7 +218,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
 
         expect(app.get("config")).toEqual({
@@ -218,7 +231,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
       });
 
@@ -234,7 +248,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
 
         expect(app.get("config")).toEqual({
@@ -246,7 +261,8 @@ describe("lib/init/config", () => {
           validations: {
             html: false,
             accessibility: false
-          }
+          },
+          reload: false
         });
       });
     });
@@ -311,7 +327,8 @@ describe("lib/init/config", () => {
         validations: {
           html: true,
           accessibility: true
-        }
+        },
+        reload: true
       });
     });
   });
