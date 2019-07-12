@@ -1,30 +1,30 @@
 {{#extend "main"}}
   {{#content "body"}}
-    <nav class="Freitag-nav">
-      <h1 class="Freitag-title">
-        <a class="Freitag-link Freitag-link--showAll" href="/component?file=all&embedded=true" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>{{userProjectName}}</a>
+    <nav class="Headman-nav">
+      <h1 class="Headman-title">
+        <a class="Headman-link Headman-link--showAll" href="/component?file=all&embedded=true" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>{{userProjectName}}</a>
       </h1>
       {{#if folders}}
-        <button class="Freitag-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
-        <div class="Freitag-menu">
+        <button class="Headman-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
+        <div class="Headman-menu">
           {{#renderMenu folders requestedComponent requestedVariation null null }}{{/renderMenu}}
         </div>
       {{/if}}
     </nav>
 
-    <main class="Freitag-content">
-      <iframe class="Freitag-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
+    <main class="Headman-content">
+      <iframe class="Headman-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
     </main>
-    <aside class="Freitag-tests"{{#if isComponentOverview}} hidden{{/if}}>
+    <aside class="Headman-tests"{{#if isComponentOverview}} hidden{{/if}}>
       {{#each tests}}
-        <div class="FreitagTest FreitagTest--{{this.alias}}" hidden>
-          <b class="FreitagTest-title">{{this.title}}</b>
+        <div class="HeadmanTest HeadmanTest--{{this.alias}}" hidden>
+          <b class="HeadmanTest-title">{{this.title}}</b>
           {{#each this.results}}
-            <details class="FreitagResults FreitagResults--{{this.alias}}">
-              <summary class="FreitagResults-summary">
-                {{this.label}}: <span class="FreitagResults-value FreitagResults-value--{{this.class}}">0</span>
+            <details class="HeadmanResults HeadmanResults--{{this.alias}}">
+              <summary class="HeadmanResults-summary">
+                {{this.label}}: <span class="HeadmanResults-value HeadmanResults-value--{{this.class}}">0</span>
               </summary>
-              <div class="FreitagResults-details"></div>
+              <div class="HeadmanResults-details"></div>
             </details>
           {{/each}}
         </div>

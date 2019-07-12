@@ -23,7 +23,7 @@ describe("lib/state/menu/structure", () => {
       data: dataJson
     });
 
-    process.cwd = () => "/freitag/tests";
+    process.cwd = () => "/headman/tests";
 
     const structure = require("../../../../lib/state/menu/structure.js");
     await expect(structure(app)).toEqual(structureJson);

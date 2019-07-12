@@ -1,34 +1,34 @@
-.FreitagResult:not(:first-child) {
+.HeadmanResult:not(:first-child) {
   margin-top: 1.5rem;
 }
 
-.FreitagResult-data {
+.HeadmanResult-data {
   border-left: 0.2rem solid #ccc;
   padding: 0 0 0 1rem;
 }
 
-.FreitagResult-attr,
-.FreitagResult-value {
+.HeadmanResult-attr,
+.HeadmanResult-value {
   display: inline;
 }
 
-.FreitagResult-attr {
+.HeadmanResult-attr {
   font-weight: bold;
 }
 
-.FreitagResult-attr::after {
+.HeadmanResult-attr::after {
   content: ":";
   display: inline;
 }
 
-.FreitagResult a {
-  color: var(--Freitag-color-link);
+.HeadmanResult a {
+  color: var(--Headman-color-link);
   padding: 0 0.35rem 0 2rem;
   position: relative;
   word-break: break-all;
 }
 
-.FreitagResult a::before {
+.HeadmanResult a::before {
   background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyODQgMjg0Ij48cGF0aCBkPSJNMjY2IDBoLTk3YTE4IDE4IDAgMCAwIDAgMzVoNTVsLTkyIDkyYTE3IDE3IDAgMCAwIDAgMjUgMTcgMTcgMCAwIDAgMjUgMGw5Mi05MnY1NWExOCAxOCAwIDAgMCAzNSAwVjE4YzAtMTAtOC0xOC0xOC0xOHoiLz48cGF0aCBkPSJNMjAxIDI1NEgzMFY4M2gxMjlsMzAtMzBIMTVDNyA1MyAwIDYwIDAgNjh2MjAxYzAgOCA3IDE1IDE1IDE1aDIwMWM4IDAgMTUtNyAxNS0xNVY5NWwtMzAgMzB2MTI5eiIvPjwvc3ZnPg==);
   background-repeat: no-repeat;
   background-size: 100%;
@@ -43,22 +43,22 @@
   width: 1em;
 }
 
-.FreitagResult a:hover,
-.FreitagResult a:focus,
-.FreitagResult a:active {
-  background: var(--Freitag-color-link);
-  border-radius: var(--Freitag-borderRadius);
-  box-shadow: 0 0.2rem 0 var(--Freitag-color-link);
+.HeadmanResult a:hover,
+.HeadmanResult a:focus,
+.HeadmanResult a:active {
+  background: var(--Headman-color-link);
+  border-radius: var(--Headman-borderRadius);
+  box-shadow: 0 0.2rem 0 var(--Headman-color-link);
   color: #fff;
   text-decoration: none;
 }
 
-.FreitagResult a:hover::before,
-.FreitagResult a:focus::before,
-.FreitagResult a:active::before {
+.HeadmanResult a:hover::before,
+.HeadmanResult a:focus::before,
+.HeadmanResult a:active::before {
   filter: invert(1);
 }
 
-.FreitagResult-extract {
+.HeadmanResult-extract {
   font-family: monospace;
 }

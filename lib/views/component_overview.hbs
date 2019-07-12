@@ -1,17 +1,17 @@
 {{#extend "iframe"}}
   {{#content "body"}}
-    <div class="FreitagComponents">
+    <div class="HeadmanComponents">
       {{#if components}}
         {{#each components}}
-          <div class="FreitagComponent">
-            <a href="/component?file={{this.file}}&embedded=true" class="FreitagComponent-file">{{this.file}}</a>
-            <div class="FreitagComponent-html">
+          <div class="HeadmanComponent">
+            <a href="/component?file={{this.file}}&embedded=true" class="HeadmanComponent-file">{{this.file}}</a>
+            <div class="HeadmanComponent-html">
               {{{this.html}}}
             </div>
           </div>
         {{/each}}
       {{else}}
-        <div class="FreitagComponent">
+        <div class="HeadmanComponent">
           There are no components yet.
         </div>
       {{/if}}

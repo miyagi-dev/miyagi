@@ -4,7 +4,7 @@ describe("assets/js/iframe.js", () => {
   describe("is embedded", () => {
     describe("clicking on a link", () => {
       const link = document.createElement("a");
-      link.classList.add("FreitagComponent-file");
+      link.classList.add("HeadmanComponent-file");
       link.setAttribute("href", "the target");
       document.body.appendChild(link);
 
@@ -41,7 +41,7 @@ describe("assets/js/iframe.js", () => {
   describe("is not embedded", () => {
     test("", () => {
       const link = document.createElement("a");
-      link.classList.add("FreitagComponent-file");
+      link.classList.add("HeadmanComponent-file");
       document.body.appendChild(link);
       document.dispatchEvent(new Event("DOMContentLoaded"));
 

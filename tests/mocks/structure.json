@@ -1,10 +1,10 @@
 [
   {
-    "path": "/freitag/tests/dist",
+    "path": "/headman/tests/dist",
     "name": "dist",
     "children": [
       {
-        "path": "/freitag/tests/dist/css",
+        "path": "/headman/tests/dist/css",
         "name": "css",
         "children": [],
         "size": 0,
@@ -13,7 +13,7 @@
         "index": 1
       },
       {
-        "path": "/freitag/tests/dist/js",
+        "path": "/headman/tests/dist/js",
         "name": "js",
         "children": [],
         "size": 0,
@@ -28,19 +28,19 @@
     "index": 0
   },
   {
-    "path": "/freitag/tests/src",
+    "path": "/headman/tests/src",
     "name": "src",
     "children": [
       {
-        "path": "/freitag/tests/src/components",
+        "path": "/headman/tests/src/components",
         "name": "components",
         "children": [
           {
-            "path": "/freitag/tests/src/components/button",
+            "path": "/headman/tests/src/components/button",
             "name": "button",
             "children": [
               {
-                "path": "/freitag/tests/src/components/button/button.hbs",
+                "path": "/headman/tests/src/components/button/button.hbs",
                 "name": "button.hbs",
                 "size": 137,
                 "extension": ".hbs",
@@ -49,7 +49,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/components/button/button.json",
+                "path": "/headman/tests/src/components/button/button.json",
                 "name": "button.json",
                 "size": 815,
                 "extension": ".json",
@@ -109,7 +109,7 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/component-1.hbs",
+            "path": "/headman/tests/src/components/component-1.hbs",
             "name": "component-1.hbs",
             "size": 22,
             "extension": ".hbs",
@@ -118,7 +118,7 @@
             "index": 1
           },
           {
-            "path": "/freitag/tests/src/components/component-1.json",
+            "path": "/headman/tests/src/components/component-1.json",
             "name": "component-1.json",
             "size": 146,
             "extension": ".json",
@@ -127,11 +127,11 @@
             "index": 1
           },
           {
-            "path": "/freitag/tests/src/components/component-a",
+            "path": "/headman/tests/src/components/component-a",
             "name": "component-a",
             "children": [
               {
-                "path": "/freitag/tests/src/components/component-a/component-a.json",
+                "path": "/headman/tests/src/components/component-a/component-a.json",
                 "name": "component-a.json",
                 "size": 273,
                 "extension": ".json",
@@ -168,15 +168,15 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/component-b",
+            "path": "/headman/tests/src/components/component-b",
             "name": "component-b",
             "children": [
               {
-                "path": "/freitag/tests/src/components/component-b/_footer",
+                "path": "/headman/tests/src/components/component-b/_footer",
                 "name": "_footer",
                 "children": [
                   {
-                    "path": "/freitag/tests/src/components/component-b/_footer/_footer.hbs",
+                    "path": "/headman/tests/src/components/component-b/_footer/_footer.hbs",
                     "name": "_footer.hbs",
                     "size": 64,
                     "extension": ".hbs",
@@ -185,7 +185,7 @@
                     "index": 3
                   },
                   {
-                    "path": "/freitag/tests/src/components/component-b/_footer/_footer.json",
+                    "path": "/headman/tests/src/components/component-b/_footer/_footer.json",
                     "name": "_footer.json",
                     "size": 167,
                     "extension": ".json",
@@ -200,11 +200,11 @@
                 "index": 3
               },
               {
-                "path": "/freitag/tests/src/components/component-b/_header",
+                "path": "/headman/tests/src/components/component-b/_header",
                 "name": "_header",
                 "children": [
                   {
-                    "path": "/freitag/tests/src/components/component-b/_header/_header.hbs",
+                    "path": "/headman/tests/src/components/component-b/_header/_header.hbs",
                     "name": "_header.hbs",
                     "size": 64,
                     "extension": ".hbs",
@@ -213,7 +213,7 @@
                     "index": 3
                   },
                   {
-                    "path": "/freitag/tests/src/components/component-b/_header/_header.json",
+                    "path": "/headman/tests/src/components/component-b/_header/_header.json",
                     "name": "_header.json",
                     "size": 167,
                     "extension": ".json",
@@ -242,7 +242,7 @@
                 "index": 3
               },
               {
-                "path": "/freitag/tests/src/components/component-b/component-b.hbs",
+                "path": "/headman/tests/src/components/component-b/component-b.hbs",
                 "name": "component-b.hbs",
                 "size": 190,
                 "extension": ".hbs",
@@ -251,7 +251,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/components/component-b/component-b.json",
+                "path": "/headman/tests/src/components/component-b/component-b.json",
                 "name": "component-b.json",
                 "size": 766,
                 "extension": ".json",
@@ -304,7 +304,7 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/component-d",
+            "path": "/headman/tests/src/components/component-d",
             "name": "component-d",
             "children": [],
             "size": 0,
@@ -313,7 +313,7 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/components.hbs",
+            "path": "/headman/tests/src/components/components.hbs",
             "name": "components.hbs",
             "size": 31,
             "extension": ".hbs",
@@ -322,7 +322,7 @@
             "index": 1
           },
           {
-            "path": "/freitag/tests/src/components/components.json",
+            "path": "/headman/tests/src/components/components.json",
             "name": "components.json",
             "size": 136,
             "extension": ".json",
@@ -331,11 +331,11 @@
             "index": 1
           },
           {
-            "path": "/freitag/tests/src/components/input",
+            "path": "/headman/tests/src/components/input",
             "name": "input",
             "children": [
               {
-                "path": "/freitag/tests/src/components/input/input.hbs",
+                "path": "/headman/tests/src/components/input/input.hbs",
                 "name": "input.hbs",
                 "size": 330,
                 "extension": ".hbs",
@@ -344,7 +344,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/components/input/input.json",
+                "path": "/headman/tests/src/components/input/input.json",
                 "name": "input.json",
                 "size": 512,
                 "extension": ".json",
@@ -392,11 +392,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/teaser",
+            "path": "/headman/tests/src/components/teaser",
             "name": "teaser",
             "children": [
               {
-                "path": "/freitag/tests/src/components/teaser/teaser.hbs",
+                "path": "/headman/tests/src/components/teaser/teaser.hbs",
                 "name": "teaser.hbs",
                 "size": 80,
                 "extension": ".hbs",
@@ -405,7 +405,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/components/teaser/teaser.json",
+                "path": "/headman/tests/src/components/teaser/teaser.json",
                 "name": "teaser.json",
                 "size": 479,
                 "extension": ".json",
@@ -448,11 +448,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/teaser-list",
+            "path": "/headman/tests/src/components/teaser-list",
             "name": "teaser-list",
             "children": [
               {
-                "path": "/freitag/tests/src/components/teaser-list/teaser-list.hbs",
+                "path": "/headman/tests/src/components/teaser-list/teaser-list.hbs",
                 "name": "teaser-list.hbs",
                 "size": 92,
                 "extension": ".hbs",
@@ -461,7 +461,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/components/teaser-list/teaser-list.json",
+                "path": "/headman/tests/src/components/teaser-list/teaser-list.json",
                 "name": "teaser-list.json",
                 "size": 449,
                 "extension": ".json",
@@ -476,11 +476,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/components/test",
+            "path": "/headman/tests/src/components/test",
             "name": "test",
             "children": [
               {
-                "path": "/freitag/tests/src/components/test/test.hbs",
+                "path": "/headman/tests/src/components/test/test.hbs",
                 "name": "test.hbs",
                 "size": 47,
                 "extension": ".hbs",
@@ -489,7 +489,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/components/test/test.json",
+                "path": "/headman/tests/src/components/test/test.json",
                 "name": "test.json",
                 "size": 216,
                 "extension": ".json",
@@ -534,15 +534,15 @@
         "index": 1
       },
       {
-        "path": "/freitag/tests/src/engines",
+        "path": "/headman/tests/src/engines",
         "name": "engines",
         "children": [
           {
-            "path": "/freitag/tests/src/engines/dust",
+            "path": "/headman/tests/src/engines/dust",
             "name": "dust",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/dust/dust.json",
+                "path": "/headman/tests/src/engines/dust/dust.json",
                 "name": "dust.json",
                 "size": 364,
                 "extension": ".json",
@@ -578,11 +578,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/ect",
+            "path": "/headman/tests/src/engines/ect",
             "name": "ect",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/ect/ect.json",
+                "path": "/headman/tests/src/engines/ect/ect.json",
                 "name": "ect.json",
                 "size": 358,
                 "extension": ".json",
@@ -618,11 +618,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/ejs",
+            "path": "/headman/tests/src/engines/ejs",
             "name": "ejs",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/ejs/ejs.json",
+                "path": "/headman/tests/src/engines/ejs/ejs.json",
                 "name": "ejs.json",
                 "size": 358,
                 "extension": ".json",
@@ -658,11 +658,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/haml",
+            "path": "/headman/tests/src/engines/haml",
             "name": "haml",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/haml/haml.json",
+                "path": "/headman/tests/src/engines/haml/haml.json",
                 "name": "haml.json",
                 "size": 364,
                 "extension": ".json",
@@ -698,11 +698,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/handlebars",
+            "path": "/headman/tests/src/engines/handlebars",
             "name": "handlebars",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/handlebars/handlebars.hbs",
+                "path": "/headman/tests/src/engines/handlebars/handlebars.hbs",
                 "name": "handlebars.hbs",
                 "size": 105,
                 "extension": ".hbs",
@@ -711,7 +711,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/engines/handlebars/handlebars.json",
+                "path": "/headman/tests/src/engines/handlebars/handlebars.json",
                 "name": "handlebars.json",
                 "size": 400,
                 "extension": ".json",
@@ -747,11 +747,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/hogan",
+            "path": "/headman/tests/src/engines/hogan",
             "name": "hogan",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/hogan/hogan.json",
+                "path": "/headman/tests/src/engines/hogan/hogan.json",
                 "name": "hogan.json",
                 "size": 248,
                 "extension": ".json",
@@ -782,11 +782,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/mustache",
+            "path": "/headman/tests/src/engines/mustache",
             "name": "mustache",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/mustache/mustache.json",
+                "path": "/headman/tests/src/engines/mustache/mustache.json",
                 "name": "mustache.json",
                 "size": 264,
                 "extension": ".json",
@@ -817,11 +817,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/nunjucks",
+            "path": "/headman/tests/src/engines/nunjucks",
             "name": "nunjucks",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/nunjucks/nunjucks.json",
+                "path": "/headman/tests/src/engines/nunjucks/nunjucks.json",
                 "name": "nunjucks.json",
                 "size": 388,
                 "extension": ".json",
@@ -857,11 +857,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/pug",
+            "path": "/headman/tests/src/engines/pug",
             "name": "pug",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/pug/pug.json",
+                "path": "/headman/tests/src/engines/pug/pug.json",
                 "name": "pug.json",
                 "size": 244,
                 "extension": ".json",
@@ -892,11 +892,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/twig",
+            "path": "/headman/tests/src/engines/twig",
             "name": "twig",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/twig/twig.json",
+                "path": "/headman/tests/src/engines/twig/twig.json",
                 "name": "twig.json",
                 "size": 364,
                 "extension": ".json",
@@ -932,11 +932,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/engines/underscore",
+            "path": "/headman/tests/src/engines/underscore",
             "name": "underscore",
             "children": [
               {
-                "path": "/freitag/tests/src/engines/underscore/underscore.json",
+                "path": "/headman/tests/src/engines/underscore/underscore.json",
                 "name": "underscore.json",
                 "size": 174,
                 "extension": ".json",
@@ -971,15 +971,15 @@
         "index": 1
       },
       {
-        "path": "/freitag/tests/src/includes",
+        "path": "/headman/tests/src/includes",
         "name": "includes",
         "children": [
           {
-            "path": "/freitag/tests/src/includes/dust",
+            "path": "/headman/tests/src/includes/dust",
             "name": "dust",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/dust/dust.json",
+                "path": "/headman/tests/src/includes/dust/dust.json",
                 "name": "dust.json",
                 "size": 198,
                 "extension": ".json",
@@ -1008,11 +1008,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/ect",
+            "path": "/headman/tests/src/includes/ect",
             "name": "ect",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/ect/ect.json",
+                "path": "/headman/tests/src/includes/ect/ect.json",
                 "name": "ect.json",
                 "size": 196,
                 "extension": ".json",
@@ -1041,11 +1041,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/ejs",
+            "path": "/headman/tests/src/includes/ejs",
             "name": "ejs",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/ejs/ejs.json",
+                "path": "/headman/tests/src/includes/ejs/ejs.json",
                 "name": "ejs.json",
                 "size": 196,
                 "extension": ".json",
@@ -1074,11 +1074,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/handlebars",
+            "path": "/headman/tests/src/includes/handlebars",
             "name": "handlebars",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/handlebars/handlebars.hbs",
+                "path": "/headman/tests/src/includes/handlebars/handlebars.hbs",
                 "name": "handlebars.hbs",
                 "size": 20,
                 "extension": ".hbs",
@@ -1087,7 +1087,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/includes/handlebars/handlebars.json",
+                "path": "/headman/tests/src/includes/handlebars/handlebars.json",
                 "name": "handlebars.json",
                 "size": 210,
                 "extension": ".json",
@@ -1116,11 +1116,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/hogan",
+            "path": "/headman/tests/src/includes/hogan",
             "name": "hogan",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/hogan/hogan.json",
+                "path": "/headman/tests/src/includes/hogan/hogan.json",
                 "name": "hogan.json",
                 "size": 200,
                 "extension": ".json",
@@ -1149,11 +1149,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/mustache",
+            "path": "/headman/tests/src/includes/mustache",
             "name": "mustache",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/mustache/mustache.json",
+                "path": "/headman/tests/src/includes/mustache/mustache.json",
                 "name": "mustache.json",
                 "size": 206,
                 "extension": ".json",
@@ -1182,11 +1182,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/nunjucks",
+            "path": "/headman/tests/src/includes/nunjucks",
             "name": "nunjucks",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/nunjucks/nunjucks.json",
+                "path": "/headman/tests/src/includes/nunjucks/nunjucks.json",
                 "name": "nunjucks.json",
                 "size": 206,
                 "extension": ".json",
@@ -1215,11 +1215,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/pug",
+            "path": "/headman/tests/src/includes/pug",
             "name": "pug",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/pug/pug.json",
+                "path": "/headman/tests/src/includes/pug/pug.json",
                 "name": "pug.json",
                 "size": 196,
                 "extension": ".json",
@@ -1248,11 +1248,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/includes/twig",
+            "path": "/headman/tests/src/includes/twig",
             "name": "twig",
             "children": [
               {
-                "path": "/freitag/tests/src/includes/twig/twig.json",
+                "path": "/headman/tests/src/includes/twig/twig.json",
                 "name": "twig.json",
                 "size": 198,
                 "extension": ".json",
@@ -1287,7 +1287,7 @@
         "index": 1
       },
       {
-        "path": "/freitag/tests/src/src.hbs",
+        "path": "/headman/tests/src/src.hbs",
         "name": "src.hbs",
         "size": 0,
         "extension": ".hbs",
@@ -1296,7 +1296,7 @@
         "index": 0
       },
       {
-        "path": "/freitag/tests/src/src.json",
+        "path": "/headman/tests/src/src.json",
         "name": "src.json",
         "size": 29,
         "extension": ".json",
@@ -1305,19 +1305,19 @@
         "index": 0
       },
       {
-        "path": "/freitag/tests/src/templates",
+        "path": "/headman/tests/src/templates",
         "name": "templates",
         "children": [
           {
-            "path": "/freitag/tests/src/templates/_includes",
+            "path": "/headman/tests/src/templates/_includes",
             "name": "_includes",
             "children": [
               {
-                "path": "/freitag/tests/src/templates/_includes/_footer",
+                "path": "/headman/tests/src/templates/_includes/_footer",
                 "name": "_footer",
                 "children": [
                   {
-                    "path": "/freitag/tests/src/templates/_includes/_footer/_footer.hbs",
+                    "path": "/headman/tests/src/templates/_includes/_footer/_footer.hbs",
                     "name": "_footer.hbs",
                     "size": 25,
                     "extension": ".hbs",
@@ -1332,11 +1332,11 @@
                 "index": 3
               },
               {
-                "path": "/freitag/tests/src/templates/_includes/_header",
+                "path": "/headman/tests/src/templates/_includes/_header",
                 "name": "_header",
                 "children": [
                   {
-                    "path": "/freitag/tests/src/templates/_includes/_header/_header.hbs",
+                    "path": "/headman/tests/src/templates/_includes/_header/_header.hbs",
                     "name": "_header.hbs",
                     "size": 88,
                     "extension": ".hbs",
@@ -1345,11 +1345,11 @@
                     "index": 3
                   },
                   {
-                    "path": "/freitag/tests/src/templates/_includes/_header/_logo",
+                    "path": "/headman/tests/src/templates/_includes/_header/_logo",
                     "name": "_logo",
                     "children": [
                       {
-                        "path": "/freitag/tests/src/templates/_includes/_header/_logo/_logo.hbs",
+                        "path": "/headman/tests/src/templates/_includes/_header/_logo/_logo.hbs",
                         "name": "_logo.hbs",
                         "size": 30,
                         "extension": ".hbs",
@@ -1376,11 +1376,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/templates/template-a",
+            "path": "/headman/tests/src/templates/template-a",
             "name": "template-a",
             "children": [
               {
-                "path": "/freitag/tests/src/templates/template-a/template-a.hbs",
+                "path": "/headman/tests/src/templates/template-a/template-a.hbs",
                 "name": "template-a.hbs",
                 "size": 206,
                 "extension": ".hbs",
@@ -1389,7 +1389,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/templates/template-a/template-a.json",
+                "path": "/headman/tests/src/templates/template-a/template-a.json",
                 "name": "template-a.json",
                 "size": 226,
                 "extension": ".json",
@@ -1420,11 +1420,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/templates/template-b",
+            "path": "/headman/tests/src/templates/template-b",
             "name": "template-b",
             "children": [
               {
-                "path": "/freitag/tests/src/templates/template-b/template-b.hbs",
+                "path": "/headman/tests/src/templates/template-b/template-b.hbs",
                 "name": "template-b.hbs",
                 "size": 247,
                 "extension": ".hbs",
@@ -1433,7 +1433,7 @@
                 "index": 2
               },
               {
-                "path": "/freitag/tests/src/templates/template-b/template-b.json",
+                "path": "/headman/tests/src/templates/template-b/template-b.json",
                 "name": "template-b.json",
                 "size": 1226,
                 "extension": ".json",
@@ -1505,11 +1505,11 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/templates/template-c",
+            "path": "/headman/tests/src/templates/template-c",
             "name": "template-c",
             "children": [
               {
-                "path": "/freitag/tests/src/templates/template-c/test.hbs",
+                "path": "/headman/tests/src/templates/template-c/test.hbs",
                 "name": "test.hbs",
                 "size": 47,
                 "extension": ".hbs",
@@ -1524,7 +1524,7 @@
             "index": 2
           },
           {
-            "path": "/freitag/tests/src/templates/template-d",
+            "path": "/headman/tests/src/templates/template-d",
             "name": "template-d",
             "children": [],
             "size": 0,
@@ -1539,11 +1539,11 @@
         "index": 1
       },
       {
-        "path": "/freitag/tests/src/test2",
+        "path": "/headman/tests/src/test2",
         "name": "test2",
         "children": [
           {
-            "path": "/freitag/tests/src/test2/test2.hbs",
+            "path": "/headman/tests/src/test2/test2.hbs",
             "name": "test2.hbs",
             "size": 13,
             "extension": ".hbs",
@@ -1552,7 +1552,7 @@
             "index": 1
           },
           {
-            "path": "/freitag/tests/src/test2/test2.json",
+            "path": "/headman/tests/src/test2/test2.json",
             "name": "test2.json",
             "size": 185,
             "extension": ".json",

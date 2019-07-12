@@ -36,14 +36,14 @@ describe("lib/render/_helpers", () => {
     describe("with passed error", () => {
       test("it renders the error", () => {
         expect(helpers.getComponentErrorHtml("error")).toEqual(
-          '<p class="FreitagError">error</p>'
+          '<p class="HeadmanError">error</p>'
         );
       });
     });
     describe("with passed error being null", () => {
       test("it renders the error", () => {
         expect(helpers.getComponentErrorHtml(null)).toEqual(
-          '<p class="FreitagError">Component couldn\'t be rendered.</p>'
+          '<p class="HeadmanError">Component couldn\'t be rendered.</p>'
         );
       });
     });

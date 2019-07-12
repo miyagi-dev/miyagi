@@ -1,5 +1,5 @@
 {
-  "/freitag/tests/src/components/component-1.json": {
+  "/headman/tests/src/components/component-1.json": {
     "data": {
       "number": 1
     },
@@ -12,7 +12,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/button/button.json": {
+  "/headman/tests/src/components/button/button.json": {
     "data": {
       "label": "Regular button",
       "type": "submit"
@@ -56,7 +56,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/component-b/_header/_header.json": {
+  "/headman/tests/src/components/component-b/_header/_header.json": {
     "data": {
       "header": "header1"
     },
@@ -69,7 +69,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/component-a/component-a.json": {
+  "/headman/tests/src/components/component-a/component-a.json": {
     "data": {
       "name": "Component A",
       "prop": "1",
@@ -90,7 +90,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/component-b/component-b.json": {
+  "/headman/tests/src/components/component-b/component-b.json": {
     "data": {
       "name": "B"
     },
@@ -127,7 +127,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/components.json": {
+  "/headman/tests/src/components/components.json": {
     "variations": [
       {
         "name": "bla",
@@ -139,7 +139,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/input/input.json": {
+  "/headman/tests/src/components/input/input.json": {
     "data": {
       "label": "Name",
       "type": "text",
@@ -171,7 +171,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/teaser/teaser.json": {
+  "/headman/tests/src/components/teaser/teaser.json": {
     "data": {
       "name": "Teaser without CTA"
     },
@@ -198,7 +198,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/test/test.json": {
+  "/headman/tests/src/components/test/test.json": {
     "variations": [
       {
         "name": "foo"
@@ -217,7 +217,7 @@
       }
     ]
   },
-  "/freitag/tests/src/components/teaser-list/teaser-list.json": {
+  "/headman/tests/src/components/teaser-list/teaser-list.json": {
     "data": {
       "list": [
         {
@@ -240,7 +240,7 @@
       ]
     }
   },
-  "/freitag/tests/src/engines/dust/dust.json": {
+  "/headman/tests/src/engines/dust/dust.json": {
     "data": {
       "engine": "dust",
       "testInclude": {
@@ -260,7 +260,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/ect/ect.json": {
+  "/headman/tests/src/engines/ect/ect.json": {
     "data": {
       "engine": "ect",
       "testInclude": {
@@ -280,7 +280,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/haml/haml.json": {
+  "/headman/tests/src/engines/haml/haml.json": {
     "data": {
       "engine": "haml",
       "testInclude": {
@@ -300,7 +300,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/ejs/ejs.json": {
+  "/headman/tests/src/engines/ejs/ejs.json": {
     "data": {
       "engine": "ejs",
       "testInclude": {
@@ -320,7 +320,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/handlebars/handlebars.json": {
+  "/headman/tests/src/engines/handlebars/handlebars.json": {
     "data": {
       "engine": "handlebars",
       "testInclude": {
@@ -340,7 +340,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/hogan/hogan.json": {
+  "/headman/tests/src/engines/hogan/hogan.json": {
     "data": {
       "engine": "hogan",
       "engineInclude": "hogan include"
@@ -355,7 +355,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/mustache/mustache.json": {
+  "/headman/tests/src/engines/mustache/mustache.json": {
     "data": {
       "engine": "mustache",
       "engineInclude": "mustache include"
@@ -370,7 +370,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/nunjucks/nunjucks.json": {
+  "/headman/tests/src/engines/nunjucks/nunjucks.json": {
     "data": {
       "engine": "nunjucks",
       "testInclude": {
@@ -390,7 +390,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/twig/twig.json": {
+  "/headman/tests/src/engines/twig/twig.json": {
     "data": {
       "engine": "twig",
       "testInclude": {
@@ -410,7 +410,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/pug/pug.json": {
+  "/headman/tests/src/engines/pug/pug.json": {
     "data": {
       "engine": "pug",
       "engineInclude": "pug include"
@@ -425,7 +425,7 @@
       }
     ]
   },
-  "/freitag/tests/src/engines/underscore/underscore.json": {
+  "/headman/tests/src/engines/underscore/underscore.json": {
     "data": {
       "engine": "underscore"
     },
@@ -438,7 +438,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/ect/ect.json": {
+  "/headman/tests/src/includes/ect/ect.json": {
     "data": {
       "engineInclude": "ect include"
     },
@@ -451,7 +451,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/dust/dust.json": {
+  "/headman/tests/src/includes/dust/dust.json": {
     "data": {
       "engineInclude": "dust include"
     },
@@ -464,7 +464,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/ejs/ejs.json": {
+  "/headman/tests/src/includes/ejs/ejs.json": {
     "data": {
       "engineInclude": "ejs include"
     },
@@ -477,7 +477,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/handlebars/handlebars.json": {
+  "/headman/tests/src/includes/handlebars/handlebars.json": {
     "data": {
       "engineInclude": "handlebars include"
     },
@@ -490,7 +490,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/hogan/hogan.json": {
+  "/headman/tests/src/includes/hogan/hogan.json": {
     "data": {
       "engineInclude": "hogan include"
     },
@@ -503,7 +503,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/mustache/mustache.json": {
+  "/headman/tests/src/includes/mustache/mustache.json": {
     "data": {
       "engineInclude": "mustache include"
     },
@@ -516,7 +516,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/nunjucks/nunjucks.json": {
+  "/headman/tests/src/includes/nunjucks/nunjucks.json": {
     "data": {
       "engineInclude": "nunjucks include"
     },
@@ -529,7 +529,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/pug/pug.json": {
+  "/headman/tests/src/includes/pug/pug.json": {
     "data": {
       "engineInclude": "pug include"
     },
@@ -542,7 +542,7 @@
       }
     ]
   },
-  "/freitag/tests/src/includes/twig/twig.json": {
+  "/headman/tests/src/includes/twig/twig.json": {
     "data": {
       "engineInclude": "twig include"
     },
@@ -555,10 +555,10 @@
       }
     ]
   },
-  "/freitag/tests/src/src.json": {
+  "/headman/tests/src/src.json": {
     "variations": [{}, {}]
   },
-  "/freitag/tests/src/templates/template-a/template-a.json": {
+  "/headman/tests/src/templates/template-a/template-a.json": {
     "data": {
       "name": "A"
     },
@@ -573,7 +573,7 @@
       }
     ]
   },
-  "/freitag/tests/src/templates/template-b/template-b.json": {
+  "/headman/tests/src/templates/template-b/template-b.json": {
     "data": {
       "name": "B",
       "teaserList": {
@@ -629,7 +629,7 @@
       }
     ]
   },
-  "/freitag/tests/src/test2/test2.json": {
+  "/headman/tests/src/test2/test2.json": {
     "variations": [
       {
         "name": "blubb",

@@ -285,13 +285,13 @@ describe("lib/init/config", () => {
         expect(logger.log).toHaveBeenNthCalledWith(
           1,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your freitag.json, so freitag is not able to deliver your css files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your headman.json, so headman is not able to deliver your css files."
         );
 
         expect(logger.log).toHaveBeenNthCalledWith(
           2,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your freitag.json, so freitag is not able to deliver your js files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your headman.json, so headman is not able to deliver your js files."
         );
       });
 
@@ -319,7 +319,7 @@ describe("lib/init/config", () => {
       setConfig(app, appConfig);
 
       expect(app.get("config")).toEqual({
-        projectName: "freitag",
+        projectName: "headman",
         srcFolder: "",
         cssFiles: [],
         jsFiles: [],

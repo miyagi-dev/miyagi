@@ -1,81 +1,81 @@
-.Freitag-menu {
+.Headman-menu {
   font-size: 1.4rem;
   margin-top: 2rem;
 }
 
-[aria-expanded="true"] ~ .Freitag-list {
+[aria-expanded="true"] ~ .Headman-list {
   display: block;
 }
 
-[aria-expanded="false"] ~ .Freitag-list {
+[aria-expanded="false"] ~ .Headman-list {
   display: none;
 }
 
-.Freitag-listItem {
+.Headman-listItem {
   position: relative;
 }
 
-.Freitag-listItem--directory.Freitag-listItem--lvl0 {
+.Headman-listItem--directory.Headman-listItem--lvl0 {
   padding-bottom: 2rem;
 }
 
-.Freitag-list--variations,
-.Freitag-list--components:not(.Freitag-list--lvl0) {
+.Headman-list--variations,
+.Headman-list--components:not(.Headman-list--lvl0) {
   padding-top: var(--spacingTop);
 }
 
-.Freitag-list--variations + .Freitag-list--components {
+.Headman-list--variations + .Headman-list--components {
   padding-bottom: 0.5rem;
   padding-top: 1rem;
 }
 
-.Freitag-list--components:not(.Freitag-list--lvl0) {
+.Headman-list--components:not(.Headman-list--lvl0) {
   margin-left: var(--spacingLeft);
 }
 
-.Freitag-link,
-.Freitag-component {
+.Headman-link,
+.Headman-component {
   display: block;
-  padding: 0 var(--Freitag-linkSpacing);
+  padding: 0 var(--Headman-linkSpacing);
 }
 
-.Freitag-component--lvl0 {
+.Headman-component--lvl0 {
   font-weight: 500;
 }
 
-.Freitag-component:not(.Freitag-link) {
-  color: var(--Freitag-color-lightGray);
+.Headman-component:not(.Headman-link) {
+  color: var(--Headman-color-lightGray);
 }
 
-.Freitag-link {
+.Headman-link {
   text-decoration: none;
 }
 
-.Freitag-link:hover,
-.Freitag-link:focus {
+.Headman-link:hover,
+.Headman-link:focus {
   text-decoration: underline;
 }
 
-.Freitag-link--showAll {
+.Headman-link--showAll {
   font-weight: bold;
 }
 
-.Freitag-link--variation {
+.Headman-link--variation {
   font-weight: 500;
 }
 
-.Freitag-link[aria-current] {
-  background: var(--Freitag-color-link);
-  border-radius: var(--Freitag-borderRadius);
+.Headman-link[aria-current] {
+  background: var(--Headman-color-link);
+  border-radius: var(--Headman-borderRadius);
   color: #fff;
   display: inline-block;
 }
 
-.Freitag-component.Freitag-link {
+.Headman-component.Headman-link {
   font-weight: bold;
 }
 
-.Freitag-toggle {
+.Headman-toggle {
   display: block;
   font-size: 1.5em;
   height: 1em;
@@ -86,70 +86,70 @@
   width: 1em;
 }
 
-.Freitag-toggle::after {
-  border: var(--Freitag-toggle-border);
-  border-width: var(--Freitag-toggle-borderWidth);
+.Headman-toggle::after {
+  border: var(--Headman-toggle-border);
+  border-width: var(--Headman-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: var(--Freitag-toggle-fontSize);
-  height: var(--Freitag-toggle-height);
+  font-size: var(--Headman-toggle-fontSize);
+  height: var(--Headman-toggle-height);
   left: 50%;
   position: absolute;
   top: 50%;
-  transition: var(--Freitag-toggle-transition);
-  width: var(--Freitag-toggle-width);
+  transition: var(--Headman-toggle-transition);
+  width: var(--Headman-toggle-width);
 }
 
-.Freitag-toggle[aria-expanded="false"]::after {
-  transform: var(--Freitag-toggle-transition-closed);
+.Headman-toggle[aria-expanded="false"]::after {
+  transform: var(--Headman-toggle-transition-closed);
 }
 
-.Freitag-toggle[aria-expanded="true"]::after {
-  transform: var(--Freitag-toggle-transition-opened);
+.Headman-toggle[aria-expanded="true"]::after {
+  transform: var(--Headman-toggle-transition-opened);
 }
 
 @media (pointer: coarse) {
-  .Freitag-list {
+  .Headman-list {
     --spacingTop: 1.25rem;
     --spacingLeft: 3.5rem;
   }
 
-  .Freitag-list--variations {
+  .Headman-list--variations {
     margin-left: 2rem;
   }
 
-  .Freitag-listItem:not(.Freitag-listItem--lvl0):not(:last-child) {
+  .Headman-listItem:not(.Headman-listItem--lvl0):not(:last-child) {
     padding-bottom: 1rem;
   }
 
-  .Freitag-toggle {
+  .Headman-toggle {
     --right: -0.75rem;
   }
 
-  .Freitag-toggle--lvl0 {
+  .Headman-toggle--lvl0 {
     --right: 0.25em !important;
   }
 
-  .Freitag-component--lvl0 {
+  .Headman-component--lvl0 {
     margin-left: 1rem;
   }
 }
 
 @media (pointer: fine) {
-  .Freitag-list {
+  .Headman-list {
     --spacingTop: 0.5rem;
     --spacingLeft: 2.5rem;
   }
 
-  .Freitag-list--variations {
+  .Headman-list--variations {
     margin-left: 1.5rem;
   }
 
-  .Freitag-listItem:not(.Freitag-listItem--lvl0):not(:last-child) {
+  .Headman-listItem:not(.Headman-listItem--lvl0):not(:last-child) {
     padding-bottom: 0.5rem;
   }
 
-  .Freitag-toggle {
+  .Headman-toggle {
     --right: 0rem; /* stylelint-disable-line */
   }
 }

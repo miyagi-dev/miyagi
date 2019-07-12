@@ -1,7 +1,7 @@
 {
-  "projectName": "freitag",
+  "projectName": "headman",
   "defaultPort": 5000,
-  "userConfigFile": "freitag.json",
+  "userConfigFile": "headman.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
   "srcFolderIgnores": [
@@ -9,7 +9,7 @@
     ".git",
     "package.json",
     "package-lock.json",
-    "freitag.json"
+    "headman.json"
   ],
   "folders": {
     "assets": {
@@ -20,25 +20,25 @@
   },
   "messages": {
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
-    "dataFileHasInvalidFormat": "It seems like the file ${filePath} has an invalid format as freitag was not able to parse it.",
-    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your freitag.json correct?",
+    "dataFileHasInvalidFormat": "It seems like the file ${filePath} has an invalid format as headman was not able to parse it.",
+    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your headman.json correct?",
     "fileNotFoundLinkIncorrect": "Couldn't find file ${filePath}. Please check that it's linked correctly.",
     "fileNotRenderedDueToUnmatchingFolderName": "${file} ignored because the parent directory doesn't have the same name.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingEngine": "Please specify your javascript engine in freitag.json (key: 'engine', type: String).",
-    "missingExtension": "Please specify the file extension of your components in freitag.json (key: 'extension', type: String).",
-    "missingSrcFolder": "Please specify the location of your components in freitag.json (key: 'srcFolder', type: String).",
+    "missingEngine": "Please specify your javascript engine in headman.json (key: 'engine', type: String).",
+    "missingExtension": "Please specify the file extension of your components in headman.json (key: 'extension', type: String).",
+    "missingSrcFolder": "Please specify the location of your components in headman.json (key: 'srcFolder', type: String).",
     "noDataSetForVariation": "No data defined for variation \"${variation}\" in ${file}.",
-    "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your freitag.json, so freitag is not able to deliver your ${assetType} files.",
+    "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your headman.json, so headman is not able to deliver your ${assetType} files.",
     "nodeEnvNotDefined": "Please define your NODE_ENV.",
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
-    "serverStarted": "Running freitag server at http://127.0.0.1:${port}.",
-    "serverStartedButUserConfigUnparseable": "freitag wasn't able to parse your config file.",
-    "serverStarting": "Starting freitag server…",
-    "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your freitag.json is correct?",
-    "userConfigNotFound": "Couldn't find the file freitag.json.",
+    "serverStarted": "Running headman server at http://127.0.0.1:${port}.",
+    "serverStartedButUserConfigUnparseable": "headman wasn't able to parse your config file.",
+    "serverStarting": "Starting headman server…",
+    "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your headman.json is correct?",
+    "userConfigNotFound": "Couldn't find the file headman.json.",
     "updatingDone": "Updating done!",
-    "updatingStarted": "A file has been changed, freitag is updating the state.",
+    "updatingStarted": "A file has been changed, headman is updating the state.",
     "wrongFileType": "${fileName} has not the correct file type."
   }
 }

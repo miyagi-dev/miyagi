@@ -8,7 +8,7 @@ function escapeHtml(str) {
 
 function addToggle(container) {
   const summaries = Array.from(
-    container.querySelectorAll(".FreitagResults-summary")
+    container.querySelectorAll(".HeadmanResults-summary")
   );
 
   summaries.forEach(summary => {
@@ -30,12 +30,12 @@ function a11yTest(container) {
 
   addToggle(container);
 
-  axe.run(document.getElementById("FreitagComponent"), function(err, results) {
+  axe.run(document.getElementById("HeadmanComponent"), function(err, results) {
     if (err) throw err;
 
     states.forEach(state => {
       const resultElement = container.querySelector(
-        `.FreitagResults--${state} .FreitagResults-value`
+        `.HeadmanResults--${state} .HeadmanResults-value`
       );
       let html = "";
 
@@ -51,23 +51,23 @@ function a11yTest(container) {
       if (results[state].length) {
         html += "<ul>";
         results[state].forEach(result => {
-          html += '<li class="FreitagResult">';
-          html += '<dl class="FreitagResult-data">';
+          html += '<li class="HeadmanResult">';
+          html += '<dl class="HeadmanResult-data">';
 
           if (result.description) {
-            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Description</dt> <dd class="FreitagResult-value">${escapeHtml(
+            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Description</dt> <dd class="HeadmanResult-value">${escapeHtml(
               result.description
             )}</div></dd>`;
           }
 
           if (result.help) {
-            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Help</dt> <dd class="FreitagResult-value">${escapeHtml(
+            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Help</dt> <dd class="HeadmanResult-value">${escapeHtml(
               result.help
             )}</div></dd>`;
           }
 
           if (result.helpUrl) {
-            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Link</dt> <dd class="FreitagResult-value"><a href="${
+            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Link</dt> <dd class="HeadmanResult-value"><a href="${
               result.helpUrl
             }" target="_blank">${result.helpUrl}</div></dd></a>`;
           }
@@ -77,13 +77,13 @@ function a11yTest(container) {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "FreitagResults-value--negative";
+                impactClass = "HeadmanResults-value--negative";
                 break;
               case "moderate":
-                impactClass = "FreitagResults-value--warning";
+                impactClass = "HeadmanResults-value--warning";
             }
 
-            html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Impact</dt> <dd class="${impactClass}">${
+            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Impact</dt> <dd class="${impactClass}">${
               result.impact
             }</div></dd>`;
           }
@@ -93,11 +93,11 @@ function a11yTest(container) {
         });
         html += "</ul>";
       } else {
-        html += '<p><i class="FreitagResults-empty">Nothing to report.</i></p>';
+        html += '<p><i class="HeadmanResults-empty">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.FreitagResults--${state} .FreitagResults-details`
+        `.HeadmanResults--${state} .HeadmanResults-details`
       ).innerHTML = html;
     });
 
@@ -131,7 +131,7 @@ function htmlTest(container) {
                 );
 
                 const resultElement = container.querySelector(
-                  `.FreitagResults--${state} .FreitagResults-value`
+                  `.HeadmanResults--${state} .HeadmanResults-value`
                 );
                 let html = "";
 
@@ -142,11 +142,11 @@ function htmlTest(container) {
 
                   html += "<ul>";
                   results.forEach(result => {
-                    html += '<li class="FreitagResult">';
-                    html += '<dl class="FreitagResult-data">';
+                    html += '<li class="HeadmanResult">';
+                    html += '<dl class="HeadmanResult-data">';
 
                     if (result.message) {
-                      html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Message</dt> <dd class="FreitagResult-value">${
+                      html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Message</dt> <dd class="HeadmanResult-value">${
                         result.message
                       }</div></dd>`;
                     }
@@ -165,16 +165,16 @@ function htmlTest(container) {
                         )
                       )}`;
 
-                      html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">Extract</dt> <dd class="FreitagResult-value"><code class="FreitagResult-extract">${markedExtract.replace(
+                      html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Extract</dt> <dd class="HeadmanResult-value"><code class="HeadmanResult-extract">${markedExtract.replace(
                         /\n/g,
                         "↩"
                       )}</code></div></dd>`;
                     }
 
-                    html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">From</dt><dd class="FreitagResult-value">Line: ${
+                    html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">From</dt><dd class="HeadmanResult-value">Line: ${
                       result[result.firstLine ? "firstLine" : "lastLine"]
                     }, Column: ${result.firstColumn}</div></dd>`;
-                    html += `<div class="FreitagResult-wrapper"><dt class="FreitagResult-attr">To</dt><dd class="FreitagResult-value">Line: ${
+                    html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">To</dt><dd class="HeadmanResult-value">Line: ${
                       result.lastLine
                     }, Column: ${result.lastColumn}</div></dd>`;
 
@@ -185,11 +185,11 @@ function htmlTest(container) {
                 } else {
                   resultElement.classList.remove("has-positiveValue");
                   html +=
-                    '<p><i class="FreitagResults-empty">Nothing to report.</i></p>';
+                    '<p><i class="HeadmanResults-empty">Nothing to report.</i></p>';
                 }
 
                 container.querySelector(
-                  `.FreitagResults--${state} .FreitagResults-details`
+                  `.HeadmanResults--${state} .HeadmanResults-details`
                 ).innerHTML = html;
               });
 
@@ -207,12 +207,12 @@ function htmlTest(container) {
 }
 
 addEventListener("DOMContentLoaded", () => {
-  const tests = parent.document.querySelector(".Freitag-tests");
+  const tests = parent.document.querySelector(".Headman-tests");
 
   if (tests) {
-    if (document.getElementById("FreitagComponent")) {
-      const a11yContainer = parent.document.querySelector(".FreitagTest--a11y");
-      const htmlContainer = parent.document.querySelector(".FreitagTest--html");
+    if (document.getElementById("HeadmanComponent")) {
+      const a11yContainer = parent.document.querySelector(".HeadmanTest--a11y");
+      const htmlContainer = parent.document.querySelector(".HeadmanTest--html");
 
       if (a11yContainer) {
         if (window.validations.accessibility) {

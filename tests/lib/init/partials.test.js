@@ -55,7 +55,7 @@ describe("lib/init/partials", () => {
 
         expect(logger.log).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file foo/bar.hbs. Is the 'srcFolder' in your freitag.json correct?"
+          "Couldn't find file foo/bar.hbs. Is the 'srcFolder' in your headman.json correct?"
         );
         expect(handlebars.registerPartial).not.toHaveBeenCalled();
         done();
@@ -133,7 +133,7 @@ describe("lib/init/partials", () => {
 
         expect(logger.log).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file fullName. Is the 'srcFolder' in your freitag.json correct?"
+          "Couldn't find file fullName. Is the 'srcFolder' in your headman.json correct?"
         );
         expect(handlebars.registerPartial).not.toHaveBeenCalled();
         done();

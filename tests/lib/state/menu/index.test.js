@@ -9,7 +9,7 @@ jest.mock("../../../../lib/state/menu/structure.js", () => {
 
 jest.mock("process", () => {
   return {
-    cwd: () => "/freitag/tests"
+    cwd: () => "/headman/tests"
   };
 });
 

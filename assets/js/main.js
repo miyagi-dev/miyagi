@@ -1,11 +1,11 @@
 const classes = {
-  list: "Freitag-list",
-  listItem: "Freitag-listItem",
-  content: "Freitag-content",
-  iframe: "Freitag-frame",
-  toggle: "Freitag-toggle",
-  toggleMenu: "Freitag-toggleMobileMenu",
-  link: "Freitag-link"
+  list: "Headman-list",
+  listItem: "Headman-listItem",
+  content: "Headman-content",
+  iframe: "Headman-frame",
+  toggle: "Headman-toggle",
+  toggleMenu: "Headman-toggleMobileMenu",
+  link: "Headman-link"
 };
 const paths = {
   embedded: "/component?",

@@ -1,13 +1,13 @@
-.FreitagTest {
+.HeadmanTest {
   font-size: 1.4rem;
-  padding: var(--Freitag-spacing) var(--Freitag-spacing) 0;
+  padding: var(--Headman-spacing) var(--Headman-spacing) 0;
 }
 
-.FreitagTest:last-child {
-  padding-bottom: var(--Freitag-spacing);
+.HeadmanTest:last-child {
+  padding-bottom: var(--Headman-spacing);
 }
 
-.FreitagTest-title {
+.HeadmanTest-title {
   display: block;
   font-weight: bold;
   margin: 0 0 0.5rem;

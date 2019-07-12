@@ -296,7 +296,7 @@ describe("lib/render/index", () => {
         await render.renderComponent(req, res, "component5", "component5");
 
         expect(spy).toHaveBeenCalledWith("component.hbs", {
-          html: '<p class="FreitagError">Component couldn\'t be rendered.</p>',
+          html: '<p class="HeadmanError">Component couldn\'t be rendered.</p>',
           htmlValidation: true,
           accessibilityValidation: true,
           standaloneUrl: null,
@@ -443,7 +443,7 @@ describe("lib/render/index", () => {
               {
                 file: "component6.hbs",
                 html:
-                  '<p class="FreitagError">Error: The partial doesntexist.hbs could not be found</p>',
+                  '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
                 variation: "variation1"
               }
             ],
@@ -619,7 +619,7 @@ describe("lib/render/index", () => {
             {
               file: "component6.hbs",
               html:
-                '<p class="FreitagError">Error: The partial doesntexist.hbs could not be found</p>'
+                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>'
             },
             { file: "component7.hbs", html: "component7\n" },
             { file: "component8.hbs", html: "component8\n" }
@@ -651,7 +651,7 @@ describe("lib/render/index", () => {
             {
               file: "component6.hbs",
               html:
-                '<p class="FreitagError">Error: The partial doesntexist.hbs could not be found</p>'
+                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>'
             },
             { file: "component7.hbs", html: "component7\n" },
             { file: "component8.hbs", html: "component8\n" }
@@ -677,7 +677,7 @@ describe("lib/render/index", () => {
         await render.renderComponentNotFound(req, res, true, component);
 
         expect(spy).toHaveBeenCalledWith("component_frame.hbs", {
-          html: `<p class="FreitagError">${component} not found.</p>`,
+          html: `<p class="HeadmanError">${component} not found.</p>`,
           standaloneUrl: null,
           dev: false,
           prod: false,
@@ -698,7 +698,7 @@ describe("lib/render/index", () => {
         await render.renderComponentNotFound(req, res, false, component);
 
         expect(spy).toHaveBeenCalledWith("component.hbs", {
-          html: `<p class="FreitagError">${component} not found.</p>`,
+          html: `<p class="HeadmanError">${component} not found.</p>`,
           standaloneUrl: null,
           dev: false,
           prod: false,

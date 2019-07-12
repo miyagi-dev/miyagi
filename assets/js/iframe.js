@@ -2,7 +2,7 @@ import "./_socket.js";
 import "./_tests.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  Array.from(document.querySelectorAll(".FreitagComponent-file")).forEach(
+  Array.from(document.querySelectorAll(".HeadmanComponent-file")).forEach(
     link => {
       link.addEventListener("click", e => {
         if (parent.window && parent.window.onPageChanged) {
