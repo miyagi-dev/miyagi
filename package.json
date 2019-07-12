@@ -1,11 +1,10 @@
 {
   "name": "headman",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "headman gives you an overview over all your components and allows you to develop them independently from a backend by defining inheritable json data.",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
-  "private": true,
   "repository": {
     "type": "git",
     "url": "git@github.com:mgrsskls/headman.git"
