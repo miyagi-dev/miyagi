@@ -9,6 +9,15 @@
     "type": "git",
     "url": "git@github.com:mgrsskls/headman.git"
   },
+  "keywords": [
+    "components",
+    "pattern",
+    "library",
+    "html",
+    "accessibility",
+    "validation",
+    "frontend"
+  ],
   "engines": {
     "node": ">=10.16.0",
     "npm": ">=6.9.0"
