@@ -275,7 +275,7 @@
                 "data": {
                   "name": "B with header",
                   "header": {
-                    "component": "components/component-b/_header/_header.json"
+                    "dataFile": "components/component-b/_header/_header.json"
                   }
                 }
               },
@@ -284,7 +284,7 @@
                 "data": {
                   "name": "B with footer",
                   "footer": {
-                    "component": "components/component-b/_footer/_footer.json"
+                    "dataFile": "components/component-b/_footer/_footer.json"
                   }
                 }
               },
@@ -293,10 +293,10 @@
                 "data": {
                   "name": "B with header/footer",
                   "footer": {
-                    "component": "components/component-b/_footer/_footer.json"
+                    "dataFile": "components/component-b/_footer/_footer.json"
                   },
                   "header": {
-                    "component": "components/component-b/_header/_header.json"
+                    "dataFile": "components/component-b/_header/_header.json"
                   }
                 }
               }
@@ -560,7 +560,7 @@
                 "data": {
                   "engine": "dust",
                   "testInclude": {
-                    "component": "includes/dust/dust.json"
+                    "dataFile": "includes/dust/dust.json"
                   }
                 }
               },
@@ -569,7 +569,7 @@
                 "data": {
                   "engine": "dust variation",
                   "testInclude": {
-                    "component": "includes/dust/dust.json",
+                    "dataFile": "includes/dust/dust.json",
                     "variation": "Another variation"
                   }
                 }
@@ -600,7 +600,7 @@
                 "data": {
                   "engine": "ect",
                   "testInclude": {
-                    "component": "includes/ect/ect.json"
+                    "dataFile": "includes/ect/ect.json"
                   }
                 }
               },
@@ -609,7 +609,7 @@
                 "data": {
                   "engine": "ect variation",
                   "testInclude": {
-                    "component": "includes/ect/ect.json",
+                    "dataFile": "includes/ect/ect.json",
                     "variation": "Another variation"
                   }
                 }
@@ -640,7 +640,7 @@
                 "data": {
                   "engine": "ejs",
                   "testInclude": {
-                    "component": "includes/ejs/ejs.json"
+                    "dataFile": "includes/ejs/ejs.json"
                   }
                 }
               },
@@ -649,7 +649,7 @@
                 "data": {
                   "engine": "ejs variation",
                   "testInclude": {
-                    "component": "includes/ejs/ejs.json",
+                    "dataFile": "includes/ejs/ejs.json",
                     "variation": "Another variation"
                   }
                 }
@@ -680,7 +680,7 @@
                 "data": {
                   "engine": "haml",
                   "testInclude": {
-                    "component": "includes/haml/haml.json"
+                    "dataFile": "includes/haml/haml.json"
                   }
                 }
               },
@@ -689,7 +689,7 @@
                 "data": {
                   "engine": "haml variation",
                   "testInclude": {
-                    "component": "includes/haml/haml.json",
+                    "dataFile": "includes/haml/haml.json",
                     "variation": "Another variation"
                   }
                 }
@@ -729,7 +729,7 @@
                 "data": {
                   "engine": "handlebars",
                   "testInclude": {
-                    "component": "includes/handlebars/handlebars.json"
+                    "dataFile": "includes/handlebars/handlebars.json"
                   }
                 }
               },
@@ -738,7 +738,7 @@
                 "data": {
                   "engine": "handlebars variation",
                   "testInclude": {
-                    "component": "includes/handlebars/handlebars.json",
+                    "dataFile": "includes/handlebars/handlebars.json",
                     "variation": "Another variation"
                   }
                 }
@@ -839,7 +839,7 @@
                 "data": {
                   "engine": "nunjucks",
                   "testInclude": {
-                    "component": "includes/nunjucks/nunjucks.json"
+                    "dataFile": "includes/nunjucks/nunjucks.json"
                   }
                 }
               },
@@ -848,7 +848,7 @@
                 "data": {
                   "engine": "nunjucks variation",
                   "testInclude": {
-                    "component": "includes/nunjucks/nunjucks.json",
+                    "dataFile": "includes/nunjucks/nunjucks.json",
                     "variation": "Another variation"
                   }
                 }
@@ -914,7 +914,7 @@
                 "data": {
                   "engine": "twig",
                   "testInclude": {
-                    "component": "includes/twig/twig.json"
+                    "dataFile": "includes/twig/twig.json"
                   }
                 }
               },
@@ -923,7 +923,7 @@
                 "data": {
                   "engine": "twig variation",
                   "testInclude": {
-                    "component": "includes/twig/twig.json",
+                    "dataFile": "includes/twig/twig.json",
                     "variation": "Another variation"
                   }
                 }
@@ -1412,7 +1412,7 @@
                 "name": "With component",
                 "data": {
                   "componentB": {
-                    "component": "components/component-b/component-b.json"
+                    "dataFile": "components/component-b/component-b.json"
                   }
                 }
               }
@@ -1451,10 +1451,10 @@
                 "data": {
                   "name": "B",
                   "teaserList": {
-                    "component": "components/teaser-list/teaser-list.json"
+                    "dataFile": "components/teaser-list/teaser-list.json"
                   },
                   "componentB": {
-                    "component": "components/component-b/component-b.json"
+                    "dataFile": "components/component-b/component-b.json"
                   }
                 }
               },
@@ -1472,7 +1472,7 @@
                 "name": "With component B with data as url",
                 "data": {
                   "componentB": {
-                    "component": "components/component-b/componendt-b.json"
+                    "dataFile": "components/component-b/componendt-b.json"
                   }
                 }
               },

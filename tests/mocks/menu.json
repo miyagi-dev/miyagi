@@ -131,7 +131,7 @@
                 "data": {
                   "name": "B with header",
                   "header": {
-                    "component": "components/component-b/_header/_header.json"
+                    "dataFile": "components/component-b/_header/_header.json"
                   }
                 }
               },
@@ -140,7 +140,7 @@
                 "data": {
                   "name": "B with footer",
                   "footer": {
-                    "component": "components/component-b/_footer/_footer.json"
+                    "dataFile": "components/component-b/_footer/_footer.json"
                   }
                 }
               },
@@ -149,10 +149,10 @@
                 "data": {
                   "name": "B with header/footer",
                   "footer": {
-                    "component": "components/component-b/_footer/_footer.json"
+                    "dataFile": "components/component-b/_footer/_footer.json"
                   },
                   "header": {
-                    "component": "components/component-b/_header/_header.json"
+                    "dataFile": "components/component-b/_header/_header.json"
                   }
                 }
               }
@@ -367,7 +367,7 @@
                 "data": {
                   "engine": "handlebars",
                   "testInclude": {
-                    "component": "includes/handlebars/handlebars.json"
+                    "dataFile": "includes/handlebars/handlebars.json"
                   }
                 }
               },
@@ -376,7 +376,7 @@
                 "data": {
                   "engine": "handlebars variation",
                   "testInclude": {
-                    "component": "includes/handlebars/handlebars.json",
+                    "dataFile": "includes/handlebars/handlebars.json",
                     "variation": "Another variation"
                   }
                 }
@@ -581,7 +581,7 @@
                 "name": "With component",
                 "data": {
                   "componentB": {
-                    "component": "components/component-b/component-b.json"
+                    "dataFile": "components/component-b/component-b.json"
                   }
                 }
               }
@@ -602,10 +602,10 @@
                 "data": {
                   "name": "B",
                   "teaserList": {
-                    "component": "components/teaser-list/teaser-list.json"
+                    "dataFile": "components/teaser-list/teaser-list.json"
                   },
                   "componentB": {
-                    "component": "components/component-b/component-b.json"
+                    "dataFile": "components/component-b/component-b.json"
                   }
                 }
               },
@@ -623,7 +623,7 @@
                 "name": "With component B with data as url",
                 "data": {
                   "componentB": {
-                    "component": "components/component-b/componendt-b.json"
+                    "dataFile": "components/component-b/componendt-b.json"
                   }
                 }
               },

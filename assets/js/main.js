@@ -53,7 +53,6 @@ function openParentMenus(target) {
           link = link.previousElementSibling;
         }
 
-        console.log(link);
         if (link) {
           const toggle = link.previousElementSibling;
 

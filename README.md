@@ -1,28 +1,31 @@
 # headman
+
 [![Build Status](https://travis-ci.com/mgrsskls/headman.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/headman) [![codecov](https://codecov.io/gh/mgrsskls/headman/branch/master/graph/badge.svg?token=h0X0KpG03T)](https://codecov.io/gh/mgrsskls/headman)
 
-_headman_ lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. _headman_ uses [consolidate.js](https://github.com/tj/consolidate.js) internally, hence it automatically supports a lot of rendering engines.
+_headman_ renders and validates all your components and its variations. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. _headman_ uses [consolidate.js](https://github.com/tj/consolidate.js) internally, hence it automatically supports a lot of rendering engines.
 
 ## Benefits
-* Make sure all possible variations of your components work
-* Get your components immediately validated for html and accessibility violations
-* Improve your code components by developing them encapsulated
-* No need for a backend that provides data
-* Show stakeholders the state of your development early
-* No need for additional files or folders in your project (except for the config file)
+
+- Make sure all possible variations of your components work
+- Get your components immediately validated for html and accessibility violations
+- Improve your code components by developing them encapsulated
+- No need for a backend that provides data
+- Show stakeholders the state of your development early
+- No need for additional files or folders in your project (except for the config file)
 
 ## Overview
-* [Demo](#demo)
-* [Data concept](#data-concept)
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Starting _headman_](#starting-headman)
-  * [Organizing your components](#organizing-your-components)
-  * [Creating test data](#creating-test-data)
-  * [Rendering engines](#rendering-engines)
-  * [Validations](#validations)
-* [Good to know](#good-to-know)
-* [Things to come (maybe)](#things-to-come-maybe)
+
+- [Demo](#demo)
+- [Data concept](#data-concept)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Starting _headman_](#starting-headman)
+  - [Organizing your components](#organizing-your-components)
+  - [Creating test data](#creating-test-data)
+  - [Rendering engines](#rendering-engines)
+  - [Validations](#validations)
+- [Good to know](#good-to-know)
+- [Things to come (maybe)](#things-to-come-maybe)
 
 ## Demo
 
@@ -44,18 +47,20 @@ If you have a component that includes another component, you can easily include 
 You can also install it globally via `npm install -g headman` or `yarn global add headman`.
 
 ## Usage
+
 ### Starting _headman_
+
 Create a `headman.json` in your project folder with the following options:
 
-| option             | required/optional | type            | default                               | Note                                                                                                                                                    |
-| ------------------ | ----------------- | --------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `projectName`      | required          | String          | -                                     |
-| `srcFolder`        | required          | String          | `/`                                   | Setting this value to a folder with nothing else but components is optimal, while using your root folder decreases performance.                         |
-| `srcFolderIgnores` | optional          | Array           | `[".git", "node_modules"]`            | Values will be merged with the default value.                                                                                                           |
+| option             | required/optional | type                      | default                               | Note                                                                                                                                                                                                  |
+| ------------------ | ----------------- | ------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `projectName`      | required          | String                    | -                                     |
+| `srcFolder`        | required          | String                    | `/`                                   | Setting this value to a folder with nothing else but components is optimal, while using your root folder decreases performance.                                                                       |
+| `srcFolderIgnores` | optional          | Array                     | `[".git", "node_modules"]`            | Values will be merged with the default value.                                                                                                                                                         |
 | `cssFiles`         | optional          | String or Array or Object | `[]`                                  | Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
-| `jsFiles`          | optional          | String or Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                         |
-| `validations`      | optional          | Object          | `{ html: true, accessibility: true }` |
-| `reload`           | optional          | Boolean         | `true`                                | Defines if your component automatically reloads after saving.                                                                                            |
+| `jsFiles`          | optional          | String or Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                                                                       |
+| `validations`      | optional          | Object                    | `{ html: true, accessibility: true }` |
+| `reload`           | optional          | Boolean                   | `true`                                | Defines if your component automatically reloads after saving.                                                                                                                                         |
 
 Start _headman_ with `NODE_ENV=(development|production) node node_modules/headman` (or `NODE_ENV=(development|production) headman` if installed globally). This will serve _headman_ at `http://localhost:5000`. You can change the port with `NODE_ENV=(development|production) PORT=1234 node node_modules/headman`.
 
@@ -133,7 +138,9 @@ Create a `json` file in your component folder with a structure like this:
 {
   "data": {
     "content": "<p>Here goes my content html</p>",
-    "teaser": "components/teaser/teaser.json",
+    "teaser": {
+      "dataFile": "components/teaser/teaser.json"
+    },
     "header": {
       "title": "The page title"
     }
@@ -143,7 +150,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With CTA",
       "data": {
         "cta": {
-          "component": "components/button/button.json"
+          "dataFile": "components/button/button.json"
         }
       }
     },
@@ -157,7 +164,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With teaser variation",
       "data": {
         "teaser": {
-          "component": "components/teaser/teaser.json",
+          "dataFile": "components/teaser/teaser.json",
           "variation": "Teaser 2"
         }
       }
@@ -166,7 +173,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With overwritte teaser variation",
       "data": {
         "teaser": {
-          "component": "components/teaser/teaser.json",
+          "dataFile": "components/teaser/teaser.json",
           "variation": "Teaser 2",
           "title": "Overwritten title"
         }
@@ -184,13 +191,13 @@ _**NOTE**: The base `data` key is optional, that means you can also create varia
 
 **Instead of defining data manually, you can also use data from included components:**
 
-The example above uses `"components/teaser/teaser.json"` as the value for `data.teaser` in `templates/homepage/homepage.json`. _headman_ detects that this is a data file for your component and does not interpret it as a simple string, but uses the data from this file for `data.teaser`.
-If you have variations defined in this file, you can tell _headman_ to use any of them like this:
+The example above uses a `dataFile` key in `templates/homepage/homepage.json` in multiple places. _headman_ then uses the data from the given files.
+If you have variations defined in these files, you can tell _headman_ to use any of them like this:
 
 ```js
 {
   "teaser": {
-    "component": "components/teaser/teaser.json",
+    "dataFile": "components/teaser/teaser.json",
     "variation": "Teaser 2"
   }
 }
@@ -317,6 +324,7 @@ _**Note:** Just because the accessibility validation does not result in any erro
 - You can open a standalone view of your component in a new tab by clicking on the small icon on the top right corner.
 
 ## Things to come (maybe)
+
 - Manually triggering html/accessibility validation if it is disabled
 - Creating a production build (static html files)
 - CSS validation

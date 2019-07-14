@@ -141,7 +141,7 @@ describe("lib/render/_helpers", () => {
             data: {
               resolve: [
                 {
-                  component: "resolve/resolve/resolve.json"
+                  dataFile: "resolve/resolve/resolve.json"
                 }
               ]
             }
@@ -151,7 +151,7 @@ describe("lib/render/_helpers", () => {
       data[`${process.cwd()}/tests/mocks/resolve/resolve/resolve.json`] = {
         data: {
           resolve: {
-            component: "resolve/resolve/resolve/resolve.json"
+            dataFile: "resolve/resolve/resolve/resolve.json"
           }
         }
       };
@@ -174,7 +174,7 @@ describe("lib/render/_helpers", () => {
       expect(
         await helpers.overwriteJsonLinksWithJsonData(req, {
           resolve: {
-            component: "resolve/resolve.json",
+            dataFile: "resolve/resolve.json",
             variation: "variation"
           }
         })
@@ -240,7 +240,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(req, {
             resolve: {
-              component: "some/component.foo"
+              dataFile: "some/component.foo"
             }
           })
         ).toEqual({
@@ -275,7 +275,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(req, {
             resolve: {
-              component: "some/component.json"
+              dataFile: "some/component.json"
             }
           })
         ).toEqual({
@@ -316,7 +316,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(req, {
             resolve: {
-              component: "resolve/resolve.json",
+              dataFile: "resolve/resolve.json",
               variation: "variation"
             }
           })
