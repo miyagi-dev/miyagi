@@ -25,6 +25,10 @@ function addToggle(container) {
   });
 }
 
+function getHtmlForResultItem(label, result, impactClass) {
+  return `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">${label}</dt> <dd class="HeadmanResult-value ${impactClass}">${result}</dd></div>`;
+}
+
 function a11yTest(container) {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
 
@@ -55,21 +59,23 @@ function a11yTest(container) {
           html += '<dl class="HeadmanResult-data">';
 
           if (result.description) {
-            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Description</dt> <dd class="HeadmanResult-value">${escapeHtml(
-              result.description
-            )}</div></dd>`;
+            html += getHtmlForResultItem(
+              "Description",
+              escapeHtml(result.description)
+            );
           }
 
           if (result.help) {
-            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Help</dt> <dd class="HeadmanResult-value">${escapeHtml(
-              result.help
-            )}</div></dd>`;
+            html += getHtmlForResultItem("Help", escapeHtml(result.help));
           }
 
           if (result.helpUrl) {
-            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Link</dt> <dd class="HeadmanResult-value"><a href="${
-              result.helpUrl
-            }" target="_blank">${result.helpUrl}</div></dd></a>`;
+            html += getHtmlForResultItem(
+              "Link",
+              `<a href="${result.helpUrl}" target="_blank" rel="noopener">${
+                result.helpUrl
+              }</a>`
+            );
           }
 
           if (result.impact) {
@@ -83,9 +89,7 @@ function a11yTest(container) {
                 impactClass = "HeadmanResults-value--warning";
             }
 
-            html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Impact</dt> <dd class="${impactClass}">${
-              result.impact
-            }</div></dd>`;
+            html += getHtmlForResultItem("Impact", result.impact, impactClass);
           }
 
           html += "</dl>";
@@ -146,9 +150,7 @@ function htmlTest(container) {
                     html += '<dl class="HeadmanResult-data">';
 
                     if (result.message) {
-                      html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Message</dt> <dd class="HeadmanResult-value">${
-                        result.message
-                      }</div></dd>`;
+                      html += getHtmlForResultItem("Message", result.message);
                     }
 
                     if (result.extract) {
@@ -165,18 +167,25 @@ function htmlTest(container) {
                         )
                       )}`;
 
-                      html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">Extract</dt> <dd class="HeadmanResult-value"><code class="HeadmanResult-extract">${markedExtract.replace(
-                        /\n/g,
-                        "↩"
-                      )}</code></div></dd>`;
+                      html += getHtmlForResultItem(
+                        "Extract",
+                        `<code class="HeadmanResult-extract">${markedExtract.replace(
+                          /\n/g,
+                          "↩"
+                        )}</code>`
+                      );
                     }
 
-                    html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">From</dt><dd class="HeadmanResult-value">Line: ${
-                      result[result.firstLine ? "firstLine" : "lastLine"]
-                    }, Column: ${result.firstColumn}</div></dd>`;
-                    html += `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">To</dt><dd class="HeadmanResult-value">Line: ${
-                      result.lastLine
-                    }, Column: ${result.lastColumn}</div></dd>`;
+                    html += getHtmlForResultItem(
+                      "From",
+                      `Line: ${
+                        result[result.firstLine ? "firstLine" : "lastLine"]
+                      }, Column: ${result.firstColumn}`
+                    );
+                    html += getHtmlForResultItem(
+                      "To",
+                      `Line: ${result.lastLine}, Column: ${result.lastColumn}`
+                    );
 
                     html += "</dl>";
                     html += "</li>";
