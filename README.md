@@ -6,12 +6,12 @@ _headman_ renders and validates all your components and its variations. For maxi
 
 ## Benefits
 
-- Make sure all possible variations of your components work
+- Make sure all possible variations of your components behave as expected
 - Get your components immediately validated for html and accessibility violations
-- Improve your code components by developing them encapsulated
+- Improve the code of your components by developing them encapsulated
 - No need for a backend that provides data
 - Show stakeholders the state of your development early
-- No need for additional files or folders in your project (except for the config file)
+- No overhead in your project (except for the config file)
 
 ## Overview
 
