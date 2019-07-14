@@ -1,6 +1,6 @@
 {
   "name": "headman",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "headman renders and validates all your components and its variations.",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
