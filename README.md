@@ -329,3 +329,4 @@ _**Note:** Just because the accessibility validation does not result in any erro
 - Creating a production build (static html files)
 - CSS validation
 - Global data that is available in every component
+- Support for YAML data files
