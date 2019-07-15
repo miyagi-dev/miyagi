@@ -330,3 +330,4 @@ _**Note:** Just because the accessibility validation does not result in any erro
 - CSS validation
 - Global data that is available in every component
 - Support for YAML data files
+- Referencing a template file in the data to be able to render dynamic content (useful for rich text elements e.g.)
