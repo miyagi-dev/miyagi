@@ -6,6 +6,27 @@ const path = require("path");
 logger.log = jest.fn();
 
 describe("lib/render/_helpers", () => {
+  describe("mergeWithGlobalData()", () => {
+    test("returns the json from data.json with the passed json", () => {
+      const app = express();
+      const data = {};
+      const fullPath = path.join(process.cwd(), "srcFolder/data.json");
+      data[fullPath] = { foo: "bar" };
+
+      app.set("config", {
+        srcFolder: "srcFolder/"
+      });
+      app.set("state", {
+        data
+      });
+
+      expect(helpers.mergeWithGlobalData(app, { bar: "foo" })).toEqual({
+        foo: "bar",
+        bar: "foo"
+      });
+    });
+  });
+
   describe("getFallbackData()", () => {
     describe("with data in variations", () => {
       test("returns the data of the first variation with data", () => {

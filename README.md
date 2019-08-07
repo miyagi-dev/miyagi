@@ -22,6 +22,7 @@ _headman_ renders and validates all your components and its variations. For maxi
   - [Starting _headman_](#starting-headman)
   - [Organizing your components](#organizing-your-components)
   - [Creating test data](#creating-test-data)
+  - [Global data](#global-data)
   - [Rendering engines](#rendering-engines)
   - [Validations](#validations)
 - [Good to know](#good-to-know)
@@ -261,6 +262,10 @@ The `teaser.json` example above would be resolved like this:
 _headman_'s concept of inheriting data works best with rendering engines which allow you to pass data objects into an include. Please check the section [Rendering engines](#rendering-engines) for limitations with certain rendering engines.
 
 _**Note:** There is no way to create a named variation of a variation._
+
+### Global data
+
+You can define global data by creating a `data.json` in your `srcFolder`. This data will be merged into your components data. The components data has higher priority, hence overwrites keys with the same name.
 
 ### Rendering engines
 

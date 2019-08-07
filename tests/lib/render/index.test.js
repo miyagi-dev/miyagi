@@ -19,6 +19,14 @@ const path8 = path.join(process.cwd(), "/tests/mocks/srcFolder/component8.hbs");
 const path9 = path.join(process.cwd(), "/tests/mocks/srcFolder/component9.hbs");
 const data = {};
 
+function addGlobalData() {
+  req.app.get("state").data[
+    path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
+  ] = {
+    global: "global"
+  };
+}
+
 data[path1.replace(".hbs", ".json")] = {
   data: {
     component: "component1"
@@ -112,6 +120,10 @@ beforeEach(() => {
 afterEach(() => {
   jest.resetModules();
   jest.resetAllMocks();
+
+  app.set("state").data[
+    path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
+  ] = null;
 });
 
 describe("lib/render/index", () => {
@@ -226,6 +238,28 @@ describe("lib/render/index", () => {
   });
 
   describe("renderComponent", () => {
+    describe("with global data", () => {
+      test("renders component.hbs with data merged with global data", async done => {
+        addGlobalData();
+        const spy = jest.spyOn(res, "render");
+
+        await render.renderComponent(req, res, component);
+
+        expect(spy).toHaveBeenCalledWith("component.hbs", {
+          html: "component1global\n",
+          htmlValidation: true,
+          accessibilityValidation: true,
+          standaloneUrl: null,
+          dev: false,
+          prod: false,
+          projectName,
+          userProjectName
+        });
+
+        done();
+      });
+    });
+
     describe("with variation", () => {
       test("renders component.hbs", async done => {
         const spy = jest.spyOn(res, "render");
@@ -354,6 +388,48 @@ describe("lib/render/index", () => {
   });
 
   describe("renderComponentVariations", () => {
+    describe("with global data", () => {
+      test("renders component_variations.hbs with the global data merged into the variations data", async done => {
+        addGlobalData();
+        const spy = jest.spyOn(res, "render");
+
+        await render.renderComponentVariations(
+          req,
+          res,
+          "component1.hbs",
+          true
+        );
+
+        expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+          variations: [
+            {
+              file: "component1.hbs",
+              html: "component1global\n",
+              variation: "component1"
+            },
+            {
+              file: "component1.hbs",
+              html: "component11global\n",
+              variation: "variation1"
+            },
+            {
+              file: "component1.hbs",
+              html: "component12global\n",
+              variation: "variation2"
+            }
+          ],
+          standaloneUrl: `/component?file=${component}`,
+          dev: false,
+          prod: false,
+          a11yTestsPreload: true,
+          projectName,
+          userProjectName
+        });
+
+        done();
+      });
+    });
+
     describe("component has variations", () => {
       describe("with data key", () => {
         test("renders component_variations.hbs", async done => {
@@ -604,6 +680,39 @@ describe("lib/render/index", () => {
   });
 
   describe("renderComponentOverview", () => {
+    describe("with global data", () => {
+      test("renders component_overview.hbs with the global data merged with the components data", async done => {
+        addGlobalData();
+        const spy = jest.spyOn(res, "render");
+
+        await render.renderComponentOverview(req, res, false);
+
+        expect(spy).toHaveBeenCalledWith("component_overview.hbs", {
+          components: [
+            { file: "component1.hbs", html: "component1global\n" },
+            { file: "component2.hbs", html: "component2\n" },
+            { file: "component3.hbs", html: "component31\n" },
+            { file: "component4.hbs", html: "component4\n" },
+            {
+              file: "component6.hbs",
+              html:
+                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>'
+            },
+            { file: "component7.hbs", html: "component7\n" },
+            { file: "component8.hbs", html: "component8\n" }
+          ],
+          standaloneUrl: null,
+          dev: false,
+          prod: false,
+          a11yTestsPreload: true,
+          projectName,
+          userProjectName
+        });
+
+        done();
+      });
+    });
+
     describe("embedded=true", () => {
       test("renders component_overview.hbs", async done => {
         const spy = jest.spyOn(res, "render");
