@@ -43,14 +43,33 @@ describe("lib/init/view-helpers", () => {
       );
     });
 
-    test("calls handlebars.registerHelper with jsFiles", () => {
-      handlebars.registerHelper = jest.fn();
-      viewHelpers(app);
+    describe("calls handlebars.registerHelper with jsFiles", () => {
+      describe("with es6Modules:true in config", () => {
+        const tempApp = express();
+        tempApp.set("config", {
+          cssFiles: ["index.css"],
+          jsFiles: ["index.js"],
+          es6Modules: true
+        });
 
-      expect(handlebars.registerHelper.mock.calls[2][0]).toEqual("jsFiles");
-      expect(handlebars.registerHelper.mock.calls[2][1]).toEqual(
-        '<script src="index.js" defer></script>'
-      );
+        handlebars.registerHelper = jest.fn();
+        viewHelpers(tempApp);
+
+        expect(handlebars.registerHelper.mock.calls[2][0]).toEqual("jsFiles");
+        expect(handlebars.registerHelper.mock.calls[2][1]).toEqual(
+          '<script src="index.js" type="module" defer></script>'
+        );
+      });
+
+      describe("with es6Modules:false in config", () => {
+        handlebars.registerHelper = jest.fn();
+        viewHelpers(app);
+
+        expect(handlebars.registerHelper.mock.calls[2][0]).toEqual("jsFiles");
+        expect(handlebars.registerHelper.mock.calls[2][1]).toEqual(
+          '<script src="index.js" defer></script>'
+        );
+      });
     });
   });
 

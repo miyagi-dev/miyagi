@@ -20,6 +20,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: "user/css/index.css",
         jsFiles: "user/js/index.js",
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -33,6 +34,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -50,6 +52,7 @@ describe("lib/init/config", () => {
         srcFolder: "/user/srcFolder",
         cssFiles: "../../../../user/css/index.css",
         jsFiles: "/user/js/index.js",
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -63,6 +66,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -82,6 +86,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -95,6 +100,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -112,6 +118,7 @@ describe("lib/init/config", () => {
         srcFolder: "/user/srcFolder",
         cssFiles: ["../../../../user/css/index.css"],
         jsFiles: ["/user/js/index.js"],
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -125,6 +132,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
+        es6Modules: true,
         validations: {
           html: false,
           accessibility: false
@@ -149,6 +157,7 @@ describe("lib/init/config", () => {
           jsFiles: {
             test: ["user/dev/js/index.js"]
           },
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -162,6 +171,7 @@ describe("lib/init/config", () => {
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/dev/css/index.css"],
           jsFiles: ["user/dev/js/index.js"],
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -179,6 +189,7 @@ describe("lib/init/config", () => {
           srcFolder: "/user/srcFolder",
           cssFiles: ["../../../../user/css/index.css"],
           jsFiles: ["/user/js/index.js"],
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -192,6 +203,7 @@ describe("lib/init/config", () => {
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/css/index.css"],
           jsFiles: ["user/js/index.js"],
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -215,6 +227,7 @@ describe("lib/init/config", () => {
           jsFiles: {
             test: "user/dev/js/index.js"
           },
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -228,6 +241,7 @@ describe("lib/init/config", () => {
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/dev/css/index.css"],
           jsFiles: ["user/dev/js/index.js"],
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -245,6 +259,7 @@ describe("lib/init/config", () => {
           srcFolder: "/user/srcFolder",
           cssFiles: "../../../../user/css/index.css",
           jsFiles: "/user/js/index.js",
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -258,6 +273,7 @@ describe("lib/init/config", () => {
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/css/index.css"],
           jsFiles: ["user/js/index.js"],
+          es6Modules: true,
           validations: {
             html: false,
             accessibility: false
@@ -323,6 +339,7 @@ describe("lib/init/config", () => {
         srcFolder: "",
         cssFiles: [],
         jsFiles: [],
+        es6Modules: false,
         srcFolderIgnores: ["node_modules", ".git"],
         validations: {
           html: true,

@@ -17,7 +17,7 @@ const cssFiles = ["assets/css/iframe.css", "assets/css/main.css"];
 const jsDist = `${buildFolder}js/`;
 const cssDist = `${buildFolder}css/`;
 
-gulp.task("build:js", () => {
+gulp.task("build:js", async done => {
   const promises = [];
 
   jsFiles.forEach(jsFile => {
@@ -44,7 +44,10 @@ gulp.task("build:js", () => {
     );
   });
 
-  return Promise.all(promises);
+  return await Promise.all(promises => {
+    done();
+    return promises;
+  });
 });
 
 gulp.task("build:css", () =>
