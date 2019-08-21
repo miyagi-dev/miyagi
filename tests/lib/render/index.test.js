@@ -71,7 +71,7 @@ data[path9.replace(".hbs", ".json")] = {
     }
   ]
 };
-const projectName = config.projectName;
+const { projectName } = config;
 const folders = menu;
 
 let app;

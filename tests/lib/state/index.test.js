@@ -8,9 +8,11 @@ let setState;
 beforeEach(() => {
   express = require("express");
   getPartials = require("../../../lib/state/partials.js");
+  /* eslint-disable */
   getData = require("../../../lib/state/data.js").getData;
   getMenu = require("../../../lib/state/menu/index.js").getMenu;
   getSourceTree = require("../../../lib/state/source-tree.js").getSourceTree;
+  /* eslint-enable */
   setState = require("../../../lib/state");
 
   jest.mock("../../../lib/state/partials.js");

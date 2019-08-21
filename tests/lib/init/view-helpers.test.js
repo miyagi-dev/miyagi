@@ -2,7 +2,7 @@ const express = require("express");
 const handlebars = require("handlebars");
 const viewHelpers = require("../../../lib/init/view-helpers.js");
 const menu = require("../../../lib/render/menu");
-const registerHelper = handlebars.registerHelper;
+const { registerHelper } = handlebars;
 
 jest.mock("../../../lib/render/menu/index.js", () => {
   return {

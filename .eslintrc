@@ -12,6 +12,7 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "no-console": "off"
+    "no-console": "off",
+    "prefer-destructuring": ["error", {"object": true, "array": true}]
   }
 }
