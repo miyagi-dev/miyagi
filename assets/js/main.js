@@ -71,7 +71,7 @@ function openParentMenus(target) {
 
 function setActiveStateInNav(query) {
   const embeddedParam = "&embedded=true";
-  const target = links.filter(
+  const target = links.find(
     link =>
       link
         .getAttribute("href")
@@ -81,8 +81,8 @@ function setActiveStateInNav(query) {
             .replace(paths.container, paths.embedded)
             .replace(embeddedParam, "")
         ) >= 0
-  )[0];
-  const current = links.filter(link => link.getAttribute("aria-current"))[0];
+  );
+  const current = links.find(link => link.getAttribute("aria-current"));
   const prevEl = target.previousElementSibling;
   const toggle =
     prevEl && prevEl.classList.contains(classes.toggle) ? prevEl : null;
