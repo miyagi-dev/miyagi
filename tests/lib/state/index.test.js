@@ -11,7 +11,7 @@ beforeEach(() => {
   getData = require("../../../lib/state/data.js").getData;
   getMenu = require("../../../lib/state/menu/index.js").getMenu;
   getSourceTree = require("../../../lib/state/source-tree.js").getSourceTree;
-  setState = require("../../../lib/state/index.js");
+  setState = require("../../../lib/state");
 
   jest.mock("../../../lib/state/partials.js");
   jest.mock("../../../lib/state/data.js", () => {

@@ -28,10 +28,10 @@ describe("index", () => {
         describe("with extension, srcFolder and engine defined in headman.json", () => {
           test("calls lib/init with parsed config", () => {
             const fs = require("fs");
-            const init = require("../lib/init/index.js");
+            const init = require("../lib/init");
             const logger = require("../lib/logger.js");
             logger.log = jest.fn();
-            jest.mock("../lib/init/index.js");
+            jest.mock("../lib/init");
 
             fs.readFile = jest.fn((file, encoding, cb) => {
               cb(
@@ -71,8 +71,8 @@ describe("index", () => {
           test("doesn't call lib/init", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
-            const init = require("../lib/init/index.js");
-            jest.mock("../lib/init/index.js");
+            const init = require("../lib/init");
+            jest.mock("../lib/init");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -106,8 +106,8 @@ describe("index", () => {
           test("doesn't call lib/init", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
-            const init = require("../lib/init/index.js");
-            jest.mock("../lib/init/index.js");
+            const init = require("../lib/init");
+            jest.mock("../lib/init");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {
@@ -141,8 +141,8 @@ describe("index", () => {
           test("doesn't call lib/init", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
-            const init = require("../lib/init/index.js");
-            jest.mock("../lib/init/index.js");
+            const init = require("../lib/init");
+            jest.mock("../lib/init");
 
             logger.log = jest.fn();
             fs.readFile = jest.fn((file, encoding, cb) => {

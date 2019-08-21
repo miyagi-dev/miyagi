@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const request = require("supertest");
 const setRouter = require("../../../lib/init/router.js");
-const render = require("../../../lib/render/index.js");
+const render = require("../../../lib/render");
 const component = "components/component/component.hbs";
 
 let app;

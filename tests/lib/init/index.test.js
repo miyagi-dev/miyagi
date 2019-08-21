@@ -6,11 +6,11 @@ const setConfig = require("../../../lib/init/config.js");
 const setEngines = require("../../../lib/init/engines.js");
 const setPartials = require("../../../lib/init/partials.js");
 const setRouter = require("../../../lib/init/router.js");
-const setState = require("../../../lib/state/index.js");
+const setState = require("../../../lib/state");
 const setStatic = require("../../../lib/init/static.js");
 const setViewHelpers = require("../../../lib/init/view-helpers.js");
 const setViews = require("../../../lib/init/views.js");
-const init = require("../../../lib/init/index.js");
+const init = require("../../../lib/init");
 require("../../../lib/init/watcher.js");
 
 jest.mock("../../../lib/logger.js");
@@ -22,7 +22,7 @@ jest.mock("../../../lib/init/static.js");
 jest.mock("../../../lib/init/view-helpers.js");
 jest.mock("../../../lib/init/views.js");
 jest.mock("../../../lib/init/watcher.js");
-jest.mock("../../../lib/state/index.js");
+jest.mock("../../../lib/state");
 jest.mock("handlebars");
 jest.mock("handlebars-layouts");
 

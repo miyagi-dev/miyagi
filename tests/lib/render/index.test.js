@@ -1,4 +1,4 @@
-const render = require("../../../lib/render/index.js");
+const render = require("../../../lib/render");
 const tests = require("../../../lib/render/tests.json");
 const config = require("../../mocks/config.json");
 const express = require("express");

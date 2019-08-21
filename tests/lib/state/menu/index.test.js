@@ -29,7 +29,7 @@ describe("state/menu/index", () => {
       sourceTree: {}
     });
 
-    const { getMenu } = require("../../../../lib/state/menu/index.js");
+    const { getMenu } = require("../../../../lib/state/menu");
     await expect(getMenu(app)).toEqual(menuJson);
     done();
   });
