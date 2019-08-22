@@ -9,6 +9,10 @@ jest.mock("../../../lib/logger.js");
 describe("lib/init/engines", () => {
   test("it sets the handlebars engine for the hbs extension", () => {
     const app = express();
+    app.set("config", {
+      extension: "twig",
+      engine: "twig"
+    });
     const spy = jest.spyOn(app, "engine");
 
     engines(app);
@@ -18,6 +22,10 @@ describe("lib/init/engines", () => {
 
   test("it sets the app view engine to hbs", () => {
     const app = express();
+    app.set("config", {
+      extension: "twig",
+      engine: "twig"
+    });
     const spy = jest.spyOn(app, "set");
 
     engines(app);
