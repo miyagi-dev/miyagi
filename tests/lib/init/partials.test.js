@@ -62,46 +62,23 @@ describe("lib/init/partials", () => {
       });
     });
 
-    describe("if initial", () => {
-      test("calls hbs.registerPartial with layout files", async done => {
-        util.promisify = jest.fn(() => () => true);
-        handlebars.compile = jest.fn(() => "compiledPartial");
+    test("calls hbs.registerPartial with layout files", async done => {
+      util.promisify = jest.fn(() => () => true);
+      handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerAll(app, true);
+      await partials.registerAll(app, true);
 
-        expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
-          1,
-          "main",
-          "compiledPartial"
-        );
-        expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
-          2,
-          "iframe",
-          "compiledPartial"
-        );
-        done();
-      });
-    });
-
-    describe("if not initial", () => {
-      test("doesn't call hbs.registerPartial with layout files", async done => {
-        util.promisify = jest.fn(() => () => true);
-        handlebars.compile = jest.fn(() => "compiledPartial");
-
-        await partials.registerAll(app, false);
-
-        expect(handlebars.registerPartial).not.toHaveBeenNthCalledWith(
-          1,
-          "main",
-          "compiledPartial"
-        );
-        expect(handlebars.registerPartial).not.toHaveBeenNthCalledWith(
-          2,
-          "iframe",
-          "compiledPartial"
-        );
-        done();
-      });
+      expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
+        1,
+        "main",
+        "compiledPartial"
+      );
+      expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
+        2,
+        "iframe",
+        "compiledPartial"
+      );
+      done();
     });
   });
 
