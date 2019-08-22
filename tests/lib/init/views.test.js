@@ -23,7 +23,7 @@ describe("lib/init/views", () => {
 
   test("adds the user srcFolder to the app instance", () => {
     expect(app.get("views")).toContain(
-      path.join(process.cwd(), app.get("config").srcFolder)
+      path.resolve(app.get("config").srcFolder)
     );
   });
 
