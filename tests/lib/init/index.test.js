@@ -1,4 +1,6 @@
-const appConfig = require("../../mocks/config.json");
+const appConfig = require("../../../lib/config.json");
+appConfig.defaultPort = appConfig.defaultPort + 1;
+
 const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
 const logger = require("../../../lib/logger.js");
@@ -43,9 +45,7 @@ afterEach(() => {
 describe("lib/init", () => {
   describe("always", () => {
     test("calls setConfig", async done => {
-      await init(
-        Object.assign({}, appConfig, { defaultPort: getRandomPort() })
-      );
+      await init({});
       expect(setConfig).toHaveBeenCalled();
       expect(setEngines).toHaveBeenCalled();
       done();
@@ -55,9 +55,7 @@ describe("lib/init", () => {
   describe("setEngines() was successful", () => {
     test("call init methods", async done => {
       setEngines.mockImplementationOnce(() => true);
-      const server = await init(
-        Object.assign({}, appConfig, { defaultPort: getRandomPort() })
-      );
+      const server = await init({});
       expect(setState).toHaveBeenCalled();
       expect(setStatic).toHaveBeenCalled();
       expect(setRouter).toHaveBeenCalled();
@@ -73,9 +71,7 @@ describe("lib/init", () => {
       test("sets app.port to process.env.PORT", async done => {
         setEngines.mockImplementationOnce(() => true);
         process.env.PORT = 1234;
-        const server = await init(
-          Object.assign({}, appConfig, { defaultPort: getRandomPort() })
-        );
+        const server = await init({});
         expect(logger.log).toHaveBeenCalledWith(
           "info",
           "Running headman server at http://127.0.0.1:1234."
@@ -89,13 +85,10 @@ describe("lib/init", () => {
       test("logs the correct port", async done => {
         setEngines.mockImplementationOnce(() => true);
         delete process.env.PORT;
-        let config = Object.assign({}, appConfig, {
-          defaultPort: getRandomPort()
-        });
-        const server = await init(config);
+        const server = await init({});
         expect(logger.log).toHaveBeenCalledWith(
           "info",
-          `Running headman server at http://127.0.0.1:${config.defaultPort}.`
+          `Running headman server at http://127.0.0.1:${appConfig.defaultPort}.`
         );
         server.close();
         done();

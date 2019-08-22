@@ -1,6 +1,6 @@
 const render = require("../../../lib/render");
 const tests = require("../../../lib/render/tests.json");
-const config = require("../../mocks/config.json");
+const config = require("../../../lib/config.json");
 const express = require("express");
 const engines = require("consolidate");
 const path = require("path");

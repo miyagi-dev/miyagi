@@ -1,4 +1,3 @@
-const appConfig = require("../../mocks/config.json");
 const setConfig = require("../../../lib/init/config.js");
 const logger = require("../../../lib/logger.js");
 
@@ -14,7 +13,7 @@ describe("lib/init/config", () => {
     test("merges given user config and app config and sets app.config", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig, {
+      setConfig(app, {
         projectName: "userName",
         srcFolderIgnores: ["user/ignores/"],
         srcFolder: "user/srcFolder/",
@@ -30,7 +29,14 @@ describe("lib/init/config", () => {
 
       expect(app.get("config")).toEqual({
         projectName: "userName",
-        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+        srcFolderIgnores: [
+          "node_modules",
+          ".git",
+          "package.json",
+          "package-lock.json",
+          "headman.json",
+          "user/ignores/"
+        ],
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
@@ -46,11 +52,11 @@ describe("lib/init/config", () => {
     test("sanitizes all given paths by the user", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig, {
+      setConfig(app, {
         projectName: "userName",
         srcFolderIgnores: "../../user/ignores",
         srcFolder: "/user/srcFolder",
-        cssFiles: "../../../../user/css/index.css",
+        cssFiles: "./user/css/index.css",
         jsFiles: "/user/js/index.js",
         es6Modules: true,
         validations: {
@@ -62,7 +68,14 @@ describe("lib/init/config", () => {
 
       expect(app.get("config")).toEqual({
         projectName: "userName",
-        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+        srcFolderIgnores: [
+          "node_modules",
+          ".git",
+          "package.json",
+          "package-lock.json",
+          "headman.json",
+          "../../user/ignores/"
+        ],
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
@@ -80,7 +93,7 @@ describe("lib/init/config", () => {
     test("merges given user config and app config and sets app.config", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig, {
+      setConfig(app, {
         projectName: "userName",
         srcFolderIgnores: ["user/ignores/"],
         srcFolder: "user/srcFolder/",
@@ -96,7 +109,14 @@ describe("lib/init/config", () => {
 
       expect(app.get("config")).toEqual({
         projectName: "userName",
-        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+        srcFolderIgnores: [
+          "node_modules",
+          ".git",
+          "package.json",
+          "package-lock.json",
+          "headman.json",
+          "user/ignores/"
+        ],
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
@@ -112,11 +132,11 @@ describe("lib/init/config", () => {
     test("sanitizes all given paths by the user", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig, {
+      setConfig(app, {
         projectName: "userName",
-        srcFolderIgnores: "../../user/ignores",
+        srcFolderIgnores: "user/ignores",
         srcFolder: "/user/srcFolder",
-        cssFiles: ["../../../../user/css/index.css"],
+        cssFiles: ["./user/css/index.css"],
         jsFiles: ["/user/js/index.js"],
         es6Modules: true,
         validations: {
@@ -128,7 +148,14 @@ describe("lib/init/config", () => {
 
       expect(app.get("config")).toEqual({
         projectName: "userName",
-        srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+        srcFolderIgnores: [
+          "node_modules",
+          ".git",
+          "package.json",
+          "package-lock.json",
+          "headman.json",
+          "user/ignores/"
+        ],
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
@@ -147,7 +174,7 @@ describe("lib/init/config", () => {
       test("merges given user config and app config and sets app.config", () => {
         const app = require("express")();
 
-        setConfig(app, appConfig, {
+        setConfig(app, {
           projectName: "userName",
           srcFolderIgnores: ["user/ignores/"],
           srcFolder: "user/srcFolder/",
@@ -167,7 +194,14 @@ describe("lib/init/config", () => {
 
         expect(app.get("config")).toEqual({
           projectName: "userName",
-          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolderIgnores: [
+            "node_modules",
+            ".git",
+            "package.json",
+            "package-lock.json",
+            "headman.json",
+            "user/ignores/"
+          ],
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/dev/css/index.css"],
           jsFiles: ["user/dev/js/index.js"],
@@ -183,11 +217,11 @@ describe("lib/init/config", () => {
       test("sanitizes all given paths by the user", () => {
         const app = require("express")();
 
-        setConfig(app, appConfig, {
+        setConfig(app, {
           projectName: "userName",
-          srcFolderIgnores: "../../user/ignores",
+          srcFolderIgnores: "user/ignores",
           srcFolder: "/user/srcFolder",
-          cssFiles: ["../../../../user/css/index.css"],
+          cssFiles: ["./user/css/index.css"],
           jsFiles: ["/user/js/index.js"],
           es6Modules: true,
           validations: {
@@ -199,7 +233,14 @@ describe("lib/init/config", () => {
 
         expect(app.get("config")).toEqual({
           projectName: "userName",
-          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolderIgnores: [
+            "node_modules",
+            ".git",
+            "package.json",
+            "package-lock.json",
+            "headman.json",
+            "user/ignores/"
+          ],
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/css/index.css"],
           jsFiles: ["user/js/index.js"],
@@ -217,7 +258,7 @@ describe("lib/init/config", () => {
       test("merges given user config and app config and sets app.config", () => {
         const app = require("express")();
 
-        setConfig(app, appConfig, {
+        setConfig(app, {
           projectName: "userName",
           srcFolderIgnores: ["user/ignores/"],
           srcFolder: "user/srcFolder/",
@@ -237,7 +278,14 @@ describe("lib/init/config", () => {
 
         expect(app.get("config")).toEqual({
           projectName: "userName",
-          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolderIgnores: [
+            "node_modules",
+            ".git",
+            "package.json",
+            "package-lock.json",
+            "headman.json",
+            "user/ignores/"
+          ],
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/dev/css/index.css"],
           jsFiles: ["user/dev/js/index.js"],
@@ -253,11 +301,11 @@ describe("lib/init/config", () => {
       test("sanitizes all given paths by the user", () => {
         const app = require("express")();
 
-        setConfig(app, appConfig, {
+        setConfig(app, {
           projectName: "userName",
-          srcFolderIgnores: "../../user/ignores",
+          srcFolderIgnores: "user/ignores",
           srcFolder: "/user/srcFolder",
-          cssFiles: "../../../../user/css/index.css",
+          cssFiles: "./user/css/index.css",
           jsFiles: "/user/js/index.js",
           es6Modules: true,
           validations: {
@@ -269,7 +317,14 @@ describe("lib/init/config", () => {
 
         expect(app.get("config")).toEqual({
           projectName: "userName",
-          srcFolderIgnores: ["node_modules", ".git", "user/ignores/"],
+          srcFolderIgnores: [
+            "node_modules",
+            ".git",
+            "package.json",
+            "package-lock.json",
+            "headman.json",
+            "user/ignores/"
+          ],
           srcFolder: "user/srcFolder/",
           cssFiles: ["user/css/index.css"],
           jsFiles: ["user/js/index.js"],
@@ -289,7 +344,7 @@ describe("lib/init/config", () => {
       test("it logs an error", () => {
         logger.log = jest.fn();
 
-        setConfig(app, appConfig, {
+        setConfig(app, {
           cssFiles: {
             foo: ["user/css/index.css"]
           },
@@ -314,7 +369,7 @@ describe("lib/init/config", () => {
       test("it sets the asset keys to []", () => {
         logger.log = jest.fn();
 
-        setConfig(app, appConfig, {
+        setConfig(app, {
           cssFiles: {
             foo: ["user/css/index.css"]
           },
@@ -332,7 +387,7 @@ describe("lib/init/config", () => {
     test("it returns the default values", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig);
+      setConfig(app);
 
       expect(app.get("config")).toEqual({
         projectName: "headman",
@@ -340,7 +395,13 @@ describe("lib/init/config", () => {
         cssFiles: [],
         jsFiles: [],
         es6Modules: false,
-        srcFolderIgnores: ["node_modules", ".git"],
+        srcFolderIgnores: [
+          "node_modules",
+          ".git",
+          "package.json",
+          "package-lock.json",
+          "headman.json"
+        ],
         validations: {
           html: true,
           accessibility: true
@@ -354,7 +415,7 @@ describe("lib/init/config", () => {
     test("it sets srcFolder to ''", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig, {
+      setConfig(app, {
         srcFolder: "."
       });
 
@@ -366,7 +427,7 @@ describe("lib/init/config", () => {
     test("it sets srcFolder to ''", () => {
       const app = require("express")();
 
-      setConfig(app, appConfig, {
+      setConfig(app, {
         srcFolder: "/"
       });
 

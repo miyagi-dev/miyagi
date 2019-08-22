@@ -42,7 +42,6 @@ describe("index", () => {
 
             require("../index.js");
             expect(init).toHaveBeenCalledWith(
-              appConfig,
               JSON.parse(
                 '{"extension": "hbs","engine": "handlebars","srcFolder": "src/"}'
               )

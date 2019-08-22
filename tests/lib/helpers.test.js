@@ -1,4 +1,4 @@
-const config = require("../mocks/config.json");
+const config = require("../../lib/config.json");
 const helpers = require("../../lib/helpers.js");
 
 beforeEach(() => {

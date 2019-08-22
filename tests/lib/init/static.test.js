@@ -1,5 +1,5 @@
 const setStatic = require("../../../lib/init/static.js");
-const config = require("../../mocks/config.json");
+const config = require("../../../lib/config.json");
 const express = require("express");
 const request = require("supertest");
 
