@@ -23,11 +23,11 @@ describe("lib/init/view-helpers", () => {
   });
 
   describe("", () => {
-    test("calls handlebars.registerHelper with renderMenu", () => {
+    test("calls handlebars.registerHelper with menu", () => {
       handlebars.registerHelper = jest.fn();
       viewHelpers(app);
 
-      expect(handlebars.registerHelper.mock.calls[0][0]).toEqual("renderMenu");
+      expect(handlebars.registerHelper.mock.calls[0][0]).toEqual("menu");
       expect(typeof handlebars.registerHelper.mock.calls[0][1]).toEqual(
         "function"
       );
@@ -57,7 +57,7 @@ describe("lib/init/view-helpers", () => {
 
         expect(handlebars.registerHelper.mock.calls[2][0]).toEqual("jsFiles");
         expect(handlebars.registerHelper.mock.calls[2][1]).toEqual(
-          '<script src="index.js" type="module" defer></script>'
+          '<script src="index.js" type="module"></script>'
         );
       });
 
@@ -73,7 +73,7 @@ describe("lib/init/view-helpers", () => {
     });
   });
 
-  describe("renderMenu", () => {
+  describe("menu", () => {
     app.set("config", {
       cssFiles: ["index.css"],
       jsFiles: ["index.js"]
@@ -84,7 +84,7 @@ describe("lib/init/view-helpers", () => {
       menu.render = jest.fn(() => "menuHtml");
       viewHelpers(app);
 
-      const template = handlebars.compile("{{#renderMenu}}{{/renderMenu}}");
+      const template = handlebars.compile("{{#menu}}{{/menu}}");
 
       expect(template()).toEqual("menuHtml");
     });
