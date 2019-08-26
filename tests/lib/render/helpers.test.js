@@ -79,13 +79,10 @@ describe("lib/render/_helpers", () => {
       app.set("state", {
         partials: "partials"
       });
-      const req = {
-        app
-      };
       const fullPath = path.join(process.cwd(), "srcFolder");
 
       expect(
-        helpers.getDataForRenderFunction(req, {
+        helpers.getDataForRenderFunction(app, {
           foo: "bar"
         })
       ).toEqual({
@@ -188,12 +185,9 @@ describe("lib/render/_helpers", () => {
         partials: "partials",
         data
       });
-      const req = {
-        app
-      };
 
       expect(
-        await helpers.overwriteJsonLinksWithJsonData(req, {
+        await helpers.overwriteJsonLinksWithJsonData(app, {
           resolve: {
             dataFile: "resolve/resolve.json",
             variation: "variation"
@@ -225,12 +219,9 @@ describe("lib/render/_helpers", () => {
           partials: "partials",
           data
         });
-        const req = {
-          app
-        };
 
         expect(
-          await helpers.overwriteJsonLinksWithJsonData(req, {
+          await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: null
           })
         ).toEqual({
@@ -253,13 +244,11 @@ describe("lib/render/_helpers", () => {
             "some/component.json": "foo"
           }
         });
-        const req = {
-          app
-        };
+
         const spy = jest.spyOn(logger, "log");
 
         expect(
-          await helpers.overwriteJsonLinksWithJsonData(req, {
+          await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
               dataFile: "some/component.foo"
             }
@@ -288,13 +277,11 @@ describe("lib/render/_helpers", () => {
             "some/component.json": "foo"
           }
         });
-        const req = {
-          app
-        };
+
         const spy = jest.spyOn(logger, "log");
 
         expect(
-          await helpers.overwriteJsonLinksWithJsonData(req, {
+          await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
               dataFile: "some/component.json"
             }
@@ -330,12 +317,9 @@ describe("lib/render/_helpers", () => {
           partials: "partials",
           data
         });
-        const req = {
-          app
-        };
 
         expect(
-          await helpers.overwriteJsonLinksWithJsonData(req, {
+          await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
               dataFile: "resolve/resolve.json",
               variation: "variation"
@@ -358,12 +342,9 @@ describe("lib/render/_helpers", () => {
         app.set("state", {
           partials: "partials"
         });
-        const req = {
-          app
-        };
 
         expect(
-          await helpers.overwriteJsonLinksWithJsonData(req, {
+          await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
               name: "variation"
             }

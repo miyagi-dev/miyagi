@@ -20,7 +20,7 @@ const path9 = path.join(process.cwd(), "/tests/mocks/srcFolder/component9.hbs");
 const data = {};
 
 function addGlobalData() {
-  req.app.get("state").data[
+  app.get("state").data[
     path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
   ] = {
     global: "global"
@@ -75,7 +75,6 @@ const { projectName } = config;
 const folders = menu;
 
 let app;
-let req;
 let res;
 
 beforeEach(() => {
@@ -108,10 +107,6 @@ beforeEach(() => {
     }
   });
 
-  req = {
-    app
-  };
-
   res = {
     render: jest.fn()
   };
@@ -129,18 +124,23 @@ afterEach(() => {
 describe("lib/render/index", () => {
   describe("renderMain", () => {
     test("renders index.hbs", async done => {
-      const spy = jest.spyOn(res, "render");
+      res.render = jest.fn();
 
-      await render.renderMain(req, res);
+      await render.renderMain({ app, res });
 
-      expect(spy).toHaveBeenCalledWith("index.hbs", {
+      expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+      expect(res.render.mock.calls[0][1]).toEqual({
         folders,
         iframeSrc: "/component?file=all&embedded=true",
+        indexPath: "/component?file=all&embedded=true",
         showAll: true,
         isComponentOverview: true,
         tests,
         projectName,
-        userProjectName
+        userProjectName,
+        headmanDev: false,
+        headmanProd: true,
+        isBuild: false
       });
 
       done();
@@ -150,19 +150,29 @@ describe("lib/render/index", () => {
   describe("renderMainWithComponent", () => {
     describe("with variation", () => {
       test("renders index.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderMainWithComponent(req, res, component, variation);
+        await render.renderMainWithComponent({
+          app,
+          res,
+          file: component,
+          variation
+        });
 
-        expect(spy).toHaveBeenCalledWith("index.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${component}&variation=${variation}&embedded=true`,
+          indexPath: "/component?file=all&embedded=true",
           requestedComponent: component,
           requestedVariation: variation,
           isComponentOverview: false,
           tests,
           projectName,
-          userProjectName
+          userProjectName,
+          headmanDev: false,
+          headmanProd: true,
+          isBuild: false
         });
 
         done();
@@ -171,19 +181,24 @@ describe("lib/render/index", () => {
 
     describe("without variation", () => {
       test("renders index.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderMainWithComponent(req, res, component);
+        await render.renderMainWithComponent({ app, res, file: component });
 
-        expect(spy).toHaveBeenCalledWith("index.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${component}&embedded=true`,
+          indexPath: "/component?file=all&embedded=true",
           requestedComponent: component,
           requestedVariation: undefined,
           isComponentOverview: true,
           tests,
           projectName,
-          userProjectName
+          userProjectName,
+          headmanDev: false,
+          headmanProd: true,
+          isBuild: false
         });
 
         done();
@@ -194,11 +209,17 @@ describe("lib/render/index", () => {
   describe("renderMainWith404", () => {
     describe("with variation", () => {
       test("renders index.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderMainWith404(req, res, component, variation);
+        await render.renderMainWith404({
+          app,
+          res,
+          file: component,
+          variation
+        });
 
-        expect(spy).toHaveBeenCalledWith("index.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${component}&variation=${variation}&embedded=true`,
           requestedComponent: null,
@@ -207,7 +228,10 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           htmlValidation: false,
-          accessibilityValidation: false
+          accessibilityValidation: false,
+          headmanDev: false,
+          headmanProd: true,
+          isBuild: false
         });
 
         done();
@@ -216,11 +240,12 @@ describe("lib/render/index", () => {
 
     describe("without variation", () => {
       test("renders index.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderMainWith404(req, res, component);
+        await render.renderMainWith404({ app, res, file: component });
 
-        expect(spy).toHaveBeenCalledWith("index.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${component}&embedded=true`,
           requestedComponent: null,
@@ -229,7 +254,10 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           htmlValidation: false,
-          accessibilityValidation: false
+          accessibilityValidation: false,
+          headmanDev: false,
+          headmanProd: true,
+          isBuild: false
         });
 
         done();
@@ -241,11 +269,12 @@ describe("lib/render/index", () => {
     describe("with global data", () => {
       test("renders component.hbs with data merged with global data", async done => {
         addGlobalData();
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, component);
+        await render.renderComponent({ app, res, file: component });
 
-        expect(spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1global\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -253,7 +282,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -262,11 +292,17 @@ describe("lib/render/index", () => {
 
     describe("with variation", () => {
       test("renders component.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, component, "variation1");
+        await render.renderComponent({
+          app,
+          res,
+          file: component,
+          variation: "variation1"
+        });
 
-        expect(spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component11\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -274,7 +310,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -283,11 +320,12 @@ describe("lib/render/index", () => {
 
     describe("without variation", () => {
       test("renders component.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, "component2");
+        await render.renderComponent({ app, res, file: "component2" });
 
-        expect(spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component2\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -295,7 +333,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -304,11 +343,17 @@ describe("lib/render/index", () => {
 
     describe("with variation not having a data key", () => {
       test("renders component.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, "component8.hbs", "variation1");
+        await render.renderComponent({
+          app,
+          res,
+          file: "component8.hbs",
+          variation: "variation1"
+        });
 
-        expect(spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component8\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -316,7 +361,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -325,11 +371,17 @@ describe("lib/render/index", () => {
 
     describe("rendering throwing an error", () => {
       test("renders component.hbs with error", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, "component5", "component5");
+        await render.renderComponent({
+          app,
+          res,
+          file: "component5",
+          variation: "component5"
+        });
 
-        expect(spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: '<p class="HeadmanError">Component couldn\'t be rendered.</p>',
           htmlValidation: true,
           accessibilityValidation: true,
@@ -337,7 +389,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -346,11 +399,18 @@ describe("lib/render/index", () => {
 
     describe("embedded=true", () => {
       test("renders component_frame.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, component, "component1", true);
+        await render.renderComponent({
+          app,
+          res,
+          file: component,
+          variation: "component1",
+          embedded: true
+        });
 
-        expect(spy).toHaveBeenCalledWith("component_frame.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -358,7 +418,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -367,11 +428,17 @@ describe("lib/render/index", () => {
 
     describe("embedded=false", () => {
       test("renders component.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponent(req, res, component, null, false);
+        await render.renderComponent({
+          app,
+          res,
+          file: component,
+          embedded: false
+        });
 
-        await expect(await spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -379,7 +446,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -391,31 +459,38 @@ describe("lib/render/index", () => {
     describe("with global data", () => {
       test("renders component_variations.hbs with the global data merged into the variations data", async done => {
         addGlobalData();
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentVariations(
-          req,
+        await render.renderComponentVariations({
+          app,
           res,
-          "component1.hbs",
-          true
-        );
+          file: "component1.hbs",
+          embedded: true
+        });
 
-        expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           variations: [
             {
               file: "component1.hbs",
               html: "component1global\n",
-              variation: "component1"
+              variation: "component1",
+              url:
+                "/component?file=component1.hbs&variation=component1&embedded=true"
             },
             {
               file: "component1.hbs",
               html: "component11global\n",
-              variation: "variation1"
+              variation: "variation1",
+              url:
+                "/component?file=component1.hbs&variation=variation1&embedded=true"
             },
             {
               file: "component1.hbs",
               html: "component12global\n",
-              variation: "variation2"
+              variation: "variation2",
+              url:
+                "/component?file=component1.hbs&variation=variation2&embedded=true"
             }
           ],
           standaloneUrl: `/component?file=${component}`,
@@ -423,8 +498,10 @@ describe("lib/render/index", () => {
           prod: false,
           a11yTestsPreload: true,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
+        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
         done();
       });
@@ -433,26 +510,40 @@ describe("lib/render/index", () => {
     describe("component has variations", () => {
       describe("with data key", () => {
         test("renders component_variations.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(req, res, component, true);
+          await render.renderComponentVariations({
+            app,
+            res,
+            file: component,
+            embedded: true
+          });
 
-          expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
+          expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
                 file: "component1.hbs",
                 html: "component1\n",
-                variation: "component1"
+                variation: "component1",
+                url:
+                  "/component?file=component1.hbs&variation=component1&embedded=true"
               },
               {
                 file: "component1.hbs",
                 html: "component11\n",
-                variation: "variation1"
+                variation: "variation1",
+                url:
+                  "/component?file=component1.hbs&variation=variation1&embedded=true"
               },
               {
                 file: "component1.hbs",
                 html: "component12\n",
-                variation: "variation2"
+                variation: "variation2",
+                url:
+                  "/component?file=component1.hbs&variation=variation2&embedded=true"
               }
             ],
             standaloneUrl: `/component?file=${component}`,
@@ -460,8 +551,10 @@ describe("lib/render/index", () => {
             prod: false,
             a11yTestsPreload: true,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
           done();
         });
@@ -469,26 +562,33 @@ describe("lib/render/index", () => {
 
       describe("without data key", () => {
         test("renders component_variations.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(
-            req,
+          await render.renderComponentVariations({
+            app,
             res,
-            "component3.hbs",
-            true
-          );
+            file: "component3.hbs",
+            embedded: true
+          });
 
-          expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
+          expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
                 file: "component3.hbs",
                 html: "component31\n",
-                variation: "variation1"
+                variation: "variation1",
+                url:
+                  "/component?file=component3.hbs&variation=variation1&embedded=true"
               },
               {
                 file: "component3.hbs",
                 html: "component32\n",
-                variation: "variation2"
+                variation: "variation2",
+                url:
+                  "/component?file=component3.hbs&variation=variation2&embedded=true"
               }
             ],
             standaloneUrl: `/component?file=component3.hbs`,
@@ -496,8 +596,10 @@ describe("lib/render/index", () => {
             prod: false,
             a11yTestsPreload: true,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
           done();
         });
@@ -505,22 +607,27 @@ describe("lib/render/index", () => {
 
       describe("variation throws an error", () => {
         test("renders component_variations.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(
-            req,
+          await render.renderComponentVariations({
+            app,
             res,
-            "component6.hbs",
-            true
-          );
+            file: "component6.hbs",
+            embedded: true
+          });
 
-          expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
+          expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
                 file: "component6.hbs",
                 html:
                   '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
-                variation: "variation1"
+                variation: "variation1",
+                url:
+                  "/component?file=component6.hbs&variation=variation1&embedded=true"
               }
             ],
             standaloneUrl: `/component?file=component6.hbs`,
@@ -528,8 +635,10 @@ describe("lib/render/index", () => {
             prod: false,
             a11yTestsPreload: true,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
           done();
         });
@@ -537,21 +646,26 @@ describe("lib/render/index", () => {
 
       describe("variation doesn't have a name", () => {
         test("renders component_variations.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(
-            req,
+          await render.renderComponentVariations({
+            app,
             res,
-            "component7.hbs",
-            true
-          );
+            file: "component7.hbs",
+            embedded: true
+          });
 
-          expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
+          expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
                 file: "component7.hbs",
                 html: "component7\n",
-                variation: "component7"
+                variation: "component7",
+                url:
+                  "/component?file=component7.hbs&variation=component7&embedded=true"
               }
             ],
             standaloneUrl: `/component?file=component7.hbs`,
@@ -559,7 +673,8 @@ describe("lib/render/index", () => {
             prod: false,
             a11yTestsPreload: true,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
 
           done();
@@ -568,26 +683,33 @@ describe("lib/render/index", () => {
 
       describe("component has data, but variation doesn't have data", () => {
         test("renders component_variations.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(
-            req,
+          await render.renderComponentVariations({
+            app,
             res,
-            "component9.hbs",
-            true
-          );
+            file: "component9.hbs",
+            embedded: true
+          });
 
-          expect(spy).toHaveBeenCalledWith("component_variations.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
+          expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
                 file: "component9.hbs",
                 html: "component9\n",
-                variation: "component9"
+                variation: "component9",
+                url:
+                  "/component?file=component9.hbs&variation=component9&embedded=true"
               },
               {
                 file: "component9.hbs",
                 html: "component9\n",
-                variation: "variation1"
+                variation: "variation1",
+                url:
+                  "/component?file=component9.hbs&variation=variation1&embedded=true"
               }
             ],
             standaloneUrl: `/component?file=component9.hbs`,
@@ -595,7 +717,8 @@ describe("lib/render/index", () => {
             prod: false,
             a11yTestsPreload: true,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
 
           done();
@@ -606,16 +729,17 @@ describe("lib/render/index", () => {
     describe("component doesn't have variations", () => {
       describe("embedded=true", () => {
         test("renders component_frame.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(
-            req,
+          await render.renderComponentVariations({
+            app,
             res,
-            "component2.hbs",
-            true
-          );
+            file: "component2.hbs",
+            embedded: true
+          });
 
-          await expect(await spy).toHaveBeenCalledWith("component_frame.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
             html: "component2\n",
             htmlValidation: true,
             accessibilityValidation: true,
@@ -623,7 +747,8 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
 
           done();
@@ -632,16 +757,17 @@ describe("lib/render/index", () => {
 
       describe("embedded=false", () => {
         test("renders component.hbs", async done => {
-          const spy = jest.spyOn(res, "render");
+          res.render = jest.fn();
 
-          await render.renderComponentVariations(
-            req,
+          await render.renderComponentVariations({
+            app,
             res,
-            "component2.hbs",
-            false
-          );
+            file: "component2.hbs",
+            embedded: false
+          });
 
-          await expect(await spy).toHaveBeenCalledWith("component.hbs", {
+          expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
             html: "component2\n",
             htmlValidation: true,
             accessibilityValidation: true,
@@ -649,7 +775,8 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             projectName,
-            userProjectName
+            userProjectName,
+            isBuild: false
           });
 
           done();
@@ -659,11 +786,16 @@ describe("lib/render/index", () => {
 
     describe("component doesn't have json data", () => {
       test("renders component.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentVariations(req, res, "component4.hbs");
+        await render.renderComponentVariations({
+          app,
+          res,
+          file: "component4.hbs"
+        });
 
-        await expect(await spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: "component4\n",
           htmlValidation: true,
           accessibilityValidation: true,
@@ -671,7 +803,8 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
 
         done();
@@ -683,31 +816,59 @@ describe("lib/render/index", () => {
     describe("with global data", () => {
       test("renders component_overview.hbs with the global data merged with the components data", async done => {
         addGlobalData();
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentOverview(req, res, false);
+        await render.renderComponentOverview({ app, res, embedded: false });
 
-        expect(spy).toHaveBeenCalledWith("component_overview.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component_overview.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           components: [
-            { file: "component1.hbs", html: "component1global\n" },
-            { file: "component2.hbs", html: "component2\n" },
-            { file: "component3.hbs", html: "component31\n" },
-            { file: "component4.hbs", html: "component4\n" },
+            {
+              file: "component1.hbs",
+              html: "component1global\n",
+              url: "/component?file=component1.hbs&embedded=true"
+            },
+            {
+              file: "component2.hbs",
+              html: "component2\n",
+              url: "/component?file=component2.hbs&embedded=true"
+            },
+            {
+              file: "component3.hbs",
+              html: "component31\n",
+              url: "/component?file=component3.hbs&embedded=true"
+            },
+            {
+              file: "component4.hbs",
+              html: "component4\n",
+              url: "/component?file=component4.hbs&embedded=true"
+            },
             {
               file: "component6.hbs",
               html:
-                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>'
+                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+              url: "/component?file=component6.hbs&embedded=true"
             },
-            { file: "component7.hbs", html: "component7\n" },
-            { file: "component8.hbs", html: "component8\n" }
+            {
+              file: "component7.hbs",
+              html: "component7\n",
+              url: "/component?file=component7.hbs&embedded=true"
+            },
+            {
+              file: "component8.hbs",
+              html: "component8\n",
+              url: "/component?file=component8.hbs&embedded=true"
+            }
           ],
           standaloneUrl: null,
           dev: false,
           prod: false,
           a11yTestsPreload: true,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
+        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
         done();
       });
@@ -715,31 +876,59 @@ describe("lib/render/index", () => {
 
     describe("embedded=true", () => {
       test("renders component_overview.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentOverview(req, res, true);
+        await render.renderComponentOverview({ app, res, embedded: true });
 
-        expect(spy).toHaveBeenCalledWith("component_overview.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component_overview.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           components: [
-            { file: "component1.hbs", html: "component1\n" },
-            { file: "component2.hbs", html: "component2\n" },
-            { file: "component3.hbs", html: "component31\n" },
-            { file: "component4.hbs", html: "component4\n" },
+            {
+              file: "component1.hbs",
+              html: "component1\n",
+              url: "/component?file=component1.hbs&embedded=true"
+            },
+            {
+              file: "component2.hbs",
+              html: "component2\n",
+              url: "/component?file=component2.hbs&embedded=true"
+            },
+            {
+              file: "component3.hbs",
+              html: "component31\n",
+              url: "/component?file=component3.hbs&embedded=true"
+            },
+            {
+              file: "component4.hbs",
+              html: "component4\n",
+              url: "/component?file=component4.hbs&embedded=true"
+            },
             {
               file: "component6.hbs",
               html:
-                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>'
+                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+              url: "/component?file=component6.hbs&embedded=true"
             },
-            { file: "component7.hbs", html: "component7\n" },
-            { file: "component8.hbs", html: "component8\n" }
+            {
+              file: "component7.hbs",
+              html: "component7\n",
+              url: "/component?file=component7.hbs&embedded=true"
+            },
+            {
+              file: "component8.hbs",
+              html: "component8\n",
+              url: "/component?file=component8.hbs&embedded=true"
+            }
           ],
           standaloneUrl: "/component?file=all",
           dev: false,
           prod: false,
           a11yTestsPreload: true,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
+        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
         done();
       });
@@ -747,31 +936,59 @@ describe("lib/render/index", () => {
 
     describe("embedded=false", () => {
       test("renders component_overview.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentOverview(req, res, false);
+        await render.renderComponentOverview({ app, res, embedded: false });
 
-        expect(spy).toHaveBeenCalledWith("component_overview.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component_overview.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           components: [
-            { file: "component1.hbs", html: "component1\n" },
-            { file: "component2.hbs", html: "component2\n" },
-            { file: "component3.hbs", html: "component31\n" },
-            { file: "component4.hbs", html: "component4\n" },
+            {
+              file: "component1.hbs",
+              html: "component1\n",
+              url: "/component?file=component1.hbs&embedded=true"
+            },
+            {
+              file: "component2.hbs",
+              html: "component2\n",
+              url: "/component?file=component2.hbs&embedded=true"
+            },
+            {
+              file: "component3.hbs",
+              html: "component31\n",
+              url: "/component?file=component3.hbs&embedded=true"
+            },
+            {
+              file: "component4.hbs",
+              html: "component4\n",
+              url: "/component?file=component4.hbs&embedded=true"
+            },
             {
               file: "component6.hbs",
               html:
-                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>'
+                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+              url: "/component?file=component6.hbs&embedded=true"
             },
-            { file: "component7.hbs", html: "component7\n" },
-            { file: "component8.hbs", html: "component8\n" }
+            {
+              file: "component7.hbs",
+              html: "component7\n",
+              url: "/component?file=component7.hbs&embedded=true"
+            },
+            {
+              file: "component8.hbs",
+              html: "component8\n",
+              url: "/component?file=component8.hbs&embedded=true"
+            }
           ],
           standaloneUrl: null,
           dev: false,
           prod: false,
           a11yTestsPreload: true,
           projectName,
-          userProjectName
+          userProjectName,
+          isBuild: false
         });
+        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
         done();
       });
@@ -781,11 +998,17 @@ describe("lib/render/index", () => {
   describe("renderComponentNotFound", () => {
     describe("embedded=true", () => {
       test("renders component_frame.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentNotFound(req, res, true, component);
+        await render.renderComponentNotFound({
+          app,
+          res,
+          embedded: true,
+          target: component
+        });
 
-        expect(spy).toHaveBeenCalledWith("component_frame.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: `<p class="HeadmanError">${component} not found.</p>`,
           standaloneUrl: null,
           dev: false,
@@ -793,7 +1016,8 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           htmlValidation: false,
-          accessibilityValidation: false
+          accessibilityValidation: false,
+          isBuild: false
         });
 
         done();
@@ -802,11 +1026,17 @@ describe("lib/render/index", () => {
 
     describe("embedded=false", () => {
       test("renders component.hbs", async done => {
-        const spy = jest.spyOn(res, "render");
+        res.render = jest.fn();
 
-        await render.renderComponentNotFound(req, res, false, component);
+        await render.renderComponentNotFound({
+          app,
+          res,
+          embedded: false,
+          target: component
+        });
 
-        expect(spy).toHaveBeenCalledWith("component.hbs", {
+        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][1]).toEqual({
           html: `<p class="HeadmanError">${component} not found.</p>`,
           standaloneUrl: null,
           dev: false,
@@ -814,7 +1044,8 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           htmlValidation: false,
-          accessibilityValidation: false
+          accessibilityValidation: false,
+          isBuild: false
         });
 
         done();

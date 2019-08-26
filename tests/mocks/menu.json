@@ -1,702 +1,701 @@
 [
   {
     "type": "directory",
-    "name": "dist",
-    "fullPath": "/headman/tests/dist",
+    "name": "components",
+    "fullPath": "/headman/tests/src/components/components.hbs",
+    "shortPath": "components/components.hbs",
+    "normalizedShortPath": "components-components",
+    "extension": ".hbs",
+    "variations": [
+      {
+        "name": "bla",
+        "data": {}
+      },
+      {
+        "name": "blaaaaaaaaaa",
+        "data": {}
+      }
+    ],
     "index": 0,
-    "id": "dist",
+    "id": "components-components-hbs",
     "children": [
       {
         "type": "directory",
-        "name": "css",
-        "fullPath": "/headman/tests/dist/css",
+        "name": "button",
+        "fullPath": "/headman/tests/src/components/button/button.hbs",
+        "shortPath": "components/button/button.hbs",
+        "normalizedShortPath": "components-button-button",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "button",
+            "data": {
+              "type": "submit"
+            }
+          },
+          {
+            "name": "small",
+            "data": {
+              "label": "Small button",
+              "modifiers": ["small"]
+            }
+          },
+          {
+            "name": "secondary",
+            "data": {
+              "label": "Secondary button",
+              "modifiers": ["secondary"]
+            }
+          },
+          {
+            "name": "small/secondary",
+            "data": {
+              "label": "Small secondary button",
+              "modifiers": ["small", "secondary"]
+            }
+          },
+          {
+            "name": "disabled",
+            "data": {
+              "label": "Disabled button",
+              "disabled": true
+            }
+          },
+          {
+            "name": "disabled/secondary",
+            "data": {
+              "label": "Disabled secondary button",
+              "disabled": true,
+              "modifiers": ["secondary"]
+            }
+          }
+        ],
         "index": 1,
-        "id": "dist-css"
+        "id": "components-button-button-hbs",
+        "children": []
       },
       {
         "type": "directory",
-        "name": "js",
-        "fullPath": "/headman/tests/dist/js",
+        "name": "component-a",
+        "fullPath": "/headman/tests/src/components/component-a",
         "index": 1,
-        "id": "dist-js"
+        "id": "components-component-a"
+      },
+      {
+        "type": "directory",
+        "name": "component-b",
+        "fullPath": "/headman/tests/src/components/component-b/component-b.hbs",
+        "shortPath": "components/component-b/component-b.hbs",
+        "normalizedShortPath": "components-component-b-component-b",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "component-b",
+            "data": {
+              "name": "B"
+            }
+          },
+          {
+            "name": "With header",
+            "data": {
+              "name": "B with header",
+              "header": {
+                "dataFile": "components/component-b/_header/_header.json"
+              }
+            }
+          },
+          {
+            "name": "With footer",
+            "data": {
+              "name": "B with footer",
+              "footer": {
+                "dataFile": "components/component-b/_footer/_footer.json"
+              }
+            }
+          },
+          {
+            "name": "With header/footer",
+            "data": {
+              "name": "B with header/footer",
+              "footer": {
+                "dataFile": "components/component-b/_footer/_footer.json"
+              },
+              "header": {
+                "dataFile": "components/component-b/_header/_header.json"
+              }
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-component-b-component-b-hbs",
+        "children": [
+          {
+            "type": "directory",
+            "name": "_footer",
+            "fullPath": "/headman/tests/src/components/component-b/_footer/_footer.hbs",
+            "shortPath": "components/component-b/_footer/_footer.hbs",
+            "normalizedShortPath": "components-component-b--footer--footer",
+            "extension": ".hbs",
+            "variations": [
+              {
+                "name": "_footer",
+                "data": {
+                  "footer": "footer1"
+                }
+              },
+              {
+                "name": "Component B Footer",
+                "data": {
+                  "footer": "footer2"
+                }
+              }
+            ],
+            "index": 2,
+            "id": "components-component-b--footer--footer-hbs",
+            "children": []
+          },
+          {
+            "type": "directory",
+            "name": "_header",
+            "fullPath": "/headman/tests/src/components/component-b/_header/_header.hbs",
+            "shortPath": "components/component-b/_header/_header.hbs",
+            "normalizedShortPath": "components-component-b--header--header",
+            "extension": ".hbs",
+            "variations": [
+              {
+                "name": "_header",
+                "data": {
+                  "header": "header1"
+                }
+              },
+              {
+                "name": "Component B Header",
+                "data": {
+                  "header": "header2"
+                }
+              }
+            ],
+            "index": 2,
+            "id": "components-component-b--header--header-hbs",
+            "children": []
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "component-d",
+        "fullPath": "/headman/tests/src/components/component-d",
+        "index": 1,
+        "id": "components-component-d"
+      },
+      {
+        "type": "directory",
+        "name": "global-data",
+        "fullPath": "/headman/tests/src/components/global-data/global-data.hbs",
+        "shortPath": "components/global-data/global-data.hbs",
+        "normalizedShortPath": "components-global-data-global-data",
+        "extension": ".hbs",
+        "index": 1,
+        "id": "components-global-data-global-data-hbs"
+      },
+      {
+        "type": "directory",
+        "name": "input",
+        "fullPath": "/headman/tests/src/components/input/input.hbs",
+        "shortPath": "components/input/input.hbs",
+        "normalizedShortPath": "components-input-input",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "input",
+            "data": {
+              "label": "Name",
+              "type": "text",
+              "id": "input"
+            }
+          },
+          {
+            "name": "disabled",
+            "data": {
+              "disabled": true,
+              "id": "input-disabled",
+              "value": "disabled"
+            }
+          },
+          {
+            "name": "error",
+            "data": {
+              "invalid": true,
+              "id": "input-invalid",
+              "value": "invalid"
+            }
+          },
+          {
+            "name": "value",
+            "data": {
+              "value": "Some value",
+              "id": "input-value"
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-input-input-hbs",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "teaser",
+        "fullPath": "/headman/tests/src/components/teaser/teaser.hbs",
+        "shortPath": "components/teaser/teaser.hbs",
+        "normalizedShortPath": "components-teaser-teaser",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "teaser",
+            "data": {
+              "name": "Teaser without CTA"
+            }
+          },
+          {
+            "name": "Teaser with CTA",
+            "data": {
+              "name": "Teaser with CTA",
+              "cta": {
+                "type": "button",
+                "label": "Click me!"
+              }
+            }
+          },
+          {
+            "name": "Teaser with another CTA",
+            "data": {
+              "name": "Teaser with another CTA",
+              "cta": {
+                "type": "button",
+                "label": "Don't click me!"
+              }
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-teaser-teaser-hbs",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "teaser-list",
+        "fullPath": "/headman/tests/src/components/teaser-list/teaser-list.hbs",
+        "shortPath": "components/teaser-list/teaser-list.hbs",
+        "normalizedShortPath": "components-teaser-list-teaser-list",
+        "extension": ".hbs",
+        "index": 1,
+        "id": "components-teaser-list-teaser-list-hbs",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "test",
+        "fullPath": "/headman/tests/src/components/test/test.hbs",
+        "shortPath": "components/test/test.hbs",
+        "normalizedShortPath": "components-test-test",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "baz",
+            "data": {
+              "baz": "baz"
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-test-test-hbs",
+        "children": []
       }
     ]
   },
   {
     "type": "directory",
-    "name": "src",
-    "fullPath": "/headman/tests/src/src.hbs",
-    "shortPath": "src/src.hbs",
-    "extension": ".hbs",
-    "variations": [],
+    "name": "engines",
+    "fullPath": "/headman/tests/src/engines",
     "index": 0,
-    "id": "src-src-hbs",
+    "id": "engines",
     "children": [
       {
         "type": "directory",
-        "name": "components",
-        "fullPath": "/headman/tests/src/components/components.hbs",
-        "shortPath": "src/components/components.hbs",
+        "name": "dust",
+        "fullPath": "/headman/tests/src/engines/dust",
+        "index": 1,
+        "id": "engines-dust"
+      },
+      {
+        "type": "directory",
+        "name": "ect",
+        "fullPath": "/headman/tests/src/engines/ect",
+        "index": 1,
+        "id": "engines-ect"
+      },
+      {
+        "type": "directory",
+        "name": "ejs",
+        "fullPath": "/headman/tests/src/engines/ejs",
+        "index": 1,
+        "id": "engines-ejs"
+      },
+      {
+        "type": "directory",
+        "name": "haml",
+        "fullPath": "/headman/tests/src/engines/haml",
+        "index": 1,
+        "id": "engines-haml"
+      },
+      {
+        "type": "directory",
+        "name": "handlebars",
+        "fullPath": "/headman/tests/src/engines/handlebars/handlebars.hbs",
+        "shortPath": "engines/handlebars/handlebars.hbs",
+        "normalizedShortPath": "engines-handlebars-handlebars",
         "extension": ".hbs",
         "variations": [
           {
-            "name": "bla",
-            "data": {}
-          },
-          {
-            "name": "blaaaaaaaaaa",
-            "data": {}
-          }
-        ],
-        "index": 1,
-        "id": "src-components-components-hbs",
-        "children": [
-          {
-            "type": "directory",
-            "name": "button",
-            "fullPath": "/headman/tests/src/components/button/button.hbs",
-            "shortPath": "src/components/button/button.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "button",
-                "data": {
-                  "label": "Regular button",
-                  "type": "submit"
-                }
-              },
-              {
-                "name": "small",
-                "data": {
-                  "label": "Small button",
-                  "modifiers": ["small"]
-                }
-              },
-              {
-                "name": "secondary",
-                "data": {
-                  "label": "Secondary button",
-                  "modifiers": ["secondary"]
-                }
-              },
-              {
-                "name": "small/secondary",
-                "data": {
-                  "label": "Small secondary button",
-                  "modifiers": ["small", "secondary"]
-                }
-              },
-              {
-                "name": "disabled",
-                "data": {
-                  "label": "Disabled button",
-                  "disabled": true
-                }
-              },
-              {
-                "name": "disabled/secondary",
-                "data": {
-                  "label": "Disabled secondary button",
-                  "disabled": true,
-                  "modifiers": ["secondary"]
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-components-button-button-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "component-a",
-            "fullPath": "/headman/tests/src/components/component-a",
-            "index": 2,
-            "id": "src-components-component-a"
-          },
-          {
-            "type": "directory",
-            "name": "component-b",
-            "fullPath": "/headman/tests/src/components/component-b/component-b.hbs",
-            "shortPath": "src/components/component-b/component-b.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "component-b",
-                "data": {
-                  "name": "B"
-                }
-              },
-              {
-                "name": "With header",
-                "data": {
-                  "name": "B with header",
-                  "header": {
-                    "dataFile": "components/component-b/_header/_header.json"
-                  }
-                }
-              },
-              {
-                "name": "With footer",
-                "data": {
-                  "name": "B with footer",
-                  "footer": {
-                    "dataFile": "components/component-b/_footer/_footer.json"
-                  }
-                }
-              },
-              {
-                "name": "With header/footer",
-                "data": {
-                  "name": "B with header/footer",
-                  "footer": {
-                    "dataFile": "components/component-b/_footer/_footer.json"
-                  },
-                  "header": {
-                    "dataFile": "components/component-b/_header/_header.json"
-                  }
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-components-component-b-component-b-hbs",
-            "children": [
-              {
-                "type": "directory",
-                "name": "_footer",
-                "fullPath": "/headman/tests/src/components/component-b/_footer/_footer.hbs",
-                "shortPath": "src/components/component-b/_footer/_footer.hbs",
-                "extension": ".hbs",
-                "index": 3,
-                "id": "src-components-component-b-footer-footer-hbs",
-                "children": []
-              },
-              {
-                "type": "directory",
-                "name": "_header",
-                "fullPath": "/headman/tests/src/components/component-b/_header/_header.hbs",
-                "shortPath": "src/components/component-b/_header/_header.hbs",
-                "extension": ".hbs",
-                "variations": [
-                  {
-                    "name": "_header",
-                    "data": {
-                      "header": "header1"
-                    }
-                  },
-                  {
-                    "name": "Component B Header",
-                    "data": {
-                      "header": "header2"
-                    }
-                  }
-                ],
-                "index": 3,
-                "id": "src-components-component-b-header-header-hbs",
-                "children": []
-              }
-            ]
-          },
-          {
-            "type": "directory",
-            "name": "component-d",
-            "fullPath": "/headman/tests/src/components/component-d",
-            "index": 2,
-            "id": "src-components-component-d"
-          },
-          {
-            "type": "directory",
-            "name": "input",
-            "fullPath": "/headman/tests/src/components/input/input.hbs",
-            "shortPath": "src/components/input/input.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "input",
-                "data": {
-                  "label": "Name",
-                  "type": "text",
-                  "id": "input"
-                }
-              },
-              {
-                "name": "disabled",
-                "data": {
-                  "disabled": true,
-                  "id": "input-disabled",
-                  "value": "disabled"
-                }
-              },
-              {
-                "name": "error",
-                "data": {
-                  "invalid": true,
-                  "id": "input-invalid",
-                  "value": "invalid"
-                }
-              },
-              {
-                "name": "value",
-                "data": {
-                  "value": "Some value",
-                  "id": "input-value"
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-components-input-input-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "teaser",
-            "fullPath": "/headman/tests/src/components/teaser/teaser.hbs",
-            "shortPath": "src/components/teaser/teaser.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "teaser",
-                "data": {
-                  "name": "Teaser without CTA"
-                }
-              },
-              {
-                "name": "Teaser with CTA",
-                "data": {
-                  "name": "Teaser with CTA",
-                  "cta": {
-                    "type": "button",
-                    "label": "Click me!"
-                  }
-                }
-              },
-              {
-                "name": "Teaser with another CTA",
-                "data": {
-                  "name": "Teaser with another CTA",
-                  "cta": {
-                    "type": "button",
-                    "label": "Don't click me!"
-                  }
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-components-teaser-teaser-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "teaser-list",
-            "fullPath": "/headman/tests/src/components/teaser-list/teaser-list.hbs",
-            "shortPath": "src/components/teaser-list/teaser-list.hbs",
-            "extension": ".hbs",
-            "index": 2,
-            "id": "src-components-teaser-list-teaser-list-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "test",
-            "fullPath": "/headman/tests/src/components/test/test.hbs",
-            "shortPath": "src/components/test/test.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "bar",
-                "data": {
-                  "bar": "bar"
-                }
-              },
-              {
-                "name": "baz",
-                "data": {
-                  "baz": "baz"
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-components-test-test-hbs",
-            "children": []
-          }
-        ]
-      },
-      {
-        "type": "directory",
-        "name": "engines",
-        "fullPath": "/headman/tests/src/engines",
-        "index": 1,
-        "id": "src-engines",
-        "children": [
-          {
-            "type": "directory",
-            "name": "dust",
-            "fullPath": "/headman/tests/src/engines/dust",
-            "index": 2,
-            "id": "src-engines-dust"
-          },
-          {
-            "type": "directory",
-            "name": "ect",
-            "fullPath": "/headman/tests/src/engines/ect",
-            "index": 2,
-            "id": "src-engines-ect"
-          },
-          {
-            "type": "directory",
-            "name": "ejs",
-            "fullPath": "/headman/tests/src/engines/ejs",
-            "index": 2,
-            "id": "src-engines-ejs"
-          },
-          {
-            "type": "directory",
-            "name": "haml",
-            "fullPath": "/headman/tests/src/engines/haml",
-            "index": 2,
-            "id": "src-engines-haml"
-          },
-          {
-            "type": "directory",
             "name": "handlebars",
-            "fullPath": "/headman/tests/src/engines/handlebars/handlebars.hbs",
-            "shortPath": "src/engines/handlebars/handlebars.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "handlebars",
-                "data": {
-                  "engine": "handlebars",
-                  "testInclude": {
-                    "dataFile": "includes/handlebars/handlebars.json"
-                  }
-                }
-              },
-              {
-                "name": "variation",
-                "data": {
-                  "engine": "handlebars variation",
-                  "testInclude": {
-                    "dataFile": "includes/handlebars/handlebars.json",
-                    "variation": "Another variation"
-                  }
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-engines-handlebars-handlebars-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "hogan",
-            "fullPath": "/headman/tests/src/engines/hogan",
-            "index": 2,
-            "id": "src-engines-hogan"
-          },
-          {
-            "type": "directory",
-            "name": "mustache",
-            "fullPath": "/headman/tests/src/engines/mustache",
-            "index": 2,
-            "id": "src-engines-mustache"
-          },
-          {
-            "type": "directory",
-            "name": "nunjucks",
-            "fullPath": "/headman/tests/src/engines/nunjucks",
-            "index": 2,
-            "id": "src-engines-nunjucks"
-          },
-          {
-            "type": "directory",
-            "name": "pug",
-            "fullPath": "/headman/tests/src/engines/pug",
-            "index": 2,
-            "id": "src-engines-pug"
-          },
-          {
-            "type": "directory",
-            "name": "twig",
-            "fullPath": "/headman/tests/src/engines/twig",
-            "index": 2,
-            "id": "src-engines-twig"
-          },
-          {
-            "type": "directory",
-            "name": "underscore",
-            "fullPath": "/headman/tests/src/engines/underscore",
-            "index": 2,
-            "id": "src-engines-underscore"
-          }
-        ]
-      },
-      {
-        "type": "directory",
-        "name": "includes",
-        "fullPath": "/headman/tests/src/includes",
-        "index": 1,
-        "id": "src-includes",
-        "children": [
-          {
-            "type": "directory",
-            "name": "dust",
-            "fullPath": "/headman/tests/src/includes/dust",
-            "index": 2,
-            "id": "src-includes-dust"
-          },
-          {
-            "type": "directory",
-            "name": "ect",
-            "fullPath": "/headman/tests/src/includes/ect",
-            "index": 2,
-            "id": "src-includes-ect"
-          },
-          {
-            "type": "directory",
-            "name": "ejs",
-            "fullPath": "/headman/tests/src/includes/ejs",
-            "index": 2,
-            "id": "src-includes-ejs"
-          },
-          {
-            "type": "directory",
-            "name": "handlebars",
-            "fullPath": "/headman/tests/src/includes/handlebars/handlebars.hbs",
-            "shortPath": "src/includes/handlebars/handlebars.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "handlebars",
-                "data": {
-                  "engineInclude": "handlebars include"
-                }
-              },
-              {
-                "name": "Another variation",
-                "data": {
-                  "engineInclude": "Another handlebars include"
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-includes-handlebars-handlebars-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "hogan",
-            "fullPath": "/headman/tests/src/includes/hogan",
-            "index": 2,
-            "id": "src-includes-hogan"
-          },
-          {
-            "type": "directory",
-            "name": "mustache",
-            "fullPath": "/headman/tests/src/includes/mustache",
-            "index": 2,
-            "id": "src-includes-mustache"
-          },
-          {
-            "type": "directory",
-            "name": "nunjucks",
-            "fullPath": "/headman/tests/src/includes/nunjucks",
-            "index": 2,
-            "id": "src-includes-nunjucks"
-          },
-          {
-            "type": "directory",
-            "name": "pug",
-            "fullPath": "/headman/tests/src/includes/pug",
-            "index": 2,
-            "id": "src-includes-pug"
-          },
-          {
-            "type": "directory",
-            "name": "twig",
-            "fullPath": "/headman/tests/src/includes/twig",
-            "index": 2,
-            "id": "src-includes-twig"
-          }
-        ]
-      },
-      {
-        "type": "directory",
-        "name": "templates",
-        "fullPath": "/headman/tests/src/templates",
-        "index": 1,
-        "id": "src-templates",
-        "children": [
-          {
-            "type": "directory",
-            "name": "_includes",
-            "fullPath": "/headman/tests/src/templates/_includes",
-            "index": 2,
-            "id": "src-templates-includes",
-            "children": [
-              {
-                "type": "directory",
-                "name": "_footer",
-                "fullPath": "/headman/tests/src/templates/_includes/_footer/_footer.hbs",
-                "shortPath": "src/templates/_includes/_footer/_footer.hbs",
-                "extension": ".hbs",
-                "index": 3,
-                "id": "src-templates-includes-footer-footer-hbs"
-              },
-              {
-                "type": "directory",
-                "name": "_header",
-                "fullPath": "/headman/tests/src/templates/_includes/_header/_header.hbs",
-                "shortPath": "src/templates/_includes/_header/_header.hbs",
-                "extension": ".hbs",
-                "index": 3,
-                "id": "src-templates-includes-header-header-hbs",
-                "children": [
-                  {
-                    "type": "directory",
-                    "name": "_logo",
-                    "fullPath": "/headman/tests/src/templates/_includes/_header/_logo/_logo.hbs",
-                    "shortPath": "src/templates/_includes/_header/_logo/_logo.hbs",
-                    "extension": ".hbs",
-                    "index": 4,
-                    "id": "src-templates-includes-header-logo-logo-hbs"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "type": "directory",
-            "name": "template-a",
-            "fullPath": "/headman/tests/src/templates/template-a/template-a.hbs",
-            "shortPath": "src/templates/template-a/template-a.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "template-a",
-                "data": {
-                  "name": "A"
-                }
-              },
-              {
-                "name": "With component",
-                "data": {
-                  "componentB": {
-                    "dataFile": "components/component-b/component-b.json"
-                  }
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-templates-template-a-template-a-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "template-b",
-            "fullPath": "/headman/tests/src/templates/template-b/template-b.hbs",
-            "shortPath": "src/templates/template-b/template-b.hbs",
-            "extension": ".hbs",
-            "variations": [
-              {
-                "name": "template-b",
-                "data": {
-                  "name": "B",
-                  "teaserList": {
-                    "dataFile": "components/teaser-list/teaser-list.json"
-                  },
-                  "componentB": {
-                    "dataFile": "components/component-b/component-b.json"
-                  }
-                }
-              },
-              {
-                "name": "With component B with custom data",
-                "data": {
-                  "componentB": {
-                    "name": "Custom name",
-                    "header": true,
-                    "footer": null
-                  }
-                }
-              },
-              {
-                "name": "With component B with data as url",
-                "data": {
-                  "componentB": {
-                    "dataFile": "components/component-b/componendt-b.json"
-                  }
-                }
-              },
-              {
-                "name": "With component B with json key and variation with header",
-                "data": {
-                  "componentB": {
-                    "variation": "With header"
-                  }
-                }
-              },
-              {
-                "name": "With component B with json key and variation with footer",
-                "data": {
-                  "componentB": {
-                    "variation": "With footer"
-                  }
-                }
-              },
-              {
-                "name": "With component B with json key and variation with header/footer",
-                "data": {
-                  "componentB": {
-                    "variation": "With header/footer",
-                    "name": "Overwritten name"
-                  }
-                }
-              }
-            ],
-            "index": 2,
-            "id": "src-templates-template-b-template-b-hbs",
-            "children": []
-          },
-          {
-            "type": "directory",
-            "name": "template-c",
-            "fullPath": "/headman/tests/src/templates/template-c",
-            "index": 2,
-            "id": "src-templates-template-c"
-          },
-          {
-            "type": "directory",
-            "name": "template-d",
-            "fullPath": "/headman/tests/src/templates/template-d",
-            "index": 2,
-            "id": "src-templates-template-d"
-          }
-        ]
-      },
-      {
-        "type": "directory",
-        "name": "test2",
-        "fullPath": "/headman/tests/src/test2/test2.hbs",
-        "shortPath": "src/test2/test2.hbs",
-        "extension": ".hbs",
-        "variations": [
-          {
-            "name": "blubb",
             "data": {
-              "foo": "FOO"
+              "engine": "handlebars",
+              "testInclude": {
+                "dataFile": "includes/handlebars/handlebars.json"
+              }
             }
           },
           {
-            "name": "bar",
+            "name": "variation",
             "data": {
-              "foo": "bar"
+              "engine": "handlebars variation",
+              "testInclude": {
+                "dataFile": "includes/handlebars/handlebars.json",
+                "variation": "Another variation"
+              }
             }
           }
         ],
         "index": 1,
-        "id": "src-test2-test2-hbs",
+        "id": "engines-handlebars-handlebars-hbs",
         "children": []
+      },
+      {
+        "type": "directory",
+        "name": "hogan",
+        "fullPath": "/headman/tests/src/engines/hogan",
+        "index": 1,
+        "id": "engines-hogan"
+      },
+      {
+        "type": "directory",
+        "name": "mustache",
+        "fullPath": "/headman/tests/src/engines/mustache",
+        "index": 1,
+        "id": "engines-mustache"
+      },
+      {
+        "type": "directory",
+        "name": "nunjucks",
+        "fullPath": "/headman/tests/src/engines/nunjucks",
+        "index": 1,
+        "id": "engines-nunjucks"
+      },
+      {
+        "type": "directory",
+        "name": "pug",
+        "fullPath": "/headman/tests/src/engines/pug",
+        "index": 1,
+        "id": "engines-pug"
+      },
+      {
+        "type": "directory",
+        "name": "twig",
+        "fullPath": "/headman/tests/src/engines/twig",
+        "index": 1,
+        "id": "engines-twig"
+      },
+      {
+        "type": "directory",
+        "name": "underscore",
+        "fullPath": "/headman/tests/src/engines/underscore",
+        "index": 1,
+        "id": "engines-underscore"
       }
     ]
+  },
+  {
+    "type": "directory",
+    "name": "includes",
+    "fullPath": "/headman/tests/src/includes",
+    "index": 0,
+    "id": "includes",
+    "children": [
+      {
+        "type": "directory",
+        "name": "dust",
+        "fullPath": "/headman/tests/src/includes/dust",
+        "index": 1,
+        "id": "includes-dust"
+      },
+      {
+        "type": "directory",
+        "name": "ect",
+        "fullPath": "/headman/tests/src/includes/ect",
+        "index": 1,
+        "id": "includes-ect"
+      },
+      {
+        "type": "directory",
+        "name": "ejs",
+        "fullPath": "/headman/tests/src/includes/ejs",
+        "index": 1,
+        "id": "includes-ejs"
+      },
+      {
+        "type": "directory",
+        "name": "handlebars",
+        "fullPath": "/headman/tests/src/includes/handlebars/handlebars.hbs",
+        "shortPath": "includes/handlebars/handlebars.hbs",
+        "normalizedShortPath": "includes-handlebars-handlebars",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "handlebars",
+            "data": {
+              "engineInclude": "handlebars include"
+            }
+          },
+          {
+            "name": "Another variation",
+            "data": {
+              "engineInclude": "Another handlebars include"
+            }
+          }
+        ],
+        "index": 1,
+        "id": "includes-handlebars-handlebars-hbs",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "hogan",
+        "fullPath": "/headman/tests/src/includes/hogan",
+        "index": 1,
+        "id": "includes-hogan"
+      },
+      {
+        "type": "directory",
+        "name": "mustache",
+        "fullPath": "/headman/tests/src/includes/mustache",
+        "index": 1,
+        "id": "includes-mustache"
+      },
+      {
+        "type": "directory",
+        "name": "nunjucks",
+        "fullPath": "/headman/tests/src/includes/nunjucks",
+        "index": 1,
+        "id": "includes-nunjucks"
+      },
+      {
+        "type": "directory",
+        "name": "pug",
+        "fullPath": "/headman/tests/src/includes/pug",
+        "index": 1,
+        "id": "includes-pug"
+      },
+      {
+        "type": "directory",
+        "name": "twig",
+        "fullPath": "/headman/tests/src/includes/twig",
+        "index": 1,
+        "id": "includes-twig"
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "templates",
+    "fullPath": "/headman/tests/src/templates",
+    "index": 0,
+    "id": "templates",
+    "children": [
+      {
+        "type": "directory",
+        "name": "_includes",
+        "fullPath": "/headman/tests/src/templates/_includes",
+        "index": 1,
+        "id": "templates--includes",
+        "children": [
+          {
+            "type": "directory",
+            "name": "_footer",
+            "fullPath": "/headman/tests/src/templates/_includes/_footer/_footer.hbs",
+            "shortPath": "templates/_includes/_footer/_footer.hbs",
+            "normalizedShortPath": "templates--includes--footer--footer",
+            "extension": ".hbs",
+            "index": 2,
+            "id": "templates--includes--footer--footer-hbs"
+          },
+          {
+            "type": "directory",
+            "name": "_header",
+            "fullPath": "/headman/tests/src/templates/_includes/_header/_header.hbs",
+            "shortPath": "templates/_includes/_header/_header.hbs",
+            "normalizedShortPath": "templates--includes--header--header",
+            "extension": ".hbs",
+            "index": 2,
+            "id": "templates--includes--header--header-hbs",
+            "children": [
+              {
+                "type": "directory",
+                "name": "_logo",
+                "fullPath": "/headman/tests/src/templates/_includes/_header/_logo/_logo.hbs",
+                "shortPath": "templates/_includes/_header/_logo/_logo.hbs",
+                "normalizedShortPath": "templates--includes--header--logo--logo",
+                "extension": ".hbs",
+                "index": 3,
+                "id": "templates--includes--header--logo--logo-hbs"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "template-a",
+        "fullPath": "/headman/tests/src/templates/template-a/template-a.hbs",
+        "shortPath": "templates/template-a/template-a.hbs",
+        "normalizedShortPath": "templates-template-a-template-a",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "template-a",
+            "data": {
+              "name": "A"
+            }
+          },
+          {
+            "name": "With component",
+            "data": {
+              "componentB": {
+                "dataFile": "components/component-b/component-b.json"
+              }
+            }
+          }
+        ],
+        "index": 1,
+        "id": "templates-template-a-template-a-hbs",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "template-b",
+        "fullPath": "/headman/tests/src/templates/template-b/template-b.hbs",
+        "shortPath": "templates/template-b/template-b.hbs",
+        "normalizedShortPath": "templates-template-b-template-b",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "template-b",
+            "data": {
+              "name": "B",
+              "teaserList": {
+                "dataFile": "components/teaser-list/teaser-list.json"
+              },
+              "componentB": {
+                "dataFile": "components/component-b/component-b.json"
+              }
+            }
+          },
+          {
+            "name": "With component B with custom data",
+            "data": {
+              "componentB": {
+                "name": "Custom name",
+                "header": true,
+                "footer": null
+              }
+            }
+          },
+          {
+            "name": "With component B with data as url",
+            "data": {
+              "componentB": {
+                "dataFile": "components/component-b/componendt-b.json"
+              }
+            }
+          },
+          {
+            "name": "With component B with json key and variation with header",
+            "data": {
+              "componentB": {
+                "variation": "With header"
+              }
+            }
+          },
+          {
+            "name": "With component B with json key and variation with footer",
+            "data": {
+              "componentB": {
+                "variation": "With footer"
+              }
+            }
+          },
+          {
+            "name": "With component B with json key and variation with header/footer",
+            "data": {
+              "componentB": {
+                "variation": "With header/footer",
+                "name": "Overwritten name"
+              }
+            }
+          }
+        ],
+        "index": 1,
+        "id": "templates-template-b-template-b-hbs",
+        "children": []
+      },
+      {
+        "type": "directory",
+        "name": "template-c",
+        "fullPath": "/headman/tests/src/templates/template-c",
+        "index": 1,
+        "id": "templates-template-c"
+      },
+      {
+        "type": "directory",
+        "name": "template-d",
+        "fullPath": "/headman/tests/src/templates/template-d",
+        "index": 1,
+        "id": "templates-template-d"
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "test2",
+    "fullPath": "/headman/tests/src/test2/test2.hbs",
+    "shortPath": "test2/test2.hbs",
+    "normalizedShortPath": "test2-test2",
+    "extension": ".hbs",
+    "variations": [
+      {
+        "name": "blubb",
+        "data": {
+          "foo": "FOO"
+        }
+      },
+      {
+        "name": "bar",
+        "data": {
+          "foo": "bar"
+        }
+      }
+    ],
+    "index": 0,
+    "id": "test2-test2-hbs",
+    "children": []
   }
 ]

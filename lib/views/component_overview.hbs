@@ -4,7 +4,7 @@
       {{#if components}}
         {{#each components}}
           <div class="HeadmanComponent">
-            <a href="/component?file={{this.file}}&embedded=true" class="HeadmanComponent-file">{{this.file}}</a>
+            <a href="{{this.url}}" class="HeadmanComponent-file">{{this.file}}</a>
             <div class="HeadmanComponent-html">
               {{{this.html}}}
             </div>

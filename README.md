@@ -19,12 +19,14 @@ _headman_ renders and validates all your components and its variations. For maxi
 - [Data concept](#data-concept)
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Options](#options)
   - [Starting _headman_](#starting-headman)
   - [Organizing your components](#organizing-your-components)
   - [Creating test data](#creating-test-data)
   - [Global data](#global-data)
   - [Rendering engines](#rendering-engines)
   - [Validations](#validations)
+  - [Creating a build](#creating-a-build)
 - [Good to know](#good-to-know)
 - [Things to come (maybe)](#things-to-come-maybe)
 
@@ -44,12 +46,13 @@ If you have a component that includes another component, you can easily include 
 
 ## Installation
 
-`npm install headman` or `yarn install headman`.
-You can also install it globally via `npm install -g headman` or `yarn global add headman`.
+`npm install headman`
+
+You can also install it globally via `npm install -g headman`.
 
 ## Usage
 
-### Starting _headman_
+### Options
 
 Create a `headman.json` in your project folder with the following options:
 
@@ -63,6 +66,8 @@ Create a `headman.json` in your project folder with the following options:
 | `es6Modules`       | optional          | Boolean                   | `false`                               | Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)                                                                    |
 | `validations`      | optional          | Object                    | `{ html: true, accessibility: true }` |
 | `reload`           | optional          | Boolean                   | `true`                                | Defines if your component automatically reloads after saving.                                                                                                                                         |
+
+### Starting _headman_
 
 Start _headman_ with `NODE_ENV=(development|production) node node_modules/headman` (or `NODE_ENV=(development|production) headman` if installed globally). This will serve _headman_ at `http://localhost:5000`. You can change the port with `NODE_ENV=(development|production) PORT=1234 node node_modules/headman`.
 
@@ -321,10 +326,17 @@ The accessibility validation uses a local [axe-core](https://github.com/dequelab
 
 _**Note:** Just because the accessibility validation does not result in any errors, it does not mean that your component is accessible._
 
+### Creating a build
+
+You can create a production build with `node node_modules/headman --build` (or `headman --build`).
+
+_headman_ automatically goes into production mode to create the build, so you can ommit the `NODE_ENV`.
+By default, the build (static html files + assets) will be created in `<YOUR_PROJECT>/build`. You can change this in your `headman.json` (see [Options](#options)).
+
 ## Good to know
 
 - Your component is automatically reloaded as soon as you change it.
-- `headman` does not actually use the css and js files from your component folders. That is because `headman` cannot know which other components are included in your component, hence does not know which other files to load additionally. If you rely on a build task for your asset files (that might be slower than `_headman_`), you can turn off the automatic reloading of your component (`reload` in the options).
+- _headman_ does not actually use the css and js files from your component folders. That is because _headman_ cannot know which other components are included in your component, hence does not know which other files to load additionally. If you rely on a build task for your asset files (that might be slower than `_headman_`), you can turn off the automatic reloading of your component (`reload` in the options).
 - The start page of _headman_ renders all your components, but without variations. Opening a component either renders an overview of all of its variations or the component directly if it does not have any variations.
 - Folders, that do not include a file with the same name and the given file extension (defined in `headman.json`), are shown in the menu, but disabled.
 - You can open a standalone view of your component in a new tab by clicking on the small icon on the top right corner.
@@ -332,7 +344,6 @@ _**Note:** Just because the accessibility validation does not result in any erro
 ## Things to come (maybe)
 
 - Manually triggering html/accessibility validation if it is disabled
-- Creating a production build (static html files)
 - CSS validation
 - Support for YAML data files
 - Referencing a template file in the data to be able to render dynamic content (useful for rich text elements e.g.)

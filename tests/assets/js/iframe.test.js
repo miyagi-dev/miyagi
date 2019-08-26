@@ -9,7 +9,6 @@ describe("assets/js/iframe.js", () => {
       document.body.appendChild(link);
 
       test("calls history.replaceState", () => {
-        parent.window.onPageChanged = () => {};
         const spy = jest.spyOn(history, "replaceState");
         document.dispatchEvent(new Event("DOMContentLoaded"));
 
@@ -20,20 +19,19 @@ describe("assets/js/iframe.js", () => {
           null,
           `${location.origin}/the%20target`
         );
-
-        parent.window.onPageChanged = null;
       });
 
-      test("calls parent.window.onPageChanged", () => {
-        parent.window.onPageChanged = () => {};
-        const spy = jest.spyOn(parent.window, "onPageChanged");
+      test("triggers 'pageChanged' on parent.window", () => {
+        const spy = jest.spyOn(parent.window, "dispatchEvent");
         document.dispatchEvent(new Event("DOMContentLoaded"));
 
         link.dispatchEvent(new Event("click"));
 
-        expect(spy).toHaveBeenCalledWith(encodeURI("the target"));
-
-        parent.window.onPageChanged = null;
+        expect(spy).toHaveBeenCalledWith(
+          new CustomEvent("pageChanged", {
+            detail: encodeURI("the target")
+          })
+        );
       });
     });
   });

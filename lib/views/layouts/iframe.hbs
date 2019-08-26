@@ -11,7 +11,7 @@
     {{#if accessibilityValidation}}
       <script src="{{projectName}}/js/axe.min.js" defer></script>
     {{/if}}
-    <script src="{{projectName}}/js/iframe.js"{{#if dev}} type="module"{{/if}}{{#if prod}} defer{{/if}}></script>
+    <script src="{{projectName}}/js/iframe{{#if isBuild}}.build{{/if}}.js"{{#if dev}} type="module"{{/if}}{{#if prod}} defer{{/if}}></script>
     {{{cssFiles}}}
     <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
     {{#if a11yTestsPreload}}

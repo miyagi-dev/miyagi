@@ -1,820 +1,757 @@
 {
-  "path": "/headman/tests",
-  "name": "test",
+  "path": "/headman/tests/src/",
+  "name": "src",
   "children": [
     {
-      "path": "/headman/tests/dist",
-      "name": "dist",
+      "path": "/headman/tests/src/components",
+      "name": "components",
       "children": [
         {
-          "path": "/headman/tests/dist/css",
-          "name": "css",
+          "path": "/headman/tests/src/components/button",
+          "name": "button",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/button/button.hbs",
+              "name": "button.hbs",
+              "size": 137,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/components/button/button.json",
+              "name": "button.json",
+              "size": 784,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 921,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/component-1.hbs",
+          "name": "component-1.hbs",
+          "size": 22,
+          "extension": ".hbs",
+          "type": "file"
+        },
+        {
+          "path": "/headman/tests/src/components/component-1.json",
+          "name": "component-1.json",
+          "size": 146,
+          "extension": ".json",
+          "type": "file"
+        },
+        {
+          "path": "/headman/tests/src/components/component-a",
+          "name": "component-a",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/component-a/component-a.json",
+              "name": "component-a.json",
+              "size": 273,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 273,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/component-b",
+          "name": "component-b",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/component-b/_footer",
+              "name": "_footer",
+              "children": [
+                {
+                  "path": "/headman/tests/src/components/component-b/_footer/_footer.hbs",
+                  "name": "_footer.hbs",
+                  "size": 64,
+                  "extension": ".hbs",
+                  "type": "file"
+                },
+                {
+                  "path": "/headman/tests/src/components/component-b/_footer/_footer.json",
+                  "name": "_footer.json",
+                  "size": 167,
+                  "extension": ".json",
+                  "type": "file"
+                }
+              ],
+              "size": 231,
+              "type": "directory"
+            },
+            {
+              "path": "/headman/tests/src/components/component-b/_header",
+              "name": "_header",
+              "children": [
+                {
+                  "path": "/headman/tests/src/components/component-b/_header/_header.hbs",
+                  "name": "_header.hbs",
+                  "size": 64,
+                  "extension": ".hbs",
+                  "type": "file"
+                },
+                {
+                  "path": "/headman/tests/src/components/component-b/_header/_header.json",
+                  "name": "_header.json",
+                  "size": 167,
+                  "extension": ".json",
+                  "type": "file"
+                }
+              ],
+              "size": 231,
+              "type": "directory"
+            },
+            {
+              "path": "/headman/tests/src/components/component-b/component-b.hbs",
+              "name": "component-b.hbs",
+              "size": 190,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/components/component-b/component-b.json",
+              "name": "component-b.json",
+              "size": 762,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 1414,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/component-d",
+          "name": "component-d",
           "children": [],
           "size": 0,
           "type": "directory"
         },
         {
-          "path": "/headman/tests/dist/js",
-          "name": "js",
-          "children": [],
-          "size": 0,
+          "path": "/headman/tests/src/components/components.hbs",
+          "name": "components.hbs",
+          "size": 31,
+          "extension": ".hbs",
+          "type": "file"
+        },
+        {
+          "path": "/headman/tests/src/components/components.json",
+          "name": "components.json",
+          "size": 136,
+          "extension": ".json",
+          "type": "file"
+        },
+        {
+          "path": "/headman/tests/src/components/global-data",
+          "name": "global-data",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/global-data/global-data.hbs",
+              "name": "global-data.hbs",
+              "size": 28,
+              "extension": ".hbs",
+              "type": "file"
+            }
+          ],
+          "size": 28,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/input",
+          "name": "input",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/input/input.hbs",
+              "name": "input.hbs",
+              "size": 330,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/components/input/input.json",
+              "name": "input.json",
+              "size": 512,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 842,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/teaser",
+          "name": "teaser",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/teaser/teaser.hbs",
+              "name": "teaser.hbs",
+              "size": 80,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/components/teaser/teaser.json",
+              "name": "teaser.json",
+              "size": 479,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 559,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/teaser-list",
+          "name": "teaser-list",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/teaser-list/teaser-list.hbs",
+              "name": "teaser-list.hbs",
+              "size": 92,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/components/teaser-list/teaser-list.json",
+              "name": "teaser-list.json",
+              "size": 446,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 538,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/components/test",
+          "name": "test",
+          "children": [
+            {
+              "path": "/headman/tests/src/components/test/test.hbs",
+              "name": "test.hbs",
+              "size": 47,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/components/test/test.json",
+              "name": "test.json",
+              "size": 170,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 217,
           "type": "directory"
         }
       ],
-      "size": 0,
+      "size": 5127,
       "type": "directory"
     },
     {
-      "path": "/headman/tests/src",
-      "name": "src",
+      "path": "/headman/tests/src/data.json",
+      "name": "data.json",
+      "size": 66,
+      "extension": ".json",
+      "type": "file"
+    },
+    {
+      "path": "/headman/tests/src/engines",
+      "name": "engines",
       "children": [
         {
-          "path": "/headman/tests/src/components",
-          "name": "components",
+          "path": "/headman/tests/src/engines/dust",
+          "name": "dust",
           "children": [
             {
-              "path": "/headman/tests/src/components/button",
-              "name": "button",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/button/button.hbs",
-                  "name": "button.hbs",
-                  "size": 137,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/components/button/button.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/components/button/button.json",
-                  "name": "button.json",
-                  "size": 815,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/button/button.json"
-                }
-              ],
-              "size": 952,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/component-1.hbs",
-              "name": "component-1.hbs",
-              "size": 22,
-              "extension": ".hbs",
-              "type": "file",
-              "shortPath": "src/components/component-1.hbs"
-            },
-            {
-              "path": "/headman/tests/src/components/component-1.json",
-              "name": "component-1.json",
-              "size": 146,
+              "path": "/headman/tests/src/engines/dust/dust.json",
+              "name": "dust.json",
+              "size": 362,
               "extension": ".json",
-              "type": "file",
-              "shortPath": "src/components/component-1.json"
-            },
-            {
-              "path": "/headman/tests/src/components/component-a",
-              "name": "component-a",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/component-a/component-a.json",
-                  "name": "component-a.json",
-                  "size": 273,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/component-a/component-a.json"
-                }
-              ],
-              "size": 273,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/component-b",
-              "name": "component-b",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/component-b/_footer",
-                  "name": "_footer",
-                  "children": [
-                    {
-                      "path": "/headman/tests/src/components/component-b/_footer/_footer.hbs",
-                      "name": "_footer.hbs",
-                      "size": 64,
-                      "extension": ".hbs",
-                      "type": "file",
-                      "shortPath": "src/components/component-b/_footer/_footer.hbs"
-                    },
-                    {
-                      "path": "/headman/tests/src/components/component-b/_footer/_footer.json",
-                      "name": "_footer.json",
-                      "size": 167,
-                      "extension": ".json",
-                      "type": "file",
-                      "shortPath": "src/components/component-b/_footer/_footer.json"
-                    }
-                  ],
-                  "size": 231,
-                  "type": "directory"
-                },
-                {
-                  "path": "/headman/tests/src/components/component-b/_header",
-                  "name": "_header",
-                  "children": [
-                    {
-                      "path": "/headman/tests/src/components/component-b/_header/_header.hbs",
-                      "name": "_header.hbs",
-                      "size": 64,
-                      "extension": ".hbs",
-                      "type": "file",
-                      "shortPath": "src/components/component-b/_header/_header.hbs"
-                    },
-                    {
-                      "path": "/headman/tests/src/components/component-b/_header/_header.json",
-                      "name": "_header.json",
-                      "size": 167,
-                      "extension": ".json",
-                      "type": "file",
-                      "shortPath": "src/components/component-b/_header/_header.json"
-                    }
-                  ],
-                  "size": 231,
-                  "type": "directory"
-                },
-                {
-                  "path": "/headman/tests/src/components/component-b/component-b.hbs",
-                  "name": "component-b.hbs",
-                  "size": 190,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/components/component-b/component-b.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/components/component-b/component-b.json",
-                  "name": "component-b.json",
-                  "size": 766,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/component-b/component-b.json"
-                }
-              ],
-              "size": 1418,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/component-d",
-              "name": "component-d",
-              "children": [],
-              "size": 0,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/components.hbs",
-              "name": "components.hbs",
-              "size": 31,
-              "extension": ".hbs",
-              "type": "file",
-              "shortPath": "src/components/components.hbs"
-            },
-            {
-              "path": "/headman/tests/src/components/components.json",
-              "name": "components.json",
-              "size": 136,
-              "extension": ".json",
-              "type": "file",
-              "shortPath": "src/components/components.json"
-            },
-            {
-              "path": "/headman/tests/src/components/input",
-              "name": "input",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/input/input.hbs",
-                  "name": "input.hbs",
-                  "size": 330,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/components/input/input.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/components/input/input.json",
-                  "name": "input.json",
-                  "size": 512,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/input/input.json"
-                }
-              ],
-              "size": 842,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/teaser",
-              "name": "teaser",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/teaser/teaser.hbs",
-                  "name": "teaser.hbs",
-                  "size": 80,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/components/teaser/teaser.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/components/teaser/teaser.json",
-                  "name": "teaser.json",
-                  "size": 479,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/teaser/teaser.json"
-                }
-              ],
-              "size": 559,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/teaser-list",
-              "name": "teaser-list",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/teaser-list/teaser-list.hbs",
-                  "name": "teaser-list.hbs",
-                  "size": 92,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/components/teaser-list/teaser-list.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/components/teaser-list/teaser-list.json",
-                  "name": "teaser-list.json",
-                  "size": 449,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/teaser-list/teaser-list.json"
-                }
-              ],
-              "size": 541,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/components/test",
-              "name": "test",
-              "children": [
-                {
-                  "path": "/headman/tests/src/components/test/test.hbs",
-                  "name": "test.hbs",
-                  "size": 47,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/components/test/test.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/components/test/test.json",
-                  "name": "test.json",
-                  "size": 216,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/components/test/test.json"
-                }
-              ],
-              "size": 263,
-              "type": "directory"
+              "type": "file"
             }
           ],
-          "size": 5183,
+          "size": 362,
           "type": "directory"
         },
         {
-          "path": "/headman/tests/src/engines",
-          "name": "engines",
+          "path": "/headman/tests/src/engines/ect",
+          "name": "ect",
           "children": [
             {
-              "path": "/headman/tests/src/engines/dust",
-              "name": "dust",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/dust/dust.json",
-                  "name": "dust.json",
-                  "size": 364,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/dust/dust.json"
-                }
-              ],
-              "size": 364,
-              "type": "directory"
+              "path": "/headman/tests/src/engines/ect/ect.json",
+              "name": "ect.json",
+              "size": 356,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 356,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/ejs",
+          "name": "ejs",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/ejs/ejs.json",
+              "name": "ejs.json",
+              "size": 356,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 356,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/haml",
+          "name": "haml",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/haml/haml.json",
+              "name": "haml.json",
+              "size": 362,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 362,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/handlebars",
+          "name": "handlebars",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/handlebars/handlebars.hbs",
+              "name": "handlebars.hbs",
+              "size": 105,
+              "extension": ".hbs",
+              "type": "file"
             },
             {
-              "path": "/headman/tests/src/engines/ect",
-              "name": "ect",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/ect/ect.json",
-                  "name": "ect.json",
-                  "size": 358,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/ect/ect.json"
-                }
-              ],
-              "size": 358,
-              "type": "directory"
-            },
+              "path": "/headman/tests/src/engines/handlebars/handlebars.json",
+              "name": "handlebars.json",
+              "size": 398,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 503,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/hogan",
+          "name": "hogan",
+          "children": [
             {
-              "path": "/headman/tests/src/engines/ejs",
-              "name": "ejs",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/ejs/ejs.json",
-                  "name": "ejs.json",
-                  "size": 358,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/ejs/ejs.json"
-                }
-              ],
-              "size": 358,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/haml",
-              "name": "haml",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/haml/haml.json",
-                  "name": "haml.json",
-                  "size": 364,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/haml/haml.json"
-                }
-              ],
-              "size": 364,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/handlebars",
-              "name": "handlebars",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/handlebars/handlebars.hbs",
-                  "name": "handlebars.hbs",
-                  "size": 105,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/engines/handlebars/handlebars.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/engines/handlebars/handlebars.json",
-                  "name": "handlebars.json",
-                  "size": 400,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/handlebars/handlebars.json"
-                }
-              ],
-              "size": 505,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/hogan",
-              "name": "hogan",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/hogan/hogan.json",
-                  "name": "hogan.json",
-                  "size": 248,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/hogan/hogan.json"
-                }
-              ],
+              "path": "/headman/tests/src/engines/hogan/hogan.json",
+              "name": "hogan.json",
               "size": 248,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/mustache",
-              "name": "mustache",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/mustache/mustache.json",
-                  "name": "mustache.json",
-                  "size": 264,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/mustache/mustache.json"
-                }
-              ],
-              "size": 264,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/nunjucks",
-              "name": "nunjucks",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/nunjucks/nunjucks.json",
-                  "name": "nunjucks.json",
-                  "size": 388,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/nunjucks/nunjucks.json"
-                }
-              ],
-              "size": 388,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/pug",
-              "name": "pug",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/pug/pug.json",
-                  "name": "pug.json",
-                  "size": 244,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/pug/pug.json"
-                }
-              ],
-              "size": 244,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/twig",
-              "name": "twig",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/twig/twig.json",
-                  "name": "twig.json",
-                  "size": 364,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/twig/twig.json"
-                }
-              ],
-              "size": 364,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/engines/underscore",
-              "name": "underscore",
-              "children": [
-                {
-                  "path": "/headman/tests/src/engines/underscore/underscore.json",
-                  "name": "underscore.json",
-                  "size": 174,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/engines/underscore/underscore.json"
-                }
-              ],
-              "size": 174,
-              "type": "directory"
-            }
-          ],
-          "size": 3631,
-          "type": "directory"
-        },
-        {
-          "path": "/headman/tests/src/includes",
-          "name": "includes",
-          "children": [
-            {
-              "path": "/headman/tests/src/includes/dust",
-              "name": "dust",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/dust/dust.json",
-                  "name": "dust.json",
-                  "size": 198,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/dust/dust.json"
-                }
-              ],
-              "size": 198,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/ect",
-              "name": "ect",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/ect/ect.json",
-                  "name": "ect.json",
-                  "size": 196,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/ect/ect.json"
-                }
-              ],
-              "size": 196,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/ejs",
-              "name": "ejs",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/ejs/ejs.json",
-                  "name": "ejs.json",
-                  "size": 196,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/ejs/ejs.json"
-                }
-              ],
-              "size": 196,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/handlebars",
-              "name": "handlebars",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/handlebars/handlebars.hbs",
-                  "name": "handlebars.hbs",
-                  "size": 20,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/includes/handlebars/handlebars.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/includes/handlebars/handlebars.json",
-                  "name": "handlebars.json",
-                  "size": 210,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/handlebars/handlebars.json"
-                }
-              ],
-              "size": 230,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/hogan",
-              "name": "hogan",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/hogan/hogan.json",
-                  "name": "hogan.json",
-                  "size": 200,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/hogan/hogan.json"
-                }
-              ],
-              "size": 200,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/mustache",
-              "name": "mustache",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/mustache/mustache.json",
-                  "name": "mustache.json",
-                  "size": 206,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/mustache/mustache.json"
-                }
-              ],
-              "size": 206,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/nunjucks",
-              "name": "nunjucks",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/nunjucks/nunjucks.json",
-                  "name": "nunjucks.json",
-                  "size": 206,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/nunjucks/nunjucks.json"
-                }
-              ],
-              "size": 206,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/pug",
-              "name": "pug",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/pug/pug.json",
-                  "name": "pug.json",
-                  "size": 196,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/pug/pug.json"
-                }
-              ],
-              "size": 196,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/includes/twig",
-              "name": "twig",
-              "children": [
-                {
-                  "path": "/headman/tests/src/includes/twig/twig.json",
-                  "name": "twig.json",
-                  "size": 198,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/includes/twig/twig.json"
-                }
-              ],
-              "size": 198,
-              "type": "directory"
-            }
-          ],
-          "size": 1826,
-          "type": "directory"
-        },
-        {
-          "path": "/headman/tests/src/src.hbs",
-          "name": "src.hbs",
-          "size": 0,
-          "extension": ".hbs",
-          "type": "file",
-          "shortPath": "src/src.hbs"
-        },
-        {
-          "path": "/headman/tests/src/src.json",
-          "name": "src.json",
-          "size": 29,
-          "extension": ".json",
-          "type": "file",
-          "shortPath": "src/src.json"
-        },
-        {
-          "path": "/headman/tests/src/templates",
-          "name": "templates",
-          "children": [
-            {
-              "path": "/headman/tests/src/templates/_includes",
-              "name": "_includes",
-              "children": [
-                {
-                  "path": "/headman/tests/src/templates/_includes/_footer",
-                  "name": "_footer",
-                  "children": [
-                    {
-                      "path": "/headman/tests/src/templates/_includes/_footer/_footer.hbs",
-                      "name": "_footer.hbs",
-                      "size": 25,
-                      "extension": ".hbs",
-                      "type": "file",
-                      "shortPath": "src/templates/_includes/_footer/_footer.hbs"
-                    }
-                  ],
-                  "size": 25,
-                  "type": "directory"
-                },
-                {
-                  "path": "/headman/tests/src/templates/_includes/_header",
-                  "name": "_header",
-                  "children": [
-                    {
-                      "path": "/headman/tests/src/templates/_includes/_header/_header.hbs",
-                      "name": "_header.hbs",
-                      "size": 88,
-                      "extension": ".hbs",
-                      "type": "file",
-                      "shortPath": "src/templates/_includes/_header/_header.hbs"
-                    },
-                    {
-                      "path": "/headman/tests/src/templates/_includes/_header/_logo",
-                      "name": "_logo",
-                      "children": [
-                        {
-                          "path": "/headman/tests/src/templates/_includes/_header/_logo/_logo.hbs",
-                          "name": "_logo.hbs",
-                          "size": 30,
-                          "extension": ".hbs",
-                          "type": "file",
-                          "shortPath": "src/templates/_includes/_header/_logo/_logo.hbs"
-                        }
-                      ],
-                      "size": 30,
-                      "type": "directory"
-                    }
-                  ],
-                  "size": 118,
-                  "type": "directory"
-                }
-              ],
-              "size": 143,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/templates/template-a",
-              "name": "template-a",
-              "children": [
-                {
-                  "path": "/headman/tests/src/templates/template-a/template-a.hbs",
-                  "name": "template-a.hbs",
-                  "size": 206,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/templates/template-a/template-a.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/templates/template-a/template-a.json",
-                  "name": "template-a.json",
-                  "size": 226,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/templates/template-a/template-a.json"
-                }
-              ],
-              "size": 432,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/templates/template-b",
-              "name": "template-b",
-              "children": [
-                {
-                  "path": "/headman/tests/src/templates/template-b/template-b.hbs",
-                  "name": "template-b.hbs",
-                  "size": 247,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/templates/template-b/template-b.hbs"
-                },
-                {
-                  "path": "/headman/tests/src/templates/template-b/template-b.json",
-                  "name": "template-b.json",
-                  "size": 1226,
-                  "extension": ".json",
-                  "type": "file",
-                  "shortPath": "src/templates/template-b/template-b.json"
-                }
-              ],
-              "size": 1473,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/templates/template-c",
-              "name": "template-c",
-              "children": [
-                {
-                  "path": "/headman/tests/src/templates/template-c/test.hbs",
-                  "name": "test.hbs",
-                  "size": 47,
-                  "extension": ".hbs",
-                  "type": "file",
-                  "shortPath": "src/templates/template-c/test.hbs"
-                }
-              ],
-              "size": 47,
-              "type": "directory"
-            },
-            {
-              "path": "/headman/tests/src/templates/template-d",
-              "name": "template-d",
-              "children": [],
-              "size": 0,
-              "type": "directory"
-            }
-          ],
-          "size": 2095,
-          "type": "directory"
-        },
-        {
-          "path": "/headman/tests/src/test2",
-          "name": "test2",
-          "children": [
-            {
-              "path": "/headman/tests/src/test2/test2.hbs",
-              "name": "test2.hbs",
-              "size": 13,
-              "extension": ".hbs",
-              "type": "file",
-              "shortPath": "src/test2/test2.hbs"
-            },
-            {
-              "path": "/headman/tests/src/test2/test2.json",
-              "name": "test2.json",
-              "size": 185,
               "extension": ".json",
-              "type": "file",
-              "shortPath": "src/test2/test2.json"
+              "type": "file"
+            }
+          ],
+          "size": 248,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/mustache",
+          "name": "mustache",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/mustache/mustache.json",
+              "name": "mustache.json",
+              "size": 264,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 264,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/nunjucks",
+          "name": "nunjucks",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/nunjucks/nunjucks.json",
+              "name": "nunjucks.json",
+              "size": 386,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 386,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/pug",
+          "name": "pug",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/pug/pug.json",
+              "name": "pug.json",
+              "size": 244,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 244,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/twig",
+          "name": "twig",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/twig/twig.json",
+              "name": "twig.json",
+              "size": 362,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 362,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/engines/underscore",
+          "name": "underscore",
+          "children": [
+            {
+              "path": "/headman/tests/src/engines/underscore/underscore.json",
+              "name": "underscore.json",
+              "size": 174,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 174,
+          "type": "directory"
+        }
+      ],
+      "size": 3617,
+      "type": "directory"
+    },
+    {
+      "path": "/headman/tests/src/includes",
+      "name": "includes",
+      "children": [
+        {
+          "path": "/headman/tests/src/includes/dust",
+          "name": "dust",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/dust/dust.json",
+              "name": "dust.json",
+              "size": 198,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 198,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/ect",
+          "name": "ect",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/ect/ect.json",
+              "name": "ect.json",
+              "size": 196,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 196,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/ejs",
+          "name": "ejs",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/ejs/ejs.json",
+              "name": "ejs.json",
+              "size": 196,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 196,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/handlebars",
+          "name": "handlebars",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/handlebars/handlebars.hbs",
+              "name": "handlebars.hbs",
+              "size": 20,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/includes/handlebars/handlebars.json",
+              "name": "handlebars.json",
+              "size": 210,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 230,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/hogan",
+          "name": "hogan",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/hogan/hogan.json",
+              "name": "hogan.json",
+              "size": 200,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 200,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/mustache",
+          "name": "mustache",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/mustache/mustache.json",
+              "name": "mustache.json",
+              "size": 206,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 206,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/nunjucks",
+          "name": "nunjucks",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/nunjucks/nunjucks.json",
+              "name": "nunjucks.json",
+              "size": 206,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 206,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/pug",
+          "name": "pug",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/pug/pug.json",
+              "name": "pug.json",
+              "size": 196,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 196,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/includes/twig",
+          "name": "twig",
+          "children": [
+            {
+              "path": "/headman/tests/src/includes/twig/twig.json",
+              "name": "twig.json",
+              "size": 198,
+              "extension": ".json",
+              "type": "file"
             }
           ],
           "size": 198,
           "type": "directory"
         }
       ],
-      "size": 12962,
+      "size": 1826,
+      "type": "directory"
+    },
+    {
+      "path": "/headman/tests/src/src.hbs",
+      "name": "src.hbs",
+      "size": 0,
+      "extension": ".hbs",
+      "type": "file"
+    },
+    {
+      "path": "/headman/tests/src/src.json",
+      "name": "src.json",
+      "size": 29,
+      "extension": ".json",
+      "type": "file"
+    },
+    {
+      "path": "/headman/tests/src/templates",
+      "name": "templates",
+      "children": [
+        {
+          "path": "/headman/tests/src/templates/_includes",
+          "name": "_includes",
+          "children": [
+            {
+              "path": "/headman/tests/src/templates/_includes/_footer",
+              "name": "_footer",
+              "children": [
+                {
+                  "path": "/headman/tests/src/templates/_includes/_footer/_footer.hbs",
+                  "name": "_footer.hbs",
+                  "size": 25,
+                  "extension": ".hbs",
+                  "type": "file"
+                }
+              ],
+              "size": 25,
+              "type": "directory"
+            },
+            {
+              "path": "/headman/tests/src/templates/_includes/_header",
+              "name": "_header",
+              "children": [
+                {
+                  "path": "/headman/tests/src/templates/_includes/_header/_header.hbs",
+                  "name": "_header.hbs",
+                  "size": 88,
+                  "extension": ".hbs",
+                  "type": "file"
+                },
+                {
+                  "path": "/headman/tests/src/templates/_includes/_header/_logo",
+                  "name": "_logo",
+                  "children": [
+                    {
+                      "path": "/headman/tests/src/templates/_includes/_header/_logo/_logo.hbs",
+                      "name": "_logo.hbs",
+                      "size": 30,
+                      "extension": ".hbs",
+                      "type": "file"
+                    }
+                  ],
+                  "size": 30,
+                  "type": "directory"
+                }
+              ],
+              "size": 118,
+              "type": "directory"
+            }
+          ],
+          "size": 143,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/templates/template-a",
+          "name": "template-a",
+          "children": [
+            {
+              "path": "/headman/tests/src/templates/template-a/template-a.hbs",
+              "name": "template-a.hbs",
+              "size": 206,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/templates/template-a/template-a.json",
+              "name": "template-a.json",
+              "size": 225,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 431,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/templates/template-b",
+          "name": "template-b",
+          "children": [
+            {
+              "path": "/headman/tests/src/templates/template-b/template-b.hbs",
+              "name": "template-b.hbs",
+              "size": 247,
+              "extension": ".hbs",
+              "type": "file"
+            },
+            {
+              "path": "/headman/tests/src/templates/template-b/template-b.json",
+              "name": "template-b.json",
+              "size": 1223,
+              "extension": ".json",
+              "type": "file"
+            }
+          ],
+          "size": 1470,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/templates/template-c",
+          "name": "template-c",
+          "children": [
+            {
+              "path": "/headman/tests/src/templates/template-c/test.hbs",
+              "name": "test.hbs",
+              "size": 47,
+              "extension": ".hbs",
+              "type": "file"
+            }
+          ],
+          "size": 47,
+          "type": "directory"
+        },
+        {
+          "path": "/headman/tests/src/templates/template-d",
+          "name": "template-d",
+          "children": [],
+          "size": 0,
+          "type": "directory"
+        }
+      ],
+      "size": 2091,
+      "type": "directory"
+    },
+    {
+      "path": "/headman/tests/src/test2",
+      "name": "test2",
+      "children": [
+        {
+          "path": "/headman/tests/src/test2/test2.hbs",
+          "name": "test2.hbs",
+          "size": 13,
+          "extension": ".hbs",
+          "type": "file"
+        },
+        {
+          "path": "/headman/tests/src/test2/test2.json",
+          "name": "test2.json",
+          "size": 185,
+          "extension": ".json",
+          "type": "file"
+        }
+      ],
+      "size": 198,
       "type": "directory"
     }
   ],
-  "size": 12962,
+  "size": 12954,
   "type": "directory"
 }

@@ -21,14 +21,10 @@ describe("lib/state/source-tree", () => {
 
     getSourceTree(app);
 
-    expect(dirTree).toHaveBeenCalledWith(
-      `${process.cwd()}/userFolder`,
-      {
-        extensions: new RegExp(".(extension|json)$"),
-        exclude: [new RegExp("/ignoredFolder")]
-      },
-      expect.any(Function)
-    );
+    expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
+      extensions: new RegExp(".(extension|json)$"),
+      exclude: [new RegExp("/ignoredFolder")]
+    });
   });
 
   test("srcFolder() returns an object with the sourceTree", () => {

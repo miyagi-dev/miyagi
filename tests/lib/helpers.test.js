@@ -76,12 +76,4 @@ describe("lib/helpers", () => {
       );
     });
   });
-
-  describe("getTemplatePathFromDataPath()", () => {
-    test("replaces the dataFileType ending with the template extension", () => {
-      expect(helpers.getTemplatePathFromDataPath(app, "/foo/bar.json")).toEqual(
-        "/foo/bar.hbs"
-      );
-    });
-  });
 });

@@ -1,20 +1,19 @@
 {
-  "/headman/tests/src/components/component-1.json": {
+  "/headman/tests/src/components/component-b/_footer/_footer.json": {
     "data": {
-      "number": 1
+      "footer": "footer1"
     },
     "variations": [
       {
-        "name": "Component 1.2",
+        "name": "Component B Footer",
         "data": {
-          "number": 2
+          "footer": "footer2"
         }
       }
     ]
   },
   "/headman/tests/src/components/button/button.json": {
     "data": {
-      "label": "Regular button",
       "type": "submit"
     },
     "variations": [
@@ -56,36 +55,15 @@
       }
     ]
   },
-  "/headman/tests/src/components/component-b/_header/_header.json": {
+  "/headman/tests/src/components/component-1.json": {
     "data": {
-      "header": "header1"
+      "number": 1
     },
     "variations": [
       {
-        "name": "Component B Header",
+        "name": "Component 1.2",
         "data": {
-          "header": "header2"
-        }
-      }
-    ]
-  },
-  "/headman/tests/src/components/component-a/component-a.json": {
-    "data": {
-      "name": "Component A",
-      "prop": "1",
-      "arr": ["foo", "bar", "baz"]
-    },
-    "variations": [
-      {
-        "name": "a2",
-        "data": {
-          "prop": "2"
-        }
-      },
-      {
-        "name": "a3",
-        "data": {
-          "prop": "3"
+          "number": 2
         }
       }
     ]
@@ -123,6 +101,19 @@
           "header": {
             "dataFile": "components/component-b/_header/_header.json"
           }
+        }
+      }
+    ]
+  },
+  "/headman/tests/src/components/component-b/_header/_header.json": {
+    "data": {
+      "header": "header1"
+    },
+    "variations": [
+      {
+        "name": "Component B Header",
+        "data": {
+          "header": "header2"
         }
       }
     ]
@@ -198,21 +189,43 @@
       }
     ]
   },
-  "/headman/tests/src/components/test/test.json": {
+  "/headman/tests/src/engines/ect/ect.json": {
+    "data": {
+      "engine": "ect",
+      "testInclude": {
+        "dataFile": "includes/ect/ect.json"
+      }
+    },
     "variations": [
       {
-        "name": "foo"
-      },
-      {
-        "name": "bar",
+        "name": "variation",
         "data": {
-          "bar": "bar"
+          "engine": "ect variation",
+          "testInclude": {
+            "dataFile": "includes/ect/ect.json",
+            "variation": "Another variation"
+          }
+        }
+      }
+    ]
+  },
+  "/headman/tests/src/components/component-a/component-a.json": {
+    "data": {
+      "name": "Component A",
+      "prop": "1",
+      "arr": ["foo", "bar", "baz"]
+    },
+    "variations": [
+      {
+        "name": "a2",
+        "data": {
+          "prop": "2"
         }
       },
       {
-        "name": "baz",
+        "name": "a3",
         "data": {
-          "baz": "baz"
+          "prop": "3"
         }
       }
     ]
@@ -260,22 +273,42 @@
       }
     ]
   },
-  "/headman/tests/src/engines/ect/ect.json": {
+  "/headman/tests/src/data.json": {
+    "globalData": "some global data",
+    "label": "Global label"
+  },
+  "/headman/tests/src/engines/ejs/ejs.json": {
     "data": {
-      "engine": "ect",
+      "engine": "ejs",
       "testInclude": {
-        "dataFile": "includes/ect/ect.json"
+        "dataFile": "includes/ejs/ejs.json"
       }
     },
     "variations": [
       {
         "name": "variation",
         "data": {
-          "engine": "ect variation",
+          "engine": "ejs variation",
           "testInclude": {
-            "dataFile": "includes/ect/ect.json",
+            "dataFile": "includes/ejs/ejs.json",
             "variation": "Another variation"
           }
+        }
+      }
+    ]
+  },
+  "/headman/tests/src/components/test/test.json": {
+    "variations": [
+      {},
+      {
+        "data": {
+          "bar": "bar"
+        }
+      },
+      {
+        "name": "baz",
+        "data": {
+          "baz": "baz"
         }
       }
     ]
@@ -294,26 +327,6 @@
           "engine": "haml variation",
           "testInclude": {
             "dataFile": "includes/haml/haml.json",
-            "variation": "Another variation"
-          }
-        }
-      }
-    ]
-  },
-  "/headman/tests/src/engines/ejs/ejs.json": {
-    "data": {
-      "engine": "ejs",
-      "testInclude": {
-        "dataFile": "includes/ejs/ejs.json"
-      }
-    },
-    "variations": [
-      {
-        "name": "variation",
-        "data": {
-          "engine": "ejs variation",
-          "testInclude": {
-            "dataFile": "includes/ejs/ejs.json",
             "variation": "Another variation"
           }
         }
@@ -355,21 +368,6 @@
       }
     ]
   },
-  "/headman/tests/src/engines/mustache/mustache.json": {
-    "data": {
-      "engine": "mustache",
-      "engineInclude": "mustache include"
-    },
-    "variations": [
-      {
-        "name": "variation",
-        "data": {
-          "engine": "mustache variation",
-          "engineInclude": "Another mustache include"
-        }
-      }
-    ]
-  },
   "/headman/tests/src/engines/nunjucks/nunjucks.json": {
     "data": {
       "engine": "nunjucks",
@@ -386,6 +384,21 @@
             "dataFile": "includes/nunjucks/nunjucks.json",
             "variation": "Another variation"
           }
+        }
+      }
+    ]
+  },
+  "/headman/tests/src/engines/mustache/mustache.json": {
+    "data": {
+      "engine": "mustache",
+      "engineInclude": "mustache include"
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "mustache variation",
+          "engineInclude": "Another mustache include"
         }
       }
     ]
@@ -410,17 +423,15 @@
       }
     ]
   },
-  "/headman/tests/src/engines/pug/pug.json": {
+  "/headman/tests/src/includes/dust/dust.json": {
     "data": {
-      "engine": "pug",
-      "engineInclude": "pug include"
+      "engineInclude": "dust include"
     },
     "variations": [
       {
-        "name": "variation",
+        "name": "Another variation",
         "data": {
-          "engine": "pug variation",
-          "engineInclude": "Another pug include"
+          "engineInclude": "Another dust include"
         }
       }
     ]
@@ -438,6 +449,21 @@
       }
     ]
   },
+  "/headman/tests/src/engines/pug/pug.json": {
+    "data": {
+      "engine": "pug",
+      "engineInclude": "pug include"
+    },
+    "variations": [
+      {
+        "name": "variation",
+        "data": {
+          "engine": "pug variation",
+          "engineInclude": "Another pug include"
+        }
+      }
+    ]
+  },
   "/headman/tests/src/includes/ect/ect.json": {
     "data": {
       "engineInclude": "ect include"
@@ -451,28 +477,15 @@
       }
     ]
   },
-  "/headman/tests/src/includes/dust/dust.json": {
+  "/headman/tests/src/includes/mustache/mustache.json": {
     "data": {
-      "engineInclude": "dust include"
+      "engineInclude": "mustache include"
     },
     "variations": [
       {
         "name": "Another variation",
         "data": {
-          "engineInclude": "Another dust include"
-        }
-      }
-    ]
-  },
-  "/headman/tests/src/includes/ejs/ejs.json": {
-    "data": {
-      "engineInclude": "ejs include"
-    },
-    "variations": [
-      {
-        "name": "Another variation",
-        "data": {
-          "engineInclude": "Another ejs include"
+          "engineInclude": "Another mustache include"
         }
       }
     ]
@@ -499,19 +512,6 @@
         "name": "Another variation",
         "data": {
           "engineInclude": "Another hogan include"
-        }
-      }
-    ]
-  },
-  "/headman/tests/src/includes/mustache/mustache.json": {
-    "data": {
-      "engineInclude": "mustache include"
-    },
-    "variations": [
-      {
-        "name": "Another variation",
-        "data": {
-          "engineInclude": "Another mustache include"
         }
       }
     ]
@@ -555,20 +555,15 @@
       }
     ]
   },
-  "/headman/tests/src/src.json": {
-    "variations": [{}, {}]
-  },
-  "/headman/tests/src/templates/template-a/template-a.json": {
+  "/headman/tests/src/includes/ejs/ejs.json": {
     "data": {
-      "name": "A"
+      "engineInclude": "ejs include"
     },
     "variations": [
       {
-        "name": "With component",
+        "name": "Another variation",
         "data": {
-          "componentB": {
-            "dataFile": "components/component-b/component-b.json"
-          }
+          "engineInclude": "Another ejs include"
         }
       }
     ]
@@ -628,6 +623,24 @@
         }
       }
     ]
+  },
+  "/headman/tests/src/templates/template-a/template-a.json": {
+    "data": {
+      "name": "A"
+    },
+    "variations": [
+      {
+        "name": "With component",
+        "data": {
+          "componentB": {
+            "dataFile": "components/component-b/component-b.json"
+          }
+        }
+      }
+    ]
+  },
+  "/headman/tests/src/src.json": {
+    "variations": [{}, {}]
   },
   "/headman/tests/src/test2/test2.json": {
     "variations": [

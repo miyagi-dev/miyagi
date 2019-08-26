@@ -3,7 +3,7 @@
     <div class="HeadmanComponents">
       {{#each variations}}
         <div class="HeadmanComponent">
-          <a href="/component?file={{this.file}}&variation={{this.variation}}&embedded=true" class="HeadmanComponent-file">{{this.variation}}</a>
+          <a href="{{this.url}}" class="HeadmanComponent-file">{{this.variation}}</a>
           <div class="HeadmanComponent-html">
             {{{this.html}}}
           </div>

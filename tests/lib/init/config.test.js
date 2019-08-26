@@ -15,38 +15,13 @@ describe("lib/init/config", () => {
 
       setConfig(app, {
         projectName: "userName",
-        srcFolderIgnores: ["user/ignores/"],
         srcFolder: "user/srcFolder/",
         cssFiles: "user/css/index.css",
-        jsFiles: "user/js/index.js",
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
+        jsFiles: "user/js/index.js"
       });
 
-      expect(app.get("config")).toEqual({
-        projectName: "userName",
-        srcFolderIgnores: [
-          "node_modules",
-          ".git",
-          "package.json",
-          "package-lock.json",
-          "headman.json",
-          "user/ignores/"
-        ],
-        srcFolder: "user/srcFolder/",
-        cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"],
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
-      });
+      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
+      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
     });
 
     test("sanitizes all given paths by the user", () => {
@@ -54,38 +29,13 @@ describe("lib/init/config", () => {
 
       setConfig(app, {
         projectName: "userName",
-        srcFolderIgnores: "../../user/ignores",
         srcFolder: "/user/srcFolder",
         cssFiles: "./user/css/index.css",
-        jsFiles: "/user/js/index.js",
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
+        jsFiles: "/user/js/index.js"
       });
 
-      expect(app.get("config")).toEqual({
-        projectName: "userName",
-        srcFolderIgnores: [
-          "node_modules",
-          ".git",
-          "package.json",
-          "package-lock.json",
-          "headman.json",
-          "../../user/ignores/"
-        ],
-        srcFolder: "user/srcFolder/",
-        cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"],
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
-      });
+      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
+      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
     });
   });
 
@@ -95,38 +45,13 @@ describe("lib/init/config", () => {
 
       setConfig(app, {
         projectName: "userName",
-        srcFolderIgnores: ["user/ignores/"],
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"],
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
+        jsFiles: ["user/js/index.js"]
       });
 
-      expect(app.get("config")).toEqual({
-        projectName: "userName",
-        srcFolderIgnores: [
-          "node_modules",
-          ".git",
-          "package.json",
-          "package-lock.json",
-          "headman.json",
-          "user/ignores/"
-        ],
-        srcFolder: "user/srcFolder/",
-        cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"],
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
-      });
+      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
+      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
     });
 
     test("sanitizes all given paths by the user", () => {
@@ -134,38 +59,13 @@ describe("lib/init/config", () => {
 
       setConfig(app, {
         projectName: "userName",
-        srcFolderIgnores: "user/ignores",
         srcFolder: "/user/srcFolder",
         cssFiles: ["./user/css/index.css"],
-        jsFiles: ["/user/js/index.js"],
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
+        jsFiles: ["/user/js/index.js"]
       });
 
-      expect(app.get("config")).toEqual({
-        projectName: "userName",
-        srcFolderIgnores: [
-          "node_modules",
-          ".git",
-          "package.json",
-          "package-lock.json",
-          "headman.json",
-          "user/ignores/"
-        ],
-        srcFolder: "user/srcFolder/",
-        cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"],
-        es6Modules: true,
-        validations: {
-          html: false,
-          accessibility: false
-        },
-        reload: false
-      });
+      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
+      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
     });
   });
 
@@ -176,42 +76,17 @@ describe("lib/init/config", () => {
 
         setConfig(app, {
           projectName: "userName",
-          srcFolderIgnores: ["user/ignores/"],
           srcFolder: "user/srcFolder/",
           cssFiles: {
             test: ["user/dev/css/index.css"]
           },
           jsFiles: {
             test: ["user/dev/js/index.js"]
-          },
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
+          }
         });
 
-        expect(app.get("config")).toEqual({
-          projectName: "userName",
-          srcFolderIgnores: [
-            "node_modules",
-            ".git",
-            "package.json",
-            "package-lock.json",
-            "headman.json",
-            "user/ignores/"
-          ],
-          srcFolder: "user/srcFolder/",
-          cssFiles: ["user/dev/css/index.css"],
-          jsFiles: ["user/dev/js/index.js"],
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
-        });
+        expect(app.get("config").cssFiles).toEqual(["user/dev/css/index.css"]);
+        expect(app.get("config").jsFiles).toEqual(["user/dev/js/index.js"]);
       });
 
       test("sanitizes all given paths by the user", () => {
@@ -219,38 +94,13 @@ describe("lib/init/config", () => {
 
         setConfig(app, {
           projectName: "userName",
-          srcFolderIgnores: "user/ignores",
           srcFolder: "/user/srcFolder",
           cssFiles: ["./user/css/index.css"],
-          jsFiles: ["/user/js/index.js"],
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
+          jsFiles: ["/user/js/index.js"]
         });
 
-        expect(app.get("config")).toEqual({
-          projectName: "userName",
-          srcFolderIgnores: [
-            "node_modules",
-            ".git",
-            "package.json",
-            "package-lock.json",
-            "headman.json",
-            "user/ignores/"
-          ],
-          srcFolder: "user/srcFolder/",
-          cssFiles: ["user/css/index.css"],
-          jsFiles: ["user/js/index.js"],
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
-        });
+        expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
+        expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
       });
     });
 
@@ -260,42 +110,17 @@ describe("lib/init/config", () => {
 
         setConfig(app, {
           projectName: "userName",
-          srcFolderIgnores: ["user/ignores/"],
           srcFolder: "user/srcFolder/",
           cssFiles: {
             test: "user/dev/css/index.css"
           },
           jsFiles: {
             test: "user/dev/js/index.js"
-          },
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
+          }
         });
 
-        expect(app.get("config")).toEqual({
-          projectName: "userName",
-          srcFolderIgnores: [
-            "node_modules",
-            ".git",
-            "package.json",
-            "package-lock.json",
-            "headman.json",
-            "user/ignores/"
-          ],
-          srcFolder: "user/srcFolder/",
-          cssFiles: ["user/dev/css/index.css"],
-          jsFiles: ["user/dev/js/index.js"],
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
-        });
+        expect(app.get("config").cssFiles).toEqual(["user/dev/css/index.css"]);
+        expect(app.get("config").jsFiles).toEqual(["user/dev/js/index.js"]);
       });
 
       test("sanitizes all given paths by the user", () => {
@@ -303,38 +128,13 @@ describe("lib/init/config", () => {
 
         setConfig(app, {
           projectName: "userName",
-          srcFolderIgnores: "user/ignores",
           srcFolder: "/user/srcFolder",
           cssFiles: "./user/css/index.css",
-          jsFiles: "/user/js/index.js",
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
+          jsFiles: "/user/js/index.js"
         });
 
-        expect(app.get("config")).toEqual({
-          projectName: "userName",
-          srcFolderIgnores: [
-            "node_modules",
-            ".git",
-            "package.json",
-            "package-lock.json",
-            "headman.json",
-            "user/ignores/"
-          ],
-          srcFolder: "user/srcFolder/",
-          cssFiles: ["user/css/index.css"],
-          jsFiles: ["user/js/index.js"],
-          es6Modules: true,
-          validations: {
-            html: false,
-            accessibility: false
-          },
-          reload: false
-        });
+        expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
+        expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
       });
     });
 
@@ -392,6 +192,7 @@ describe("lib/init/config", () => {
       expect(app.get("config")).toEqual({
         projectName: "headman",
         srcFolder: "",
+        buildFolder: "build",
         cssFiles: [],
         jsFiles: [],
         es6Modules: false,

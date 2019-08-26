@@ -16,7 +16,7 @@ describe("lib/state/menu/structure", () => {
     const app = express();
     app.set("config", {
       extension: "hbs",
-      srcFolder: ""
+      srcFolder: "src/"
     });
     app.set("state", {
       sourceTree: sourceTreeJson,
@@ -35,7 +35,7 @@ describe("lib/state/menu/structure", () => {
       const app = express();
       app.set("config", {
         extension: "hbs",
-        srcFolder: ""
+        srcFolder: "src/"
       });
       app.set("state", {
         sourceTree: {},
