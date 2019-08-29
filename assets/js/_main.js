@@ -2,6 +2,7 @@ class Main {
   constructor() {
     this.classes = {
       list: "Headman-list",
+      listContainer: "Headman-listContainer",
       listItem: "Headman-listItem",
       content: "Headman-content",
       iframe: "Headman-frame",
@@ -59,28 +60,18 @@ class Main {
     });
   }
 
-  openParentMenu(el) {
-    const list = el.closest(`.${this.classes.list}`);
+  openParentComponent(listContainer) {
+    if (listContainer) {
+      const toggle = this.elements.componentToggles.find(
+        toggle => toggle.getAttribute("aria-controls") === listContainer.id
+      );
 
-    if (list) {
-      let link = list.previousElementSibling;
+      if (toggle) {
+        toggle.setAttribute("aria-expanded", true);
 
-      if (link) {
-        while (link && !link.classList.contains(this.classes.link)) {
-          link = link.previousElementSibling;
-        }
-
-        if (link) {
-          const toggle = link.previousElementSibling;
-
-          if (toggle && toggle.getAttribute("aria-expanded") === "false") {
-            toggle.setAttribute("aria-expanded", true);
-
-            if (toggle.closest(`.${this.classes.listItem}`)) {
-              this.openParentMenu(toggle.closest(`.${this.classes.listItem}`));
-            }
-          }
-        }
+        this.openParentComponent(
+          toggle.closest(`.${this.classes.listContainer}`)
+        );
       }
     }
   }
@@ -118,7 +109,7 @@ class Main {
   }
 
   openParentComponents(target) {
-    this.openParentMenu(target);
+    this.openParentComponent(target.closest(`.${this.classes.listContainer}`));
   }
 
   closeToggleMenu() {

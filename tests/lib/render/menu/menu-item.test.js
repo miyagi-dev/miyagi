@@ -78,7 +78,11 @@ describe("lib/menu/elements/menu-item", () => {
 
       menuItem.render(directoryObject, request, app);
 
-      expect(component.render).toHaveBeenCalledWith(directoryObject, request);
+      expect(component.render).toHaveBeenCalledWith(
+        app,
+        directoryObject,
+        request
+      );
     });
 
     test("adds the menuItem html to the return value", () => {

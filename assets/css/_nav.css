@@ -3,11 +3,11 @@
   margin-top: 2rem;
 }
 
-[aria-expanded="true"] ~ .Headman-list {
+[aria-expanded="true"] ~ .Headman-listContainer {
   display: block;
 }
 
-[aria-expanded="false"] ~ .Headman-list {
+[aria-expanded="false"] ~ .Headman-listContainer {
   display: none;
 }
 
@@ -111,10 +111,10 @@
 @media (pointer: coarse) {
   .Headman-list {
     --spacingTop: 1.25rem;
-    --spacingLeft: 3.5rem;
+    --spacingLeft: 1.5rem;
   }
 
-  .Headman-list--variations {
+  .Headman-listContainer {
     margin-left: 2rem;
   }
 
@@ -138,10 +138,10 @@
 @media (pointer: fine) {
   .Headman-list {
     --spacingTop: 0.5rem;
-    --spacingLeft: 2.5rem;
+    --spacingLeft: 1rem;
   }
 
-  .Headman-list--variations {
+  .Headman-listContainer {
     margin-left: 1.5rem;
   }
 
