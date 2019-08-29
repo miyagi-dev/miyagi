@@ -54,7 +54,7 @@ data[path6.replace(".hbs", ".json")] = {
   ]
 };
 data[path7.replace(".hbs", ".json")] = {
-  variations: [{}]
+  variations: [{}, { name: "foo" }]
 };
 data[path8.replace(".hbs", ".json")] = {
   variations: [
@@ -645,7 +645,7 @@ describe("lib/render/index", () => {
       });
 
       describe("variation doesn't have a name", () => {
-        test("renders component_variations.hbs", async done => {
+        test("renders component_variations.hbs without that variation", async done => {
           res.render = jest.fn();
 
           await render.renderComponentVariations({
@@ -663,9 +663,9 @@ describe("lib/render/index", () => {
               {
                 file: "component7.hbs",
                 html: "component7\n",
-                variation: "component7",
+                variation: "foo",
                 url:
-                  "/component?file=component7.hbs&variation=component7&embedded=true"
+                  "/component?file=component7.hbs&variation=foo&embedded=true"
               }
             ],
             standaloneUrl: `/component?file=component7.hbs`,
