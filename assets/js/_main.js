@@ -171,6 +171,14 @@ class Main {
 
         this.onToggleMenuClick(e.target);
       });
+
+      this.elements.toggleMenu.addEventListener("keyup", e => {
+        if (e.keyCode === 23) {
+          e.preventDefault();
+
+          this.onToggleMenuClick(e.target);
+        }
+      });
     }
   }
 
@@ -181,6 +189,14 @@ class Main {
 
         this.onComponentToggleClick(e.target);
       });
+
+      toggle.addEventListener("keyup", e => {
+        if (e.keyCode === 32) {
+          e.preventDefault();
+
+          this.onComponentToggleClick(e.target);
+        }
+      });
     });
   }
 
@@ -190,6 +206,14 @@ class Main {
         e.preventDefault();
 
         this.onLinkClick(e.target);
+      });
+
+      link.addEventListener("keyup", e => {
+        if (e.keyCode === 32) {
+          e.preventDefault();
+
+          this.onLinkClick(e.target);
+        }
       });
     });
   }
