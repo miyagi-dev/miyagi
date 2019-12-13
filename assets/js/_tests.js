@@ -72,9 +72,7 @@ function a11yTest(container) {
           if (result.helpUrl) {
             html += getHtmlForResultItem(
               "Link",
-              `<a href="${result.helpUrl}" target="_blank" rel="noopener">${
-                result.helpUrl
-              }</a>`
+              `<a href="${result.helpUrl}" target="_blank" rel="noopener">${result.helpUrl}</a>`
             );
           }
 
