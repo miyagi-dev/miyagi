@@ -29,10 +29,6 @@
   padding-top: 1rem;
 }
 
-.Headman-list--components:not(.Headman-list--lvl0) {
-  margin-left: var(--spacingLeft);
-}
-
 .Headman-link,
 .Headman-component {
   display: block;
