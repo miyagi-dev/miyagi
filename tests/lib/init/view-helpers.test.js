@@ -6,7 +6,7 @@ const { registerHelper } = handlebars;
 
 jest.mock("../../../lib/render/menu/index.js", () => {
   return {
-    render: jest.fn(() => "menuHtml")
+    render: jest.fn(() => "menuHtml"),
   };
 });
 
@@ -19,7 +19,7 @@ describe("lib/init/view-helpers", () => {
   const app = express();
   app.set("config", {
     cssFiles: ["index.css"],
-    jsFiles: ["index.js"]
+    jsFiles: ["index.js"],
   });
 
   describe("", () => {
@@ -49,7 +49,7 @@ describe("lib/init/view-helpers", () => {
         tempApp.set("config", {
           cssFiles: ["index.css"],
           jsFiles: ["index.js"],
-          es6Modules: true
+          es6Modules: true,
         });
 
         handlebars.registerHelper = jest.fn();
@@ -76,7 +76,7 @@ describe("lib/init/view-helpers", () => {
   describe("menu", () => {
     app.set("config", {
       cssFiles: ["index.css"],
-      jsFiles: ["index.js"]
+      jsFiles: ["index.js"],
     });
 
     test("returns the result from render/menu/index", () => {

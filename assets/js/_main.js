@@ -8,7 +8,7 @@ class Main {
       iframe: "Headman-frame",
       toggleComponent: "Headman-toggle",
       toggleMenu: "Headman-toggleMobileMenu",
-      link: "Headman-link"
+      link: "Headman-link",
     };
 
     this.elements = {
@@ -18,7 +18,7 @@ class Main {
       links: Array.from(document.querySelectorAll(`.${this.classes.link}`)),
       componentToggles: Array.from(
         document.querySelectorAll(`.${this.classes.toggleComponent}`)
-      )
+      ),
     };
 
     this.addToggleMenuClickListener();
@@ -51,7 +51,7 @@ class Main {
   }
 
   closeOtherOpenedComponents(target) {
-    this.elements.componentToggles.forEach(toggle => {
+    this.elements.componentToggles.forEach((toggle) => {
       if (toggle.getAttribute("aria-expanded") === "true") {
         if (!toggle.closest(`.${this.classes.listItem}`).contains(target)) {
           toggle.setAttribute("aria-expanded", false);
@@ -63,7 +63,7 @@ class Main {
   openParentComponent(listContainer) {
     if (listContainer) {
       const toggle = this.elements.componentToggles.find(
-        toggle => toggle.getAttribute("aria-controls") === listContainer.id
+        (toggle) => toggle.getAttribute("aria-controls") === listContainer.id
       );
 
       if (toggle) {
@@ -78,7 +78,7 @@ class Main {
 
   setActiveStateInNav(query) {
     {
-      var target = this.elements.links.find(link =>
+      var target = this.elements.links.find((link) =>
         link
           .getAttribute("href")
           .includes(query.replace(this.paths.container, this.paths.embedded))
@@ -91,7 +91,7 @@ class Main {
           : null;
     }
 
-    const current = this.elements.links.find(link =>
+    const current = this.elements.links.find((link) =>
       link.getAttribute("aria-current")
     );
 
@@ -166,13 +166,13 @@ class Main {
 
   addToggleMenuClickListener() {
     if (this.elements.toggleMenu) {
-      this.elements.toggleMenu.addEventListener("click", e => {
+      this.elements.toggleMenu.addEventListener("click", (e) => {
         e.preventDefault();
 
         this.onToggleMenuClick(e.target);
       });
 
-      this.elements.toggleMenu.addEventListener("keyup", e => {
+      this.elements.toggleMenu.addEventListener("keyup", (e) => {
         if (e.keyCode === 23) {
           e.preventDefault();
 
@@ -183,14 +183,14 @@ class Main {
   }
 
   addComponentTogglesClickListener() {
-    this.elements.componentToggles.forEach(toggle => {
-      toggle.addEventListener("click", e => {
+    this.elements.componentToggles.forEach((toggle) => {
+      toggle.addEventListener("click", (e) => {
         e.preventDefault();
 
         this.onComponentToggleClick(e.target);
       });
 
-      toggle.addEventListener("keyup", e => {
+      toggle.addEventListener("keyup", (e) => {
         if (e.keyCode === 32) {
           e.preventDefault();
 
@@ -201,14 +201,14 @@ class Main {
   }
 
   addLinksClickListener() {
-    this.elements.links.forEach(link => {
-      link.addEventListener("click", e => {
+    this.elements.links.forEach((link) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
 
         this.onLinkClick(e.target);
       });
 
-      link.addEventListener("keyup", e => {
+      link.addEventListener("keyup", (e) => {
         if (e.keyCode === 32) {
           e.preventDefault();
 

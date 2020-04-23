@@ -15,7 +15,7 @@ describe("lib/state/partials", () => {
   app.set("config", {
     srcFolder: "/tests/mocks/files",
     srcFolderIgnores: [],
-    extension: "hbs"
+    extension: "hbs",
   });
 
   test("calls readDir with the correct path", () => {
@@ -31,14 +31,14 @@ describe("lib/state/partials", () => {
       readDir.mockImplementation(() => [
         `directory1/directory1.hbs`,
         `directory2/directory2.hbs`,
-        `directory3/directory3.hbs`
+        `directory3/directory3.hbs`,
       ]);
       getOnlyWantedFiles.mockImplementation(() => true);
 
       expect(getPartials(app)).toEqual({
         "directory1/directory1.hbs": `${process.cwd()}/tests/mocks/files/directory1/directory1.hbs`,
         "directory2/directory2.hbs": `${process.cwd()}/tests/mocks/files/directory2/directory2.hbs`,
-        "directory3/directory3.hbs": `${process.cwd()}/tests/mocks/files/directory3/directory3.hbs`
+        "directory3/directory3.hbs": `${process.cwd()}/tests/mocks/files/directory3/directory3.hbs`,
       });
     });
   });
@@ -48,7 +48,7 @@ describe("lib/state/partials", () => {
       readDir.mockImplementation(() => [
         `directory1/directory1.hbs`,
         `directory2/directory2.hbs`,
-        `directory3/directory3.hbs`
+        `directory3/directory3.hbs`,
       ]);
       getOnlyWantedFiles.mockImplementation(() => false);
 

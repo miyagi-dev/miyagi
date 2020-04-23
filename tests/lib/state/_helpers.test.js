@@ -9,7 +9,7 @@ describe("lib/state/_helpers", () => {
     const app = express();
     app.set("config", {
       srcFolder: "srcFolder/",
-      srcFolderIgnores: ["foo/bar"]
+      srcFolderIgnores: ["foo/bar"],
     });
 
     describe("with ignored file", () => {

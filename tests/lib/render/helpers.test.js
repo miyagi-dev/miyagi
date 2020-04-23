@@ -14,15 +14,15 @@ describe("lib/render/_helpers", () => {
       data[fullPath] = { foo: "bar" };
 
       app.set("config", {
-        srcFolder: "srcFolder/"
+        srcFolder: "srcFolder/",
       });
       app.set("state", {
-        data
+        data,
       });
 
       expect(helpers.mergeWithGlobalData(app, { bar: "foo" })).toEqual({
         foo: "bar",
-        bar: "foo"
+        bar: "foo",
       });
     });
   });
@@ -33,11 +33,11 @@ describe("lib/render/_helpers", () => {
         const variations = [
           {},
           {
-            data: 2
+            data: 2,
           },
           {
-            data: 3
-          }
+            data: 3,
+          },
         ];
 
         expect(helpers.getFallbackData(variations)).toEqual(2);
@@ -74,16 +74,16 @@ describe("lib/render/_helpers", () => {
     test("it sets engine specific keys on the given object", () => {
       const app = express();
       app.set("config", {
-        srcFolder: "srcFolder"
+        srcFolder: "srcFolder",
       });
       app.set("state", {
-        partials: "partials"
+        partials: "partials",
       });
       const fullPath = path.join(process.cwd(), "srcFolder");
 
       expect(
         helpers.getDataForRenderFunction(app, {
-          foo: "bar"
+          foo: "bar",
         })
       ).toEqual({
         foo: "bar",
@@ -91,8 +91,8 @@ describe("lib/render/_helpers", () => {
         basedir: fullPath,
         root: fullPath,
         settings: {
-          views: fullPath
-        }
+          views: fullPath,
+        },
       });
     });
   });
@@ -101,23 +101,23 @@ describe("lib/render/_helpers", () => {
     const rootData = {
       merged: {
         root: true,
-        data: "root"
-      }
+        data: "root",
+      },
     };
 
     const variationData = {
       merged: {
         variation: true,
-        data: "variation"
-      }
+        data: "variation",
+      },
     };
 
     describe("with only rootData given", () => {
       expect(helpers.mergeRootDataWithVariationData(rootData, null)).toEqual({
         merged: {
           root: true,
-          data: "root"
-        }
+          data: "root",
+        },
       });
     });
 
@@ -127,8 +127,8 @@ describe("lib/render/_helpers", () => {
       ).toEqual({
         merged: {
           variation: true,
-          data: "variation"
-        }
+          data: "variation",
+        },
       });
     });
 
@@ -139,17 +139,17 @@ describe("lib/render/_helpers", () => {
         merged: {
           root: true,
           variation: true,
-          data: "variation"
-        }
+          data: "variation",
+        },
       });
     });
   });
 
   describe("overwriteJsonLinksWithJsonData()", () => {
-    test("resolves linked json data", async done => {
+    test("resolves linked json data", async (done) => {
       const app = express();
       app.set("config", {
-        srcFolder: "tests/mocks/"
+        srcFolder: "tests/mocks/",
       });
       const data = {};
       data[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
@@ -159,73 +159,73 @@ describe("lib/render/_helpers", () => {
             data: {
               resolve: [
                 {
-                  dataFile: "resolve/resolve/resolve.json"
-                }
-              ]
-            }
-          }
-        ]
+                  dataFile: "resolve/resolve/resolve.json",
+                },
+              ],
+            },
+          },
+        ],
       };
       data[`${process.cwd()}/tests/mocks/resolve/resolve/resolve.json`] = {
         data: {
           resolve: {
-            dataFile: "resolve/resolve/resolve/resolve.json"
-          }
-        }
+            dataFile: "resolve/resolve/resolve/resolve.json",
+          },
+        },
       };
       data[
         `${process.cwd()}/tests/mocks/resolve/resolve/resolve/resolve.json`
       ] = {
         data: {
-          resolve: "resolve"
-        }
+          resolve: "resolve",
+        },
       };
 
       app.set("state", {
         partials: "partials",
-        data
+        data,
       });
 
       expect(
         await helpers.overwriteJsonLinksWithJsonData(app, {
           resolve: {
             dataFile: "resolve/resolve.json",
-            variation: "variation"
-          }
+            variation: "variation",
+          },
         })
       ).toEqual({
         resolve: {
           resolve: [
             {
               resolve: {
-                resolve: "resolve"
-              }
-            }
-          ]
-        }
+                resolve: "resolve",
+              },
+            },
+          ],
+        },
       });
 
       done();
     });
 
     describe("with passing null", () => {
-      test("", async done => {
+      test("", async (done) => {
         const app = express();
         app.set("config", {
-          srcFolder: "tests/mocks/"
+          srcFolder: "tests/mocks/",
         });
         const data = {};
         app.set("state", {
           partials: "partials",
-          data
+          data,
         });
 
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
-            resolve: null
+            resolve: null,
           })
         ).toEqual({
-          resolve: null
+          resolve: null,
         });
 
         done();
@@ -233,16 +233,16 @@ describe("lib/render/_helpers", () => {
     });
 
     describe("with value for component not being a data file", () => {
-      test("deletes the entry.component key, returns the entry, logs error", async done => {
+      test("deletes the entry.component key, returns the entry, logs error", async (done) => {
         const app = express();
         app.set("config", {
-          srcFolder: "tests/mocks/"
+          srcFolder: "tests/mocks/",
         });
         app.set("state", {
           partials: "partials",
           data: {
-            "some/component.json": "foo"
-          }
+            "some/component.json": "foo",
+          },
         });
 
         const spy = jest.spyOn(logger, "log");
@@ -250,11 +250,11 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              dataFile: "some/component.foo"
-            }
+              dataFile: "some/component.foo",
+            },
           })
         ).toEqual({
-          resolve: {}
+          resolve: {},
         });
         expect(spy).toHaveBeenCalledWith(
           "warn",
@@ -266,16 +266,16 @@ describe("lib/render/_helpers", () => {
     });
 
     describe("with value for component not being stored in data", () => {
-      test("returns {}, logs error", async done => {
+      test("returns {}, logs error", async (done) => {
         const app = express();
         app.set("config", {
-          srcFolder: "tests/mocks/"
+          srcFolder: "tests/mocks/",
         });
         app.set("state", {
           partials: "partials",
           data: {
-            "some/component.json": "foo"
-          }
+            "some/component.json": "foo",
+          },
         });
 
         const spy = jest.spyOn(logger, "log");
@@ -283,11 +283,11 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              dataFile: "some/component.json"
-            }
+              dataFile: "some/component.json",
+            },
           })
         ).toEqual({
-          resolve: {}
+          resolve: {},
         });
         expect(spy).toHaveBeenCalledWith(
           "warn",
@@ -299,34 +299,34 @@ describe("lib/render/_helpers", () => {
     });
 
     describe("variant not having any data", () => {
-      test("returns {}", async done => {
+      test("returns {}", async (done) => {
         const app = express();
         app.set("config", {
-          srcFolder: "tests/mocks/"
+          srcFolder: "tests/mocks/",
         });
         const data = {};
         data[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
           variations: [
             {
-              name: "variation"
-            }
-          ]
+              name: "variation",
+            },
+          ],
         };
 
         app.set("state", {
           partials: "partials",
-          data
+          data,
         });
 
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
               dataFile: "resolve/resolve.json",
-              variation: "variation"
-            }
+              variation: "variation",
+            },
           })
         ).toEqual({
-          resolve: {}
+          resolve: {},
         });
 
         done();
@@ -334,25 +334,25 @@ describe("lib/render/_helpers", () => {
     });
 
     describe("variant not having any data", () => {
-      test("returns {}", async done => {
+      test("returns {}", async (done) => {
         const app = express();
         app.set("config", {
-          srcFolder: "tests/mocks/"
+          srcFolder: "tests/mocks/",
         });
         app.set("state", {
-          partials: "partials"
+          partials: "partials",
         });
 
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              name: "variation"
-            }
+              name: "variation",
+            },
           })
         ).toEqual({
           resolve: {
-            name: "variation"
-          }
+            name: "variation",
+          },
         });
 
         done();

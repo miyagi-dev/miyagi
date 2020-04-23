@@ -7,7 +7,7 @@ const directory = {
   shortPath: directoryShortPath,
   name: directoryName,
   index: directoryIndex,
-  id: directoryId
+  id: directoryId,
 };
 
 function requireComponent(componentName, mock) {
@@ -29,7 +29,7 @@ describe("lib/menu/elements/component", () => {
   describe("with current directory === requested directory", () => {
     const requestPath = "foo/bar";
     const request = {
-      path: requestPath
+      path: requestPath,
     };
 
     describe("without requested variation", () => {
@@ -63,7 +63,7 @@ describe("lib/menu/elements/component", () => {
 
   describe("with current directory !== requested directory", () => {
     const request = {
-      path: "foo/baz"
+      path: "foo/baz",
     };
 
     test("renders the link without active state", () => {
@@ -146,7 +146,7 @@ describe("lib/menu/elements/component", () => {
 
     describe("request directory is parent of current directory", () => {
       const request = {
-        path: directoryShortPath
+        path: directoryShortPath,
       };
 
       test("calls toggle.render with the correct params", () => {
@@ -169,7 +169,7 @@ describe("lib/menu/elements/component", () => {
 
     describe("request directory is not parent of current directory", () => {
       const request = {
-        path: "foo/baz"
+        path: "foo/baz",
       };
 
       test("calls toggle.render with the correct params", () => {

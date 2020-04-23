@@ -6,7 +6,7 @@ const request = require("supertest");
 let app;
 let server;
 
-beforeEach(done => {
+beforeEach((done) => {
   app = express();
   server = app.listen(0, done);
 });
@@ -24,7 +24,7 @@ describe("lib/init/static", () => {
     test("returns the correct assets based on NODE_ENV", () => {
       app.set("config", {
         cssFiles: [],
-        jsFiles: []
+        jsFiles: [],
       });
 
       process.env.NODE_ENV = "production";
@@ -39,10 +39,10 @@ describe("lib/init/static", () => {
     });
 
     describe("GET /js/socket.io.slim.js", () => {
-      test("returns 200", done => {
+      test("returns 200", (done) => {
         app.set("config", {
           cssFiles: [],
-          jsFiles: []
+          jsFiles: [],
         });
 
         setStatic(app);
@@ -53,10 +53,10 @@ describe("lib/init/static", () => {
     });
 
     describe("GET /js/axe.min.js", () => {
-      test("returns 200", done => {
+      test("returns 200", (done) => {
         app.set("config", {
           cssFiles: [],
-          jsFiles: []
+          jsFiles: [],
         });
 
         setStatic(app);
@@ -67,46 +67,40 @@ describe("lib/init/static", () => {
     });
 
     describe("GET other requests", () => {
-      test("return 404", done => {
+      test("return 404", (done) => {
         app.set("config", {
           cssFiles: [],
-          jsFiles: []
+          jsFiles: [],
         });
 
         setStatic(app);
-        request(app)
-          .get("/gulpfile.js")
-          .expect(404, done);
+        request(app).get("/gulpfile.js").expect(404, done);
       });
     });
   });
 
   describe("with arrays in config.cssFiles/jsFiles", () => {
     describe("GET entries from user cssFiles", () => {
-      test("returns 200", done => {
+      test("returns 200", (done) => {
         app.set("config", {
           cssFiles: ["tests/mocks/user/css/index.css"],
-          jsFiles: ["tests/mocks/user/js/index.js"]
+          jsFiles: ["tests/mocks/user/js/index.js"],
         });
 
         setStatic(app);
-        request(app)
-          .get("/tests/mocks/user/css/index.css")
-          .expect(200, done);
+        request(app).get("/tests/mocks/user/css/index.css").expect(200, done);
       });
     });
 
     describe("GET entries from user jsFiles", () => {
-      test("returns 200", done => {
+      test("returns 200", (done) => {
         app.set("config", {
           cssFiles: ["tests/mocks/user/css/index.css"],
-          jsFiles: ["tests/mocks/user/js/index.js"]
+          jsFiles: ["tests/mocks/user/js/index.js"],
         });
 
         setStatic(app);
-        request(app)
-          .get("/tests/mocks/user/js/index.js")
-          .expect(200, done);
+        request(app).get("/tests/mocks/user/js/index.js").expect(200, done);
       });
     });
   });

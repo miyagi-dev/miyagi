@@ -17,12 +17,12 @@ const cssFiles = ["assets/css/iframe.css", "assets/css/main.css"];
 const jsDist = `${buildFolder}js/`;
 const cssDist = `${buildFolder}css/`;
 
-gulp.task("build:js", done => {
+gulp.task("build:js", (done) => {
   const promises = [];
 
-  jsFiles.forEach(jsFile => {
+  jsFiles.forEach((jsFile) => {
     promises.push(
-      new Promise(resolve => {
+      new Promise((resolve) => {
         rollup
           .rollup({
             input: `${jsFolder}${jsFile}`,
@@ -30,13 +30,13 @@ gulp.task("build:js", done => {
               rollupResolve(),
               rollupCommonJs(),
               babel(),
-              terser.terser()
-            ]
+              terser.terser(),
+            ],
           })
-          .then(bundle => {
+          .then((bundle) => {
             bundle.write({
               file: `${jsDist}/${jsFile}`,
-              format: "esm"
+              format: "esm",
             });
             resolve();
           });

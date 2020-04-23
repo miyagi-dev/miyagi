@@ -13,7 +13,7 @@ describe("lib/state/source-tree", () => {
   app.set("config", {
     srcFolderIgnores: ["/ignoredFolder"],
     srcFolder: "userFolder",
-    extension: "extension"
+    extension: "extension",
   });
 
   test("srcFolder() calls dirTree()", () => {
@@ -23,13 +23,13 @@ describe("lib/state/source-tree", () => {
 
     expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
       extensions: new RegExp(".(extension|json)$"),
-      exclude: [new RegExp("/ignoredFolder")]
+      exclude: [new RegExp("/ignoredFolder")],
     });
   });
 
   test("srcFolder() returns an object with the sourceTree", () => {
     const result = {
-      foo: "bar"
+      foo: "bar",
     };
 
     dirTree.mockImplementationOnce(() => result);

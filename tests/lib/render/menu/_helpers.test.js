@@ -64,10 +64,10 @@ describe("lib/menu/elements/_helpers", () => {
     describe("path is same as request path", () => {
       const path = "foo/bar";
       const variation = {
-        name: "variation"
+        name: "variation",
       };
       const request = {
-        path
+        path,
       };
 
       describe("variation is same as request variation", () => {
@@ -94,7 +94,7 @@ describe("lib/menu/elements/_helpers", () => {
     describe("path is not same as request path", () => {
       const path = "foo/bar";
       const request = {
-        path: "foo/baz"
+        path: "foo/baz",
       };
 
       test("returns false", () => {
@@ -108,7 +108,7 @@ describe("lib/menu/elements/_helpers", () => {
       test("returns true", () => {
         expect(
           helpers.childrenOfDirectoryContainDirectory({
-            children: [{ type: "directory" }]
+            children: [{ type: "directory" }],
           })
         ).toBe(true);
       });
@@ -125,7 +125,7 @@ describe("lib/menu/elements/_helpers", () => {
         ).toBe(false);
         expect(
           helpers.childrenOfDirectoryContainDirectory({
-            children: [{ type: "file" }]
+            children: [{ type: "file" }],
           })
         ).toBe(false);
       });

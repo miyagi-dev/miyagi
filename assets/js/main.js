@@ -6,7 +6,7 @@ class MainDev extends Main {
 
     this.paths = {
       embedded: "component?",
-      container: "show?"
+      container: "show?",
     };
 
     this.embeddedParam = "&embedded=true";

@@ -1,9 +1,9 @@
 window.io = {
   connect: () => {
     return {
-      on: jest.fn()
+      on: jest.fn(),
     };
-  }
+  },
 };
 
 afterEach(() => {

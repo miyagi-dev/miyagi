@@ -44,7 +44,7 @@ afterEach(() => {
 
 describe("lib/init", () => {
   describe("always", () => {
-    test("calls setConfig", async done => {
+    test("calls setConfig", async (done) => {
       await init({});
       expect(setConfig).toHaveBeenCalled();
       expect(setEngines).toHaveBeenCalled();
@@ -53,7 +53,7 @@ describe("lib/init", () => {
   });
 
   describe("setEngines() was successful", () => {
-    test("call init methods", async done => {
+    test("call init methods", async (done) => {
       setEngines.mockImplementationOnce(() => true);
       const server = await init({});
       expect(setState).toHaveBeenCalled();
@@ -68,7 +68,7 @@ describe("lib/init", () => {
     });
 
     describe("with process.env.PORT set", () => {
-      test("sets app.port to process.env.PORT", async done => {
+      test("sets app.port to process.env.PORT", async (done) => {
         setEngines.mockImplementationOnce(() => true);
         process.env.PORT = 1234;
         const server = await init({});
@@ -82,7 +82,7 @@ describe("lib/init", () => {
     });
 
     describe("without process.env.PORT set", () => {
-      test("logs the correct port", async done => {
+      test("logs the correct port", async (done) => {
         setEngines.mockImplementationOnce(() => true);
         delete process.env.PORT;
         const server = await init({});
@@ -97,7 +97,7 @@ describe("lib/init", () => {
   });
 
   describe("setEngines() was not successful", () => {
-    test("doesn't call init methods", async done => {
+    test("doesn't call init methods", async (done) => {
       setEngines.mockImplementationOnce(() => false);
       await init(
         Object.assign({}, appConfig, { defaultPort: getRandomPort() })

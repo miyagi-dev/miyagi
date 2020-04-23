@@ -4,15 +4,18 @@
     "es6": true,
     "node": true
   },
-  "extends": ["plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module",
   },
+  "extends": ["prettier"],
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "error",
     "no-console": "off",
-    "prefer-destructuring": ["error", {"object": true, "array": true}]
+    "prefer-destructuring": ["error", {
+      "object": true,
+      "array": true
+    }]
   }
 }

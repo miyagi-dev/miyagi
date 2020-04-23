@@ -9,27 +9,27 @@ jest.mock("fs-extra", () => {
   return {
     emptyDir: jest.fn((path, cb) => cb()),
     writeFile: jest.fn(),
-    copy: jest.fn()
+    copy: jest.fn(),
   };
 });
 
 jest.mock("../../../lib/render/index.js", () => {
   return {
     renderComponent: jest.fn(() => {
-      return new Promise(resolve => resolve);
+      return new Promise((resolve) => resolve);
     }),
     renderComponentOverview: jest.fn(() => {
-      return new Promise(resolve => resolve);
+      return new Promise((resolve) => resolve);
     }),
     renderComponentVariations: jest.fn(() => {
-      return new Promise(resolve => resolve);
+      return new Promise((resolve) => resolve);
     }),
     renderMain: jest.fn(() => {
-      return new Promise(resolve => resolve);
+      return new Promise((resolve) => resolve);
     }),
     renderMainWithComponent: jest.fn(() => {
-      return new Promise(resolve => resolve);
-    })
+      return new Promise((resolve) => resolve);
+    }),
   };
 });
 
@@ -45,12 +45,12 @@ describe("lib/build/index", () => {
   data["/headman/tests/srcFolder/foo/bar.json"] = {
     variations: [
       {
-        name: 1
+        name: 1,
       },
       {
-        name: 2
-      }
-    ]
+        name: 2,
+      },
+    ],
   };
 
   process.cwd = () => "/headman/tests";
@@ -60,17 +60,17 @@ describe("lib/build/index", () => {
     srcFolder: "srcFolder/",
     extension: "hbs",
     cssFiles: ["index.css"],
-    jsFiles: ["index.js"]
+    jsFiles: ["index.js"],
   });
   app.set("state", {
     partials: {
-      "foo/bar.hbs": "/headman/tests/srcFolder/foo/bar.hbs"
+      "foo/bar.hbs": "/headman/tests/srcFolder/foo/bar.hbs",
     },
-    data
+    data,
   });
 
   describe("build()", () => {
-    test("calls fs.emptyDir with the build folder path", async done => {
+    test("calls fs.emptyDir with the build folder path", async (done) => {
       const spyComponentOverview = jest.spyOn(
         render,
         "renderComponentOverview"

@@ -9,7 +9,7 @@ jest.mock("../../../../lib/state/menu/structure.js", () => {
 
 jest.mock("process", () => {
   return {
-    cwd: () => "/headman/tests"
+    cwd: () => "/headman/tests",
   };
 });
 
@@ -19,14 +19,14 @@ afterEach(() => {
 });
 
 describe("state/menu/index", () => {
-  test("returns the structure for the menu", async done => {
+  test("returns the structure for the menu", async (done) => {
     const app = express();
     app.set("config", {
       extension: "hbs",
-      srcFolder: "/"
+      srcFolder: "/",
     });
     app.set("state", {
-      sourceTree: {}
+      sourceTree: {},
     });
 
     const { getMenu } = require("../../../../lib/state/menu");

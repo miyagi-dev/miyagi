@@ -11,9 +11,9 @@ function addToggle(container) {
     container.querySelectorAll(".HeadmanResults-summary")
   );
 
-  summaries.forEach(summary => {
-    summary.addEventListener("click", e => {
-      summaries.forEach(sum => {
+  summaries.forEach((summary) => {
+    summary.addEventListener("click", (e) => {
+      summaries.forEach((sum) => {
         const details = sum.closest("details");
         if (e.target.closest("details") !== details) {
           if (details.open) {
@@ -34,10 +34,10 @@ function a11yTest(container) {
 
   addToggle(container);
 
-  axe.run(document.getElementById("HeadmanComponent"), function(err, results) {
+  axe.run(document.getElementById("HeadmanComponent"), function (err, results) {
     if (err) throw err;
 
-    states.forEach(state => {
+    states.forEach((state) => {
       const resultElement = container.querySelector(
         `.HeadmanResults--${state} .HeadmanResults-value`
       );
@@ -54,7 +54,7 @@ function a11yTest(container) {
 
       if (results[state].length) {
         html += "<ul>";
-        results[state].forEach(result => {
+        results[state].forEach((result) => {
           html += '<li class="HeadmanResult">';
           html += '<dl class="HeadmanResult-data">';
 
@@ -112,24 +112,24 @@ function htmlTest(container) {
 
   addToggle(container);
 
-  fetch(location.href).then(response => {
+  fetch(location.href).then((response) => {
     if (response.ok) {
-      response.text().then(html => {
+      response.text().then((html) => {
         const formData = new FormData();
         formData.append("out", "json");
         formData.append("content", html);
         fetch("https://validator.w3.org/nu/", {
           method: "post",
           headers: {
-            Accept: "application/json"
+            Accept: "application/json",
           },
-          body: formData
-        }).then(function(response) {
+          body: formData,
+        }).then(function (response) {
           if (response.ok) {
-            response.json().then(data => {
-              states.forEach(state => {
+            response.json().then((data) => {
+              states.forEach((state) => {
                 const results = data.messages.filter(
-                  message => message.type === state
+                  (message) => message.type === state
                 );
 
                 const resultElement = container.querySelector(
@@ -143,7 +143,7 @@ function htmlTest(container) {
                   resultElement.classList.add("has-positiveValue");
 
                   html += "<ul>";
-                  results.forEach(result => {
+                  results.forEach((result) => {
                     html += '<li class="HeadmanResult">';
                     html += '<dl class="HeadmanResult-data">';
 

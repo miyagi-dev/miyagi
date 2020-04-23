@@ -29,7 +29,7 @@ describe("assets/js/iframe.js", () => {
 
         expect(spy).toHaveBeenCalledWith(
           new CustomEvent("pageChanged", {
-            detail: encodeURI("the target")
+            detail: encodeURI("the target"),
           })
         );
       });

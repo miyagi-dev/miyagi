@@ -11,7 +11,7 @@ describe("lib/init/engines", () => {
     const app = express();
     app.set("config", {
       extension: "twig",
-      engine: "twig"
+      engine: "twig",
     });
     const spy = jest.spyOn(app, "engine");
 
@@ -24,7 +24,7 @@ describe("lib/init/engines", () => {
     const app = express();
     app.set("config", {
       extension: "twig",
-      engine: "twig"
+      engine: "twig",
     });
     const spy = jest.spyOn(app, "set");
 
@@ -37,7 +37,7 @@ describe("lib/init/engines", () => {
     const app = express();
     app.set("config", {
       extension: "twig",
-      engine: "twig"
+      engine: "twig",
     });
     const spy = jest.spyOn(app, "engine");
 
@@ -50,7 +50,7 @@ describe("lib/init/engines", () => {
     const app = express();
     app.set("config", {
       extension: "twig",
-      engine: "twig"
+      engine: "twig",
     });
     const spy = jest.spyOn(app, "set");
 
@@ -66,7 +66,7 @@ describe("lib/init/engines", () => {
     const app = express();
     app.set("config", {
       extension: "twig",
-      engine: "invalidEngine"
+      engine: "invalidEngine",
     });
 
     test("it sets the user engine for the user extension", () => {
@@ -88,7 +88,7 @@ describe("lib/init/engines", () => {
       app.set("config", {
         extension: "twig",
         engine: "twig",
-        srcFolder: "srcFolder"
+        srcFolder: "srcFolder",
       });
       const spy = jest.spyOn(app, "render");
       const func = () => {};
@@ -100,7 +100,7 @@ describe("lib/init/engines", () => {
         "component",
         {
           path: path.join(process.cwd(), "srcFolder"),
-          allowInlineIncludes: true
+          allowInlineIncludes: true,
         },
         func
       );
@@ -113,7 +113,7 @@ describe("lib/init/engines", () => {
       app.render = jest.fn();
       app.set("config", {
         extension: "ejs",
-        engine: "ejs"
+        engine: "ejs",
       });
       const spy = jest.spyOn(app, "render");
       const func = () => {};

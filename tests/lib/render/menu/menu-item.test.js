@@ -37,7 +37,7 @@ describe("lib/menu/elements/menu-item", () => {
     const directoryObject = {
       children,
       id,
-      type
+      type,
     };
 
     test("calls menu.render with the correct params", () => {

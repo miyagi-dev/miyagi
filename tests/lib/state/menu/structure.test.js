@@ -12,15 +12,15 @@ afterEach(() => {
 });
 
 describe("lib/state/menu/structure", () => {
-  test("returns the updated source structure for the menu", async done => {
+  test("returns the updated source structure for the menu", async (done) => {
     const app = express();
     app.set("config", {
       extension: "hbs",
-      srcFolder: "src/"
+      srcFolder: "src/",
     });
     app.set("state", {
       sourceTree: sourceTreeJson,
-      data: dataJson
+      data: dataJson,
     });
 
     process.cwd = () => "/headman/tests";
@@ -35,11 +35,11 @@ describe("lib/state/menu/structure", () => {
       const app = express();
       app.set("config", {
         extension: "hbs",
-        srcFolder: "src/"
+        srcFolder: "src/",
       });
       app.set("state", {
         sourceTree: {},
-        data: dataJson
+        data: dataJson,
       });
 
       const structure = require("../../../../lib/state/menu/structure.js");

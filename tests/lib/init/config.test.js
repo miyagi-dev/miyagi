@@ -17,7 +17,7 @@ describe("lib/init/config", () => {
         projectName: "userName",
         srcFolder: "user/srcFolder/",
         cssFiles: "user/css/index.css",
-        jsFiles: "user/js/index.js"
+        jsFiles: "user/js/index.js",
       });
 
       expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
@@ -31,7 +31,7 @@ describe("lib/init/config", () => {
         projectName: "userName",
         srcFolder: "/user/srcFolder",
         cssFiles: "./user/css/index.css",
-        jsFiles: "/user/js/index.js"
+        jsFiles: "/user/js/index.js",
       });
 
       expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
@@ -47,7 +47,7 @@ describe("lib/init/config", () => {
         projectName: "userName",
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"]
+        jsFiles: ["user/js/index.js"],
       });
 
       expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
@@ -61,7 +61,7 @@ describe("lib/init/config", () => {
         projectName: "userName",
         srcFolder: "/user/srcFolder",
         cssFiles: ["./user/css/index.css"],
-        jsFiles: ["/user/js/index.js"]
+        jsFiles: ["/user/js/index.js"],
       });
 
       expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
@@ -78,11 +78,11 @@ describe("lib/init/config", () => {
           projectName: "userName",
           srcFolder: "user/srcFolder/",
           cssFiles: {
-            test: ["user/dev/css/index.css"]
+            test: ["user/dev/css/index.css"],
           },
           jsFiles: {
-            test: ["user/dev/js/index.js"]
-          }
+            test: ["user/dev/js/index.js"],
+          },
         });
 
         expect(app.get("config").cssFiles).toEqual(["user/dev/css/index.css"]);
@@ -96,7 +96,7 @@ describe("lib/init/config", () => {
           projectName: "userName",
           srcFolder: "/user/srcFolder",
           cssFiles: ["./user/css/index.css"],
-          jsFiles: ["/user/js/index.js"]
+          jsFiles: ["/user/js/index.js"],
         });
 
         expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
@@ -112,11 +112,11 @@ describe("lib/init/config", () => {
           projectName: "userName",
           srcFolder: "user/srcFolder/",
           cssFiles: {
-            test: "user/dev/css/index.css"
+            test: "user/dev/css/index.css",
           },
           jsFiles: {
-            test: "user/dev/js/index.js"
-          }
+            test: "user/dev/js/index.js",
+          },
         });
 
         expect(app.get("config").cssFiles).toEqual(["user/dev/css/index.css"]);
@@ -130,7 +130,7 @@ describe("lib/init/config", () => {
           projectName: "userName",
           srcFolder: "/user/srcFolder",
           cssFiles: "./user/css/index.css",
-          jsFiles: "/user/js/index.js"
+          jsFiles: "/user/js/index.js",
         });
 
         expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
@@ -146,11 +146,11 @@ describe("lib/init/config", () => {
 
         setConfig(app, {
           cssFiles: {
-            foo: ["user/css/index.css"]
+            foo: ["user/css/index.css"],
           },
           jsFiles: {
-            foo: ["user/js/index.js"]
-          }
+            foo: ["user/js/index.js"],
+          },
         });
 
         expect(logger.log).toHaveBeenNthCalledWith(
@@ -171,11 +171,11 @@ describe("lib/init/config", () => {
 
         setConfig(app, {
           cssFiles: {
-            foo: ["user/css/index.css"]
+            foo: ["user/css/index.css"],
           },
           jsFiles: {
-            foo: ["user/js/index.js"]
-          }
+            foo: ["user/js/index.js"],
+          },
         });
         expect(app.get("config").cssFiles).toEqual([]);
         expect(app.get("config").jsFiles).toEqual([]);
@@ -201,13 +201,13 @@ describe("lib/init/config", () => {
           ".git",
           "package.json",
           "package-lock.json",
-          "headman.json"
+          "headman.json",
         ],
         validations: {
           html: true,
-          accessibility: true
+          accessibility: true,
         },
-        reload: true
+        reload: true,
       });
     });
   });
@@ -217,7 +217,7 @@ describe("lib/init/config", () => {
       const app = require("express")();
 
       setConfig(app, {
-        srcFolder: "."
+        srcFolder: ".",
       });
 
       expect(app.get("config").srcFolder).toEqual("");
@@ -229,7 +229,7 @@ describe("lib/init/config", () => {
       const app = require("express")();
 
       setConfig(app, {
-        srcFolder: "/"
+        srcFolder: "/",
       });
 
       expect(app.get("config").srcFolder).toEqual("");

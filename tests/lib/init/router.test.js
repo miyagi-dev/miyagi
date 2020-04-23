@@ -8,7 +8,7 @@ const component = "components/component/component.hbs";
 let app;
 let server;
 
-beforeEach(done => {
+beforeEach((done) => {
   app = express();
   server = app.listen(0, done);
 
@@ -18,17 +18,17 @@ beforeEach(done => {
     `srcFolder/${component}`
   );
   data[componentJsonFullPath.replace(".hbs", ".json")] = {
-    variations: [{ name: "someVariation", data: {} }]
+    variations: [{ name: "someVariation", data: {} }],
   };
   app.set("state", {
     partials: {
-      "components/component/component.hbs": component
+      "components/component/component.hbs": component,
     },
-    data
+    data,
   });
   app.set("config", {
     extension: "hbs",
-    srcFolder: "srcFolder/"
+    srcFolder: "srcFolder/",
   });
 
   setRouter(app);
@@ -42,8 +42,8 @@ afterEach(() => {
 
 describe("lib/init/router()", () => {
   describe("GET /", () => {
-    test("calls renderMain()", done => {
-      render.renderMain = jest.fn(done => done());
+    test("calls renderMain()", (done) => {
+      render.renderMain = jest.fn((done) => done());
 
       request(app)
         .get("/")
@@ -55,8 +55,8 @@ describe("lib/init/router()", () => {
   });
 
   describe("GET /component?file=all", () => {
-    test("calls renderComponentOverview()", done => {
-      render.renderComponentOverview = jest.fn(done => done());
+    test("calls renderComponentOverview()", (done) => {
+      render.renderComponentOverview = jest.fn((done) => done());
 
       request(app)
         .get("/component")
@@ -71,8 +71,8 @@ describe("lib/init/router()", () => {
   describe("GET /component?file=", () => {
     describe("with valid file value", () => {
       describe("without a variation value", () => {
-        test("calls renderComponentVariations()", done => {
-          render.renderComponentVariations = jest.fn(done => done());
+        test("calls renderComponentVariations()", (done) => {
+          render.renderComponentVariations = jest.fn((done) => done());
 
           request(app)
             .get("/component")
@@ -87,8 +87,8 @@ describe("lib/init/router()", () => {
       });
 
       describe("with a valid variation value", () => {
-        test("calls renderComponent()", done => {
-          render.renderComponent = jest.fn(done => done());
+        test("calls renderComponent()", (done) => {
+          render.renderComponent = jest.fn((done) => done());
 
           request(app)
             .get("/component")
@@ -102,8 +102,8 @@ describe("lib/init/router()", () => {
       });
 
       describe("with an invalid variation value", () => {
-        test("calls renderComponentNotFound()", done => {
-          render.renderComponentNotFound = jest.fn(done => done());
+        test("calls renderComponentNotFound()", (done) => {
+          render.renderComponentNotFound = jest.fn((done) => done());
 
           request(app)
             .get("/component")
@@ -117,8 +117,8 @@ describe("lib/init/router()", () => {
       });
 
       describe("with variation value, but empty data saved for the component", () => {
-        test("calls renderComponentNotFound()", done => {
-          render.renderComponentNotFound = jest.fn(done => done());
+        test("calls renderComponentNotFound()", (done) => {
+          render.renderComponentNotFound = jest.fn((done) => done());
           const state = app.get("state");
 
           app.get("state").data[
@@ -144,8 +144,8 @@ describe("lib/init/router()", () => {
     });
 
     describe("with invalid file value", () => {
-      test("calls renderComponentNotFound()", done => {
-        render.renderComponentNotFound = jest.fn(done => done());
+      test("calls renderComponentNotFound()", (done) => {
+        render.renderComponentNotFound = jest.fn((done) => done());
 
         request(app)
           .get("/component")
@@ -160,8 +160,8 @@ describe("lib/init/router()", () => {
 
   describe("GET /show?file=", () => {
     describe("with file=all", () => {
-      test("calls renderMain()", done => {
-        render.renderMain = jest.fn(done => done());
+      test("calls renderMain()", (done) => {
+        render.renderMain = jest.fn((done) => done());
 
         request(app)
           .get("/show")
@@ -175,8 +175,8 @@ describe("lib/init/router()", () => {
 
     describe("with valid file value", () => {
       describe("without a variation value", () => {
-        test("calls renderMainWithComponent()", done => {
-          render.renderMainWithComponent = jest.fn(done => done());
+        test("calls renderMainWithComponent()", (done) => {
+          render.renderMainWithComponent = jest.fn((done) => done());
 
           request(app)
             .get("/show")
@@ -189,8 +189,8 @@ describe("lib/init/router()", () => {
       });
 
       describe("with a valid variation value", () => {
-        test("calls renderMainWithComponent()", done => {
-          render.renderMainWithComponent = jest.fn(done => done());
+        test("calls renderMainWithComponent()", (done) => {
+          render.renderMainWithComponent = jest.fn((done) => done());
 
           request(app)
             .get("/show")
@@ -204,8 +204,8 @@ describe("lib/init/router()", () => {
       });
 
       describe("with aan invalid variation value", () => {
-        test("calls renderMainWith404()", done => {
-          render.renderMainWith404 = jest.fn(done => done());
+        test("calls renderMainWith404()", (done) => {
+          render.renderMainWith404 = jest.fn((done) => done());
 
           request(app)
             .get("/show")
@@ -220,8 +220,8 @@ describe("lib/init/router()", () => {
     });
 
     describe("with invalid file value", () => {
-      test("calls renderMainWith404()", done => {
-        render.renderMainWith404 = jest.fn(done => done());
+      test("calls renderMainWith404()", (done) => {
+        render.renderMainWith404 = jest.fn((done) => done());
 
         request(app)
           .get("/show")
@@ -235,8 +235,8 @@ describe("lib/init/router()", () => {
   });
 
   describe("GET /somethingInvalid", () => {
-    test("redirects to /", done => {
-      render.renderMainWith404 = jest.fn(done => done());
+    test("redirects to /", (done) => {
+      render.renderMainWith404 = jest.fn((done) => done());
 
       request(app)
         .get("/somethingInvalid")

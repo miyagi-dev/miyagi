@@ -24,15 +24,15 @@ describe("lib/menu/elements/directory", () => {
     fullPath,
     id,
     index,
-    name
+    name,
   };
   const request = {
     path: "foo/bar",
-    variation: "baz"
+    variation: "baz",
   };
   const app = require("express")();
   app.set("config", {
-    srcFolder: "srcFolder"
+    srcFolder: "srcFolder",
   });
 
   test("adds the component name with correct index to the html", () => {

@@ -7,13 +7,13 @@ const util = require("util");
 
 jest.mock("../../../lib/logger.js", () => {
   return {
-    log: jest.fn()
+    log: jest.fn(),
   };
 });
 jest.mock("handlebars", () => {
   return {
     registerPartial: jest.fn(),
-    compile: jest.fn(() => "compiledPartial")
+    compile: jest.fn(() => "compiledPartial"),
   };
 });
 
@@ -27,12 +27,12 @@ describe("lib/init/partials", () => {
     const app = express();
     app.set("state", {
       partials: {
-        "foo/bar.hbs": "full/path/foo/bar.hbs"
-      }
+        "foo/bar.hbs": "full/path/foo/bar.hbs",
+      },
     });
 
     describe("with valid file", () => {
-      test("calls hbs.registerPartial after reading the file", async done => {
+      test("calls hbs.registerPartial after reading the file", async (done) => {
         util.promisify = jest.fn(() => () => true);
 
         await partials.registerAll(app);
@@ -46,7 +46,7 @@ describe("lib/init/partials", () => {
     });
 
     describe("with invalid file", () => {
-      test("doesn't call hbs.registerPartial, but logs an error", async done => {
+      test("doesn't call hbs.registerPartial, but logs an error", async (done) => {
         util.promisify = jest.fn(() => () => {
           throw new Error();
         });
@@ -62,7 +62,7 @@ describe("lib/init/partials", () => {
       });
     });
 
-    test("calls hbs.registerPartial with layout files", async done => {
+    test("calls hbs.registerPartial with layout files", async (done) => {
       util.promisify = jest.fn(() => () => true);
       handlebars.compile = jest.fn(() => "compiledPartial");
 
@@ -84,7 +84,7 @@ describe("lib/init/partials", () => {
 
   describe("registerPartial()", () => {
     describe("with valid file", () => {
-      test("calls hbs.registerPartial after reading the file", async done => {
+      test("calls hbs.registerPartial after reading the file", async (done) => {
         helpers.getShortPathFromFullPath = jest.fn(() => "fullName");
         util.promisify = jest.fn(() => () => true);
         handlebars.compile = jest.fn(() => "compiledPartial");
@@ -100,7 +100,7 @@ describe("lib/init/partials", () => {
     });
 
     describe("with invalid file", () => {
-      test("doesn't call hbs.registerPartial, but logs an error", async done => {
+      test("doesn't call hbs.registerPartial, but logs an error", async (done) => {
         helpers.getShortPathFromFullPath = jest.fn(() => "fullName");
         util.promisify = jest.fn(() => () => {
           throw new Error();

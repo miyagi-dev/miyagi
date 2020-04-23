@@ -10,7 +10,7 @@ beforeEach(() => {
 describe("lib/init/views", () => {
   const app = express();
   app.set("config", {
-    srcFolder: "src/"
+    srcFolder: "src/",
   });
 
   setViews(app);

@@ -18,12 +18,12 @@ beforeEach(() => {
 describe("lib/menu/elements/variations", () => {
   describe("with variations", () => {
     const variation = {
-      name: "variation"
+      name: "variation",
     };
     const component = {
       index: 1,
       id: 2,
-      variations: [variation, variation, variation]
+      variations: [variation, variation, variation],
     };
 
     test("calls listItem.render for each variation", () => {
@@ -102,7 +102,7 @@ describe("lib/menu/elements/variations", () => {
     const component = {
       index: 1,
       id: 2,
-      variations: []
+      variations: [],
     };
 
     test("doesn't add the listItem html to the return value", () => {

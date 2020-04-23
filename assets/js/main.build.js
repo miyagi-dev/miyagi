@@ -6,7 +6,7 @@ class MainBuild extends Main {
 
     this.paths = {
       embedded: "component-",
-      container: "show-"
+      container: "show-",
     };
 
     this.indexPath = "component-all-embedded.html";
