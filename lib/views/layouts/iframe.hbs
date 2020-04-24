@@ -17,11 +17,20 @@
     {{#if a11yTestsPreload}}
       <link rel="prefetch" href="{{projectName}}/js/axe.min.js">
     {{/if}}
+    <style>
+      :root {
+        {{#if theme.fontFamily}}--Headman-fontFamily: {{ theme.fontFamily }};{{/if}}
+      }
+    </style>
   </head>
   <body class="HeadmanIframe">
     {{#block "body"}}{{/block}}
     {{#if standaloneUrl}}
-      <a class="HeadmanIframe-newTabLink" href="{{standaloneUrl}}" target="_blank">Open in new tab</a>
+      <a class="HeadmanIframe-newTabLink" href="{{standaloneUrl}}" target="_blank" aria-label="Open in new tab">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
+      </a>
     {{/if}}
   </body>
 </html>

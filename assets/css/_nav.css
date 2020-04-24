@@ -1,3 +1,7 @@
+.Headman-projectLogo + .Headman-projectName {
+  display: none;
+}
+
 .Headman-menu {
   font-size: 1.4rem;
   margin-top: 2rem;
@@ -37,13 +41,18 @@
 
 .Headman-component--lvl0 {
   font-weight: 500;
+  font-size: 0.875em;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
 }
 
 .Headman-component:not(.Headman-link) {
-  color: var(--Headman-color-lightGray);
+  color: var(--Headman-color-link);
+  opacity: 0.75;
 }
 
 .Headman-link {
+  color: var(--Headman-color-link);
   text-decoration: none;
 }
 
@@ -60,10 +69,10 @@
   font-weight: 500;
 }
 
-.Headman-link[aria-current] {
+.Headman-link:not(.Headman-link--showAll)[aria-current] {
   background: var(--Headman-color-link);
   border-radius: var(--Headman-borderRadius);
-  color: #fff;
+  color: var(--Headman-color-linkActive);
   display: inline-block;
 }
 

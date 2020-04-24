@@ -12,6 +12,7 @@ _headman_ renders and validates all your components and its variations. For maxi
 - No need for a backend that provides data
 - Show stakeholders the state of your development early
 - No overhead in your project (except for the config file)
+- Themeable, so it fits to your project
 
 ## Overview
 
@@ -58,7 +59,7 @@ Create a `headman.json` in your project folder with the following options:
 
 | option             | required/optional | type                      | default                               | Note                                                                                                                                                                                                  |
 | ------------------ | ----------------- | ------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `buildFolder`      | optional          | String                    | `build/`                              | Defines the folder where the static build files will be saved
+| `buildFolder`      | optional          | String                    | `build/`                              | Defines the folder where the static build files will be saved                                                                                                                                         |
 | `cssFiles`         | optional          | String or Array or Object | `[]`                                  | Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
 | `es6Modules`       | optional          | Boolean                   | `false`                               | Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)                                                                    |
 | `jsFiles`          | optional          | String or Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                                                                       |
@@ -66,6 +67,7 @@ Create a `headman.json` in your project folder with the following options:
 | `reload`           | optional          | Boolean                   | `true`                                | Defines if your component automatically reloads after saving.                                                                                                                                         |
 | `srcFolder`        | required          | String                    | `/`                                   | Setting this value to a folder with nothing else but components is optimal, while using your root folder decreases performance.                                                                       |
 | `srcFolderIgnores` | optional          | Array                     | `[".git", "node_modules"]`            | Values will be merged with the default value.                                                                                                                                                         |
+| `theme`            | optional          | Object                    | `{}`                                  | Options: `logo`, `navigation.colorBackground`, `navigation.colorLinks`, `navigation.colorLinksActive`, `fontFamily`                                                                                   |
 | `validations`      | optional          | Object                    | `{ html: true, accessibility: true }` |
 
 ### Starting _headman_

@@ -1,6 +1,6 @@
 .HeadmanTest {
   font-size: 1.4rem;
-  padding: var(--Headman-spacing) var(--Headman-spacing) 0;
+  padding: var(--Headman-spacing) 0 0;
 }
 
 .HeadmanTest:last-child {

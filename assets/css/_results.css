@@ -12,6 +12,7 @@
 
 .HeadmanResults-summary::after {
   border: var(--Headman-toggle-border);
+  border-color: currentColor;
   border-width: var(--Headman-toggle-borderWidth);
   content: "";
   display: block;
@@ -83,7 +84,7 @@
 }
 
 .HeadmanResults-details {
-  margin: 1rem 0 1rem 2.2rem;
+  margin: 1rem 0 1rem 0;
 }
 
 .HeadmanResults-empty {

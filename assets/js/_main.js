@@ -146,7 +146,7 @@ class Main {
   }
 
   onLinkClick(link) {
-    const src = link.getAttribute("href");
+    const src = link.closest("a").getAttribute("href");
 
     this.setActiveStateInNav(src);
     this.updateIframe(src);

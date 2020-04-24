@@ -2,7 +2,12 @@
   {{#content "body"}}
     <nav class="Headman-nav">
       <h1 class="Headman-title">
-        <a class="Headman-link Headman-link--showAll" href="{{ indexPath }}" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>{{userProjectName}}</a>
+        <a class="Headman-link Headman-link--showAll" href="{{ indexPath }}" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>
+          {{#if theme.logo}}
+            <img class="Headman-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
+          {{/if}}
+          <span class="Headman-projectName">{{userProjectName}}</span>
+        </a>
       </h1>
       {{#if folders}}
         <button class="Headman-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>

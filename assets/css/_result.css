@@ -22,7 +22,7 @@
 }
 
 .HeadmanResult a {
-  color: var(--Headman-color-link);
+  color: currentColor;
   padding: 0 0.35rem 0 2rem;
   position: relative;
   word-break: break-all;
@@ -46,7 +46,7 @@
 .HeadmanResult a:hover,
 .HeadmanResult a:focus,
 .HeadmanResult a:active {
-  background: var(--Headman-color-link);
+  background: var(--Headman-color);
   border-radius: var(--Headman-borderRadius);
   box-shadow: 0 0.2rem 0 var(--Headman-color-link);
   color: #fff;
