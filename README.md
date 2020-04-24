@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/mgrsskls/headman.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/headman) ![Codecov](https://img.shields.io/codecov/c/github/mgrsskls/headman?token=988e4e2b46be48ad94803ecfdfce7c1d) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/mgrsskls/headman) ![GitHub repo size](https://img.shields.io/github/repo-size/mgrsskls/headman)
 
-_headman_ renders and validates all your components and its variations. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. _headman_ uses [consolidate.js](https://github.com/tj/consolidate.js) internally, hence it automatically supports a lot of rendering engines.
+_headman_ is a component development tool. It renders and validates all your components and its variations. For maximum convenience, you can define test data in JSON files which can be reused from other components. This allows you to work independently from a backend. _headman_ uses [consolidate.js](https://github.com/tj/consolidate.js) internally, hence it automatically supports a lot of rendering engines.
 
 ## Benefits
 
