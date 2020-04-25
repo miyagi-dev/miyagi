@@ -9,15 +9,15 @@ describe("lib/render/_helpers", () => {
   describe("mergeWithGlobalData()", () => {
     test("returns the json from data.json with the passed json", () => {
       const app = express();
-      const data = {};
+      const fileContents = {};
       const fullPath = path.join(process.cwd(), "srcFolder/data.json");
-      data[fullPath] = { foo: "bar" };
+      fileContents[fullPath] = { foo: "bar" };
 
       app.set("config", {
         srcFolder: "srcFolder/",
       });
       app.set("state", {
-        data,
+        fileContents,
       });
 
       expect(helpers.mergeWithGlobalData(app, { bar: "foo" })).toEqual({
@@ -151,8 +151,8 @@ describe("lib/render/_helpers", () => {
       app.set("config", {
         srcFolder: "tests/mocks/",
       });
-      const data = {};
-      data[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
+      const fileContents = {};
+      fileContents[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
         variations: [
           {
             name: "variation",
@@ -166,14 +166,16 @@ describe("lib/render/_helpers", () => {
           },
         ],
       };
-      data[`${process.cwd()}/tests/mocks/resolve/resolve/resolve.json`] = {
+      fileContents[
+        `${process.cwd()}/tests/mocks/resolve/resolve/resolve.json`
+      ] = {
         data: {
           resolve: {
             dataFile: "resolve/resolve/resolve/resolve.json",
           },
         },
       };
-      data[
+      fileContents[
         `${process.cwd()}/tests/mocks/resolve/resolve/resolve/resolve.json`
       ] = {
         data: {
@@ -183,7 +185,7 @@ describe("lib/render/_helpers", () => {
 
       app.set("state", {
         partials: "partials",
-        data,
+        fileContents,
       });
 
       expect(
@@ -214,10 +216,10 @@ describe("lib/render/_helpers", () => {
         app.set("config", {
           srcFolder: "tests/mocks/",
         });
-        const data = {};
+        const fileContents = {};
         app.set("state", {
           partials: "partials",
-          data,
+          fileContents,
         });
 
         expect(
@@ -240,7 +242,7 @@ describe("lib/render/_helpers", () => {
         });
         app.set("state", {
           partials: "partials",
-          data: {
+          fileContents: {
             "some/component.json": "foo",
           },
         });
@@ -273,7 +275,7 @@ describe("lib/render/_helpers", () => {
         });
         app.set("state", {
           partials: "partials",
-          data: {
+          fileContents: {
             "some/component.json": "foo",
           },
         });
@@ -304,8 +306,8 @@ describe("lib/render/_helpers", () => {
         app.set("config", {
           srcFolder: "tests/mocks/",
         });
-        const data = {};
-        data[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
+        const fileContents = {};
+        fileContents[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
           variations: [
             {
               name: "variation",
@@ -315,7 +317,7 @@ describe("lib/render/_helpers", () => {
 
         app.set("state", {
           partials: "partials",
-          data,
+          fileContents,
         });
 
         expect(

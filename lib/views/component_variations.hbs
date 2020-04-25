@@ -1,14 +1,17 @@
 {{#extend "iframe"}}
-  {{#content "body"}}
-    <div class="HeadmanComponents">
-      {{#each variations}}
-        <div class="HeadmanComponent">
-          <a href="{{this.url}}" class="HeadmanComponent-file">{{this.variation}}</a>
-          <div class="HeadmanComponent-html">
-            {{{this.html}}}
-          </div>
-        </div>
-      {{/each}}
-    </div>
-  {{/content}}
+{{#content "body"}}
+{{#if documentation}}
+<div class="HeadmanDocumentation">{{{documentation}}}</div>
+{{/if}}
+<div class="HeadmanComponents">
+  {{#each variations}}
+  <div class="HeadmanComponent">
+    <a href="{{ this.url }}" class="HeadmanComponent-file">{{
+      this.variation
+    }}</a>
+    <div class="HeadmanComponent-html">{{{this.html}}}</div>
+  </div>
+  {{/each}}
+</div>
+{{/content}}
 {{/extend}}

@@ -1,6 +1,5 @@
 import build from "../../../lib/build/";
 import render from "../../../lib/render/index.js";
-import logger from "../../../lib/logger.js";
 import fs from "fs-extra";
 import path from "path";
 import express from "express";
@@ -40,9 +39,9 @@ afterEach(() => {
 
 describe("lib/build/index", () => {
   const app = express();
-  const data = {};
+  const fileContents = {};
 
-  data["/headman/tests/srcFolder/foo/bar.json"] = {
+  fileContents["/headman/tests/srcFolder/foo/bar.json"] = {
     variations: [
       {
         name: 1,
@@ -66,7 +65,7 @@ describe("lib/build/index", () => {
     partials: {
       "foo/bar.hbs": "/headman/tests/srcFolder/foo/bar.hbs",
     },
-    data,
+    fileContents,
   });
 
   describe("build()", () => {

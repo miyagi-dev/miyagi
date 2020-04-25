@@ -17,17 +17,17 @@ const path6 = path.join(process.cwd(), "/tests/mocks/srcFolder/component6.hbs");
 const path7 = path.join(process.cwd(), "/tests/mocks/srcFolder/component7.hbs");
 const path8 = path.join(process.cwd(), "/tests/mocks/srcFolder/component8.hbs");
 const path9 = path.join(process.cwd(), "/tests/mocks/srcFolder/component9.hbs");
-const data = {};
+const fileContents = {};
 
 function addGlobalData() {
-  app.get("state").data[
+  app.get("state").fileContents[
     path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
   ] = {
     global: "global",
   };
 }
 
-data[path1.replace(".hbs", ".json")] = {
+fileContents[path1.replace(".hbs", ".json")] = {
   data: {
     component: "component1",
   },
@@ -36,16 +36,16 @@ data[path1.replace(".hbs", ".json")] = {
     { name: "variation2", data: { variation: 2 } },
   ],
 };
-data[path2.replace(".hbs", ".json")] = {
+fileContents[path2.replace(".hbs", ".json")] = {
   data: { component: "component2" },
 };
-data[path3.replace(".hbs", ".json")] = {
+fileContents[path3.replace(".hbs", ".json")] = {
   variations: [
     { name: "variation1", data: { variation: 1 } },
     { name: "variation2", data: { variation: 2 } },
   ],
 };
-data[path6.replace(".hbs", ".json")] = {
+fileContents[path6.replace(".hbs", ".json")] = {
   variations: [
     {
       name: "variation1",
@@ -53,17 +53,17 @@ data[path6.replace(".hbs", ".json")] = {
     },
   ],
 };
-data[path7.replace(".hbs", ".json")] = {
+fileContents[path7.replace(".hbs", ".json")] = {
   variations: [{}, { name: "foo" }],
 };
-data[path8.replace(".hbs", ".json")] = {
+fileContents[path8.replace(".hbs", ".json")] = {
   variations: [
     {
       name: "variation1",
     },
   ],
 };
-data[path9.replace(".hbs", ".json")] = {
+fileContents[path9.replace(".hbs", ".json")] = {
   data: {},
   variations: [
     {
@@ -94,7 +94,7 @@ beforeEach(() => {
       "component7.hbs": path7,
       "component8.hbs": path8,
     },
-    data,
+    fileContents,
   });
   app.set("views", [path.join(process.cwd(), "/tests/mocks/srcFolder/")]);
   app.set("config", {
@@ -116,7 +116,7 @@ afterEach(() => {
   jest.resetModules();
   jest.resetAllMocks();
 
-  app.set("state").data[
+  app.set("state").fileContents[
     path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
   ] = null;
 });
@@ -595,6 +595,8 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            documentation: undefined,
+            theme: undefined,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -633,6 +635,8 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            documentation: undefined,
+            theme: undefined,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -670,6 +674,8 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            documentation: undefined,
+            theme: undefined,
           });
 
           done();
@@ -722,7 +728,7 @@ describe("lib/render/index", () => {
 
     describe("component doesn't have variations", () => {
       describe("embedded=true", () => {
-        test("renders component_frame.hbs", async (done) => {
+        test("renders component_variations.hbs", async (done) => {
           res.render = jest.fn();
 
           await render.renderComponentVariations({
@@ -732,17 +738,27 @@ describe("lib/render/index", () => {
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
           expect(res.render.mock.calls[0][1]).toEqual({
-            html: "component2\n",
-            htmlValidation: true,
-            accessibilityValidation: true,
-            standaloneUrl: `/component?file=component2.hbs`,
+            a11yTestsPreload: true,
+            documentation: undefined,
+            theme: undefined,
             dev: false,
             prod: false,
             projectName,
             userProjectName,
             isBuild: false,
+            variations: [
+              {
+                file: "component2.hbs",
+                html: "component2\n",
+                url:
+                  "/component?file=component2.hbs&variation=component2&embedded=true",
+                variation: "component2",
+              },
+            ],
           });
 
           done();
@@ -750,7 +766,7 @@ describe("lib/render/index", () => {
       });
 
       describe("embedded=false", () => {
-        test("renders component.hbs", async (done) => {
+        test("renders component_variations.hbs", async (done) => {
           res.render = jest.fn();
 
           await render.renderComponentVariations({
@@ -760,17 +776,27 @@ describe("lib/render/index", () => {
             embedded: false,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+          expect(res.render.mock.calls[0][0]).toEqual(
+            "component_variations.hbs"
+          );
           expect(res.render.mock.calls[0][1]).toEqual({
-            html: "component2\n",
-            htmlValidation: true,
-            accessibilityValidation: true,
-            standaloneUrl: null,
+            documentation: undefined,
+            a11yTestsPreload: true,
+            theme: undefined,
             dev: false,
             prod: false,
             projectName,
             userProjectName,
             isBuild: false,
+            variations: [
+              {
+                file: "component2.hbs",
+                html: "component2\n",
+                url:
+                  "/component?file=component2.hbs&variation=component2&embedded=true",
+                variation: "component2",
+              },
+            ],
           });
 
           done();
@@ -779,7 +805,7 @@ describe("lib/render/index", () => {
     });
 
     describe("component doesn't have json data", () => {
-      test("renders component.hbs", async (done) => {
+      test("renders component_variations.hbs", async (done) => {
         res.render = jest.fn();
 
         await render.renderComponentVariations({
@@ -788,17 +814,17 @@ describe("lib/render/index", () => {
           file: "component4.hbs",
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: "component4\n",
-          htmlValidation: true,
-          accessibilityValidation: true,
-          standaloneUrl: null,
+          a11yTestsPreload: true,
+          documentation: undefined,
           dev: false,
           prod: false,
           projectName,
           userProjectName,
           isBuild: false,
+          theme: undefined,
+          variations: [],
         });
 
         done();

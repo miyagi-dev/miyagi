@@ -8,7 +8,7 @@ afterEach(() => {
 });
 
 describe("lib/state/menu/data", () => {
-  describe("getData()", () => {
+  describe("getFileContents()", () => {
     test("returns an object with stored data from json files and ignores ignored files", async (done) => {
       const app = express();
       app.set("config", {
@@ -19,8 +19,10 @@ describe("lib/state/menu/data", () => {
       util.promisify = jest.fn(() => {
         return () => '{ "bar": "bar" }';
       });
-      const { getData } = require("../../../lib/state/data.js");
-      const data = await getData(app);
+      const {
+        getFileContents,
+      } = require("../../../lib/state/file-contents.js");
+      const data = await getFileContents(app);
 
       expect(Object.entries(data).length).toBe(2);
       expect(Object.entries(data)[0]).toEqual([
@@ -44,7 +46,7 @@ describe("lib/state/menu/data", () => {
               return '{"foo": "foo"}';
             };
           });
-          const { readFile } = require("../../../lib/state/data.js");
+          const { readFile } = require("../../../lib/state/file-contents.js");
 
           const result = await readFile(path.join(process.cwd(), "file/path"));
 
@@ -60,7 +62,7 @@ describe("lib/state/menu/data", () => {
               return "";
             };
           });
-          const { readFile } = require("../../../lib/state/data.js");
+          const { readFile } = require("../../../lib/state/file-contents.js");
 
           const result = await readFile(
             path.join(process.cwd(), "not/parseable")
@@ -79,7 +81,7 @@ describe("lib/state/menu/data", () => {
             throw new Error();
           };
         });
-        const { readFile } = require("../../../lib/state/data.js");
+        const { readFile } = require("../../../lib/state/file-contents.js");
 
         const result = await readFile(path.join(process.cwd(), `doesnt/exist`));
 

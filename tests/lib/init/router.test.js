@@ -12,19 +12,19 @@ beforeEach((done) => {
   app = express();
   server = app.listen(0, done);
 
-  const data = {};
+  const fileContents = {};
   const componentJsonFullPath = path.join(
     process.cwd(),
     `srcFolder/${component}`
   );
-  data[componentJsonFullPath.replace(".hbs", ".json")] = {
+  fileContents[componentJsonFullPath.replace(".hbs", ".json")] = {
     variations: [{ name: "someVariation", data: {} }],
   };
   app.set("state", {
     partials: {
       "components/component/component.hbs": component,
     },
-    data,
+    fileContents,
   });
   app.set("config", {
     extension: "hbs",
@@ -121,7 +121,7 @@ describe("lib/init/router()", () => {
           render.renderComponentNotFound = jest.fn((done) => done());
           const state = app.get("state");
 
-          app.get("state").data[
+          app.get("state").fileContents[
             path.join(
               process.cwd(),
               `srcFolder/${component.replace(".hbs", ".json")}`

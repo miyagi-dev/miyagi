@@ -14,6 +14,20 @@ body {
   min-height: 100%;
 }
 
+.HeadmanDocumentation {
+  padding: var(--spacing);
+  line-height: 1.5;
+}
+
+.HeadmanDocumentation * {
+  all: revert;
+  font-family: var(--Headman-fontFamily);
+}
+
+.HeadmanDocumentation > *:first-child {
+  margin-top: 0;
+}
+
 .HeadmanComponents {
   padding: var(--spacing) 0;
 }

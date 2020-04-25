@@ -10,6 +10,7 @@ _headman_ is a component development tool. It renders and validates all your com
 - Get your components immediately validated for html and accessibility violations
 - Improve the code of your components by developing them encapsulated
 - No need for a backend that provides data
+- Document your components using markdown
 - Show stakeholders the state of your development early
 - No overhead in your project (except for the config file)
 - Themeable, so it fits to your project
@@ -27,6 +28,7 @@ _headman_ is a component development tool. It renders and validates all your com
   - [Global data](#global-data)
   - [Rendering engines](#rendering-engines)
   - [Validations](#validations)
+  - [Documentation of components](#documentation-of-components)
   - [Creating a build](#creating-a-build)
 - [Good to know](#good-to-know)
 - [Things to come (maybe)](#things-to-come-maybe)
@@ -87,28 +89,33 @@ _headman_ assumes that you have a dedicated folder for each of your components, 
 │   │   │   ├── button.css
 │   │   │   ├── button.hbs
 │   │   │   ├── button.js
-│   │   │   └── button.json
+│   │   │   ├── button.json
+│   │   │   └── button.md
 │   │   └── teaser
 │   │       ├── teaser.css
 │   │       ├── teaser.hbs
 │   │       ├── teaser.js
-│   │       └── teaser.json
+│   │       ├── teaser.json
+│   │       └── teaser.md
 │   └── templates
 │       └── homepage
 │           ├── header
 │           │   ├── header.css
 │           │   ├── header.hbs
 │           │   ├── header.js
-│           │   └── header.json
+│           │   ├── header.json
+│           │   └── header.md
 │           ├── footer
 │           │   ├── header.css
 │           │   ├── header.hbs
 │           │   ├── header.js
-│           │   └── header.json
+│           │   ├── header.json
+│           │   └── header.md
 │           ├── homepage.css
 │           ├── homepage.hbs
 │           ├── homepage.js
-│           └── homepage.json
+│           ├── homepage.json
+│           └── homepage.md
 └── ...
 ```
 
@@ -328,6 +335,10 @@ The accessibility validation uses a local [axe-core](https://github.com/dequelab
 [https://validator.w3.org/nu/](https://validator.w3.org/nu/) has a rate limit of max. 10 requests per minute. If you are updating your components often, you might want to deactivate the html validation, otherwise your IP will be blocked.
 
 _**Note:** Just because the accessibility validation does not result in any errors, it does not mean that your component is accessible._
+
+### Documentation of components
+
+For every component you can create a markdown file for documentation. Its content is rendered at the beginning of the overview page of a component.
 
 ### Creating a build
 

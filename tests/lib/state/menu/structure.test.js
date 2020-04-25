@@ -20,7 +20,7 @@ describe("lib/state/menu/structure", () => {
     });
     app.set("state", {
       sourceTree: sourceTreeJson,
-      data: dataJson,
+      fileContents: dataJson,
     });
 
     process.cwd = () => "/headman/tests";
@@ -39,7 +39,7 @@ describe("lib/state/menu/structure", () => {
       });
       app.set("state", {
         sourceTree: {},
-        data: dataJson,
+        fileContents: dataJson,
       });
 
       const structure = require("../../../../lib/state/menu/structure.js");

@@ -4,6 +4,7 @@
   "userConfigFile": "headman.json",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
+  "documentationFileType": "md",
   "srcFolderIgnores": [
     "node_modules",
     ".git",

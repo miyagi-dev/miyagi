@@ -46,6 +46,7 @@
     "handlebars-layouts": "^3.1.4",
     "helmet": "^3.22.0",
     "http-server": "^0.12.1",
+    "markdown-it": "^10.0.0",
     "socket.io": "^2.3.0",
     "winston": "^3.2.1"
   },

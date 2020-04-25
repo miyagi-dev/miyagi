@@ -1,6 +1,6 @@
 let express;
 let getPartials;
-let getData;
+let getFileContents;
 let getMenu;
 let getSourceTree;
 let setState;
@@ -9,16 +9,17 @@ beforeEach(() => {
   express = require("express");
   getPartials = require("../../../lib/state/partials.js");
   /* eslint-disable */
-  getData = require("../../../lib/state/data.js").getData;
+  getFileContents = require("../../../lib/state/file-contents.js")
+    .getFileContents;
   getMenu = require("../../../lib/state/menu/index.js").getMenu;
   getSourceTree = require("../../../lib/state/source-tree.js").getSourceTree;
   /* eslint-enable */
   setState = require("../../../lib/state");
 
   jest.mock("../../../lib/state/partials.js");
-  jest.mock("../../../lib/state/data.js", () => {
+  jest.mock("../../../lib/state/file-contents.js", () => {
     return {
-      getData: jest.fn(() => {
+      getFileContents: jest.fn(() => {
         return "data";
       }),
     };
@@ -56,7 +57,7 @@ describe("lib/state/index", () => {
       await setState(app, {});
 
       expect(getPartials).not.toHaveBeenCalled();
-      expect(getData).not.toHaveBeenCalled();
+      expect(getFileContents).not.toHaveBeenCalled();
       expect(getMenu).not.toHaveBeenCalled();
       expect(getSourceTree).not.toHaveBeenCalled();
       done();
@@ -151,7 +152,7 @@ describe("lib/state/index", () => {
 
   describe("with data being set", () => {
     describe("with data=true", () => {
-      test("calls getData", async (done) => {
+      test("calls getFileContents", async (done) => {
         const app = express();
         app.set("config", {
           srcFolder: "srcFolder",
@@ -159,10 +160,10 @@ describe("lib/state/index", () => {
         });
 
         await setState(app, {
-          data: true,
+          fileContents: true,
         });
 
-        expect(getData).toHaveBeenCalledWith(app);
+        expect(getFileContents).toHaveBeenCalledWith(app);
         done();
       });
     });
@@ -176,17 +177,17 @@ describe("lib/state/index", () => {
         });
 
         await setState(app, {
-          data: {},
+          fileContents: {},
         });
 
-        expect(getData).not.toHaveBeenCalled();
+        expect(getFileContents).not.toHaveBeenCalled();
         done();
       });
     });
   });
 
   describe("with sourceTree=true", () => {
-    test("calls getSourceTree after getData", async (done) => {
+    test("calls getSourceTree after getFileContents", async (done) => {
       const app = express();
       app.set("config", {
         srcFolder: "srcFolder",
@@ -194,18 +195,18 @@ describe("lib/state/index", () => {
       });
 
       await setState(app, {
-        data: true,
+        fileContents: true,
         sourceTree: true,
       });
 
-      expect(getData).toHaveBeenCalledWith(app);
+      expect(getFileContents).toHaveBeenCalledWith(app);
       expect(getSourceTree).toHaveBeenCalledWith(app);
       done();
     });
   });
 
   describe("with data=true, sourceTree=true", () => {
-    test("sets app.state after getData and getSourceTree", async (done) => {
+    test("sets app.state after getFileContents and getSourceTree", async (done) => {
       const app = express();
       app.set("config", {
         srcFolder: "srcFolder",
@@ -214,12 +215,12 @@ describe("lib/state/index", () => {
       const spy = jest.spyOn(app, "set");
 
       await setState(app, {
-        data: true,
+        fileContents: true,
         sourceTree: true,
       });
 
       expect(spy).toHaveBeenCalledWith("state", {
-        data: "data",
+        fileContents: "data",
         sourceTree: "sourceTree",
       });
       done();
@@ -235,15 +236,15 @@ describe("lib/state/index", () => {
         const spy = jest.spyOn(app, "set");
 
         await setState(app, {
-          data: true,
+          fileContents: true,
           sourceTree: true,
           menu: true,
         });
 
-        expect(getData).toHaveBeenCalledWith(app);
+        expect(getFileContents).toHaveBeenCalledWith(app);
         expect(getSourceTree).toHaveBeenCalledWith(app);
         expect(spy).toHaveBeenCalledWith("state", {
-          data: "data",
+          fileContents: "data",
           sourceTree: "sourceTree",
           menu: "menu",
         });
