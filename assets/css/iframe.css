@@ -41,8 +41,10 @@ body {
   color: #767676;
   display: flex;
   font-family: var(--Headman-fontFamily);
-  font-size: 14px;
+  font-size: 0.875em;
   text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.0375em;
 }
 
 .HeadmanComponent-file:hover,
@@ -51,19 +53,11 @@ body {
   text-decoration: underline;
 }
 
-.HeadmanComponent-file::before,
 .HeadmanComponent-file::after {
   background: #ddd;
   content: "";
   flex: 1;
   height: 1px;
-}
-
-.HeadmanComponent-file::before {
-  margin-right: 20px;
-}
-
-.HeadmanComponent-file::after {
   margin-left: 20px;
 }
 
