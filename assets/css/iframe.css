@@ -14,8 +14,11 @@ body {
   min-height: 100%;
 }
 
-.HeadmanDocumentation {
+.HeadmanWrapper {
   padding: var(--spacing);
+}
+
+.HeadmanDocumentation {
   line-height: 1.5;
 }
 
@@ -28,12 +31,62 @@ body {
   margin-top: 0;
 }
 
-.HeadmanComponents {
-  padding: var(--spacing) 0;
+.HeadmanDocumentation h2 {
+  display: flex;
+  align-items: center;
 }
 
-.HeadmanComponent {
-  margin: 0 var(--spacing);
+.HeadmanDocumentation h2::after {
+  background: #ddd;
+  content: "";
+  flex: 1;
+  height: 1px;
+  margin-left: 20px;
+}
+
+.HeadmanDocumentation table {
+  border-spacing: 0;
+}
+
+.HeadmanDocumentation th,
+.HeadmanDocumentation td {
+  padding-right: 40px;
+}
+
+.HeadmanDocumentation thead th {
+  text-transform: uppercase;
+  color: #767676;
+  letter-spacing: 0.025em;
+  font-weight: 400;
+  font-size: 0.875em;
+  padding-bottom: 10px;
+}
+
+.HeadmanDocumentation tbody th,
+.HeadmanDocumentation tbody td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 2px;
+}
+
+.HeadmanDocumentation tbody tr:nth-child(odd) {
+  background: #f8f8f8;
+}
+
+.HeadmanDocumentation tbody ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.HeadmanDocumentation tbody li:not(:last-child)::after {
+  content: ",";
+  padding: 0 4px 0 0;
+}
+
+.HeadmanDocumentation code {
+  font-family: "Menlo", "Monaco", monospace;
 }
 
 .HeadmanComponent-file {
@@ -51,14 +104,6 @@ body {
 .HeadmanComponent-file:focus,
 .HeadmanComponent-file:active {
   text-decoration: underline;
-}
-
-.HeadmanComponent-file::after {
-  background: #ddd;
-  content: "";
-  flex: 1;
-  height: 1px;
-  margin-left: 20px;
 }
 
 .HeadmanComponent-html {

@@ -499,6 +499,10 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: false,
+          schema: [],
+          name: "component1.hbs",
+          documentation: undefined,
+          theme: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -551,6 +555,10 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            schema: [],
+            name: "component1.hbs",
+            documentation: undefined,
+            theme: undefined,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -597,6 +605,8 @@ describe("lib/render/index", () => {
             isBuild: false,
             documentation: undefined,
             theme: undefined,
+            schema: [],
+            name: "component3.hbs",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -637,6 +647,8 @@ describe("lib/render/index", () => {
             isBuild: false,
             documentation: undefined,
             theme: undefined,
+            schema: [],
+            name: "component6.hbs",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -676,6 +688,8 @@ describe("lib/render/index", () => {
             isBuild: false,
             documentation: undefined,
             theme: undefined,
+            schema: [],
+            name: "component7.hbs",
           });
 
           done();
@@ -719,6 +733,10 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            schema: [],
+            name: "component9.hbs",
+            documentation: undefined,
+            theme: undefined,
           });
 
           done();
@@ -750,6 +768,8 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            schema: [],
+            name: "component2.hbs",
             variations: [
               {
                 file: "component2.hbs",
@@ -788,6 +808,8 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: false,
+            schema: [],
+            name: "component2.hbs",
             variations: [
               {
                 file: "component2.hbs",
@@ -825,6 +847,8 @@ describe("lib/render/index", () => {
           isBuild: false,
           theme: undefined,
           variations: [],
+          schema: [],
+          name: "component4.hbs",
         });
 
         done();

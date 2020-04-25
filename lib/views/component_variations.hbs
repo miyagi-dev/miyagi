@@ -1,9 +1,48 @@
 {{#extend "iframe"}}
 {{#content "body"}}
-{{#if documentation}}
-<div class="HeadmanDocumentation">{{{documentation}}}</div>
-{{/if}}
-<div class="HeadmanComponents">
+<div class="HeadmanWrapper">
+  <div class="HeadmanDocumentation">
+    <h1>{{ name }}</h1>
+    {{#if documentation}}
+    {{{documentation}}}
+    {{/if}}
+    {{#if schema}}
+    <h2>Schema</h2>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Values</th>
+        <th>Required</th>
+        <th>Note</th>
+      </thead>
+      <tbody>
+        {{#each schema}}
+        <tr>
+          <th><code>{{name}}</code></th>
+          <td>{{attrs.type}}</td>
+          <td>
+            {{#if attrs.values}}
+            <ul>
+              {{#each attrs.values}}
+              <li>"{{this}}"</li>
+              {{/each}}
+            </ul>
+            {{else}}
+            <i>any</i>
+            {{/if}}
+          </td>
+          <td>{{#if attrs.required}}yes{{else}}no{{/if}}</td>
+          <td>{{#if attrs.note}}{{attrs.note}}{{else}}-{{/if}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    {{/if}}
+    {{#if variations}}
+    <h2>Variations</h2>
+    {{/if}}
+  </div>
   {{#each variations}}
   <div class="HeadmanComponent">
     <a href="{{ this.url }}" class="HeadmanComponent-file">{{

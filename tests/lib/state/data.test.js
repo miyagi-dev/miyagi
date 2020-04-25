@@ -8,9 +8,10 @@ afterEach(() => {
 });
 
 describe("lib/state/menu/data", () => {
+  const app = express();
+
   describe("getFileContents()", () => {
     test("returns an object with stored data from json files and ignores ignored files", async (done) => {
-      const app = express();
       app.set("config", {
         srcFolder: "tests/mocks/srcFolder/",
         srcFolderIgnores: ["ignored/"],
@@ -63,12 +64,17 @@ describe("lib/state/menu/data", () => {
             };
           });
           const { readFile } = require("../../../lib/state/file-contents.js");
+          const logger = require("../../../lib/logger.js");
+
+          logger.log = jest.fn();
 
           const result = await readFile(
+            app,
             path.join(process.cwd(), "not/parseable")
           );
 
           expect(result).toEqual({});
+          expect(logger.log).toHaveBeenCalled();
           done();
         });
       });
@@ -82,10 +88,17 @@ describe("lib/state/menu/data", () => {
           };
         });
         const { readFile } = require("../../../lib/state/file-contents.js");
+        const logger = require("../../../lib/logger.js");
 
-        const result = await readFile(path.join(process.cwd(), `doesnt/exist`));
+        logger.log = jest.fn();
+
+        const result = await readFile(
+          app,
+          path.join(process.cwd(), `doesnt/exist`)
+        );
 
         expect(result).toEqual({});
+        expect(logger.log).toHaveBeenCalled();
         done();
       });
     });

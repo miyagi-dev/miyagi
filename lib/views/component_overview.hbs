@@ -1,20 +1,22 @@
 {{#extend "iframe"}}
-  {{#content "body"}}
-    <div class="HeadmanComponents">
-      {{#if components}}
-        {{#each components}}
-          <div class="HeadmanComponent">
-            <a href="{{this.url}}" class="HeadmanComponent-file">{{this.file}}</a>
-            <div class="HeadmanComponent-html">
-              {{{this.html}}}
-            </div>
-          </div>
-        {{/each}}
-      {{else}}
-        <div class="HeadmanComponent">
-          There are no components yet.
-        </div>
-      {{/if}}
+{{#content "body"}}
+<div class="HeadmanWrapper">
+  <div class="HeadmanComponents">
+    {{#if components}}
+    {{#each components}}
+    <div class="HeadmanComponent">
+      <a href="{{this.url}}" class="HeadmanComponent-file">{{this.file}}</a>
+      <div class="HeadmanComponent-html">
+        {{{this.html}}}
+      </div>
     </div>
-  {{/content}}
+    {{/each}}
+    {{else}}
+    <div class="HeadmanComponent">
+      There are no components yet.
+    </div>
+    {{/if}}
+  </div>
+</div>
+{{/content}}
 {{/extend}}
