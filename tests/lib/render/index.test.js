@@ -496,6 +496,7 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           a11yTestsPreload: true,
+          folder: "",
           projectName,
           userProjectName,
           isBuild: false,
@@ -552,6 +553,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
+            folder: "",
             projectName,
             userProjectName,
             isBuild: false,
@@ -600,6 +602,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
+            folder: "",
             projectName,
             userProjectName,
             isBuild: false,
@@ -642,6 +645,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
+            folder: "",
             projectName,
             userProjectName,
             isBuild: false,
@@ -683,6 +687,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
+            folder: "",
             projectName,
             userProjectName,
             isBuild: false,
@@ -730,6 +735,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
+            folder: "",
             projectName,
             userProjectName,
             isBuild: false,
@@ -761,6 +767,7 @@ describe("lib/render/index", () => {
           );
           expect(res.render.mock.calls[0][1]).toEqual({
             a11yTestsPreload: true,
+            folder: "",
             documentation: undefined,
             theme: undefined,
             dev: false,
@@ -802,6 +809,7 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             documentation: undefined,
             a11yTestsPreload: true,
+            folder: "",
             theme: undefined,
             dev: false,
             prod: false,
@@ -839,6 +847,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           a11yTestsPreload: true,
+          folder: "",
           documentation: undefined,
           dev: false,
           prod: false,

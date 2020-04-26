@@ -158,27 +158,22 @@ body {
     grid-template-areas:
       "nav iframe"
       "nav tests";
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: 24rem 1fr;
     grid-template-rows: 1fr auto;
-  }
-
-  .Headman-nav {
-    max-width: 40vw;
   }
 
   .Headman-tests {
     --maxHeight: 50vh;
+
+    padding-left: var(--Headman-spacing);
+    padding-right: var(--Headman-spacing);
   }
 }
 
 @media (min-width: 64.03125em) {
   .Headman {
     grid-template-areas: "nav iframe tests";
-    grid-template-columns: auto 1fr auto;
-  }
-
-  .Headman-nav {
-    max-width: 20vw;
+    grid-template-columns: 24rem 1fr auto;
   }
 
   .Headman-tests {

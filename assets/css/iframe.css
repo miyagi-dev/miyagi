@@ -1,3 +1,5 @@
+@import "./_schema-table.css";
+
 :root {
   --Headman-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
     "Roboto", "Helvetica", "Arial", sans-serif;
@@ -15,28 +17,46 @@ body {
 }
 
 .HeadmanWrapper {
-  padding: var(--spacing);
+  padding: calc(var(--spacing) - 12px) var(--spacing) var(--spacing);
 }
 
-.HeadmanDocumentation {
+.HeadmanDocumentation,
+.HeadmanInformation {
   line-height: 1.5;
 }
 
-.HeadmanDocumentation * {
+.HeadmanDocumentation h1 {
+  color: var(--Headman-colorHeadlines);
+}
+
+.HeadmanInformation *,
+.HeadmanDocumentation *,
+.Headman-sectionTitle {
   all: revert;
   font-family: var(--Headman-fontFamily);
+}
+
+.HeadmanSchemaTable,
+.HeadmanInformation,
+.HeadmanDocumentation {
+  color: var(--Headman-color);
+}
+
+.HeadmanInformation-val {
+  margin-left: 0;
 }
 
 .HeadmanDocumentation > *:first-child {
   margin-top: 0;
 }
 
-.HeadmanDocumentation h2 {
-  display: flex;
+.Headman-sectionTitle {
   align-items: center;
+  display: flex;
+  margin-top: 60px;
 }
 
-.HeadmanDocumentation h2::after {
+.Headman-sectionTitle::after {
   background: #ddd;
   content: "";
   flex: 1;
@@ -44,47 +64,20 @@ body {
   margin-left: 20px;
 }
 
-.HeadmanDocumentation table {
-  border-spacing: 0;
+.HeadmanInformation-wrapper + .HeadmanInformation-wrapper {
+  margin-top: 30px;
 }
 
-.HeadmanDocumentation th,
-.HeadmanDocumentation td {
-  padding-right: 40px;
-}
-
-.HeadmanDocumentation thead th {
-  text-transform: uppercase;
+.HeadmanInformation-attr {
   color: #767676;
-  letter-spacing: 0.025em;
-  font-weight: 400;
+  font-family: var(--Headman-fontFamily);
   font-size: 0.875em;
-  padding-bottom: 10px;
+  letter-spacing: 0.0375em;
+  text-decoration: none;
+  text-transform: uppercase;
 }
 
-.HeadmanDocumentation tbody th,
-.HeadmanDocumentation tbody td {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 2px;
-}
-
-.HeadmanDocumentation tbody tr:nth-child(odd) {
-  background: #f8f8f8;
-}
-
-.HeadmanDocumentation tbody ul {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-}
-
-.HeadmanDocumentation tbody li:not(:last-child)::after {
-  content: ",";
-  padding: 0 4px 0 0;
-}
-
+.HeadmanInformation code,
 .HeadmanDocumentation code {
   font-family: "Menlo", "Monaco", monospace;
 }
@@ -95,9 +88,9 @@ body {
   display: flex;
   font-family: var(--Headman-fontFamily);
   font-size: 0.875em;
+  letter-spacing: 0.0375em;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.0375em;
 }
 
 .HeadmanComponent-file:hover,
@@ -111,7 +104,7 @@ body {
 }
 
 .HeadmanComponent-html {
-  padding: var(--spacing) 0 calc(2 * var(--spacing));
+  margin: calc(var(--spacing) / 2) 0 calc(2 * var(--spacing));
 }
 
 .HeadmanError {
@@ -123,21 +116,21 @@ body {
 }
 
 .HeadmanIframe-newTabLink {
-  background: #fff;
-  color: var(--Headman-color);
-  border: 1px solid #fff;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: var(--Headman-color);
+  display: flex;
   font-size: 40px;
   height: 1em;
+  justify-content: center;
   position: fixed;
   right: 20px;
   text-indent: -9999em;
   top: 20px;
   transition: var(--Headman-transition);
   width: 1em;
-  border-radius: 3px;
 }
 
 .HeadmanIframe-newTabLink:hover {
@@ -148,8 +141,8 @@ body {
   --size: 50%;
 
   display: block;
-  width: var(--size);
   height: var(--size);
+  width: var(--size);
 }
 
 @media (max-width: 32em) {

@@ -1,0 +1,55 @@
+.HeadmanSchemaTable,
+.HeadmanSchemaTable * {
+  all: revert;
+  font-family: var(--Headman-fontFamily);
+}
+
+.HeadmanSchemaTable {
+  border-spacing: 0;
+  margin-top: 30px;
+}
+
+.HeadmanSchemaTable-title {
+  color: #767676;
+  font-family: var(--Headman-fontFamily);
+  font-size: 0.875em;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.0375em;
+  text-align: left;
+}
+
+.HeadmanSchemaTable-cell {
+  padding-right: 40px;
+}
+
+.HeadmanSchemaTable-cell--head {
+  text-transform: uppercase;
+  color: #767676;
+  letter-spacing: 0.025em;
+  font-weight: 400;
+  font-size: 0.875em;
+  padding-bottom: 10px;
+}
+
+.HeadmanSchemaTable-cell--body {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+}
+
+.HeadmanSchemaTable-row:nth-child(odd) {
+  background: #f8f8f8;
+}
+
+.HeadmanSchemaTable-values {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
+
+.HeadmanSchemaTable-value:not(:last-child)::after {
+  content: ",";
+  padding: 0 4px 0 0;
+}

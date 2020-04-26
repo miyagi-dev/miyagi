@@ -62,14 +62,16 @@
 }
 
 .Headman-link--showAll {
+  display: inline-block;
   font-weight: bold;
+  font-size: 1.4rem;
 }
 
 .Headman-link--variation {
   font-weight: 500;
 }
 
-.Headman-link:not(.Headman-link--showAll)[aria-current] {
+.Headman-link[aria-current] {
   background: var(--Headman-color-link);
   border-radius: var(--Headman-borderRadius);
   color: var(--Headman-color-linkActive);

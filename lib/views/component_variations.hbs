@@ -6,43 +6,52 @@
     {{#if documentation}}
     {{{documentation}}}
     {{/if}}
-    {{#if schema}}
-    <h2>Schema</h2>
-    <table>
-      <thead>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Values</th>
-        <th>Required</th>
-        <th>Note</th>
-      </thead>
-      <tbody>
-        {{#each schema}}
-        <tr>
-          <th><code>{{name}}</code></th>
-          <td>{{attrs.type}}</td>
-          <td>
-            {{#if attrs.values}}
-            <ul>
-              {{#each attrs.values}}
-              <li>"{{this}}"</li>
-              {{/each}}
-            </ul>
-            {{else}}
-            <i>any</i>
-            {{/if}}
-          </td>
-          <td>{{#if attrs.required}}yes{{else}}no{{/if}}</td>
-          <td>{{#if attrs.note}}{{attrs.note}}{{else}}-{{/if}}</td>
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    {{/if}}
-    {{#if variations}}
-    <h2>Variations</h2>
-    {{/if}}
   </div>
+  <h2 class="Headman-sectionTitle">Information</h2>
+  <dl class="HeadmanInformation">
+    <div class="HeadmanInformation-wrapper">
+      <dt class="HeadmanInformation-attr">Folder</dt>
+      <dd class="HeadmanInformation-val"><code>{{ folder }}</code></dd>
+    </div>
+  </dl>
+  {{#if schema}}
+  <h2 class="Headman-sectionTitle">Schema</h2>
+  <table class="HeadmanSchemaTable">
+    <thead class="HeadmanSchemaTable-head">
+      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Name</th>
+      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Type</th>
+      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Values</th>
+      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Required</th>
+      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Note</th>
+    </thead>
+    <tbody class="HeadmanSchemaTable-body">
+      {{#each schema}}
+      <tr class="HeadmanSchemaTable-row">
+        <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">{{name}}</th>
+        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">{{attrs.type}}</td>
+        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">
+          {{#if attrs.values}}
+          <ul class="HeadmanSchemaTable-values">
+            {{#each attrs.values}}
+            <li class="HeadmanSchemaTable-value">"{{this}}"</li>
+            {{/each}}
+          </ul>
+          {{else}}
+          <i>any</i>
+          {{/if}}
+        </td>
+        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">{{#if attrs.required}}yes{{else}}no{{/if}}
+        </td>
+        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">
+          {{#if attrs.note}}{{attrs.note}}{{else}}-{{/if}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+  {{/if}}
+  {{#if variations}}
+  <h2 class="Headman-sectionTitle">Variations</h2>
+  {{/if}}
   {{#each variations}}
   <div class="HeadmanComponent">
     <a href="{{ this.url }}" class="HeadmanComponent-file">{{

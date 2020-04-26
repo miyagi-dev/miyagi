@@ -1,39 +1,40 @@
 {{#extend "main"}}
-  {{#content "body"}}
-    <nav class="Headman-nav">
-      <h1 class="Headman-title">
-        <a class="Headman-link Headman-link--showAll" href="{{ indexPath }}" target="iframe"{{#if showAll }} aria-current="page"{{/if}}>
-          {{#if theme.logo}}
-            <img class="Headman-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
-          {{/if}}
-          <span class="Headman-projectName">{{userProjectName}}</span>
-        </a>
-      </h1>
-      {{#if folders}}
-        <button class="Headman-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
-        <div class="Headman-menu">
-          {{#menu folders requestedComponent requestedVariation null null }}{{/menu}}
-        </div>
+{{#content "body"}}
+<nav class="Headman-nav">
+  <h1 class="Headman-title">
+    <a class="Headman-link Headman-link--showAll" href="{{ indexPath }}" target="iframe" {{#if showAll }}
+      aria-current="page" {{/if}}>
+      {{#if theme.logo}}
+      <img class="Headman-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
       {{/if}}
-    </nav>
+      <span class="Headman-projectName">Overview</span>
+    </a>
+  </h1>
+  {{#if folders}}
+  <button class="Headman-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
+  <div class="Headman-menu">
+    {{#menu folders requestedComponent requestedVariation null null }}{{/menu}}
+  </div>
+  {{/if}}
+</nav>
 
-    <main class="Headman-content">
-      <iframe class="Headman-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
-    </main>
-    <aside class="Headman-tests"{{#if isComponentOverview}} hidden{{/if}}>
-      {{#each tests}}
-        <div class="HeadmanTest HeadmanTest--{{this.alias}}" hidden>
-          <b class="HeadmanTest-title">{{this.title}}</b>
-          {{#each this.results}}
-            <details class="HeadmanResults HeadmanResults--{{this.alias}}">
-              <summary class="HeadmanResults-summary">
-                {{this.label}}: <span class="HeadmanResults-value HeadmanResults-value--{{this.class}}">0</span>
-              </summary>
-              <div class="HeadmanResults-details"></div>
-            </details>
-          {{/each}}
-        </div>
-      {{/each}}
-    </aside>
-  {{/content}}
+<main class="Headman-content">
+  <iframe class="Headman-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
+</main>
+<aside class="Headman-tests" {{#if isComponentOverview}} hidden{{/if}}>
+  {{#each tests}}
+  <div class="HeadmanTest HeadmanTest--{{this.alias}}" hidden>
+    <b class="HeadmanTest-title">{{this.title}}</b>
+    {{#each this.results}}
+    <details class="HeadmanResults HeadmanResults--{{this.alias}}">
+      <summary class="HeadmanResults-summary">
+        {{this.label}}: <span class="HeadmanResults-value HeadmanResults-value--{{this.class}}">0</span>
+      </summary>
+      <div class="HeadmanResults-details"></div>
+    </details>
+    {{/each}}
+  </div>
+  {{/each}}
+</aside>
+{{/content}}
 {{/extend}}

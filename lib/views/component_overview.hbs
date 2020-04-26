@@ -1,8 +1,12 @@
 {{#extend "iframe"}}
 {{#content "body"}}
 <div class="HeadmanWrapper">
+  <div class="HeadmanDocumentation">
+    <h1>{{ userProjectName }}</h1>
+  </div>
+  {{#if components}}
+  <h2 class="Headman-sectionTitle">Overview</h2>
   <div class="HeadmanComponents">
-    {{#if components}}
     {{#each components}}
     <div class="HeadmanComponent">
       <a href="{{this.url}}" class="HeadmanComponent-file">
@@ -21,8 +25,8 @@
     <div class="HeadmanComponent">
       There are no components yet.
     </div>
-    {{/if}}
   </div>
+  {{/if}}
 </div>
 {{/content}}
 {{/extend}}
