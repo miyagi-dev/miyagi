@@ -130,6 +130,7 @@ Create a `json` file in your component folder with a structure like this:
 ```js
 /* e.g. components/button/button.json */
 {
+  "name": "Button",
   "data": {
     "label": "Click me",
     "type": "submit"
@@ -138,6 +139,7 @@ Create a `json` file in your component folder with a structure like this:
 
 /* e.g. components/teaser/teaser.json */
 {
+  "name": "Teaser",
   "data": {
     "title": "Teaser 1 title"
   },
@@ -153,6 +155,7 @@ Create a `json` file in your component folder with a structure like this:
 
 /* e.g. templates/homepage/homepage.json */
 {
+  "name": "Homepage",
   "data": {
     "content": "<p>Here goes my content html</p>",
     "teaser": {
@@ -229,6 +232,7 @@ The `teaser.json` example above would be resolved like this:
 ```js
 /* e.g. template.json */
 {
+  "name": "Teaser",
   "data": {
     "content": "<p>Here goes my content html</p>",
     "teaser":  {

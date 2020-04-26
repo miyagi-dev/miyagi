@@ -106,8 +106,12 @@ body {
   text-decoration: underline;
 }
 
+.HeadmanComponent-fileFolders {
+  color: #bbb;
+}
+
 .HeadmanComponent-html {
-  padding: var(--spacing) 0;
+  padding: var(--spacing) 0 calc(2 * var(--spacing));
 }
 
 .HeadmanError {

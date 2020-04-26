@@ -27,6 +27,7 @@ describe("state/menu/index", () => {
     });
     app.set("state", {
       sourceTree: {},
+      fileContents: {},
     });
 
     const { getMenu } = require("../../../../lib/state/menu");

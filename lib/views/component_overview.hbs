@@ -5,7 +5,13 @@
     {{#if components}}
     {{#each components}}
     <div class="HeadmanComponent">
-      <a href="{{this.url}}" class="HeadmanComponent-file">{{this.file}}</a>
+      <a href="{{this.url}}" class="HeadmanComponent-file">
+        {{#if folders}}
+        <span class="HeadmanComponent-fileFolders">
+          {{#each folders}}{{this}} /{{/each}}
+        </span>
+        {{/if}}&nbsp;{{this.name}}
+      </a>
       <div class="HeadmanComponent-html">
         {{{this.html}}}
       </div>
