@@ -23,6 +23,7 @@
     },
     "views": "lib/views"
   },
+  "defaultVariationName": "default",
   "messages": {
     "buildStarting": "Creating headman build…",
     "buildDone": "Build done!",

@@ -28,7 +28,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "button",
+            "name": "default",
             "data": {
               "type": "submit"
             }
@@ -90,7 +90,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "component-b",
+            "name": "default",
             "data": {
               "name": "B"
             }
@@ -138,7 +138,7 @@
             "extension": ".hbs",
             "variations": [
               {
-                "name": "_footer",
+                "name": "default",
                 "data": {
                   "footer": "footer1"
                 }
@@ -163,7 +163,7 @@
             "extension": ".hbs",
             "variations": [
               {
-                "name": "_header",
+                "name": "default",
                 "data": {
                   "header": "header1"
                 }
@@ -207,7 +207,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "input",
+            "name": "default",
             "data": {
               "label": "Name",
               "type": "text",
@@ -251,7 +251,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "teaser",
+            "name": "default",
             "data": {
               "name": "Teaser without CTA"
             }
@@ -357,7 +357,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "handlebars",
+            "name": "default",
             "data": {
               "engine": "handlebars",
               "testInclude": {
@@ -461,7 +461,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "handlebars",
+            "name": "default",
             "data": {
               "engineInclude": "handlebars include"
             }
@@ -571,7 +571,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "template-a",
+            "name": "default",
             "data": {
               "name": "A"
             }
@@ -598,7 +598,7 @@
         "extension": ".hbs",
         "variations": [
           {
-            "name": "template-b",
+            "name": "default",
             "data": {
               "name": "B",
               "teaserList": {

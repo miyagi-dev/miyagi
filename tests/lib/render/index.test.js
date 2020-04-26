@@ -474,9 +474,9 @@ describe("lib/render/index", () => {
             {
               file: "component1.hbs",
               html: "component1global\n",
-              variation: "component1",
+              variation: "default",
               url:
-                "/component?file=component1.hbs&variation=component1&embedded=true",
+                "/component?file=component1.hbs&variation=default&embedded=true",
             },
             {
               file: "component1.hbs",
@@ -530,9 +530,9 @@ describe("lib/render/index", () => {
               {
                 file: "component1.hbs",
                 html: "component1\n",
-                variation: "component1",
+                variation: "default",
                 url:
-                  "/component?file=component1.hbs&variation=component1&embedded=true",
+                  "/component?file=component1.hbs&variation=default&embedded=true",
               },
               {
                 file: "component1.hbs",
@@ -715,9 +715,9 @@ describe("lib/render/index", () => {
               {
                 file: "component9.hbs",
                 html: "component9\n",
-                variation: "component9",
+                variation: "default",
                 url:
-                  "/component?file=component9.hbs&variation=component9&embedded=true",
+                  "/component?file=component9.hbs&variation=default&embedded=true",
               },
               {
                 file: "component9.hbs",
@@ -775,8 +775,8 @@ describe("lib/render/index", () => {
                 file: "component2.hbs",
                 html: "component2\n",
                 url:
-                  "/component?file=component2.hbs&variation=component2&embedded=true",
-                variation: "component2",
+                  "/component?file=component2.hbs&variation=default&embedded=true",
+                variation: "default",
               },
             ],
           });
@@ -815,8 +815,8 @@ describe("lib/render/index", () => {
                 file: "component2.hbs",
                 html: "component2\n",
                 url:
-                  "/component?file=component2.hbs&variation=component2&embedded=true",
-                variation: "component2",
+                  "/component?file=component2.hbs&variation=default&embedded=true",
+                variation: "default",
               },
             ],
           });
@@ -846,7 +846,15 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: false,
           theme: undefined,
-          variations: [],
+          variations: [
+            {
+              file: "component4.hbs",
+              html: "component4\n",
+              url:
+                "/component?file=component4.hbs&variation=default&embedded=true",
+              variation: "default",
+            },
+          ],
           schema: [],
           name: "component4",
         });
