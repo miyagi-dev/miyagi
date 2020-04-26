@@ -342,7 +342,7 @@ For every component you can create a markdown file for documentation. Its conten
 
 ### Creating a build
 
-You can create a production build with `node node_modules/headman --build` (or `headman --build`).
+You can create a production build with `node node_modules/headman build` (or `headman build`).
 
 _headman_ automatically goes into production mode to create the build, so you can ommit the `NODE_ENV`.
 By default, the build (static html files + assets) will be created in `<YOUR_PROJECT>/build`. You can change this in your `headman.json` (see [Options](#options)).
