@@ -2,7 +2,7 @@
 {{#content "body"}}
 <nav class="Headman-nav">
   <h1 class="Headman-title">
-    <a class="Headman-link Headman-link--showAll" href="{{ indexPath }}" target="iframe" {{#if showAll }}
+    <a class="Headman-link Headman-link--showAll{{#if theme.logo}} has-logo{{/if}}" href="{{ indexPath }}" target="iframe" {{#if showAll }}
       aria-current="page" {{/if}}>
       {{#if theme.logo}}
       <img class="Headman-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">

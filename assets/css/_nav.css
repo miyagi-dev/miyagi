@@ -40,10 +40,10 @@
 }
 
 .Headman-component--lvl0 {
-  font-weight: 500;
   font-size: 0.875em;
-  text-transform: uppercase;
+  font-weight: 500;
   letter-spacing: 0.025em;
+  text-transform: uppercase;
 }
 
 .Headman-component:not(.Headman-link) {
@@ -63,15 +63,15 @@
 
 .Headman-link--showAll {
   display: inline-block;
-  font-weight: bold;
   font-size: 1.4rem;
+  font-weight: bold;
 }
 
 .Headman-link--variation {
   font-weight: 500;
 }
 
-.Headman-link[aria-current] {
+.Headman-link:not(.has-logo)[aria-current] {
   background: var(--Headman-color-link);
   border-radius: var(--Headman-borderRadius);
   color: var(--Headman-color-linkActive);

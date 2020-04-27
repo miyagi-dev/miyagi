@@ -20,6 +20,8 @@
     <style>
       :root {
         {{#if theme.fontFamily}}--Headman-fontFamily: {{ theme.fontFamily }};{{/if}}
+        {{#if theme.content.colorText}}--Headman-color: {{ theme.content.colorText }};{{/if}}
+        {{#if theme.content.colorHeadlines}}--Headman-colorHeadlines: {{ theme.content.colorHeadlines }};{{/if}}
       }
     </style>
   </head>
