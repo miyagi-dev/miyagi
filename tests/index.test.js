@@ -120,7 +120,7 @@ describe("index", () => {
         });
 
         describe("without srcFolfer defined in headman.json", () => {
-          test("it calls logger.log with the correct error msg", () => {
+          test("it calls logger.log with the correct warn msg", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
 
@@ -132,12 +132,12 @@ describe("index", () => {
             require("../index.js");
 
             expect(logger.log).toHaveBeenCalledWith(
-              "error",
+              "warn",
               appConfig.messages.missingSrcFolder
             );
           });
 
-          test("doesn't call lib/init", () => {
+          test("does call lib/init", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
             const init = require("../lib/init");
@@ -150,7 +150,7 @@ describe("index", () => {
 
             require("../index.js");
 
-            expect(init).not.toHaveBeenCalled();
+            expect(init).toHaveBeenCalled();
           });
         });
       });
