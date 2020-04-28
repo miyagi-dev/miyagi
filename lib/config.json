@@ -1,4 +1,23 @@
 {
+  "defaultUserConfig": {
+    "srcFolder": "",
+    "cssFiles": [],
+    "jsFiles": [],
+    "es6Modules": false,
+    "buildFolder": "build",
+    "validations": {
+      "html": true,
+      "accessibility": true
+    },
+    "srcFolderIgnores": [
+      "node_modules",
+      ".git",
+      "package.json",
+      "package-lock.json",
+      "headman.json"
+    ],
+    "reload": true
+  },
   "projectName": "headman",
   "defaultPort": 5000,
   "userConfigFile": "headman.json",
@@ -9,13 +28,6 @@
     "name": "schema",
     "type": "json"
   },
-  "srcFolderIgnores": [
-    "node_modules",
-    ".git",
-    "package.json",
-    "package-lock.json",
-    "headman.json"
-  ],
   "folders": {
     "assets": {
       "development": "assets",
@@ -47,6 +59,13 @@
     "userConfigNotFound": "Couldn't find the file headman.json.",
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
-    "wrongFileType": "${fileName} has not the correct file type."
+    "wrongFileType": "${fileName} has not the correct file type.",
+    "generator": {
+      "starting": "Creating component…",
+      "done": "Done!",
+      "noComponentNameDefined": "Please specify a component name like this: headman new directoryName/componentName",
+      "unknownError": "An unknown error occured when creating ${name}.",
+      "fileAlreadyExists": "The file ${name} already exists."
+    }
   }
 }

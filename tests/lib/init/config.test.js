@@ -1,4 +1,4 @@
-const setConfig = require("../../../lib/init/config.js");
+const getMergedConfig = require("../../../lib/init/config.js");
 const logger = require("../../../lib/logger.js");
 
 jest.mock("../../../lib/logger.js");
@@ -10,71 +10,61 @@ afterEach(() => {
 
 describe("lib/init/config", () => {
   describe("with strings for user cssFiles and user jsFiles", () => {
-    test("merges given user config and app config and sets app.config", () => {
-      const app = require("express")();
-
-      setConfig(app, {
+    test("merges given user config and app config and returns it", () => {
+      const conf = getMergedConfig({
         projectName: "userName",
         srcFolder: "user/srcFolder/",
         cssFiles: "user/css/index.css",
         jsFiles: "user/js/index.js",
       });
 
-      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
-      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
+      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
     });
 
     test("sanitizes all given paths by the user", () => {
-      const app = require("express")();
-
-      setConfig(app, {
+      const conf = getMergedConfig({
         projectName: "userName",
         srcFolder: "/user/srcFolder",
         cssFiles: "./user/css/index.css",
         jsFiles: "/user/js/index.js",
       });
 
-      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
-      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
+      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
     });
   });
 
   describe("with arrays for user cssFiles and user jsFiles", () => {
-    test("merges given user config and app config and sets app.config", () => {
-      const app = require("express")();
-
-      setConfig(app, {
+    test("merges given user config and app config and returns it", () => {
+      const conf = getMergedConfig({
         projectName: "userName",
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
       });
 
-      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
-      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
+      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
     });
 
     test("sanitizes all given paths by the user", () => {
-      const app = require("express")();
-
-      setConfig(app, {
+      const conf = getMergedConfig({
         projectName: "userName",
         srcFolder: "/user/srcFolder",
         cssFiles: ["./user/css/index.css"],
         jsFiles: ["/user/js/index.js"],
       });
 
-      expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
-      expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
+      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
     });
   });
 
   describe("with an object for user cssFiles and user jsFiles", () => {
     describe("values are arrays", () => {
-      test("merges given user config and app config and sets app.config", () => {
-        const app = require("express")();
-
-        setConfig(app, {
+      test("merges given user config and app config and returns it", () => {
+        const conf = getMergedConfig({
           projectName: "userName",
           srcFolder: "user/srcFolder/",
           cssFiles: {
@@ -85,30 +75,26 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(app.get("config").cssFiles).toEqual(["user/dev/css/index.css"]);
-        expect(app.get("config").jsFiles).toEqual(["user/dev/js/index.js"]);
+        expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
+        expect(conf.jsFiles).toEqual(["user/dev/js/index.js"]);
       });
 
       test("sanitizes all given paths by the user", () => {
-        const app = require("express")();
-
-        setConfig(app, {
+        const conf = getMergedConfig({
           projectName: "userName",
           srcFolder: "/user/srcFolder",
           cssFiles: ["./user/css/index.css"],
           jsFiles: ["/user/js/index.js"],
         });
 
-        expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
-        expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
+        expect(conf.cssFiles).toEqual(["user/css/index.css"]);
+        expect(conf.jsFiles).toEqual(["user/js/index.js"]);
       });
     });
 
     describe("values are strings", () => {
-      test("merges given user config and app config and sets app.config", () => {
-        const app = require("express")();
-
-        setConfig(app, {
+      test("merges given user config and app config and returns it", () => {
+        const conf = getMergedConfig({
           projectName: "userName",
           srcFolder: "user/srcFolder/",
           cssFiles: {
@@ -119,32 +105,28 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(app.get("config").cssFiles).toEqual(["user/dev/css/index.css"]);
-        expect(app.get("config").jsFiles).toEqual(["user/dev/js/index.js"]);
+        expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
+        expect(conf.jsFiles).toEqual(["user/dev/js/index.js"]);
       });
 
       test("sanitizes all given paths by the user", () => {
-        const app = require("express")();
-
-        setConfig(app, {
+        const conf = getMergedConfig({
           projectName: "userName",
           srcFolder: "/user/srcFolder",
           cssFiles: "./user/css/index.css",
           jsFiles: "/user/js/index.js",
         });
 
-        expect(app.get("config").cssFiles).toEqual(["user/css/index.css"]);
-        expect(app.get("config").jsFiles).toEqual(["user/js/index.js"]);
+        expect(conf.cssFiles).toEqual(["user/css/index.css"]);
+        expect(conf.jsFiles).toEqual(["user/js/index.js"]);
       });
     });
 
     describe("with missing env key in assets objects", () => {
-      const app = require("express")();
-
       test("it logs an error", () => {
         logger.log = jest.fn();
 
-        setConfig(app, {
+        getMergedConfig({
           cssFiles: {
             foo: ["user/css/index.css"],
           },
@@ -169,7 +151,7 @@ describe("lib/init/config", () => {
       test("it sets the asset keys to []", () => {
         logger.log = jest.fn();
 
-        setConfig(app, {
+        const conf = getMergedConfig({
           cssFiles: {
             foo: ["user/css/index.css"],
           },
@@ -177,19 +159,15 @@ describe("lib/init/config", () => {
             foo: ["user/js/index.js"],
           },
         });
-        expect(app.get("config").cssFiles).toEqual([]);
-        expect(app.get("config").jsFiles).toEqual([]);
+        expect(conf.cssFiles).toEqual([]);
+        expect(conf.jsFiles).toEqual([]);
       });
     });
   });
 
   describe("without any empty config given", () => {
     test("it returns the default values", () => {
-      const app = require("express")();
-
-      setConfig(app);
-
-      expect(app.get("config")).toEqual({
+      expect(getMergedConfig()).toEqual({
         projectName: "headman",
         srcFolder: "",
         buildFolder: "build",
@@ -214,25 +192,21 @@ describe("lib/init/config", () => {
 
   describe("with srcFolder === '.'", () => {
     test("it sets srcFolder to ''", () => {
-      const app = require("express")();
-
-      setConfig(app, {
-        srcFolder: ".",
-      });
-
-      expect(app.get("config").srcFolder).toEqual("");
+      expect(
+        getMergedConfig({
+          srcFolder: ".",
+        }).srcFolder
+      ).toEqual("");
     });
   });
 
   describe("with srcFolder === '/'", () => {
     test("it sets srcFolder to ''", () => {
-      const app = require("express")();
-
-      setConfig(app, {
-        srcFolder: "/",
-      });
-
-      expect(app.get("config").srcFolder).toEqual("");
+      expect(
+        getMergedConfig({
+          srcFolder: "/",
+        }).srcFolder
+      ).toEqual("");
     });
   });
 });

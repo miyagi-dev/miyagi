@@ -42,8 +42,31 @@ describe("index", () => {
 
             require("../index.js");
             expect(init).toHaveBeenCalledWith(
-              JSON.parse(
-                '{"extension": "hbs","engine": "handlebars","srcFolder": "src/"}'
+              Object.assign(
+                {
+                  projectName: "headman",
+                  srcFolder: "",
+                  buildFolder: "build",
+                  cssFiles: [],
+                  jsFiles: [],
+                  projectName: "headman",
+                  es6Modules: false,
+                  srcFolderIgnores: [
+                    "node_modules",
+                    ".git",
+                    "package.json",
+                    "package-lock.json",
+                    "headman.json",
+                  ],
+                  validations: {
+                    html: true,
+                    accessibility: true,
+                  },
+                  reload: true,
+                },
+                JSON.parse(
+                  '{"extension": "hbs","engine": "handlebars","srcFolder": "src/"}'
+                )
               )
             );
           });

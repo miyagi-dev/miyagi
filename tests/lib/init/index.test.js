@@ -44,9 +44,8 @@ afterEach(() => {
 
 describe("lib/init", () => {
   describe("always", () => {
-    test("calls setConfig", async (done) => {
+    test("calls setEngines", async (done) => {
       await init({});
-      expect(setConfig).toHaveBeenCalled();
       expect(setEngines).toHaveBeenCalled();
       done();
     });

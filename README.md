@@ -29,6 +29,7 @@ _headman_ is a component development tool. It renders and validates all your com
   - [Rendering engines](#rendering-engines)
   - [Validations](#validations)
   - [Documentation of components](#documentation-of-components)
+  - [Creating components via CLI](#creating-components-via-cli)
   - [Creating a build](#creating-a-build)
 - [Good to know](#good-to-know)
 - [Things to come (maybe)](#things-to-come-maybe)
@@ -343,6 +344,13 @@ _**Note:** Just because the accessibility validation does not result in any erro
 ### Documentation of components
 
 For every component you can create a markdown file for documentation. Its content is rendered at the beginning of the overview page of a component.
+
+### Creating components via CLI
+
+Creating (empty) components via CLI is possible with `headman new folderName/componentName`.
+This will create template (the type is based on your config), data, docs, css and js files.
+You can skip any of these like this: `headman new folderName/componentName --skip=css,js`.
+Alternatively, you can explicitly say which files you need like this: `headman new folderName/componentName --only=tpl,docs`.
 
 ### Creating a build
 
