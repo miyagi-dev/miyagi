@@ -171,6 +171,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With CTA",
       "data": {
         "cta": {
+          "tplFile": "components/button/button.hbs",
           "dataFile": "components/button/button.json"
         }
       }
@@ -228,6 +229,8 @@ This would use the variation with the name `Teaser 2` from `components/teaser/te
 
 _**Note:** You can also overwrite values of the imported data (see last variation in the `homepage.json` example above)._
 
+Additionally you can also use a `tplFile` key to reference another template file (See the "With CTA" variation in `homepage.json`). That way the data object gets replaced with rendered HTML and the variable in your template file could directly render the HTML.
+
 The `teaser.json` example above would be resolved like this:
 
 ```js
@@ -247,10 +250,7 @@ The `teaser.json` example above would be resolved like this:
     {
       "name": "With CTA",
       "data": {
-        "cta": {
-          "label": "Click me",
-          "type": "submit"
-        }
+        "cta": '<button type="submit">Click me</button>' // or whatever your button template looks like
       }
     },
     {
@@ -372,4 +372,3 @@ By default, the build (static html files + assets) will be created in `<YOUR_PRO
 - Manually triggering html/accessibility validation if it is disabled
 - CSS validation
 - Support for YAML data files
-- Referencing a template file in the data to be able to render dynamic content (useful for rich text elements e.g.)
