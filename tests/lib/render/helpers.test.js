@@ -260,7 +260,7 @@ describe("lib/render/_helpers", () => {
         });
         expect(spy).toHaveBeenCalledWith(
           "warn",
-          "some/component.foo has not the correct file type."
+          "some/component.foo does not have the correct file type."
         );
 
         done();

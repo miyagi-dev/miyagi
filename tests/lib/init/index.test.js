@@ -73,7 +73,7 @@ describe("lib/init", () => {
         const server = await init({});
         expect(logger.log).toHaveBeenCalledWith(
           "info",
-          "Running headman server at http://127.0.0.1:1234."
+          "Running headman server at http://localhost:1234!"
         );
         server.close();
         done();
@@ -87,7 +87,7 @@ describe("lib/init", () => {
         const server = await init({});
         expect(logger.log).toHaveBeenCalledWith(
           "info",
-          `Running headman server at http://127.0.0.1:${appConfig.defaultPort}.`
+          `Running headman server at http://localhost:${appConfig.defaultPort}!`
         );
         server.close();
         done();
