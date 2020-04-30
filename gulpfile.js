@@ -6,8 +6,8 @@ const postcss = require("gulp-postcss");
 const postcssImport = require("postcss-import");
 const postcssPresetEnv = require("postcss-preset-env");
 const rollup = require("rollup");
-const rollupCommonJs = require("rollup-plugin-commonjs");
-const rollupResolve = require("rollup-plugin-node-resolve");
+const rollupCommonJs = require("@rollup/plugin-commonjs");
+const rollupResolve = require("@rollup/plugin-node-resolve");
 const terser = require("rollup-plugin-terser");
 
 const buildFolder = "dist/";
