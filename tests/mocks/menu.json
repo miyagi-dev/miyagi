@@ -7,14 +7,8 @@
     "normalizedShortPath": "components-components",
     "extension": ".hbs",
     "variations": [
-      {
-        "name": "bla",
-        "data": {}
-      },
-      {
-        "name": "blaaaaaaaaaa",
-        "data": {}
-      }
+      { "name": "bla", "data": {} },
+      { "name": "blaaaaaaaaaa", "data": {} }
     ],
     "index": 0,
     "id": "components-components-hbs",
@@ -27,25 +21,14 @@
         "normalizedShortPath": "components-button-button",
         "extension": ".hbs",
         "variations": [
-          {
-            "name": "default",
-            "data": {
-              "type": "submit"
-            }
-          },
+          { "name": "default", "data": { "type": "submit" } },
           {
             "name": "small",
-            "data": {
-              "label": "Small button",
-              "modifiers": ["small"]
-            }
+            "data": { "label": "Small button", "modifiers": ["small"] }
           },
           {
             "name": "secondary",
-            "data": {
-              "label": "Secondary button",
-              "modifiers": ["secondary"]
-            }
+            "data": { "label": "Secondary button", "modifiers": ["secondary"] }
           },
           {
             "name": "small/secondary",
@@ -56,10 +39,7 @@
           },
           {
             "name": "disabled",
-            "data": {
-              "label": "Disabled button",
-              "disabled": true
-            }
+            "data": { "label": "Disabled button", "disabled": true }
           },
           {
             "name": "disabled/secondary",
@@ -89,12 +69,7 @@
         "normalizedShortPath": "components-component-b-component-b",
         "extension": ".hbs",
         "variations": [
-          {
-            "name": "default",
-            "data": {
-              "name": "B"
-            }
-          },
+          { "name": "default", "data": { "name": "B" } },
           {
             "name": "With header",
             "data": {
@@ -137,18 +112,8 @@
             "normalizedShortPath": "components-component-b--footer--footer",
             "extension": ".hbs",
             "variations": [
-              {
-                "name": "default",
-                "data": {
-                  "footer": "footer1"
-                }
-              },
-              {
-                "name": "Component B Footer",
-                "data": {
-                  "footer": "footer2"
-                }
-              }
+              { "name": "default", "data": { "footer": "footer1" } },
+              { "name": "Component B Footer", "data": { "footer": "footer2" } }
             ],
             "index": 2,
             "id": "components-component-b--footer--footer-hbs",
@@ -162,18 +127,8 @@
             "normalizedShortPath": "components-component-b--header--header",
             "extension": ".hbs",
             "variations": [
-              {
-                "name": "default",
-                "data": {
-                  "header": "header1"
-                }
-              },
-              {
-                "name": "Component B Header",
-                "data": {
-                  "header": "header2"
-                }
-              }
+              { "name": "default", "data": { "header": "header1" } },
+              { "name": "Component B Header", "data": { "header": "header2" } }
             ],
             "index": 2,
             "id": "components-component-b--header--header-hbs",
@@ -195,6 +150,7 @@
         "shortPath": "components/global-data/global-data.hbs",
         "normalizedShortPath": "components-global-data-global-data",
         "extension": ".hbs",
+        "variations": [{ "name": "default", "data": {} }],
         "index": 1,
         "id": "components-global-data-global-data-hbs"
       },
@@ -208,11 +164,7 @@
         "variations": [
           {
             "name": "default",
-            "data": {
-              "label": "Name",
-              "type": "text",
-              "id": "input"
-            }
+            "data": { "label": "Name", "type": "text", "id": "input" }
           },
           {
             "name": "disabled",
@@ -232,10 +184,7 @@
           },
           {
             "name": "value",
-            "data": {
-              "value": "Some value",
-              "id": "input-value"
-            }
+            "data": { "value": "Some value", "id": "input-value" }
           }
         ],
         "index": 1,
@@ -250,30 +199,19 @@
         "normalizedShortPath": "components-teaser-teaser",
         "extension": ".hbs",
         "variations": [
-          {
-            "name": "default",
-            "data": {
-              "name": "Teaser without CTA"
-            }
-          },
+          { "name": "default", "data": { "name": "Teaser without CTA" } },
           {
             "name": "Teaser with CTA",
             "data": {
               "name": "Teaser with CTA",
-              "cta": {
-                "type": "button",
-                "label": "Click me!"
-              }
+              "cta": { "type": "button", "label": "Click me!" }
             }
           },
           {
             "name": "Teaser with another CTA",
             "data": {
               "name": "Teaser with another CTA",
-              "cta": {
-                "type": "button",
-                "label": "Don't click me!"
-              }
+              "cta": { "type": "button", "label": "Don't click me!" }
             }
           }
         ],
@@ -288,6 +226,25 @@
         "shortPath": "components/teaser-list/teaser-list.hbs",
         "normalizedShortPath": "components-teaser-list-teaser-list",
         "extension": ".hbs",
+        "variations": [
+          {
+            "name": "default",
+            "data": {
+              "list": [
+                { "dataFile": "components/teaser/teaser.json" },
+                {
+                  "dataFile": "components/teaser/teaser.json",
+                  "variation": "Teaser with CTA"
+                },
+                {
+                  "dataFile": "components/teaser/teaser.json",
+                  "variation": "Teaser with another CTA"
+                },
+                { "name": "Custom teaser", "cta": { "label": "Custom button" } }
+              ]
+            }
+          }
+        ],
         "index": 1,
         "id": "components-teaser-list-teaser-list-hbs",
         "children": []
@@ -299,14 +256,7 @@
         "shortPath": "components/test/test.hbs",
         "normalizedShortPath": "components-test-test",
         "extension": ".hbs",
-        "variations": [
-          {
-            "name": "baz",
-            "data": {
-              "baz": "baz"
-            }
-          }
-        ],
+        "variations": [{ "name": "baz", "data": { "baz": "baz" } }],
         "index": 1,
         "id": "components-test-test-hbs",
         "children": []
@@ -462,15 +412,11 @@
         "variations": [
           {
             "name": "default",
-            "data": {
-              "engineInclude": "handlebars include"
-            }
+            "data": { "engineInclude": "handlebars include" }
           },
           {
             "name": "Another variation",
-            "data": {
-              "engineInclude": "Another handlebars include"
-            }
+            "data": { "engineInclude": "Another handlebars include" }
           }
         ],
         "index": 1,
@@ -535,6 +481,7 @@
             "shortPath": "templates/_includes/_footer/_footer.hbs",
             "normalizedShortPath": "templates--includes--footer--footer",
             "extension": ".hbs",
+            "variations": [{ "name": "default", "data": {} }],
             "index": 2,
             "id": "templates--includes--footer--footer-hbs"
           },
@@ -545,6 +492,7 @@
             "shortPath": "templates/_includes/_header/_header.hbs",
             "normalizedShortPath": "templates--includes--header--header",
             "extension": ".hbs",
+            "variations": [{ "name": "default", "data": {} }],
             "index": 2,
             "id": "templates--includes--header--header-hbs",
             "children": [
@@ -555,6 +503,7 @@
                 "shortPath": "templates/_includes/_header/_logo/_logo.hbs",
                 "normalizedShortPath": "templates--includes--header--logo--logo",
                 "extension": ".hbs",
+                "variations": [{ "name": "default", "data": {} }],
                 "index": 3,
                 "id": "templates--includes--header--logo--logo-hbs"
               }
@@ -570,12 +519,7 @@
         "normalizedShortPath": "templates-template-a-template-a",
         "extension": ".hbs",
         "variations": [
-          {
-            "name": "default",
-            "data": {
-              "name": "A"
-            }
-          },
+          { "name": "default", "data": { "name": "A" } },
           {
             "name": "With component",
             "data": {
@@ -629,19 +573,11 @@
           },
           {
             "name": "With component B with json key and variation with header",
-            "data": {
-              "componentB": {
-                "variation": "With header"
-              }
-            }
+            "data": { "componentB": { "variation": "With header" } }
           },
           {
             "name": "With component B with json key and variation with footer",
-            "data": {
-              "componentB": {
-                "variation": "With footer"
-              }
-            }
+            "data": { "componentB": { "variation": "With footer" } }
           },
           {
             "name": "With component B with json key and variation with header/footer",
@@ -681,18 +617,8 @@
     "normalizedShortPath": "test2-test2",
     "extension": ".hbs",
     "variations": [
-      {
-        "name": "blubb",
-        "data": {
-          "foo": "FOO"
-        }
-      },
-      {
-        "name": "bar",
-        "data": {
-          "foo": "bar"
-        }
-      }
+      { "name": "blubb", "data": { "foo": "FOO" } },
+      { "name": "bar", "data": { "foo": "bar" } }
     ],
     "index": 0,
     "id": "test2-test2-hbs",
