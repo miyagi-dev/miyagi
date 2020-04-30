@@ -44,6 +44,13 @@
     "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your headman.json correct?",
     "fileNotFoundLinkIncorrect": "Couldn't find file ${filePath}. Please check that it's linked correctly.",
     "fileNotRenderedDueToUnmatchingFolderName": "${file} ignored because the parent directory doesn't have the same name.",
+    "generator": {
+      "starting": "Creating component…",
+      "done": "Done!",
+      "noComponentNameDefined": "Please specify a component name like this: headman new directoryName/componentName",
+      "unknownError": "An unknown error occured when creating ${name}.",
+      "fileAlreadyExists": "The file ${name} already exists."
+    },
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
     "missingEngine": "Please specify your javascript engine in headman.json (key: 'engine', type: String).",
     "missingExtension": "Please specify the file extension of your components in headman.json (key: 'extension', type: String).",
@@ -56,16 +63,14 @@
     "serverStartedButUserConfigUnparseable": "headman wasn't able to parse your config file.",
     "serverStarting": "Starting headman server…",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your headman.json is correct?",
+    "statuses": {
+      "done": "Done",
+      "wip": "Work in progress",
+      "needs_work": "Needs refactoring / improvement"
+    },
     "userConfigNotFound": "Couldn't find the file headman.json.",
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
-    "wrongFileType": "${fileName} does not have the correct file type.",
-    "generator": {
-      "starting": "Creating component…",
-      "done": "Done!",
-      "noComponentNameDefined": "Please specify a component name like this: headman new directoryName/componentName",
-      "unknownError": "An unknown error occured when creating ${name}.",
-      "fileAlreadyExists": "The file ${name} already exists."
-    }
+    "wrongFileType": "${fileName} does not have the correct file type."
   }
 }

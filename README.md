@@ -26,6 +26,7 @@ _headman_ is a component development tool. It renders and validates all your com
   - [Organizing your components](#organizing-your-components)
   - [Creating test data](#creating-test-data)
   - [Global data](#global-data)
+  - [Component status](#component-status)
   - [Rendering engines](#rendering-engines)
   - [Validations](#validations)
   - [Documentation of components](#documentation-of-components)
@@ -286,6 +287,14 @@ _**Note:** There is no way to create a named variation of a variation._
 ### Global data
 
 You can define global data by creating a `data.json` in your `srcFolder`. This data will be merged into your components data. The components data has higher priority, hence overwrites keys with the same name.
+
+### Component status
+
+Components can have a status, which is rendered in the component overview. Add a `status` key to the `data.json` of your component with any of the following values:
+
+- done
+- wip
+- needs_work
 
 ### Rendering engines
 

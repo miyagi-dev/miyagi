@@ -504,6 +504,7 @@ describe("lib/render/index", () => {
           name: "component1",
           documentation: undefined,
           theme: undefined,
+          status: null,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -561,6 +562,7 @@ describe("lib/render/index", () => {
             name: "component1",
             documentation: undefined,
             theme: undefined,
+            status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -610,6 +612,7 @@ describe("lib/render/index", () => {
             theme: undefined,
             schema: [],
             name: "component3",
+            status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -653,6 +656,7 @@ describe("lib/render/index", () => {
             theme: undefined,
             schema: [],
             name: "component6",
+            status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -695,6 +699,7 @@ describe("lib/render/index", () => {
             theme: undefined,
             schema: [],
             name: "component7",
+            status: null,
           });
 
           done();
@@ -743,6 +748,7 @@ describe("lib/render/index", () => {
             name: "component9",
             documentation: undefined,
             theme: undefined,
+            status: null,
           });
 
           done();
@@ -786,6 +792,7 @@ describe("lib/render/index", () => {
                 variation: "default",
               },
             ],
+            status: null,
           });
 
           done();
@@ -827,6 +834,7 @@ describe("lib/render/index", () => {
                 variation: "default",
               },
             ],
+            status: null,
           });
 
           done();
@@ -866,6 +874,7 @@ describe("lib/render/index", () => {
           ],
           schema: [],
           name: "component4",
+          status: null,
         });
 
         done();

@@ -4,6 +4,9 @@
   --Headman-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
     "Roboto", "Helvetica", "Arial", sans-serif;
   --Headman-color: #222;
+  --Headman-color-negative: #d9173e;
+  --Headman-color-warning: purple;
+  --Headman-color-positive: green;
   --Headman-colorHeadlines: var(--Headman-color);
   --Headman-transition: all 0.15s ease;
 }
@@ -79,9 +82,36 @@ body {
   text-transform: uppercase;
 }
 
+.HeadmanInformation-attr:not(:first-child) {
+  margin-top: 1em;
+}
+
 .HeadmanInformation code,
 .HeadmanDocumentation code {
   font-family: "Menlo", "Monaco", monospace;
+}
+
+.HeadmanStatus::before {
+  --size: 0.7em;
+
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: var(--size);
+  margin: 0 0.25em 0 0;
+  width: var(--size);
+}
+
+.HeadmanStatus--done::before {
+  background-color: var(--Headman-color-positive);
+}
+
+.HeadmanStatus--wip::before {
+  background-color: var(--Headman-color-warning);
+}
+
+.HeadmanStatus--needs_work::before {
+  background-color: var(--Headman-color-negative);
 }
 
 .HeadmanComponent-file {
