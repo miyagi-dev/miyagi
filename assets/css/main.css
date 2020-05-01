@@ -41,8 +41,8 @@ html {
 }
 
 body {
-  color: var(--Headman-color);
   background: #fff;
+  color: var(--Headman-color);
 }
 
 .Headman {
@@ -62,14 +62,20 @@ body {
 }
 
 .Headman-content {
-  display: flex;
-  flex-grow: 1;
   grid-area: iframe;
+}
+
+.Headman-frameWrapper {
+  height: 100%;
+  overflow: auto;
+  resize: both;
+  width: 100%;
 }
 
 .Headman-frame {
   display: block;
-  flex: 1;
+  height: 100%;
+  width: 100%;
 }
 
 .Headman-tests {
@@ -179,8 +185,8 @@ body {
   .Headman-tests {
     --maxHeight: 100vh;
 
-    width: 20vw;
     min-width: 30rem;
+    width: 20vw;
   }
 }
 

@@ -19,7 +19,9 @@
 </nav>
 
 <main class="Headman-content">
-  <iframe class="Headman-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
+  <div class="Headman-frameWrapper">
+    <iframe class="Headman-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
+  </div>
 </main>
 <aside class="Headman-tests" {{#if isComponentOverview}} hidden{{/if}}>
   {{#each tests}}
