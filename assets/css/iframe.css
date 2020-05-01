@@ -31,19 +31,20 @@ body {
 
 .HeadmanDocumentation h1 {
   color: var(--Headman-colorHeadlines);
+  font-size: 2em;
+  font-weight: bold;
 }
 
-.HeadmanInformation *,
-.HeadmanDocumentation *,
-.Headman-sectionTitle {
-  all: revert;
-  font-family: var(--Headman-fontFamily);
+.HeadmanDocumentation > * + * {
+  margin-top: 1.5em;
 }
 
 .HeadmanSchemaTable,
 .HeadmanInformation,
-.HeadmanDocumentation {
+.HeadmanDocumentation,
+.Headman-sectionTitle {
   color: var(--Headman-color);
+  font-family: var(--Headman-fontFamily);
 }
 
 .HeadmanInformation-val {
@@ -58,7 +59,8 @@ body {
   align-items: center;
   color: var(--Headman-colorHeadlines);
   display: flex;
-  margin-top: 60px;
+  font-size: 1.6em;
+  margin: 2em 0 1em;
 }
 
 .Headman-sectionTitle::after {
