@@ -159,7 +159,7 @@ describe("lib/render/_helpers", () => {
             data: {
               resolve: [
                 {
-                  dataFile: "resolve/resolve/resolve.json",
+                  dataFile: "resolve/resolve",
                 },
               ],
             },
@@ -171,7 +171,7 @@ describe("lib/render/_helpers", () => {
       ] = {
         data: {
           resolve: {
-            dataFile: "resolve/resolve/resolve/resolve.json",
+            dataFile: "resolve/resolve/resolve",
           },
         },
       };
@@ -191,7 +191,7 @@ describe("lib/render/_helpers", () => {
       expect(
         await helpers.overwriteJsonLinksWithJsonData(app, {
           resolve: {
-            dataFile: "resolve/resolve.json",
+            dataFile: "resolve",
             variation: "variation",
           },
         })
@@ -234,39 +234,6 @@ describe("lib/render/_helpers", () => {
       });
     });
 
-    describe("with value for component not being a data file", () => {
-      test("deletes the entry.component key, returns the entry, logs error", async (done) => {
-        const app = express();
-        app.set("config", {
-          srcFolder: "tests/mocks/",
-        });
-        app.set("state", {
-          partials: "partials",
-          fileContents: {
-            "some/component.json": "foo",
-          },
-        });
-
-        const spy = jest.spyOn(logger, "log");
-
-        expect(
-          await helpers.overwriteJsonLinksWithJsonData(app, {
-            resolve: {
-              dataFile: "some/component.foo",
-            },
-          })
-        ).toEqual({
-          resolve: {},
-        });
-        expect(spy).toHaveBeenCalledWith(
-          "warn",
-          "some/component.foo does not have the correct file type."
-        );
-
-        done();
-      });
-    });
-
     describe("with value for component not being stored in data", () => {
       test("returns {}, logs error", async (done) => {
         const app = express();
@@ -275,9 +242,7 @@ describe("lib/render/_helpers", () => {
         });
         app.set("state", {
           partials: "partials",
-          fileContents: {
-            "some/component.json": "foo",
-          },
+          fileContents: {},
         });
 
         const spy = jest.spyOn(logger, "log");
@@ -285,7 +250,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              dataFile: "some/component.json",
+              dataFile: "some/component",
             },
           })
         ).toEqual({
@@ -293,7 +258,7 @@ describe("lib/render/_helpers", () => {
         });
         expect(spy).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file some/component.json. Please check that it's linked correctly."
+          "Couldn't find file some/component/component.json. Please check that it's linked correctly."
         );
 
         done();

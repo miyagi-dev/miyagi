@@ -161,7 +161,7 @@ Create a `json` file in your component folder with a structure like this:
   "data": {
     "content": "<p>Here goes my content html</p>",
     "teaser": {
-      "dataFile": "components/teaser/teaser.json"
+      "dataFile": "components/teaser"
     },
     "header": {
       "title": "The page title"
@@ -172,8 +172,8 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With CTA",
       "data": {
         "cta": {
-          "tplFile": "components/button/button.hbs",
-          "dataFile": "components/button/button.json"
+          "tplFile": "components/button",
+          "dataFile": "components/button"
         }
       }
     },
@@ -187,7 +187,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With teaser variation",
       "data": {
         "teaser": {
-          "dataFile": "components/teaser/teaser.json",
+          "dataFile": "components/teaser",
           "variation": "Teaser 2"
         }
       }
@@ -196,7 +196,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With overwritte teaser variation",
       "data": {
         "teaser": {
-          "dataFile": "components/teaser/teaser.json",
+          "dataFile": "components/teaser",
           "variation": "Teaser 2",
           "title": "Overwritten title"
         }
@@ -220,7 +220,7 @@ If you have variations defined in these files, you can tell _headman_ to use any
 ```js
 {
   "teaser": {
-    "dataFile": "components/teaser/teaser.json",
+    "dataFile": "components/teaser",
     "variation": "Teaser 2"
   }
 }
