@@ -41,6 +41,7 @@ describe("index", () => {
             });
 
             require("../index.js");
+
             expect(init).toHaveBeenCalledWith(
               Object.assign(
                 {
@@ -63,6 +64,8 @@ describe("index", () => {
                     accessibility: true,
                   },
                   reload: true,
+                  isBuild: false,
+                  isGenerator: false,
                 },
                 JSON.parse(
                   '{"extension": "hbs","engine": "handlebars","srcFolder": "src/"}'
@@ -142,7 +145,7 @@ describe("index", () => {
           });
         });
 
-        describe("without srcFolfer defined in headman.json", () => {
+        describe("without srcFolder defined in headman.json", () => {
           test("it calls logger.log with the correct warn msg", () => {
             const fs = require("fs");
             const logger = require("../lib/logger.js");
@@ -206,14 +209,22 @@ describe("index", () => {
 
         logger.log = jest.fn();
         fs.readFile = jest.fn((file, encoding, cb) => {
-          cb("", undefined);
+          cb("error", undefined);
         });
 
         require("../index.js");
 
         expect(logger.log).toHaveBeenCalledWith(
+          "info",
+          appConfig.messages.serverStarting
+        );
+        expect(logger.log).toHaveBeenCalledWith(
           "error",
-          appConfig.messages.userConfigNotFound
+          appConfig.messages.missingEngine
+        );
+        expect(logger.log).toHaveBeenCalledWith(
+          "error",
+          appConfig.messages.missingExtension
         );
       });
     });

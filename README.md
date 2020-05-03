@@ -59,13 +59,15 @@ You can also install it globally via `npm install -g headman`.
 
 ### Options
 
-Create a `headman.json` in your project folder with the following options:
+Create a `headman.json` in your project folder with the following options or pass them as cli arguments when starting `headman` (except for complex options of type `Object` or of type `String or Array or Object`):
 
 | option             | required/optional | type                      | default                               | Note                                                                                                                                                                                                  |
 | ------------------ | ----------------- | ------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `buildFolder`      | optional          | String                    | `build/`                              | Defines the folder where the static build files will be saved                                                                                                                                         |
 | `cssFiles`         | optional          | String or Array or Object | `[]`                                  | Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
+| `engine`           | required          | String                    | -                                     | Your template engine                    |
 | `es6Modules`       | optional          | Boolean                   | `false`                               | Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)                                                                    |
+| `extension`        | required          | String                    | -                                     | The file extension of your template files |
 | `jsFiles`          | optional          | String or Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                                                                       |
 | `projectName`      | optional          | String                    | `"headman"`                           |
 | `reload`           | optional          | Boolean                   | `true`                                | Defines if your component automatically reloads after saving.                                                                                                                                         |
@@ -73,6 +75,8 @@ Create a `headman.json` in your project folder with the following options:
 | `srcFolderIgnores` | optional          | Array                     | `[".git", "node_modules"]`            | Values will be merged with the default value.                                                                                                                                                         |
 | `theme`            | optional          | Object                    | `{}`                                  | Options: `logo`, `navigation.colorBackground`, `navigation.colorLinks`, `navigation.colorLinksActive`, `content.colorText`, `content.colorHeadlines`, `fontFamily`                                                                                   |
 | `validations`      | optional          | Object                    | `{ html: true, accessibility: true }` |
+
+_**Note:** If an option is passed as a CLI argument and defined in your `headman.json`, the CLI argument is used._
 
 ### Starting _headman_
 

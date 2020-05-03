@@ -30,7 +30,7 @@ describe("lib/menu/elements/variations", () => {
       const variations = requireComponent("variations");
       const listItem = requireComponent("list-item", true);
 
-      variations.render(component, { path: "foo", variation: "bar" });
+      variations.render(false, component, { path: "foo", variation: "bar" });
 
       expect(listItem.render).toHaveBeenCalledTimes(3);
     });
@@ -40,7 +40,7 @@ describe("lib/menu/elements/variations", () => {
       const listItem = requireComponent("list-item", true);
       const variationLink = requireComponent("variation-link", true);
 
-      variations.render(component, { path: "foo", variation: "bar" });
+      variations.render(false, component, { path: "foo", variation: "bar" });
 
       expect(listItem.render).toHaveBeenCalledWith(
         component,
@@ -56,7 +56,7 @@ describe("lib/menu/elements/variations", () => {
       expect(
         (
           variations
-            .render(component, { path: "foo", variation: "bar" })
+            .render(false, component, { path: "foo", variation: "bar" })
             .match(/list-itemHtml/g) || []
         ).length
       ).toBe(3);
@@ -69,9 +69,10 @@ describe("lib/menu/elements/variations", () => {
         const helpers = require(helpersSrc);
         helpers.pathEqualsRequest = jest.fn(() => true);
 
-        variations.render(component, {});
+        variations.render(false, component, {});
 
         expect(variationLink.render).toHaveBeenCalledWith(
+          false,
           component,
           variation,
           true
@@ -87,9 +88,10 @@ describe("lib/menu/elements/variations", () => {
 
         helpers.pathEqualsRequest = jest.fn(() => false);
 
-        variations.render(component, {});
+        variations.render(false, component, {});
 
         expect(variationLink.render).toHaveBeenCalledWith(
+          false,
           component,
           variation,
           false
@@ -110,9 +112,9 @@ describe("lib/menu/elements/variations", () => {
 
       requireComponent("list", true);
 
-      expect(variations.render(component, {}).indexOf("list-itemHtml")).toBe(
-        -1
-      );
+      expect(
+        variations.render(false, component, {}).indexOf("list-itemHtml")
+      ).toBe(-1);
     });
   });
 });

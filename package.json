@@ -47,6 +47,7 @@
     "helmet": "^3.22.0",
     "http-server": "^0.12.3",
     "markdown-it": "^10.0.0",
+    "minimist": "^1.2.5",
     "npm-check-updates": "^4.1.2",
     "socket.io": "^2.3.0",
     "winston": "^3.2.1"

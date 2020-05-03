@@ -52,8 +52,8 @@
       "fileAlreadyExists": "The file ${name} already exists."
     },
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingEngine": "Please specify your javascript engine in headman.json (key: 'engine', type: String).",
-    "missingExtension": "Please specify the file extension of your components in headman.json (key: 'extension', type: String).",
+    "missingEngine": "Please specify your template engine in headman.json (key: 'engine', type: String) or as a cli argument (--engine=<engine>)",
+    "missingExtension": "Please specify the file extension of your components in headman.json (key: 'extension', type: String) or as a cli argument (--extension=<extension>).",
     "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in headman.json (key: 'srcFolder', type: String).",
     "noDataSetForVariation": "No data defined for variation \"${variation}\" in ${file}.",
     "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your headman.json, so headman is not able to deliver your ${assetType} files.",
@@ -61,7 +61,6 @@
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
     "renderingTemplateFailed": "Rendering ${filePath} failed. Please check that it is linked correctly and that its content is correct ${engine} syntax.",
     "serverStarted": "Running headman server at http://localhost:${port}!",
-    "serverStartedButUserConfigUnparseable": "headman wasn't able to parse your config file.",
     "serverStarting": "Starting headman server…",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your headman.json is correct?",
     "statuses": {
@@ -72,6 +71,7 @@
     "userConfigNotFound": "Couldn't find the file headman.json.",
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
+    "userConfigUnparseable": "headman wasn't able to parse your config file.",
     "wrongFileType": "${fileName} does not have the correct file type."
   }
 }

@@ -10,6 +10,7 @@ describe("lib/menu/elements/variation-link", () => {
     test("renders the correct variationLink html", () => {
       expect(
         variationLink.render(
+          false,
           { index: 1, shortPath: "foo/bar" },
           { name: "baz" },
           true
@@ -24,6 +25,7 @@ describe("lib/menu/elements/variation-link", () => {
     test("renders the correct variationLink html", () => {
       expect(
         variationLink.render(
+          false,
           { index: 1, shortPath: "foo/bar" },
           { name: "baz" },
           false

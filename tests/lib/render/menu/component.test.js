@@ -25,6 +25,14 @@ beforeEach(() => {
   jest.resetAllMocks();
 });
 
+const app = {
+  get: function() {
+    return {
+      isBuild: false,
+    };
+  },
+};
+
 describe("lib/menu/elements/component", () => {
   describe("with current directory === requested directory", () => {
     const requestPath = "foo/bar";
@@ -39,7 +47,7 @@ describe("lib/menu/elements/component", () => {
         helpers.activeState = "activeState";
 
         expect(
-          component.render({}, directory, request).indexOf("activeState")
+          component.render(app, directory, request).indexOf("activeState")
         ).toBeGreaterThanOrEqual(0);
       });
     });
@@ -51,7 +59,7 @@ describe("lib/menu/elements/component", () => {
         expect(
           component
             .render(
-              {},
+              app,
               directory,
               Object.assign(request, { variation: "variation" })
             )
@@ -70,7 +78,7 @@ describe("lib/menu/elements/component", () => {
       const component = requireComponent("component");
 
       expect(
-        component.render({}, directory, request).indexOf("activeState")
+        component.render(app, directory, request).indexOf("activeState")
       ).toBeGreaterThanOrEqual(-1);
     });
   });
@@ -85,7 +93,7 @@ describe("lib/menu/elements/component", () => {
       helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
 
       expect(
-        component.render({}, {}, {}).indexOf("toggleHtml")
+        component.render(app, {}, {}).indexOf("toggleHtml")
       ).toBeGreaterThanOrEqual(0);
     });
 
@@ -99,7 +107,7 @@ describe("lib/menu/elements/component", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
         helpers.pathIsChildOfSecondPath = jest.fn(() => true);
 
-        component.render({}, directory, {});
+        component.render(app, directory, {});
 
         expect(toggle.render).toHaveBeenCalledWith(
           `${directoryId}-variations`,
@@ -119,7 +127,7 @@ describe("lib/menu/elements/component", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
         helpers.pathIsChildOfSecondPath = jest.fn(() => false);
 
-        component.render({}, directory, {});
+        component.render(app, directory, {});
 
         expect(toggle.render).toHaveBeenCalledWith(
           `${directoryId}-variations`,
@@ -140,7 +148,7 @@ describe("lib/menu/elements/component", () => {
       helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
 
       expect(
-        component.render({}, {}, {}).indexOf("toggleHtml")
+        component.render(app, {}, {}).indexOf("toggleHtml")
       ).toBeGreaterThanOrEqual(0);
     });
 
@@ -157,7 +165,7 @@ describe("lib/menu/elements/component", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
         helpers.pathIsChildOfSecondPath = jest.fn(() => true);
 
-        component.render({}, directory, request);
+        component.render(app, directory, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
           `${directoryId}-variations`,
@@ -180,7 +188,7 @@ describe("lib/menu/elements/component", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
         helpers.pathIsChildOfSecondPath = jest.fn(() => false);
 
-        component.render({}, directory, request);
+        component.render(app, directory, request);
 
         expect(toggle.render).toHaveBeenCalledWith(
           `${directoryId}-variations`,
@@ -199,7 +207,7 @@ describe("lib/menu/elements/component", () => {
       helpers.componentHasVariations = jest.fn(() => false);
       helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
 
-      component.render({}, {}, {});
+      component.render(app, {}, {});
 
       expect(toggle.render).not.toHaveBeenCalled();
     });
@@ -211,7 +219,7 @@ describe("lib/menu/elements/component", () => {
       helpers.componentHasVariations = jest.fn(() => false);
       helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
 
-      expect(component.render({}, {}, {}).indexOf("toggleHtml")).toBe(-1);
+      expect(component.render(app, {}, {}).indexOf("toggleHtml")).toBe(-1);
     });
   });
 });

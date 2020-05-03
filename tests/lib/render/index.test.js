@@ -140,7 +140,7 @@ describe("lib/render/index", () => {
         userProjectName,
         headmanDev: false,
         headmanProd: true,
-        isBuild: false,
+        isBuild: undefined,
       });
 
       done();
@@ -172,7 +172,7 @@ describe("lib/render/index", () => {
           userProjectName,
           headmanDev: false,
           headmanProd: true,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -198,7 +198,7 @@ describe("lib/render/index", () => {
           userProjectName,
           headmanDev: false,
           headmanProd: true,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -231,7 +231,7 @@ describe("lib/render/index", () => {
           accessibilityValidation: false,
           headmanDev: false,
           headmanProd: true,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -257,7 +257,7 @@ describe("lib/render/index", () => {
           accessibilityValidation: false,
           headmanDev: false,
           headmanProd: true,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -283,7 +283,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -311,7 +311,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -334,7 +334,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -362,7 +362,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -390,7 +390,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -419,7 +419,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -447,7 +447,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -499,7 +499,7 @@ describe("lib/render/index", () => {
           folder: "",
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
           schema: [],
           name: "component1",
           documentation: undefined,
@@ -557,7 +557,7 @@ describe("lib/render/index", () => {
             folder: "",
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             schema: [],
             name: "component1",
             documentation: undefined,
@@ -607,7 +607,7 @@ describe("lib/render/index", () => {
             folder: "",
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             documentation: undefined,
             theme: undefined,
             schema: [],
@@ -651,7 +651,7 @@ describe("lib/render/index", () => {
             folder: "",
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             documentation: undefined,
             theme: undefined,
             schema: [],
@@ -694,7 +694,7 @@ describe("lib/render/index", () => {
             folder: "",
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             documentation: undefined,
             theme: undefined,
             schema: [],
@@ -743,7 +743,7 @@ describe("lib/render/index", () => {
             folder: "",
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             schema: [],
             name: "component9",
             documentation: undefined,
@@ -780,7 +780,7 @@ describe("lib/render/index", () => {
             prod: false,
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             schema: [],
             name: "component2",
             variations: [
@@ -822,7 +822,7 @@ describe("lib/render/index", () => {
             prod: false,
             projectName,
             userProjectName,
-            isBuild: false,
+            isBuild: undefined,
             schema: [],
             name: "component2",
             variations: [
@@ -861,7 +861,7 @@ describe("lib/render/index", () => {
           prod: false,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
           theme: undefined,
           variations: [
             {
@@ -943,7 +943,7 @@ describe("lib/render/index", () => {
           a11yTestsPreload: true,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1010,7 +1010,7 @@ describe("lib/render/index", () => {
           a11yTestsPreload: true,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1077,7 +1077,7 @@ describe("lib/render/index", () => {
           a11yTestsPreload: true,
           projectName,
           userProjectName,
-          isBuild: false,
+          isBuild: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1108,7 +1108,7 @@ describe("lib/render/index", () => {
           userProjectName,
           htmlValidation: false,
           accessibilityValidation: false,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
@@ -1136,7 +1136,7 @@ describe("lib/render/index", () => {
           userProjectName,
           htmlValidation: false,
           accessibilityValidation: false,
-          isBuild: false,
+          isBuild: undefined,
         });
 
         done();
