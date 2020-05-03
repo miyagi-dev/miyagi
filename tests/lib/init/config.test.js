@@ -170,7 +170,9 @@ describe("lib/init/config", () => {
       expect(getMergedConfig()).toEqual({
         projectName: "headman",
         srcFolder: "",
-        buildFolder: "build",
+        build: {
+          folder: "build",
+        },
         cssFiles: [],
         jsFiles: [],
         es6Modules: false,

@@ -55,7 +55,9 @@ describe("lib/build/index", () => {
   process.cwd = () => "/headman/tests";
 
   app.set("config", {
-    buildFolder: "buildFolder",
+    build: {
+      folder: "buildFolder",
+    },
     srcFolder: "srcFolder/",
     extension: "hbs",
     cssFiles: ["index.css"],

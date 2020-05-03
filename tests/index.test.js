@@ -1,4 +1,5 @@
 const appConfig = require("../lib/config.json");
+const yargs = require("../lib/init/args.js");
 const nodeEnv = process.env.NODE_ENV;
 
 afterEach(() => {
@@ -8,17 +9,27 @@ afterEach(() => {
 });
 
 describe("index", () => {
-  describe("without process.env.NODE_ENV defined", () => {
-    test("returns an error message", () => {
-      const logger = require("../lib/logger.js");
+  describe("start", () => {
+    jest.mock("../lib/init/args.js", () => {
+      return {
+        argv: {
+          _: ["start"],
+        },
+      };
+    });
 
-      logger.log = jest.fn();
-      delete process.env.NODE_ENV;
-      require("../index.js");
-      expect(logger.log).toHaveBeenCalledWith(
-        "error",
-        "Please define your NODE_ENV."
-      );
+    describe("without process.env.NODE_ENV defined", () => {
+      test("returns an error message", () => {
+        const logger = require("../lib/logger.js");
+
+        logger.log = jest.fn();
+        delete process.env.NODE_ENV;
+        require("../index.js");
+        expect(logger.log).toHaveBeenCalledWith(
+          "error",
+          "Please define your NODE_ENV."
+        );
+      });
     });
   });
 
@@ -47,7 +58,9 @@ describe("index", () => {
                 {
                   projectName: "headman",
                   srcFolder: "",
-                  buildFolder: "build",
+                  build: {
+                    folder: "build",
+                  },
                   cssFiles: [],
                   jsFiles: [],
                   projectName: "headman",

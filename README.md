@@ -22,7 +22,10 @@ _headman_ is a component development tool. It renders and validates all your com
 - [Installation](#installation)
 - [Usage](#usage)
   - [Options](#options)
-  - [Starting _headman_](#starting-headman)
+  - [Commands](#commanfd)
+    - [Starting _headman_ server](#starting-headman-server)
+    - [Creating components via CLI](#creating-components-via-cli)
+    - [Creating a build](#creating-a-build)
   - [Organizing your components](#organizing-your-components)
   - [Creating test data](#creating-test-data)
   - [Global data](#global-data)
@@ -59,28 +62,74 @@ You can also install it globally via `npm install -g headman`.
 
 ### Options
 
-Create a `headman.json` in your project folder with the following options or pass them as cli arguments when starting `headman` (except for complex options of type `Object` or of type `String or Array or Object`):
+Create a `headman.json` in your project folder with the following options or pass them as cli arguments when starting `headman` (dot notation can be used for objects):
 
-| option             | required/optional | type                      | default                               | Note                                                                                                                                                                                                  |
-| ------------------ | ----------------- | ------------------------- | ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `buildFolder`      | optional          | String                    | `build/`                              | Defines the folder where the static build files will be saved                                                                                                                                         |
-| `cssFiles`         | optional          | String or Array or Object | `[]`                                  | Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value, e.g.: `{ development: ["dev/css/index.css"], productions: ["dist/index.css"] }` |
-| `engine`           | required          | String                    | -                                     | Your template engine                    |
-| `es6Modules`       | optional          | Boolean                   | `false`                               | Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)                                                                    |
-| `extension`        | required          | String                    | -                                     | The file extension of your template files |
-| `jsFiles`          | optional          | String or Array or Object | `[]`                                  | See `cssFiles`.                                                                                                                                                                                       |
-| `projectName`      | optional          | String                    | `"headman"`                           |
-| `reload`           | optional          | Boolean                   | `true`                                | Defines if your component automatically reloads after saving.                                                                                                                                         |
-| `srcFolder`        | optional          | String                    | `/`                                   | Setting this value to a folder with nothing else but components is optimal, while using your root folder decreases performance.                                                                       |
-| `srcFolderIgnores` | optional          | Array                     | `[".git", "node_modules"]`            | Values will be merged with the default value.                                                                                                                                                         |
-| `theme`            | optional          | Object                    | `{}`                                  | Options: `logo`, `navigation.colorBackground`, `navigation.colorLinks`, `navigation.colorLinksActive`, `content.colorText`, `content.colorHeadlines`, `fontFamily`                                                                                   |
-| `validations`      | optional          | Object                    | `{ html: true, accessibility: true }` |
+```js
+{
+  "build": {
+    "folder": "build", // The folder where your build files will be saved. Use `folder` when using as cli argument.
+  },
+  "cssFiles": { // Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value
+    "development": ["src/index.css"],
+    "production": ["dist/index.css"]
+  },
+  "engine": "handlebars", // The name of your template engine (see https://github.com/tj/consolidate.js#supported-template-engines)
+  "es6Modules": false, // Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)
+  "extension": "hbs", // The file extension of your template files
+  "jsFiles": { // Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value
+    "development": ["src/index.js"],
+    "production": ["dist/index.js"]
+  },
+  "projectName": "headman",
+  "reload": true, // Defines if your component automatically reloads after saving.
+  "srcFolder": "src", // The folder where your components live. Setting this value to a folder with nothing else but components is optimal, while using your root folder decreases performance.
+  "srcFolderIgnores": [ // These folder are ignored when scanning the srcFolder
+    "node_modules",
+    ".git",
+    "package.json",
+    "package-lock.json",
+    "headman.json"
+  ],
+  "theme": {
+    "logo": "src/logo.svg",
+    "navigation": {
+      "colorBackground": "#e0eeff",
+      "colorLinks": "#233e6b",
+      "colorLinksActive": "#fff"
+    },
+    "content": {
+      "colorHeadlines": "#233e6b",
+      "colorText": "#233e6b"
+    }
+  },
+  "validations": {
+    "html": true,
+    "accessibility": true
+  },
+}
+```
 
 _**Note:** If an option is passed as a CLI argument and defined in your `headman.json`, the CLI argument is used._
 
-### Starting _headman_
+### Commands
 
-Start _headman_ with `NODE_ENV=(development|production) node node_modules/headman` (or `NODE_ENV=(development|production) headman` if installed globally). This will serve _headman_ at `http://localhost:5000`. You can change the port with `NODE_ENV=(development|production) PORT=1234 node node_modules/headman`.
+#### Starting _headman_ server
+
+Start _headman_ with `NODE_ENV=(development|production) node node_modules/headman start` (or `NODE_ENV=(development|production) headman start` if installed globally). This will serve _headman_ at `http://localhost:5000`. You can change the port with `NODE_ENV=<development|production> PORT=<port> node node_modules/headman start`.
+
+#### Creating components via CLI
+
+Creating (empty) components via CLI is possible with `headman new <folderName>/<componentName>`.
+This will create template (the type is based on your config), data, docs, css and js files.
+You can skip any of these like this: `headman new <folderName>/<componentName> --skip=css,js`.
+Alternatively, you can explicitly say which files you need like this: `headman new <folderName>/<componentName> --only=tpl,docs`.
+
+#### Creating a build
+
+You can create a production build with `node node_modules/headman build` (or `headman build`).
+
+_headman_ automatically goes into production mode to create the build, so you can ommit the `NODE_ENV`.
+By default, the build (static html files + assets) will be created in `<YOUR_PROJECT>/build`. You can change this in your `headman.json` (see [Options](#options)) or by passing `--folder=<folder>`.
 
 ### Organizing your components
 
@@ -357,20 +406,6 @@ _**Note:** Just because the accessibility validation does not result in any erro
 ### Documentation of components
 
 For every component you can create a markdown file for documentation. Its content is rendered at the beginning of the overview page of a component.
-
-### Creating components via CLI
-
-Creating (empty) components via CLI is possible with `headman new folderName/componentName`.
-This will create template (the type is based on your config), data, docs, css and js files.
-You can skip any of these like this: `headman new folderName/componentName --skip=css,js`.
-Alternatively, you can explicitly say which files you need like this: `headman new folderName/componentName --only=tpl,docs`.
-
-### Creating a build
-
-You can create a production build with `node node_modules/headman build` (or `headman build`).
-
-_headman_ automatically goes into production mode to create the build, so you can ommit the `NODE_ENV`.
-By default, the build (static html files + assets) will be created in `<YOUR_PROJECT>/build`. You can change this in your `headman.json` (see [Options](#options)).
 
 ## Good to know
 

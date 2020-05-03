@@ -1,14 +1,13 @@
 {
   "defaultUserConfig": {
-    "srcFolder": "",
-    "cssFiles": [],
-    "jsFiles": [],
-    "es6Modules": false,
-    "buildFolder": "build",
-    "validations": {
-      "html": true,
-      "accessibility": true
+    "build": {
+      "folder": "build"
     },
+    "cssFiles": [],
+    "es6Modules": false,
+    "jsFiles": [],
+    "reload": true,
+    "srcFolder": "",
     "srcFolderIgnores": [
       "node_modules",
       ".git",
@@ -16,7 +15,10 @@
       "package-lock.json",
       "headman.json"
     ],
-    "reload": true
+    "validations": {
+      "html": true,
+      "accessibility": true
+    }
   },
   "projectName": "headman",
   "defaultPort": 5000,
