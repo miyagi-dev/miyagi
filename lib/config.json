@@ -65,6 +65,7 @@
     "serverStarted": "Running headman server at http://localhost:${port}!",
     "serverStarting": "Starting headman server…",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your headman.json is correct?",
+    "srcFolderNotFound": "The provided srcFolder does not seem to exist.",
     "statuses": {
       "done": "Done",
       "wip": "Work in progress",
