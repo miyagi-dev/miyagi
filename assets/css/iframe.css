@@ -22,6 +22,7 @@ body {
 
 .HeadmanWrapper {
   padding: calc(var(--spacing) - 12px) var(--spacing) var(--spacing);
+  width: 100%;
 }
 
 .HeadmanDocumentation,
@@ -147,6 +148,7 @@ body {
 
 .HeadmanComponentView {
   padding: var(--spacing);
+  width: 100%;
 }
 
 .HeadmanIframe-newTabLink {
