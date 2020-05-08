@@ -34,7 +34,7 @@ function a11yTest(container) {
 
   addToggle(container);
 
-  axe.run(document.getElementById("HeadmanComponent"), function (err, results) {
+  axe.run(document.getElementById("HeadmanComponent"), function(err, results) {
     if (err) throw err;
 
     states.forEach((state) => {
@@ -124,7 +124,7 @@ function htmlTest(container) {
             Accept: "application/json",
           },
           body: formData,
-        }).then(function (response) {
+        }).then(function(response) {
           if (response.ok) {
             response.json().then((data) => {
               states.forEach((state) => {
@@ -237,7 +237,9 @@ addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      tests.removeAttribute("hidden");
+      if (window.validations.accessibility || window.validations.html) {
+        tests.removeAttribute("hidden");
+      }
     } else {
       tests.setAttribute("hidden", true);
     }

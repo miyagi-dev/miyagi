@@ -51,8 +51,7 @@
           }
         ],
         "index": 1,
-        "id": "components-button-button-hbs",
-        "children": []
+        "id": "components-button-button-hbs"
       },
       {
         "type": "directory",
@@ -116,8 +115,7 @@
               { "name": "Component B Footer", "data": { "footer": "footer2" } }
             ],
             "index": 2,
-            "id": "components-component-b--footer--footer-hbs",
-            "children": []
+            "id": "components-component-b--footer--footer-hbs"
           },
           {
             "type": "directory",
@@ -131,8 +129,7 @@
               { "name": "Component B Header", "data": { "header": "header2" } }
             ],
             "index": 2,
-            "id": "components-component-b--header--header-hbs",
-            "children": []
+            "id": "components-component-b--header--header-hbs"
           }
         ]
       },
@@ -188,8 +185,7 @@
           }
         ],
         "index": 1,
-        "id": "components-input-input-hbs",
-        "children": []
+        "id": "components-input-input-hbs"
       },
       {
         "type": "directory",
@@ -216,8 +212,7 @@
           }
         ],
         "index": 1,
-        "id": "components-teaser-teaser-hbs",
-        "children": []
+        "id": "components-teaser-teaser-hbs"
       },
       {
         "type": "directory",
@@ -246,8 +241,7 @@
           }
         ],
         "index": 1,
-        "id": "components-teaser-list-teaser-list-hbs",
-        "children": []
+        "id": "components-teaser-list-teaser-list-hbs"
       },
       {
         "type": "directory",
@@ -258,8 +252,7 @@
         "extension": ".hbs",
         "variations": [{ "name": "baz", "data": { "baz": "baz" } }],
         "index": 1,
-        "id": "components-test-test-hbs",
-        "children": []
+        "id": "components-test-test-hbs"
       }
     ]
   },
@@ -327,8 +320,7 @@
           }
         ],
         "index": 1,
-        "id": "engines-handlebars-handlebars-hbs",
-        "children": []
+        "id": "engines-handlebars-handlebars-hbs"
       },
       {
         "type": "directory",
@@ -420,8 +412,7 @@
           }
         ],
         "index": 1,
-        "id": "includes-handlebars-handlebars-hbs",
-        "children": []
+        "id": "includes-handlebars-handlebars-hbs"
       },
       {
         "type": "directory",
@@ -530,8 +521,7 @@
           }
         ],
         "index": 1,
-        "id": "templates-template-a-template-a-hbs",
-        "children": []
+        "id": "templates-template-a-template-a-hbs"
       },
       {
         "type": "directory",
@@ -590,8 +580,7 @@
           }
         ],
         "index": 1,
-        "id": "templates-template-b-template-b-hbs",
-        "children": []
+        "id": "templates-template-b-template-b-hbs"
       },
       {
         "type": "directory",
@@ -621,7 +610,6 @@
       { "name": "bar", "data": { "foo": "bar" } }
     ],
     "index": 0,
-    "id": "test2-test2-hbs",
-    "children": []
+    "id": "test2-test2-hbs"
   }
 ]
