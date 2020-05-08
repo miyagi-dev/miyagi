@@ -81,33 +81,7 @@ describe("lib/init/engines", () => {
     });
   });
 
-  describe("with twig as engine", () => {
-    test("the options param for app.render gets extended with a path and allowInlineIncludes key", () => {
-      const app = express();
-      app.render = jest.fn();
-      app.set("config", {
-        extension: "twig",
-        engine: "twig",
-        srcFolder: "srcFolder",
-      });
-      const spy = jest.spyOn(app, "render");
-      const func = () => {};
-
-      engines(app);
-      app.render("component", {}, func);
-
-      expect(spy).toHaveBeenCalledWith(
-        "component",
-        {
-          path: path.join(process.cwd(), "srcFolder"),
-          allowInlineIncludes: true,
-        },
-        func
-      );
-    });
-  });
-
-  describe("with something else than twig as engine", () => {
+  describe("with a valid engine", () => {
     test("the options param for app.render doesnt not extended with a path and allowInlineIncludes key", () => {
       const app = express();
       app.render = jest.fn();

@@ -36,7 +36,7 @@
     "chokidar": "^3.4.0",
     "clone-deep": "^4.0.1",
     "compression": "^1.7.4",
-    "consolidate": "git+https://github.com/tj/consolidate.js.git",
+    "consolidate": "git+https://github.com/mgrsskls/consolidate.js.git",
     "deepmerge": "^4.2.2",
     "directory-tree": "^2.2.4",
     "express": "^4.17.1",

@@ -86,6 +86,9 @@ describe("lib/render/_helpers", () => {
           foo: "bar",
         })
       ).toEqual({
+        allowInlineIncludes: true,
+        namespaces: undefined,
+        path: fullPath,
         foo: "bar",
         partials: "partials",
         basedir: fullPath,
