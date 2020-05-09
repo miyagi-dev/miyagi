@@ -41,6 +41,7 @@
   "messages": {
     "buildStarting": "Creating headman build…",
     "buildDone": "Build done!",
+    "commandNotFound": "Please run `headman help` for all available commands.",
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "jsonFileHasInvalidFormat": "It seems like the file ${filePath} has an invalid format as headman was not able to parse it.",
     "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your headman.json correct?",
@@ -63,7 +64,7 @@
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
     "renderingTemplateFailed": "Rendering ${filePath} failed. Please check that it is linked correctly and that its content is correct ${engine} syntax.",
     "serverStarted": "Running headman server at http://localhost:${port}!",
-    "serverStarting": "Starting headman server…",
+    "serverStarting": "Starting headman server in ${node_env} mode…",
     "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your headman.json is correct?",
     "srcFolderNotFound": "The provided srcFolder does not seem to exist.",
     "statuses": {
