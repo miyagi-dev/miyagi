@@ -197,7 +197,7 @@ describe("index", () => {
 
         expect(logger.log).toHaveBeenNthCalledWith(
           2,
-          "error",
+          "warn",
           "headman wasn't able to parse your config file."
         );
       });
