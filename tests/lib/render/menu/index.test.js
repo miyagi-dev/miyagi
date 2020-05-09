@@ -21,7 +21,9 @@ describe("lib/menu/elements/menu", () => {
   const menuItemObject = {};
 
   app.set("config", {
-    extension: "hbs",
+    templates: {
+      extension: "hbs",
+    },
   });
 
   describe("with children", () => {

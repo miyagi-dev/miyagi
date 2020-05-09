@@ -15,7 +15,9 @@ describe("lib/state/menu/structure", () => {
   test("returns the updated source structure for the menu", async (done) => {
     const app = express();
     app.set("config", {
-      extension: "hbs",
+      templates: {
+        extension: "hbs",
+      },
       srcFolder: "src/",
     });
     app.set("state", {
@@ -34,7 +36,9 @@ describe("lib/state/menu/structure", () => {
     test("it returns an empty array", () => {
       const app = express();
       app.set("config", {
-        extension: "hbs",
+        templates: {
+          extension: "hbs",
+        },
         srcFolder: "src/",
       });
       app.set("state", {

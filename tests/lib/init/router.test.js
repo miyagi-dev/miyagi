@@ -27,7 +27,9 @@ beforeEach((done) => {
     fileContents,
   });
   app.set("config", {
-    extension: "hbs",
+    templates: {
+      extension: "hbs",
+    },
     srcFolder: "srcFolder/",
   });
 

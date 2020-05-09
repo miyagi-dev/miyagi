@@ -75,6 +75,7 @@ describe("lib/render/_helpers", () => {
       const app = express();
       app.set("config", {
         srcFolder: "srcFolder",
+        templates: {},
       });
       app.set("state", {
         partials: "partials",

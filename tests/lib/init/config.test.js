@@ -16,6 +16,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: "user/css/index.css",
         jsFiles: "user/js/index.js",
+        templates: {},
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -28,6 +29,7 @@ describe("lib/init/config", () => {
         srcFolder: "/user/srcFolder",
         cssFiles: "./user/css/index.css",
         jsFiles: "/user/js/index.js",
+        templates: {},
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -42,6 +44,7 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
+        templates: {},
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -54,6 +57,7 @@ describe("lib/init/config", () => {
         srcFolder: "/user/srcFolder",
         cssFiles: ["./user/css/index.css"],
         jsFiles: ["/user/js/index.js"],
+        templates: {},
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -73,6 +77,7 @@ describe("lib/init/config", () => {
           jsFiles: {
             test: ["user/dev/js/index.js"],
           },
+          templates: {},
         });
 
         expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
@@ -85,6 +90,7 @@ describe("lib/init/config", () => {
           srcFolder: "/user/srcFolder",
           cssFiles: ["./user/css/index.css"],
           jsFiles: ["/user/js/index.js"],
+          templates: {},
         });
 
         expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -103,6 +109,7 @@ describe("lib/init/config", () => {
           jsFiles: {
             test: "user/dev/js/index.js",
           },
+          templates: {},
         });
 
         expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
@@ -115,6 +122,7 @@ describe("lib/init/config", () => {
           srcFolder: "/user/srcFolder",
           cssFiles: "./user/css/index.css",
           jsFiles: "/user/js/index.js",
+          templates: {},
         });
 
         expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -133,6 +141,7 @@ describe("lib/init/config", () => {
           jsFiles: {
             foo: ["user/js/index.js"],
           },
+          templates: {},
         });
 
         expect(logger.log).toHaveBeenNthCalledWith(
@@ -158,6 +167,7 @@ describe("lib/init/config", () => {
           jsFiles: {
             foo: ["user/js/index.js"],
           },
+          templates: {},
         });
         expect(conf.cssFiles).toEqual([]);
         expect(conf.jsFiles).toEqual([]);
@@ -167,7 +177,7 @@ describe("lib/init/config", () => {
 
   describe("without any empty config given", () => {
     test("it returns the default values", () => {
-      expect(getMergedConfig()).toEqual({
+      expect(getMergedConfig({ templates: {} })).toEqual({
         projectName: "headman",
         srcFolder: "",
         build: {
@@ -188,6 +198,7 @@ describe("lib/init/config", () => {
           accessibility: true,
         },
         reload: true,
+        templates: {},
       });
     });
   });
@@ -197,6 +208,7 @@ describe("lib/init/config", () => {
       expect(
         getMergedConfig({
           srcFolder: ".",
+          templates: {},
         }).srcFolder
       ).toEqual("");
     });
@@ -207,6 +219,7 @@ describe("lib/init/config", () => {
       expect(
         getMergedConfig({
           srcFolder: "/",
+          templates: {},
         }).srcFolder
       ).toEqual("");
     });

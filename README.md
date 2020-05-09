@@ -74,9 +74,7 @@ Create a `headman.json` in your project folder with the following options or pas
     "development": ["src/index.css"],
     "production": ["dist/index.css"]
   },
-  "engine": "handlebars", // The name of your template engine (see https://github.com/tj/consolidate.js#supported-template-engines)
   "es6Modules": false, // Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)
-  "extension": "hbs", // The file extension of your template files
   "jsFiles": { // Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value
     "development": ["src/index.js"],
     "production": ["dist/index.js"]
@@ -91,6 +89,13 @@ Create a `headman.json` in your project folder with the following options or pas
     "package-lock.json",
     "headman.json"
   ],
+  "templates": {
+    "engine": "handlebars", // The name of your template engine (see https://github.com/tj/consolidate.js#supported-template-engines)
+    "namespaces": {
+      "custom-namespace": "path/to/folder" // twig e.g. allows custom namespaces, which can be set like this
+    }
+    "extension": "hbs", // The file extension of your template files
+  },
   "theme": {
     "logo": "src/logo.svg",
     "navigation": {

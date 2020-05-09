@@ -10,8 +10,10 @@ describe("lib/init/engines", () => {
   test("it sets the handlebars engine for the hbs extension", () => {
     const app = express();
     app.set("config", {
-      extension: "twig",
-      engine: "twig",
+      templates: {
+        extension: "twig",
+        engine: "twig",
+      },
     });
     const spy = jest.spyOn(app, "engine");
 
@@ -23,8 +25,10 @@ describe("lib/init/engines", () => {
   test("it sets the app view engine to hbs", () => {
     const app = express();
     app.set("config", {
-      extension: "twig",
-      engine: "twig",
+      templates: {
+        extension: "twig",
+        engine: "twig",
+      },
     });
     const spy = jest.spyOn(app, "set");
 
@@ -36,8 +40,10 @@ describe("lib/init/engines", () => {
   test("it sets the user engine for the user extension", () => {
     const app = express();
     app.set("config", {
-      extension: "twig",
-      engine: "twig",
+      templates: {
+        extension: "twig",
+        engine: "twig",
+      },
     });
     const spy = jest.spyOn(app, "engine");
 
@@ -49,8 +55,10 @@ describe("lib/init/engines", () => {
   test("it sets the app view engine to the user extension", () => {
     const app = express();
     app.set("config", {
-      extension: "twig",
-      engine: "twig",
+      templates: {
+        extension: "twig",
+        engine: "twig",
+      },
     });
     const spy = jest.spyOn(app, "set");
 
@@ -58,15 +66,17 @@ describe("lib/init/engines", () => {
 
     expect(spy).toHaveBeenCalledWith(
       "view engine",
-      app.get("config").extension
+      app.get("config").templates.extension
     );
   });
 
   describe("with invalid engine", () => {
     const app = express();
     app.set("config", {
-      extension: "twig",
-      engine: "invalidEngine",
+      templates: {
+        extension: "twig",
+        engine: "invalidEngine",
+      },
     });
 
     test("it sets the user engine for the user extension", () => {
@@ -86,8 +96,10 @@ describe("lib/init/engines", () => {
       const app = express();
       app.render = jest.fn();
       app.set("config", {
-        extension: "ejs",
-        engine: "ejs",
+        templates: {
+          extension: "ejs",
+          engine: "ejs",
+        },
       });
       const spy = jest.spyOn(app, "render");
       const func = () => {};

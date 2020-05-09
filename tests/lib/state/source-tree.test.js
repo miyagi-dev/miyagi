@@ -13,7 +13,9 @@ describe("lib/state/source-tree", () => {
   app.set("config", {
     srcFolderIgnores: ["/ignoredFolder"],
     srcFolder: "userFolder",
-    extension: "extension",
+    templates: {
+      extension: "extension",
+    },
   });
 
   test("srcFolder() calls dirTree()", () => {

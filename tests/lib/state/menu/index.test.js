@@ -22,7 +22,9 @@ describe("state/menu/index", () => {
   test("returns the structure for the menu", async (done) => {
     const app = express();
     app.set("config", {
-      extension: "hbs",
+      templates: {
+        extension: "hbs",
+      },
       srcFolder: "/",
     });
     app.set("state", {

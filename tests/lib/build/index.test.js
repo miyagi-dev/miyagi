@@ -59,7 +59,9 @@ describe("lib/build/index", () => {
       folder: "buildFolder",
     },
     srcFolder: "srcFolder/",
-    extension: "hbs",
+    templates: {
+      extension: "hbs",
+    },
     cssFiles: ["index.css"],
     jsFiles: ["index.js"],
   });

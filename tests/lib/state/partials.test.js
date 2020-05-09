@@ -15,7 +15,9 @@ describe("lib/state/partials", () => {
   app.set("config", {
     srcFolder: "/tests/mocks/files",
     srcFolderIgnores: [],
-    extension: "hbs",
+    templates: {
+      extension: "hbs",
+    },
   });
 
   test("calls readDir with the correct path", () => {

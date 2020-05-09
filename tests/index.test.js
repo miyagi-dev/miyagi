@@ -19,7 +19,7 @@ describe("index", () => {
     });
 
     describe("with parseable result from headman.json", () => {
-      describe("with extension, srcFolder and engine defined in headman.json", () => {
+      describe("with templates.extension, srcFolder and templates.engine defined in headman.json", () => {
         test("calls lib/init with parsed config", () => {
           const fs = require("fs");
           const init = require("../lib/init");
@@ -30,7 +30,7 @@ describe("index", () => {
           fs.readFile = jest.fn((file, encoding, cb) => {
             cb(
               "",
-              '{"extension": "hbs","engine": "handlebars","srcFolder": "src/"}'
+              '{"templates":{"extension": "hbs","engine": "handlebars"},"srcFolder": "src/"}'
             );
           });
 
@@ -64,7 +64,7 @@ describe("index", () => {
                 isGenerator: false,
               },
               JSON.parse(
-                '{"extension": "hbs","engine": "handlebars","srcFolder": "src/"}'
+                '{"templates":{"extension": "hbs","engine": "handlebars"},"srcFolder": "src/"}'
               )
             )
           );
@@ -78,7 +78,10 @@ describe("index", () => {
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
-            cb("", '{"engine": "handlebars","srcFolder": "src/"}');
+            cb(
+              "",
+              '{"templates": {"engine": "handlebars"},"srcFolder": "src/"}'
+            );
           });
 
           require("../index.js");
@@ -97,7 +100,10 @@ describe("index", () => {
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
-            cb("", '{"engine": "handlebars","srcFolder": "src/"}');
+            cb(
+              "",
+              '{"templates": {"engine": "handlebars"},"srcFolder": "src/"}'
+            );
           });
 
           require("../index.js");
@@ -113,7 +119,7 @@ describe("index", () => {
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
-            cb("", '{"extension": "hbs","srcFolder": "src/"}');
+            cb("", '{"templates":{"extension": "hbs"},"srcFolder": "src/"}');
           });
 
           require("../index.js");
@@ -132,7 +138,7 @@ describe("index", () => {
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
-            cb("", '{"extension": "hbs","srcFolder": "src/"}');
+            cb("", '{"templates":{"extension": "hbs"},"srcFolder": "src/"}');
           });
 
           require("../index.js");
@@ -148,7 +154,7 @@ describe("index", () => {
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
-            cb("", '{"engine": "handlebars","extension": "hbs"}');
+            cb("", '{"templates":{"engine": "handlebars","extension": "hbs"}}');
           });
 
           require("../index.js");
@@ -167,7 +173,7 @@ describe("index", () => {
 
           logger.log = jest.fn();
           fs.readFile = jest.fn((file, encoding, cb) => {
-            cb("", '{"engine": "handlebars","extension": "hbs"}');
+            cb("", '{"templates":{"engine": "handlebars","extension": "hbs"}}');
           });
 
           require("../index.js");

@@ -98,7 +98,9 @@ beforeEach(() => {
   });
   app.set("views", [path.join(process.cwd(), "/tests/mocks/srcFolder/")]);
   app.set("config", {
-    extension: "hbs",
+    templates: {
+      extension: "hbs",
+    },
     srcFolder: "tests/mocks/srcFolder/",
     projectName: userProjectName,
     validations: {

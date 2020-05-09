@@ -8,7 +8,10 @@ beforeEach(() => {
 
 describe("lib/helpers", () => {
   const app = require("express")();
-  app.set("config", { srcFolder: "srcFolder/", extension: "hbs" });
+  app.set("config", {
+    srcFolder: "srcFolder/",
+    templates: { extension: "hbs" },
+  });
 
   describe("fileIsOfGivenType()", () => {
     describe("with given filename ending with given extension", () => {
@@ -51,12 +54,15 @@ describe("lib/helpers", () => {
   });
 
   describe("fileIsTemplateFile()", () => {
-    test("calls fileIsOfGivenType() with passed fileName and app.config.extension", () => {
+    test("calls fileIsOfGivenType() with passed fileName and app.config.templates.extension", () => {
       const spy = jest.spyOn(helpers, "fileIsOfGivenType");
 
       helpers.fileIsTemplateFile(app, "foo/bar");
 
-      expect(spy).toHaveBeenCalledWith("foo/bar", app.get("config").extension);
+      expect(spy).toHaveBeenCalledWith(
+        "foo/bar",
+        app.get("config").templates.extension
+      );
 
       spy.mockRestore();
     });
