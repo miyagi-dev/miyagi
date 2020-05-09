@@ -13,7 +13,7 @@
       ".git",
       "package.json",
       "package-lock.json",
-      "headman.json"
+      ".headman.js"
     ],
     "validations": {
       "html": true,
@@ -22,7 +22,7 @@
   },
   "projectName": "headman",
   "defaultPort": 5000,
-  "userConfigFile": "headman.json",
+  "userConfigFile": ".headman.js",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "dataFileType": "json",
   "documentationFileType": "md",
@@ -44,7 +44,7 @@
     "commandNotFound": "Please run `headman help` for all available commands.",
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "jsonFileHasInvalidFormat": "It seems like the file ${filePath} has an invalid format as headman was not able to parse it.",
-    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your headman.json correct?",
+    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your .headman.js correct?",
     "fileNotFoundLinkIncorrect": "Couldn't find file ${filePath}. Please check that it's linked correctly.",
     "fileNotRenderedDueToUnmatchingFolderName": "${file} ignored because the parent directory doesn't have the same name.",
     "generator": {
@@ -55,28 +55,28 @@
       "fileAlreadyExists": "The file ${name} already exists."
     },
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingEngineAndExtension": "Please specify your template engine and extension in headman.json (key: 'templates.engine|extension', type: String) or as a cli argument (--templates.engine|extension=<String>)",
-    "missingEngine": "Please specify your template engine in headman.json (key: 'templates.engine', type: String) or as a cli argument (--templates.engine=<String>)",
-    "missingExtension": "Please specify the file extension of your components in headman.json (key: 'templates.extension', type: String) or as a cli argument (--templates.extension=<extension>).",
-    "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in headman.json (key: 'srcFolder', type: String).",
+    "missingEngineAndExtension": "Please specify your template engine and extension in .headman.js (key: 'templates.engine|extension', type: String) or as a cli argument (--templates.engine|extension=<String>)",
+    "missingEngine": "Please specify your template engine in .headman.js (key: 'templates.engine', type: String) or as a cli argument (--templates.engine=<String>)",
+    "missingExtension": "Please specify the file extension of your components in .headman.js (key: 'templates.extension', type: String) or as a cli argument (--templates.extension=<extension>).",
+    "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in .headman.js (key: 'srcFolder', type: String).",
     "noDataSetForVariation": "No data defined for variation \"${variation}\" in ${file}.",
-    "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your headman.json, so headman is not able to deliver your ${assetType} files.",
+    "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your .headman.js, so headman is not able to deliver your ${assetType} files.",
     "nodeEnvNotDefined": "Please define your NODE_ENV.",
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
     "renderingTemplateFailed": "Rendering ${filePath} failed. Please check that it is linked correctly and that its content is correct ${engine} syntax.",
     "serverStarted": "Running headman server at http://localhost:${port}!",
     "serverStarting": "Starting headman server in ${node_env} mode…",
-    "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your headman.json is correct?",
+    "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your .headman.js is correct?",
     "srcFolderNotFound": "The provided srcFolder does not seem to exist.",
     "statuses": {
       "done": "Done",
       "wip": "Work in progress",
       "needs_work": "Needs refactoring / improvement"
     },
-    "userConfigNotFound": "Couldn't find the file headman.json.",
+    "userConfigNotFound": "Couldn't find the file .headman.js.",
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
-    "userConfigUnparseable": "headman wasn't able to parse your config file.",
+    "userConfigUnparseable": "headman wasn't able to find or parse your config file.",
     "wrongFileType": "${fileName} does not have the correct file type."
   }
 }
