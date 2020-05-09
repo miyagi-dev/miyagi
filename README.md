@@ -22,7 +22,7 @@ _headman_ is a component development tool. It renders and validates all your com
 - [Installation](#installation)
 - [Usage](#usage)
   - [Options](#options)
-  - [Commands](#commanfd)
+  - [Commands](#commands)
     - [Starting _headman_ server](#starting-headman-server)
     - [Creating components via CLI](#creating-components-via-cli)
     - [Creating a build](#creating-a-build)
@@ -66,6 +66,7 @@ Create a `headman.json` in your project folder with the following options or pas
 
 ```js
 {
+  "assetFolder": "", // The folder where your static assets are located.
   "build": {
     "folder": "build", // The folder where your build files will be saved. Use `folder` when using as cli argument.
   },
