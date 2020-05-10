@@ -64,6 +64,7 @@ describe("lib/build/index", () => {
     },
     cssFiles: ["index.css"],
     jsFiles: ["index.js"],
+    theme: {},
   });
   app.set("state", {
     partials: {
