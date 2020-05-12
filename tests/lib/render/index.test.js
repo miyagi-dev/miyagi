@@ -284,13 +284,14 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1global\n",
           htmlValidation: true,
-          accessibilityValidation: true,
+          accessibilityValidation: null,
           standaloneUrl: null,
           dev: false,
           prod: false,
           projectName,
           userProjectName,
           isBuild: undefined,
+          standalone: true,
         });
 
         done();
@@ -312,8 +313,9 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component11\n",
           htmlValidation: true,
-          accessibilityValidation: true,
+          accessibilityValidation: null,
           standaloneUrl: null,
+          standalone: true,
           dev: false,
           prod: false,
           projectName,
@@ -335,8 +337,9 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component2\n",
           htmlValidation: true,
-          accessibilityValidation: true,
+          accessibilityValidation: null,
           standaloneUrl: null,
+          standalone: true,
           dev: false,
           prod: false,
           projectName,
@@ -363,8 +366,9 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component8\n",
           htmlValidation: true,
-          accessibilityValidation: true,
+          accessibilityValidation: null,
           standaloneUrl: null,
+          standalone: true,
           dev: false,
           prod: false,
           projectName,
@@ -391,8 +395,9 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           html: '<p class="HeadmanError">Component couldn\'t be rendered.</p>',
           htmlValidation: true,
-          accessibilityValidation: true,
+          accessibilityValidation: null,
           standaloneUrl: null,
+          standalone: true,
           dev: false,
           prod: false,
           projectName,
@@ -422,6 +427,7 @@ describe("lib/render/index", () => {
           htmlValidation: true,
           accessibilityValidation: true,
           standaloneUrl: `/component?file=${component}&variation=component1`,
+          standalone: false,
           dev: false,
           prod: false,
           projectName,
@@ -448,13 +454,14 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
           htmlValidation: true,
-          accessibilityValidation: true,
+          accessibilityValidation: null,
           standaloneUrl: null,
           dev: false,
           prod: false,
           projectName,
           userProjectName,
           isBuild: undefined,
+          standalone: true,
         });
 
         done();
