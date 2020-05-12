@@ -164,7 +164,7 @@ body {
     grid-template-areas:
       "nav iframe"
       "nav tests";
-    grid-template-columns: 24rem 1fr;
+    grid-template-columns: 25rem 1fr;
     grid-template-rows: 1fr auto;
   }
 
@@ -179,7 +179,7 @@ body {
 @media (min-width: 64.03125em) {
   .Headman {
     grid-template-areas: "nav iframe tests";
-    grid-template-columns: 24rem 1fr auto;
+    grid-template-columns: 25rem 1fr auto;
   }
 
   .Headman-tests {
