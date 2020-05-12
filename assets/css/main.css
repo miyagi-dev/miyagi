@@ -20,7 +20,7 @@
   --Headman-borderRadius: 0.25rem;
   --Headman-linkSpacing: 0.35rem;
   --Headman-toggle-border: 0 solid var(--Headman-color-link);
-  --Headman-toggle-borderWidth: 0.3em 0.3em 0 0;
+  --Headman-toggle-borderWidth: 0.15em 0.15em 0 0;
   --Headman-toggle-fontSize: 0.75rem;
   --Headman-toggle-height: 1em;
   --Headman-toggle-transition: transform 0.15s ease;

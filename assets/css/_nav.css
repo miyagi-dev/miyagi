@@ -8,7 +8,7 @@
 
 .Headman-menu {
   font-size: 1.4rem;
-  margin-top: 2rem;
+  margin-top: var(--Headman-spacing);
 }
 
 [aria-expanded="true"] ~ .Headman-listContainer {

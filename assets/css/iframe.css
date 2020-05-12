@@ -22,7 +22,7 @@ body {
 
 .HeadmanWrapper {
   box-sizing: border-box;
-  padding: calc(var(--spacing) - 12px) var(--spacing) var(--spacing);
+  padding: var(--spacing);
   width: 100%;
 }
 
@@ -35,6 +35,7 @@ body {
   color: var(--Headman-colorHeadlines);
   font-size: 2.4em;
   font-weight: bold;
+  line-height: 1;
 }
 
 .HeadmanDocumentation > * + * {
