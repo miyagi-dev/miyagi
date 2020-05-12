@@ -1,3 +1,7 @@
+.Headman-projectLogo {
+  max-width: 100%;
+}
+
 .Headman-projectLogo + .Headman-projectName {
   display: none;
 }
