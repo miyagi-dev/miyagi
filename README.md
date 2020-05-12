@@ -97,6 +97,7 @@ Create a `headman.json` in your project folder with the following options or pas
     "extension": "hbs", // The file extension of your template files
   },
   "theme": {
+    "favicon": "src/favicon.ico",
     "logo": "src/logo.svg",
     "navigation": {
       "colorBackground": "#e0eeff",
