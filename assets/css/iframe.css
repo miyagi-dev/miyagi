@@ -21,6 +21,7 @@ body {
 }
 
 .HeadmanWrapper {
+  box-sizing: border-box;
   padding: calc(var(--spacing) - 12px) var(--spacing) var(--spacing);
   width: 100%;
 }
@@ -147,6 +148,7 @@ body {
 }
 
 .HeadmanComponentView {
+  box-sizing: border-box;
   padding: var(--spacing);
   width: 100%;
 }
