@@ -25,6 +25,7 @@ _headman_ is a component development tool. It renders and validates all your com
   - [Commands](#commands)
     - [Starting _headman_ server](#starting-headman-server)
     - [Creating components via CLI](#creating-components-via-cli)
+    - [Creating data files via CLI](#creating-data-files-via-cli)
     - [Creating a build](#creating-a-build)
   - [Organizing your components](#organizing-your-components)
   - [Creating test data](#creating-test-data)
@@ -127,9 +128,13 @@ Start _headman_ with `NODE_ENV=(development|production) node node_modules/headma
 #### Creating components via CLI
 
 Creating (empty) components via CLI is possible with `headman new <folderName>/<componentName>`.
-This will create template (the type is based on your config), data, docs, css and js files.
+This will create template (the type is based on your config), data, docs, schema, css and js files.
 You can skip any of these like this: `headman new <folderName>/<componentName> --skip=css,js`.
 Alternatively, you can explicitly say which files you need like this: `headman new <folderName>/<componentName> --only=tpl,docs`.
+
+#### Creating data files via CLI
+
+If you have a valid `schema.json` file in your component folder, you can create a data file with dummy content (based on [json-schema-faker](https://www.npmjs.com/package/json-schema-faker)) via `headman data path/to/your/component`.
 
 #### Creating a build
 
