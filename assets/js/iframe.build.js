@@ -1,3 +1,4 @@
+import "./_prism.js";
 import "./_tests.js";
 import "./_iframe-links.js";
 

@@ -20,38 +20,7 @@
   </dl>
   {{#if schema}}
   <h2 class="Headman-sectionTitle">Schema</h2>
-  <table class="HeadmanSchemaTable">
-    <thead class="HeadmanSchemaTable-head">
-      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Name</th>
-      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Type</th>
-      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Values</th>
-      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Required</th>
-      <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--head">Note</th>
-    </thead>
-    <tbody class="HeadmanSchemaTable-body">
-      {{#each schema}}
-      <tr class="HeadmanSchemaTable-row">
-        <th class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">{{name}}</th>
-        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">{{attrs.type}}</td>
-        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">
-          {{#if attrs.values}}
-          <ul class="HeadmanSchemaTable-values">
-            {{#each attrs.values}}
-            <li class="HeadmanSchemaTable-value">"{{this}}"</li>
-            {{/each}}
-          </ul>
-          {{else}}
-          <i>any</i>
-          {{/if}}
-        </td>
-        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">{{#if attrs.required}}yes{{else}}no{{/if}}
-        </td>
-        <td class="HeadmanSchemaTable-cell HeadmanSchemaTable-cell--body">
-          {{#if attrs.note}}{{attrs.note}}{{else}}-{{/if}}</td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+  <pre class="Headman-code language-json"><code>{{{schema}}}</code></pre>
   {{/if}}
   {{#if variations}}
   <h2 class="Headman-sectionTitle">Variations</h2>

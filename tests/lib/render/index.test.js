@@ -514,7 +514,7 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          schema: [],
+          schema: undefined,
           name: "component1",
           documentation: undefined,
           theme: undefined,
@@ -572,7 +572,7 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: [],
+            schema: undefined,
             name: "component1",
             documentation: undefined,
             theme: undefined,
@@ -624,7 +624,7 @@ describe("lib/render/index", () => {
             isBuild: undefined,
             documentation: undefined,
             theme: undefined,
-            schema: [],
+            schema: undefined,
             name: "component3",
             status: null,
           });
@@ -668,7 +668,7 @@ describe("lib/render/index", () => {
             isBuild: undefined,
             documentation: undefined,
             theme: undefined,
-            schema: [],
+            schema: undefined,
             name: "component6",
             status: null,
           });
@@ -711,7 +711,7 @@ describe("lib/render/index", () => {
             isBuild: undefined,
             documentation: undefined,
             theme: undefined,
-            schema: [],
+            schema: undefined,
             name: "component7",
             status: null,
           });
@@ -758,7 +758,7 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: [],
+            schema: undefined,
             name: "component9",
             documentation: undefined,
             theme: undefined,
@@ -795,7 +795,7 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: [],
+            schema: undefined,
             name: "component2",
             variations: [
               {
@@ -837,7 +837,7 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: [],
+            schema: undefined,
             name: "component2",
             variations: [
               {
@@ -886,7 +886,7 @@ describe("lib/render/index", () => {
               variation: "default",
             },
           ],
-          schema: [],
+          schema: undefined,
           name: "component4",
           status: null,
         });
