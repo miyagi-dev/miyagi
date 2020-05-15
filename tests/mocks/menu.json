@@ -74,7 +74,7 @@
             "data": {
               "name": "B with header",
               "header": {
-                "dataFile": "components/component-b/_header/_header.json"
+                "$ref": "components/component-b/_header"
               }
             }
           },
@@ -83,7 +83,7 @@
             "data": {
               "name": "B with footer",
               "footer": {
-                "dataFile": "components/component-b/_footer/_footer.json"
+                "$ref": "components/component-b/_footer"
               }
             }
           },
@@ -92,10 +92,10 @@
             "data": {
               "name": "B with header/footer",
               "footer": {
-                "dataFile": "components/component-b/_footer/_footer.json"
+                "$ref": "components/component-b/_footer"
               },
               "header": {
-                "dataFile": "components/component-b/_header/_header.json"
+                "$ref": "components/component-b/_header"
               }
             }
           }
@@ -226,13 +226,13 @@
             "name": "default",
             "data": {
               "list": [
-                { "dataFile": "components/teaser/teaser.json" },
+                { "$ref": "components/teaser" },
                 {
-                  "dataFile": "components/teaser/teaser.json",
+                  "$ref": "components/teaser",
                   "variation": "Teaser with CTA"
                 },
                 {
-                  "dataFile": "components/teaser/teaser.json",
+                  "$ref": "components/teaser",
                   "variation": "Teaser with another CTA"
                 },
                 { "name": "Custom teaser", "cta": { "label": "Custom button" } }
@@ -304,7 +304,7 @@
             "data": {
               "engine": "handlebars",
               "testInclude": {
-                "dataFile": "includes/handlebars/handlebars.json"
+                "$ref": "includes/handlebars"
               }
             }
           },
@@ -313,7 +313,7 @@
             "data": {
               "engine": "handlebars variation",
               "testInclude": {
-                "dataFile": "includes/handlebars/handlebars.json",
+                "$ref": "includes/handlebars",
                 "variation": "Another variation"
               }
             }
@@ -515,7 +515,7 @@
             "name": "With component",
             "data": {
               "componentB": {
-                "dataFile": "components/component-b/component-b.json"
+                "$ref": "components/component-b"
               }
             }
           }
@@ -536,10 +536,10 @@
             "data": {
               "name": "B",
               "teaserList": {
-                "dataFile": "components/teaser-list/teaser-list.json"
+                "$ref": "components/teaser-list"
               },
               "componentB": {
-                "dataFile": "components/component-b/component-b.json"
+                "$ref": "components/component-b"
               }
             }
           },
@@ -557,7 +557,7 @@
             "name": "With component B with data as url",
             "data": {
               "componentB": {
-                "dataFile": "components/component-b/componendt-b.json"
+                "$ref": "components/component-b"
               }
             }
           },

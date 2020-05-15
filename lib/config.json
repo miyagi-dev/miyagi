@@ -90,6 +90,7 @@
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
     "userConfigUnparseable": "headman wasn't able to find or parse your config file.",
+    "variationNotFound": "Variation \"${variation}\" not found in ${fileName}.",
     "wrongFileType": "${fileName} does not have the correct file type."
   }
 }

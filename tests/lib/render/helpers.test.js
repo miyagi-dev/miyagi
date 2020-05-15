@@ -163,7 +163,7 @@ describe("lib/render/_helpers", () => {
             data: {
               resolve: [
                 {
-                  dataFile: "resolve/resolve",
+                  $ref: "resolve/resolve",
                 },
               ],
             },
@@ -175,7 +175,7 @@ describe("lib/render/_helpers", () => {
       ] = {
         data: {
           resolve: {
-            dataFile: "resolve/resolve/resolve",
+            $ref: "resolve/resolve/resolve",
           },
         },
       };
@@ -195,8 +195,7 @@ describe("lib/render/_helpers", () => {
       expect(
         await helpers.overwriteJsonLinksWithJsonData(app, {
           resolve: {
-            dataFile: "resolve",
-            variation: "variation",
+            $ref: "resolve#variation",
           },
         })
       ).toEqual({
@@ -254,7 +253,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              dataFile: "some/component",
+              $ref: "some/component",
             },
           })
         ).toEqual({
@@ -292,8 +291,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              dataFile: "resolve/resolve.json",
-              variation: "variation",
+              $ref: "resolve/resolve.json#variation",
             },
           })
         ).toEqual({

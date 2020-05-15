@@ -78,7 +78,7 @@
         "data": {
           "name": "B with header",
           "header": {
-            "dataFile": "components/component-b/_header/_header.json"
+            "$ref": "components/component-b/_header"
           }
         }
       },
@@ -87,7 +87,7 @@
         "data": {
           "name": "B with footer",
           "footer": {
-            "dataFile": "components/component-b/_footer/_footer.json"
+            "$ref": "components/component-b/_footer"
           }
         }
       },
@@ -96,10 +96,10 @@
         "data": {
           "name": "B with header/footer",
           "footer": {
-            "dataFile": "components/component-b/_footer/_footer.json"
+            "$ref": "components/component-b/_footer"
           },
           "header": {
-            "dataFile": "components/component-b/_header/_header.json"
+            "$ref": "components/component-b/_header"
           }
         }
       }
@@ -193,7 +193,7 @@
     "data": {
       "engine": "ect",
       "testInclude": {
-        "dataFile": "includes/ect/ect.json"
+        "$ref": "includes/ect"
       }
     },
     "variations": [
@@ -202,7 +202,7 @@
         "data": {
           "engine": "ect variation",
           "testInclude": {
-            "dataFile": "includes/ect/ect.json",
+            "$ref": "includes/ect",
             "variation": "Another variation"
           }
         }
@@ -234,14 +234,14 @@
     "data": {
       "list": [
         {
-          "dataFile": "components/teaser/teaser.json"
+          "$ref": "components/teaser"
         },
         {
-          "dataFile": "components/teaser/teaser.json",
+          "$ref": "components/teaser",
           "variation": "Teaser with CTA"
         },
         {
-          "dataFile": "components/teaser/teaser.json",
+          "$ref": "components/teaser",
           "variation": "Teaser with another CTA"
         },
         {
@@ -257,7 +257,7 @@
     "data": {
       "engine": "dust",
       "testInclude": {
-        "dataFile": "includes/dust/dust.json"
+        "$ref": "includes/dust"
       }
     },
     "variations": [
@@ -266,7 +266,7 @@
         "data": {
           "engine": "dust variation",
           "testInclude": {
-            "dataFile": "includes/dust/dust.json",
+            "$ref": "includes/dust",
             "variation": "Another variation"
           }
         }
@@ -281,7 +281,7 @@
     "data": {
       "engine": "ejs",
       "testInclude": {
-        "dataFile": "includes/ejs/ejs.json"
+        "$ref": "includes/ejs"
       }
     },
     "variations": [
@@ -290,7 +290,7 @@
         "data": {
           "engine": "ejs variation",
           "testInclude": {
-            "dataFile": "includes/ejs/ejs.json",
+            "$ref": "includes/ejs",
             "variation": "Another variation"
           }
         }
@@ -317,7 +317,7 @@
     "data": {
       "engine": "haml",
       "testInclude": {
-        "dataFile": "includes/haml/haml.json"
+        "$ref": "includes/haml"
       }
     },
     "variations": [
@@ -326,7 +326,7 @@
         "data": {
           "engine": "haml variation",
           "testInclude": {
-            "dataFile": "includes/haml/haml.json",
+            "$ref": "includes/haml",
             "variation": "Another variation"
           }
         }
@@ -337,7 +337,7 @@
     "data": {
       "engine": "handlebars",
       "testInclude": {
-        "dataFile": "includes/handlebars/handlebars.json"
+        "$ref": "includes/handlebars"
       }
     },
     "variations": [
@@ -346,7 +346,7 @@
         "data": {
           "engine": "handlebars variation",
           "testInclude": {
-            "dataFile": "includes/handlebars/handlebars.json",
+            "$ref": "includes/handlebars",
             "variation": "Another variation"
           }
         }
@@ -372,7 +372,7 @@
     "data": {
       "engine": "nunjucks",
       "testInclude": {
-        "dataFile": "includes/nunjucks/nunjucks.json"
+        "$ref": "includes/nunjucks"
       }
     },
     "variations": [
@@ -381,7 +381,7 @@
         "data": {
           "engine": "nunjucks variation",
           "testInclude": {
-            "dataFile": "includes/nunjucks/nunjucks.json",
+            "$ref": "includes/nunjucks",
             "variation": "Another variation"
           }
         }
@@ -407,7 +407,7 @@
     "data": {
       "engine": "twig",
       "testInclude": {
-        "dataFile": "includes/twig/twig.json"
+        "$ref": "includes/twig"
       }
     },
     "variations": [
@@ -416,7 +416,7 @@
         "data": {
           "engine": "twig variation",
           "testInclude": {
-            "dataFile": "includes/twig/twig.json",
+            "$ref": "includes/twig",
             "variation": "Another variation"
           }
         }
@@ -572,10 +572,10 @@
     "data": {
       "name": "B",
       "teaserList": {
-        "dataFile": "components/teaser-list/teaser-list.json"
+        "$ref": "components/teaser-list"
       },
       "componentB": {
-        "dataFile": "components/component-b/component-b.json"
+        "$ref": "components/component-b"
       }
     },
     "variations": [
@@ -593,7 +593,7 @@
         "name": "With component B with data as url",
         "data": {
           "componentB": {
-            "dataFile": "components/component-b/componendt-b.json"
+            "$ref": "components/component-b"
           }
         }
       },
@@ -633,7 +633,7 @@
         "name": "With component",
         "data": {
           "componentB": {
-            "dataFile": "components/component-b/component-b.json"
+            "$ref": "components/component-b"
           }
         }
       }

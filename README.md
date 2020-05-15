@@ -226,7 +226,7 @@ Create a `json` file in your component folder with a structure like this:
   "data": {
     "content": "<p>Here goes my content html</p>",
     "teaser": {
-      "dataFile": "components/teaser"
+      "$ref": "components/teaser"
     },
     "header": {
       "title": "The page title"
@@ -237,8 +237,8 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With CTA",
       "data": {
         "cta": {
-          "tplFile": "components/button",
-          "dataFile": "components/button"
+          "$tpl": "components/button",
+          "$ref": "components/button"
         }
       }
     },
@@ -252,7 +252,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With teaser variation",
       "data": {
         "teaser": {
-          "dataFile": "components/teaser",
+          "$ref": "components/teaser",
           "variation": "Teaser 2"
         }
       }
@@ -261,7 +261,7 @@ Create a `json` file in your component folder with a structure like this:
       "name": "With overwritte teaser variation",
       "data": {
         "teaser": {
-          "dataFile": "components/teaser",
+          "$ref": "components/teaser",
           "variation": "Teaser 2",
           "title": "Overwritten title"
         }
@@ -279,14 +279,13 @@ _**NOTE**: The base `data` key is optional, that means you can also create varia
 
 **Instead of defining data manually, you can also use data from included components:**
 
-The example above uses a `dataFile` key in `templates/homepage/homepage.json` in multiple places. _headman_ then uses the data from the given files.
+The example above uses a `$ref` key in `templates/homepage/homepage.json` in multiple places. _headman_ then uses the data from the given files.
 If you have variations defined in these files, you can tell _headman_ to use any of them like this:
 
 ```js
 {
   "teaser": {
-    "dataFile": "components/teaser",
-    "variation": "Teaser 2"
+    "$ref": "components/teaser#teaser-2",
   }
 }
 ```
@@ -295,7 +294,7 @@ This would use the variation with the name `Teaser 2` from `components/teaser/te
 
 _**Note:** You can also overwrite values of the imported data (see last variation in the `homepage.json` example above)._
 
-Additionally you can also use a `tplFile` key to reference another template file (See the "With CTA" variation in `homepage.json`). That way the data object gets replaced with rendered HTML and the variable in your template file could directly render the HTML.
+Additionally you can also use a `$tpl` key to reference another template file (See the "With CTA" variation in `homepage.json`). That way the data object gets replaced with rendered HTML and the variable in your template file could directly render the HTML.
 
 The `teaser.json` example above would be resolved like this:
 
