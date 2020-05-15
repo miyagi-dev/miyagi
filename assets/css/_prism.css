@@ -7,66 +7,23 @@ https://prismjs.com/download.html#themes=prism&languages=json */
  * @author Lea Verou
  */
 
-code[class*="language-"],
-pre[class*="language-"] {
-  background: none;
-  color: black;
-  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-  font-size: 1em;
-
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
+code[class*="language-"] {
   hyphens: none;
-  line-height: 1.5;
-
-  -moz-tab-size: 4;
-  -o-tab-size: 4;
-  tab-size: 4;
-  text-align: left;
-  text-shadow: 0 1px white;
+  tab-size: 2;
   white-space: pre;
   word-break: normal;
   word-spacing: normal;
   word-wrap: normal;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
   background: #b3d4fc;
-  text-shadow: none;
-}
-
-@media print {
-  code[class*="language-"],
-  pre[class*="language-"] {
-    text-shadow: none;
-  }
 }
 
 /* Code blocks */
 pre[class*="language-"] {
-  margin: .5em 0;
   overflow: auto;
-  padding: 1em;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #f5f2f0;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  border-radius: .3em;
-  padding: .1em;
-  white-space: normal;
 }
 
 .token.comment,
@@ -140,6 +97,5 @@ pre[class*="language-"] {
 .token.entity {
   cursor: help;
 }
-
 
 /* stylelint-enable */

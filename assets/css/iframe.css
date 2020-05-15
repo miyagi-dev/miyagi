@@ -195,8 +195,7 @@ body {
 
 .Headman-code {
   border: .1rem solid #ddd;
-  overflow-x: auto;
-  padding: var(--spacing);
+  padding: calc(var(--spacing) / 2);
 }
 
 .Headman-code[class*="language-"] {
