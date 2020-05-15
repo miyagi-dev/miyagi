@@ -6,7 +6,7 @@
   --Headman-color: #222;
   --Headman-color-negative: #d9173e;
   --Headman-color-warning: purple;
-  --Headman-color-positive: green;
+  --Headman-color-positive: #690;
   --Headman-colorHeadlines: var(--Headman-color);
   --Headman-transition: all 0.15s ease;
 }
