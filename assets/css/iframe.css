@@ -109,7 +109,8 @@ body {
   width: var(--size);
 }
 
-.HeadmanStatus--done::before {
+.HeadmanStatus--done::before,
+.HeadmanStatus--valid::before {
   background-color: var(--Headman-color-positive);
 }
 
@@ -117,8 +118,14 @@ body {
   background-color: var(--Headman-color-warning);
 }
 
-.HeadmanStatus--needs_work::before {
+.HeadmanStatus--needs_work::before,
+.HeadmanStatus--invalid::before {
   background-color: var(--Headman-color-negative);
+}
+
+.HeadmanComponent-head {
+  display: flex;
+  justify-content: space-between;
 }
 
 .HeadmanComponent-file {
@@ -147,7 +154,7 @@ body {
 }
 
 .HeadmanError {
-  color: #d9173e;
+  color: var(--Headman-color-negative);
 }
 
 .HeadmanComponentView {

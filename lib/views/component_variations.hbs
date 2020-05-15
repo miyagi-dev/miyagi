@@ -27,9 +27,16 @@
   {{/if}}
   {{#each variations}}
   <div class="HeadmanComponent">
-    <a href="{{ this.url }}" class="HeadmanComponent-file">{{
-      this.variation
-    }}</a>
+    <div class="HeadmanComponent-head">
+      <a href="{{ this.url }}" class="HeadmanComponent-file">{{
+        this.variation
+      }}</a>
+      {{#if schemaValidation}}
+        <p class="HeadmanComponent-schemaValidation">
+          <span class="HeadmanStatus HeadmanStatus--{{#if schemaValidation.valid}}valid{{else}}invalid{{/if}}">{{schemaValidation.copy}}</span>
+        </p>
+      {{/if}}
+    </div>
     <div class="HeadmanComponent-html">{{{this.html}}}</div>
   </div>
   {{/each}}
