@@ -348,6 +348,26 @@ _headman_'s concept of inheriting data works best with rendering engines which a
 
 _**Note:** There is no way to create a named variation of a variation._
 
+### Merging templates
+
+You can merge multiple components into one html result by using `render()`:
+
+```js
+{
+  "data": {
+    "html": {
+      "render()": [{
+        "$tpl": "some/component",
+        "$tpl": "some/component",
+        "$tpl": "some/component",
+      }]
+    }
+  }
+}
+```
+
+This would resolve the templates and join them into one variable `html`.
+
 ### Global data
 
 You can define global data by creating a `data.json` in your `srcFolder`. This data will be merged into your components data. The components data has higher priority, hence overwrites keys with the same name.
