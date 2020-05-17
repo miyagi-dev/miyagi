@@ -32,7 +32,9 @@ describe("state/menu/index", () => {
             engine: "handlebars",
           },
         },
-        srcFolder: "/",
+        components: {
+          folder: "/",
+        },
       })
     );
     app.set("state", {

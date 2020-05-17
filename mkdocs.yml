@@ -1,0 +1,48 @@
+site_name: headman
+site_description: headman is a node based component development tool for JavaScript templating engines.
+
+extra_css:
+  - extra.css
+
+repo_name: mgrsskls/headman
+repo_url: https://github.com/mgrsskls/headman
+edit_uri: ""
+
+theme:
+  name: material
+  font: false
+
+plugins:
+  - search # necessary for search to work
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - CLI commands:
+      - Starting headman: cli-commands/start.md
+      - Creating a component: cli-commands/components.md
+      - Creating mock data: cli-commands/mocks.md
+      - Creating a build: cli-commands/build.md
+  - Configuration:
+      - Available options: configuration/options.md
+      - Via config file: configuration/config-file.md
+      - Via CLI: configuration/cli.md
+  - Organizing your components: organizing-components.md
+  - Component files:
+      - Assets: component-files/assets.md
+      - Documentation: component-files/documentation.md
+      - Info: component-files/info.md
+      - Mocks: component-files/mocks.md
+      - Schema: component-files/schema.md
+      - Template: component-files/template.md
+  - The web UI:
+      - Overview: web-ui/overview.md
+      - Component: web-ui/component.md
+      - Variation: web-ui/variation.md
+  - Supported template engines: template-engines.md

@@ -2,6 +2,7 @@ const config = require("../../../lib/config.json");
 const setViews = require("../../../lib/init/views.js");
 const express = require("express");
 const path = require("path");
+const deepMerge = require("deepmerge");
 
 beforeEach(() => {
   jest.resetModules();
@@ -12,8 +13,10 @@ describe("lib/init/views", () => {
   const app = express();
   app.set(
     "config",
-    Object.assign({}, config.defaultUserConfig, {
-      srcFolder: "src/",
+    deepMerge(config.defaultUserConfig, {
+      components: {
+        folder: "src/",
+      },
     })
   );
 
@@ -25,9 +28,9 @@ describe("lib/init/views", () => {
     );
   });
 
-  test("adds the user srcFolder to the app instance", () => {
+  test("adds the user components.folder to the app instance", () => {
     expect(app.get("views")).toContain(
-      path.resolve(app.get("config").srcFolder)
+      path.resolve(app.get("config").components.folder)
     );
   });
 

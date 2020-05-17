@@ -3,6 +3,7 @@ const logger = require("../../../lib/logger.js");
 const helpers = require("../../../lib/render/_helpers.js");
 const express = require("express");
 const path = require("path");
+const deepMerge = require("deepmerge");
 
 logger.log = jest.fn();
 
@@ -16,8 +17,10 @@ describe("lib/render/_helpers", () => {
 
       app.set(
         "config",
-        Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder/",
+        deepMerge(config.defaultUserConfig, {
+          components: {
+            folder: "srcFolder/",
+          },
         })
       );
       app.set("state", {
@@ -79,8 +82,10 @@ describe("lib/render/_helpers", () => {
       const app = express();
       app.set(
         "config",
-        Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
+        deepMerge(config.defaultUserConfig, {
+          components: {
+            folder: "srcFolder",
+          },
           files: { templates: {} },
         })
       );
@@ -161,8 +166,10 @@ describe("lib/render/_helpers", () => {
       const app = express();
       app.set(
         "config",
-        Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "tests/mocks/",
+        deepMerge(config.defaultUserConfig, {
+          components: {
+            folder: "tests/mocks/",
+          },
         })
       );
       const fileContents = {};
@@ -228,8 +235,10 @@ describe("lib/render/_helpers", () => {
         const app = express();
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "tests/mocks/",
+          deepMerge(config.defaultUserConfig, {
+            components: {
+              folder: "tests/mocks/",
+            },
           })
         );
         const fileContents = {};
@@ -255,8 +264,10 @@ describe("lib/render/_helpers", () => {
         const app = express();
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "tests/mocks/",
+          deepMerge(config.defaultUserConfig, {
+            components: {
+              folder: "tests/mocks/",
+            },
           })
         );
         app.set("state", {
@@ -289,8 +300,10 @@ describe("lib/render/_helpers", () => {
         const app = express();
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "tests/mocks/",
+          deepMerge(config.defaultUserConfig, {
+            components: {
+              folder: "tests/mocks/",
+            },
           })
         );
         const fileContents = {};
@@ -326,8 +339,10 @@ describe("lib/render/_helpers", () => {
         const app = express();
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "tests/mocks/",
+          deepMerge(config.defaultUserConfig, {
+            components: {
+              folder: "tests/mocks/",
+            },
           })
         );
         app.set("state", {

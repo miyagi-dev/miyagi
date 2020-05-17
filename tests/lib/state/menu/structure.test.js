@@ -24,7 +24,9 @@ describe("lib/state/menu/structure", () => {
             extension: "hbs",
           },
         },
-        srcFolder: "src/",
+        components: {
+          folder: "src/",
+        },
       })
     );
     app.set("state", {
@@ -50,7 +52,9 @@ describe("lib/state/menu/structure", () => {
               extension: "hbs",
             },
           },
-          srcFolder: "src/",
+          components: {
+            folder: "src/",
+          },
         })
       );
       app.set("state", {

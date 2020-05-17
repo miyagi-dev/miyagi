@@ -17,8 +17,10 @@ describe("lib/state/menu/data", () => {
       app.set(
         "config",
         Object.assign({}, appConfig.defaultUserConfig, {
-          srcFolder: "tests/mocks/srcFolder/",
-          srcFolderIgnores: ["ignored/"],
+          components: {
+            folder: "tests/mocks/srcFolder/",
+            ignores: ["ignored/"],
+          },
         })
       );
 

@@ -15,8 +15,10 @@ describe("lib/state/partials", () => {
   app.set(
     "config",
     deepMerge(config.defaultUserConfig, {
-      srcFolder: "/tests/mocks/files",
-      srcFolderIgnores: [],
+      components: {
+        folder: "/tests/mocks/files",
+        ignores: [],
+      },
       files: {
         templates: {
           extension: "hbs",
@@ -54,8 +56,10 @@ describe("lib/state/partials", () => {
       app.set(
         "config",
         deepMerge(config.defaultUserConfig, {
-          srcFolder: "/tests/mocks/files",
-          srcFolderIgnores: ["directory1"],
+          components: {
+            folder: "/tests/mocks/files",
+            ignores: ["directory1"],
+          },
           files: {
             templates: {
               extension: "hbs",

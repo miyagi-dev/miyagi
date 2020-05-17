@@ -13,9 +13,13 @@ describe("lib/init/config", () => {
     test("merges given user config and app config and returns it", () => {
       const conf = getMergedConfig({
         projectName: "userName",
-        srcFolder: "user/srcFolder/",
-        cssFiles: "user/css/index.css",
-        jsFiles: "user/js/index.js",
+        components: {
+          folder: "user/srcFolder/",
+        },
+        assets: {
+          css: "user/css/index.css",
+          js: "user/js/index.js",
+        },
         files: {
           css: {
             extension: "css",
@@ -23,7 +27,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "index",
+            name: "docs",
           },
           js: {
             extension: "js",
@@ -43,16 +47,18 @@ describe("lib/init/config", () => {
         },
       });
 
-      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
-      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.assets.css).toEqual(["user/css/index.css"]);
+      expect(conf.assets.js).toEqual(["user/js/index.js"]);
     });
 
     test("sanitizes all given paths by the user", () => {
       const conf = getMergedConfig({
         projectName: "userName",
-        srcFolder: "/user/srcFolder",
-        cssFiles: "./user/css/index.css",
-        jsFiles: "/user/js/index.js",
+        components: { folder: "/user/srcFolder" },
+        assets: {
+          css: "./user/css/index.css",
+          js: "/user/js/index.js",
+        },
         files: {
           css: {
             extension: "css",
@@ -60,7 +66,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "index",
+            name: "docs",
           },
           js: {
             extension: "js",
@@ -80,8 +86,8 @@ describe("lib/init/config", () => {
         },
       });
 
-      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
-      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.assets.css).toEqual(["user/css/index.css"]);
+      expect(conf.assets.js).toEqual(["user/js/index.js"]);
     });
   });
 
@@ -89,9 +95,13 @@ describe("lib/init/config", () => {
     test("merges given user config and app config and returns it", () => {
       const conf = getMergedConfig({
         projectName: "userName",
-        srcFolder: "user/srcFolder/",
-        cssFiles: ["user/css/index.css"],
-        jsFiles: ["user/js/index.js"],
+        components: {
+          folder: "user/srcFolder/",
+        },
+        assets: {
+          css: ["user/css/index.css"],
+          js: ["user/js/index.js"],
+        },
         files: {
           css: {
             extension: "css",
@@ -99,7 +109,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "index",
+            name: "docs",
           },
           js: {
             extension: "js",
@@ -119,16 +129,18 @@ describe("lib/init/config", () => {
         },
       });
 
-      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
-      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.assets.css).toEqual(["user/css/index.css"]);
+      expect(conf.assets.js).toEqual(["user/js/index.js"]);
     });
 
     test("sanitizes all given paths by the user", () => {
       const conf = getMergedConfig({
         projectName: "userName",
-        srcFolder: "/user/srcFolder",
-        cssFiles: ["./user/css/index.css"],
-        jsFiles: ["/user/js/index.js"],
+        components: { folder: "/user/srcFolder" },
+        assets: {
+          css: ["./user/css/index.css"],
+          js: ["/user/js/index.js"],
+        },
         files: {
           css: {
             extension: "css",
@@ -136,7 +148,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "index",
+            name: "docs",
           },
           js: {
             extension: "js",
@@ -156,8 +168,8 @@ describe("lib/init/config", () => {
         },
       });
 
-      expect(conf.cssFiles).toEqual(["user/css/index.css"]);
-      expect(conf.jsFiles).toEqual(["user/js/index.js"]);
+      expect(conf.assets.css).toEqual(["user/css/index.css"]);
+      expect(conf.assets.js).toEqual(["user/js/index.js"]);
     });
   });
 
@@ -166,12 +178,16 @@ describe("lib/init/config", () => {
       test("merges given user config and app config and returns it", () => {
         const conf = getMergedConfig({
           projectName: "userName",
-          srcFolder: "user/srcFolder/",
-          cssFiles: {
-            test: ["user/dev/css/index.css"],
+          components: {
+            folder: "user/srcFolder/",
           },
-          jsFiles: {
-            test: ["user/dev/js/index.js"],
+          assets: {
+            css: {
+              test: ["user/dev/css/index.css"],
+            },
+            js: {
+              test: ["user/dev/js/index.js"],
+            },
           },
           files: {
             css: {
@@ -180,7 +196,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -200,16 +216,18 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
-        expect(conf.jsFiles).toEqual(["user/dev/js/index.js"]);
+        expect(conf.assets.css).toEqual(["user/dev/css/index.css"]);
+        expect(conf.assets.js).toEqual(["user/dev/js/index.js"]);
       });
 
       test("sanitizes all given paths by the user", () => {
         const conf = getMergedConfig({
           projectName: "userName",
-          srcFolder: "/user/srcFolder",
-          cssFiles: ["./user/css/index.css"],
-          jsFiles: ["/user/js/index.js"],
+          components: { folder: "/user/srcFolder" },
+          assets: {
+            css: ["./user/css/index.css"],
+            js: ["/user/js/index.js"],
+          },
           files: {
             css: {
               extension: "css",
@@ -217,7 +235,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -237,8 +255,8 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(conf.cssFiles).toEqual(["user/css/index.css"]);
-        expect(conf.jsFiles).toEqual(["user/js/index.js"]);
+        expect(conf.assets.css).toEqual(["user/css/index.css"]);
+        expect(conf.assets.js).toEqual(["user/js/index.js"]);
       });
     });
 
@@ -246,12 +264,16 @@ describe("lib/init/config", () => {
       test("merges given user config and app config and returns it", () => {
         const conf = getMergedConfig({
           projectName: "userName",
-          srcFolder: "user/srcFolder/",
-          cssFiles: {
-            test: "user/dev/css/index.css",
+          components: {
+            folder: "user/srcFolder/",
           },
-          jsFiles: {
-            test: "user/dev/js/index.js",
+          assets: {
+            css: {
+              test: "user/dev/css/index.css",
+            },
+            js: {
+              test: "user/dev/js/index.js",
+            },
           },
           files: {
             css: {
@@ -260,7 +282,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -280,16 +302,18 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
-        expect(conf.jsFiles).toEqual(["user/dev/js/index.js"]);
+        expect(conf.assets.css).toEqual(["user/dev/css/index.css"]);
+        expect(conf.assets.js).toEqual(["user/dev/js/index.js"]);
       });
 
       test("sanitizes all given paths by the user", () => {
         const conf = getMergedConfig({
           projectName: "userName",
-          srcFolder: "/user/srcFolder",
-          cssFiles: "./user/css/index.css",
-          jsFiles: "/user/js/index.js",
+          components: { folder: "/user/srcFolder" },
+          assets: {
+            css: "./user/css/index.css",
+            js: "/user/js/index.js",
+          },
           files: {
             css: {
               extension: "css",
@@ -297,7 +321,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -317,8 +341,8 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(conf.cssFiles).toEqual(["user/css/index.css"]);
-        expect(conf.jsFiles).toEqual(["user/js/index.js"]);
+        expect(conf.assets.css).toEqual(["user/css/index.css"]);
+        expect(conf.assets.js).toEqual(["user/js/index.js"]);
       });
     });
 
@@ -327,11 +351,13 @@ describe("lib/init/config", () => {
         logger.log = jest.fn();
 
         getMergedConfig({
-          cssFiles: {
-            foo: ["user/css/index.css"],
-          },
-          jsFiles: {
-            foo: ["user/js/index.js"],
+          assets: {
+            css: {
+              foo: ["user/css/index.css"],
+            },
+            js: {
+              foo: ["user/js/index.js"],
+            },
           },
           files: {
             css: {
@@ -340,7 +366,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -377,11 +403,13 @@ describe("lib/init/config", () => {
         logger.log = jest.fn();
 
         const conf = getMergedConfig({
-          cssFiles: {
-            foo: ["user/css/index.css"],
-          },
-          jsFiles: {
-            foo: ["user/js/index.js"],
+          assets: {
+            css: {
+              foo: ["user/css/index.css"],
+            },
+            js: {
+              foo: ["user/js/index.js"],
+            },
           },
           files: {
             css: {
@@ -390,7 +418,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -409,8 +437,8 @@ describe("lib/init/config", () => {
             },
           },
         });
-        expect(conf.cssFiles).toEqual([]);
-        expect(conf.jsFiles).toEqual([]);
+        expect(conf.assets.css).toEqual([]);
+        expect(conf.assets.js).toEqual([]);
       });
     });
   });
@@ -418,26 +446,32 @@ describe("lib/init/config", () => {
   describe("without any empty config given", () => {
     test("it returns the default values", () => {
       expect(getMergedConfig({ files: { templates: {} } })).toEqual({
-        projectName: "headman",
-        srcFolder: "",
         build: {
           folder: "build",
         },
-        cssFiles: [],
-        jsFiles: [],
-        es6Modules: false,
-        srcFolderIgnores: [
-          "node_modules",
-          ".git",
-          "package.json",
-          "package-lock.json",
-          ".headman.js",
-        ],
-        validations: {
-          html: true,
-          accessibility: true,
+        assets: {
+          css: [],
+          js: [],
+          es6Modules: false,
         },
-        reload: true,
+        components: {
+          folder: "",
+          ignores: [
+            "node_modules",
+            ".git",
+            "package.json",
+            "package-lock.json",
+            ".headman.js",
+          ],
+        },
+        projectName: "headman",
+        ui: {
+          validations: {
+            html: true,
+            accessibility: true,
+          },
+          reload: true,
+        },
         files: {
           css: {
             extension: "css",
@@ -445,7 +479,11 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "index",
+            name: "docs",
+          },
+          info: {
+            extension: "json",
+            name: "info",
           },
           js: {
             extension: "js",
@@ -467,11 +505,13 @@ describe("lib/init/config", () => {
     });
   });
 
-  describe("with srcFolder === '.'", () => {
-    test("it sets srcFolder to ''", () => {
+  describe("with components.folder === '.'", () => {
+    test("it sets components.folder to ''", () => {
       expect(
         getMergedConfig({
-          srcFolder: ".",
+          components: {
+            folder: ".",
+          },
           files: {
             css: {
               extension: "css",
@@ -479,7 +519,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -497,16 +537,18 @@ describe("lib/init/config", () => {
               name: "index",
             },
           },
-        }).srcFolder
+        }).components.folder
       ).toEqual("");
     });
   });
 
-  describe("with srcFolder === '/'", () => {
-    test("it sets srcFolder to ''", () => {
+  describe("with components.folder === '/'", () => {
+    test("it sets components.folder to ''", () => {
       expect(
         getMergedConfig({
-          srcFolder: "/",
+          components: {
+            folder: "/",
+          },
           files: {
             css: {
               extension: "css",
@@ -514,7 +556,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "index",
+              name: "docs",
             },
             js: {
               extension: "js",
@@ -532,7 +574,7 @@ describe("lib/init/config", () => {
               name: "index",
             },
           },
-        }).srcFolder
+        }).components.folder
       ).toEqual("");
     });
   });

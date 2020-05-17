@@ -118,7 +118,7 @@ describe("lib/init/engines", () => {
 
       expect(spy).toHaveBeenCalledWith(
         "error",
-        "Setting the rendering engine failed. Are you sure the engine defined in your .headman.js is correct?"
+        "Setting the template engine failed. Are you sure the engine defined in your .headman.js is correct?"
       );
     });
   });

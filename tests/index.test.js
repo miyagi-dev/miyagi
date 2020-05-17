@@ -25,7 +25,7 @@ describe("index", () => {
     });
 
     describe("with parseable result from .headman.js", () => {
-      describe("with templates.extension, srcFolder and templates.engine defined in .headman.js", () => {
+      describe("with templates.extension, components.folder and templates.engine defined in .headman.js", () => {
         test.only("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
           const logger = require("../lib/logger.js");
@@ -46,7 +46,9 @@ describe("index", () => {
                   engine: "handlebars",
                 },
               },
-              srcFolder: "src/",
+              components: {
+                folder: "src/",
+              },
             }),
             userFile.plugins
           );
@@ -67,7 +69,7 @@ describe("index", () => {
                     engine: "handlebars",
                   },
                 },
-                srcFolder: "src/",
+                components: { folder: "src/" },
               },
             }),
             { virtual: true }
@@ -97,7 +99,7 @@ describe("index", () => {
                       engine: "handlebars",
                     },
                   },
-                  srcFolder: "src/",
+                  components: { folder: "src/" },
                 },
               };
             }
@@ -124,7 +126,7 @@ describe("index", () => {
                       extension: "hbs",
                     },
                   },
-                  srcFolder: "src/",
+                  components: { folder: "src/" },
                 },
               };
             }
@@ -154,7 +156,7 @@ describe("index", () => {
                       extension: "hbs",
                     },
                   },
-                  srcFolder: "src/",
+                  components: { folder: "src/" },
                 },
               };
             }
@@ -166,7 +168,7 @@ describe("index", () => {
         });
       });
 
-      describe("without srcFolder defined in .headman.js", () => {
+      describe("without components.folder defined in .headman.js", () => {
         test("it calls logger.log with the correct warn msg", () => {
           const logger = require("../lib/logger.js");
 

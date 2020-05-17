@@ -54,8 +54,10 @@ describe("lib/state/index", () => {
       app.set(
         "config",
         Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
+          components: {
+            folder: "srcFolder",
+            ignores: [],
+          },
         })
       );
 
@@ -74,8 +76,8 @@ describe("lib/state/index", () => {
         app.set(
           "config",
           Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "srcFolder",
-            srcFolderIgnores: [],
+            folder: "srcFolder",
+            ignores: [],
           })
         );
 
@@ -92,8 +94,8 @@ describe("lib/state/index", () => {
         app.set(
           "config",
           Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "srcFolder",
-            srcFolderIgnores: [],
+            folder: "srcFolder",
+            ignores: [],
           })
         );
         app.set("state", {
@@ -116,8 +118,10 @@ describe("lib/state/index", () => {
       app.set(
         "config",
         Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
+          components: {
+            folder: "srcFolder",
+            ignores: [],
+          },
         })
       );
 
@@ -136,8 +140,10 @@ describe("lib/state/index", () => {
       app.set(
         "config",
         Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
+          components: {
+            folder: "srcFolder",
+            ignores: [],
+          },
         })
       );
 
@@ -156,8 +162,10 @@ describe("lib/state/index", () => {
       app.set(
         "config",
         Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
+          components: {
+            folder: "srcFolder",
+            ignores: [],
+          },
         })
       );
 
@@ -177,8 +185,8 @@ describe("lib/state/index", () => {
         app.set(
           "config",
           Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "srcFolder",
-            srcFolderIgnores: [],
+            folder: "srcFolder",
+            ignores: [],
           })
         );
 
@@ -197,8 +205,8 @@ describe("lib/state/index", () => {
         app.set(
           "config",
           Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "srcFolder",
-            srcFolderIgnores: [],
+            folder: "srcFolder",
+            ignores: [],
           })
         );
 
@@ -218,8 +226,10 @@ describe("lib/state/index", () => {
       app.set(
         "config",
         Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
+          components: {
+            folder: "srcFolder",
+            ignores: [],
+          },
         })
       );
 
@@ -240,8 +250,10 @@ describe("lib/state/index", () => {
       app.set(
         "config",
         Object.assign({}, config.defaultUserConfig, {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
+          components: {
+            folder: "srcFolder",
+            ignores: [],
+          },
         })
       );
       const spy = jest.spyOn(app, "set");
@@ -264,8 +276,8 @@ describe("lib/state/index", () => {
         app.set(
           "config",
           Object.assign({}, config.defaultUserConfig, {
-            srcFolder: "srcFolder",
-            srcFolderIgnores: [],
+            folder: "srcFolder",
+            ignores: [],
           })
         );
         const spy = jest.spyOn(app, "set");

@@ -1,5 +1,6 @@
 const config = require("../../../../lib/config.json");
 const helpersSrc = "../../../../lib/render/menu/_helpers.js";
+const deepMerge = require("deepmerge");
 
 function requireComponent(componentName, mock) {
   let component = require(`../../../../lib/render/menu/${componentName}`);
@@ -34,8 +35,10 @@ describe("lib/menu/elements/directory", () => {
   const app = require("express")();
   app.set(
     "config",
-    Object.assign({}, config.defaultUserConfig, {
-      srcFolder: "srcFolder",
+    deepMerge(config.defaultUserConfig, {
+      components: {
+        folder: "srcFolder",
+      },
     })
   );
 

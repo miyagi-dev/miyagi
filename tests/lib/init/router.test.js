@@ -36,7 +36,9 @@ beforeEach((done) => {
           extension: "hbs",
         },
       },
-      srcFolder: "srcFolder/",
+      components: {
+        folder: "srcFolder/",
+      },
     })
   );
 

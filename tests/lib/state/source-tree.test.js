@@ -15,8 +15,10 @@ describe("lib/state/source-tree", () => {
   app.set(
     "config",
     deepMerge(config.defaultUserConfig, {
-      srcFolderIgnores: ["/ignoredFolder"],
-      srcFolder: "userFolder",
+      components: {
+        ignores: ["/ignoredFolder"],
+        folder: "userFolder",
+      },
       files: {
         templates: {
           extension: "extension",
@@ -25,7 +27,7 @@ describe("lib/state/source-tree", () => {
     })
   );
 
-  test("srcFolder() calls dirTree()", () => {
+  test("getSourceTree() calls dirTree()", () => {
     dirTree.mockImplementationOnce(() => {});
 
     getSourceTree(app);
@@ -36,7 +38,7 @@ describe("lib/state/source-tree", () => {
     });
   });
 
-  test.only("srcFolder() returns an object with the sourceTree", () => {
+  test.only("getSourceTree() returns an object with the sourceTree", () => {
     const result = {
       foo: "bar",
     };

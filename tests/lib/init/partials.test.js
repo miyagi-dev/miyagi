@@ -55,7 +55,7 @@ describe("lib/init/partials", () => {
 
         expect(logger.log).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file foo/index.hbs. Is the 'srcFolder' in your .headman.js correct?"
+          "Couldn't find file foo/index.hbs. Is the 'components.folder' in your .headman.js correct?"
         );
         expect(handlebars.registerPartial).not.toHaveBeenCalled();
         done();
@@ -110,7 +110,7 @@ describe("lib/init/partials", () => {
 
         expect(logger.log).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file fullName. Is the 'srcFolder' in your .headman.js correct?"
+          "Couldn't find file fullName. Is the 'components.folder' in your .headman.js correct?"
         );
         expect(handlebars.registerPartial).not.toHaveBeenCalled();
         done();

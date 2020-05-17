@@ -1,3 +1,4 @@
+const deepMerge = require("deepmerge");
 const express = require("express");
 const handlebars = require("handlebars");
 const viewHelpers = require("../../../lib/init/view-helpers.js");
@@ -20,9 +21,11 @@ describe("lib/init/view-helpers", () => {
   const app = express();
   app.set(
     "config",
-    Object.assign({}, config.defaultUserConfig, {
-      cssFiles: ["index.css"],
-      jsFiles: ["index.js"],
+    deepMerge(config.defaultUserConfig, {
+      assets: {
+        css: ["index.css"],
+        js: ["index.js"],
+      },
     })
   );
 
@@ -51,9 +54,11 @@ describe("lib/init/view-helpers", () => {
       describe("with es6Modules:true in config", () => {
         const tempApp = express();
         tempApp.set("config", {
-          cssFiles: ["index.css"],
-          jsFiles: ["index.js"],
-          es6Modules: true,
+          assets: {
+            css: ["index.css"],
+            js: ["index.js"],
+            es6Modules: true,
+          },
         });
 
         handlebars.registerHelper = jest.fn();
@@ -80,9 +85,11 @@ describe("lib/init/view-helpers", () => {
   describe("menu", () => {
     app.set(
       "config",
-      Object.assign({}, config.defaultUserConfig, {
-        cssFiles: ["index.css"],
-        jsFiles: ["index.js"],
+      deepMerge(config.defaultUserConfig, {
+        assets: {
+          css: ["index.css"],
+          js: ["index.js"],
+        },
       })
     );
 

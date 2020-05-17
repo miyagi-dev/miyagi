@@ -1,18 +1,35 @@
 {
   "defaultUserConfig": {
+    "assets": {
+      "css": [],
+      "es6Modules": false,
+      "js": []
+    },
     "build": {
       "folder": "build"
     },
-    "cssFiles": [],
-    "es6Modules": false,
+    "components": {
+      "folder": "",
+      "ignores": [
+        "node_modules",
+        ".git",
+        "package.json",
+        "package-lock.json",
+        ".headman.js"
+      ]
+    },
     "files": {
       "css": {
         "name": "index",
         "extension": "css"
       },
       "docs": {
-        "name": "index",
+        "name": "docs",
         "extension": "md"
+      },
+      "info": {
+        "name": "info",
+        "extension": "json"
       },
       "js": {
         "name": "index",
@@ -30,19 +47,13 @@
         "name": "index"
       }
     },
-    "jsFiles": [],
-    "reload": true,
-    "srcFolder": "",
-    "srcFolderIgnores": [
-      "node_modules",
-      ".git",
-      "package.json",
-      "package-lock.json",
-      ".headman.js"
-    ],
-    "validations": {
-      "html": true,
-      "accessibility": true
+    "projectName": "headman",
+    "ui": {
+      "reload": true,
+      "validations": {
+        "html": true,
+        "accessibility": true
+      }
     }
   },
   "projectName": "headman",
@@ -63,15 +74,15 @@
     "commandNotFound": "Please run `headman help` for all available commands.",
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "dataGenerator": {
-      "dataFileExists": "The data file ${fileName} exists already.",
+      "dataFileExists": "The mock file ${fileName} exists already.",
       "done": "Done!",
       "noComponentFolderDefined": "Please specify the component folder like this: headman data directoryName/componentName",
       "noSchemaFile": "headman can't find the schema file ${fileName}.",
       "schemaFileCantBeParsed": "The schema file ${fileName} can't be parsed.",
-      "starting": "Creating data file ${fileName}…"
+      "starting": "Creating mock file ${fileName}…"
     },
     "jsonFileHasInvalidFormat": "It seems like the file ${filePath} has an invalid format as headman was not able to parse it.",
-    "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your .headman.js correct?",
+    "fileNotFound": "Couldn't find file ${filePath}. Is the 'components.folder' in your .headman.js correct?",
     "fileNotFoundLinkIncorrect": "Couldn't find file ${filePath}. Please check that it's linked correctly.",
     "generator": {
       "starting": "Creating component…",
@@ -81,13 +92,12 @@
       "fileAlreadyExists": "The file ${name} already exists."
     },
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingEngineAndExtension": "Please specify your template engine and extension in .headman.js (key: 'templates.engine|extension', type: String) or as a cli argument (--templates.engine|extension=<String>)",
-    "missingEngine": "Please specify your template engine in .headman.js (key: 'templates.engine', type: String) or as a cli argument (--templates.engine=<String>)",
-    "missingExtension": "Please specify the file extension of your components in .headman.js (key: 'templates.extension', type: String) or as a cli argument (--templates.extension=<extension>).",
-    "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in .headman.js (key: 'srcFolder', type: String).",
-    "noDataSetForVariation": "No data defined for variation \"${variation}\" in ${file}.",
+    "missingEngineAndExtension": "Please specify your template engine and extension in .headman.js (key: 'files.templates.engine|extension', type: String) or as a cli argument (--files.templates.engine|extension=<String>)",
+    "missingEngine": "Please specify your template engine in .headman.js (key: 'files.templates.engine', type: String) or as a cli argument (--files.templates.engine=<String>)",
+    "missingExtension": "Please specify the file extension of your components in .headman.js (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
+    "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in .headman.js (key: 'components.folder', type: String).",
+    "noDataSetForVariation": "No mock data defined for variation \"${variation}\" in ${file}.",
     "nodeEndAndKeysDontMatch": "Your NODE_ENV '${nodeEnv}' doesn't match the keys you defined in folders.assets in your .headman.js, so headman is not able to deliver your ${assetType} files.",
-    "nodeEnvNotDefined": "Please define your NODE_ENV.",
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
     "renderingTemplateFailed": "Rendering ${filePath} failed. Please check that it is linked correctly and that its content is correct ${engine} syntax.",
     "scanningFiles": "Scanning and analyzing files…",
@@ -98,8 +108,8 @@
     },
     "serverStarted": "Running headman server at http://localhost:${port}!",
     "serverStarting": "Starting headman server in ${node_env} mode…",
-    "settingEngineFailed": "Setting the rendering engine failed. Are you sure the engine defined in your .headman.js is correct?",
-    "srcFolderNotFound": "The provided srcFolder does not seem to exist.",
+    "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your .headman.js is correct?",
+    "srcFolderNotFound": "The provided components folder does not seem to exist.",
     "statuses": {
       "done": "Done",
       "wip": "Work in progress",

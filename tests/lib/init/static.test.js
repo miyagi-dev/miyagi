@@ -2,6 +2,7 @@ const setStatic = require("../../../lib/init/static.js");
 const config = require("../../../lib/config.json");
 const express = require("express");
 const request = require("supertest");
+const deepMerge = require("deepmerge");
 
 let app;
 let server;
@@ -24,9 +25,11 @@ describe("lib/init/static", () => {
     test("returns the correct assets based on NODE_ENV", () => {
       app.set(
         "config",
-        Object.assign({}, config.defaultUserConfig, {
-          cssFiles: [],
-          jsFiles: [],
+        deepMerge(config.defaultUserConfig, {
+          assets: {
+            css: [],
+            js: [],
+          },
         })
       );
 
@@ -45,9 +48,11 @@ describe("lib/init/static", () => {
       test("returns 200", (done) => {
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            cssFiles: [],
-            jsFiles: [],
+          deepMerge(config.defaultUserConfig, {
+            assets: {
+              css: [],
+              js: [],
+            },
           })
         );
 
@@ -62,9 +67,11 @@ describe("lib/init/static", () => {
       test("returns 200", (done) => {
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            cssFiles: [],
-            jsFiles: [],
+          deepMerge(config.defaultUserConfig, {
+            assets: {
+              css: [],
+              js: [],
+            },
           })
         );
 
@@ -79,9 +86,11 @@ describe("lib/init/static", () => {
       test("return 404", (done) => {
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            cssFiles: [],
-            jsFiles: [],
+          deepMerge(config.defaultUserConfig, {
+            assets: {
+              css: [],
+              js: [],
+            },
           })
         );
 
@@ -93,14 +102,16 @@ describe("lib/init/static", () => {
     });
   });
 
-  describe("with arrays in config.cssFiles/jsFiles", () => {
-    describe("GET entries from user cssFiles", () => {
+  describe("with arrays in config.assets.css/js", () => {
+    describe("GET entries from user css", () => {
       test("returns 200", (done) => {
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            cssFiles: ["tests/mocks/user/css/index.css"],
-            jsFiles: ["tests/mocks/user/js/index.js"],
+          deepMerge(config.defaultUserConfig, {
+            assets: {
+              css: ["tests/mocks/user/css/index.css"],
+              js: ["tests/mocks/user/js/index.js"],
+            },
           })
         );
 
@@ -111,13 +122,15 @@ describe("lib/init/static", () => {
       });
     });
 
-    describe("GET entries from user jsFiles", () => {
+    describe("GET entries from user js", () => {
       test("returns 200", (done) => {
         app.set(
           "config",
-          Object.assign({}, config.defaultUserConfig, {
-            cssFiles: ["tests/mocks/user/css/index.css"],
-            jsFiles: ["tests/mocks/user/js/index.js"],
+          deepMerge(config.defaultUserConfig, {
+            assets: {
+              css: ["tests/mocks/user/css/index.css"],
+              js: ["tests/mocks/user/js/index.js"],
+            },
           })
         );
 

@@ -10,18 +10,24 @@ module.exports = {
     },
   ],
   config: {
-    cssFiles: [],
+    assets: {
+      css: [],
+    },
     files: {
       templates: {
         engine: "handlebars",
         extension: "hbs",
       },
     },
-    srcFolder: "src/",
+    components: {
+      folder: "src/",
+    },
     projectName: "headman",
-    validations: {
-      html: true,
-      accessibility: true,
+    ui: {
+      validations: {
+        html: true,
+        accessibility: true,
+      },
     },
   },
 };

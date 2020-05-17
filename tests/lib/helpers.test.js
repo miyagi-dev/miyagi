@@ -12,7 +12,9 @@ describe("lib/helpers", () => {
   app.set(
     "config",
     deepMerge(config.defaultUserConfig, {
-      srcFolder: "srcFolder/",
+      components: {
+        folder: "srcFolder/",
+      },
       files: {
         templates: { extension: "hbs" },
       },
@@ -116,7 +118,7 @@ describe("lib/helpers", () => {
   });
 
   describe("getFullPathFromShortPath()", () => {
-    test("prepends process.cwd() and the srcFolder to a path", () => {
+    test("prepends process.cwd() and the components.folder to a path", () => {
       expect(helpers.getFullPathFromShortPath(app, "/foo/bar")).toEqual(
         `${process.cwd()}/srcFolder/foo/bar`
       );

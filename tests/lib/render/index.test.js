@@ -130,11 +130,15 @@ beforeEach(() => {
           extension: "hbs",
         },
       },
-      srcFolder: "tests/mocks/srcFolder/",
+      components: {
+        folder: "tests/mocks/srcFolder/",
+      },
       projectName: userProjectName,
-      validations: {
-        accessibility: true,
-        html: true,
+      ui: {
+        validations: {
+          accessibility: true,
+          html: true,
+        },
       },
     })
   );
@@ -544,7 +548,7 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           a11yTestsPreload: true,
-          folder: "component1",
+          folder: "tests/mocks/srcFolder/component1",
           projectName,
           userProjectName,
           isBuild: undefined,
@@ -602,7 +606,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "component1",
+            folder: "tests/mocks/srcFolder/component1",
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -652,7 +656,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "component3",
+            folder: "tests/mocks/srcFolder/component3",
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -696,7 +700,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "component6",
+            folder: "tests/mocks/srcFolder/component6",
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -739,7 +743,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "component7",
+            folder: "tests/mocks/srcFolder/component7",
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -788,7 +792,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "component9",
+            folder: "tests/mocks/srcFolder/component9",
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -821,7 +825,7 @@ describe("lib/render/index", () => {
           );
           expect(res.render.mock.calls[0][1]).toEqual({
             a11yTestsPreload: true,
-            folder: "component2",
+            folder: "tests/mocks/srcFolder/component2",
             documentation: undefined,
             theme: undefined,
             dev: false,
@@ -864,7 +868,7 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             documentation: undefined,
             a11yTestsPreload: true,
-            folder: "component2",
+            folder: "tests/mocks/srcFolder/component2",
             theme: undefined,
             dev: false,
             prod: false,
@@ -903,7 +907,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           a11yTestsPreload: true,
-          folder: "component4",
+          folder: "tests/mocks/srcFolder/component4",
           documentation: undefined,
           dev: false,
           prod: false,
