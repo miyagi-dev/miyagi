@@ -90,6 +90,7 @@
     "nodeEnvNotDefined": "Please define your NODE_ENV.",
     "noNameSetForVariation": "No name defined for variation ${i} in ${file}.",
     "renderingTemplateFailed": "Rendering ${filePath} failed. Please check that it is linked correctly and that its content is correct ${engine} syntax.",
+    "scanningFiles": "Scanning and analyzing files…",
     "schemaValidator": {
       "valid": "Data matches schema.",
       "invalid": "Data does not match schema file.",
