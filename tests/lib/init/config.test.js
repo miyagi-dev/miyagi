@@ -23,7 +23,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "index",
           },
           js: {
             extension: "js",
@@ -60,7 +60,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "index",
           },
           js: {
             extension: "js",
@@ -99,7 +99,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "index",
           },
           js: {
             extension: "js",
@@ -136,7 +136,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "index",
           },
           js: {
             extension: "js",
@@ -180,7 +180,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -217,7 +217,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -260,7 +260,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -297,7 +297,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -340,7 +340,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -390,7 +390,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -445,7 +445,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "index",
           },
           js: {
             extension: "js",
@@ -479,7 +479,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",
@@ -514,7 +514,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "index",
             },
             js: {
               extension: "js",

@@ -11,7 +11,7 @@
         "extension": "css"
       },
       "docs": {
-        "name": "docs",
+        "name": "index",
         "extension": "md"
       },
       "js": {
