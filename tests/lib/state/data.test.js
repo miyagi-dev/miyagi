@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const util = require("util");
 
+const appConfig = require("../../../lib/config.json");
+
 afterEach(() => {
   jest.resetModules();
   jest.resetAllMocks();
@@ -12,10 +14,13 @@ describe("lib/state/menu/data", () => {
 
   describe("getFileContents()", () => {
     test("returns an object with stored data from json files and ignores ignored files", async (done) => {
-      app.set("config", {
-        srcFolder: "tests/mocks/srcFolder/",
-        srcFolderIgnores: ["ignored/"],
-      });
+      app.set(
+        "config",
+        Object.assign({}, appConfig.defaultUserConfig, {
+          srcFolder: "tests/mocks/srcFolder/",
+          srcFolderIgnores: ["ignored/"],
+        })
+      );
 
       util.promisify = jest.fn(() => {
         return () => '{ "bar": "bar" }';
@@ -27,11 +32,11 @@ describe("lib/state/menu/data", () => {
 
       expect(Object.entries(data).length).toBe(2);
       expect(Object.entries(data)[0]).toEqual([
-        `${process.cwd()}/tests/mocks/srcFolder/foo/bar/bar.json`,
+        `${process.cwd()}/tests/mocks/srcFolder/foo/bar/mocks.json`,
         { bar: "bar" },
       ]);
       expect(Object.entries(data)[1]).toEqual([
-        `${process.cwd()}/tests/mocks/srcFolder/foo/foo.json`,
+        `${process.cwd()}/tests/mocks/srcFolder/foo/mocks.json`,
         { bar: "bar" },
       ]);
       done();
@@ -49,7 +54,10 @@ describe("lib/state/menu/data", () => {
           });
           const { readFile } = require("../../../lib/state/file-contents.js");
 
-          const result = await readFile(path.join(process.cwd(), "file/path"));
+          const result = await readFile(
+            app,
+            path.join(process.cwd(), "file/path")
+          );
 
           expect(result).toEqual({ foo: "foo" });
           done();

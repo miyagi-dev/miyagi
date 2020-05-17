@@ -3,6 +3,7 @@ const appConfig = require("../lib/config.json");
 const yargs = require("../lib/init/args.js");
 const nodeEnv = process.env.NODE_ENV;
 const path = require("path");
+const deepMerge = require("deepmerge");
 
 afterEach(() => {
   jest.resetModules();
@@ -25,45 +26,28 @@ describe("index", () => {
 
     describe("with parseable result from .headman.js", () => {
       describe("with templates.extension, srcFolder and templates.engine defined in .headman.js", () => {
-        test("calls lib/init with parsed config", () => {
+        test.only("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
           const logger = require("../lib/logger.js");
           logger.log = jest.fn();
           jest.mock("../lib/init");
 
+          process.argv = [, , "start"];
+
           require("../index.js");
 
           expect(init).toHaveBeenCalledWith(
-            Object.assign(
-              {
-                projectName: "headman",
-                srcFolder: "",
-                build: {
-                  folder: "build",
+            deepMerge(appConfig.defaultUserConfig, {
+              isBuild: false,
+              isGenerator: false,
+              files: {
+                templates: {
+                  extension: "hbs",
+                  engine: "handlebars",
                 },
-                cssFiles: [],
-                jsFiles: [],
-                projectName: "headman",
-                es6Modules: false,
-                srcFolderIgnores: [
-                  "node_modules",
-                  ".git",
-                  "package.json",
-                  "package-lock.json",
-                  ".headman.js",
-                ],
-                validations: {
-                  html: true,
-                  accessibility: true,
-                },
-                reload: true,
-                isBuild: false,
-                isGenerator: false,
               },
-              JSON.parse(
-                '{"templates":{"extension": "hbs","engine": "handlebars"},"srcFolder": "src/"}'
-              )
-            ),
+              srcFolder: "src/",
+            }),
             userFile.plugins
           );
         });
@@ -78,8 +62,10 @@ describe("index", () => {
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => ({
               config: {
-                templates: {
-                  engine: "handlebars",
+                files: {
+                  templates: {
+                    engine: "handlebars",
+                  },
                 },
                 srcFolder: "src/",
               },
@@ -106,8 +92,10 @@ describe("index", () => {
             () => {
               return {
                 config: {
-                  templates: {
-                    engine: "handlebars",
+                  files: {
+                    templates: {
+                      engine: "handlebars",
+                    },
                   },
                   srcFolder: "src/",
                 },
@@ -131,8 +119,10 @@ describe("index", () => {
             () => {
               return {
                 config: {
-                  templates: {
-                    extension: "hbs",
+                  files: {
+                    templates: {
+                      extension: "hbs",
+                    },
                   },
                   srcFolder: "src/",
                 },
@@ -159,8 +149,10 @@ describe("index", () => {
             () => {
               return {
                 config: {
-                  templates: {
-                    extension: "hbs",
+                  files: {
+                    templates: {
+                      extension: "hbs",
+                    },
                   },
                   srcFolder: "src/",
                 },
@@ -184,9 +176,11 @@ describe("index", () => {
             () => {
               return {
                 config: {
-                  templates: {
-                    extension: "hbs",
-                    engine: "handlebars",
+                  files: {
+                    templates: {
+                      extension: "hbs",
+                      engine: "handlebars",
+                    },
                   },
                 },
               };
@@ -212,9 +206,11 @@ describe("index", () => {
             () => {
               return {
                 config: {
-                  templates: {
-                    extension: "hbs",
-                    engine: "handlebars",
+                  files: {
+                    templates: {
+                      extension: "hbs",
+                      engine: "handlebars",
+                    },
                   },
                 },
               };

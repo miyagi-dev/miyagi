@@ -1,3 +1,5 @@
+import deepMerge from "deepmerge";
+import config from "../../../lib/config.json";
 import build from "../../../lib/build/";
 import render from "../../../lib/render/index.js";
 import fs from "fs-extra";
@@ -41,7 +43,7 @@ describe("lib/build/index", () => {
   const app = express();
   const fileContents = {};
 
-  fileContents["/headman/tests/srcFolder/foo/bar.json"] = {
+  fileContents["/headman/tests/srcFolder/foo/mocks.json"] = {
     variations: [
       {
         name: 1,
@@ -54,21 +56,26 @@ describe("lib/build/index", () => {
 
   process.cwd = () => "/headman/tests";
 
-  app.set("config", {
-    build: {
-      folder: "buildFolder",
-    },
-    srcFolder: "srcFolder/",
-    templates: {
-      extension: "hbs",
-    },
-    cssFiles: ["index.css"],
-    jsFiles: ["index.js"],
-    theme: {},
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      build: {
+        folder: "buildFolder",
+      },
+      srcFolder: "srcFolder/",
+      files: {
+        templates: {
+          extension: "hbs",
+        },
+      },
+      cssFiles: ["index.css"],
+      jsFiles: ["index.js"],
+      theme: {},
+    })
+  );
   app.set("state", {
     partials: {
-      "foo/bar.hbs": "/headman/tests/srcFolder/foo/bar.hbs",
+      "foo/index.hbs": "/headman/tests/srcFolder/foo/index.hbs",
     },
     fileContents,
   });

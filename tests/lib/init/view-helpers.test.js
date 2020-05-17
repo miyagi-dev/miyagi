@@ -2,6 +2,7 @@ const express = require("express");
 const handlebars = require("handlebars");
 const viewHelpers = require("../../../lib/init/view-helpers.js");
 const menu = require("../../../lib/render/menu");
+const config = require("../../../lib/config.json");
 const { registerHelper } = handlebars;
 
 jest.mock("../../../lib/render/menu/index.js", () => {
@@ -17,10 +18,13 @@ afterEach(() => {
 
 describe("lib/init/view-helpers", () => {
   const app = express();
-  app.set("config", {
-    cssFiles: ["index.css"],
-    jsFiles: ["index.js"],
-  });
+  app.set(
+    "config",
+    Object.assign({}, config.defaultUserConfig, {
+      cssFiles: ["index.css"],
+      jsFiles: ["index.js"],
+    })
+  );
 
   describe("", () => {
     test("calls handlebars.registerHelper with menu", () => {
@@ -74,10 +78,13 @@ describe("lib/init/view-helpers", () => {
   });
 
   describe("menu", () => {
-    app.set("config", {
-      cssFiles: ["index.css"],
-      jsFiles: ["index.js"],
-    });
+    app.set(
+      "config",
+      Object.assign({}, config.defaultUserConfig, {
+        cssFiles: ["index.css"],
+        jsFiles: ["index.js"],
+      })
+    );
 
     test("returns the result from render/menu/index", () => {
       handlebars.registerHelper = registerHelper;

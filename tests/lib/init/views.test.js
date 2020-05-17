@@ -1,3 +1,4 @@
+const config = require("../../../lib/config.json");
 const setViews = require("../../../lib/init/views.js");
 const express = require("express");
 const path = require("path");
@@ -9,9 +10,12 @@ beforeEach(() => {
 
 describe("lib/init/views", () => {
   const app = express();
-  app.set("config", {
-    srcFolder: "src/",
-  });
+  app.set(
+    "config",
+    Object.assign({}, config.defaultUserConfig, {
+      srcFolder: "src/",
+    })
+  );
 
   setViews(app);
 

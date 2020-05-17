@@ -5,6 +5,8 @@ let getMenu;
 let getSourceTree;
 let setState;
 
+const config = require("../../../lib/config.json");
+
 beforeEach(() => {
   express = require("express");
   getPartials = require("../../../lib/state/partials.js");
@@ -49,10 +51,13 @@ describe("lib/state/index", () => {
   describe("with data=false, menu=false, sourceTree=false, partials=false", () => {
     test("calls nothing", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        srcFolderIgnores: [],
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          srcFolderIgnores: [],
+        })
+      );
 
       await setState(app, {});
 
@@ -66,10 +71,13 @@ describe("lib/state/index", () => {
     describe("no state set yet", () => {
       test("sets the state to {}", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "srcFolder",
+            srcFolderIgnores: [],
+          })
+        );
 
         await setState(app, {});
 
@@ -81,10 +89,13 @@ describe("lib/state/index", () => {
     describe(" state already set set", () => {
       test("returns that state", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "srcFolder",
+            srcFolderIgnores: [],
+          })
+        );
         app.set("state", {
           foo: "bar",
         });
@@ -102,10 +113,13 @@ describe("lib/state/index", () => {
   describe("with sourceTree=true", () => {
     test("calls nothing", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        srcFolderIgnores: [],
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          srcFolderIgnores: [],
+        })
+      );
 
       await setState(app, {
         sourceTree: true,
@@ -119,10 +133,13 @@ describe("lib/state/index", () => {
   describe("with partials=true", () => {
     test("calls getPartials", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        srcFolderIgnores: [],
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          srcFolderIgnores: [],
+        })
+      );
 
       await setState(app, {
         partials: true,
@@ -136,10 +153,13 @@ describe("lib/state/index", () => {
   describe("with menu=true", () => {
     test("calls getMenu", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        srcFolderIgnores: [],
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          srcFolderIgnores: [],
+        })
+      );
 
       await setState(app, {
         menu: true,
@@ -154,10 +174,13 @@ describe("lib/state/index", () => {
     describe("with data=true", () => {
       test("calls getFileContents", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "srcFolder",
+            srcFolderIgnores: [],
+          })
+        );
 
         await setState(app, {
           fileContents: true,
@@ -171,10 +194,13 @@ describe("lib/state/index", () => {
     describe("with data being an object", () => {
       test("calls nothing", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "srcFolder",
+            srcFolderIgnores: [],
+          })
+        );
 
         await setState(app, {
           fileContents: {},
@@ -189,10 +215,13 @@ describe("lib/state/index", () => {
   describe("with sourceTree=true", () => {
     test("calls getSourceTree after getFileContents", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        srcFolderIgnores: [],
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          srcFolderIgnores: [],
+        })
+      );
 
       await setState(app, {
         fileContents: true,
@@ -208,10 +237,13 @@ describe("lib/state/index", () => {
   describe("with data=true, sourceTree=true", () => {
     test("sets app.state after getFileContents and getSourceTree", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        srcFolderIgnores: [],
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          srcFolderIgnores: [],
+        })
+      );
       const spy = jest.spyOn(app, "set");
 
       await setState(app, {
@@ -229,10 +261,13 @@ describe("lib/state/index", () => {
     describe("with menu=true", () => {
       test("calls getMenu after setting app.state", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "srcFolder",
-          srcFolderIgnores: [],
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "srcFolder",
+            srcFolderIgnores: [],
+          })
+        );
         const spy = jest.spyOn(app, "set");
 
         await setState(app, {

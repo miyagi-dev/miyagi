@@ -1,5 +1,7 @@
 const menuJson = require("../../../mocks/menu.json");
+const config = require("../../../../lib/config.json");
 const express = require("express");
+const deepMerge = require("deepmerge");
 
 jest.mock("../../../../lib/state/menu/structure.js", () => {
   return () => {
@@ -21,12 +23,18 @@ afterEach(() => {
 describe("state/menu/index", () => {
   test("returns the structure for the menu", async (done) => {
     const app = express();
-    app.set("config", {
-      templates: {
-        extension: "hbs",
-      },
-      srcFolder: "/",
-    });
+    app.set(
+      "config",
+      deepMerge(config.defaultUserConfig, {
+        files: {
+          templates: {
+            extension: "hbs",
+            engine: "handlebars",
+          },
+        },
+        srcFolder: "/",
+      })
+    );
     app.set("state", {
       sourceTree: {},
       fileContents: {},

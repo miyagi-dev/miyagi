@@ -1,3 +1,4 @@
+const config = require("../../../lib/config.json");
 const logger = require("../../../lib/logger.js");
 const helpers = require("../../../lib/render/_helpers.js");
 const express = require("express");
@@ -13,9 +14,12 @@ describe("lib/render/_helpers", () => {
       const fullPath = path.join(process.cwd(), "srcFolder/data.json");
       fileContents[fullPath] = { foo: "bar" };
 
-      app.set("config", {
-        srcFolder: "srcFolder/",
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder/",
+        })
+      );
       app.set("state", {
         fileContents,
       });
@@ -73,10 +77,13 @@ describe("lib/render/_helpers", () => {
   describe("getDataForRenderFunction()", () => {
     test("it sets engine specific keys on the given object", () => {
       const app = express();
-      app.set("config", {
-        srcFolder: "srcFolder",
-        templates: {},
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "srcFolder",
+          files: { templates: {} },
+        })
+      );
       app.set("state", {
         partials: "partials",
       });
@@ -152,11 +159,14 @@ describe("lib/render/_helpers", () => {
   describe("overwriteJsonLinksWithJsonData()", () => {
     test("resolves linked json data", async (done) => {
       const app = express();
-      app.set("config", {
-        srcFolder: "tests/mocks/",
-      });
+      app.set(
+        "config",
+        Object.assign({}, config.defaultUserConfig, {
+          srcFolder: "tests/mocks/",
+        })
+      );
       const fileContents = {};
-      fileContents[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
+      fileContents[`${process.cwd()}/tests/mocks/resolve/mocks.json`] = {
         variations: [
           {
             name: "variation",
@@ -171,7 +181,7 @@ describe("lib/render/_helpers", () => {
         ],
       };
       fileContents[
-        `${process.cwd()}/tests/mocks/resolve/resolve/resolve.json`
+        `${process.cwd()}/tests/mocks/resolve/resolve/mocks.json`
       ] = {
         data: {
           resolve: {
@@ -180,7 +190,7 @@ describe("lib/render/_helpers", () => {
         },
       };
       fileContents[
-        `${process.cwd()}/tests/mocks/resolve/resolve/resolve/resolve.json`
+        `${process.cwd()}/tests/mocks/resolve/resolve/resolve/mocks.json`
       ] = {
         data: {
           resolve: "resolve",
@@ -216,9 +226,12 @@ describe("lib/render/_helpers", () => {
     describe("with passing null", () => {
       test("", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "tests/mocks/",
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "tests/mocks/",
+          })
+        );
         const fileContents = {};
         app.set("state", {
           partials: "partials",
@@ -240,9 +253,12 @@ describe("lib/render/_helpers", () => {
     describe("with value for component not being stored in data", () => {
       test("returns {}, logs error", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "tests/mocks/",
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "tests/mocks/",
+          })
+        );
         app.set("state", {
           partials: "partials",
           fileContents: {},
@@ -261,7 +277,7 @@ describe("lib/render/_helpers", () => {
         });
         expect(spy).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file some/component/component.json. Please check that it's linked correctly."
+          "Couldn't find file some/component/mocks.json. Please check that it's linked correctly."
         );
 
         done();
@@ -271,11 +287,14 @@ describe("lib/render/_helpers", () => {
     describe("variant not having any data", () => {
       test("returns {}", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "tests/mocks/",
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "tests/mocks/",
+          })
+        );
         const fileContents = {};
-        fileContents[`${process.cwd()}/tests/mocks/resolve/resolve.json`] = {
+        fileContents[`${process.cwd()}/tests/mocks/resolve/mocks.json`] = {
           variations: [
             {
               name: "variation",
@@ -291,7 +310,7 @@ describe("lib/render/_helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              $ref: "resolve/resolve.json#variation",
+              $ref: "resolve#variation",
             },
           })
         ).toEqual({
@@ -305,9 +324,12 @@ describe("lib/render/_helpers", () => {
     describe("variant not having any data", () => {
       test("returns {}", async (done) => {
         const app = express();
-        app.set("config", {
-          srcFolder: "tests/mocks/",
-        });
+        app.set(
+          "config",
+          Object.assign({}, config.defaultUserConfig, {
+            srcFolder: "tests/mocks/",
+          })
+        );
         app.set("state", {
           partials: "partials",
         });

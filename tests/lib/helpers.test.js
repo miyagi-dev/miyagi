@@ -1,5 +1,6 @@
 const config = require("../../lib/config.json");
 const helpers = require("../../lib/helpers.js");
+const deepMerge = require("deepmerge");
 
 beforeEach(() => {
   jest.resetModules();
@@ -8,70 +9,109 @@ beforeEach(() => {
 
 describe("lib/helpers", () => {
   const app = require("express")();
-  app.set("config", {
-    srcFolder: "srcFolder/",
-    templates: { extension: "hbs" },
-  });
-
-  describe("fileIsOfGivenType()", () => {
-    describe("with given filename ending with given extension", () => {
-      test("returns true", () => {
-        expect(helpers.fileIsOfGivenType("foo/bar.baz", "baz")).toBe(true);
-      });
-    });
-
-    describe("with given filename not ending with given extension", () => {
-      test("returns false", () => {
-        expect(helpers.fileIsOfGivenType("fo.b", "barz")).toBe(false);
-        expect(helpers.fileIsOfGivenType("foo/bar.baz", "foo")).toBe(false);
-      });
-    });
-
-    describe("with given filename not being a string", () => {
-      test("returns false", () => {
-        expect(helpers.fileIsOfGivenType({}, "barz")).toBe(false);
-      });
-    });
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      srcFolder: "srcFolder/",
+      files: {
+        templates: { extension: "hbs" },
+      },
+    })
+  );
 
   describe("fileIsDataFile()", () => {
-    test("calls fileIsOfGivenType() with passed fileName and config.dataFileType", () => {
-      const spy = jest.spyOn(helpers, "fileIsOfGivenType");
-
-      helpers.fileIsDataFile("foo/bar");
-
-      expect(spy).toHaveBeenCalledWith("foo/bar", config.dataFileType);
-
-      spy.mockRestore();
+    test("returns true if file is a data file", () => {
+      expect(
+        helpers.fileIsDataFile(
+          app,
+          `foo/${app.get("config").files.mocks.name}.${
+            app.get("config").files.mocks.extension
+          }`
+        )
+      ).toBe(true);
     });
 
-    test("returns the result from fileIsOfGivenType()", () => {
-      helpers.fileIsOfGivenType = jest.fn().mockReturnValue(true);
-      expect(helpers.fileIsDataFile()).toBe(true);
-      helpers.fileIsOfGivenType = jest.fn().mockReturnValue("foo");
-      expect(helpers.fileIsDataFile()).toBe("foo");
+    test("returns true if file is not a data file", () => {
+      expect(
+        helpers.fileIsDataFile(
+          app,
+          `foo/${app.get("config").files.mocks.name}.${
+            app.get("config").files.mocks.name
+          }!`
+        )
+      ).toBe(false);
     });
   });
 
   describe("fileIsTemplateFile()", () => {
-    test("calls fileIsOfGivenType() with passed fileName and app.config.templates.extension", () => {
-      const spy = jest.spyOn(helpers, "fileIsOfGivenType");
-
-      helpers.fileIsTemplateFile(app, "foo/bar");
-
-      expect(spy).toHaveBeenCalledWith(
-        "foo/bar",
-        app.get("config").templates.extension
-      );
-
-      spy.mockRestore();
+    test("returns true if file is a template file", () => {
+      expect(
+        helpers.fileIsTemplateFile(
+          app,
+          `foo/${app.get("config").files.templates.name}.${
+            app.get("config").files.templates.extension
+          }`
+        )
+      ).toBe(true);
     });
 
-    test("returns the result from fileIsOfGivenType()", () => {
-      helpers.fileIsOfGivenType = jest.fn().mockReturnValue(true);
-      expect(helpers.fileIsTemplateFile(app)).toBe(true);
-      helpers.fileIsOfGivenType = jest.fn().mockReturnValue("foo");
-      expect(helpers.fileIsTemplateFile(app)).toBe("foo");
+    test("returns true if file is not a template file", () => {
+      expect(
+        helpers.fileIsTemplateFile(
+          app,
+          `foo/${app.get("config").files.templates.name}.${
+            app.get("config").files.templates.name
+          }!`
+        )
+      ).toBe(false);
+    });
+  });
+
+  describe("fileIsDocumentationFile()", () => {
+    test("returns true if file is a docs file", () => {
+      expect(
+        helpers.fileIsDocumentationFile(
+          app,
+          `foo/${app.get("config").files.docs.name}.${
+            app.get("config").files.docs.extension
+          }`
+        )
+      ).toBe(true);
+    });
+
+    test("returns true if file is not a docs file", () => {
+      expect(
+        helpers.fileIsDocumentationFile(
+          app,
+          `foo/${app.get("config").files.docs.name}.${
+            app.get("config").files.docs.name
+          }!`
+        )
+      ).toBe(false);
+    });
+  });
+
+  describe("fileIsSchemaFile()", () => {
+    test("returns true if file is a schema file", () => {
+      expect(
+        helpers.fileIsSchemaFile(
+          app,
+          `foo/${app.get("config").files.schema.name}.${
+            app.get("config").files.schema.extension
+          }`
+        )
+      ).toBe(true);
+    });
+
+    test("returns true if file is not a schema file", () => {
+      expect(
+        helpers.fileIsSchemaFile(
+          app,
+          `foo/${app.get("config").files.schema.name}.${
+            app.get("config").files.schema.name
+          }!`
+        )
+      ).toBe(false);
     });
   });
 

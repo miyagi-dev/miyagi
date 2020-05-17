@@ -11,9 +11,11 @@ module.exports = {
   ],
   config: {
     cssFiles: [],
-    templates: {
-      engine: "handlebars",
-      extension: "hbs",
+    files: {
+      templates: {
+        engine: "handlebars",
+        extension: "hbs",
+      },
     },
     srcFolder: "src/",
     projectName: "headman",

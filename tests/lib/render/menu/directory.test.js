@@ -1,3 +1,4 @@
+const config = require("../../../../lib/config.json");
 const helpersSrc = "../../../../lib/render/menu/_helpers.js";
 
 function requireComponent(componentName, mock) {
@@ -31,9 +32,12 @@ describe("lib/menu/elements/directory", () => {
     variation: "baz",
   };
   const app = require("express")();
-  app.set("config", {
-    srcFolder: "srcFolder",
-  });
+  app.set(
+    "config",
+    Object.assign({}, config.defaultUserConfig, {
+      srcFolder: "srcFolder",
+    })
+  );
 
   test("adds the component name with correct index to the html", () => {
     const directory = requireComponent("directory");

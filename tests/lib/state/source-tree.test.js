@@ -1,3 +1,5 @@
+const deepMerge = require("deepmerge");
+const config = require("../../../lib/config.json");
 const { getSourceTree } = require("../../../lib/state/source-tree.js");
 const dirTree = require("directory-tree");
 
@@ -10,13 +12,18 @@ beforeEach(() => {
 
 describe("lib/state/source-tree", () => {
   const app = require("express")();
-  app.set("config", {
-    srcFolderIgnores: ["/ignoredFolder"],
-    srcFolder: "userFolder",
-    templates: {
-      extension: "extension",
-    },
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      srcFolderIgnores: ["/ignoredFolder"],
+      srcFolder: "userFolder",
+      files: {
+        templates: {
+          extension: "extension",
+        },
+      },
+    })
+  );
 
   test("srcFolder() calls dirTree()", () => {
     dirTree.mockImplementationOnce(() => {});
@@ -29,7 +36,7 @@ describe("lib/state/source-tree", () => {
     });
   });
 
-  test("srcFolder() returns an object with the sourceTree", () => {
+  test.only("srcFolder() returns an object with the sourceTree", () => {
     const result = {
       foo: "bar",
     };

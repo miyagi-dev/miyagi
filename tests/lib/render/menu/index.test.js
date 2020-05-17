@@ -1,3 +1,6 @@
+const config = require("../../../../lib/config.json");
+const deepMerge = require("deepmerge");
+
 function requireComponent(componentName, mock) {
   let component = require(`../../../../lib/render/menu/${componentName}`);
 
@@ -20,11 +23,16 @@ describe("lib/menu/elements/menu", () => {
   const index = "index";
   const menuItemObject = {};
 
-  app.set("config", {
-    templates: {
-      extension: "hbs",
-    },
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      files: {
+        templates: {
+          extension: "hbs",
+        },
+      },
+    })
+  );
 
   describe("with children", () => {
     test("calls menuItem.render for each menuItem", () => {

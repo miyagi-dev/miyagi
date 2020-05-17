@@ -16,7 +16,31 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: "user/css/index.css",
         jsFiles: "user/js/index.js",
-        templates: {},
+        files: {
+          css: {
+            extension: "css",
+            name: "index",
+          },
+          docs: {
+            extension: "md",
+            name: "docs",
+          },
+          js: {
+            extension: "js",
+            name: "index",
+          },
+          mocks: {
+            extension: "json",
+            name: "mocks",
+          },
+          schema: {
+            extension: "json",
+            name: "schema",
+          },
+          templates: {
+            name: "index",
+          },
+        },
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -29,7 +53,31 @@ describe("lib/init/config", () => {
         srcFolder: "/user/srcFolder",
         cssFiles: "./user/css/index.css",
         jsFiles: "/user/js/index.js",
-        templates: {},
+        files: {
+          css: {
+            extension: "css",
+            name: "index",
+          },
+          docs: {
+            extension: "md",
+            name: "docs",
+          },
+          js: {
+            extension: "js",
+            name: "index",
+          },
+          mocks: {
+            extension: "json",
+            name: "mocks",
+          },
+          schema: {
+            extension: "json",
+            name: "schema",
+          },
+          templates: {
+            name: "index",
+          },
+        },
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -44,7 +92,31 @@ describe("lib/init/config", () => {
         srcFolder: "user/srcFolder/",
         cssFiles: ["user/css/index.css"],
         jsFiles: ["user/js/index.js"],
-        templates: {},
+        files: {
+          css: {
+            extension: "css",
+            name: "index",
+          },
+          docs: {
+            extension: "md",
+            name: "docs",
+          },
+          js: {
+            extension: "js",
+            name: "index",
+          },
+          mocks: {
+            extension: "json",
+            name: "mocks",
+          },
+          schema: {
+            extension: "json",
+            name: "schema",
+          },
+          templates: {
+            name: "index",
+          },
+        },
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -57,7 +129,31 @@ describe("lib/init/config", () => {
         srcFolder: "/user/srcFolder",
         cssFiles: ["./user/css/index.css"],
         jsFiles: ["/user/js/index.js"],
-        templates: {},
+        files: {
+          css: {
+            extension: "css",
+            name: "index",
+          },
+          docs: {
+            extension: "md",
+            name: "docs",
+          },
+          js: {
+            extension: "js",
+            name: "index",
+          },
+          mocks: {
+            extension: "json",
+            name: "mocks",
+          },
+          schema: {
+            extension: "json",
+            name: "schema",
+          },
+          templates: {
+            name: "index",
+          },
+        },
       });
 
       expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -77,7 +173,31 @@ describe("lib/init/config", () => {
           jsFiles: {
             test: ["user/dev/js/index.js"],
           },
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         });
 
         expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
@@ -90,7 +210,31 @@ describe("lib/init/config", () => {
           srcFolder: "/user/srcFolder",
           cssFiles: ["./user/css/index.css"],
           jsFiles: ["/user/js/index.js"],
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         });
 
         expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -109,7 +253,31 @@ describe("lib/init/config", () => {
           jsFiles: {
             test: "user/dev/js/index.js",
           },
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         });
 
         expect(conf.cssFiles).toEqual(["user/dev/css/index.css"]);
@@ -122,7 +290,31 @@ describe("lib/init/config", () => {
           srcFolder: "/user/srcFolder",
           cssFiles: "./user/css/index.css",
           jsFiles: "/user/js/index.js",
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         });
 
         expect(conf.cssFiles).toEqual(["user/css/index.css"]);
@@ -141,7 +333,31 @@ describe("lib/init/config", () => {
           jsFiles: {
             foo: ["user/js/index.js"],
           },
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         });
 
         expect(logger.log).toHaveBeenNthCalledWith(
@@ -167,7 +383,31 @@ describe("lib/init/config", () => {
           jsFiles: {
             foo: ["user/js/index.js"],
           },
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         });
         expect(conf.cssFiles).toEqual([]);
         expect(conf.jsFiles).toEqual([]);
@@ -177,7 +417,7 @@ describe("lib/init/config", () => {
 
   describe("without any empty config given", () => {
     test("it returns the default values", () => {
-      expect(getMergedConfig({ templates: {} })).toEqual({
+      expect(getMergedConfig({ files: { templates: {} } })).toEqual({
         projectName: "headman",
         srcFolder: "",
         build: {
@@ -198,7 +438,31 @@ describe("lib/init/config", () => {
           accessibility: true,
         },
         reload: true,
-        templates: {},
+        files: {
+          css: {
+            extension: "css",
+            name: "index",
+          },
+          docs: {
+            extension: "md",
+            name: "docs",
+          },
+          js: {
+            extension: "js",
+            name: "index",
+          },
+          mocks: {
+            extension: "json",
+            name: "mocks",
+          },
+          schema: {
+            extension: "json",
+            name: "schema",
+          },
+          templates: {
+            name: "index",
+          },
+        },
       });
     });
   });
@@ -208,7 +472,31 @@ describe("lib/init/config", () => {
       expect(
         getMergedConfig({
           srcFolder: ".",
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         }).srcFolder
       ).toEqual("");
     });
@@ -219,7 +507,31 @@ describe("lib/init/config", () => {
       expect(
         getMergedConfig({
           srcFolder: "/",
-          templates: {},
+          files: {
+            css: {
+              extension: "css",
+              name: "index",
+            },
+            docs: {
+              extension: "md",
+              name: "docs",
+            },
+            js: {
+              extension: "js",
+              name: "index",
+            },
+            mocks: {
+              extension: "json",
+              name: "mocks",
+            },
+            schema: {
+              extension: "json",
+              name: "schema",
+            },
+            templates: {
+              name: "index",
+            },
+          },
         }).srcFolder
       ).toEqual("");
     });

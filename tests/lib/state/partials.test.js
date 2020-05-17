@@ -1,9 +1,9 @@
+const config = require("../../../lib/config.json");
 const getPartials = require("../../../lib/state/partials.js");
 const readDir = require("fs-readdir-recursive");
-const { getOnlyWantedFiles } = require("../../../lib/state/_helpers.js");
+const deepMerge = require("deepmerge");
 
 jest.mock("fs-readdir-recursive");
-jest.mock("../../../lib/state/_helpers.js");
 
 beforeEach(() => {
   jest.resetModules();
@@ -12,13 +12,18 @@ beforeEach(() => {
 
 describe("lib/state/partials", () => {
   const app = require("express")();
-  app.set("config", {
-    srcFolder: "/tests/mocks/files",
-    srcFolderIgnores: [],
-    templates: {
-      extension: "hbs",
-    },
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      srcFolder: "/tests/mocks/files",
+      srcFolderIgnores: [],
+      files: {
+        templates: {
+          extension: "hbs",
+        },
+      },
+    })
+  );
 
   test("calls readDir with the correct path", () => {
     readDir.mockImplementation(() => []);
@@ -31,30 +36,44 @@ describe("lib/state/partials", () => {
   describe("with files not being filtered out", () => {
     test("returns an object with shortPath as key and fullPath as value", () => {
       readDir.mockImplementation(() => [
-        `directory1/directory1.hbs`,
-        `directory2/directory2.hbs`,
-        `directory3/directory3.hbs`,
+        `directory1/index.hbs`,
+        `directory2/index.hbs`,
+        `directory3/index.hbs`,
       ]);
-      getOnlyWantedFiles.mockImplementation(() => true);
 
       expect(getPartials(app)).toEqual({
-        "directory1/directory1.hbs": `${process.cwd()}/tests/mocks/files/directory1/directory1.hbs`,
-        "directory2/directory2.hbs": `${process.cwd()}/tests/mocks/files/directory2/directory2.hbs`,
-        "directory3/directory3.hbs": `${process.cwd()}/tests/mocks/files/directory3/directory3.hbs`,
+        "directory1/index.hbs": `${process.cwd()}/tests/mocks/files/directory1/index.hbs`,
+        "directory2/index.hbs": `${process.cwd()}/tests/mocks/files/directory2/index.hbs`,
+        "directory3/index.hbs": `${process.cwd()}/tests/mocks/files/directory3/index.hbs`,
       });
     });
   });
 
   describe("with files being filtered out", () => {
     test("returns an object without the files", () => {
-      readDir.mockImplementation(() => [
-        `directory1/directory1.hbs`,
-        `directory2/directory2.hbs`,
-        `directory3/directory3.hbs`,
-      ]);
-      getOnlyWantedFiles.mockImplementation(() => false);
+      app.set(
+        "config",
+        deepMerge(config.defaultUserConfig, {
+          srcFolder: "/tests/mocks/files",
+          srcFolderIgnores: ["directory1"],
+          files: {
+            templates: {
+              extension: "hbs",
+            },
+          },
+        })
+      );
 
-      expect(getPartials(app)).toEqual({});
+      readDir.mockImplementation(() => [
+        `directory1/index.hbs`,
+        `directory2/index.hbs`,
+        `directory3/index.hbs`,
+      ]);
+
+      expect(getPartials(app)).toEqual({
+        "directory2/index.hbs": `${process.cwd()}/tests/mocks/files/directory2/index.hbs`,
+        "directory3/index.hbs": `${process.cwd()}/tests/mocks/files/directory3/index.hbs`,
+      });
     });
   });
 });

@@ -1,9 +1,11 @@
+const deepMerge = require("deepmerge");
 const path = require("path");
 const express = require("express");
 const request = require("supertest");
 const setRouter = require("../../../lib/init/router.js");
 const render = require("../../../lib/render");
-const component = "components/component/component.hbs";
+const config = require("../../../lib/config.json");
+const component = "components/component/index.hbs";
 
 let app;
 let server;
@@ -17,21 +19,26 @@ beforeEach((done) => {
     process.cwd(),
     `srcFolder/${component}`
   );
-  fileContents[componentJsonFullPath.replace(".hbs", ".json")] = {
+  fileContents[componentJsonFullPath.replace("index.hbs", "mocks.json")] = {
     variations: [{ name: "someVariation", data: {} }],
   };
   app.set("state", {
     partials: {
-      "components/component/component.hbs": component,
+      "components/component/index.hbs": component,
     },
     fileContents,
   });
-  app.set("config", {
-    templates: {
-      extension: "hbs",
-    },
-    srcFolder: "srcFolder/",
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      files: {
+        templates: {
+          extension: "hbs",
+        },
+      },
+      srcFolder: "srcFolder/",
+    })
+  );
 
   setRouter(app);
 });
@@ -117,32 +124,6 @@ describe("lib/init/router()", () => {
             .end(done);
         });
       });
-
-      describe("with variation value, but empty data saved for the component", () => {
-        test("calls renderComponentNotFound()", (done) => {
-          render.renderComponentNotFound = jest.fn((done) => done());
-          const state = app.get("state");
-
-          app.get("state").fileContents[
-            path.join(
-              process.cwd(),
-              `srcFolder/${component.replace(".hbs", ".json")}`
-            )
-          ] = "";
-
-          request(app)
-            .get("/component")
-            .query(`file=${component}`)
-            .query(`variation=someVariation`)
-            .expect(() => {
-              return expect(render.renderComponentNotFound).toHaveBeenCalled();
-            })
-            .end(() => {
-              app.set("state", state);
-              done();
-            });
-        });
-      });
     });
 
     describe("with invalid file value", () => {
@@ -205,7 +186,7 @@ describe("lib/init/router()", () => {
         });
       });
 
-      describe("with aan invalid variation value", () => {
+      describe("with an invalid variation value", () => {
         test("calls renderMainWith404()", (done) => {
           render.renderMainWith404 = jest.fn((done) => done());
 

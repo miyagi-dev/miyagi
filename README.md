@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.com/mgrsskls/headman.svg?token=PQ1wpfPsNbj5pQ6Nb2cJ&branch=master)](https://travis-ci.com/mgrsskls/headman) ![Codecov](https://img.shields.io/codecov/c/github/mgrsskls/headman?token=988e4e2b46be48ad94803ecfdfce7c1d) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/mgrsskls/headman) ![GitHub repo size](https://img.shields.io/github/repo-size/mgrsskls/headman)
 
-_headman_ is a component development tool. It renders and validates all your components and its variations. For maximum convenience, you can define test data in JSON files which can be reused from other components. This allows you to work independently from a backend. _headman_ uses [consolidate.js](https://github.com/tj/consolidate.js) internally, hence it automatically supports a lot of rendering engines.
+_headman_ is a component development tool. It renders and validates all your components and its variations. For maximum convenience, you can define mock data in JSON format which can be reused from other components. This allows you to work independently from a backend. _headman_ uses [consolidate.js](https://github.com/tj/consolidate.js) internally, hence it automatically supports a lot of rendering engines.
 
 ## Benefits
 
@@ -25,11 +25,11 @@ _headman_ is a component development tool. It renders and validates all your com
   - [Commands](#commands)
     - [Starting _headman_ server](#starting-headman-server)
     - [Creating components via CLI](#creating-components-via-cli)
-    - [Creating data files via CLI](#creating-data-files-via-cli)
+    - [Creating mock files via CLI](#creating-mock-files-via-cli)
     - [Creating a build](#creating-a-build)
   - [Organizing your components](#organizing-your-components)
-  - [Creating test data](#creating-test-data)
-  - [Global data](#global-data)
+  - [Creating mocks](#creating-mocks)
+  - [Global mocks](#global-mock)
   - [Component status](#component-status)
   - [Rendering engines](#rendering-engines)
   - [Validations](#validations)
@@ -47,11 +47,11 @@ _headman_ is a component development tool. It renders and validates all your com
 
 ### Variation inheritance
 
-You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.
+You can define variations for each of your components. These variations inherit mock data from the components base definition (if defined), which can then easily be overwritten or extended.
 
 ### Data inclusion
 
-If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.
+If you have a component that includes another component, you can easily include the mock data (or one of its variations) of the latter into the mock data of including component. That way, it is enough to define mock data for a specific component once.
 
 ## Installation
 
@@ -63,7 +63,7 @@ You can also install it globally via `npm install -g headman`.
 
 ### Options
 
-Create a `headman.json` in your project folder with the following options or pass them as cli arguments when starting `headman` (dot notation can be used for objects):
+Create a `.headman.js` in your project folder with the following options or pass them as cli arguments when starting `headman` (dot notation can be used for objects):
 
 ```js
 {
@@ -76,6 +76,15 @@ Create a `headman.json` in your project folder with the following options or pas
     "production": ["dist/index.css"]
   },
   "es6Modules": false, // Adds `type="module"` to the `script` tags of your included js files (useful when using unbundled javascript that uses es6 imports)
+  "files": {
+    "templates": {
+      "engine": "handlebars", // The name of your template engine (see https://github.com/tj/consolidate.js#supported-template-engines)
+      "namespaces": {
+        "custom-namespace": "path/to/folder" // twig e.g. allows custom namespaces, which can be set like this
+      }
+      "extension": "hbs", // The file extension of your template files
+    },
+  },
   "jsFiles": { // Can either be a string, an array of strings or an object with your NODE_ENVs as key and `String` or `Array` as value
     "development": ["src/index.js"],
     "production": ["dist/index.js"]
@@ -88,15 +97,8 @@ Create a `headman.json` in your project folder with the following options or pas
     ".git",
     "package.json",
     "package-lock.json",
-    "headman.json"
+    ".headman.js"
   ],
-  "templates": {
-    "engine": "handlebars", // The name of your template engine (see https://github.com/tj/consolidate.js#supported-template-engines)
-    "namespaces": {
-      "custom-namespace": "path/to/folder" // twig e.g. allows custom namespaces, which can be set like this
-    }
-    "extension": "hbs", // The file extension of your template files
-  },
   "theme": {
     "favicon": "src/favicon.ico",
     "logo": "src/logo.svg",
@@ -117,7 +119,7 @@ Create a `headman.json` in your project folder with the following options or pas
 }
 ```
 
-_**Note:** If an option is passed as a CLI argument and defined in your `headman.json`, the CLI argument is used._
+_**Note:** If an option is passed as a CLI argument and defined in your `.headman.js`, the CLI argument is used._
 
 ### Commands
 
@@ -128,20 +130,20 @@ Start _headman_ with `NODE_ENV=(development|production) node node_modules/headma
 #### Creating components via CLI
 
 Creating (empty) components via CLI is possible with `headman new <folderName>/<componentName>`.
-This will create template (the type is based on your config), data, docs, schema, css and js files.
+This will create template, mocks, docs, schema, css and js files.
 You can skip any of these like this: `headman new <folderName>/<componentName> --skip=css,js`.
 Alternatively, you can explicitly say which files you need like this: `headman new <folderName>/<componentName> --only=tpl,docs`.
 
-#### Creating data files via CLI
+#### Creating mock files via CLI
 
-If you have a valid `schema.json` file in your component folder, you can create a data file with dummy content (based on [json-schema-faker](https://www.npmjs.com/package/json-schema-faker)) via `headman data path/to/your/component`.
+If you have a valid `schema.json` file in your component folder, you can create a mock file with dummy content (based on [json-schema-faker](https://www.npmjs.com/package/json-schema-faker)) via `headman mocks path/to/your/component`.
 
 #### Creating a build
 
 You can create a production build with `node node_modules/headman build` (or `headman build`).
 
 _headman_ automatically goes into production mode to create the build, so you can ommit the `NODE_ENV`.
-By default, the build (static html files + assets) will be created in `<YOUR_PROJECT>/build`. You can change this in your `headman.json` (see [Options](#options)) or by passing `--folder=<folder>`.
+By default, the build (static html files + assets) will be created in `<YOUR_PROJECT>/build`. You can change this in your `.headman.js` (see [Options](#options)) or by passing `--folder=<folder>`.
 
 ### Organizing your components
 
@@ -190,7 +192,7 @@ You can call the folders whatever you want and you can nest them as deep as you 
 
 _**Note:** Files, that are not named the same as the folder they live in, will be ignored._
 
-### Creating test data
+### Creating mock data
 
 Create a `json` file in your component folder with a structure like this:
 
@@ -277,9 +279,9 @@ Additionally, you can create `variations`. Each entry needs a `name` key and its
 
 _**NOTE**: The base `data` key is optional, that means you can also create variations only._
 
-**Instead of defining data manually, you can also use data from included components:**
+**Instead of defining mocks manually, you can also use mock data from included components:**
 
-The example above uses a `$ref` key in `templates/homepage/homepage.json` in multiple places. _headman_ then uses the data from the given files.
+The example above uses a `$ref` key in `templates/homepage/homepage.json` in multiple places. _headman_ then uses the mock data from the given files.
 If you have variations defined in these files, you can tell _headman_ to use any of them like this:
 
 ```js
@@ -292,9 +294,9 @@ If you have variations defined in these files, you can tell _headman_ to use any
 
 This would use the variation with the name `Teaser 2` from `components/teaser/teaser.json`. If you omit the variation key, it uses the base `data` of the component.
 
-_**Note:** You can also overwrite values of the imported data (see last variation in the `homepage.json` example above)._
+_**Note:** You can also overwrite values of the imported mock data (see last variation in the `homepage.json` example above)._
 
-Additionally you can also use a `$tpl` key to reference another template file (See the "With CTA" variation in `homepage.json`). That way the data object gets replaced with rendered HTML and the variable in your template file could directly render the HTML.
+Additionally you can also use a `$tpl` key to reference another template file (See the "With CTA" variation in `homepage.json`). That way the mock object gets replaced with rendered HTML and the variable in your template file could directly render the HTML.
 
 The `teaser.json` example above would be resolved like this:
 
@@ -344,7 +346,7 @@ The `teaser.json` example above would be resolved like this:
 }
 ```
 
-_headman_'s concept of inheriting data works best with rendering engines which allow you to pass data objects into an include. Please check the section [Rendering engines](#rendering-engines) for limitations with certain rendering engines.
+_headman_'s concept of inheriting mock data works best with rendering engines which allow you to pass data objects into an include. Please check the section [Rendering engines](#rendering-engines) for limitations with certain rendering engines.
 
 _**Note:** There is no way to create a named variation of a variation._
 
@@ -368,13 +370,13 @@ You can merge multiple components into one html result by using `render()`:
 
 This would resolve the templates and join them into one variable `html`.
 
-### Global data
+### Global mock data
 
-You can define global data by creating a `data.json` in your `srcFolder`. This data will be merged into your components data. The components data has higher priority, hence overwrites keys with the same name.
+You can define global mocks by creating a `data.json` in your `srcFolder`. This mock data will be merged into your components mock data. The components mock data has higher priority, hence overwrites keys with the same name.
 
 ### Component status
 
-Components can have a status, which is rendered in the component overview. Add a `status` key to the `data.json` of your component with any of the following values:
+Components can have a status, which is rendered in the component overview. Add a `status` key to the mock file of your component with any of the following values:
 
 - done
 - wip
@@ -405,9 +407,9 @@ Due to the nature of their APIs, there might be some constraints.
 - [mustache.js](https://github.com/janl/mustache.js)
 - [pug](https://github.com/pugjs/pug)
 
-Because of that, _headman_'s concept of data inclusion does not work. Nevertheless, you can still define all variables manually in your data files. These variables will then be available in your included components.
+Because of that, _headman_'s concept of using mock data does not work. Nevertheless, you can still define all variables manually in your mock files. These variables will then be available in your included components.
 
-If you use `pug`, you could also use a `mixin` and would then be able to use data inclusion. However, _headman_ is not able to render mixins independently, so you could only render them in the context of the including file.
+If you use `pug`, you could also use a `mixin` and would then be able to use mock data. However, _headman_ is not able to render mixins independently, so you could only render them in the context of the including file.
 
 **The following engines do not allow passing data into includes and the data is not globally available:**
 
@@ -443,7 +445,7 @@ For every component you can create a markdown file for documentation. Its conten
 - Your component is automatically reloaded as soon as you change it.
 - _headman_ does not actually use the css and js files from your component folders. That is because _headman_ cannot know which other components are included in your component, hence does not know which other files to load additionally. If you rely on a build task for your asset files (that might be slower than `_headman_`), you can turn off the automatic reloading of your component (`reload` in the options).
 - The start page of _headman_ renders all your components, but without variations. Opening a component either renders an overview of all of its variations or the component directly if it does not have any variations.
-- Folders, that do not include a file with the same name and the given file extension (defined in `headman.json`), are shown in the menu, but disabled.
+- Folders, that do not include a file with the same name and the given file extension (defined in `.headman.js`), are shown in the menu, but disabled.
 - You can open a standalone view of your component in a new tab by clicking on the small icon on the top right corner.
 
 ## Things to come (maybe)

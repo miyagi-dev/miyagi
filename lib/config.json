@@ -5,6 +5,31 @@
     },
     "cssFiles": [],
     "es6Modules": false,
+    "files": {
+      "css": {
+        "name": "index",
+        "extension": "css"
+      },
+      "docs": {
+        "name": "docs",
+        "extension": "md"
+      },
+      "js": {
+        "name": "index",
+        "extension": "js"
+      },
+      "mocks": {
+        "name": "mocks",
+        "extension": "json"
+      },
+      "schema": {
+        "name": "schema",
+        "extension": "json"
+      },
+      "templates": {
+        "name": "index"
+      }
+    },
     "jsFiles": [],
     "reload": true,
     "srcFolder": "",
@@ -24,12 +49,6 @@
   "defaultPort": 5000,
   "userConfigFile": ".headman.js",
   "htmlValidationUrl": "https://validator.w3.org/nu/",
-  "dataFileType": "json",
-  "documentationFileType": "md",
-  "schemaFile": {
-    "name": "schema",
-    "type": "json"
-  },
   "folders": {
     "assets": {
       "development": "assets",
@@ -54,7 +73,6 @@
     "jsonFileHasInvalidFormat": "It seems like the file ${filePath} has an invalid format as headman was not able to parse it.",
     "fileNotFound": "Couldn't find file ${filePath}. Is the 'srcFolder' in your .headman.js correct?",
     "fileNotFoundLinkIncorrect": "Couldn't find file ${filePath}. Please check that it's linked correctly.",
-    "fileNotRenderedDueToUnmatchingFolderName": "${file} ignored because the parent directory doesn't have the same name.",
     "generator": {
       "starting": "Creating component…",
       "done": "Done!",

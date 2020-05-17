@@ -27,7 +27,7 @@ describe("lib/init/partials", () => {
     const app = express();
     app.set("state", {
       partials: {
-        "foo/bar.hbs": "full/path/foo/bar.hbs",
+        "foo/index.hbs": "full/path/foo/index.hbs",
       },
     });
 
@@ -38,7 +38,7 @@ describe("lib/init/partials", () => {
         await partials.registerAll(app);
 
         expect(handlebars.registerPartial).toHaveBeenCalledWith(
-          "foo/bar.hbs",
+          "foo/index.hbs",
           "compiledPartial"
         );
         done();
@@ -55,7 +55,7 @@ describe("lib/init/partials", () => {
 
         expect(logger.log).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file foo/bar.hbs. Is the 'srcFolder' in your .headman.js correct?"
+          "Couldn't find file foo/index.hbs. Is the 'srcFolder' in your .headman.js correct?"
         );
         expect(handlebars.registerPartial).not.toHaveBeenCalled();
         done();
@@ -89,7 +89,7 @@ describe("lib/init/partials", () => {
         util.promisify = jest.fn(() => () => true);
         handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerPartial({}, "foo/bar.hbs");
+        await partials.registerPartial({}, "foo/index.hbs");
 
         expect(handlebars.registerPartial).toHaveBeenCalledWith(
           "fullName",
@@ -106,7 +106,7 @@ describe("lib/init/partials", () => {
           throw new Error();
         });
 
-        await partials.registerPartial({}, "foo/bar.hbs");
+        await partials.registerPartial({}, "foo/index.hbs");
 
         expect(logger.log).toHaveBeenCalledWith(
           "warn",

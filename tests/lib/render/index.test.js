@@ -4,19 +4,44 @@ const config = require("../../../lib/config.json");
 const express = require("express");
 const engines = require("consolidate");
 const path = require("path");
+const deepMerge = require("deepmerge");
 
-const component = "component1.hbs";
+const component = "component1/index.hbs";
 const variation = "variation";
 const menu = "menu";
 const userProjectName = "projectName";
-const path1 = path.join(process.cwd(), "/tests/mocks/srcFolder/component1.hbs");
-const path2 = path.join(process.cwd(), "/tests/mocks/srcFolder/component2.hbs");
-const path3 = path.join(process.cwd(), "/tests/mocks/srcFolder/component3.hbs");
-const path4 = path.join(process.cwd(), "/tests/mocks/srcFolder/component4.hbs");
-const path6 = path.join(process.cwd(), "/tests/mocks/srcFolder/component6.hbs");
-const path7 = path.join(process.cwd(), "/tests/mocks/srcFolder/component7.hbs");
-const path8 = path.join(process.cwd(), "/tests/mocks/srcFolder/component8.hbs");
-const path9 = path.join(process.cwd(), "/tests/mocks/srcFolder/component9.hbs");
+const path1 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component1/index.hbs"
+);
+const path2 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component2/index.hbs"
+);
+const path3 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component3/index.hbs"
+);
+const path4 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component4/index.hbs"
+);
+const path6 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component6/index.hbs"
+);
+const path7 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component7/index.hbs"
+);
+const path8 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component8/index.hbs"
+);
+const path9 = path.join(
+  process.cwd(),
+  "/tests/mocks/srcFolder/component9/index.hbs"
+);
 const fileContents = {};
 
 function addGlobalData() {
@@ -27,7 +52,7 @@ function addGlobalData() {
   };
 }
 
-fileContents[path1.replace(".hbs", ".json")] = {
+fileContents[path1.replace("index.hbs", "mocks.json")] = {
   data: {
     component: "component1",
   },
@@ -36,16 +61,16 @@ fileContents[path1.replace(".hbs", ".json")] = {
     { name: "variation2", data: { variation: 2 } },
   ],
 };
-fileContents[path2.replace(".hbs", ".json")] = {
+fileContents[path2.replace("index.hbs", "mocks.json")] = {
   data: { component: "component2" },
 };
-fileContents[path3.replace(".hbs", ".json")] = {
+fileContents[path3.replace("index.hbs", "mocks.json")] = {
   variations: [
     { name: "variation1", data: { variation: 1 } },
     { name: "variation2", data: { variation: 2 } },
   ],
 };
-fileContents[path6.replace(".hbs", ".json")] = {
+fileContents[path6.replace("index.hbs", "mocks.json")] = {
   variations: [
     {
       name: "variation1",
@@ -53,17 +78,17 @@ fileContents[path6.replace(".hbs", ".json")] = {
     },
   ],
 };
-fileContents[path7.replace(".hbs", ".json")] = {
+fileContents[path7.replace("index.hbs", "mocks.json")] = {
   variations: [{}, { name: "foo" }],
 };
-fileContents[path8.replace(".hbs", ".json")] = {
+fileContents[path8.replace("index.hbs", "mocks.json")] = {
   variations: [
     {
       name: "variation1",
     },
   ],
 };
-fileContents[path9.replace(".hbs", ".json")] = {
+fileContents[path9.replace("index.hbs", "mocks.json")] = {
   data: {},
   variations: [
     {
@@ -86,28 +111,33 @@ beforeEach(() => {
   app.set("state", {
     menu,
     partials: {
-      "component1.hbs": path1,
-      "component2.hbs": path2,
-      "component3.hbs": path3,
-      "component4.hbs": path4,
-      "component6.hbs": path6,
-      "component7.hbs": path7,
-      "component8.hbs": path8,
+      "component1/index.hbs": path1,
+      "component2/index.hbs": path2,
+      "component3/index.hbs": path3,
+      "component4/index.hbs": path4,
+      "component6/index.hbs": path6,
+      "component7/index.hbs": path7,
+      "component8/index.hbs": path8,
     },
     fileContents,
   });
   app.set("views", [path.join(process.cwd(), "/tests/mocks/srcFolder/")]);
-  app.set("config", {
-    templates: {
-      extension: "hbs",
-    },
-    srcFolder: "tests/mocks/srcFolder/",
-    projectName: userProjectName,
-    validations: {
-      accessibility: true,
-      html: true,
-    },
-  });
+  app.set(
+    "config",
+    deepMerge(config.defaultUserConfig, {
+      files: {
+        templates: {
+          extension: "hbs",
+        },
+      },
+      srcFolder: "tests/mocks/srcFolder/",
+      projectName: userProjectName,
+      validations: {
+        accessibility: true,
+        html: true,
+      },
+    })
+  );
 
   res = {
     render: jest.fn(),
@@ -331,7 +361,11 @@ describe("lib/render/index", () => {
       test("renders component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({ app, res, file: "component2" });
+        await render.renderComponent({
+          app,
+          res,
+          file: "component2/index.hbs",
+        });
 
         expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
@@ -358,7 +392,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: "component8.hbs",
+          file: "component8/index.hbs",
           variation: "variation1",
         });
 
@@ -387,7 +421,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: "component5",
+          file: "component5/index.hbs",
           variation: "component5",
         });
 
@@ -478,7 +512,7 @@ describe("lib/render/index", () => {
         await render.renderComponentVariations({
           app,
           res,
-          file: "component1.hbs",
+          file: "component1/index.hbs",
           embedded: true,
         });
 
@@ -486,36 +520,36 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           variations: [
             {
-              file: "component1.hbs",
+              file: "component1/index.hbs",
               html: "component1global\n",
               variation: "default",
               url:
-                "/component?file=component1.hbs&variation=default&embedded=true",
+                "/component?file=component1/index.hbs&variation=default&embedded=true",
             },
             {
-              file: "component1.hbs",
+              file: "component1/index.hbs",
               html: "component11global\n",
               variation: "variation1",
               url:
-                "/component?file=component1.hbs&variation=variation1&embedded=true",
+                "/component?file=component1/index.hbs&variation=variation1&embedded=true",
             },
             {
-              file: "component1.hbs",
+              file: "component1/index.hbs",
               html: "component12global\n",
               variation: "variation2",
               url:
-                "/component?file=component1.hbs&variation=variation2&embedded=true",
+                "/component?file=component1/index.hbs&variation=variation2&embedded=true",
             },
           ],
           dev: false,
           prod: false,
           a11yTestsPreload: true,
-          folder: "",
+          folder: "component1",
           projectName,
           userProjectName,
           isBuild: undefined,
           schema: undefined,
-          name: "component1",
+          name: "index",
           documentation: undefined,
           theme: undefined,
           status: null,
@@ -544,36 +578,36 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
-                file: "component1.hbs",
+                file: "component1/index.hbs",
                 html: "component1\n",
                 variation: "default",
                 url:
-                  "/component?file=component1.hbs&variation=default&embedded=true",
+                  "/component?file=component1/index.hbs&variation=default&embedded=true",
               },
               {
-                file: "component1.hbs",
+                file: "component1/index.hbs",
                 html: "component11\n",
                 variation: "variation1",
                 url:
-                  "/component?file=component1.hbs&variation=variation1&embedded=true",
+                  "/component?file=component1/index.hbs&variation=variation1&embedded=true",
               },
               {
-                file: "component1.hbs",
+                file: "component1/index.hbs",
                 html: "component12\n",
                 variation: "variation2",
                 url:
-                  "/component?file=component1.hbs&variation=variation2&embedded=true",
+                  "/component?file=component1/index.hbs&variation=variation2&embedded=true",
               },
             ],
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component1",
             projectName,
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "component1",
+            name: "index",
             documentation: undefined,
             theme: undefined,
             status: null,
@@ -591,7 +625,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component3.hbs",
+            file: "component3/index.hbs",
             embedded: true,
           });
 
@@ -601,31 +635,31 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
-                file: "component3.hbs",
+                file: "component3/index.hbs",
                 html: "component31\n",
                 variation: "variation1",
                 url:
-                  "/component?file=component3.hbs&variation=variation1&embedded=true",
+                  "/component?file=component3/index.hbs&variation=variation1&embedded=true",
               },
               {
-                file: "component3.hbs",
+                file: "component3/index.hbs",
                 html: "component32\n",
                 variation: "variation2",
                 url:
-                  "/component?file=component3.hbs&variation=variation2&embedded=true",
+                  "/component?file=component3/index.hbs&variation=variation2&embedded=true",
               },
             ],
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component3",
             projectName,
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
             theme: undefined,
             schema: undefined,
-            name: "component3",
+            name: "index",
             status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -641,7 +675,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component6.hbs",
+            file: "component6/index.hbs",
             embedded: true,
           });
 
@@ -651,25 +685,25 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
-                file: "component6.hbs",
+                file: "component6/index.hbs",
                 html:
                   '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
                 variation: "variation1",
                 url:
-                  "/component?file=component6.hbs&variation=variation1&embedded=true",
+                  "/component?file=component6/index.hbs&variation=variation1&embedded=true",
               },
             ],
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component6",
             projectName,
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
             theme: undefined,
             schema: undefined,
-            name: "component6",
+            name: "index",
             status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -685,7 +719,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component7.hbs",
+            file: "component7/index.hbs",
             embedded: true,
           });
 
@@ -695,24 +729,24 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
-                file: "component7.hbs",
+                file: "component7/index.hbs",
                 html: "component7\n",
                 variation: "foo",
                 url:
-                  "/component?file=component7.hbs&variation=foo&embedded=true",
+                  "/component?file=component7/index.hbs&variation=foo&embedded=true",
               },
             ],
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component7",
             projectName,
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
             theme: undefined,
             schema: undefined,
-            name: "component7",
+            name: "index",
             status: null,
           });
 
@@ -727,7 +761,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component9.hbs",
+            file: "component9/index.hbs",
             embedded: true,
           });
 
@@ -737,29 +771,29 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
-                file: "component9.hbs",
+                file: "component9/index.hbs",
                 html: "component9\n",
                 variation: "default",
                 url:
-                  "/component?file=component9.hbs&variation=default&embedded=true",
+                  "/component?file=component9/index.hbs&variation=default&embedded=true",
               },
               {
-                file: "component9.hbs",
+                file: "component9/index.hbs",
                 html: "component9\n",
                 variation: "variation1",
                 url:
-                  "/component?file=component9.hbs&variation=variation1&embedded=true",
+                  "/component?file=component9/index.hbs&variation=variation1&embedded=true",
               },
             ],
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component9",
             projectName,
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "component9",
+            name: "index",
             documentation: undefined,
             theme: undefined,
             status: null,
@@ -778,7 +812,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component2.hbs",
+            file: "component2/index.hbs",
             embedded: true,
           });
 
@@ -787,7 +821,7 @@ describe("lib/render/index", () => {
           );
           expect(res.render.mock.calls[0][1]).toEqual({
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component2",
             documentation: undefined,
             theme: undefined,
             dev: false,
@@ -796,13 +830,13 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "component2",
+            name: "index",
             variations: [
               {
-                file: "component2.hbs",
+                file: "component2/index.hbs",
                 html: "component2\n",
                 url:
-                  "/component?file=component2.hbs&variation=default&embedded=true",
+                  "/component?file=component2/index.hbs&variation=default&embedded=true",
                 variation: "default",
               },
             ],
@@ -820,7 +854,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component2.hbs",
+            file: "component2/index.hbs",
             embedded: false,
           });
 
@@ -830,7 +864,7 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             documentation: undefined,
             a11yTestsPreload: true,
-            folder: "",
+            folder: "component2",
             theme: undefined,
             dev: false,
             prod: false,
@@ -838,13 +872,13 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "component2",
+            name: "index",
             variations: [
               {
-                file: "component2.hbs",
+                file: "component2/index.hbs",
                 html: "component2\n",
                 url:
-                  "/component?file=component2.hbs&variation=default&embedded=true",
+                  "/component?file=component2/index.hbs&variation=default&embedded=true",
                 variation: "default",
               },
             ],
@@ -863,13 +897,13 @@ describe("lib/render/index", () => {
         await render.renderComponentVariations({
           app,
           res,
-          file: "component4.hbs",
+          file: "component4/index.hbs",
         });
 
         expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           a11yTestsPreload: true,
-          folder: "",
+          folder: "component4",
           documentation: undefined,
           dev: false,
           prod: false,
@@ -879,15 +913,15 @@ describe("lib/render/index", () => {
           theme: undefined,
           variations: [
             {
-              file: "component4.hbs",
+              file: "component4/index.hbs",
               html: "component4\n",
               url:
-                "/component?file=component4.hbs&variation=default&embedded=true",
+                "/component?file=component4/index.hbs&variation=default&embedded=true",
               variation: "default",
             },
           ],
           schema: undefined,
-          name: "component4",
+          name: "index",
           status: null,
         });
 
@@ -908,47 +942,47 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
-              name: "component1",
+              name: "index",
               folders: [],
               html: "component1global\n",
-              url: "/component?file=component1.hbs&embedded=true",
+              url: "/component?file=component1/index.hbs&embedded=true",
             },
             {
-              name: "component2",
+              name: "index",
               folders: [],
               html: "component2\n",
-              url: "/component?file=component2.hbs&embedded=true",
+              url: "/component?file=component2/index.hbs&embedded=true",
             },
             {
-              name: "component3",
+              name: "index",
               folders: [],
               html: "component31\n",
-              url: "/component?file=component3.hbs&embedded=true",
+              url: "/component?file=component3/index.hbs&embedded=true",
             },
             {
-              name: "component4",
+              name: "index",
               folders: [],
               html: "component4\n",
-              url: "/component?file=component4.hbs&embedded=true",
+              url: "/component?file=component4/index.hbs&embedded=true",
             },
             {
-              name: "component6",
+              name: "index",
               folders: [],
               html:
                 '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6.hbs&embedded=true",
+              url: "/component?file=component6/index.hbs&embedded=true",
             },
             {
-              name: "component7",
+              name: "index",
               folders: [],
               html: "component7\n",
-              url: "/component?file=component7.hbs&embedded=true",
+              url: "/component?file=component7/index.hbs&embedded=true",
             },
             {
-              name: "component8",
+              name: "index",
               folders: [],
               html: "component8\n",
-              url: "/component?file=component8.hbs&embedded=true",
+              url: "/component?file=component8/index.hbs&embedded=true",
             },
           ],
           theme: undefined,
@@ -958,6 +992,7 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          documentation: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -975,47 +1010,47 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
-              name: "component1",
+              name: "index",
               folders: [],
               html: "component1\n",
-              url: "/component?file=component1.hbs&embedded=true",
+              url: "/component?file=component1/index.hbs&embedded=true",
             },
             {
-              name: "component2",
+              name: "index",
               folders: [],
               html: "component2\n",
-              url: "/component?file=component2.hbs&embedded=true",
+              url: "/component?file=component2/index.hbs&embedded=true",
             },
             {
-              name: "component3",
+              name: "index",
               folders: [],
               html: "component31\n",
-              url: "/component?file=component3.hbs&embedded=true",
+              url: "/component?file=component3/index.hbs&embedded=true",
             },
             {
-              name: "component4",
+              name: "index",
               folders: [],
               html: "component4\n",
-              url: "/component?file=component4.hbs&embedded=true",
+              url: "/component?file=component4/index.hbs&embedded=true",
             },
             {
-              name: "component6",
+              name: "index",
               folders: [],
               html:
                 '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6.hbs&embedded=true",
+              url: "/component?file=component6/index.hbs&embedded=true",
             },
             {
-              name: "component7",
+              name: "index",
               folders: [],
               html: "component7\n",
-              url: "/component?file=component7.hbs&embedded=true",
+              url: "/component?file=component7/index.hbs&embedded=true",
             },
             {
-              name: "component8",
+              name: "index",
               folders: [],
               html: "component8\n",
-              url: "/component?file=component8.hbs&embedded=true",
+              url: "/component?file=component8/index.hbs&embedded=true",
             },
           ],
           theme: undefined,
@@ -1025,6 +1060,7 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          documentation: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1042,46 +1078,46 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
-              name: "component1",
+              name: "index",
               html: "component1\n",
-              url: "/component?file=component1.hbs&embedded=true",
+              url: "/component?file=component1/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "component2",
+              name: "index",
               html: "component2\n",
-              url: "/component?file=component2.hbs&embedded=true",
+              url: "/component?file=component2/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "component3",
+              name: "index",
               html: "component31\n",
-              url: "/component?file=component3.hbs&embedded=true",
+              url: "/component?file=component3/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "component4",
+              name: "index",
               html: "component4\n",
-              url: "/component?file=component4.hbs&embedded=true",
+              url: "/component?file=component4/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "component6",
+              name: "index",
               html:
                 '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6.hbs&embedded=true",
+              url: "/component?file=component6/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "component7",
+              name: "index",
               html: "component7\n",
-              url: "/component?file=component7.hbs&embedded=true",
+              url: "/component?file=component7/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "component8",
+              name: "index",
               html: "component8\n",
-              url: "/component?file=component8.hbs&embedded=true",
+              url: "/component?file=component8/index.hbs&embedded=true",
               folders: [],
             },
           ],
@@ -1092,6 +1128,7 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          documentation: undefined,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
