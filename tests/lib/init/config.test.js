@@ -464,6 +464,9 @@ describe("lib/init/config", () => {
             ".headman.js",
           ],
         },
+        engine: {
+          name: null,
+        },
         projectName: "headman",
         ui: {
           validations: {

@@ -18,6 +18,9 @@
         ".headman.js"
       ]
     },
+    "engine": {
+      "name": null
+    },
     "files": {
       "css": {
         "name": "index",
@@ -92,8 +95,8 @@
       "fileAlreadyExists": "The file ${name} already exists."
     },
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
-    "missingEngineAndExtension": "Please specify your template engine and extension in .headman.js (key: 'files.templates.engine|extension', type: String) or as a cli argument (--files.templates.engine|extension=<String>)",
-    "missingEngine": "Please specify your template engine in .headman.js (key: 'files.templates.engine', type: String) or as a cli argument (--files.templates.engine=<String>)",
+    "missingEngineAndExtension": "Please specify your template engine and extension in .headman.js (key: 'engine.name|extension', type: String) or as a cli argument (--engine.name|extension=<String>)",
+    "missingEngine": "Please specify your template engine in .headman.js (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your components in .headman.js (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
     "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in .headman.js (key: 'components.folder', type: String).",
     "noDataSetForVariation": "No mock data defined for variation \"${variation}\" in ${file}.",

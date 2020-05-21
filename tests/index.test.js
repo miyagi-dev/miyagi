@@ -25,7 +25,7 @@ describe("index", () => {
     });
 
     describe("with parseable result from .headman.js", () => {
-      describe("with templates.extension, components.folder and templates.engine defined in .headman.js", () => {
+      describe("with templates.extension, components.folder and engine.name defined in .headman.js", () => {
         test.only("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
           const logger = require("../lib/logger.js");
@@ -40,10 +40,12 @@ describe("index", () => {
             deepMerge(appConfig.defaultUserConfig, {
               isBuild: false,
               isGenerator: false,
+              engine: {
+                name: "handlebars",
+              },
               files: {
                 templates: {
                   extension: "hbs",
-                  engine: "handlebars",
                 },
               },
               components: {
@@ -64,10 +66,8 @@ describe("index", () => {
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => ({
               config: {
-                files: {
-                  templates: {
-                    engine: "handlebars",
-                  },
+                engine: {
+                  name: "handlebars",
                 },
                 components: { folder: "src/" },
               },
@@ -94,10 +94,8 @@ describe("index", () => {
             () => {
               return {
                 config: {
-                  files: {
-                    templates: {
-                      engine: "handlebars",
-                    },
+                  engine: {
+                    name: "handlebars",
                   },
                   components: { folder: "src/" },
                 },
@@ -178,10 +176,12 @@ describe("index", () => {
             () => {
               return {
                 config: {
+                  engine: {
+                    name: "handlebars",
+                  },
                   files: {
                     templates: {
                       extension: "hbs",
-                      engine: "handlebars",
                     },
                   },
                 },
@@ -208,10 +208,12 @@ describe("index", () => {
             () => {
               return {
                 config: {
+                  engine: {
+                    name: "handlebars",
+                  },
                   files: {
                     templates: {
                       extension: "hbs",
-                      engine: "handlebars",
                     },
                   },
                 },

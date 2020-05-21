@@ -25,13 +25,15 @@ module.exports = {
       "tests",
     ]
   },
+  engine: {
+    engine: "twig",
+    namespaces: {
+      headman: "src/"
+    }
+  },
   files: {
     templates: {
-      engine: "twig",
       extension: "twig",
-      namespaces: {
-        headman: "src/"
-      }
     },
   },
   projectName: "headman",
@@ -58,4 +60,4 @@ module.exports = {
 };
 ```
 
-_**NOTE:** Only `files.templates.engine` and `files.templates.extension` are required. All other options are optional._
+_**NOTE:** Only `engine.name` and `files.templates.extension` are required. All other options are optional._

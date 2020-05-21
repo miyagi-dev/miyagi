@@ -13,9 +13,11 @@ module.exports = {
     assets: {
       css: [],
     },
+    engine: {
+      name: "handlebars",
+    },
     files: {
       templates: {
-        engine: "handlebars",
         extension: "hbs",
       },
     },

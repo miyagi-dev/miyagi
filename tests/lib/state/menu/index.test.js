@@ -26,10 +26,12 @@ describe("state/menu/index", () => {
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
+        engine: {
+          name: "handlebars",
+        },
         files: {
           templates: {
             extension: "hbs",
-            engine: "handlebars",
           },
         },
         components: {

@@ -15,10 +15,12 @@ describe("lib/init/engines", () => {
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
+        engine: {
+          name: "twig",
+        },
         files: {
           templates: {
             extension: "twig",
-            engine: "twig",
           },
         },
       })
@@ -36,10 +38,12 @@ describe("lib/init/engines", () => {
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
+        engine: {
+          name: "twig",
+        },
         files: {
           templates: {
             extension: "twig",
-            engine: "twig",
           },
         },
       })
@@ -57,10 +61,12 @@ describe("lib/init/engines", () => {
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
+        engine: {
+          name: "twig",
+        },
         files: {
           templates: {
             extension: "twig",
-            engine: "twig",
           },
         },
       })
@@ -78,10 +84,12 @@ describe("lib/init/engines", () => {
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
+        engine: {
+          name: "twig",
+        },
         files: {
           templates: {
             extension: "twig",
-            engine: "twig",
           },
         },
       })
@@ -102,10 +110,12 @@ describe("lib/init/engines", () => {
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
+        engine: {
+          name: "invalidEngine",
+        },
         files: {
           templates: {
             extension: "twig",
-            engine: "invalidEngine",
           },
         },
       })
@@ -131,10 +141,12 @@ describe("lib/init/engines", () => {
       app.set(
         "config",
         deepMerge(config.defaultUserConfig, {
+          engine: {
+            name: "ejs",
+          },
           files: {
             templates: {
               extension: "ejs",
-              engine: "ejs",
             },
           },
         })

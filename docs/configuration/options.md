@@ -1,4 +1,4 @@
-_headman_ only needs two options to be set: `files.templates.engine` and `files.templates.extension`.
+_headman_ only needs two options to be set: `engine.name` and `files.templates.extension`.
 Apart from that all other options are optional.
 
 ## `assets`
@@ -82,6 +82,29 @@ _headman_ ignores these folders and files when looking for your components.
 
 When setting a value, it is added to the default value and does not overwrite it.
 
+## engine
+
+### name
+
+default: `null`<br>
+type: `string`<br>
+required: `true`
+
+The name of your template engine (see [supported template engines](/template-engines))
+
+### namespaces
+
+default: `null`<br>
+type: `object`
+
+twig.js e.g. allows custom namespaces, which can be set like this:
+
+```json
+{
+  "custom-namespace": "path/to/folder"
+}
+```
+
 ## `files`
 
 _This is the configuration for your actual component files._
@@ -157,16 +180,6 @@ default:
 }
 ```
 
-`templates` additionally accepts two other entries:
-
-- `engine` (_required_): the name of your template engine (see [supported template engines](/template-engines))
-- `namespaces`: twig.js e.g. allows custom namespaces, which can be set like this
-
-```json
-{
-  "custom-namespace": "path/to/folder"
-}
-```
 ## `projectName`
 
 default: `"headman"`<br>
