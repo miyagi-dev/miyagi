@@ -1,4 +1,4 @@
-**File:** `mocks.json` or `mocks.js`
+**File:** `mocks.json`, `mocks.js` or `mocks.yaml`
 
 _headman_ tries to make using mock data as convenient as possible. Therefore you can create multiple [variations](#variations) in one file, [reference other mock files](#referencing-other-mock-files), [reference template files](#referencing-template-files) and [join those](#joining-templates). It is even possible to use CommonJS modules if you want to [asynchronously create mock data](#asynchronous-mock-data).
 
