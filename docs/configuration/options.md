@@ -76,7 +76,7 @@ _**Tip:** You should set this value to a folder with nothing else but your compo
 ### `ignores`
 
 default: `["node_modules", ".git", "package.json", "package-lock.json", ".headman.js"]`<br>
-type: `boolean`
+type: `array`
 
 _headman_ ignores these folders and files when looking for your components.
 
