@@ -1,8 +1,8 @@
-export default document.addEventListener("DOMContentLoaded", () => {
+export default (links) => {
   if (parent.window) {
     const linkClass = "HeadmanComponent-file";
 
-    Array.from(document.querySelectorAll(`.${linkClass}`)).forEach((link) => {
+    links.forEach((link) => {
       link.addEventListener("click", (e) => {
         const el = e.target.closest(`.${linkClass}`);
 
@@ -16,4 +16,4 @@ export default document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
+};

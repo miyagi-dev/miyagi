@@ -2,7 +2,7 @@ require("../../../assets/js/iframe.js");
 
 describe("assets/js/iframe.js", () => {
   describe("is embedded", () => {
-    describe("clicking on a link", () => {
+    describe.skip("clicking on a link", () => {
       const link = document.createElement("a");
       link.classList.add("HeadmanComponent-file");
       link.setAttribute("href", "the target");

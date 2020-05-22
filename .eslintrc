@@ -5,8 +5,9 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 8,
+    "ecmaVersion": 11,
     "sourceType": "module",
+    "allowImportExportEverywhere": true
   },
   "extends": ["prettier"],
   "plugins": ["prettier"],

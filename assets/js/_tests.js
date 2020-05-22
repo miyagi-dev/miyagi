@@ -213,35 +213,31 @@ function htmlTest(container) {
   });
 }
 
-addEventListener("DOMContentLoaded", () => {
-  const tests = parent.document.querySelector(".Headman-tests");
+export default (tests) => {
+  if (document.getElementById("HeadmanComponent")) {
+    const a11yContainer = parent.document.querySelector(".HeadmanTest--a11y");
+    const htmlContainer = parent.document.querySelector(".HeadmanTest--html");
 
-  if (tests) {
-    if (document.getElementById("HeadmanComponent")) {
-      const a11yContainer = parent.document.querySelector(".HeadmanTest--a11y");
-      const htmlContainer = parent.document.querySelector(".HeadmanTest--html");
-
-      if (a11yContainer) {
-        if (window.validations.accessibility) {
-          a11yTest(a11yContainer);
-        } else {
-          a11yContainer.remove();
-        }
+    if (a11yContainer) {
+      if (window.validations.accessibility) {
+        a11yTest(a11yContainer);
+      } else {
+        a11yContainer.remove();
       }
-
-      if (htmlContainer) {
-        if (window.validations.html) {
-          htmlTest(htmlContainer);
-        } else {
-          htmlContainer.remove();
-        }
-      }
-
-      if (window.validations.accessibility || window.validations.html) {
-        tests.removeAttribute("hidden");
-      }
-    } else {
-      tests.setAttribute("hidden", true);
     }
+
+    if (htmlContainer) {
+      if (window.validations.html) {
+        htmlTest(htmlContainer);
+      } else {
+        htmlContainer.remove();
+      }
+    }
+
+    if (window.validations.accessibility || window.validations.html) {
+      tests.removeAttribute("hidden");
+    }
+  } else {
+    tests.setAttribute("hidden", true);
   }
-});
+};
