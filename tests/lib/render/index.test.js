@@ -553,7 +553,7 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           schema: undefined,
-          name: "index",
+          name: "component1",
           documentation: undefined,
           theme: undefined,
           status: null,
@@ -611,7 +611,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "index",
+            name: "component1",
             documentation: undefined,
             theme: undefined,
             status: null,
@@ -663,7 +663,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: undefined,
             schema: undefined,
-            name: "index",
+            name: "component3",
             status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -707,7 +707,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: undefined,
             schema: undefined,
-            name: "index",
+            name: "component6",
             status: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -750,7 +750,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: undefined,
             schema: undefined,
-            name: "index",
+            name: "component7",
             status: null,
           });
 
@@ -797,7 +797,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "index",
+            name: "component9",
             documentation: undefined,
             theme: undefined,
             status: null,
@@ -834,7 +834,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "index",
+            name: "component2",
             variations: [
               {
                 file: "component2/index.hbs",
@@ -876,7 +876,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             schema: undefined,
-            name: "index",
+            name: "component2",
             variations: [
               {
                 file: "component2/index.hbs",
@@ -925,7 +925,7 @@ describe("lib/render/index", () => {
             },
           ],
           schema: undefined,
-          name: "index",
+          name: "component4",
           status: null,
         });
 
@@ -946,44 +946,44 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
-              name: "index",
+              name: "component1",
               folders: [],
               html: "component1global\n",
               url: "/component?file=component1/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component2",
               folders: [],
               html: "component2\n",
               url: "/component?file=component2/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component3",
               folders: [],
               html: "component31\n",
               url: "/component?file=component3/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component4",
               folders: [],
               html: "component4\n",
               url: "/component?file=component4/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component6",
               folders: [],
               html:
                 '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component7",
               folders: [],
               html: "component7\n",
               url: "/component?file=component7/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component8",
               folders: [],
               html: "component8\n",
               url: "/component?file=component8/index.hbs&embedded=true",
@@ -1014,44 +1014,44 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
-              name: "index",
+              name: "component1",
               folders: [],
               html: "component1\n",
               url: "/component?file=component1/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component2",
               folders: [],
               html: "component2\n",
               url: "/component?file=component2/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component3",
               folders: [],
               html: "component31\n",
               url: "/component?file=component3/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component4",
               folders: [],
               html: "component4\n",
               url: "/component?file=component4/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component6",
               folders: [],
               html:
                 '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component7",
               folders: [],
               html: "component7\n",
               url: "/component?file=component7/index.hbs&embedded=true",
             },
             {
-              name: "index",
+              name: "component8",
               folders: [],
               html: "component8\n",
               url: "/component?file=component8/index.hbs&embedded=true",
@@ -1082,44 +1082,44 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
-              name: "index",
+              name: "component1",
               html: "component1\n",
               url: "/component?file=component1/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "index",
+              name: "component2",
               html: "component2\n",
               url: "/component?file=component2/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "index",
+              name: "component3",
               html: "component31\n",
               url: "/component?file=component3/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "index",
+              name: "component4",
               html: "component4\n",
               url: "/component?file=component4/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "index",
+              name: "component6",
               html:
                 '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "index",
+              name: "component7",
               html: "component7\n",
               url: "/component?file=component7/index.hbs&embedded=true",
               folders: [],
             },
             {
-              name: "index",
+              name: "component8",
               html: "component8\n",
               url: "/component?file=component8/index.hbs&embedded=true",
               folders: [],
