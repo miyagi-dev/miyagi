@@ -5,13 +5,6 @@ Apart from that all other options are optional.
 
 _Settings for assets that headman serves (independently from your components)._
 
-### `folder`
-
-default: `null`<br>
-type: `string|array`
-
-If you need _headman_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
-
 ### `css`
 
 default: `null`<br>
@@ -34,6 +27,13 @@ default: `false`<br>
 type: `boolean`
 
 If you use ES6 modules, you can set this to true, so `type="module"` is added to the `script` tags of your included JS files (useful when using unbundled JavaScript).
+
+### `folder`
+
+default: `null`<br>
+type: `string|array`
+
+If you need _headman_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
 
 ### `js`
 
