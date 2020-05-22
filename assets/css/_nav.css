@@ -8,7 +8,7 @@
 
 .Headman-menu {
   font-size: 1.4rem;
-  margin-top: var(--Headman-spacing);
+  margin-top: var(--Headman-spacing-y);
 }
 
 [aria-expanded="true"] ~ .Headman-listContainer {
@@ -40,10 +40,14 @@
 .Headman-link,
 .Headman-component {
   display: block;
+}
+
+.Headman-link,
+a.Headman-component {
   padding: 0 var(--Headman-linkSpacing);
 }
 
-.Headman-component--lvl0 {
+.Headman-component--lvl0:not(a) {
   font-size: 0.875em;
   font-weight: 500;
   letter-spacing: 0.025em;
@@ -117,6 +121,12 @@
 
 .Headman-toggle[aria-expanded="true"]::after {
   transform: var(--Headman-toggle-transition-opened);
+}
+
+@media (max-width: 40em) {
+  .Headman-projectLogo {
+    height: 3rem;
+  }
 }
 
 @media (pointer: coarse) {

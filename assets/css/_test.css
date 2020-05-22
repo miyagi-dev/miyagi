@@ -1,13 +1,17 @@
 .HeadmanTest {
   font-size: 1.4rem;
-  padding: var(--Headman-spacing) 0 0;
+}
+
+.HeadmanTest:not(:first-child) {
+  margin-top: var(--Headman-spacing-y);
 }
 
 .HeadmanTest:last-child {
-  padding-bottom: var(--Headman-spacing);
+  margin-bottom: var(--Headman-spacing-y);
 }
 
 .HeadmanTest-title {
+  color: var(--Headman-colorHeadlines);
   display: block;
   font-weight: bold;
   margin: 0 0 0.5rem;

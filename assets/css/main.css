@@ -27,6 +27,7 @@
   --Headman-toggle-width: 1em;
   --Headman-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
   --Headman-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
+  --Headman-spacing: var(--Headman-spacing-y) var(--Headman-spacing-y);
 }
 
 *,
@@ -57,8 +58,7 @@ body {
   background: var(--Headman-color-bg);
   grid-area: nav;
   overflow-y: auto;
-  padding: var(--Headman-spacing)
-    calc(var(--Headman-spacing) - var(--Headman-linkSpacing));
+  padding: var(--Headman-spacing-y) var(--Headman-spacing-x);
 }
 
 .Headman-content {
@@ -67,8 +67,6 @@ body {
 
 .Headman-frameWrapper {
   height: 100%;
-  overflow: auto;
-  resize: both;
   width: 100%;
 }
 
@@ -80,11 +78,13 @@ body {
 
 .Headman-tests {
   grid-area: tests;
+  padding-right: 4rem;
 }
 
-@media (max-width: 32em) {
+@media (max-width: 40em) {
   :root {
-    --Headman-spacing: 1.5rem;
+    --Headman-spacing-x: 1rem;
+    --Headman-spacing-y: 1rem;
   }
 
   .Headman {
@@ -94,21 +94,38 @@ body {
       "tests";
   }
 
+  .Headman-menu {
+    flex: 0 0 100%;
+    padding-left: var(--Headman-spacing-x);
+    padding-right: var(--Headman-spacing-x);
+  }
+
+  .Headman-toggleMobileMenu[aria-expanded="false"] + .Headman-menu {
+    display: none;
+  }
+
   .Headman-nav {
-    position: relative;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .Headman-title {
+    max-width: 50%;
+    padding-left: var(--Headman-spacing-x);
   }
 
   .Headman-toggleMobileMenu {
-    --size: calc(
-      var(--Headman-fontSize) * var(--Headman-lineHeight) +
-        calc(2 * var(--Headman-spacing))
-    );
+    --size: 2rem;
 
+    box-sizing: content-box;
     display: block;
     height: var(--size);
-    position: absolute;
-    right: 0;
-    top: 0;
+    padding: 1rem;
+    position: relative;
     width: var(--size);
   }
 
@@ -134,14 +151,15 @@ body {
     transform: var(--Headman-toggle-transition-opened);
   }
 
-  .Headman-toggleMobileMenu[aria-expanded="false"] + .Headman-menu {
-    display: none;
+  .Headman-tests {
+    padding: 4rem;
   }
 }
 
-@media (min-width: 32.03125em) {
+@media (min-width: 40.03125em) {
   :root {
-    --Headman-spacing: 3rem;
+    --Headman-spacing-x: 2rem;
+    --Headman-spacing-y: 4rem;
   }
 
   .Headman-nav {
@@ -159,7 +177,7 @@ body {
   }
 }
 
-@media (min-width: 32.03125em) and (max-width: 64em) {
+@media (min-width: 40.03125em) and (max-width: 64em) {
   .Headman {
     grid-template-areas:
       "nav iframe"
@@ -171,8 +189,8 @@ body {
   .Headman-tests {
     --maxHeight: 50vh;
 
-    padding-left: var(--Headman-spacing);
-    padding-right: var(--Headman-spacing);
+    padding-left: 4rem;
+    padding-top: 4rem;
   }
 }
 
@@ -186,6 +204,7 @@ body {
     --maxHeight: 100vh;
 
     min-width: 30rem;
+    padding-top: 4rem;
     width: 20vw;
   }
 }

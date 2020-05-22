@@ -28,17 +28,6 @@ class Main {
     this.addLinksClickListener();
     this.addPopStateLisener();
     this.addPageChangedListener();
-
-    this.elements.iframe.addEventListener("load", () => {
-      this.elements.frameWrapper.style.setProperty(
-        "max-height",
-        `${this.elements.frameWrapper.clientHeight / 10}rem`
-      );
-      this.elements.frameWrapper.style.setProperty(
-        "max-width",
-        `${this.elements.frameWrapper.clientWidth / 10}rem`
-      );
-    });
   }
 
   static toggleExpandedAttribute(toggle) {
@@ -52,7 +41,6 @@ class Main {
     this.elements.iframe.remove();
     this.elements.iframe.src = src;
     this.elements.frameWrapper.appendChild(this.elements.iframe);
-    this.elements.frameWrapper.removeAttribute("style");
   }
 
   convertPathToMainPath(path) {
@@ -214,9 +202,10 @@ class Main {
   addLinksClickListener() {
     this.elements.links.forEach((link) => {
       link.addEventListener("click", (e) => {
-        e.preventDefault();
-
-        this.onLinkClick(e.target);
+        if (!e.metaKey) {
+          e.preventDefault();
+          this.onLinkClick(e.target);
+        }
       });
 
       link.addEventListener("keyup", (e) => {

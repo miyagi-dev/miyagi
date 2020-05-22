@@ -9,6 +9,7 @@
   --Headman-color-positive: #690;
   --Headman-colorHeadlines: var(--Headman-color);
   --Headman-transition: all 0.15s ease;
+  --spacing: 40px;
 }
 
 html {
@@ -45,7 +46,8 @@ body {
 .HeadmanSchemaTable,
 .HeadmanInformation,
 .HeadmanDocumentation,
-.Headman-sectionTitle {
+.Headman-sectionTitle,
+.HeadmanIframe-newTabLink {
   color: var(--Headman-color);
   font-family: var(--Headman-fontFamily);
 }
@@ -128,6 +130,10 @@ body {
   justify-content: space-between;
 }
 
+.HeadmanComponent:not(:last-child) {
+  margin-bottom: calc(2 * var(--spacing));
+}
+
 .HeadmanComponent-file {
   align-items: center;
   color: #767676;
@@ -150,7 +156,7 @@ body {
 }
 
 .HeadmanComponent-html {
-  margin: calc(var(--spacing) / 2) 0 calc(2 * var(--spacing));
+  margin: calc(var(--spacing) / 2) 0 0;
 }
 
 .HeadmanError {
@@ -158,38 +164,31 @@ body {
 }
 
 .HeadmanComponentView {
+  border: 1px solid #ddd;
   box-sizing: border-box;
-  padding: var(--spacing);
+  margin: var(--spacing);
+  overflow: auto;
+  resize: both;
   width: 100%;
 }
 
 .HeadmanIframe-newTabLink {
   align-items: center;
-  background: #fff;
-  border: 1px solid #fff;
-  border-radius: 3px;
-  color: var(--Headman-color);
   display: flex;
-  font-size: 40px;
-  height: 1em;
-  justify-content: center;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 40px;
   position: fixed;
-  right: 20px;
-  text-indent: -9999em;
-  top: 20px;
-  transition: var(--Headman-transition);
-  width: 1em;
-}
-
-.HeadmanIframe-newTabLink:hover {
-  border-color: #767676;
+  right: 40px;
+  text-decoration: underline;
+  top: 0;
 }
 
 .HeadmanIframe-newTabLink svg {
-  --size: 50%;
+  --size: 1.2em;
 
-  display: block;
   height: var(--size);
+  margin-left: .5em;
   width: var(--size);
 }
 
@@ -200,19 +199,6 @@ body {
 
 .Headman-code[class*="language-"] {
   background: #f8f8f8;
-}
-
-
-@media (max-width: 32em) {
-  .HeadmanIframe {
-    --spacing: 15px;
-  }
-}
-
-@media (min-width: 32.03125em) {
-  .HeadmanIframe {
-    --spacing: 30px;
-  }
 }
 
 @media screen and (prefers-reduced-motion) {
