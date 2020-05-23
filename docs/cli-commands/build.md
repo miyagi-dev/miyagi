@@ -4,7 +4,10 @@ headman build
 
 This will create a static build in the folder that is defined in [`build.folder` in your settings](/configuration/options#build) (default: `"build"`).
 
-_**NOTE:** headman automatically uses `NODE_ENV=production` to create the build, hence uses the [assets you defined for `production`](/configuration/options#assets) (if you did)._
+_**NOTE:**_
+
+- _headman automatically uses `NODE_ENV=production` to create the build, hence uses the [assets you defined for `production`](/configuration/options#assets) (if you did)._
+- _[Validations](/web-ui/variation/#validations) are turned off for builds._
 
 **--folder:**
 
