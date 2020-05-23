@@ -201,6 +201,20 @@ module.exports = async function returnMockData() {
 
 _**NOTE:** Please note, that the returned value should be a JSON object with the same format as described above._
 
+## Hiding the default variation
+
+If you want to define default mock data, so your variations inherit it, but not render the default variation, you can do that like this:
+
+```json
+{
+  "data": {
+    "$hidden": true,
+    "someKey": "someData"
+  },
+  "variations": ...
+}
+```
+
 ## Global mock data
 
 You can define global mocks by creating a `data.json` in your [`components.folder`](/configuration/options#components). This mock data will be merged into your components mock data. The components mock data has higher priority, hence overwrites keys with the same name.
