@@ -176,7 +176,7 @@ body {
   font-size: 14px;
   font-weight: normal;
   line-height: 40px;
-  position: fixed;
+  position: absolute;
   right: 40px;
   text-decoration: underline;
   top: 0;
