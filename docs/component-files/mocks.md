@@ -160,6 +160,33 @@ If you want to use multiple components for one HTML string, you can do that by u
 
 In this case `html` would be the joined result of rendering `"some/component"` and `"another/component"`.
 
+## Rendering attributes
+
+Using `attributes()` you can easily render attributes on element. Assuming you have mock data like this:
+
+```json
+{
+  "data": {
+    "attributes": {
+      "attributes()": {
+        "class": ["someClass,", "someOtherClass"],
+        "id": "someId"
+      }
+    }
+  }
+}
+```
+
+This would be resolved to:
+
+```json
+{
+  "data": {
+    "attributes": " class='someClass someOtherClass' id='someId'"
+  }
+}
+```
+
 ## Asynchronous mock data
 
 If you want to fetch mock data from an API or do any other asynchronous operations, you can [change the type of your mock files](/configuration/options/#mocks) to `js` and use CommonJS modules:
