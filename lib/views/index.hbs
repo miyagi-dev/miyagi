@@ -24,7 +24,7 @@
   </div>
 </main>
 
-<aside class="Headman-tests" hidden>
+<aside class="Headman-tests" {{#if hideTests}} hidden{{/if}}>
   {{#each tests}}
   <div class="HeadmanTest HeadmanTest--{{this.alias}}" hidden>
     <b class="HeadmanTest-title">{{this.title}}</b>

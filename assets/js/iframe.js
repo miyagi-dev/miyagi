@@ -1,4 +1,5 @@
 import "./_socket.js";
+import Tests from "./_tests.js";
 
 if (
   location.href.indexOf("/component?") >= 0 &&
@@ -13,9 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const tests = parent.document.querySelector(".Headman-tests");
 
   if (tests) {
-    import("./_tests.js").then((module) => {
-      module.default(tests);
-    });
+    Tests(tests);
   }
 
   if (links.length > 0) {
