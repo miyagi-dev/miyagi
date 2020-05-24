@@ -1,6 +1,5 @@
 const getMergedConfig = require("../../../lib/init/config.js");
-const logger = require("../../../lib/logger.js");
-
+const log = require("../../../lib/logger.js");
 jest.mock("../../../lib/logger.js");
 
 afterEach(() => {
@@ -348,8 +347,6 @@ describe("lib/init/config", () => {
 
     describe("with missing env key in assets objects", () => {
       test("it logs an error", () => {
-        logger.log = jest.fn();
-
         getMergedConfig({
           assets: {
             css: {
@@ -386,13 +383,13 @@ describe("lib/init/config", () => {
           },
         });
 
-        expect(logger.log).toHaveBeenNthCalledWith(
+        expect(log).toHaveBeenNthCalledWith(
           1,
           "warn",
           "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your .headman.js, so headman is not able to deliver your css files."
         );
 
-        expect(logger.log).toHaveBeenNthCalledWith(
+        expect(log).toHaveBeenNthCalledWith(
           2,
           "warn",
           "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your .headman.js, so headman is not able to deliver your js files."
@@ -400,8 +397,6 @@ describe("lib/init/config", () => {
       });
 
       test("it sets the asset keys to []", () => {
-        logger.log = jest.fn();
-
         const conf = getMergedConfig({
           assets: {
             css: {

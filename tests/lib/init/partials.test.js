@@ -1,15 +1,11 @@
 const helpers = require("../../../lib/helpers.js");
-const logger = require("../../../lib/logger.js");
+const log = require("../../../lib/logger.js");
 const express = require("express");
 const handlebars = require("handlebars");
 const partials = require("../../../lib/init/partials.js");
 const util = require("util");
 
-jest.mock("../../../lib/logger.js", () => {
-  return {
-    log: jest.fn(),
-  };
-});
+jest.mock("../../../lib/logger.js");
 jest.mock("handlebars", () => {
   return {
     registerPartial: jest.fn(),
@@ -53,7 +49,7 @@ describe("lib/init/partials", () => {
 
         await partials.registerAll(app);
 
-        expect(logger.log).toHaveBeenCalledWith(
+        expect(log).toHaveBeenCalledWith(
           "warn",
           "Couldn't find file foo/index.hbs. Is the 'components.folder' in your .headman.js correct?"
         );
@@ -108,7 +104,7 @@ describe("lib/init/partials", () => {
 
         await partials.registerPartial({}, "foo/index.hbs");
 
-        expect(logger.log).toHaveBeenCalledWith(
+        expect(log).toHaveBeenCalledWith(
           "warn",
           "Couldn't find file fullName. Is the 'components.folder' in your .headman.js correct?"
         );

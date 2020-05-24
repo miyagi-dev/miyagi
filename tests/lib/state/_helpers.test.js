@@ -1,8 +1,8 @@
 const helpers = require("../../../lib/state/_helpers.js");
-const logger = require("../../../lib/logger.js");
+const log = require("../../../lib/logger.js");
 const express = require("express");
 
-logger.log = jest.fn();
+jest.mock("../../../lib/logger");
 
 describe("lib/state/_helpers", () => {
   describe("isNotIgnored()", () => {

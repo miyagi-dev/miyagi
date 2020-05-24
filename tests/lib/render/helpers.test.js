@@ -1,11 +1,11 @@
 const config = require("../../../lib/config.json");
-const logger = require("../../../lib/logger.js");
 const helpers = require("../../../lib/render/_helpers.js");
+const log = require("../../../lib/logger.js");
 const express = require("express");
 const path = require("path");
 const deepMerge = require("deepmerge");
 
-logger.log = jest.fn();
+jest.mock("../../../lib/logger");
 
 describe("lib/render/_helpers", () => {
   describe("mergeWithGlobalData()", () => {
@@ -275,8 +275,6 @@ describe("lib/render/_helpers", () => {
           fileContents: {},
         });
 
-        const spy = jest.spyOn(logger, "log");
-
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
@@ -286,7 +284,7 @@ describe("lib/render/_helpers", () => {
         ).toEqual({
           resolve: {},
         });
-        expect(spy).toHaveBeenCalledWith(
+        expect(log).toHaveBeenCalledWith(
           "warn",
           "Couldn't find file some/component/mocks.json. Please check that it's linked correctly."
         );

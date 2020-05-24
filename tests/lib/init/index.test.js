@@ -3,7 +3,7 @@ appConfig.defaultPort = appConfig.defaultPort + 1;
 
 const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
-const logger = require("../../../lib/logger.js");
+const log = require("../../../lib/logger.js");
 const setConfig = require("../../../lib/init/config.js");
 const setEngines = require("../../../lib/init/engines.js");
 const setPartials = require("../../../lib/init/partials.js");
@@ -71,8 +71,8 @@ describe("lib/init", () => {
         setEngines.mockImplementationOnce(() => true);
         process.env.PORT = 1234;
         const server = await init({});
-        expect(logger.log).toHaveBeenCalledWith(
-          "info",
+        expect(log).toHaveBeenCalledWith(
+          "success",
           "Running headman server at http://localhost:1234!"
         );
         server.close();
@@ -85,8 +85,8 @@ describe("lib/init", () => {
         setEngines.mockImplementationOnce(() => true);
         delete process.env.PORT;
         const server = await init({});
-        expect(logger.log).toHaveBeenCalledWith(
-          "info",
+        expect(log).toHaveBeenCalledWith(
+          "success",
           `Running headman server at http://localhost:${appConfig.defaultPort}!`
         );
         server.close();
@@ -108,7 +108,7 @@ describe("lib/init", () => {
       expect(setViewHelpers).not.toHaveBeenCalled();
       expect(setPartials.registerAll).not.toHaveBeenCalled();
       expect(handlebarsLayouts.register).not.toHaveBeenCalled();
-      expect(logger.log).not.toHaveBeenCalled();
+      expect(log).not.toHaveBeenCalled();
       done();
     });
   });

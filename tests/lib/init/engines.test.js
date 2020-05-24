@@ -2,7 +2,7 @@ const deepMerge = require("deepmerge");
 const express = require("express");
 const engines = require("../../../lib/init/engines.js");
 const config = require("../../../lib/config.json");
-const logger = require("../../../lib/logger.js");
+const log = require("../../../lib/logger.js");
 const consolidate = require("consolidate");
 const path = require("path");
 
@@ -122,11 +122,9 @@ describe("lib/init/engines", () => {
     );
 
     test("it sets the user engine for the user extension", () => {
-      const spy = jest.spyOn(logger, "log");
-
       engines(app);
 
-      expect(spy).toHaveBeenCalledWith(
+      expect(log).toHaveBeenCalledWith(
         "error",
         "Setting the template engine failed. Are you sure the engine defined in your .headman.js is correct?"
       );

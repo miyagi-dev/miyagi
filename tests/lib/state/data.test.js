@@ -74,9 +74,9 @@ describe("lib/state/menu/data", () => {
             };
           });
           const { readFile } = require("../../../lib/state/file-contents.js");
-          const logger = require("../../../lib/logger.js");
+          const log = require("../../../lib/logger.js");
 
-          logger.log = jest.fn();
+          jest.mock("../../../lib/logger");
 
           const result = await readFile(
             app,
@@ -84,7 +84,7 @@ describe("lib/state/menu/data", () => {
           );
 
           expect(result).toEqual({});
-          expect(logger.log).toHaveBeenCalled();
+          expect(log).toHaveBeenCalled();
           done();
         });
       });
@@ -98,9 +98,9 @@ describe("lib/state/menu/data", () => {
           };
         });
         const { readFile } = require("../../../lib/state/file-contents.js");
-        const logger = require("../../../lib/logger.js");
+        const log = require("../../../lib/logger.js");
 
-        logger.log = jest.fn();
+        jest.mock("../../../lib/logger");
 
         const result = await readFile(
           app,
@@ -108,7 +108,7 @@ describe("lib/state/menu/data", () => {
         );
 
         expect(result).toEqual({});
-        expect(logger.log).toHaveBeenCalled();
+        expect(log).toHaveBeenCalled();
         done();
       });
     });

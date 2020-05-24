@@ -28,8 +28,8 @@ describe("index", () => {
       describe("with templates.extension, components.folder and engine.name defined in .headman.js", () => {
         test.only("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
-          const logger = require("../lib/logger.js");
-          logger.log = jest.fn();
+          const log = require("../lib/logger.js");
+          jest.mock("../lib/logger");
           jest.mock("../lib/init");
 
           process.argv = [, , "start"];
@@ -58,10 +58,10 @@ describe("index", () => {
       });
 
       describe("without extension defined in .headman.js", () => {
-        test("it calls logger.log with the correct error msg", () => {
-          const logger = require("../lib/logger.js");
+        test("it calls log with the correct error msg", () => {
+          const log = require("../lib/logger.js");
 
-          logger.log = jest.fn();
+          jest.mock("../lib/logger");
           jest.mock(
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => ({
@@ -77,18 +77,17 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(logger.log).toHaveBeenCalledWith(
+          expect(log).toHaveBeenCalledWith(
             "error",
             appConfig.messages.missingExtension
           );
         });
 
         test("doesn't call lib/init", () => {
-          const logger = require("../lib/logger.js");
+          const log = require("../lib/logger.js");
           const init = require("../lib/init");
           jest.mock("../lib/init");
-
-          logger.log = jest.fn();
+          jest.mock("../lib/logger");
           jest.mock(
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => {
@@ -110,10 +109,10 @@ describe("index", () => {
       });
 
       describe("without engine defined in .headman.js", () => {
-        test("it calls logger.log with the correct error msg", () => {
-          const logger = require("../lib/logger.js");
+        test("it calls log with the correct error msg", () => {
+          const log = require("../lib/logger.js");
 
-          logger.log = jest.fn();
+          jest.mock("../lib/logger");
           jest.mock(
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => {
@@ -132,18 +131,17 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(logger.log).toHaveBeenCalledWith(
+          expect(log).toHaveBeenCalledWith(
             "error",
             appConfig.messages.missingEngine
           );
         });
 
         test("doesn't call lib/init", () => {
-          const logger = require("../lib/logger.js");
+          const log = require("../lib/logger.js");
           const init = require("../lib/init");
           jest.mock("../lib/init");
-
-          logger.log = jest.fn();
+          jest.mock("../lib/logger");
           jest.mock(
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => {
@@ -167,10 +165,9 @@ describe("index", () => {
       });
 
       describe("without components.folder defined in .headman.js", () => {
-        test("it calls logger.log with the correct warn msg", () => {
-          const logger = require("../lib/logger.js");
-
-          logger.log = jest.fn();
+        test("it calls log with the correct warn msg", () => {
+          const log = require("../lib/logger.js");
+          jest.mock("../lib/logger");
           jest.mock(
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => {
@@ -191,18 +188,17 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(logger.log).toHaveBeenCalledWith(
+          expect(log).toHaveBeenCalledWith(
             "warn",
             appConfig.messages.missingSrcFolder
           );
         });
 
         test("does call lib/init", () => {
-          const logger = require("../lib/logger.js");
+          const log = require("../lib/logger.js");
           const init = require("../lib/init");
           jest.mock("../lib/init");
-
-          logger.log = jest.fn();
+          jest.mock("../lib/logger");
           jest.mock(
             path.resolve(process.cwd(), appConfig.userConfigFile),
             () => {
