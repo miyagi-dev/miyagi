@@ -1,7 +1,7 @@
 {
   "name": "headman",
   "version": "0.4.1",
-  "description": "headman is a component development tool.",
+  "description": "headman is a component development tool for JavaScript template engines.",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
@@ -19,8 +19,7 @@
     "frontend"
   ],
   "engines": {
-    "node": ">=12.13.1",
-    "npm": ">=6.12.1"
+    "node": ">=10.20.1"
   },
   "files": [
     "bin",
@@ -35,8 +34,6 @@
     "axe-core": "^3.5.3",
     "chalk": "^4.0.0",
     "chokidar": "^3.4.0",
-    "clone-deep": "^4.0.1",
-    "compression": "^1.7.4",
     "consolidate": "git+https://github.com/mgrsskls/consolidate.js.git",
     "deepmerge": "^4.2.2",
     "directory-tree": "^2.2.4",
@@ -45,8 +42,6 @@
     "fs-readdir-recursive": "^1.1.0",
     "handlebars": "^4.7.6",
     "handlebars-layouts": "^3.1.4",
-    "helmet": "^3.22.0",
-    "http-server": "^0.12.3",
     "js-yaml": "^3.14.0",
     "json-schema-faker": "^0.5.0-rcv.24",
     "json-to-pretty-yaml": "^1.2.2",
