@@ -557,6 +557,7 @@ describe("lib/render/index", () => {
           documentation: undefined,
           theme: undefined,
           status: null,
+          schemaType: "json",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -615,6 +616,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: undefined,
             status: null,
+            schemaType: "json",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -665,6 +667,7 @@ describe("lib/render/index", () => {
             schema: undefined,
             name: "component3",
             status: null,
+            schemaType: "json",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -709,6 +712,7 @@ describe("lib/render/index", () => {
             schema: undefined,
             name: "component6",
             status: null,
+            schemaType: "json",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -752,6 +756,7 @@ describe("lib/render/index", () => {
             schema: undefined,
             name: "component7",
             status: null,
+            schemaType: "json",
           });
 
           done();
@@ -801,6 +806,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: undefined,
             status: null,
+            schemaType: "json",
           });
 
           done();
@@ -845,6 +851,7 @@ describe("lib/render/index", () => {
               },
             ],
             status: null,
+            schemaType: "json",
           });
 
           done();
@@ -887,6 +894,7 @@ describe("lib/render/index", () => {
               },
             ],
             status: null,
+            schemaType: "json",
           });
 
           done();
@@ -927,6 +935,7 @@ describe("lib/render/index", () => {
           schema: undefined,
           name: "component4",
           status: null,
+          schemaType: "json",
         });
 
         done();

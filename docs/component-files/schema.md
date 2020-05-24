@@ -1,4 +1,4 @@
-**File:** `schema.json`
+**File:** `schema.json` or `schema.yaml`
 
 You can use this file to define a [JSON schema](http://json-schema.org/) for your component.
 
