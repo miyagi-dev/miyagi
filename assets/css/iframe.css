@@ -41,6 +41,10 @@ body {
   margin-top: 1.5em;
 }
 
+.HeadmanDocumentation i {
+  font-style: italic;
+}
+
 .HeadmanSchemaTable,
 .HeadmanInformation,
 .HeadmanDocumentation,

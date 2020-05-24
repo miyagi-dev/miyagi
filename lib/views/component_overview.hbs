@@ -5,8 +5,8 @@
     <h1>{{ userProjectName }}</h1>
     {{{documentation}}}
   </div>
-  {{#if components}}
   <h2 class="Headman-sectionTitle">Overview</h2>
+  {{#if components}}
   <div class="HeadmanComponents">
     {{#each components}}
     <div class="HeadmanComponent">
@@ -23,8 +23,9 @@
     </div>
     {{/each}}
     {{else}}
-    <div class="HeadmanComponent">
-      There are no components yet.
+    <div class="HeadmanDocumentation">
+      <p><i>headman</i> couldn't find any components yet.</p>
+      <p>Check out the <a href="http://example.com" target="_blank">documentation</a> if you need help!</p>
     </div>
   </div>
   {{/if}}
