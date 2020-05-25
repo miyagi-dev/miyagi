@@ -84,6 +84,12 @@ When setting a value, it is added to the default value and does not overwrite it
 
 ## engine
 
+### instance
+
+default `null`<br>
+
+See [Extending template engine](/configuration/extending-template-engine)
+
 ### name
 
 default: `null`<br>
@@ -92,18 +98,12 @@ required: `true`
 
 The name of your template engine (see [supported template engines](/template-engines))
 
-### namespaces
+### options
 
 default: `null`<br>
 type: `object`
 
-twig.js e.g. allows custom namespaces, which can be set like this:
-
-```json
-{
-  "custom-namespace": "path/to/folder"
-}
-```
+These options are passed to the rendering function of your template engine. You can use that for setting a custom namespace e.g..
 
 ## `files`
 

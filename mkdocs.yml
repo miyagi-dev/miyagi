@@ -33,6 +33,7 @@ nav:
       - Available options: configuration/options.md
       - Via config file: configuration/config-file.md
       - Via CLI: configuration/cli.md
+      - Extending template engine: configuration/extending-template-engine.md
   - Organizing your components: organizing-components.md
   - Component files:
       - Assets: component-files/assets.md

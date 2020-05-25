@@ -26,9 +26,11 @@ module.exports = {
     ]
   },
   engine: {
-    engine: "twig",
-    namespaces: {
-      headman: "src/"
+    name: "twig",
+    options: {
+      namespaces: {
+        headman: "src/"
+      }
     }
   },
   files: {

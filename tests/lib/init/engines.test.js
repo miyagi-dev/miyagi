@@ -32,29 +32,6 @@ describe("lib/init/engines", () => {
     expect(spy).toHaveBeenCalledWith("hbs", consolidate.handlebars);
   });
 
-  test("it sets the app view engine to hbs", () => {
-    const app = express();
-    app.set("plugins", []);
-    app.set(
-      "config",
-      deepMerge(config.defaultUserConfig, {
-        engine: {
-          name: "twig",
-        },
-        files: {
-          templates: {
-            extension: "twig",
-          },
-        },
-      })
-    );
-    const spy = jest.spyOn(app, "set");
-
-    engines(app);
-
-    expect(spy).toHaveBeenCalledWith("view engine", "hbs");
-  });
-
   test("it sets the user engine for the user extension", () => {
     const app = express();
     app.set("plugins", []);
@@ -76,32 +53,6 @@ describe("lib/init/engines", () => {
     engines(app);
 
     expect(spy).toHaveBeenNthCalledWith(2, "twig", consolidate.twig);
-  });
-
-  test("it sets the app view engine to the user extension", () => {
-    const app = express();
-    app.set("plugins", []);
-    app.set(
-      "config",
-      deepMerge(config.defaultUserConfig, {
-        engine: {
-          name: "twig",
-        },
-        files: {
-          templates: {
-            extension: "twig",
-          },
-        },
-      })
-    );
-    const spy = jest.spyOn(app, "set");
-
-    engines(app);
-
-    expect(spy).toHaveBeenCalledWith(
-      "view engine",
-      app.get("config").files.templates.extension
-    );
   });
 
   describe("with invalid engine", () => {

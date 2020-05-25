@@ -51,8 +51,7 @@ describe("index", () => {
               components: {
                 folder: "src/",
               },
-            }),
-            userFile.plugins
+            })
           );
         });
       });
