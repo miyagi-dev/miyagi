@@ -125,6 +125,8 @@ default:
 }
 ```
 
+_**Note:** You can use `"<component>"` for  `name` if the file should have the same name as the component folder._
+
 ### `docs`
 
 default:
@@ -146,6 +148,8 @@ default:
   "name": "index"
 }
 ```
+
+_**Note:** You can use `"<component>"` for  `name` if the file should have the same name as the component folder._
 
 ### `mocks`
 
@@ -179,6 +183,8 @@ default:
   "extension": null
 }
 ```
+
+_**Note:** You can use `"<component>"` for  `name` if the file should have the same name as the component folder._
 
 ## `projectName`
 
