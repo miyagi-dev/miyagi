@@ -140,6 +140,7 @@ body {
   align-items: center;
   color: #767676;
   display: flex;
+  flex-wrap: wrap;
   font-family: var(--Headman-fontFamily);
   font-size: 0.875em;
   letter-spacing: 0.0375em;
