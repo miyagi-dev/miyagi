@@ -466,6 +466,10 @@ describe("lib/init/config", () => {
         },
         projectName: "headman",
         ui: {
+          reloadAfterChanges: {
+            componentAssets: false,
+          },
+          renderComponentOverview: true,
           validations: {
             html: true,
             accessibility: true,

@@ -203,6 +203,24 @@ type: `boolean`
 
 Defines if your component automatically reloads after saving.
 
+### `reloadAfterChanges`
+
+#### `componentAssets`
+
+default: `false`<br>
+type: `boolean`
+
+Defines if your component automatically reloads after the css or js file of your component has been updated.
+
+_**NOTE:** This is disabled by default for the case that you have a build process that bundles your components assets. These bundled files could be added to your configuration in the [`assets key`](#assets)._
+
+### `renderComponentOverview`
+
+default: `true`<br>
+type: `boolean`
+
+Defines if an overview of all your components should be rendered on the start page.
+
 ### `theme`
 
 default:

@@ -54,6 +54,10 @@
     "projectName": "headman",
     "ui": {
       "reload": true,
+      "reloadAfterChanges": {
+        "componentAssets": false
+      },
+      "renderComponentOverview": true,
       "validations": {
         "html": true,
         "accessibility": true

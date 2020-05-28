@@ -5,29 +5,31 @@
     <h1>{{ userProjectName }}</h1>
     {{{documentation}}}
   </div>
-  <h2 class="Headman-sectionTitle">Overview</h2>
-  {{#if components}}
-  <div class="HeadmanComponents">
-    {{#each components}}
-    <div class="HeadmanComponent">
-      <a href="{{this.url}}" class="HeadmanComponent-file">
-        {{#if folders}}
-        <span class="HeadmanComponent-fileFolders">
-          {{#each folders}}{{this}} /{{/each}}
-        </span>
-        {{/if}}&nbsp;{{this.name}}
-      </a>
-      <div class="HeadmanComponent-html">
-        {{{this.html}}}
+  {{#if renderComponentOverview}}
+    <h2 class="Headman-sectionTitle">Overview</h2>
+    {{#if components}}
+    <div class="HeadmanComponents">
+      {{#each components}}
+      <div class="HeadmanComponent">
+        <a href="{{this.url}}" class="HeadmanComponent-file">
+          {{#if folders}}
+          <span class="HeadmanComponent-fileFolders">
+            {{#each folders}}{{this}} /{{/each}}
+          </span>
+          {{/if}}&nbsp;{{this.name}}
+        </a>
+        <div class="HeadmanComponent-html">
+          {{{this.html}}}
+        </div>
+      </div>
+      {{/each}}
+      {{else}}
+      <div class="HeadmanDocumentation">
+        <p><i>headman</i> couldn't find any components yet.</p>
+        <p>Check out the <a href="http://example.com" target="_blank">documentation</a> if you need help!</p>
       </div>
     </div>
-    {{/each}}
-    {{else}}
-    <div class="HeadmanDocumentation">
-      <p><i>headman</i> couldn't find any components yet.</p>
-      <p>Check out the <a href="http://example.com" target="_blank">documentation</a> if you need help!</p>
-    </div>
-  </div>
+    {{/if}}
   {{/if}}
 </div>
 {{/content}}
