@@ -1,8 +1,8 @@
-const config = require("../../../lib/config.json");
-const setViews = require("../../../lib/init/views.js");
 const express = require("express");
 const path = require("path");
 const deepMerge = require("deepmerge");
+const setViews = require("../../../lib/init/views.js");
+const config = require("../../../lib/config.json");
 
 beforeEach(() => {
   jest.resetModules();

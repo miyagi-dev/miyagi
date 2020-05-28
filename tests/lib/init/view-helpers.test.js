@@ -4,6 +4,7 @@ const handlebars = require("handlebars");
 const viewHelpers = require("../../../lib/init/view-helpers.js");
 const menu = require("../../../lib/render/menu");
 const config = require("../../../lib/config.json");
+
 const { registerHelper } = handlebars;
 
 jest.mock("../../../lib/render/menu/index.js", () => {

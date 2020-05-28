@@ -1,8 +1,8 @@
-const config = require("../../../../lib/config.json");
 const deepMerge = require("deepmerge");
+const config = require("../../../../lib/config.json");
 
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../lib/render/menu/${componentName}`);
+  const component = require(`../../../../lib/render/menu/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);

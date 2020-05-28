@@ -1,7 +1,7 @@
 const helpersSrc = "../../../../lib/render/menu/_helpers.js";
 
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../lib/render/menu/${componentName}`);
+  const component = require(`../../../../lib/render/menu/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);

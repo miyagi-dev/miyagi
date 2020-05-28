@@ -11,7 +11,7 @@ const directory = {
 };
 
 function requireComponent(componentName, mock) {
-  let component = require(`../../../../lib/render/menu/${componentName}`);
+  const component = require(`../../../../lib/render/menu/${componentName}`);
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -26,7 +26,7 @@ beforeEach(() => {
 });
 
 const app = {
-  get: function() {
+  get() {
     return {
       isBuild: false,
     };

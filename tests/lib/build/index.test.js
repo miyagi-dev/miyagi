@@ -1,14 +1,14 @@
 import deepMerge from "deepmerge";
-import config from "../../../lib/config.json";
-import build from "../../../lib/build/";
-import render from "../../../lib/render/index.js";
 import fs from "fs-extra";
 import path from "path";
 import express from "express";
+import config from "../../../lib/config.json";
+import build from "../../../lib/build";
+import render from "../../../lib/render/index";
 
 jest.mock("fs-extra", () => {
   return {
-    emptyDir: jest.fn((path, cb) => cb()),
+    emptyDir: jest.fn((p, cb) => cb()),
     writeFile: jest.fn(),
     copy: jest.fn(),
   };

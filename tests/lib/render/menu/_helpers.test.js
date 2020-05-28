@@ -76,7 +76,7 @@ describe("lib/menu/elements/_helpers", () => {
             helpers.pathEqualsRequest(
               path,
               variation,
-              Object.assign({}, request, { variation: variation.name })
+              { ...request, variation: variation.name}
             )
           ).toBe(true);
         });
@@ -116,10 +116,10 @@ describe("lib/menu/elements/_helpers", () => {
 
     describe("with children not containing a directory", () => {
       test("returns false", () => {
-        expect(helpers.childrenOfDirectoryContainDirectory({})).toBe(false);
+        expect(helpers.childrenOfDirectoryContainDirectory({})).toBeFalsy();
         expect(
           helpers.childrenOfDirectoryContainDirectory({ children: undefined })
-        ).toBe(false);
+        ).toBeFalsy();
         expect(
           helpers.childrenOfDirectoryContainDirectory({ children: [] })
         ).toBe(false);
@@ -141,10 +141,10 @@ describe("lib/menu/elements/_helpers", () => {
 
     describe("without variations", () => {
       test("returns false", () => {
-        expect(helpers.componentHasVariations({})).toBe(false);
-        expect(helpers.componentHasVariations({ variations: undefined })).toBe(
-          false
-        );
+        expect(helpers.componentHasVariations({})).toBeFalsy();
+        expect(
+          helpers.componentHasVariations({ variations: undefined })
+        ).toBeFalsy();
         expect(helpers.componentHasVariations({ variations: [] })).toBe(false);
       });
     });
@@ -173,10 +173,10 @@ describe("lib/menu/elements/_helpers", () => {
 
     describe("doesn't have a shortPath", () => {
       test("returns false", () => {
-        expect(helpers.directoryHasComponent({})).toBe(false);
-        expect(helpers.directoryHasComponent({ shortPath: undefined })).toBe(
-          false
-        );
+        expect(helpers.directoryHasComponent({})).toBeFalsy();
+        expect(
+          helpers.directoryHasComponent({ shortPath: undefined })
+        ).toBeFalsy();
         expect(helpers.directoryHasComponent({ shortPath: "" })).toBe(false);
       });
     });

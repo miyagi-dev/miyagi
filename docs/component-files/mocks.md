@@ -149,7 +149,8 @@ If you want to use multiple components for one HTML string, you can do that by u
     "html": {
       "render()": [
         {
-          "$tpl": "some/component",
+          "$tpl": "some/component"
+        }, {
           "$tpl": "another/component"
         }
       ]

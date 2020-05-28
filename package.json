@@ -31,6 +31,7 @@
     "headman": "./bin/headman.js"
   },
   "dependencies": {
+    "ajv": "^6.12.2",
     "axe-core": "^3.5.3",
     "chalk": "^4.0.0",
     "chokidar": "^3.4.0",

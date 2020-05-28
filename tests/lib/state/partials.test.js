@@ -1,7 +1,7 @@
-const config = require("../../../lib/config.json");
-const getPartials = require("../../../lib/state/partials.js");
 const readDir = require("fs-readdir-recursive");
 const deepMerge = require("deepmerge");
+const config = require("../../../lib/config.json");
+const getPartials = require("../../../lib/state/partials.js");
 
 jest.mock("fs-readdir-recursive");
 

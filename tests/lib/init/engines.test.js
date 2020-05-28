@@ -1,10 +1,9 @@
 const deepMerge = require("deepmerge");
 const express = require("express");
+const consolidate = require("consolidate");
 const engines = require("../../../lib/init/engines.js");
 const config = require("../../../lib/config.json");
 const log = require("../../../lib/logger.js");
-const consolidate = require("consolidate");
-const path = require("path");
 
 jest.mock("../../../lib/logger.js");
 
@@ -77,7 +76,7 @@ describe("lib/init/engines", () => {
 
       expect(log).toHaveBeenCalledWith(
         "error",
-        "Setting the template engine failed. Are you sure the engine defined in your .headman.js is correct?"
+        "Setting the template engine failed. Are you sure the engine defined in your config file is correct?"
       );
     });
   });

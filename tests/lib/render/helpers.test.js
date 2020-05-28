@@ -1,9 +1,9 @@
-const config = require("../../../lib/config.json");
-const helpers = require("../../../lib/render/_helpers.js");
-const log = require("../../../lib/logger.js");
 const express = require("express");
 const path = require("path");
 const deepMerge = require("deepmerge");
+const config = require("../../../lib/config.json");
+const helpers = require("../../../lib/render/_helpers.js");
+const log = require("../../../lib/logger.js");
 
 jest.mock("../../../lib/logger");
 

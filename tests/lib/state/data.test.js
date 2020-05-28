@@ -16,12 +16,10 @@ describe("lib/state/menu/data", () => {
     test("returns an object with stored data from json files and ignores ignored files", async (done) => {
       app.set(
         "config",
-        Object.assign({}, appConfig.defaultUserConfig, {
-          components: {
+        { ...appConfig.defaultUserConfig, components: {
             folder: "tests/mocks/srcFolder/",
             ignores: ["ignored/"],
-          },
-        })
+          },}
       );
 
       util.promisify = jest.fn(() => {

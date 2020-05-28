@@ -5,6 +5,7 @@ const request = require("supertest");
 const setRouter = require("../../../lib/init/router.js");
 const render = require("../../../lib/render");
 const config = require("../../../lib/config.json");
+
 const component = "components/component/index.hbs";
 
 let app;

@@ -1,6 +1,6 @@
+const deepMerge = require("deepmerge");
 const config = require("../../lib/config.json");
 const helpers = require("../../lib/helpers.js");
-const deepMerge = require("deepmerge");
 
 beforeEach(() => {
   jest.resetModules();

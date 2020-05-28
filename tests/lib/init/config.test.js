@@ -1,5 +1,6 @@
 const getMergedConfig = require("../../../lib/init/config.js");
 const log = require("../../../lib/logger.js");
+
 jest.mock("../../../lib/logger.js");
 
 afterEach(() => {
@@ -386,13 +387,13 @@ describe("lib/init/config", () => {
         expect(log).toHaveBeenNthCalledWith(
           1,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your .headman.js, so headman is not able to deliver your css files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so headman is not able to deliver your css files."
         );
 
         expect(log).toHaveBeenNthCalledWith(
           2,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your .headman.js, so headman is not able to deliver your js files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so headman is not able to deliver your js files."
         );
       });
 
@@ -457,6 +458,7 @@ describe("lib/init/config", () => {
             "package.json",
             "package-lock.json",
             ".headman.js",
+            ".headman.json",
           ],
         },
         engine: {

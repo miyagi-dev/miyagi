@@ -9,13 +9,6 @@
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "extends": ["prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "no-console": "off",
-    "prefer-destructuring": ["error", {
-      "object": true,
-      "array": true
-    }]
-  }
+  "extends": ["eslint:recommended", "prettier"],
+  "plugins": ["prettier"]
 }

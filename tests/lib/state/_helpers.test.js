@@ -1,6 +1,4 @@
 const helpers = require("../../../lib/state/_helpers.js");
-const log = require("../../../lib/logger.js");
-const express = require("express");
 
 jest.mock("../../../lib/logger");
 

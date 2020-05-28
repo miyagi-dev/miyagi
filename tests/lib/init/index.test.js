@@ -1,10 +1,7 @@
-const appConfig = require("../../../lib/config.json");
-appConfig.defaultPort = appConfig.defaultPort + 1;
-
 const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
+const appConfig = require("../../../lib/config.json");
 const log = require("../../../lib/logger.js");
-const setConfig = require("../../../lib/init/config.js");
 const setEngines = require("../../../lib/init/engines.js");
 const setPartials = require("../../../lib/init/partials.js");
 const setRouter = require("../../../lib/init/router.js");
@@ -14,6 +11,8 @@ const setViewHelpers = require("../../../lib/init/view-helpers.js");
 const setViews = require("../../../lib/init/views.js");
 const init = require("../../../lib/init");
 require("../../../lib/init/watcher.js");
+
+appConfig.defaultPort += 1;
 
 jest.mock("../../../lib/logger.js");
 jest.mock("../../../lib/init/config.js");
@@ -98,9 +97,7 @@ describe("lib/init", () => {
   describe("setEngines() was not successful", () => {
     test("doesn't call init methods", async (done) => {
       setEngines.mockImplementationOnce(() => false);
-      await init(
-        Object.assign({}, appConfig, { defaultPort: getRandomPort() })
-      );
+      await init({ ...appConfig, defaultPort: getRandomPort() });
       expect(setState).not.toHaveBeenCalled();
       expect(setStatic).not.toHaveBeenCalled();
       expect(setRouter).not.toHaveBeenCalled();

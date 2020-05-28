@@ -1,8 +1,9 @@
 const deepMerge = require("deepmerge");
+const dirTree = require("directory-tree");
 const config = require("../../../lib/config.json");
 const { getSourceTree } = require("../../../lib/state/source-tree.js");
-const dirTree = require("directory-tree");
 
+jest.mock("../../../lib/logger.js");
 jest.mock("directory-tree");
 
 beforeEach(() => {
@@ -33,12 +34,20 @@ describe("lib/state/source-tree", () => {
     getSourceTree(app);
 
     expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
-      extensions: new RegExp(".(extension|json)$"),
-      exclude: [new RegExp("/ignoredFolder")],
+      extensions: new RegExp(".(css|md|js|json|json|extension)$"),
+      exclude: [
+        new RegExp("node_modules"),
+        new RegExp(".git"),
+        new RegExp("package.json"),
+        new RegExp("package-lock.json"),
+        new RegExp(".headman.js"),
+        new RegExp(".headman.json"),
+        new RegExp("/ignoredFolder"),
+      ],
     });
   });
 
-  test.only("getSourceTree() returns an object with the sourceTree", () => {
+  test("getSourceTree() returns an object with the sourceTree", () => {
     const result = {
       foo: "bar",
     };

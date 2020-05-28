@@ -1,8 +1,8 @@
-const setStatic = require("../../../lib/init/static.js");
-const config = require("../../../lib/config.json");
 const express = require("express");
 const request = require("supertest");
 const deepMerge = require("deepmerge");
+const config = require("../../../lib/config.json");
+const setStatic = require("../../../lib/init/static.js");
 
 let app;
 let server;

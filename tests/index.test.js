@@ -1,9 +1,7 @@
-const userFile = require("./.headman.js");
-const appConfig = require("../lib/config.json");
-const yargs = require("../lib/init/args.js");
 const nodeEnv = process.env.NODE_ENV;
 const path = require("path");
 const deepMerge = require("deepmerge");
+const appConfig = require("../lib/config.json");
 
 afterEach(() => {
   jest.resetModules();
@@ -26,13 +24,12 @@ describe("index", () => {
 
     describe("with parseable result from .headman.js", () => {
       describe("with templates.extension, components.folder and engine.name defined in .headman.js", () => {
-        test.only("calls lib/init with parsed config", () => {
+        test("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
-          const log = require("../lib/logger.js");
           jest.mock("../lib/logger");
           jest.mock("../lib/init");
 
-          process.argv = [, , "start"];
+          process.argv = [1, 2, "start"];
 
           require("../index.js");
 
@@ -62,14 +59,12 @@ describe("index", () => {
 
           jest.mock("../lib/logger");
           jest.mock(
-            path.resolve(process.cwd(), appConfig.userConfigFile),
+            path.resolve(process.cwd(), ".headman.js"),
             () => ({
-              config: {
-                engine: {
-                  name: "handlebars",
-                },
-                components: { folder: "src/" },
+              engine: {
+                name: "handlebars",
               },
+              components: { folder: "src/" },
             }),
             { virtual: true }
           );
@@ -83,23 +78,17 @@ describe("index", () => {
         });
 
         test("doesn't call lib/init", () => {
-          const log = require("../lib/logger.js");
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(
-            path.resolve(process.cwd(), appConfig.userConfigFile),
-            () => {
-              return {
-                config: {
-                  engine: {
-                    name: "handlebars",
-                  },
-                  components: { folder: "src/" },
-                },
-              };
-            }
-          );
+          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+            return {
+              engine: {
+                name: "handlebars",
+              },
+              components: { folder: "src/" },
+            };
+          });
 
           require("../index.js");
 
@@ -112,21 +101,16 @@ describe("index", () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
-          jest.mock(
-            path.resolve(process.cwd(), appConfig.userConfigFile),
-            () => {
-              return {
-                config: {
-                  files: {
-                    templates: {
-                      extension: "hbs",
-                    },
-                  },
-                  components: { folder: "src/" },
+          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+            return {
+              files: {
+                templates: {
+                  extension: "hbs",
                 },
-              };
-            }
-          );
+              },
+              components: { folder: "src/" },
+            };
+          });
 
           require("../index.js");
 
@@ -137,25 +121,19 @@ describe("index", () => {
         });
 
         test("doesn't call lib/init", () => {
-          const log = require("../lib/logger.js");
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(
-            path.resolve(process.cwd(), appConfig.userConfigFile),
-            () => {
-              return {
-                config: {
-                  files: {
-                    templates: {
-                      extension: "hbs",
-                    },
-                  },
-                  components: { folder: "src/" },
+          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+            return {
+              files: {
+                templates: {
+                  extension: "hbs",
                 },
-              };
-            }
-          );
+              },
+              components: { folder: "src/" },
+            };
+          });
 
           require("../index.js");
 
@@ -167,23 +145,18 @@ describe("index", () => {
         test("it calls log with the correct warn msg", () => {
           const log = require("../lib/logger.js");
           jest.mock("../lib/logger");
-          jest.mock(
-            path.resolve(process.cwd(), appConfig.userConfigFile),
-            () => {
-              return {
-                config: {
-                  engine: {
-                    name: "handlebars",
-                  },
-                  files: {
-                    templates: {
-                      extension: "hbs",
-                    },
-                  },
+          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+            return {
+              engine: {
+                name: "handlebars",
+              },
+              files: {
+                templates: {
+                  extension: "hbs",
                 },
-              };
-            }
-          );
+              },
+            };
+          });
 
           require("../index.js");
 
@@ -194,27 +167,21 @@ describe("index", () => {
         });
 
         test("does call lib/init", () => {
-          const log = require("../lib/logger.js");
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(
-            path.resolve(process.cwd(), appConfig.userConfigFile),
-            () => {
-              return {
-                config: {
-                  engine: {
-                    name: "handlebars",
-                  },
-                  files: {
-                    templates: {
-                      extension: "hbs",
-                    },
-                  },
+          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+            return {
+              engine: {
+                name: "handlebars",
+              },
+              files: {
+                templates: {
+                  extension: "hbs",
                 },
-              };
-            }
-          );
+              },
+            };
+          });
 
           require("../index.js");
 
