@@ -558,7 +558,6 @@ describe("lib/render/index", () => {
           name: "component1",
           documentation: undefined,
           theme: undefined,
-          status: null,
           schemaType: "json",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -617,7 +616,6 @@ describe("lib/render/index", () => {
             name: "component1",
             documentation: undefined,
             theme: undefined,
-            status: null,
             schemaType: "json",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -668,7 +666,6 @@ describe("lib/render/index", () => {
             theme: undefined,
             schema: undefined,
             name: "component3",
-            status: null,
             schemaType: "json",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -713,7 +710,6 @@ describe("lib/render/index", () => {
             theme: undefined,
             schema: undefined,
             name: "component6",
-            status: null,
             schemaType: "json",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -757,7 +753,6 @@ describe("lib/render/index", () => {
             theme: undefined,
             schema: undefined,
             name: "component7",
-            status: null,
             schemaType: "json",
           });
 
@@ -807,7 +802,6 @@ describe("lib/render/index", () => {
             name: "component9",
             documentation: undefined,
             theme: undefined,
-            status: null,
             schemaType: "json",
           });
 
@@ -852,7 +846,6 @@ describe("lib/render/index", () => {
                 variation: "default",
               },
             ],
-            status: null,
             schemaType: "json",
           });
 
@@ -895,7 +888,6 @@ describe("lib/render/index", () => {
                 variation: "default",
               },
             ],
-            status: null,
             schemaType: "json",
           });
 
@@ -936,7 +928,6 @@ describe("lib/render/index", () => {
           ],
           schema: undefined,
           name: "component4",
-          status: null,
           schemaType: "json",
         });
 

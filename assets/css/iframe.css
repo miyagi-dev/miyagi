@@ -113,16 +113,10 @@ body {
   width: var(--size);
 }
 
-.HeadmanStatus--done::before,
 .HeadmanStatus--valid::before {
   background-color: var(--Headman-color-positive);
 }
 
-.HeadmanStatus--wip::before {
-  background-color: var(--Headman-color-warning);
-}
-
-.HeadmanStatus--needs_work::before,
 .HeadmanStatus--invalid::before {
   background-color: var(--Headman-color-negative);
 }

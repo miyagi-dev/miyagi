@@ -116,11 +116,6 @@
     "serverStarting": "Starting headman server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
     "srcFolderNotFound": "The provided components folder does not seem to exist.",
-    "statuses": {
-      "done": "Done",
-      "wip": "Work in progress",
-      "needs_work": "Needs refactoring / improvement"
-    },
     "userConfigNotFound": "Couldn't find the your config file .headman.json or .headman.js.",
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
