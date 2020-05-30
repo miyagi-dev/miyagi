@@ -89,6 +89,7 @@
     "underscore": "^1.10.2"
   },
   "scripts": {
+    "prepublish": "npm run build",
     "build": "gulp build",
     "test": "jest --colors --detectOpenHandles",
     "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/ && eslint tests/",
