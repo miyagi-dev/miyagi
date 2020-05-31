@@ -14,13 +14,15 @@ describe("lib/state/menu/data", () => {
 
   describe("getFileContents()", () => {
     test("returns an object with stored data from json files and ignores ignored files", async (done) => {
-      app.set(
-        "config",
-        { ...appConfig.defaultUserConfig, components: {
-            folder: "tests/mocks/srcFolder/",
-            ignores: ["ignored/"],
-          },}
-      );
+      app.set("config", {
+        ...appConfig.defaultUserConfig,
+        components: {
+          folder: "tests/mocks/srcFolder/",
+          ignores: [
+            path.join(process.cwd(), "tests/mocks/srcFolder", "ignored/"),
+          ],
+        },
+      });
 
       util.promisify = jest.fn(() => {
         return () => '{ "bar": "bar" }';

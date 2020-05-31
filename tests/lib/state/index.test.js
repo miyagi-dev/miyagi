@@ -9,8 +9,8 @@ const config = require("../../../lib/config.json");
 
 beforeEach(() => {
   express = require("express");
-  getPartials = require("../../../lib/state/partials.js");
   /* eslint-disable */
+  getPartials = require("../../../lib/state/partials.js").getPartials;
   getFileContents = require("../../../lib/state/file-contents.js")
     .getFileContents;
   getMenu = require("../../../lib/state/menu/index.js").getMenu;
@@ -18,7 +18,13 @@ beforeEach(() => {
   /* eslint-enable */
   setState = require("../../../lib/state");
 
-  jest.mock("../../../lib/state/partials.js");
+  jest.mock("../../../lib/state/partials.js", () => {
+    return {
+      getPartials: jest.fn(() => {
+        return new Promise((resolve) => resolve([]));
+      }),
+    };
+  });
   jest.mock("../../../lib/state/file-contents.js", () => {
     return {
       getFileContents: jest.fn(() => {

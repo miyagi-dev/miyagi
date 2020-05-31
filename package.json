@@ -40,7 +40,6 @@
     "directory-tree": "^2.2.4",
     "express": "^4.17.1",
     "fs-extra": "^9.0.0",
-    "fs-readdir-recursive": "^1.1.0",
     "handlebars": "^4.7.6",
     "handlebars-layouts": "^3.1.4",
     "js-yaml": "^3.14.0",

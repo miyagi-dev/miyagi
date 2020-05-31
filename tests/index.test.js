@@ -33,23 +33,27 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(init).toHaveBeenCalledWith(
-            deepMerge(appConfig.defaultUserConfig, {
-              isBuild: false,
-              isGenerator: false,
-              engine: {
-                name: "handlebars",
+          const conf = deepMerge(appConfig.defaultUserConfig, {
+            isBuild: false,
+            isGenerator: false,
+            engine: {
+              name: "handlebars",
+            },
+            files: {
+              templates: {
+                extension: "hbs",
               },
-              files: {
-                templates: {
-                  extension: "hbs",
-                },
-              },
-              components: {
-                folder: "src/",
-              },
-            })
+            },
+            components: {
+              folder: "src",
+            },
+          });
+
+          conf.components.ignores = conf.components.ignores.map((folder) =>
+            path.join(process.cwd(), "src", folder)
           );
+
+          expect(init).toHaveBeenCalledWith(conf);
         });
       });
 
@@ -64,7 +68,7 @@ describe("index", () => {
               engine: {
                 name: "handlebars",
               },
-              components: { folder: "src/" },
+              components: { folder: "src" },
             }),
             { virtual: true }
           );

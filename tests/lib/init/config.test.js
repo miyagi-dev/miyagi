@@ -1,3 +1,4 @@
+const path = require("path");
 const getMergedConfig = require("../../../lib/init/config.js");
 const log = require("../../../lib/logger.js");
 
@@ -453,12 +454,12 @@ describe("lib/init/config", () => {
         components: {
           folder: "",
           ignores: [
-            "node_modules",
-            ".git",
-            "package.json",
-            "package-lock.json",
-            ".headman.js",
-            ".headman.json",
+            path.join(process.cwd(), "node_modules"),
+            path.join(process.cwd(), ".git"),
+            path.join(process.cwd(), "package.json"),
+            path.join(process.cwd(), "package-lock.json"),
+            path.join(process.cwd(), ".headman.js"),
+            path.join(process.cwd(), ".headman.json"),
           ],
         },
         engine: {
