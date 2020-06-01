@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "ajv": "^6.12.2",
-    "axe-core": "^3.5.3",
+    "axe-core": "^3.5.4",
     "chalk": "^4.0.0",
     "chokidar": "^3.4.0",
     "consolidate": "git+https://github.com/mgrsskls/consolidate.js.git",
@@ -50,9 +50,8 @@
     "yargs": "^15.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@rollup/plugin-commonjs": "^12.0.0",
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
     "@rollup/plugin-node-resolve": "^7.0.0",
     "babel-jest": "^26.0.1",
     "codecov": "^3.7.0",
@@ -76,9 +75,9 @@
     "postcss-preset-env": "^6.7.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.0.5",
-    "pug": "^2.0.4",
+    "pug": "^3.0.0",
     "rollup": "^2.10.9",
-    "rollup-plugin-terser": "^6.0.1",
+    "rollup-plugin-terser": "^6.1.0",
     "stylelint": "^13.5.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-standard": "^20.0.0",

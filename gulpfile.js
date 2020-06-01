@@ -6,7 +6,6 @@ const postcss = require("gulp-postcss");
 const postcssImport = require("postcss-import");
 const postcssPresetEnv = require("postcss-preset-env");
 const rollup = require("rollup");
-const rollupCommonJs = require("@rollup/plugin-commonjs");
 const rollupResolve = require("@rollup/plugin-node-resolve");
 const terser = require("rollup-plugin-terser");
 
@@ -30,12 +29,7 @@ gulp.task("build:js", (done) => {
         rollup
           .rollup({
             input: `${jsFolder}${jsFile}`,
-            plugins: [
-              rollupResolve(),
-              rollupCommonJs(),
-              babel(),
-              terser.terser(),
-            ],
+            plugins: [rollupResolve(), babel(), terser.terser()],
           })
           .then((bundle) => {
             bundle.write({
