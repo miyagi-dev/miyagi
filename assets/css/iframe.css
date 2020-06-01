@@ -21,6 +21,7 @@ body {
 
 .HeadmanWrapper {
   box-sizing: border-box;
+  height: 100vh;
   padding: var(--spacing);
   width: 100%;
 }
@@ -162,8 +163,7 @@ body {
 
 .HeadmanComponentView {
   border: 1px solid #ddd;
-  box-sizing: border-box;
-  margin: var(--spacing);
+  height: 100%;
   overflow: auto;
   resize: both;
   width: 100%;
