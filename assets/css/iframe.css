@@ -21,7 +21,7 @@ body {
 
 .HeadmanWrapper {
   box-sizing: border-box;
-  height: 100vh;
+  min-height: 100vh;
   padding: var(--spacing);
   width: 100%;
 }
