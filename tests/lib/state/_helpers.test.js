@@ -1,8 +1,8 @@
-const helpers = require("../../../lib/state/_helpers.js");
+const helpers = require("../../../lib/state/helpers.js");
 
 jest.mock("../../../lib/logger");
 
-describe("lib/state/_helpers", () => {
+describe("lib/state/helpers", () => {
   describe("isNotIgnored()", () => {
     const ignoredFolders = ["foo/bar"];
 

@@ -1,0 +1,24 @@
+site_name: headman
+site_description: headman is a node based component development tool for JavaScript templating engines.
+
+docs_dir: docs/jsdoc
+
+extra_css:
+  - extra.css
+
+repo_name: mgrsskls/headman
+repo_url: https://github.com/mgrsskls/headman
+edit_uri: ""
+
+theme:
+  name: material
+  font: false
+
+plugins:
+  - search # necessary for search to work
+  - minify:
+      minify_html: true
+
+markdown_extensions:
+  - codehilite:
+      guess_lang: false

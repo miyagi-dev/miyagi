@@ -1,11 +1,11 @@
-const helpers = require("../../../../lib/render/menu/_helpers.js");
+const helpers = require("../../../../lib/render/menu/helpers.js");
 
 beforeEach(() => {
   jest.resetModules();
   jest.resetAllMocks();
 });
 
-describe("lib/menu/elements/_helpers", () => {
+describe("lib/menu/elements/helpers", () => {
   describe("pathIsChildOfSecondPath()", () => {
     describe("child is a not file", () => {
       describe("path is parent of child", () => {
@@ -73,11 +73,10 @@ describe("lib/menu/elements/_helpers", () => {
       describe("variation is same as request variation", () => {
         test("returns true", () => {
           expect(
-            helpers.pathEqualsRequest(
-              path,
-              variation,
-              { ...request, variation: variation.name}
-            )
+            helpers.pathEqualsRequest(path, variation, {
+              ...request,
+              variation: variation.name,
+            })
           ).toBe(true);
         });
       });

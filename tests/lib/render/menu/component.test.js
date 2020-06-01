@@ -1,4 +1,4 @@
-const helpersSrc = "../../../../lib/render/menu/_helpers.js";
+const helpersSrc = "../../../../lib/render/menu/helpers.js";
 const directoryIndex = 1;
 const directoryId = 2;
 const directoryShortPath = "foo/bar";

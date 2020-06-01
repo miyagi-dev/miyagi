@@ -2,12 +2,12 @@ const express = require("express");
 const path = require("path");
 const deepMerge = require("deepmerge");
 const config = require("../../../lib/config.json");
-const helpers = require("../../../lib/render/_helpers.js");
+const helpers = require("../../../lib/render/helpers.js");
 const log = require("../../../lib/logger.js");
 
 jest.mock("../../../lib/logger");
 
-describe("lib/render/_helpers", () => {
+describe("lib/render/helpers", () => {
   describe("mergeWithGlobalData()", () => {
     test("returns the json from data.json with the passed json", () => {
       const app = express();

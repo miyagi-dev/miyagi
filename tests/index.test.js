@@ -35,7 +35,7 @@ describe("index", () => {
 
           const conf = deepMerge(appConfig.defaultUserConfig, {
             isBuild: false,
-            isGenerator: false,
+            isComponentGenerator: false,
             engine: {
               name: "handlebars",
             },

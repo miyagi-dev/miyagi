@@ -3,7 +3,8 @@
     "assets": {
       "css": [],
       "es6Modules": false,
-      "js": []
+      "js": [],
+      "folder": []
     },
     "build": {
       "folder": "build"
@@ -58,6 +59,7 @@
         "componentAssets": false
       },
       "renderComponentOverview": true,
+      "theme": {},
       "validations": {
         "html": true,
         "accessibility": true

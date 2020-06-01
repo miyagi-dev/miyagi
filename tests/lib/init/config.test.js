@@ -450,6 +450,7 @@ describe("lib/init/config", () => {
           css: [],
           js: [],
           es6Modules: false,
+          folder: [],
         },
         components: {
           folder: "",
@@ -476,6 +477,7 @@ describe("lib/init/config", () => {
             accessibility: true,
           },
           reload: true,
+          theme: {},
         },
         files: {
           css: {
