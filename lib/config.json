@@ -52,6 +52,7 @@
         "name": "index"
       }
     },
+    "plugins": [],
     "projectName": "headman",
     "ui": {
       "reload": true,

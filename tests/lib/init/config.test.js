@@ -479,6 +479,7 @@ describe("lib/init/config", () => {
           reload: true,
           theme: {},
         },
+        plugins: [],
         files: {
           css: {
             extension: "css",
