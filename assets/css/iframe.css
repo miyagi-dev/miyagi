@@ -7,7 +7,7 @@
   --Headman-color-positive: #690;
   --Headman-colorHeadlines: var(--Headman-color);
   --Headman-transition: all 0.15s ease;
-  --spacing: 40px;
+  --Headman-spacing: 40px;
 }
 
 html {
@@ -21,8 +21,7 @@ body {
 
 .HeadmanWrapper {
   box-sizing: border-box;
-  min-height: 100vh;
-  padding: var(--spacing);
+  padding: var(--Headman-spacing);
   width: 100%;
 }
 
@@ -128,7 +127,7 @@ body {
 }
 
 .HeadmanComponent:not(:last-child) {
-  margin-bottom: calc(2 * var(--spacing));
+  margin-bottom: calc(2 * var(--Headman-spacing));
 }
 
 .HeadmanComponent-file {
@@ -154,7 +153,7 @@ body {
 }
 
 .HeadmanComponent-html {
-  margin: calc(var(--spacing) / 2) 0 0;
+  margin: calc(var(--Headman-spacing) / 2) 0 0;
 }
 
 .HeadmanError {
@@ -163,7 +162,7 @@ body {
 
 .HeadmanComponentView {
   border: 1px solid #ddd;
-  height: 100%;
+  height: calc(100vh - 2 * var(--Headman-spacing));
   overflow: auto;
   resize: both;
   width: 100%;
@@ -191,7 +190,7 @@ body {
 
 .Headman-code {
   border: .1rem solid #ddd;
-  padding: calc(var(--spacing) / 2);
+  padding: calc(var(--Headman-spacing) / 2);
 }
 
 .Headman-code[class*="language-"] {
