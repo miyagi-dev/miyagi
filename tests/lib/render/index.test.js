@@ -420,8 +420,8 @@ describe("lib/render/index", () => {
       });
     });
 
-    describe("rendering throwing an error", () => {
-      test("renders component.hbs with error", async (done) => {
+    describe("rendering an empty component", () => {
+      test("renders component.hbs without error", async (done) => {
         res.render = jest.fn();
 
         await render.renderComponent({
@@ -433,7 +433,7 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: '<p class="HeadmanError">Component couldn\'t be rendered.</p>',
+          html: "",
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
