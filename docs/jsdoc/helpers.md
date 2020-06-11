@@ -5,6 +5,7 @@ Module for globally used helper functions
 
 
 * [helpers](#module_helpers)
+    * [.removeInternalKeys(obj)](#module_helpers.removeInternalKeys)
     * [.getSingleFileExtension(extension)](#module_helpers.getSingleFileExtension) ⇒ <code>string</code>
     * [.normalizeString(str)](#module_helpers.normalizeString) ⇒ <code>string</code>
     * [.getResolvedFileName(nameInConfig, fileName)](#module_helpers.getResolvedFileName) ⇒ <code>string</code>
@@ -22,6 +23,17 @@ Module for globally used helper functions
     * [.fileIsSchemaFile(app, filePath)](#module_helpers.fileIsSchemaFile) ⇒ <code>Boolean</code>
     * [.fileIsAssetFile(app, filePath)](#module_helpers.fileIsAssetFile) ⇒ <code>Boolean</code>
     * [.fileIsTemplateFile(app, filePath)](#module_helpers.fileIsTemplateFile) ⇒ <code>Boolean</code>
+
+<a name="module_helpers.removeInternalKeys"></a>
+
+### helpers.removeInternalKeys(obj)
+Removes all keys starting with $ from an object
+
+**Kind**: static method of [<code>helpers</code>](#module_helpers)  
+
+| Param | Type |
+| --- | --- |
+| obj | <code>Object</code> | 
 
 <a name="module_helpers.getSingleFileExtension"></a>
 

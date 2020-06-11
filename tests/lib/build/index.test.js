@@ -44,12 +44,12 @@ describe("lib/build/index", () => {
   const fileContents = {};
 
   fileContents["/headman/tests/srcFolder/foo/mocks.json"] = {
-    variations: [
+    $variations: [
       {
-        name: 1,
+        $name: 1,
       },
       {
-        name: 2,
+        $name: 2,
       },
     ],
   };

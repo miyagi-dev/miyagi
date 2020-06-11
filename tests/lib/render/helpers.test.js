@@ -40,14 +40,14 @@ describe("lib/render/helpers", () => {
         const variations = [
           {},
           {
-            data: 2,
+            val: 2,
           },
           {
-            data: 3,
+            val: 3,
           },
         ];
 
-        expect(helpers.getFallbackData(variations)).toEqual(2);
+        expect(helpers.getFallbackData(variations)).toEqual({ val: 2 });
       });
     });
 
@@ -172,34 +172,28 @@ describe("lib/render/helpers", () => {
       );
       const fileContents = {};
       fileContents[`${process.cwd()}/tests/mocks/resolve/mocks.json`] = {
-        variations: [
+        $variations: [
           {
-            name: "variation",
-            data: {
-              resolve: [
-                {
-                  $ref: "resolve/resolve",
-                },
-              ],
-            },
+            $name: "variation",
+            resolve: [
+              {
+                $ref: "resolve/resolve",
+              },
+            ],
           },
         ],
       };
       fileContents[
         `${process.cwd()}/tests/mocks/resolve/resolve/mocks.json`
       ] = {
-        data: {
-          resolve: {
-            $ref: "resolve/resolve/resolve",
-          },
+        resolve: {
+          $ref: "resolve/resolve/resolve",
         },
       };
       fileContents[
         `${process.cwd()}/tests/mocks/resolve/resolve/resolve/mocks.json`
       ] = {
-        data: {
-          resolve: "resolve",
-        },
+        resolve: "resolve",
       };
 
       app.set("state", {
@@ -304,9 +298,9 @@ describe("lib/render/helpers", () => {
         );
         const fileContents = {};
         fileContents[`${process.cwd()}/tests/mocks/resolve/mocks.json`] = {
-          variations: [
+          $variations: [
             {
-              name: "variation",
+              $name: "variation",
             },
           ],
         };
@@ -348,12 +342,12 @@ describe("lib/render/helpers", () => {
         expect(
           await helpers.overwriteJsonLinksWithJsonData(app, {
             resolve: {
-              name: "variation",
+              $name: "variation",
             },
           })
         ).toEqual({
           resolve: {
-            name: "variation",
+            $name: "variation",
           },
         });
 
