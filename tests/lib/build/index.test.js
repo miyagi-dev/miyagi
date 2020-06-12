@@ -44,7 +44,7 @@ describe("lib/build/index", () => {
   const fileContents = {};
 
   fileContents["/headman/tests/srcFolder/foo/mocks.json"] = {
-    $variations: [
+    $variants: [
       {
         $name: 1,
       },

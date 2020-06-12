@@ -172,7 +172,7 @@ describe("lib/render/helpers", () => {
       );
       const fileContents = {};
       fileContents[`${process.cwd()}/tests/mocks/resolve/mocks.json`] = {
-        $variations: [
+        $variants: [
           {
             $name: "variation",
             resolve: [
@@ -298,7 +298,7 @@ describe("lib/render/helpers", () => {
         );
         const fileContents = {};
         fileContents[`${process.cwd()}/tests/mocks/resolve/mocks.json`] = {
-          $variations: [
+          $variants: [
             {
               $name: "variation",
             },

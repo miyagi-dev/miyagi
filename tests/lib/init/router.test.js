@@ -21,7 +21,7 @@ beforeEach((done) => {
     `srcFolder/${component}`
   );
   fileContents[componentJsonFullPath.replace("index.hbs", "mocks.json")] = {
-    $variations: [{ $name: "someVariation" }],
+    $variants: [{ $name: "someVariation" }],
   };
   app.set("state", {
     partials: {

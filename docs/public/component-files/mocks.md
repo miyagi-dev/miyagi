@@ -1,6 +1,6 @@
 **File:** `mocks.json`, `mocks.js` or `mocks.yaml`
 
-_headman_ tries to make using mock data as convenient as possible. Therefore you can create multiple [variations](#variations) in one file, [reference other mock files](#referencing-other-mock-files), [reference template files](#referencing-template-files) and [join those](#joining-templates). It is even possible to use CommonJS modules if you want to [asynchronously create mock data](#asynchronous-mock-data).
+_headman_ tries to make using mock data as convenient as possible. Therefore you can create multiple [variants](#variants) in one file, [reference other mock files](#referencing-other-mock-files), [reference template files](#referencing-template-files) and [join those](#joining-templates). It is even possible to use CommonJS modules if you want to [asynchronously create mock data](#asynchronous-mock-data).
 
 _**NOTE:** Please do not use keys that start with `$` as headman uses these for specific functionality (more about that below)._
 
@@ -17,15 +17,15 @@ The most basic mock file would look something like this:
 }
 ```
 
-## Variations
+## Variants
 
-You can also add variations, which would be merged with the default data:
+You can also add variants, which would be merged with the default data:
 
 ```json
 {
   "label": "Save",
   "type": "submit",
-  "$variations": [
+  "$variants": [
     {
       "$name": "reset disabled",
       "label": "Disabled",
@@ -45,7 +45,7 @@ So, the data of the variation `"reset disabled"` would be:
 }
 ```
 
-_**NOTE:** You can also omit the default data if you have variations defined._
+_**NOTE:** You can also omit the default data if you have variants defined._
 
 ## Referencing other mock files
 
@@ -158,13 +158,13 @@ _**NOTE:** Please note, that the returned value should be a JSON object with the
 
 ## Hiding the default variation
 
-If you want to define default mock data, so your variations inherit it, but not render the default variation, you can do that like this:
+If you want to define default mock data, so your variants inherit it, but not render the default variation, you can do that like this:
 
 ```json
 {
   "$hidden": true,
   "someKey": "someData",
-  "$variations": [...]
+  "$variants": [...]
 }
 ```
 

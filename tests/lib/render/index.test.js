@@ -56,7 +56,7 @@ function addGlobalData() {
 
 fileContents[path1.replace("index.hbs", "mocks.json")] = {
   component: "component1",
-  $variations: [
+  $variants: [
     { $name: "variation1", variation: 1 },
     { $name: "variation2", variation: 2 },
   ],
@@ -65,23 +65,23 @@ fileContents[path2.replace("index.hbs", "mocks.json")] = {
   component: "component2",
 };
 fileContents[path3.replace("index.hbs", "mocks.json")] = {
-  $variations: [
+  $variants: [
     { $name: "variation1", variation: 1 },
     { $name: "variation2", variation: 2 },
   ],
 };
 fileContents[path6.replace("index.hbs", "mocks.json")] = {
-  $variations: [
+  $variants: [
     {
       $name: "variation1",
     },
   ],
 };
 fileContents[path7.replace("index.hbs", "mocks.json")] = {
-  $variations: [{}, { $name: "foo" }],
+  $variants: [{}, { $name: "foo" }],
 };
 fileContents[path8.replace("index.hbs", "mocks.json")] = {
-  $variations: [
+  $variants: [
     {
       $name: "variation1",
     },
@@ -89,7 +89,7 @@ fileContents[path8.replace("index.hbs", "mocks.json")] = {
 };
 fileContents[path9.replace("index.hbs", "mocks.json")] = {
   some: "data",
-  $variations: [
+  $variants: [
     {
       $name: "variation1",
     },
