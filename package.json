@@ -92,8 +92,7 @@
     "build": "npm run build:assets",
     "build:assets": "gulp build",
     "build:jsdoc": "node .jsdoc.js",
-    "serve:jsdoc": "mkdocs serve -f .docs.jsdoc.yml",
-    "serve:public": "mkdocs serve -f .docs.public.yml",
+    "serve:jsdoc": "mkdocs serve -f .jsdoc.yml",
     "test": "jest --colors --detectOpenHandles",
     "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/ && eslint tests/",
     "fix": "eslint lib/ --fix && eslint assets/js/ --fix && eslint tests/ --fix"

@@ -4,7 +4,7 @@ const path = require("path");
 
 const inputFolder = "./lib";
 const inputFile = `${inputFolder}/**/*.js`;
-const outputFolder = "./docs/jsdoc";
+const outputFolder = "./jsdoc";
 const pages = {};
 
 const templateData = jsdoc2md.getTemplateDataSync({ files: inputFile });
@@ -22,7 +22,7 @@ Object.entries(pages).forEach(([page, entries]) => {
   const filePath = page
     .replace(`${process.cwd()}/lib`, outputFolder)
     .replace(".js", ".md");
-  fs.mkdir(path.dirname(filePath), { recursive: true }, function() {
+  fs.mkdir(path.dirname(filePath), { recursive: true }, function () {
     fs.writeFile(filePath, output, () => {});
   });
 });

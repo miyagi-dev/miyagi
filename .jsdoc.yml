@@ -1,7 +1,7 @@
 site_name: headman
 site_description: headman is a node based component development tool for JavaScript templating engines.
 
-docs_dir: docs/jsdoc
+docs_dir: jsdoc
 
 extra_css:
   - extra.css
