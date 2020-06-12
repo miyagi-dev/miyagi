@@ -10,7 +10,7 @@
       "folder": "build"
     },
     "components": {
-      "folder": "",
+      "folder": "src",
       "ignores": [
         "node_modules",
         ".git",
@@ -104,7 +104,6 @@
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
     "missingEngine": "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
-    "missingSrcFolder": "You did not specify the location of your components, therefore headman will use the root folder to look for them. For best performance, please specify the location of your components in your config file (key: 'components.folder', type: String).",
     "noDataSetForVariation": "No mock data defined for variation \"{{variation}}\" in {{file}}.",
     "nodeEndAndKeysDontMatch": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in folders.assets in your config file, so headman is not able to deliver your {{assetType}} files.",
     "noNameSetForVariation": "No name defined for variation {{i}} in {{file}}.",

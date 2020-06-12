@@ -453,14 +453,14 @@ describe("lib/init/config", () => {
           folder: [],
         },
         components: {
-          folder: "",
+          folder: "src",
           ignores: [
-            path.join(process.cwd(), "node_modules"),
-            path.join(process.cwd(), ".git"),
-            path.join(process.cwd(), "package.json"),
-            path.join(process.cwd(), "package-lock.json"),
-            path.join(process.cwd(), ".headman.js"),
-            path.join(process.cwd(), ".headman.json"),
+            path.join(process.cwd(), "src/node_modules"),
+            path.join(process.cwd(), "src/.git"),
+            path.join(process.cwd(), "src/package.json"),
+            path.join(process.cwd(), "src/package-lock.json"),
+            path.join(process.cwd(), "src/.headman.js"),
+            path.join(process.cwd(), "src/.headman.json"),
           ],
         },
         engine: {

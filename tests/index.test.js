@@ -144,54 +144,6 @@ describe("index", () => {
           expect(init).not.toHaveBeenCalled();
         });
       });
-
-      describe("without components.folder defined in .headman.js", () => {
-        test("it calls log with the correct warn msg", () => {
-          const log = require("../lib/logger.js");
-          jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
-            return {
-              engine: {
-                name: "handlebars",
-              },
-              files: {
-                templates: {
-                  extension: "hbs",
-                },
-              },
-            };
-          });
-
-          require("../index.js");
-
-          expect(log).toHaveBeenCalledWith(
-            "warn",
-            appConfig.messages.missingSrcFolder
-          );
-        });
-
-        test("does call lib/init", () => {
-          const init = require("../lib/init");
-          jest.mock("../lib/init");
-          jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
-            return {
-              engine: {
-                name: "handlebars",
-              },
-              files: {
-                templates: {
-                  extension: "hbs",
-                },
-              },
-            };
-          });
-
-          require("../index.js");
-
-          expect(init).toHaveBeenCalled();
-        });
-      });
     });
   });
 });

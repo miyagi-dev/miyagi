@@ -24,7 +24,7 @@ This is an example for a JSON config file:
     "folder": "dist/",
   },
   "components": {
-    "folder": "src/",
+    "folder": "source/",
     "ignores": [
       "tests",
     ]

@@ -66,12 +66,10 @@ The folder where your build files will be saved. Use `--folder` when using as a 
 
 ### `folder`
 
-default: `"."`<br>
+default: `"src"`<br>
 type: `string`
 
 The folder where your components live.
-
-_**Tip:** You should set this value to a folder with nothing else but your components as it dramatically improves performance compared to using `"."` when there are a lot of other files in your project._
 
 ### `ignores`
 
