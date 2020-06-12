@@ -92,6 +92,8 @@
       "starting": "Creating mock file {{fileName}}…"
     },
     "jsonFileHasInvalidFormat": "It seems like the file {{filePath}} has an invalid format as headman was not able to parse it.",
+    "engineAndExtensionGuessedBasedOnFiles": "After scanning your files, headman guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
+    "engineGuessedBasedOnExtension": "Based on your template files extension, headman assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
     "fileNotFound": "Couldn't find file {{filePath}}. Is the 'components.folder' in your configuration set correctly?",
     "fileNotFoundLinkIncorrect": "Couldn't find file {{filePath}}. Please check that it's linked correctly.",
     "generator": {
@@ -101,6 +103,9 @@
       "unknownError": "An unknown error occured when creating {{name}}.",
       "fileAlreadyExists": "The file {{name}} already exists."
     },
+    "guessingEngineAndExtensionFailed": "headman wasn't able to guess your engine and template files extension.",
+    "guessingEngineFailed": "headman wasn't able to guess your engine.",
+    "guessingExtensionFailed": "headman wasn't able to guess your template files extension.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
     "missingEngine": "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
@@ -118,10 +123,56 @@
     "serverStarting": "Starting headman server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
     "srcFolderNotFound": "The provided components folder does not seem to exist.",
+    "templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, headman assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
+    "tryingToGuessEngineAndExtension": "No template engine and template file extension defined. Trying to guess it based on your component files…",
+    "tryingToGuessEngineBasedOnExtension": "No template engine defined. Trying to guess it based on your template files extension…",
+    "tryingToGuessExtensionBasedOnEngine": "No template files extension defined. Trying to guess it based on your template engine…",
     "updatingDone": "Updating done!",
     "updatingStarted": "A file has been changed, headman is updating the state.",
     "userConfigUnparseable": "headman wasn't able to find or parse your config file.",
     "variationNotFound": "Variation \"{{variation}}\" not found in {{fileName}}.",
     "wrongFileType": "{{fileName}} does not have the correct file type."
-  }
+  },
+  "engines": [
+    {
+      "engine": "dust",
+      "extension": "dust"
+    },
+    {
+      "engine": "ect",
+      "extension": "ect"
+    },
+    {
+      "engine": "ejs",
+      "extension": "ejs"
+    },
+    {
+      "engine": "haml",
+      "extension": "haml"
+    },
+    {
+      "engine": "handlebars",
+      "extension": "hbs"
+    },
+    {
+      "engine": "mustache",
+      "extension": "mustache"
+    },
+    {
+      "engine": "nunjucks",
+      "extension": "njk"
+    },
+    {
+      "engine": "pug",
+      "extension": "pug"
+    },
+    {
+      "engine": "twig",
+      "extension": "twig"
+    },
+    {
+      "engine": "twing",
+      "extension": "twig"
+    }
+  ]
 }

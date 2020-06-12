@@ -4,7 +4,7 @@ _headman_ is a component development tool for JavaScript templating engines.
 
 ## Benefits
 
-- No overhead in your project by running _headman_ without a configuration file.
+- No overhead in your project by running _headman_ without any configuration files.
 - Works with any folder structure (as long as you have one folder per component).
 - Helps you developing your components encapsulated.
 - Validates your components for HTML and accessibility violations.

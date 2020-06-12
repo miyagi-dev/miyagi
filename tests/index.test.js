@@ -75,13 +75,27 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(log).toHaveBeenCalledWith(
-            "error",
-            appConfig.messages.missingExtension
+          expect(log).toHaveBeenNthCalledWith(
+            1,
+            "info",
+            appConfig.messages.serverStarting.replace("{{node_env}}", "test")
+          );
+          expect(log).toHaveBeenNthCalledWith(
+            2,
+            "info",
+            appConfig.messages.tryingToGuessExtensionBasedOnEngine
+          );
+          expect(log).toHaveBeenNthCalledWith(
+            3,
+            "warn",
+            appConfig.messages.templateExtensionGuessedBasedOnTemplateEngine.replace(
+              "{{extension}}",
+              "hbs"
+            )
           );
         });
 
-        test("doesn't call lib/init", () => {
+        test("calls lib/init", () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
@@ -96,7 +110,7 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(init).not.toHaveBeenCalled();
+          expect(init).toHaveBeenCalled();
         });
       });
 
@@ -118,13 +132,27 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(log).toHaveBeenCalledWith(
-            "error",
-            appConfig.messages.missingEngine
+          expect(log).toHaveBeenNthCalledWith(
+            1,
+            "info",
+            appConfig.messages.serverStarting.replace("{{node_env}}", "test")
+          );
+          expect(log).toHaveBeenNthCalledWith(
+            2,
+            "info",
+            appConfig.messages.tryingToGuessEngineBasedOnExtension
+          );
+          expect(log).toHaveBeenNthCalledWith(
+            3,
+            "warn",
+            appConfig.messages.engineGuessedBasedOnExtension.replace(
+              "{{engine}}",
+              "handlebars"
+            )
           );
         });
 
-        test("doesn't call lib/init", () => {
+        test("calls lib/init", () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
@@ -141,7 +169,7 @@ describe("index", () => {
 
           require("../index.js");
 
-          expect(init).not.toHaveBeenCalled();
+          expect(init).toHaveBeenCalled();
         });
       });
     });

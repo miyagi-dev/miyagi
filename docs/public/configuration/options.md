@@ -1,5 +1,4 @@
-_headman_ only needs two options to be set: `engine.name` and `files.templates.extension`.
-Apart from that all other options are optional.
+_headman_ works without setting any configuration by analyzing your files and guessing the correct template engine and template files extension. If this does not work or you want to customize it further, _headman_ offers many configuration options.
 
 ## `assets`
 
@@ -123,7 +122,7 @@ default:
 }
 ```
 
-_**Note:** You can use `"<component>"` for  `name` if the file should have the same name as the component folder._
+_**Note:** You can use `"<component>"` for `name` if the file should have the same name as the component folder._
 
 ### `docs`
 
@@ -147,7 +146,7 @@ default:
 }
 ```
 
-_**Note:** You can use `"<component>"` for  `name` if the file should have the same name as the component folder._
+_**Note:** You can use `"<component>"` for `name` if the file should have the same name as the component folder._
 
 ### `mocks`
 
@@ -182,7 +181,7 @@ default:
 }
 ```
 
-_**Note:** You can use `"<component>"` for  `name` if the file should have the same name as the component folder._
+_**Note:** You can use `"<component>"` for `name` if the file should have the same name as the component folder._
 
 ## `projectName`
 
@@ -192,7 +191,6 @@ type: `string`
 ## `ui`
 
 _Settings for the [web UI](/web-ui/overview)._
-
 
 ### `reload`
 
