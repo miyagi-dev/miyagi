@@ -7,7 +7,8 @@
       "folder": []
     },
     "build": {
-      "folder": "build"
+      "folder": "build",
+      "outputFile": false
     },
     "components": {
       "folder": "src",

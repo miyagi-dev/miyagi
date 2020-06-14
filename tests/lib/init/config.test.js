@@ -445,6 +445,7 @@ describe("lib/init/config", () => {
       expect(getMergedConfig({ files: { templates: {} } })).toEqual({
         build: {
           folder: "build",
+          outputFile: false,
         },
         assets: {
           css: [],
