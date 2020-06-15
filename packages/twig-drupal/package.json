@@ -1,10 +1,15 @@
 {
-  "name": "twig-drupal",
+  "name": "@headman/twig-drupal",
   "version": "0.1.0",
-  "description": "",
+  "description": "Adds twig/Drupal functionality to @headman/core",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mgrsskls/headman.git",
+    "directory": "packages/twig-drupal"
+  },
   "dependencies": {
     "deepmerge": "^4.2.2",
     "twig": "^1.15.1"
