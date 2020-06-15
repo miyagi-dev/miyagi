@@ -1,0 +1,15 @@
+{
+  "name": "twig-drupal",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
+  "license": "MIT",
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "twig": "^1.15.1"
+  },
+  "peerDependencies": {
+    "headman": "^0.4.1"
+  }
+}
