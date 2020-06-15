@@ -208,7 +208,6 @@ function Headman() {
       try {
         userFile = require(path.resolve(process.cwd(), ".headman"));
       } catch (err) {
-        log("error", err);
         log("warn", messages.userConfigUnparseable);
       }
 
