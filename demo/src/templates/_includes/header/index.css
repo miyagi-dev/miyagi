@@ -1,0 +1,13 @@
+.Header-title {
+  background: linear-gradient(
+    var(--FreitagDemo-color-primary),
+    var(--FreitagDemo-color-primary)
+  );
+  background-position: 1rem bottom;
+  background-repeat: no-repeat;
+  background-size: 100% 0.25em;
+  display: inline-block;
+  font-size: 4.8rem;
+  font-weight: bold;
+  line-height: 1.125;
+}

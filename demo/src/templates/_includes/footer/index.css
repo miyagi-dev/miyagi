@@ -1,0 +1,4 @@
+.Footer {
+  border-top: 0.4rem solid var(--FreitagDemo-color-secondary);
+  padding: var(--FreitagDemo-spacing) 0 0;
+}

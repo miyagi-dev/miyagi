@@ -1,0 +1,26 @@
+<div class="Homepage">
+  <div class="Homepage-header">
+    {{> templates/_includes/header/index.hbs header}}
+  </div>
+
+  <div class="Homepage-main">
+    <main class="Homepage-content">
+      {{> components/rte/index.hbs content}}
+      <div class="Homepage-cta">
+        {{{cta}}}
+      </div>
+    </main>
+    <aside class="Homepage-subContent">
+      {{#if linkList}}
+        {{> components/link-list/index.hbs linkList}}
+      {{/if}}
+      {{#if authorLinks}}
+        {{> components/link-list/index.hbs authorLinks}}
+      {{/if}}
+    </aside>
+  </div>
+
+  <div class="Homepage-footer">
+    {{> templates/_includes/footer/index.hbs footer}}
+  </div>
+</div>

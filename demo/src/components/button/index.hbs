@@ -1,0 +1,13 @@
+{{#if url}}
+<a href="{{url}}" class="Button{{#each modifiers}} Button--{{this}}{{/each}}" {{#if external}} target="_blank"
+  rel="noopener" {{/if}}>
+  {{else}}
+  <button class="Button{{#each modifiers}} Button--{{this}}{{/each}}" type="{{ type }}" {{#if disabled}}
+    disabled{{/if}}>
+    {{/if}}
+    <span class="Button-label">{{label}}</span>
+    {{#if url}}
+</a>
+{{else}}
+</button>
+{{/if}}

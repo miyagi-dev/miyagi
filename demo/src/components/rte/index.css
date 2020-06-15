@@ -1,0 +1,36 @@
+.Rte p,
+.Rte ul {
+  color: var(--FreitagDemo-color-font);
+}
+
+.Rte em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+.Rte h2 + p {
+  margin-top: 1.2rem;
+}
+
+.Rte p + p,
+.Rte p + h4 {
+  margin-top: 1.5em;
+}
+
+.Rte p + h3,
+.Rte ul + h3 {
+  margin-top: 1.6rem;
+}
+
+.Rte h3 + h4,
+.Rte h3 + ul {
+  margin-top: 0.8rem;
+}
+
+.Rte ul {
+  margin-left: 1.5rem;
+}
+
+.Rte ul > li {
+  list-style: disc;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "Button",
+  "status": "done",
+  "data": {
+    "label": "Regular button"
+  },
+  "variations": [
+    {
+      "name": "external link",
+      "data": {
+        "label": "External link",
+        "url": "https://mgrossklaus.de",
+        "external": true
+      }
+    },
+    {
+      "name": "secondary",
+      "data": {
+        "label": "Secondary button",
+        "modifiers": ["secondary"]
+      }
+    },
+    {
+      "name": "disabled",
+      "data": {
+        "label": "Disabled button",
+        "disabled": true
+      }
+    },
+    {
+      "name": "disabled/secondary",
+      "data": {
+        "label": "Disabled secondary button",
+        "disabled": true,
+        "modifiers": ["secondary"]
+      }
+    }
+  ]
+}

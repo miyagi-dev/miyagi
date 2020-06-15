@@ -1,0 +1,25 @@
+{
+  "name": "Link list",
+  "status": "needs_work",
+  "data": {
+    "title": "Developed by…",
+    "headlineType": "3",
+    "links": [
+      {
+        "$tpl": "components/link",
+        "label": "mgrossklaus.de",
+        "url": "https://mgrossklaus.de"
+      },
+      {
+        "$tpl": "components/link",
+        "label": "twitter.com/mgrossklaus",
+        "url": "https://twitter.com/mgrossklaus"
+      },
+      {
+        "$tpl": "components/link",
+        "label": "github.com/mgrsskls",
+        "url": "https://github.com/mgrsskls"
+      }
+    ]
+  }
+}

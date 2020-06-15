@@ -1,0 +1,49 @@
+@import "./reset.css";
+@import "./components/button/index.css";
+@import "./components/headline/index.css";
+@import "./components/link/index.css";
+@import "./components/link-list/index.css";
+@import "./components/rte/index.css";
+@import "./templates/_includes/footer/index.css";
+@import "./templates/_includes/header/index.css";
+@import "./templates/homepage/index.css";
+
+:root {
+  --FreitagDemo-color-primary: aquamarine;
+  --FreitagDemo-color-secondary: darkmagenta;
+  --FreitagDemo-color-hover: gold;
+  --FreitagDemo-color-lightGrey: #eee;
+  --FreitagDemo-color-font: #666;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+}
+
+a:not([class]) {
+  color: var(--FreitagDemo-color-secondary);
+  display: inline-block;
+  font-weight: 500;
+  margin: 0 -0.2rem;
+  padding: 0 0.2rem;
+}
+
+a:not([class]):hover,
+a:not([class]):focus {
+  background-color: var(--FreitagDemo-color-hover);
+  color: #000;
+  text-decoration: none;
+}
