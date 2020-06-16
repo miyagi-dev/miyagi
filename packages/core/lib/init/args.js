@@ -6,7 +6,7 @@
 const yargs = require("yargs");
 
 module.exports = yargs
-  .command("start", "Starts the headman server")
+  .command("start", "Starts the roundup server")
   .command("build", "Creates a static build of all your components", {
     folder: {
       description: "The folder where your static build files will be saved",
@@ -24,7 +24,7 @@ module.exports = yargs
       },
       only: {
         description:
-          "tells headman to only created the passes file types\n(comma separated list of tpl, docs, data, css, js)",
+          "tells roundup to only created the passes file types\n(comma separated list of tpl, docs, data, css, js)",
         type: "string",
       },
     }

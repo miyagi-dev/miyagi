@@ -22,8 +22,8 @@ describe("index", () => {
       };
     });
 
-    describe("with parseable result from .headman.js", () => {
-      describe("with templates.extension, components.folder and engine.name defined in .headman.js", () => {
+    describe("with parseable result from .roundup.js", () => {
+      describe("with templates.extension, components.folder and engine.name defined in .roundup.js", () => {
         test("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
           jest.mock("../lib/logger");
@@ -57,13 +57,13 @@ describe("index", () => {
         });
       });
 
-      describe("without extension defined in .headman.js", () => {
+      describe("without extension defined in .roundup.js", () => {
         test("it calls log with the correct error msg", () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
           jest.mock(
-            path.resolve(process.cwd(), ".headman.js"),
+            path.resolve(process.cwd(), ".roundup.js"),
             () => ({
               engine: {
                 name: "handlebars",
@@ -99,7 +99,7 @@ describe("index", () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+          jest.mock(path.resolve(process.cwd(), ".roundup.js"), () => {
             return {
               engine: {
                 name: "handlebars",
@@ -114,12 +114,12 @@ describe("index", () => {
         });
       });
 
-      describe("without engine defined in .headman.js", () => {
+      describe("without engine defined in .roundup.js", () => {
         test("it calls log with the correct error msg", () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+          jest.mock(path.resolve(process.cwd(), ".roundup.js"), () => {
             return {
               files: {
                 templates: {
@@ -156,7 +156,7 @@ describe("index", () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".headman.js"), () => {
+          jest.mock(path.resolve(process.cwd(), ".roundup.js"), () => {
             return {
               files: {
                 templates: {

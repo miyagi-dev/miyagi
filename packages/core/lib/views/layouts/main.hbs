@@ -1,23 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1,width=device-width">
-    <title>{{userProjectName}}</title>
-    <script src="{{projectName}}/js/main{{#if isBuild}}.build{{/if}}.js" {{#if headmanDev}}type="module"{{/if}}{{#if headmanProd}}defer{{/if}}></script>
-    <link rel="stylesheet" href="{{projectName}}/css/main.css">
-    <style>
-      :root {
-        {{#if theme.navigation }}
-          {{#if theme.navigation.colorBackground }}--Headman-color-bg: {{ theme.navigation.colorBackground }};{{/if}}
-          {{#if theme.navigation.colorLinks }}--Headman-color-link: {{ theme.navigation.colorLinks }};{{/if}}
-          {{#if theme.navigation.colorLinksActive }}--Headman-color-linkActive: {{ theme.navigation.colorLinksActive }};{{/if}}
-        {{/if}}
-        {{#if theme.fontFamily}}--Headman-fontFamily: {{ theme.fontFamily }};{{/if}}
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,width=device-width">
+  <title>{{userProjectName}}</title>
+  <script src="{{projectName}}/js/main{{#if isBuild}}.build{{/if}}.js" {{#if roundupDev}}type="module"
+    {{/if}}{{#if roundupProd}}defer{{/if}}></script>
+  <link rel="stylesheet" href="{{projectName}}/css/main.css">
+  <style>
+    :root {
+        {
+          {
+          #if theme.navigation
+        }
       }
-    </style>
-  </head>
-  <body class="Headman">
-    {{#block "body"}}{{/block}}
-  </body>
+
+        {
+          {
+          #if theme.navigation.colorBackground
+        }
+      }
+
+      --Roundup-color-bg: {
+          {
+          theme.navigation.colorBackground
+        }
+      }
+
+      ;
+
+        {
+          {
+          /if
+        }
+      }
+
+        {
+          {
+          #if theme.navigation.colorLinks
+        }
+      }
+
+      --Roundup-color-link: {
+          {
+          theme.navigation.colorLinks
+        }
+      }
+
+      ;
+
+        {
+          {
+          /if
+        }
+      }
+
+        {
+          {
+          #if theme.navigation.colorLinksActive
+        }
+      }
+
+      --Roundup-color-linkActive: {
+          {
+          theme.navigation.colorLinksActive
+        }
+      }
+
+      ;
+
+        {
+          {
+          /if
+        }
+      }
+
+        {
+          {
+          /if
+        }
+      }
+
+        {
+          {
+          #if theme.fontFamily
+        }
+      }
+
+      --Roundup-fontFamily: {
+          {
+          theme.fontFamily
+        }
+      }
+
+      ;
+
+        {
+          {
+          /if
+        }
+      }
+    }
+  </style>
+</head>
+
+<body class="Roundup">
+  {{#block "body"}}{{/block}}
+</body>
+
 </html>

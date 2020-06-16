@@ -1,15 +1,15 @@
 class Main {
   constructor() {
     this.classes = {
-      list: "Headman-list",
-      listContainer: "Headman-listContainer",
-      listItem: "Headman-listItem",
-      content: "Headman-content",
-      iframe: "Headman-frame",
-      frameWrapper: "Headman-frameWrapper",
-      toggleComponent: "Headman-toggle",
-      toggleMenu: "Headman-toggleMobileMenu",
-      link: "Headman-link",
+      list: "Roundup-list",
+      listContainer: "Roundup-listContainer",
+      listItem: "Roundup-listItem",
+      content: "Roundup-content",
+      iframe: "Roundup-frame",
+      frameWrapper: "Roundup-frameWrapper",
+      toggleComponent: "Roundup-toggle",
+      toggleMenu: "Roundup-toggleMobileMenu",
+      link: "Roundup-link",
     };
 
     this.elements = {

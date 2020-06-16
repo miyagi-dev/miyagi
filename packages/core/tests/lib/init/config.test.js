@@ -388,13 +388,13 @@ describe("lib/init/config", () => {
         expect(log).toHaveBeenNthCalledWith(
           1,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so headman is not able to deliver your css files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so roundup is not able to deliver your css files."
         );
 
         expect(log).toHaveBeenNthCalledWith(
           2,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so headman is not able to deliver your js files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so roundup is not able to deliver your js files."
         );
       });
 
@@ -460,14 +460,14 @@ describe("lib/init/config", () => {
             path.join(process.cwd(), "src/.git"),
             path.join(process.cwd(), "src/package.json"),
             path.join(process.cwd(), "src/package-lock.json"),
-            path.join(process.cwd(), "src/.headman.js"),
-            path.join(process.cwd(), "src/.headman.json"),
+            path.join(process.cwd(), "src/.roundup.js"),
+            path.join(process.cwd(), "src/.roundup.json"),
           ],
         },
         engine: {
           name: null,
         },
-        projectName: "headman",
+        projectName: "roundup",
         ui: {
           reloadAfterChanges: {
             componentAssets: false,

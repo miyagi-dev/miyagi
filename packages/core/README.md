@@ -1,14 +1,14 @@
-# headman
+# roundup
 
-_headman_ is a component development tool for JavaScript templating engines.
+_roundup_ is a component development tool for JavaScript templating engines.
 
 ## Demo
 
-[headman.mgrossklaus.de](https://headman.mgrossklaus.de) (Code: [https://github.com/mgrsskls/headman-demo](https://github.com/mgrsskls/headman-demo))
+[roundup.mgrossklaus.de](https://roundup.mgrossklaus.de) (Code: [https://github.com/mgrsskls/roundup-demo](https://github.com/mgrsskls/roundup-demo))
 
 ## Benefits
 
-- No overhead in your project by running _headman_ without a configuration file.
+- No overhead in your project by running _roundup_ without a configuration file.
 - Works with any folder structure.
 - Helps you developing your components encapsulated.
 - Validates your components for HTML and accessibility violations.

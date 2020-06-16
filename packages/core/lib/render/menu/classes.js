@@ -1,8 +1,8 @@
 module.exports = {
-  toggle: "Headman-toggle",
-  component: "Headman-component",
-  link: "Headman-link",
-  list: "Headman-list",
-  listContainer: "Headman-listContainer",
-  listItem: "Headman-listItem",
+  toggle: "Roundup-toggle",
+  component: "Roundup-component",
+  link: "Roundup-link",
+  list: "Roundup-list",
+  listContainer: "Roundup-listContainer",
+  listItem: "Roundup-listItem",
 };

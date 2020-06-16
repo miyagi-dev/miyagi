@@ -1,5 +1,5 @@
 /**
- * The headman module
+ * The roundup module
  * @module index
  */
 
@@ -31,7 +31,7 @@ require("./render/menu/variation-link.js");
 require("./render/menu/variations.js");
 
 /**
- * Checks if headman was started with `mocks` command
+ * Checks if roundup was started with `mocks` command
  * @param {Object} args
  * @returns {Boolean}
  */
@@ -40,7 +40,7 @@ function argsIncludeMockGenerator(args) {
 }
 
 /**
- * Checks if headman was started with `new` command
+ * Checks if roundup was started with `new` command
  * @param {Object} args
  * @returns {Boolean}
  */
@@ -49,7 +49,7 @@ function argsIncludeComponentGenerator(args) {
 }
 
 /**
- * Checks if headman was started with `build` command
+ * Checks if roundup was started with `build` command
  * @param {Object} args
  * @returns {Boolean}
  */
@@ -58,7 +58,7 @@ function argsIncludeBuild(args) {
 }
 
 /**
- * Checks if headman was started with `start` command
+ * Checks if roundup was started with `start` command
  * @param {Object} args
  * @returns {Boolean}
  */
@@ -178,7 +178,7 @@ async function guessEngineAndExtensionFromFiles(config) {
 /**
  * Requires the user config and initializes and calls correct modules based on command
  */
-function Headman() {
+function Roundup() {
   (async function () {
     const args = yargs.argv;
     const isServer = argsIncludeServer(args);
@@ -206,7 +206,7 @@ function Headman() {
       let userFile = {};
 
       try {
-        userFile = require(path.resolve(process.cwd(), ".headman"));
+        userFile = require(path.resolve(process.cwd(), ".roundup"));
       } catch (err) {
         log("warn", messages.userConfigUnparseable);
       }
@@ -302,4 +302,4 @@ function Headman() {
   })();
 }
 
-module.exports = new Headman();
+module.exports = new Roundup();

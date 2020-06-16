@@ -1,14 +1,14 @@
 [
   {
-    "path": "/headman/tests/src/components",
+    "path": "/roundup/tests/src/components",
     "name": "components",
     "children": [
       {
-        "path": "/headman/tests/src/components/button",
+        "path": "/roundup/tests/src/components/button",
         "name": "button",
         "children": [
           {
-            "path": "/headman/tests/src/components/button/docs.md",
+            "path": "/roundup/tests/src/components/button/docs.md",
             "name": "docs.md",
             "extension": ".md",
             "type": "file",
@@ -17,7 +17,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/button/index.css",
+            "path": "/roundup/tests/src/components/button/index.css",
             "name": "index.css",
             "extension": ".css",
             "type": "file",
@@ -26,7 +26,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/button/index.hbs",
+            "path": "/roundup/tests/src/components/button/index.hbs",
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
@@ -35,7 +35,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/button/mocks.json",
+            "path": "/roundup/tests/src/components/button/mocks.json",
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
@@ -77,11 +77,11 @@
         "index": 1
       },
       {
-        "path": "/headman/tests/src/components/headline",
+        "path": "/roundup/tests/src/components/headline",
         "name": "headline",
         "children": [
           {
-            "path": "/headman/tests/src/components/headline/index.css",
+            "path": "/roundup/tests/src/components/headline/index.css",
             "name": "index.css",
             "extension": ".css",
             "type": "file",
@@ -90,7 +90,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/headline/index.hbs",
+            "path": "/roundup/tests/src/components/headline/index.hbs",
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
@@ -99,7 +99,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/headline/mocks.json",
+            "path": "/roundup/tests/src/components/headline/mocks.json",
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
@@ -119,11 +119,11 @@
         "index": 1
       },
       {
-        "path": "/headman/tests/src/components/link",
+        "path": "/roundup/tests/src/components/link",
         "name": "link",
         "children": [
           {
-            "path": "/headman/tests/src/components/link/index.css",
+            "path": "/roundup/tests/src/components/link/index.css",
             "name": "index.css",
             "extension": ".css",
             "type": "file",
@@ -132,7 +132,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/link/index.hbs",
+            "path": "/roundup/tests/src/components/link/index.hbs",
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
@@ -141,7 +141,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/link/mocks.json",
+            "path": "/roundup/tests/src/components/link/mocks.json",
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
@@ -162,11 +162,11 @@
         "index": 1
       },
       {
-        "path": "/headman/tests/src/components/link-list",
+        "path": "/roundup/tests/src/components/link-list",
         "name": "link-list",
         "children": [
           {
-            "path": "/headman/tests/src/components/link-list/index.css",
+            "path": "/roundup/tests/src/components/link-list/index.css",
             "name": "index.css",
             "extension": ".css",
             "type": "file",
@@ -175,7 +175,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/link-list/index.hbs",
+            "path": "/roundup/tests/src/components/link-list/index.hbs",
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
@@ -184,7 +184,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/link-list/mocks.json",
+            "path": "/roundup/tests/src/components/link-list/mocks.json",
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
@@ -225,11 +225,11 @@
         "index": 1
       },
       {
-        "path": "/headman/tests/src/components/rte",
+        "path": "/roundup/tests/src/components/rte",
         "name": "rte",
         "children": [
           {
-            "path": "/headman/tests/src/components/rte/index.css",
+            "path": "/roundup/tests/src/components/rte/index.css",
             "name": "index.css",
             "extension": ".css",
             "type": "file",
@@ -238,7 +238,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/rte/index.hbs",
+            "path": "/roundup/tests/src/components/rte/index.hbs",
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
@@ -247,7 +247,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/components/rte/mocks.json",
+            "path": "/roundup/tests/src/components/rte/mocks.json",
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
@@ -263,7 +263,7 @@
           {
             "name": "RTE element",
             "data": {
-              "html": "<h2>Introduction</h2><p><em>headman</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>headman</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
+              "html": "<h2>Introduction</h2><p><em>roundup</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>roundup</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
             }
           }
         ],
@@ -277,7 +277,7 @@
     "index": 0
   },
   {
-    "path": "/headman/tests/src/index.css",
+    "path": "/roundup/tests/src/index.css",
     "name": "index.css",
     "extension": ".css",
     "type": "file",
@@ -286,7 +286,7 @@
     "index": -1
   },
   {
-    "path": "/headman/tests/src/index.js",
+    "path": "/roundup/tests/src/index.js",
     "name": "index.js",
     "extension": ".js",
     "type": "file",
@@ -295,7 +295,7 @@
     "index": -1
   },
   {
-    "path": "/headman/tests/src/reset.css",
+    "path": "/roundup/tests/src/reset.css",
     "name": "reset.css",
     "extension": ".css",
     "type": "file",
@@ -304,19 +304,19 @@
     "index": -1
   },
   {
-    "path": "/headman/tests/src/templates",
+    "path": "/roundup/tests/src/templates",
     "name": "templates",
     "children": [
       {
-        "path": "/headman/tests/src/templates/_includes",
+        "path": "/roundup/tests/src/templates/_includes",
         "name": "_includes",
         "children": [
           {
-            "path": "/headman/tests/src/templates/_includes/footer",
+            "path": "/roundup/tests/src/templates/_includes/footer",
             "name": "footer",
             "children": [
               {
-                "path": "/headman/tests/src/templates/_includes/footer/index.css",
+                "path": "/roundup/tests/src/templates/_includes/footer/index.css",
                 "name": "index.css",
                 "extension": ".css",
                 "type": "file",
@@ -325,7 +325,7 @@
                 "index": 2
               },
               {
-                "path": "/headman/tests/src/templates/_includes/footer/index.hbs",
+                "path": "/roundup/tests/src/templates/_includes/footer/index.hbs",
                 "name": "index.hbs",
                 "extension": ".hbs",
                 "type": "file",
@@ -341,11 +341,11 @@
             "index": 2
           },
           {
-            "path": "/headman/tests/src/templates/_includes/header",
+            "path": "/roundup/tests/src/templates/_includes/header",
             "name": "header",
             "children": [
               {
-                "path": "/headman/tests/src/templates/_includes/header/index.css",
+                "path": "/roundup/tests/src/templates/_includes/header/index.css",
                 "name": "index.css",
                 "extension": ".css",
                 "type": "file",
@@ -354,7 +354,7 @@
                 "index": 2
               },
               {
-                "path": "/headman/tests/src/templates/_includes/header/index.hbs",
+                "path": "/roundup/tests/src/templates/_includes/header/index.hbs",
                 "name": "index.hbs",
                 "extension": ".hbs",
                 "type": "file",
@@ -377,11 +377,11 @@
         "index": 1
       },
       {
-        "path": "/headman/tests/src/templates/homepage",
+        "path": "/roundup/tests/src/templates/homepage",
         "name": "homepage",
         "children": [
           {
-            "path": "/headman/tests/src/templates/homepage/index.css",
+            "path": "/roundup/tests/src/templates/homepage/index.css",
             "name": "index.css",
             "extension": ".css",
             "type": "file",
@@ -390,7 +390,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/templates/homepage/index.hbs",
+            "path": "/roundup/tests/src/templates/homepage/index.hbs",
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
@@ -399,7 +399,7 @@
             "index": 1
           },
           {
-            "path": "/headman/tests/src/templates/homepage/mocks.json",
+            "path": "/roundup/tests/src/templates/homepage/mocks.json",
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",

@@ -1,5 +1,5 @@
 /**
- * Module for initializing headman
+ * Module for initializing roundup
  * @module init
  */
 

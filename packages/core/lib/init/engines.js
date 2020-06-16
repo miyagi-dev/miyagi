@@ -8,7 +8,7 @@ const config = require("../config.json");
 const log = require("../logger.js");
 const helpers = require("../helpers.js");
 
-function setHeadmanEngine(app) {
+function setRoundupEngine(app) {
   app.engine("hbs", engines.handlebars);
 }
 
@@ -37,7 +37,7 @@ function setUserEngine(app) {
 }
 
 module.exports = function initEngines(app) {
-  setHeadmanEngine(app);
+  setRoundupEngine(app);
   const userEngineSet = setUserEngine(app);
 
   return userEngineSet;

@@ -1,5 +1,5 @@
 ```bash
-headman new <folderName>/<componentName>`
+roundup new <folderName>/<componentName>`
 ```
 
 This will create a component folder including the following files:
@@ -18,7 +18,7 @@ _**NOTE:** The component will be located based on your [`components.folder` sett
 You can skip any of the files like this:
 
 ```bash
-headman new <folderName>/<componentName> --skip=css,js
+roundup new <folderName>/<componentName> --skip=css,js
 ```
 
 **--only:**
@@ -26,5 +26,5 @@ headman new <folderName>/<componentName> --skip=css,js
 Alternatively, you can explicitly say which files you need like this:
 
 ```bash
-headman new <folderName>/<componentName> --only=tpl,docs
+roundup new <folderName>/<componentName> --only=tpl,docs
 ```

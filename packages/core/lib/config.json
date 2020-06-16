@@ -17,8 +17,8 @@
         ".git",
         "package.json",
         "package-lock.json",
-        ".headman.js",
-        ".headman.json"
+        ".roundup.js",
+        ".roundup.json"
       ]
     },
     "engine": {
@@ -54,7 +54,7 @@
       }
     },
     "plugins": [],
-    "projectName": "headman",
+    "projectName": "roundup",
     "ui": {
       "reload": true,
       "reloadAfterChanges": {
@@ -68,7 +68,7 @@
       }
     }
   },
-  "projectName": "headman",
+  "projectName": "roundup",
   "defaultPort": 5000,
   "htmlValidationUrl": "https://validator.w3.org/nu/",
   "folders": {
@@ -80,38 +80,38 @@
   },
   "defaultVariationName": "default",
   "messages": {
-    "buildStarting": "Creating headman build…",
+    "buildStarting": "Creating roundup build…",
     "buildDone": "Build done!",
-    "commandNotFound": "Please run `headman --help` for all available commands.",
+    "commandNotFound": "Please run `roundup --help` for all available commands.",
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "dataGenerator": {
       "dataFileExists": "The mock file {{fileName}} exists already.",
       "done": "Done!",
-      "noComponentFolderDefined": "Please specify the component folder like this: headman data directoryName/componentName",
-      "noSchemaFile": "headman can't find the schema file {{fileName}}.",
+      "noComponentFolderDefined": "Please specify the component folder like this: roundup data directoryName/componentName",
+      "noSchemaFile": "roundup can't find the schema file {{fileName}}.",
       "schemaFileCantBeParsed": "The schema file {{fileName}} can't be parsed.",
       "starting": "Creating mock file {{fileName}}…"
     },
-    "jsonFileHasInvalidFormat": "It seems like the file {{filePath}} has an invalid format as headman was not able to parse it.",
-    "engineAndExtensionGuessedBasedOnFiles": "After scanning your files, headman guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
-    "engineGuessedBasedOnExtension": "Based on your template files extension, headman assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
+    "jsonFileHasInvalidFormat": "It seems like the file {{filePath}} has an invalid format as roundup was not able to parse it.",
+    "engineAndExtensionGuessedBasedOnFiles": "After scanning your files, roundup guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
+    "engineGuessedBasedOnExtension": "Based on your template files extension, roundup assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
     "fileNotFound": "Couldn't find file {{filePath}}. Is the 'components.folder' in your configuration set correctly?",
     "fileNotFoundLinkIncorrect": "Couldn't find file {{filePath}}. Please check that it's linked correctly.",
     "generator": {
       "starting": "Creating component…",
       "done": "Done!",
-      "noComponentNameDefined": "Please specify a component name like this: headman new directoryName/componentName",
+      "noComponentNameDefined": "Please specify a component name like this: roundup new directoryName/componentName",
       "unknownError": "An unknown error occured when creating {{name}}.",
       "fileAlreadyExists": "The file {{name}} already exists."
     },
-    "guessingEngineAndExtensionFailed": "headman wasn't able to guess your engine and template files extension.",
-    "guessingEngineFailed": "headman wasn't able to guess your engine.",
-    "guessingExtensionFailed": "headman wasn't able to guess your template files extension.",
+    "guessingEngineAndExtensionFailed": "roundup wasn't able to guess your engine and template files extension.",
+    "guessingEngineFailed": "roundup wasn't able to guess your engine.",
+    "guessingExtensionFailed": "roundup wasn't able to guess your template files extension.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
     "missingEngine": "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
     "noDataSetForVariation": "No mock data defined for variation \"{{variation}}\" in {{file}}.",
-    "nodeEndAndKeysDontMatch": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in folders.assets in your config file, so headman is not able to deliver your {{assetType}} files.",
+    "nodeEndAndKeysDontMatch": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in folders.assets in your config file, so roundup is not able to deliver your {{assetType}} files.",
     "noNameSetForVariation": "No name defined for variation {{i}} in {{file}}.",
     "renderingTemplateFailed": "Rendering {{filePath}} failed. Please check that it is linked correctly and that its content is correct {{engine}} syntax.",
     "scanningFiles": "Scanning and analyzing files…",
@@ -120,17 +120,17 @@
       "invalid": "Data does not match schema file.",
       "noSchemaFound": "No schema file found."
     },
-    "serverStarted": "Running headman server at http://localhost:{{port}}!",
-    "serverStarting": "Starting headman server in {{node_env}} mode…",
+    "serverStarted": "Running roundup server at http://localhost:{{port}}!",
+    "serverStarting": "Starting roundup server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
     "srcFolderNotFound": "The provided components folder does not seem to exist.",
-    "templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, headman assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
+    "templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, roundup assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
     "tryingToGuessEngineAndExtension": "No template engine and template file extension defined. Trying to guess it based on your component files…",
     "tryingToGuessEngineBasedOnExtension": "No template engine defined. Trying to guess it based on your template files extension…",
     "tryingToGuessExtensionBasedOnEngine": "No template files extension defined. Trying to guess it based on your template engine…",
     "updatingDone": "Updating done!",
-    "updatingStarted": "A file has been changed, headman is updating the state.",
-    "userConfigUnparseable": "headman wasn't able to find or parse your config file.",
+    "updatingStarted": "A file has been changed, roundup is updating the state.",
+    "userConfigUnparseable": "roundup wasn't able to find or parse your config file.",
     "variationNotFound": "Variation \"{{variation}}\" not found in {{fileName}}.",
     "wrongFileType": "{{fileName}} does not have the correct file type."
   },

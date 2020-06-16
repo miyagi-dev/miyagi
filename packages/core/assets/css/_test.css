@@ -1,17 +1,17 @@
-.HeadmanTest {
+.RoundupTest {
   font-size: 1.4rem;
 }
 
-.HeadmanTest:not(:first-child) {
-  margin-top: var(--Headman-spacing-y);
+.RoundupTest:not(:first-child) {
+  margin-top: var(--Roundup-spacing-y);
 }
 
-.HeadmanTest:last-child {
-  margin-bottom: var(--Headman-spacing-y);
+.RoundupTest:last-child {
+  margin-bottom: var(--Roundup-spacing-y);
 }
 
-.HeadmanTest-title {
-  color: var(--Headman-colorHeadlines);
+.RoundupTest-title {
+  color: var(--Roundup-colorHeadlines);
   display: block;
   font-weight: bold;
   margin: 0 0 0.5rem;

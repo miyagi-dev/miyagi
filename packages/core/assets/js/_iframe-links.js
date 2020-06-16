@@ -1,6 +1,6 @@
 export default (links) => {
   if (parent.window) {
-    const linkClass = "HeadmanComponent-file";
+    const linkClass = "RoundupComponent-file";
 
     links.forEach((link) => {
       link.addEventListener("click", (e) => {

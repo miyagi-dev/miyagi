@@ -11,7 +11,7 @@ jest.mock("../../../../lib/state/menu/structure.js", () => {
 
 jest.mock("process", () => {
   return {
-    cwd: () => "/headman/tests",
+    cwd: () => "/roundup/tests",
   };
 });
 

@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgrsskls/headman.git"
+    "url": "git@github.com:mgrsskls/roundup.git"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",

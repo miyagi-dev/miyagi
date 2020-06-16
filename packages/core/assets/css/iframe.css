@@ -1,13 +1,13 @@
 :root {
-  --Headman-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
+  --Roundup-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
     "Roboto", "Helvetica", "Arial", sans-serif;
-  --Headman-color: #222;
-  --Headman-color-negative: #d9173e;
-  --Headman-color-warning: purple;
-  --Headman-color-positive: #690;
-  --Headman-colorHeadlines: var(--Headman-color);
-  --Headman-transition: all 0.15s ease;
-  --Headman-spacing: 40px;
+  --Roundup-color: #222;
+  --Roundup-color-negative: #d9173e;
+  --Roundup-color-warning: purple;
+  --Roundup-color-positive: #690;
+  --Roundup-colorHeadlines: var(--Roundup-color);
+  --Roundup-transition: all 0.15s ease;
+  --Roundup-spacing: 40px;
 }
 
 html {
@@ -19,59 +19,59 @@ body {
   min-height: 100%;
 }
 
-.HeadmanWrapper {
+.RoundupWrapper {
   box-sizing: border-box;
-  padding: var(--Headman-spacing);
+  padding: var(--Roundup-spacing);
   width: 100%;
 }
 
-.HeadmanDocumentation,
-.HeadmanInformation {
+.RoundupDocumentation,
+.RoundupInformation {
   line-height: 1.5;
 }
 
-.HeadmanDocumentation h1 {
-  color: var(--Headman-colorHeadlines);
+.RoundupDocumentation h1 {
+  color: var(--Roundup-colorHeadlines);
   font-size: 2.4em;
   font-weight: bold;
   line-height: 1;
 }
 
-.HeadmanDocumentation > * + * {
+.RoundupDocumentation > * + * {
   margin-top: 1.5em;
 }
 
-.HeadmanDocumentation i {
+.RoundupDocumentation i {
   font-style: italic;
 }
 
-.HeadmanSchemaTable,
-.HeadmanInformation,
-.HeadmanDocumentation,
-.HeadmanDocumentation a,
-.Headman-sectionTitle,
-.HeadmanIframe-newTabLink {
-  color: var(--Headman-color);
-  font-family: var(--Headman-fontFamily);
+.RoundupSchemaTable,
+.RoundupInformation,
+.RoundupDocumentation,
+.RoundupDocumentation a,
+.Roundup-sectionTitle,
+.RoundupIframe-newTabLink {
+  color: var(--Roundup-color);
+  font-family: var(--Roundup-fontFamily);
 }
 
-.HeadmanInformation-val {
+.RoundupInformation-val {
   margin-left: 0;
 }
 
-.HeadmanDocumentation > *:first-child {
+.RoundupDocumentation > *:first-child {
   margin-top: 0;
 }
 
-.Headman-sectionTitle {
+.Roundup-sectionTitle {
   align-items: center;
-  color: var(--Headman-colorHeadlines);
+  color: var(--Roundup-colorHeadlines);
   display: flex;
   font-size: 1.6em;
   margin: 2em 0 1em;
 }
 
-.Headman-sectionTitle::after {
+.Roundup-sectionTitle::after {
   background: #ddd;
   content: "";
   flex: 1;
@@ -79,31 +79,31 @@ body {
   margin-left: 20px;
 }
 
-.HeadmanInformation-wrapper + .HeadmanInformation-wrapper {
+.RoundupInformation-wrapper + .RoundupInformation-wrapper {
   margin-top: 30px;
 }
 
-.HeadmanInformation-attr {
+.RoundupInformation-attr {
   color: #767676;
-  font-family: var(--Headman-fontFamily);
+  font-family: var(--Roundup-fontFamily);
   font-size: 0.875em;
   letter-spacing: 0.0375em;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-.HeadmanInformation-attr:not(:first-child) {
+.RoundupInformation-attr:not(:first-child) {
   margin-top: 1em;
 }
 
-.HeadmanInformation code,
-.HeadmanDocumentation code,
-.Headman-code {
+.RoundupInformation code,
+.RoundupDocumentation code,
+.Roundup-code {
   font-family: "Menlo", "Monaco", monospace;
   font-size: 0.9em;
 }
 
-.HeadmanStatus::before {
+.RoundupStatus::before {
   --size: 0.7em;
 
   border-radius: 50%;
@@ -114,62 +114,62 @@ body {
   width: var(--size);
 }
 
-.HeadmanStatus--valid::before {
-  background-color: var(--Headman-color-positive);
+.RoundupStatus--valid::before {
+  background-color: var(--Roundup-color-positive);
 }
 
-.HeadmanStatus--invalid::before {
-  background-color: var(--Headman-color-negative);
+.RoundupStatus--invalid::before {
+  background-color: var(--Roundup-color-negative);
 }
 
-.HeadmanComponent-head {
+.RoundupComponent-head {
   display: flex;
   justify-content: space-between;
 }
 
-.HeadmanComponent:not(:last-child) {
-  margin-bottom: calc(2 * var(--Headman-spacing));
+.RoundupComponent:not(:last-child) {
+  margin-bottom: calc(2 * var(--Roundup-spacing));
 }
 
-.HeadmanComponent-file {
+.RoundupComponent-file {
   align-items: center;
   color: #767676;
   display: flex;
   flex-wrap: wrap;
-  font-family: var(--Headman-fontFamily);
+  font-family: var(--Roundup-fontFamily);
   font-size: 0.875em;
   letter-spacing: 0.0375em;
   text-decoration: none;
   text-transform: uppercase;
 }
 
-.HeadmanComponent-file:hover,
-.HeadmanComponent-file:focus,
-.HeadmanComponent-file:active {
+.RoundupComponent-file:hover,
+.RoundupComponent-file:focus,
+.RoundupComponent-file:active {
   text-decoration: underline;
 }
 
-.HeadmanComponent-fileFolders {
+.RoundupComponent-fileFolders {
   color: #bbb;
 }
 
-.HeadmanComponent-html {
-  margin: calc(var(--Headman-spacing) / 2) 0 0;
+.RoundupComponent-html {
+  margin: calc(var(--Roundup-spacing) / 2) 0 0;
 }
 
-.HeadmanError {
-  color: var(--Headman-color-negative);
+.RoundupError {
+  color: var(--Roundup-color-negative);
 }
 
-.HeadmanComponentView {
+.RoundupComponentView {
   border: 1px solid #ddd;
-  height: calc(100vh - 2 * var(--Headman-spacing));
+  height: calc(100vh - 2 * var(--Roundup-spacing));
   overflow: auto;
   resize: both;
   width: 100%;
 }
 
-.HeadmanIframe-newTabLink {
+.RoundupIframe-newTabLink {
   align-items: center;
   display: flex;
   font-size: 14px;
@@ -181,7 +181,7 @@ body {
   top: 0;
 }
 
-.HeadmanIframe-newTabLink svg {
+.RoundupIframe-newTabLink svg {
   --size: 1.2em;
 
   height: var(--size);
@@ -189,12 +189,12 @@ body {
   width: var(--size);
 }
 
-.Headman-code {
+.Roundup-code {
   border: 0.1rem solid #ddd;
-  padding: calc(var(--Headman-spacing) / 2);
+  padding: calc(var(--Roundup-spacing) / 2);
 }
 
-.Headman-code[class*="language-"] {
+.Roundup-code[class*="language-"] {
   background: #f8f8f8;
 }
 

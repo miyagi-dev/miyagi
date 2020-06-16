@@ -8,7 +8,7 @@ beforeEach(() => {
 describe("lib/menu/elements/list", () => {
   test("renders the correct list html", () => {
     expect(list.render("variations", 1, "content")).toEqual(
-      `<ul class="Headman-list Headman-list--lvl1 Headman-list--variations">content</ul>`
+      `<ul class="Roundup-list Roundup-list--lvl1 Roundup-list--variations">content</ul>`
     );
   });
 });

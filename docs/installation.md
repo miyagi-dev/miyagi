@@ -1,23 +1,23 @@
-**_headman_ can be installed from [npm](https://www.npmjs.com/package/headman):**
+**_roundup_ can be installed from [npm](https://www.npmjs.com/package/roundup):**
 
 ```bash
-npm i --save-dev headman
+npm i --save-dev roundup
 ```
 
 or
 
 ```bash
-yarn add --dev headman
+yarn add --dev roundup
 ```
 
 **You can also install it globally:**
 
 ```bash
-npm i -g headman
+npm i -g roundup
 ```
 
 or
 
 ```bash
-yarn global add headman
+yarn global add roundup
 ```

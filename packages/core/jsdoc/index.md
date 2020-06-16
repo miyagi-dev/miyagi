@@ -1,7 +1,7 @@
 <a name="module_index"></a>
 
 ## index
-The headman module
+The roundup module
 
 
 * [index](#module_index)
@@ -14,12 +14,12 @@ The headman module
     * [~guessExtensionFromEngine(engineName)](#module_index..guessExtensionFromEngine) ⇒ <code>string</code>
     * [~guessEngineFromExtension(extension)](#module_index..guessEngineFromExtension) ⇒ <code>string</code>
     * [~guessEngineAndExtensionFromFiles(config)](#module_index..guessEngineAndExtensionFromFiles) ⇒ <code>Object</code> \| <code>null</code>
-    * [~Headman()](#module_index..Headman)
+    * [~Roundup()](#module_index..Roundup)
 
 <a name="module_index..argsIncludeMockGenerator"></a>
 
 ### index~argsIncludeMockGenerator(args) ⇒ <code>Boolean</code>
-Checks if headman was started with `mocks` command
+Checks if roundup was started with `mocks` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -30,7 +30,7 @@ Checks if headman was started with `mocks` command
 <a name="module_index..argsIncludeComponentGenerator"></a>
 
 ### index~argsIncludeComponentGenerator(args) ⇒ <code>Boolean</code>
-Checks if headman was started with `new` command
+Checks if roundup was started with `new` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -41,7 +41,7 @@ Checks if headman was started with `new` command
 <a name="module_index..argsIncludeBuild"></a>
 
 ### index~argsIncludeBuild(args) ⇒ <code>Boolean</code>
-Checks if headman was started with `build` command
+Checks if roundup was started with `build` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -52,7 +52,7 @@ Checks if headman was started with `build` command
 <a name="module_index..argsIncludeServer"></a>
 
 ### index~argsIncludeServer(args) ⇒ <code>Boolean</code>
-Checks if headman was started with `start` command
+Checks if roundup was started with `start` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -118,9 +118,9 @@ returns an object with engine.name and files.templates.extension
 | --- | --- |
 | config | <code>Object</code> | 
 
-<a name="module_index..Headman"></a>
+<a name="module_index..Roundup"></a>
 
-### index~Headman()
+### index~Roundup()
 Requires the user config and initializes and calls correct modules based on command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  

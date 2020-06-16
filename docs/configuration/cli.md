@@ -6,7 +6,7 @@ All [available options](/configuration/options) can be set via command line.
 **Example:**
 
 ```bash
-headman start --engine.name twig --files.template.extension twig --assets.css.development css/index.css css/forms.css
+roundup start --engine.name twig --files.template.extension twig --assets.css.development css/index.css css/forms.css
 ```
 
-_**Note:** If an option is passed as a CLI argument and defined in your `.headman.js`, the CLI argument is used._
+_**Note:** If an option is passed as a CLI argument and defined in your `.roundup.js`, the CLI argument is used._

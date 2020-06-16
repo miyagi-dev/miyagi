@@ -183,8 +183,8 @@ function renderMain({ app, res, cb }) {
       indexPath: app.get("config").isBuild
         ? "component-all-embedded.html"
         : "/component?file=all&embedded=true",
-      headmanDev: !!process.env.HEADMAN_DEVELOPMENT,
-      headmanProd: !process.env.HEADMAN_DEVELOPMENT,
+      roundupDev: !!process.env.ROUNDUP_DEVELOPMENT,
+      roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
       isBuild: app.get("config").isBuild,
       theme: app.get("config").ui.theme,
     },
@@ -246,8 +246,8 @@ async function renderMainWithComponent({ app, res, file, variation, cb }) {
       indexPath: app.get("config").isBuild
         ? "component-all-embedded.html"
         : "/component?file=all&embedded=true",
-      headmanDev: !!process.env.HEADMAN_DEVELOPMENT,
-      headmanProd: !process.env.HEADMAN_DEVELOPMENT,
+      roundupDev: !!process.env.ROUNDUP_DEVELOPMENT,
+      roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
       isBuild: app.get("config").isBuild,
       theme: app.get("config").ui.theme,
     },
@@ -286,8 +286,8 @@ async function renderMainWith404({ app, res, file, variation }) {
     userProjectName: app.get("config").projectName,
     htmlValidation: false,
     accessibilityValidation: false,
-    headmanDev: !!process.env.HEADMAN_DEVELOPMENT,
-    headmanProd: !process.env.HEADMAN_DEVELOPMENT,
+    roundupDev: !!process.env.ROUNDUP_DEVELOPMENT,
+    roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
     isBuild: app.get("config").isBuild,
     theme: app.get("config").ui.theme,
   });
@@ -651,7 +651,7 @@ async function renderComponentOverview({ app, res, cb }) {
 
 async function renderComponentNotFound({ app, res, embedded, target }) {
   await res.render(embedded ? "component_frame.hbs" : "component.hbs", {
-    html: `<p class="HeadmanError">${target} not found.</p>`,
+    html: `<p class="RoundupError">${target} not found.</p>`,
     dev: process.env.NODE_ENV === "development",
     prod: process.env.NODE_ENV === "production",
     projectName: config.projectName,

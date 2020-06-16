@@ -1,34 +1,34 @@
-.HeadmanResult:not(:first-child) {
+.RoundupResult:not(:first-child) {
   margin-top: 1.5rem;
 }
 
-.HeadmanResult-data {
+.RoundupResult-data {
   border-left: 0.2rem solid #ccc;
   padding: 0 0 0 1rem;
 }
 
-.HeadmanResult-attr,
-.HeadmanResult-value {
+.RoundupResult-attr,
+.RoundupResult-value {
   display: inline;
 }
 
-.HeadmanResult-attr {
+.RoundupResult-attr {
   font-weight: bold;
 }
 
-.HeadmanResult-attr::after {
+.RoundupResult-attr::after {
   content: ":";
   display: inline;
 }
 
-.HeadmanResult a {
+.RoundupResult a {
   color: currentColor;
   padding: 0 0.35rem 0 2rem;
   position: relative;
   word-break: break-all;
 }
 
-.HeadmanResult a::before {
+.RoundupResult a::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' focusable='false' aria-hidden='true'%3E%3Cpath d='M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3'%3E%3C/path%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -42,22 +42,22 @@
   width: 1em;
 }
 
-.HeadmanResult a:hover,
-.HeadmanResult a:focus,
-.HeadmanResult a:active {
-  background: var(--Headman-color-link);
-  border-radius: var(--Headman-borderRadius);
-  box-shadow: 0 0.2rem 0 var(--Headman-color-link);
-  color: var(--Headman-color-linkActive);
+.RoundupResult a:hover,
+.RoundupResult a:focus,
+.RoundupResult a:active {
+  background: var(--Roundup-color-link);
+  border-radius: var(--Roundup-borderRadius);
+  box-shadow: 0 0.2rem 0 var(--Roundup-color-link);
+  color: var(--Roundup-color-linkActive);
   text-decoration: none;
 }
 
-.HeadmanResult a:hover::before,
-.HeadmanResult a:focus::before,
-.HeadmanResult a:active::before {
+.RoundupResult a:hover::before,
+.RoundupResult a:focus::before,
+.RoundupResult a:active::before {
   filter: invert(1);
 }
 
-.HeadmanResult-extract {
+.RoundupResult-extract {
   font-family: monospace;
 }

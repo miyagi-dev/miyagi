@@ -1,11 +1,11 @@
-**`.headman.json`** or **`.headman.js`**
+**`.roundup.json`** or **`.roundup.js`**
 
 The config file can either be a JSON file or JS file with a CommonJS module, if you want to [extend your template engine](/configuration/extending-template-engine).
 
 This is an example for a JSON config file:
 
 ```javascript
-// .headman.json
+// .roundup.json
 
 {
   "assets": {
@@ -33,7 +33,7 @@ This is an example for a JSON config file:
     "name": "twig",
     "options": {
       "namespaces": {
-        "headman": "src/"
+        "roundup": "src/"
       }
     }
   },
@@ -42,7 +42,7 @@ This is an example for a JSON config file:
       "extension": "twig",
     },
   },
-  "projectName": "headman",
+  "projectName": "roundup",
   "ui": {
     "reload": false,
     "theme": {

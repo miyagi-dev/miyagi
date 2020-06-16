@@ -8,7 +8,7 @@ const { messages } = require("../config.json");
  * Module for creating component files based on the configuration cli params
  * @module generator/component
  * @param {Object} cliParams
- * @param {Object} config - the user's headman configuration object
+ * @param {Object} config - the user's roundup configuration object
  */
 module.exports = async function componentGenerator(cliParams, config) {
   const commands = cliParams._.slice(1);
@@ -40,7 +40,7 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Returns the component folder path relative from the project root
    * @param {string} componentName
-   * @param {Object} componentsFolderPath - the components.folder from the user's headman config
+   * @param {Object} componentsFolderPath - the components.folder from the user's roundup config
    * @returns {string}
    */
   function getFullComponentPath(componentName, componentsFolderPath) {
@@ -123,7 +123,7 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Creates the component files
-   * @param {Object} filesConfig - the files configuration from the user's headman config
+   * @param {Object} filesConfig - the files configuration from the user's roundup config
    * @param {string} componentPath - the path of the component folder
    * @param {Object} args - the cli args
    * @returns {Promise}
@@ -179,7 +179,7 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Returns an object with the file names for a given component name
-   * @param {Object} filesConfig - the files configuration from the user's headman config
+   * @param {Object} filesConfig - the files configuration from the user's roundup config
    * @param {string} componentName - the name of the component
    * @returns {Object}
    */

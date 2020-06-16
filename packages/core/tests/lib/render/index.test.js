@@ -174,8 +174,8 @@ describe("lib/render/index", () => {
         tests,
         projectName,
         userProjectName,
-        headmanDev: false,
-        headmanProd: true,
+        roundupDev: false,
+        roundupProd: true,
         isBuild: undefined,
       });
 
@@ -207,8 +207,8 @@ describe("lib/render/index", () => {
           tests,
           projectName,
           userProjectName,
-          headmanDev: false,
-          headmanProd: true,
+          roundupDev: false,
+          roundupProd: true,
           isBuild: undefined,
         });
 
@@ -234,8 +234,8 @@ describe("lib/render/index", () => {
           tests,
           projectName,
           userProjectName,
-          headmanDev: false,
-          headmanProd: true,
+          roundupDev: false,
+          roundupProd: true,
           isBuild: undefined,
         });
 
@@ -268,8 +268,8 @@ describe("lib/render/index", () => {
           userProjectName,
           htmlValidation: false,
           accessibilityValidation: false,
-          headmanDev: false,
-          headmanProd: true,
+          roundupDev: false,
+          roundupProd: true,
           isBuild: undefined,
         });
 
@@ -295,8 +295,8 @@ describe("lib/render/index", () => {
           userProjectName,
           htmlValidation: false,
           accessibilityValidation: false,
-          headmanDev: false,
-          headmanProd: true,
+          roundupDev: false,
+          roundupProd: true,
           isBuild: undefined,
         });
 
@@ -690,7 +690,7 @@ describe("lib/render/index", () => {
               {
                 file: "component6/index.hbs",
                 html:
-                  '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+                  '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
                 variation: "variation1",
                 url:
                   "/component?file=component6/index.hbs&variation=variation1&embedded=true",
@@ -972,7 +972,7 @@ describe("lib/render/index", () => {
               name: "component6",
               folders: [],
               html:
-                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+                '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6/index.hbs&embedded=true",
             },
             {
@@ -1041,7 +1041,7 @@ describe("lib/render/index", () => {
               name: "component6",
               folders: [],
               html:
-                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+                '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6/index.hbs&embedded=true",
             },
             {
@@ -1109,7 +1109,7 @@ describe("lib/render/index", () => {
             {
               name: "component6",
               html:
-                '<p class="HeadmanError">Error: The partial doesntexist.hbs could not be found</p>',
+                '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6/index.hbs&embedded=true",
               folders: [],
             },
@@ -1157,7 +1157,7 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: `<p class="HeadmanError">${component} not found.</p>`,
+          html: `<p class="RoundupError">${component} not found.</p>`,
           theme: {},
           dev: false,
           prod: false,
@@ -1185,7 +1185,7 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: `<p class="HeadmanError">${component} not found.</p>`,
+          html: `<p class="RoundupError">${component} not found.</p>`,
           theme: {},
           dev: false,
           prod: false,

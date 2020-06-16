@@ -86,7 +86,7 @@ function getFallbackData(variations, rootData) {
 }
 
 function getComponentErrorHtml(err) {
-  return `<p class="HeadmanError">${
+  return `<p class="RoundupError">${
     err === null ? config.messages.componentCouldNotBeRendered : err
   }</p>`;
 }

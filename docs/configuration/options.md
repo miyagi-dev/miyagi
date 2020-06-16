@@ -1,8 +1,8 @@
-_headman_ works without setting any configuration by analyzing your files and guessing the correct template engine and template files extension. If this does not work or you want to customize it further, _headman_ offers many configuration options.
+_roundup_ works without setting any configuration by analyzing your files and guessing the correct template engine and template files extension. If this does not work or you want to customize it further, _roundup_ offers many configuration options.
 
 ## `assets`
 
-_Settings for assets that headman serves (independently from your components)._
+_Settings for assets that roundup serves (independently from your components)._
 
 ### `css`
 
@@ -32,7 +32,7 @@ If you use ES6 modules, you can set this to true, so `type="module"` is added to
 default: `null`<br>
 type: `string|array`
 
-If you need _headman_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
+If you need _roundup_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
 
 ### `js`
 
@@ -79,10 +79,10 @@ The folder where your components live.
 
 ### `ignores`
 
-default: `["node_modules", ".git", "package.json", "package-lock.json", ".headman.js"]`<br>
+default: `["node_modules", ".git", "package.json", "package-lock.json", ".roundup.js"]`<br>
 type: `array`
 
-_headman_ ignores these folders and files when looking for your components.
+_roundup_ ignores these folders and files when looking for your components.
 
 When setting a value, it is added to the default value and does not overwrite it.
 
@@ -192,7 +192,7 @@ _**Note:** You can use `"<component>"` for `name` if the file should have the sa
 
 ## `projectName`
 
-default: `"headman"`<br>
+default: `"roundup"`<br>
 type: `string`
 
 ## `ui`

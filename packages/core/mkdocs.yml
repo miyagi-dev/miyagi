@@ -1,13 +1,13 @@
-site_name: headman
-site_description: headman is a node based component development tool for JavaScript templating engines.
+site_name: roundup
+site_description: roundup is a node based component development tool for JavaScript templating engines.
 
 docs_dir: jsdoc
 
 extra_css:
   - extra.css
 
-repo_name: mgrsskls/headman
-repo_url: https://github.com/mgrsskls/headman
+repo_name: mgrsskls/roundup
+repo_url: https://github.com/mgrsskls/roundup
 edit_uri: ""
 
 theme:

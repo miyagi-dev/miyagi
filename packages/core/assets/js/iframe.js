@@ -9,9 +9,9 @@ if (
   window.location = location.href.replace("&embedded=true", "");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  const links = Array.from(document.querySelectorAll(`.HeadmanComponent-file`));
-  const tests = parent.document.querySelector(".Headman-tests");
+document.addEventListener("DOMContentLoaded", function () {
+  const links = Array.from(document.querySelectorAll(`.RoundupComponent-file`));
+  const tests = parent.document.querySelector(".Roundup-tests");
 
   if (tests) {
     Tests(tests);
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-  if (document.querySelector(".Headman-code")) {
+  if (document.querySelector(".Roundup-code")) {
     import("./_prism.js");
   }
 });

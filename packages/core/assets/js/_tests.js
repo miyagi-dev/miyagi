@@ -8,7 +8,7 @@ function escapeHtml(str) {
 
 function addToggle(container) {
   const summaries = Array.from(
-    container.querySelectorAll(".HeadmanResults-summary")
+    container.querySelectorAll(".RoundupResults-summary")
   );
 
   summaries.forEach((summary) => {
@@ -26,7 +26,7 @@ function addToggle(container) {
 }
 
 function getHtmlForResultItem(label, result, impactClass) {
-  return `<div class="HeadmanResult-wrapper"><dt class="HeadmanResult-attr">${label}</dt> <dd class="HeadmanResult-value ${impactClass}">${result}</dd></div>`;
+  return `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">${label}</dt> <dd class="RoundupResult-value ${impactClass}">${result}</dd></div>`;
 }
 
 function a11yTest(container) {
@@ -34,12 +34,12 @@ function a11yTest(container) {
 
   addToggle(container);
 
-  axe.run(document.getElementById("HeadmanComponent"), function(err, results) {
+  axe.run(document.getElementById("RoundupComponent"), function (err, results) {
     if (err) throw err;
 
     states.forEach((state) => {
       const resultElement = container.querySelector(
-        `.HeadmanResults--${state} .HeadmanResults-value`
+        `.RoundupResults--${state} .RoundupResults-value`
       );
       let html = "";
 
@@ -55,8 +55,8 @@ function a11yTest(container) {
       if (results[state].length) {
         html += "<ul>";
         results[state].forEach((result) => {
-          html += '<li class="HeadmanResult">';
-          html += '<dl class="HeadmanResult-data">';
+          html += '<li class="RoundupResult">';
+          html += '<dl class="RoundupResult-data">';
 
           if (result.description) {
             html += getHtmlForResultItem(
@@ -81,10 +81,10 @@ function a11yTest(container) {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "HeadmanResults-value--negative";
+                impactClass = "RoundupResults-value--negative";
                 break;
               case "moderate":
-                impactClass = "HeadmanResults-value--warning";
+                impactClass = "RoundupResults-value--warning";
             }
 
             html += getHtmlForResultItem("Impact", result.impact, impactClass);
@@ -95,11 +95,11 @@ function a11yTest(container) {
         });
         html += "</ul>";
       } else {
-        html += '<p><i class="HeadmanResults-empty">Nothing to report.</i></p>';
+        html += '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.HeadmanResults--${state} .HeadmanResults-details`
+        `.RoundupResults--${state} .RoundupResults-details`
       ).innerHTML = html;
     });
 
@@ -124,7 +124,7 @@ function htmlTest(container) {
             Accept: "application/json",
           },
           body: formData,
-        }).then(function(response) {
+        }).then(function (response) {
           if (response.ok) {
             response.json().then((data) => {
               states.forEach((state) => {
@@ -133,7 +133,7 @@ function htmlTest(container) {
                 );
 
                 const resultElement = container.querySelector(
-                  `.HeadmanResults--${state} .HeadmanResults-value`
+                  `.RoundupResults--${state} .RoundupResults-value`
                 );
                 let html = "";
 
@@ -144,8 +144,8 @@ function htmlTest(container) {
 
                   html += "<ul>";
                   results.forEach((result) => {
-                    html += '<li class="HeadmanResult">';
-                    html += '<dl class="HeadmanResult-data">';
+                    html += '<li class="RoundupResult">';
+                    html += '<dl class="RoundupResult-data">';
 
                     if (result.message) {
                       html += getHtmlForResultItem("Message", result.message);
@@ -167,7 +167,7 @@ function htmlTest(container) {
 
                       html += getHtmlForResultItem(
                         "Extract",
-                        `<code class="HeadmanResult-extract">${markedExtract.replace(
+                        `<code class="RoundupResult-extract">${markedExtract.replace(
                           /\n/g,
                           "↩"
                         )}</code>`
@@ -192,11 +192,11 @@ function htmlTest(container) {
                 } else {
                   resultElement.classList.remove("has-positiveValue");
                   html +=
-                    '<p><i class="HeadmanResults-empty">Nothing to report.</i></p>';
+                    '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
                 }
 
                 container.querySelector(
-                  `.HeadmanResults--${state} .HeadmanResults-details`
+                  `.RoundupResults--${state} .RoundupResults-details`
                 ).innerHTML = html;
               });
 
@@ -214,9 +214,9 @@ function htmlTest(container) {
 }
 
 export default (tests) => {
-  if (document.getElementById("HeadmanComponent")) {
-    const a11yContainer = parent.document.querySelector(".HeadmanTest--a11y");
-    const htmlContainer = parent.document.querySelector(".HeadmanTest--html");
+  if (document.getElementById("RoundupComponent")) {
+    const a11yContainer = parent.document.querySelector(".RoundupTest--a11y");
+    const htmlContainer = parent.document.querySelector(".RoundupTest--html");
 
     if (a11yContainer) {
       if (window.validations.accessibility) {

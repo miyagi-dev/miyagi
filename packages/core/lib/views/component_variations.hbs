@@ -1,40 +1,41 @@
 {{#extend "iframe"}}
 {{#content "body"}}
-<div class="HeadmanWrapper">
-  <div class="HeadmanDocumentation">
+<div class="RoundupWrapper">
+  <div class="RoundupDocumentation">
     <h1>{{ name }}</h1>
     {{#if documentation}}
     {{{documentation}}}
     {{/if}}
   </div>
-  <h2 class="Headman-sectionTitle">Information</h2>
-  <dl class="HeadmanInformation">
-    <div class="HeadmanInformation-wrapper">
-      <dt class="HeadmanInformation-attr">Folder</dt>
-      <dd class="HeadmanInformation-val"><code>{{ folder }}</code></dd>
+  <h2 class="Roundup-sectionTitle">Information</h2>
+  <dl class="RoundupInformation">
+    <div class="RoundupInformation-wrapper">
+      <dt class="RoundupInformation-attr">Folder</dt>
+      <dd class="RoundupInformation-val"><code>{{ folder }}</code></dd>
     </div>
   </dl>
   {{#if schema}}
-  <link rel="stylesheet" href="/headman/css/prism.css">
-  <h2 class="Headman-sectionTitle">Schema</h2>
-  <pre class="Headman-code language-{{schemaType}}"><code>{{{schema}}}</code></pre>
+  <link rel="stylesheet" href="/roundup/css/prism.css">
+  <h2 class="Roundup-sectionTitle">Schema</h2>
+  <pre class="Roundup-code language-{{schemaType}}"><code>{{{schema}}}</code></pre>
   {{/if}}
   {{#if variations}}
-  <h2 class="Headman-sectionTitle">Variations</h2>
+  <h2 class="Roundup-sectionTitle">Variations</h2>
   {{/if}}
   {{#each variations}}
-  <div class="HeadmanComponent">
-    <div class="HeadmanComponent-head">
-      <a href="{{ this.url }}" class="HeadmanComponent-file">{{
+  <div class="RoundupComponent">
+    <div class="RoundupComponent-head">
+      <a href="{{ this.url }}" class="RoundupComponent-file">{{
         this.variation
       }}</a>
       {{#if schemaValidation}}
-        <p class="HeadmanComponent-schemaValidation">
-          <span class="HeadmanStatus HeadmanStatus--{{#if schemaValidation.valid}}valid{{else}}invalid{{/if}}">{{schemaValidation.copy}}</span>
-        </p>
+      <p class="RoundupComponent-schemaValidation">
+        <span
+          class="RoundupStatus RoundupStatus--{{#if schemaValidation.valid}}valid{{else}}invalid{{/if}}">{{schemaValidation.copy}}</span>
+      </p>
       {{/if}}
     </div>
-    <div class="HeadmanComponent-html">{{{this.html}}}</div>
+    <div class="RoundupComponent-html">{{{this.html}}}</div>
   </div>
   {{/each}}
 </div>

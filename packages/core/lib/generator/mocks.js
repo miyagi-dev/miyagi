@@ -8,7 +8,7 @@ const { messages } = require("../config.json");
  * Module for creating dummy mock data based on JSON schema
  * @module generator/mocks
  * @param {string} folderPath - the path for the component that should be created
- * @param {Object} filesConfig - the files configuration from the user's headman config
+ * @param {Object} filesConfig - the files configuration from the user's roundup config
  */
 module.exports = async function mockGenerator(folderPath, filesConfig) {
   if (!folderPath) {

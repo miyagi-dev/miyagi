@@ -2,7 +2,7 @@
 
 You can use this file to define a [JSON schema](http://json-schema.org/) for your component.
 
-When creating a new component via `headman new <component>`, the schema file is created with this content:
+When creating a new component via `roundup new <component>`, the schema file is created with this content:
 
 ```json
 {

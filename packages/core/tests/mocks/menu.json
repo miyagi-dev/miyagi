@@ -1,1 +1,205 @@
-[{"type":"directory","name":"components","fullPath":"/headman/tests/src/components","index":0,"id":"components","children":[{"type":"directory","name":"button","fullPath":"/headman/tests/src/components/button/index.hbs","shortPath":"components/button/index.hbs","normalizedShortPath":"components-button-index","extension":".hbs","variations":[{"name":"Button","data":{"label":"Regular button"}},{"name":"external link","data":{"label":"External link","url":"https://mgrossklaus.de","external":true}},{"name":"secondary","data":{"label":"Secondary button","modifiers":["secondary"]}},{"name":"disabled","data":{"label":"Disabled button","disabled":true}},{"name":"disabled/secondary","data":{"label":"Disabled secondary button","disabled":true,"modifiers":["secondary"]}}],"index":1,"id":"components-button-index-hbs"},{"type":"directory","name":"headline","fullPath":"/headman/tests/src/components/headline/index.hbs","shortPath":"components/headline/index.hbs","normalizedShortPath":"components-headline-index","extension":".hbs","variations":[{"name":"2","data":{"type":"2","copy":"Headline 2"}},{"name":"3","data":{"type":"3","copy":"Headline 3"}},{"name":"4","data":{"type":"4","copy":"Headline 4"}}],"index":1,"id":"components-headline-index-hbs"},{"type":"directory","name":"link","fullPath":"/headman/tests/src/components/link/index.hbs","shortPath":"components/link/index.hbs","normalizedShortPath":"components-link-index","extension":".hbs","variations":[{"name":"Link","data":{"label":"GitHub","url":"https://github.com/mgrsskls"}}],"index":1,"id":"components-link-index-hbs"},{"type":"directory","name":"link-list","fullPath":"/headman/tests/src/components/link-list/index.hbs","shortPath":"components/link-list/index.hbs","normalizedShortPath":"components-link-list-index","extension":".hbs","variations":[{"name":"Link list","data":{"title":"Developed by…","headlineType":"3","links":[{"$tpl":"components/link","label":"mgrossklaus.de","url":"https://mgrossklaus.de"},{"$tpl":"components/link","label":"twitter.com/mgrossklaus","url":"https://twitter.com/mgrossklaus"},{"$tpl":"components/link","label":"github.com/mgrsskls","url":"https://github.com/mgrsskls"}]}}],"index":1,"id":"components-link-list-index-hbs"},{"type":"directory","name":"rte","fullPath":"/headman/tests/src/components/rte/index.hbs","shortPath":"components/rte/index.hbs","normalizedShortPath":"components-rte-index","extension":".hbs","variations":[{"name":"RTE element","data":{"html":"<h2>Introduction</h2><p><em>headman</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>headman</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"}}],"index":1,"id":"components-rte-index-hbs"}]},{"type":"directory","name":"templates","fullPath":"/headman/tests/src/templates","index":0,"id":"templates","children":[{"type":"directory","name":"_includes","fullPath":"/headman/tests/src/templates/_includes","index":1,"id":"templates--includes","children":[{"type":"directory","name":"footer","fullPath":"/headman/tests/src/templates/_includes/footer/index.hbs","shortPath":"templates/_includes/footer/index.hbs","normalizedShortPath":"templates--includes-footer-index","extension":".hbs","variations":[{"name":"default","data":{}}],"index":2,"id":"templates--includes-footer-index-hbs"},{"type":"directory","name":"header","fullPath":"/headman/tests/src/templates/_includes/header/index.hbs","shortPath":"templates/_includes/header/index.hbs","normalizedShortPath":"templates--includes-header-index","extension":".hbs","variations":[{"name":"default","data":{}}],"index":2,"id":"templates--includes-header-index-hbs"}]},{"type":"directory","name":"homepage","fullPath":"/headman/tests/src/templates/homepage/index.hbs","shortPath":"templates/homepage/index.hbs","normalizedShortPath":"templates-homepage-index","extension":".hbs","variations":[{"name":"Homepage","data":{"content":{"$ref":"components/rte"},"cta":{"$tpl":"components/button","$ref":"components/button#secondary"},"linkList":{"title":"Links","headlineType":"2","links":[{"$tpl":"components/link","$ref":"components/link"},{"$tpl":"components/link","$ref":"components/link"},{"$tpl":"components/link","$ref":"components/link"}]},"authorLinks":{"$ref":"components/link-list"}}}],"index":1,"id":"templates-homepage-index-hbs"}]}]
+[
+  {
+    "type": "directory",
+    "name": "components",
+    "fullPath": "/roundup/tests/src/components",
+    "index": 0,
+    "id": "components",
+    "children": [
+      {
+        "type": "directory",
+        "name": "button",
+        "fullPath": "/roundup/tests/src/components/button/index.hbs",
+        "shortPath": "components/button/index.hbs",
+        "normalizedShortPath": "components-button-index",
+        "extension": ".hbs",
+        "variations": [
+          { "name": "Button", "data": { "label": "Regular button" } },
+          {
+            "name": "external link",
+            "data": {
+              "label": "External link",
+              "url": "https://mgrossklaus.de",
+              "external": true
+            }
+          },
+          {
+            "name": "secondary",
+            "data": { "label": "Secondary button", "modifiers": ["secondary"] }
+          },
+          {
+            "name": "disabled",
+            "data": { "label": "Disabled button", "disabled": true }
+          },
+          {
+            "name": "disabled/secondary",
+            "data": {
+              "label": "Disabled secondary button",
+              "disabled": true,
+              "modifiers": ["secondary"]
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-button-index-hbs"
+      },
+      {
+        "type": "directory",
+        "name": "headline",
+        "fullPath": "/roundup/tests/src/components/headline/index.hbs",
+        "shortPath": "components/headline/index.hbs",
+        "normalizedShortPath": "components-headline-index",
+        "extension": ".hbs",
+        "variations": [
+          { "name": "2", "data": { "type": "2", "copy": "Headline 2" } },
+          { "name": "3", "data": { "type": "3", "copy": "Headline 3" } },
+          { "name": "4", "data": { "type": "4", "copy": "Headline 4" } }
+        ],
+        "index": 1,
+        "id": "components-headline-index-hbs"
+      },
+      {
+        "type": "directory",
+        "name": "link",
+        "fullPath": "/roundup/tests/src/components/link/index.hbs",
+        "shortPath": "components/link/index.hbs",
+        "normalizedShortPath": "components-link-index",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "Link",
+            "data": { "label": "GitHub", "url": "https://github.com/mgrsskls" }
+          }
+        ],
+        "index": 1,
+        "id": "components-link-index-hbs"
+      },
+      {
+        "type": "directory",
+        "name": "link-list",
+        "fullPath": "/roundup/tests/src/components/link-list/index.hbs",
+        "shortPath": "components/link-list/index.hbs",
+        "normalizedShortPath": "components-link-list-index",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "Link list",
+            "data": {
+              "title": "Developed by…",
+              "headlineType": "3",
+              "links": [
+                {
+                  "$tpl": "components/link",
+                  "label": "mgrossklaus.de",
+                  "url": "https://mgrossklaus.de"
+                },
+                {
+                  "$tpl": "components/link",
+                  "label": "twitter.com/mgrossklaus",
+                  "url": "https://twitter.com/mgrossklaus"
+                },
+                {
+                  "$tpl": "components/link",
+                  "label": "github.com/mgrsskls",
+                  "url": "https://github.com/mgrsskls"
+                }
+              ]
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-link-list-index-hbs"
+      },
+      {
+        "type": "directory",
+        "name": "rte",
+        "fullPath": "/roundup/tests/src/components/rte/index.hbs",
+        "shortPath": "components/rte/index.hbs",
+        "normalizedShortPath": "components-rte-index",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "RTE element",
+            "data": {
+              "html": "<h2>Introduction</h2><p><em>roundup</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>roundup</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
+            }
+          }
+        ],
+        "index": 1,
+        "id": "components-rte-index-hbs"
+      }
+    ]
+  },
+  {
+    "type": "directory",
+    "name": "templates",
+    "fullPath": "/roundup/tests/src/templates",
+    "index": 0,
+    "id": "templates",
+    "children": [
+      {
+        "type": "directory",
+        "name": "_includes",
+        "fullPath": "/roundup/tests/src/templates/_includes",
+        "index": 1,
+        "id": "templates--includes",
+        "children": [
+          {
+            "type": "directory",
+            "name": "footer",
+            "fullPath": "/roundup/tests/src/templates/_includes/footer/index.hbs",
+            "shortPath": "templates/_includes/footer/index.hbs",
+            "normalizedShortPath": "templates--includes-footer-index",
+            "extension": ".hbs",
+            "variations": [{ "name": "default", "data": {} }],
+            "index": 2,
+            "id": "templates--includes-footer-index-hbs"
+          },
+          {
+            "type": "directory",
+            "name": "header",
+            "fullPath": "/roundup/tests/src/templates/_includes/header/index.hbs",
+            "shortPath": "templates/_includes/header/index.hbs",
+            "normalizedShortPath": "templates--includes-header-index",
+            "extension": ".hbs",
+            "variations": [{ "name": "default", "data": {} }],
+            "index": 2,
+            "id": "templates--includes-header-index-hbs"
+          }
+        ]
+      },
+      {
+        "type": "directory",
+        "name": "homepage",
+        "fullPath": "/roundup/tests/src/templates/homepage/index.hbs",
+        "shortPath": "templates/homepage/index.hbs",
+        "normalizedShortPath": "templates-homepage-index",
+        "extension": ".hbs",
+        "variations": [
+          {
+            "name": "Homepage",
+            "data": {
+              "content": { "$ref": "components/rte" },
+              "cta": {
+                "$tpl": "components/button",
+                "$ref": "components/button#secondary"
+              },
+              "linkList": {
+                "title": "Links",
+                "headlineType": "2",
+                "links": [
+                  { "$tpl": "components/link", "$ref": "components/link" },
+                  { "$tpl": "components/link", "$ref": "components/link" },
+                  { "$tpl": "components/link", "$ref": "components/link" }
+                ]
+              },
+              "authorLinks": { "$ref": "components/link-list" }
+            }
+          }
+        ],
+        "index": 1,
+        "id": "templates-homepage-index-hbs"
+      }
+    ]
+  }
+]

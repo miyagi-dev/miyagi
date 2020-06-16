@@ -1,30 +1,30 @@
 {{#extend "iframe"}}
 {{#content "body"}}
-<div class="HeadmanWrapper">
-  <div class="HeadmanDocumentation">
+<div class="RoundupWrapper">
+  <div class="RoundupDocumentation">
     <h1>{{ userProjectName }}</h1>
     {{{documentation}}}
   </div>
   {{#if renderComponentOverview}}
-  <h2 class="Headman-sectionTitle">Overview</h2>
+  <h2 class="Roundup-sectionTitle">Overview</h2>
   {{#if components}}
-  <div class="HeadmanComponents">
+  <div class="RoundupComponents">
     {{#each components}}
-    <div class="HeadmanComponent">
-      <a href="{{this.url}}" class="HeadmanComponent-file">
+    <div class="RoundupComponent">
+      <a href="{{this.url}}" class="RoundupComponent-file">
         {{#if folders}}
-        <span class="HeadmanComponent-fileFolders">
+        <span class="RoundupComponent-fileFolders">
           {{#each folders}}{{this}} / {{/each}}
         </span>
         {{/if}}&nbsp;{{this.name}}
       </a>
-      <div class="HeadmanComponent-html">
+      <div class="RoundupComponent-html">
         {{{this.html}}}
       </div>
     </div>
     {{/each}}
     {{else}}
-    <div class="HeadmanDocumentation">
+    <div class="RoundupDocumentation">
       <p>No components found. Check out the <a href="http://example.com" target="_blank">documentation</a> if you need
         help!</p>
     </div>

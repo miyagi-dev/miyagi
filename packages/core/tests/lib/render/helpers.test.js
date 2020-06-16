@@ -64,14 +64,14 @@ describe("lib/render/helpers", () => {
     describe("with passed error", () => {
       test("it renders the error", () => {
         expect(helpers.getComponentErrorHtml("error")).toEqual(
-          '<p class="HeadmanError">error</p>'
+          '<p class="RoundupError">error</p>'
         );
       });
     });
     describe("with passed error being null", () => {
       test("it renders the error", () => {
         expect(helpers.getComponentErrorHtml(null)).toEqual(
-          '<p class="HeadmanError">Component couldn\'t be rendered.</p>'
+          '<p class="RoundupError">Component couldn\'t be rendered.</p>'
         );
       });
     });

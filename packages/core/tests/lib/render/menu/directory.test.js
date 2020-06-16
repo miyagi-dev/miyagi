@@ -50,7 +50,7 @@ describe("lib/menu/elements/directory", () => {
       directory
         .render(app, directoryObject, request)
         .indexOf(
-          '<span class="Headman-component Headman-component--lvl2">name</span>'
+          '<span class="Roundup-component Roundup-component--lvl2">name</span>'
         )
     ).toBeGreaterThanOrEqual(0);
   });

@@ -90,8 +90,8 @@ function getMenu(app) {
           if (restructured.children.length === 0) {
             delete restructured.children;
           }
-          array.push(restructured);
         }
+        array.push(restructured);
       }
     }
   })(srcStructure, arr);

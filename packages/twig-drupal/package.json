@@ -1,13 +1,13 @@
 {
-  "name": "@headman/twig-drupal",
+  "name": "@roundup/twig-drupal",
   "version": "0.1.0",
-  "description": "Adds twig/Drupal functionality to @headman/core",
+  "description": "Adds twig/Drupal functionality to @roundup/core",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgrsskls/headman.git",
+    "url": "git@github.com:mgrsskls/roundup.git",
     "directory": "packages/twig-drupal"
   },
   "dependencies": {
@@ -15,6 +15,6 @@
     "twig": "^1.15.1"
   },
   "peerDependencies": {
-    "headman": "^0.4.1"
+    "roundup": "^0.4.1"
   }
 }

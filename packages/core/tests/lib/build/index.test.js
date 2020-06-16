@@ -43,7 +43,7 @@ describe("lib/build/index", () => {
   const app = express();
   const fileContents = {};
 
-  fileContents["/headman/tests/srcFolder/foo/mocks.json"] = {
+  fileContents["/roundup/tests/srcFolder/foo/mocks.json"] = {
     $variants: [
       {
         $name: 1,
@@ -54,7 +54,7 @@ describe("lib/build/index", () => {
     ],
   };
 
-  process.cwd = () => "/headman/tests";
+  process.cwd = () => "/roundup/tests";
 
   app.set(
     "config",
@@ -79,7 +79,7 @@ describe("lib/build/index", () => {
   );
   app.set("state", {
     partials: {
-      "foo/index.hbs": "/headman/tests/srcFolder/foo/index.hbs",
+      "foo/index.hbs": "/roundup/tests/srcFolder/foo/index.hbs",
     },
     fileContents,
   });
@@ -112,7 +112,7 @@ describe("lib/build/index", () => {
       expect(fs.copy.mock.calls[0][0]).toEqual(
         path.join(__dirname, "../../../dist/")
       );
-      expect(fs.copy.mock.calls[0][1]).toEqual("buildFolder/headman/");
+      expect(fs.copy.mock.calls[0][1]).toEqual("buildFolder/roundup/");
       expect(typeof fs.copy.mock.calls[0][2]).toEqual("function");
 
       // buildUserAssets

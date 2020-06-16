@@ -1,8 +1,8 @@
-.HeadmanResults + .HeadmanResults {
+.RoundupResults + .RoundupResults {
   margin-top: var(--results-spacing);
 }
 
-.HeadmanResults-summary {
+.RoundupResults-summary {
   cursor: default;
   list-style-type: none;
   padding: 0 0 0 1.5rem;
@@ -10,38 +10,38 @@
   white-space: nowrap;
 }
 
-.HeadmanResults-summary::after {
-  border: var(--Headman-toggle-border);
+.RoundupResults-summary::after {
+  border: var(--Roundup-toggle-border);
   border-color: currentColor;
-  border-width: var(--Headman-toggle-borderWidth);
+  border-width: var(--Roundup-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: var(--Headman-toggle-fontSize);
-  height: var(--Headman-toggle-height);
+  font-size: var(--Roundup-toggle-fontSize);
+  height: var(--Roundup-toggle-height);
   left: 0.25rem;
   position: absolute;
   top: 50%;
-  transition: var(--Headman-toggle-transition);
-  width: var(--Headman-toggle-width);
+  transition: var(--Roundup-toggle-transition);
+  width: var(--Roundup-toggle-width);
 }
 
-.HeadmanResults-summary::-webkit-details-marker {
+.RoundupResults-summary::-webkit-details-marker {
   display: none;
 }
 
-.HeadmanResults:not([open]) .HeadmanResults-summary::after {
-  transform: var(--Headman-toggle-transition-closed);
+.RoundupResults:not([open]) .RoundupResults-summary::after {
+  transform: var(--Roundup-toggle-transition-closed);
 }
 
-.HeadmanResults[open] .HeadmanResults-summary::after {
-  transform: var(--Headman-toggle-transition-opened);
+.RoundupResults[open] .RoundupResults-summary::after {
+  transform: var(--Roundup-toggle-transition-opened);
 }
 
-.HeadmanResults-value:not(:last-child) {
+.RoundupResults-value:not(:last-child) {
   padding-right: 1rem;
 }
 
-.HeadmanResults-value.has-positiveValue {
+.RoundupResults-value.has-positiveValue {
   border-radius: 0.25em;
   color: #fff;
   display: inline-block;
@@ -51,54 +51,54 @@
   text-align: center;
 }
 
-.HeadmanResults-value--positive {
-  color: var(--Headman-color-positive);
+.RoundupResults-value--positive {
+  color: var(--Roundup-color-positive);
 }
 
-.HeadmanResults-value--positive.has-positiveValue {
-  background: var(--Headman-color-positive);
+.RoundupResults-value--positive.has-positiveValue {
+  background: var(--Roundup-color-positive);
 }
 
-.HeadmanResults-value--neutral {
-  color: var(--Headman-color-lightGray);
+.RoundupResults-value--neutral {
+  color: var(--Roundup-color-lightGray);
 }
 
-.HeadmanResults-value--neutral.has-positiveValue {
-  background: var(--Headman-color-lightGray);
+.RoundupResults-value--neutral.has-positiveValue {
+  background: var(--Roundup-color-lightGray);
 }
 
-.HeadmanResults-value--negative {
-  color: var(--Headman-color-negative);
+.RoundupResults-value--negative {
+  color: var(--Roundup-color-negative);
 }
 
-.HeadmanResults-value--negative.has-positiveValue {
-  background: var(--Headman-color-negative);
+.RoundupResults-value--negative.has-positiveValue {
+  background: var(--Roundup-color-negative);
 }
 
-.HeadmanResults-value--warning {
-  color: var(--Headman-color-warning);
+.RoundupResults-value--warning {
+  color: var(--Roundup-color-warning);
 }
 
-.HeadmanResults-value--warning.has-positiveValue {
-  background: var(--Headman-color-warning);
+.RoundupResults-value--warning.has-positiveValue {
+  background: var(--Roundup-color-warning);
 }
 
-.HeadmanResults-details {
+.RoundupResults-details {
   margin: 1rem 0 1rem 0;
 }
 
-.HeadmanResults-empty {
+.RoundupResults-empty {
   font-style: italic;
 }
 
 @media (pointer: coarse) {
-  .HeadmanResults + .HeadmanResults {
+  .RoundupResults + .RoundupResults {
     --results-spacing: 0.75rem;
   }
 }
 
 @media (pointer: fine) {
-  .HeadmanResults + .HeadmanResults {
+  .RoundupResults + .RoundupResults {
     --results-spacing: 0.5rem;
   }
 }

@@ -64,7 +64,7 @@ function registerNodeModule(app, nodeModule) {
 function registerAssetFolder(app) {
   const assetFolder =
     config.folders.assets[
-      process.env.HEADMAN_DEVELOPMENT ? "development" : "production"
+      process.env.ROUNDUP_DEVELOPMENT ? "development" : "production"
     ];
 
   app.use(

@@ -5,29 +5,29 @@
 @import "./_result.css";
 
 :root {
-  --Headman-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
+  --Roundup-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
     "Roboto", "Helvetica", "Arial", sans-serif;
-  --Headman-fontSize: 1.6rem;
-  --Headman-lineHeight: 1.5;
-  --Headman-color: #222;
-  --Headman-color-bg: #f5f5f5;
-  --Headman-color-lightGray: #707070;
-  --Headman-color-link: var(--Headman-color);
-  --Headman-color-linkActive: #fff;
-  --Headman-color-negative: #d9173e;
-  --Headman-color-warning: purple;
-  --Headman-color-positive: #690;
-  --Headman-borderRadius: 0.25rem;
-  --Headman-linkSpacing: 0.35rem;
-  --Headman-toggle-border: 0 solid var(--Headman-color-link);
-  --Headman-toggle-borderWidth: 0.15em 0.15em 0 0;
-  --Headman-toggle-fontSize: 0.75rem;
-  --Headman-toggle-height: 1em;
-  --Headman-toggle-transition: transform 0.15s ease;
-  --Headman-toggle-width: 1em;
-  --Headman-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
-  --Headman-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
-  --Headman-spacing: var(--Headman-spacing-y) var(--Headman-spacing-y);
+  --Roundup-fontSize: 1.6rem;
+  --Roundup-lineHeight: 1.5;
+  --Roundup-color: #222;
+  --Roundup-color-bg: #f5f5f5;
+  --Roundup-color-lightGray: #707070;
+  --Roundup-color-link: var(--Roundup-color);
+  --Roundup-color-linkActive: #fff;
+  --Roundup-color-negative: #d9173e;
+  --Roundup-color-warning: purple;
+  --Roundup-color-positive: #690;
+  --Roundup-borderRadius: 0.25rem;
+  --Roundup-linkSpacing: 0.35rem;
+  --Roundup-toggle-border: 0 solid var(--Roundup-color-link);
+  --Roundup-toggle-borderWidth: 0.15em 0.15em 0 0;
+  --Roundup-toggle-fontSize: 0.75rem;
+  --Roundup-toggle-height: 1em;
+  --Roundup-toggle-transition: transform 0.15s ease;
+  --Roundup-toggle-width: 1em;
+  --Roundup-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
+  --Roundup-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
+  --Roundup-spacing: var(--Roundup-spacing-y) var(--Roundup-spacing-y);
 }
 
 *,
@@ -43,68 +43,68 @@ html {
 
 body {
   background: #fff;
-  color: var(--Headman-color);
+  color: var(--Roundup-color);
 }
 
-.Headman {
+.Roundup {
   display: grid;
-  font-family: var(--Headman-fontFamily);
-  font-size: var(--Headman-fontSize);
-  line-height: var(--Headman-lineHeight);
+  font-family: var(--Roundup-fontFamily);
+  font-size: var(--Roundup-fontSize);
+  line-height: var(--Roundup-lineHeight);
   min-height: 100%;
 }
 
-.Headman-nav {
-  background: var(--Headman-color-bg);
+.Roundup-nav {
+  background: var(--Roundup-color-bg);
   grid-area: nav;
   overflow-y: auto;
-  padding: var(--Headman-spacing-y) var(--Headman-spacing-x);
+  padding: var(--Roundup-spacing-y) var(--Roundup-spacing-x);
 }
 
-.Headman-content {
+.Roundup-content {
   grid-area: iframe;
 }
 
-.Headman-frameWrapper {
+.Roundup-frameWrapper {
   height: 100%;
   width: 100%;
 }
 
-.Headman-frame {
+.Roundup-frame {
   display: block;
   height: 100%;
   width: 100%;
 }
 
-.Headman-tests {
+.Roundup-tests {
   grid-area: tests;
   padding-right: 4rem;
 }
 
 @media (max-width: 40em) {
   :root {
-    --Headman-spacing-x: 1rem;
-    --Headman-spacing-y: 1rem;
+    --Roundup-spacing-x: 1rem;
+    --Roundup-spacing-y: 1rem;
   }
 
-  .Headman {
+  .Roundup {
     grid-template:
       "nav"
       "iframe" 1fr
       "tests";
   }
 
-  .Headman-menu {
+  .Roundup-menu {
     flex: 0 0 100%;
-    padding-left: var(--Headman-spacing-x);
-    padding-right: var(--Headman-spacing-x);
+    padding-left: var(--Roundup-spacing-x);
+    padding-right: var(--Roundup-spacing-x);
   }
 
-  .Headman-toggleMobileMenu[aria-expanded="false"] + .Headman-menu {
+  .Roundup-toggleMobileMenu[aria-expanded="false"] + .Roundup-menu {
     display: none;
   }
 
-  .Headman-nav {
+  .Roundup-nav {
     align-items: center;
     display: flex;
     flex-wrap: wrap;
@@ -113,12 +113,12 @@ body {
     padding-right: 0;
   }
 
-  .Headman-title {
+  .Roundup-title {
     max-width: 50%;
-    padding-left: var(--Headman-spacing-x);
+    padding-left: var(--Roundup-spacing-x);
   }
 
-  .Headman-toggleMobileMenu {
+  .Roundup-toggleMobileMenu {
     --size: 2rem;
 
     box-sizing: content-box;
@@ -129,48 +129,48 @@ body {
     width: var(--size);
   }
 
-  .Headman-toggleMobileMenu::after {
-    border: var(--Headman-toggle-border);
-    border-width: var(--Headman-toggle-borderWidth);
+  .Roundup-toggleMobileMenu::after {
+    border: var(--Roundup-toggle-border);
+    border-width: var(--Roundup-toggle-borderWidth);
     content: "";
     display: block;
     font-size: 0.75em;
-    height: var(--Headman-toggle-height);
+    height: var(--Roundup-toggle-height);
     left: 50%;
     position: absolute;
     top: 50%;
-    transition: var(--Headman-toggle-transition);
-    width: var(--Headman-toggle-width);
+    transition: var(--Roundup-toggle-transition);
+    width: var(--Roundup-toggle-width);
   }
 
-  .Headman-toggleMobileMenu[aria-expanded="false"]::after {
-    transform: var(--Headman-toggle-transition-closed);
+  .Roundup-toggleMobileMenu[aria-expanded="false"]::after {
+    transform: var(--Roundup-toggle-transition-closed);
   }
 
-  .Headman-toggleMobileMenu[aria-expanded="true"]::after {
-    transform: var(--Headman-toggle-transition-opened);
+  .Roundup-toggleMobileMenu[aria-expanded="true"]::after {
+    transform: var(--Roundup-toggle-transition-opened);
   }
 
-  .Headman-tests {
+  .Roundup-tests {
     padding: 4rem;
   }
 }
 
 @media (min-width: 40.03125em) {
   :root {
-    --Headman-spacing-x: 2rem;
-    --Headman-spacing-y: 4rem;
+    --Roundup-spacing-x: 2rem;
+    --Roundup-spacing-y: 4rem;
   }
 
-  .Headman-nav {
+  .Roundup-nav {
     height: 100vh;
   }
 
-  .Headman-toggleMobileMenu {
+  .Roundup-toggleMobileMenu {
     display: none;
   }
 
-  .Headman-tests {
+  .Roundup-tests {
     max-height: var(--maxHeight);
     -webkit-overflow-scrolling: touch;
     overflow-y: auto;
@@ -178,7 +178,7 @@ body {
 }
 
 @media (min-width: 40.03125em) and (max-width: 64em) {
-  .Headman {
+  .Roundup {
     grid-template-areas:
       "nav iframe"
       "nav tests";
@@ -186,7 +186,7 @@ body {
     grid-template-rows: 1fr auto;
   }
 
-  .Headman-tests {
+  .Roundup-tests {
     --maxHeight: 50vh;
 
     padding-left: 4rem;
@@ -195,12 +195,12 @@ body {
 }
 
 @media (min-width: 64.03125em) {
-  .Headman {
+  .Roundup {
     grid-template-areas: "nav iframe tests";
     grid-template-columns: 25rem 1fr auto;
   }
 
-  .Headman-tests {
+  .Roundup-tests {
     --maxHeight: 100vh;
 
     min-width: 30rem;

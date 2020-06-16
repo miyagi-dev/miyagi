@@ -1,13 +1,13 @@
 {
-  "name": "@headman/core",
+  "name": "@roundup/core",
   "version": "0.4.1",
-  "description": "headman is a component development tool for JavaScript template engines.",
+  "description": "roundup is a component development tool for JavaScript template engines.",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgrsskls/headman.git",
+    "url": "git@github.com:mgrsskls/roundup.git",
     "directory": "packages/core"
   },
   "keywords": [
@@ -29,7 +29,7 @@
     "lib"
   ],
   "bin": {
-    "headman": "./bin/headman.js"
+    "roundup": "./bin/roundup.js"
   },
   "dependencies": {
     "ajv": "^6.12.2",
