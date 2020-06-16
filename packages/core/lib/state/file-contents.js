@@ -113,7 +113,7 @@ async function getParsedJsonFileContent(app, fileName) {
 }
 
 async function getConvertedMarkdownFileContent(fileName) {
-  const md = new Markdown();
+  const md = new Markdown({ html: true });
   let result;
 
   try {
