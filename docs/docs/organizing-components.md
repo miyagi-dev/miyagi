@@ -6,40 +6,40 @@ _headman_ assumes that you have a dedicated folder for each of your components, 
 ├── src
 │   ├── components
 │   │   ├── button
-│   │   │   ├── docs.md
 │   │   │   ├── index.css
 │   │   │   ├── index.hbs
 │   │   │   ├── index.js
 │   │   │   ├── mocks.json
+│   │   │   ├── README.md
 │   │   │   └── schema.json
 │   │   └── teaser
-│   │   │   ├── docs.md
 │   │   │   ├── index.css
 │   │   │   ├── index.hbs
 │   │   │   ├── index.js
 │   │   │   ├── mocks.json
+│   │   │   ├── README.md
 │   │   │   └── schema.json
 │   └── templates
 │       └── homepage
 │           ├── header
-│           │   ├── docs.md
 │           │   ├── index.css
 │           │   ├── index.hbs
 │           │   ├── index.js
 │           │   ├── mocks.json
+│           │   ├── README.md
 │           │   └── schema.json
 │           ├── footer
-│           │   ├── docs.md
 │           │   ├── index.css
 │           │   ├── index.hbs
 │           │   ├── index.js
 │           │   ├── mocks.json
+│           │   ├── README.md
 │           │   └── schema.json
-│           ├── docs.md
 │           ├── index.css
 │           ├── index.hbs
 │           ├── index.js
 │           ├── mocks.json
+│           ├── README.md
 │           └── schema.json
 └── ...
 ```

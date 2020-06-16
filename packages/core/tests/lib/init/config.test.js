@@ -28,7 +28,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "README",
           },
           js: {
             extension: "js",
@@ -67,7 +67,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "README",
           },
           js: {
             extension: "js",
@@ -110,7 +110,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "README",
           },
           js: {
             extension: "js",
@@ -149,7 +149,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "README",
           },
           js: {
             extension: "js",
@@ -197,7 +197,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -236,7 +236,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -283,7 +283,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -322,7 +322,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -365,7 +365,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -415,7 +415,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -488,7 +488,7 @@ describe("lib/init/config", () => {
           },
           docs: {
             extension: "md",
-            name: "docs",
+            name: "README",
           },
           info: {
             extension: "json",
@@ -528,7 +528,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",
@@ -565,7 +565,7 @@ describe("lib/init/config", () => {
             },
             docs: {
               extension: "md",
-              name: "docs",
+              name: "README",
             },
             js: {
               extension: "js",

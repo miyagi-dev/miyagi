@@ -7,7 +7,7 @@ This will create a component folder including the following files:
 - `tpl`: index.twig
 - `css`: index.css
 - `js`: index.js
-- `docs`: docs.md
+- `docs`: README.md
 - `mocks`: mocks.json
 - `schema`: schema.json
 
