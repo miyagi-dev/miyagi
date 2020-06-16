@@ -28,7 +28,8 @@
   "scripts": {
     "test": "npm run test --prefix packages/core",
     "lint": "npm run lint --prefix packages/core",
-    "docs": "mkdocs serve"
+    "docs": "mkdocs serve",
+    "jsdoc": "npm run docs --prefix packages/core"
   },
   "stylelint": {
     "extends": [
