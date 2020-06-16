@@ -12,8 +12,6 @@
             "name": "docs.md",
             "extension": ".md",
             "type": "file",
-            "shortPath": "components/button/docs.md",
-            "normalizedShortPath": "components-button-docs-md",
             "index": 1
           },
           {
@@ -21,8 +19,6 @@
             "name": "index.css",
             "extension": ".css",
             "type": "file",
-            "shortPath": "components/button/index.css",
-            "normalizedShortPath": "components-button-index-css",
             "index": 1
           },
           {
@@ -30,8 +26,6 @@
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
-            "shortPath": "components/button/index.hbs",
-            "normalizedShortPath": "components-button-index",
             "index": 1
           },
           {
@@ -39,14 +33,10 @@
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
-            "shortPath": "components/button/mocks.json",
-            "normalizedShortPath": "components-button-mocks-json",
             "index": 1
           }
         ],
         "type": "directory",
-        "shortPath": "components/button",
-        "normalizedShortPath": "components-button",
         "variations": [
           { "name": "Button", "data": { "label": "Regular button" } },
           {
@@ -85,8 +75,6 @@
             "name": "index.css",
             "extension": ".css",
             "type": "file",
-            "shortPath": "components/headline/index.css",
-            "normalizedShortPath": "components-headline-index-css",
             "index": 1
           },
           {
@@ -94,8 +82,6 @@
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
-            "shortPath": "components/headline/index.hbs",
-            "normalizedShortPath": "components-headline-index",
             "index": 1
           },
           {
@@ -103,14 +89,10 @@
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
-            "shortPath": "components/headline/mocks.json",
-            "normalizedShortPath": "components-headline-mocks-json",
             "index": 1
           }
         ],
         "type": "directory",
-        "shortPath": "components/headline",
-        "normalizedShortPath": "components-headline",
         "variations": [
           { "name": "2", "data": { "type": "2", "copy": "Headline 2" } },
           { "name": "3", "data": { "type": "3", "copy": "Headline 3" } },
@@ -127,8 +109,6 @@
             "name": "index.css",
             "extension": ".css",
             "type": "file",
-            "shortPath": "components/link/index.css",
-            "normalizedShortPath": "components-link-index-css",
             "index": 1
           },
           {
@@ -136,8 +116,6 @@
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
-            "shortPath": "components/link/index.hbs",
-            "normalizedShortPath": "components-link-index",
             "index": 1
           },
           {
@@ -145,14 +123,10 @@
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
-            "shortPath": "components/link/mocks.json",
-            "normalizedShortPath": "components-link-mocks-json",
             "index": 1
           }
         ],
         "type": "directory",
-        "shortPath": "components/link",
-        "normalizedShortPath": "components-link",
         "variations": [
           {
             "name": "Link",
@@ -170,8 +144,6 @@
             "name": "index.css",
             "extension": ".css",
             "type": "file",
-            "shortPath": "components/link-list/index.css",
-            "normalizedShortPath": "components-link-list-index-css",
             "index": 1
           },
           {
@@ -179,8 +151,6 @@
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
-            "shortPath": "components/link-list/index.hbs",
-            "normalizedShortPath": "components-link-list-index",
             "index": 1
           },
           {
@@ -188,14 +158,10 @@
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
-            "shortPath": "components/link-list/mocks.json",
-            "normalizedShortPath": "components-link-list-mocks-json",
             "index": 1
           }
         ],
         "type": "directory",
-        "shortPath": "components/link-list",
-        "normalizedShortPath": "components-link-list",
         "variations": [
           {
             "name": "Link list",
@@ -233,8 +199,6 @@
             "name": "index.css",
             "extension": ".css",
             "type": "file",
-            "shortPath": "components/rte/index.css",
-            "normalizedShortPath": "components-rte-index-css",
             "index": 1
           },
           {
@@ -242,8 +206,6 @@
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
-            "shortPath": "components/rte/index.hbs",
-            "normalizedShortPath": "components-rte-index",
             "index": 1
           },
           {
@@ -251,14 +213,10 @@
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
-            "shortPath": "components/rte/mocks.json",
-            "normalizedShortPath": "components-rte-mocks-json",
             "index": 1
           }
         ],
         "type": "directory",
-        "shortPath": "components/rte",
-        "normalizedShortPath": "components-rte",
         "variations": [
           {
             "name": "RTE element",
@@ -271,8 +229,6 @@
       }
     ],
     "type": "directory",
-    "shortPath": "components",
-    "normalizedShortPath": "components",
     "variations": [],
     "index": 0
   },
@@ -281,8 +237,6 @@
     "name": "index.css",
     "extension": ".css",
     "type": "file",
-    "shortPath": "index.css",
-    "normalizedShortPath": "index-css",
     "index": -1
   },
   {
@@ -290,8 +244,6 @@
     "name": "index.js",
     "extension": ".js",
     "type": "file",
-    "shortPath": "index.js",
-    "normalizedShortPath": "index-js",
     "index": -1
   },
   {
@@ -299,8 +251,6 @@
     "name": "reset.css",
     "extension": ".css",
     "type": "file",
-    "shortPath": "reset.css",
-    "normalizedShortPath": "reset-css",
     "index": -1
   },
   {
@@ -320,8 +270,6 @@
                 "name": "index.css",
                 "extension": ".css",
                 "type": "file",
-                "shortPath": "templates/_includes/footer/index.css",
-                "normalizedShortPath": "templates--includes-footer-index-css",
                 "index": 2
               },
               {
@@ -329,14 +277,10 @@
                 "name": "index.hbs",
                 "extension": ".hbs",
                 "type": "file",
-                "shortPath": "templates/_includes/footer/index.hbs",
-                "normalizedShortPath": "templates--includes-footer-index",
                 "index": 2
               }
             ],
             "type": "directory",
-            "shortPath": "templates/_includes/footer",
-            "normalizedShortPath": "templates--includes-footer",
             "variations": [{ "name": "default", "data": {} }],
             "index": 2
           },
@@ -349,8 +293,6 @@
                 "name": "index.css",
                 "extension": ".css",
                 "type": "file",
-                "shortPath": "templates/_includes/header/index.css",
-                "normalizedShortPath": "templates--includes-header-index-css",
                 "index": 2
               },
               {
@@ -358,21 +300,15 @@
                 "name": "index.hbs",
                 "extension": ".hbs",
                 "type": "file",
-                "shortPath": "templates/_includes/header/index.hbs",
-                "normalizedShortPath": "templates--includes-header-index",
                 "index": 2
               }
             ],
             "type": "directory",
-            "shortPath": "templates/_includes/header",
-            "normalizedShortPath": "templates--includes-header",
             "variations": [{ "name": "default", "data": {} }],
             "index": 2
           }
         ],
         "type": "directory",
-        "shortPath": "templates/_includes",
-        "normalizedShortPath": "templates--includes",
         "variations": [],
         "index": 1
       },
@@ -385,8 +321,6 @@
             "name": "index.css",
             "extension": ".css",
             "type": "file",
-            "shortPath": "templates/homepage/index.css",
-            "normalizedShortPath": "templates-homepage-index-css",
             "index": 1
           },
           {
@@ -394,8 +328,6 @@
             "name": "index.hbs",
             "extension": ".hbs",
             "type": "file",
-            "shortPath": "templates/homepage/index.hbs",
-            "normalizedShortPath": "templates-homepage-index",
             "index": 1
           },
           {
@@ -403,14 +335,10 @@
             "name": "mocks.json",
             "extension": ".json",
             "type": "file",
-            "shortPath": "templates/homepage/mocks.json",
-            "normalizedShortPath": "templates-homepage-mocks-json",
             "index": 1
           }
         ],
         "type": "directory",
-        "shortPath": "templates/homepage",
-        "normalizedShortPath": "templates-homepage",
         "variations": [
           {
             "name": "Homepage",
@@ -437,8 +365,6 @@
       }
     ],
     "type": "directory",
-    "shortPath": "templates",
-    "normalizedShortPath": "templates",
     "variations": [],
     "index": 0
   }

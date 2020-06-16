@@ -4,15 +4,14 @@
     "name": "components",
     "fullPath": "/roundup/tests/src/components",
     "index": 0,
-    "id": "components",
+    "id": "-roundup-tests-src-components",
     "children": [
       {
         "type": "directory",
         "name": "button",
-        "fullPath": "/roundup/tests/src/components/button/index.hbs",
-        "shortPath": "components/button/index.hbs",
-        "normalizedShortPath": "components-button-index",
-        "extension": ".hbs",
+        "fullPath": "/roundup/tests/src/components/button",
+        "shortPath": "components/button",
+        "normalizedShortPath": "components-button",
         "variations": [
           { "name": "Button", "data": { "label": "Regular button" } },
           {
@@ -41,30 +40,28 @@
           }
         ],
         "index": 1,
-        "id": "components-button-index-hbs"
+        "id": "-roundup-tests-src-components-button"
       },
       {
         "type": "directory",
         "name": "headline",
-        "fullPath": "/roundup/tests/src/components/headline/index.hbs",
-        "shortPath": "components/headline/index.hbs",
-        "normalizedShortPath": "components-headline-index",
-        "extension": ".hbs",
+        "fullPath": "/roundup/tests/src/components/headline",
+        "shortPath": "components/headline",
+        "normalizedShortPath": "components-headline",
         "variations": [
           { "name": "2", "data": { "type": "2", "copy": "Headline 2" } },
           { "name": "3", "data": { "type": "3", "copy": "Headline 3" } },
           { "name": "4", "data": { "type": "4", "copy": "Headline 4" } }
         ],
         "index": 1,
-        "id": "components-headline-index-hbs"
+        "id": "-roundup-tests-src-components-headline"
       },
       {
         "type": "directory",
         "name": "link",
-        "fullPath": "/roundup/tests/src/components/link/index.hbs",
-        "shortPath": "components/link/index.hbs",
-        "normalizedShortPath": "components-link-index",
-        "extension": ".hbs",
+        "fullPath": "/roundup/tests/src/components/link",
+        "shortPath": "components/link",
+        "normalizedShortPath": "components-link",
         "variations": [
           {
             "name": "Link",
@@ -72,15 +69,14 @@
           }
         ],
         "index": 1,
-        "id": "components-link-index-hbs"
+        "id": "-roundup-tests-src-components-link"
       },
       {
         "type": "directory",
         "name": "link-list",
-        "fullPath": "/roundup/tests/src/components/link-list/index.hbs",
-        "shortPath": "components/link-list/index.hbs",
-        "normalizedShortPath": "components-link-list-index",
-        "extension": ".hbs",
+        "fullPath": "/roundup/tests/src/components/link-list",
+        "shortPath": "components/link-list",
+        "normalizedShortPath": "components-link-list",
         "variations": [
           {
             "name": "Link list",
@@ -108,15 +104,14 @@
           }
         ],
         "index": 1,
-        "id": "components-link-list-index-hbs"
+        "id": "-roundup-tests-src-components-link-list"
       },
       {
         "type": "directory",
         "name": "rte",
-        "fullPath": "/roundup/tests/src/components/rte/index.hbs",
-        "shortPath": "components/rte/index.hbs",
-        "normalizedShortPath": "components-rte-index",
-        "extension": ".hbs",
+        "fullPath": "/roundup/tests/src/components/rte",
+        "shortPath": "components/rte",
+        "normalizedShortPath": "components-rte",
         "variations": [
           {
             "name": "RTE element",
@@ -126,7 +121,7 @@
           }
         ],
         "index": 1,
-        "id": "components-rte-index-hbs"
+        "id": "-roundup-tests-src-components-rte"
       }
     ]
   },
@@ -135,46 +130,43 @@
     "name": "templates",
     "fullPath": "/roundup/tests/src/templates",
     "index": 0,
-    "id": "templates",
+    "id": "-roundup-tests-src-templates",
     "children": [
       {
         "type": "directory",
         "name": "_includes",
         "fullPath": "/roundup/tests/src/templates/_includes",
         "index": 1,
-        "id": "templates--includes",
+        "id": "-roundup-tests-src-templates--includes",
         "children": [
           {
             "type": "directory",
             "name": "footer",
-            "fullPath": "/roundup/tests/src/templates/_includes/footer/index.hbs",
-            "shortPath": "templates/_includes/footer/index.hbs",
-            "normalizedShortPath": "templates--includes-footer-index",
-            "extension": ".hbs",
+            "fullPath": "/roundup/tests/src/templates/_includes/footer",
+            "shortPath": "templates/_includes/footer",
+            "normalizedShortPath": "templates--includes-footer",
             "variations": [{ "name": "default", "data": {} }],
             "index": 2,
-            "id": "templates--includes-footer-index-hbs"
+            "id": "-roundup-tests-src-templates--includes-footer"
           },
           {
             "type": "directory",
             "name": "header",
-            "fullPath": "/roundup/tests/src/templates/_includes/header/index.hbs",
-            "shortPath": "templates/_includes/header/index.hbs",
-            "normalizedShortPath": "templates--includes-header-index",
-            "extension": ".hbs",
+            "fullPath": "/roundup/tests/src/templates/_includes/header",
+            "shortPath": "templates/_includes/header",
+            "normalizedShortPath": "templates--includes-header",
             "variations": [{ "name": "default", "data": {} }],
             "index": 2,
-            "id": "templates--includes-header-index-hbs"
+            "id": "-roundup-tests-src-templates--includes-header"
           }
         ]
       },
       {
         "type": "directory",
         "name": "homepage",
-        "fullPath": "/roundup/tests/src/templates/homepage/index.hbs",
-        "shortPath": "templates/homepage/index.hbs",
-        "normalizedShortPath": "templates-homepage-index",
-        "extension": ".hbs",
+        "fullPath": "/roundup/tests/src/templates/homepage",
+        "shortPath": "templates/homepage",
+        "normalizedShortPath": "templates-homepage",
         "variations": [
           {
             "name": "Homepage",
@@ -198,7 +190,7 @@
           }
         ],
         "index": 1,
-        "id": "templates-homepage-index-hbs"
+        "id": "-roundup-tests-src-templates-homepage"
       }
     ]
   }

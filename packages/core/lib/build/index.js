@@ -13,9 +13,8 @@ const appConfig = require("../config.json");
  */
 module.exports = (app) => {
   const config = { ...app.get("config") };
-  const { build, files } = config;
+  const { build } = config;
   const buildFolder = build.folder;
-  const { extension } = files.templates;
 
   config.ui.validations.accessibility = false;
   config.ui.validations.html = false;
@@ -66,14 +65,12 @@ module.exports = (app) => {
     for (const file of partials) {
       promises.push(
         new Promise((resolve) => {
-          buildComponent({ file, buildFolder, app, extension }).then(
-            (component) => {
-              for (const path of getFilePathForJsonOutput(component)) {
-                paths.push(path);
-              }
-              resolve();
+          buildComponent({ file, buildFolder, app }).then((component) => {
+            for (const path of getFilePathForJsonOutput(component)) {
+              paths.push(path);
             }
-          );
+            resolve();
+          });
         })
       );
     }
@@ -342,7 +339,7 @@ module.exports = (app) => {
           render.renderComponent({
             app,
             res: app,
-            file,
+            file: path.dirname(file),
             variation,
             embedded,
             cb: (response) => {
@@ -364,7 +361,7 @@ module.exports = (app) => {
         render.renderMainWithComponent({
           app,
           res: app,
-          file,
+          file: path.dirname(file),
           variation,
           cb: (response) => {
             fs.writeFile(
@@ -390,14 +387,12 @@ module.exports = (app) => {
    * @param {string} obj.file - the template file path
    * @param {string} obj.buildFolder
    * @param {require('express').default} obj.app
-   * @param {string} obj.extension - the extension of the template file
    * @returns {Promise}
    */
-  function buildComponent({ file, buildFolder, app, extension }) {
+  function buildComponent({ file, buildFolder, app }) {
     const promises = [];
-    const normalizedFileName = helpers.normalizeString(
-      file.replace(`.${extension}`, "")
-    );
+    const normalizedFileName = helpers.normalizeString(path.dirname(file));
+
     const data = app.get("state").fileContents[
       helpers.getDataPathFromTemplatePath(
         app,
@@ -410,7 +405,7 @@ module.exports = (app) => {
         render.renderMainWithComponent({
           app,
           res: app,
-          file,
+          file: path.dirname(file),
           cb: (response) => {
             fs.writeFile(
               path.resolve(`${buildFolder}/show-${normalizedFileName}.html`),
@@ -428,7 +423,7 @@ module.exports = (app) => {
           render.renderComponentVariations({
             app,
             res: app,
-            file,
+            file: path.dirname(file),
             embedded,
             cb: (response) => {
               fs.writeFile(

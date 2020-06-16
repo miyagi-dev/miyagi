@@ -3,6 +3,7 @@
  * @module init/router
  */
 
+const path = require("path");
 const helpers = require("../helpers.js");
 const config = require("../config.json");
 const render = require("../render");
@@ -11,7 +12,12 @@ function getDataForComponent(app, component) {
   return app.get("state").fileContents[
     helpers.getFullPathFromShortPath(
       app,
-      helpers.getDataPathFromTemplatePath(app, component)
+      path.join(
+        component,
+        `${app.get("config").files.mocks.name}.${
+          app.get("config").files.mocks.extension
+        }`
+      )
     )
   ];
 }
@@ -19,7 +25,9 @@ function getDataForComponent(app, component) {
 function checkIfRequestedComponentIsValid(app, component) {
   const { partials } = app.get("state");
 
-  return partials[component] && partials[component] !== "undefined";
+  return Object.keys(partials)
+    .map((partial) => path.dirname(partial))
+    .includes(component);
 }
 
 function checkIfDataIncludesVariation(data, variation) {

@@ -9,11 +9,7 @@ jest.mock("../../../../lib/state/menu/structure.js", () => {
   };
 });
 
-jest.mock("process", () => {
-  return {
-    cwd: () => "/roundup/tests",
-  };
-});
+process.cwd = () => "/roundup/tests";
 
 afterEach(() => {
   jest.resetModules();
@@ -35,7 +31,7 @@ describe("state/menu/index", () => {
           },
         },
         components: {
-          folder: "/",
+          folder: "src/",
         },
       })
     );

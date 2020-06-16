@@ -131,5 +131,4 @@ Renders and builds a variation
 | obj.file | <code>string</code> | the template file path |
 | obj.buildFolder | <code>string</code> |  |
 | obj.app | <code>require(&#x27;express&#x27;).default</code> |  |
-| obj.extension | <code>string</code> | the extension of the template file |
 

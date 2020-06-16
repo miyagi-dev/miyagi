@@ -372,6 +372,16 @@ function mergeRootDataWithVariationData(rootData, variationData) {
   return deepMerge(rootData, variationData);
 }
 
+function getTemplateFilePathFromDirectoryPath(app, directoryPath) {
+  return path.join(
+    directoryPath,
+    `${helpers.getResolvedFileName(
+      app.get("config").files.templates.name,
+      path.basename(directoryPath)
+    )}.${app.get("config").files.templates.extension}`
+  );
+}
+
 module.exports = {
   extendTemplateData,
   resolveData,
@@ -383,4 +393,5 @@ module.exports = {
   overwriteJsonLinksWithJsonData,
   overwriteTplLinksWithTplContent,
   overwriteRenderKey,
+  getTemplateFilePathFromDirectoryPath,
 };

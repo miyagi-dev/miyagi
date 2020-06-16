@@ -15,6 +15,7 @@ const {
   getComponentErrorHtml,
   getDataForRenderFunction,
   getFallbackData,
+  getTemplateFilePathFromDirectoryPath,
 } = require("./helpers.js");
 
 async function renderVariations({
@@ -30,7 +31,6 @@ async function renderVariations({
 }) {
   const variations = [];
   const promises = [];
-  const { extension } = app.get("config").files.templates;
   const validatedSchema = validateSchema(app, file, context);
 
   for (let i = 0, len = context.length; i < len; i += 1) {
@@ -41,7 +41,7 @@ async function renderVariations({
           file,
           getDataForRenderFunction(app, entry.data),
           (err, result) => {
-            const baseName = file.replace(`.${extension}`, "");
+            const baseName = path.dirname(file);
             const variation = context[i].name;
 
             variations[i] = {
@@ -49,7 +49,7 @@ async function renderVariations({
                 ? `component-${helpers.normalizeString(
                     baseName
                   )}-${helpers.normalizeString(variation)}-embedded.html`
-                : `/component?file=${file}&variation=${variation}&embedded=true`,
+                : `/component?file=${baseName}&variation=${variation}&embedded=true`,
               file,
               html:
                 typeof result === "string"
@@ -290,10 +290,15 @@ async function renderMainWith404({ app, res, file, variation }) {
     roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
     isBuild: app.get("config").isBuild,
     theme: app.get("config").ui.theme,
+    indexPath: app.get("config").isBuild
+      ? "component-all-embedded.html"
+      : "/component?file=all&embedded=true",
   });
 }
 
 async function renderComponent({ app, res, file, variation, embedded, cb }) {
+  file = getTemplateFilePathFromDirectoryPath(app, file);
+
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
       helpers.getFullPathFromShortPath(
@@ -336,10 +341,12 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
   if (embedded) {
     if (app.get("config").isBuild) {
       standaloneUrl = `component-${helpers.normalizeString(
-        file.replace(`.${app.get("config").files.templates.extension}`, "")
+        path.dirname(file)
       )}-${helpers.normalizeString(variation)}.html`;
     } else {
-      standaloneUrl = `/component?file=${file}&variation=${variation}`;
+      standaloneUrl = `/component?file=${path.dirname(
+        file
+      )}&variation=${variation}`;
     }
   } else {
     standaloneUrl = null;
@@ -356,6 +363,8 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
 }
 
 async function renderComponentVariations({ app, res, file, cb }) {
+  file = getTemplateFilePathFromDirectoryPath(app, file);
+
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
       helpers.getFullPathFromShortPath(
@@ -524,6 +533,7 @@ async function renderComponentOverview({ app, res, cb }) {
     components = [];
 
     for (const partialPath in app.get("state").partials) {
+      const directoryPath = path.dirname(partialPath);
       const componentInfo =
         app.get("state").fileContents[
           helpers.getFullPathFromShortPath(
@@ -557,16 +567,11 @@ async function renderComponentOverview({ app, res, cb }) {
       }
 
       components.push([
-        partialPath,
+        directoryPath,
         componentData,
-        componentInfo.name ||
-          path.basename(
-            path.dirname(
-              partialPath,
-              `.${app.get("config").files.templates.extension}`
-            )
-          ),
+        componentInfo.name || path.basename(directoryPath),
         partialPath.split(path.sep).slice(0, -2),
+        partialPath,
       ]);
     }
 
@@ -574,7 +579,7 @@ async function renderComponentOverview({ app, res, cb }) {
       const component = components[i];
       promises.push(
         new Promise((resolve) => {
-          const [componentPath] = component;
+          const [componentPath, , , , partial] = component;
 
           let [, componentData = {}] = component;
           resolveData(app, componentData).then(async (data) => {
@@ -585,10 +590,11 @@ async function renderComponentOverview({ app, res, cb }) {
             );
 
             app.render(
-              componentPath,
+              partial,
               getDataForRenderFunction(app, data),
               (err, result) => {
                 const [file, , name, folders] = components[i];
+
                 arr[i] = {
                   url: app.get("config").isBuild
                     ? `component-${helpers.normalizeString(

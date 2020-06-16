@@ -99,13 +99,6 @@ function getVariations(app, obj) {
 function updateSourceObject(app, obj) {
   const o = { ...obj };
 
-  if (o.path) {
-    o.shortPath = helpers.getShortPathFromFullPath(app, o.path);
-    o.normalizedShortPath = helpers.normalizeString(
-      o.shortPath.replace(`.${app.get("config").files.templates.extension}`, "")
-    );
-  }
-
   if (o.children) {
     o.variations = getVariations(app, o);
     o.children = o.children.map((child) => updateSourceObject(app, child));

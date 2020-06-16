@@ -26,21 +26,27 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
   );
 }
 
-function getDataForLinkedDirectory(app, directory, partial) {
+function getDataForLinkedDirectory(app, directory) {
   const info = app.get("state").fileContents[
-    helpers.getInfoPathFromTemplatePath(app, partial.path)
+    path.join(
+      directory.path,
+      `${app.get("config").files.info.name}.${
+        app.get("config").files.info.extension
+      }`
+    )
   ];
+  const shortPath = helpers.getShortPathFromFullPath(app, directory.path);
+  const normalizedShortPath = helpers.normalizeString(shortPath);
 
   return {
     type: directory.type,
     name: info && info.name ? info.name : directory.name,
-    fullPath: partial.path,
-    shortPath: partial.shortPath,
-    normalizedShortPath: partial.normalizedShortPath,
-    extension: partial.extension,
+    fullPath: directory.path,
+    shortPath,
+    normalizedShortPath,
     variations: directory.variations || [],
     index: directory.index,
-    id: helpers.normalizeString(partial.shortPath),
+    id: helpers.normalizeString(directory.path),
   };
 }
 
@@ -50,7 +56,7 @@ function getDataForDirectory(directory) {
     name: directory.name,
     fullPath: directory.path,
     index: directory.index,
-    id: helpers.normalizeString(directory.shortPath),
+    id: helpers.normalizeString(directory.path),
   };
 }
 

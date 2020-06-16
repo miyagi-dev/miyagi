@@ -191,16 +191,18 @@ describe("lib/render/index", () => {
         await render.renderMainWithComponent({
           app,
           res,
-          file: component,
+          file: path.dirname(component),
           variation,
         });
 
         expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
-          iframeSrc: `/component?file=${component}&variation=${variation}&embedded=true`,
+          iframeSrc: `/component?file=${path.dirname(
+            component
+          )}&variation=${variation}&embedded=true`,
           indexPath: "/component?file=all&embedded=true",
-          requestedComponent: component,
+          requestedComponent: path.dirname(component),
           requestedVariation: variation,
           hideTests: false,
           theme: {},
@@ -220,14 +222,18 @@ describe("lib/render/index", () => {
       test("renders index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderMainWithComponent({ app, res, file: component });
+        await render.renderMainWithComponent({
+          app,
+          res,
+          file: path.dirname(component),
+        });
 
         expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
-          iframeSrc: `/component?file=${component}&embedded=true`,
+          iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
           indexPath: "/component?file=all&embedded=true",
-          requestedComponent: component,
+          requestedComponent: path.dirname(component),
           requestedVariation: undefined,
           hideTests: false,
           theme: {},
@@ -252,14 +258,16 @@ describe("lib/render/index", () => {
         await render.renderMainWith404({
           app,
           res,
-          file: component,
+          file: path.dirname(component),
           variation,
         });
 
         expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
-          iframeSrc: `/component?file=${component}&variation=${variation}&embedded=true`,
+          iframeSrc: `/component?file=${path.dirname(
+            component
+          )}&variation=${variation}&embedded=true`,
           requestedComponent: null,
           requestedVariation: null,
           hideTests: true,
@@ -271,6 +279,7 @@ describe("lib/render/index", () => {
           roundupDev: false,
           roundupProd: true,
           isBuild: undefined,
+          indexPath: "/component?file=all&embedded=true",
         });
 
         done();
@@ -281,12 +290,16 @@ describe("lib/render/index", () => {
       test("renders index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderMainWith404({ app, res, file: component });
+        await render.renderMainWith404({
+          app,
+          res,
+          file: path.dirname(component),
+        });
 
         expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
-          iframeSrc: `/component?file=${component}&embedded=true`,
+          iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
           requestedComponent: null,
           requestedVariation: null,
           hideTests: true,
@@ -298,6 +311,7 @@ describe("lib/render/index", () => {
           roundupDev: false,
           roundupProd: true,
           isBuild: undefined,
+          indexPath: "/component?file=all&embedded=true",
         });
 
         done();
@@ -311,7 +325,11 @@ describe("lib/render/index", () => {
         addGlobalData();
         res.render = jest.fn();
 
-        await render.renderComponent({ app, res, file: component });
+        await render.renderComponent({
+          app,
+          res,
+          file: path.dirname(component),
+        });
 
         expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
@@ -338,7 +356,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: component,
+          file: path.dirname(component),
           variation: "variation1",
         });
 
@@ -367,7 +385,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: "component2/index.hbs",
+          file: "component2",
         });
 
         expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
@@ -395,7 +413,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: "component8/index.hbs",
+          file: "component8",
           variation: "variation1",
         });
 
@@ -424,7 +442,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: "component5/index.hbs",
+          file: "component5",
           variation: "component5",
         });
 
@@ -453,7 +471,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: component,
+          file: path.dirname(component),
           variation: "component1",
           embedded: true,
         });
@@ -463,7 +481,9 @@ describe("lib/render/index", () => {
           html: "component1\n",
           htmlValidation: true,
           accessibilityValidation: true,
-          standaloneUrl: `/component?file=${component}&variation=component1`,
+          standaloneUrl: `/component?file=${path.dirname(
+            component
+          )}&variation=component1`,
           standalone: false,
           dev: false,
           prod: false,
@@ -483,7 +503,7 @@ describe("lib/render/index", () => {
         await render.renderComponent({
           app,
           res,
-          file: component,
+          file: path.dirname(component),
           embedded: false,
         });
 
@@ -515,7 +535,7 @@ describe("lib/render/index", () => {
         await render.renderComponentVariations({
           app,
           res,
-          file: "component1/index.hbs",
+          file: "component1",
           embedded: true,
         });
 
@@ -526,22 +546,21 @@ describe("lib/render/index", () => {
               file: "component1/index.hbs",
               html: "component1global\n",
               variation: "default",
-              url:
-                "/component?file=component1/index.hbs&variation=default&embedded=true",
+              url: "/component?file=component1&variation=default&embedded=true",
             },
             {
               file: "component1/index.hbs",
               html: "component11global\n",
               variation: "variation1",
               url:
-                "/component?file=component1/index.hbs&variation=variation1&embedded=true",
+                "/component?file=component1&variation=variation1&embedded=true",
             },
             {
               file: "component1/index.hbs",
               html: "component12global\n",
               variation: "variation2",
               url:
-                "/component?file=component1/index.hbs&variation=variation2&embedded=true",
+                "/component?file=component1&variation=variation2&embedded=true",
             },
           ],
           dev: false,
@@ -571,7 +590,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: component,
+            file: path.dirname(component),
             embedded: true,
           });
 
@@ -585,21 +604,21 @@ describe("lib/render/index", () => {
                 html: "component1\n",
                 variation: "default",
                 url:
-                  "/component?file=component1/index.hbs&variation=default&embedded=true",
+                  "/component?file=component1&variation=default&embedded=true",
               },
               {
                 file: "component1/index.hbs",
                 html: "component11\n",
                 variation: "variation1",
                 url:
-                  "/component?file=component1/index.hbs&variation=variation1&embedded=true",
+                  "/component?file=component1&variation=variation1&embedded=true",
               },
               {
                 file: "component1/index.hbs",
                 html: "component12\n",
                 variation: "variation2",
                 url:
-                  "/component?file=component1/index.hbs&variation=variation2&embedded=true",
+                  "/component?file=component1&variation=variation2&embedded=true",
               },
             ],
             dev: false,
@@ -628,7 +647,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component3/index.hbs",
+            file: "component3",
             embedded: true,
           });
 
@@ -642,14 +661,14 @@ describe("lib/render/index", () => {
                 html: "component31\n",
                 variation: "variation1",
                 url:
-                  "/component?file=component3/index.hbs&variation=variation1&embedded=true",
+                  "/component?file=component3&variation=variation1&embedded=true",
               },
               {
                 file: "component3/index.hbs",
                 html: "component32\n",
                 variation: "variation2",
                 url:
-                  "/component?file=component3/index.hbs&variation=variation2&embedded=true",
+                  "/component?file=component3&variation=variation2&embedded=true",
               },
             ],
             dev: false,
@@ -678,7 +697,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component6/index.hbs",
+            file: "component6",
             embedded: true,
           });
 
@@ -693,7 +712,7 @@ describe("lib/render/index", () => {
                   '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
                 variation: "variation1",
                 url:
-                  "/component?file=component6/index.hbs&variation=variation1&embedded=true",
+                  "/component?file=component6&variation=variation1&embedded=true",
               },
             ],
             dev: false,
@@ -722,7 +741,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component7/index.hbs",
+            file: "component7",
             embedded: true,
           });
 
@@ -735,8 +754,7 @@ describe("lib/render/index", () => {
                 file: "component7/index.hbs",
                 html: "component7\n",
                 variation: "foo",
-                url:
-                  "/component?file=component7/index.hbs&variation=foo&embedded=true",
+                url: "/component?file=component7&variation=foo&embedded=true",
               },
             ],
             dev: false,
@@ -764,7 +782,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component9/index.hbs",
+            file: "component9",
             embedded: true,
           });
 
@@ -778,14 +796,14 @@ describe("lib/render/index", () => {
                 html: "component9\n",
                 variation: "default",
                 url:
-                  "/component?file=component9/index.hbs&variation=default&embedded=true",
+                  "/component?file=component9&variation=default&embedded=true",
               },
               {
                 file: "component9/index.hbs",
                 html: "component9\n",
                 variation: "variation1",
                 url:
-                  "/component?file=component9/index.hbs&variation=variation1&embedded=true",
+                  "/component?file=component9&variation=variation1&embedded=true",
               },
             ],
             dev: false,
@@ -815,7 +833,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component2/index.hbs",
+            file: "component2",
             embedded: true,
           });
 
@@ -839,7 +857,7 @@ describe("lib/render/index", () => {
                 file: "component2/index.hbs",
                 html: "component2\n",
                 url:
-                  "/component?file=component2/index.hbs&variation=default&embedded=true",
+                  "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
               },
             ],
@@ -857,7 +875,7 @@ describe("lib/render/index", () => {
           await render.renderComponentVariations({
             app,
             res,
-            file: "component2/index.hbs",
+            file: "component2",
             embedded: false,
           });
 
@@ -881,7 +899,7 @@ describe("lib/render/index", () => {
                 file: "component2/index.hbs",
                 html: "component2\n",
                 url:
-                  "/component?file=component2/index.hbs&variation=default&embedded=true",
+                  "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
               },
             ],
@@ -900,7 +918,7 @@ describe("lib/render/index", () => {
         await render.renderComponentVariations({
           app,
           res,
-          file: "component4/index.hbs",
+          file: "component4",
         });
 
         expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
@@ -918,8 +936,7 @@ describe("lib/render/index", () => {
             {
               file: "component4/index.hbs",
               html: "component4\n",
-              url:
-                "/component?file=component4/index.hbs&variation=default&embedded=true",
+              url: "/component?file=component4&variation=default&embedded=true",
               variation: "default",
             },
           ],
@@ -948,44 +965,44 @@ describe("lib/render/index", () => {
               name: "component1",
               folders: [],
               html: "component1global\n",
-              url: "/component?file=component1/index.hbs&embedded=true",
+              url: "/component?file=component1&embedded=true",
             },
             {
               name: "component2",
               folders: [],
               html: "component2\n",
-              url: "/component?file=component2/index.hbs&embedded=true",
+              url: "/component?file=component2&embedded=true",
             },
             {
               name: "component3",
               folders: [],
               html: "component31\n",
-              url: "/component?file=component3/index.hbs&embedded=true",
+              url: "/component?file=component3&embedded=true",
             },
             {
               name: "component4",
               folders: [],
               html: "component4\n",
-              url: "/component?file=component4/index.hbs&embedded=true",
+              url: "/component?file=component4&embedded=true",
             },
             {
               name: "component6",
               folders: [],
               html:
                 '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6/index.hbs&embedded=true",
+              url: "/component?file=component6&embedded=true",
             },
             {
               name: "component7",
               folders: [],
               html: "component7\n",
-              url: "/component?file=component7/index.hbs&embedded=true",
+              url: "/component?file=component7&embedded=true",
             },
             {
               name: "component8",
               folders: [],
               html: "component8\n",
-              url: "/component?file=component8/index.hbs&embedded=true",
+              url: "/component?file=component8&embedded=true",
             },
           ],
           theme: {},
@@ -1017,44 +1034,44 @@ describe("lib/render/index", () => {
               name: "component1",
               folders: [],
               html: "component1\n",
-              url: "/component?file=component1/index.hbs&embedded=true",
+              url: "/component?file=component1&embedded=true",
             },
             {
               name: "component2",
               folders: [],
               html: "component2\n",
-              url: "/component?file=component2/index.hbs&embedded=true",
+              url: "/component?file=component2&embedded=true",
             },
             {
               name: "component3",
               folders: [],
               html: "component31\n",
-              url: "/component?file=component3/index.hbs&embedded=true",
+              url: "/component?file=component3&embedded=true",
             },
             {
               name: "component4",
               folders: [],
               html: "component4\n",
-              url: "/component?file=component4/index.hbs&embedded=true",
+              url: "/component?file=component4&embedded=true",
             },
             {
               name: "component6",
               folders: [],
               html:
                 '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6/index.hbs&embedded=true",
+              url: "/component?file=component6&embedded=true",
             },
             {
               name: "component7",
               folders: [],
               html: "component7\n",
-              url: "/component?file=component7/index.hbs&embedded=true",
+              url: "/component?file=component7&embedded=true",
             },
             {
               name: "component8",
               folders: [],
               html: "component8\n",
-              url: "/component?file=component8/index.hbs&embedded=true",
+              url: "/component?file=component8&embedded=true",
             },
           ],
           theme: {},
@@ -1085,44 +1102,44 @@ describe("lib/render/index", () => {
             {
               name: "component1",
               html: "component1\n",
-              url: "/component?file=component1/index.hbs&embedded=true",
+              url: "/component?file=component1&embedded=true",
               folders: [],
             },
             {
               name: "component2",
               html: "component2\n",
-              url: "/component?file=component2/index.hbs&embedded=true",
+              url: "/component?file=component2&embedded=true",
               folders: [],
             },
             {
               name: "component3",
               html: "component31\n",
-              url: "/component?file=component3/index.hbs&embedded=true",
+              url: "/component?file=component3&embedded=true",
               folders: [],
             },
             {
               name: "component4",
               html: "component4\n",
-              url: "/component?file=component4/index.hbs&embedded=true",
+              url: "/component?file=component4&embedded=true",
               folders: [],
             },
             {
               name: "component6",
               html:
                 '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6/index.hbs&embedded=true",
+              url: "/component?file=component6&embedded=true",
               folders: [],
             },
             {
               name: "component7",
               html: "component7\n",
-              url: "/component?file=component7/index.hbs&embedded=true",
+              url: "/component?file=component7&embedded=true",
               folders: [],
             },
             {
               name: "component8",
               html: "component8\n",
-              url: "/component?file=component8/index.hbs&embedded=true",
+              url: "/component?file=component8&embedded=true",
               folders: [],
             },
           ],

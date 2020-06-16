@@ -88,7 +88,7 @@ describe("lib/init/router()", () => {
 
           request(app)
             .get("/component")
-            .query(`file=${component}`)
+            .query(`file=${path.dirname(component)}`)
             .expect(() => {
               return expect(
                 render.renderComponentVariations
@@ -104,7 +104,7 @@ describe("lib/init/router()", () => {
 
           request(app)
             .get("/component")
-            .query(`file=${component}`)
+            .query(`file=${path.dirname(component)}`)
             .query(`variation=someVariation`)
             .expect(() => {
               return expect(render.renderComponent).toHaveBeenCalled();
@@ -119,7 +119,7 @@ describe("lib/init/router()", () => {
 
           request(app)
             .get("/component")
-            .query(`file=${component}`)
+            .query(`file=${path.dirname(component)}`)
             .query(`variation=invalidVariation`)
             .expect(() => {
               return expect(render.renderComponentNotFound).toHaveBeenCalled();
@@ -166,7 +166,7 @@ describe("lib/init/router()", () => {
 
           request(app)
             .get("/show")
-            .query(`file=${component}`)
+            .query(`file=${path.dirname(component)}`)
             .expect(() => {
               return expect(render.renderMainWithComponent).toHaveBeenCalled();
             })
@@ -180,7 +180,7 @@ describe("lib/init/router()", () => {
 
           request(app)
             .get("/show")
-            .query(`file=${component}`)
+            .query(`file=${path.dirname(component)}`)
             .query(`variation=someVariation`)
             .expect(() => {
               return expect(render.renderMainWithComponent).toHaveBeenCalled();
@@ -195,7 +195,7 @@ describe("lib/init/router()", () => {
 
           request(app)
             .get("/show")
-            .query(`file=${component}`)
+            .query(`file=${path.dirname(component)}`)
             .query(`variation=invalidVariation`)
             .expect(() => {
               return expect(render.renderMainWith404).toHaveBeenCalled();
