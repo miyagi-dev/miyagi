@@ -182,10 +182,15 @@ module.exports = {
    */
   fileIsDocumentationFile: function (app, filePath) {
     return (
+      filePath.replace(`${process.cwd()}/`, "") ===
+        path.join(
+          app.get("config").components.folder,
+          `README.${app.get("config").files.docs.extension}`
+        ) ||
       path.basename(filePath) ===
-      `${app.get("config").files.docs.name}.${
-        app.get("config").files.docs.extension
-      }`
+        `${app.get("config").files.docs.name}.${
+          app.get("config").files.docs.extension
+        }`
     );
   },
 

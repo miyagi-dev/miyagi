@@ -516,7 +516,7 @@ async function renderComponentOverview({ app, res, cb }) {
   const documentation = app.get("state").fileContents[
     helpers.getFullPathFromShortPath(
       app,
-      `index.${app.get("config").files.docs.extension}`
+      `README.${app.get("config").files.docs.extension}`
     )
   ];
 

@@ -44,6 +44,7 @@ async function getFilePaths(app) {
             app.get("config").files.info.extension
           }`,
           `data.${app.get("config").files.mocks.extension}`,
+          `README.${app.get("config").files.docs.extension}`,
         ])
       ) {
         return res;
