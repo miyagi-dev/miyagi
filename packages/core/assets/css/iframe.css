@@ -48,6 +48,7 @@ body {
 .HeadmanSchemaTable,
 .HeadmanInformation,
 .HeadmanDocumentation,
+.HeadmanDocumentation a,
 .Headman-sectionTitle,
 .HeadmanIframe-newTabLink {
   color: var(--Headman-color);
@@ -99,7 +100,7 @@ body {
 .HeadmanDocumentation code,
 .Headman-code {
   font-family: "Menlo", "Monaco", monospace;
-  font-size: .9em;
+  font-size: 0.9em;
 }
 
 .HeadmanStatus::before {
@@ -184,12 +185,12 @@ body {
   --size: 1.2em;
 
   height: var(--size);
-  margin-left: .5em;
+  margin-left: 0.5em;
   width: var(--size);
 }
 
 .Headman-code {
-  border: .1rem solid #ddd;
+  border: 0.1rem solid #ddd;
   padding: calc(var(--Headman-spacing) / 2);
 }
 
