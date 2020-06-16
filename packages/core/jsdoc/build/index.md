@@ -10,6 +10,8 @@ Module for creating a static build
 
 
 * [build](#module_build)
+    * [~createJsonOutputFile(paths)](#module_build..createJsonOutputFile)
+    * [~getFilePathForJsonOutput(component)](#module_build..getFilePathForJsonOutput) ⇒ <code>Array</code>
     * [~buildUserFavicon(buildFolder, faviconPath)](#module_build..buildUserFavicon) ⇒ <code>Promise</code>
     * [~buildDistDirectory(buildFolder)](#module_build..buildDistDirectory) ⇒ <code>Promise</code>
     * [~buildUserAssets(buildFolder, assetsConfig, logoPath)](#module_build..buildUserAssets) ⇒ <code>Promise</code>
@@ -17,6 +19,28 @@ Module for creating a static build
     * [~buildIndex(buildFolder, app)](#module_build..buildIndex) ⇒ <code>Promise</code>
     * [~buildVariation(obj)](#module_build..buildVariation) ⇒ <code>Promise</code>
     * [~buildComponent(obj)](#module_build..buildComponent) ⇒ <code>Promise</code>
+
+<a name="module_build..createJsonOutputFile"></a>
+
+### build~createJsonOutputFile(paths)
+Creates an "output.json" file with the given array as content
+
+**Kind**: inner method of [<code>build</code>](#module_build)  
+
+| Param | Type |
+| --- | --- |
+| paths | <code>Array</code> | 
+
+<a name="module_build..getFilePathForJsonOutput"></a>
+
+### build~getFilePathForJsonOutput(component) ⇒ <code>Array</code>
+Accepts an array with arrays and returns its values with cwd and buildFolder
+
+**Kind**: inner method of [<code>build</code>](#module_build)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| component | <code>Array</code> | An array with file paths |
 
 <a name="module_build..buildUserFavicon"></a>
 

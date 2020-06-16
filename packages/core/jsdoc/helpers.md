@@ -12,7 +12,6 @@ Module for globally used helper functions
     * [.cloneDeep(obj)](#module_helpers.cloneDeep) ⇒ <code>obj</code>
     * [.getFullPathFromShortPath(app, shortPath)](#module_helpers.getFullPathFromShortPath) ⇒ <code>string</code>
     * [.getShortPathFromFullPath(app, fullPath)](#module_helpers.getShortPathFromFullPath) ⇒ <code>string</code>
-    * [.getNormalizedShortPath(app, shortPath)](#module_helpers.getNormalizedShortPath) ⇒ <code>string</code>
     * [.getDataPathFromTemplatePath(app, filePath)](#module_helpers.getDataPathFromTemplatePath) ⇒ <code>string</code>
     * [.getDocumentationPathFromTemplatePath(app, filePath)](#module_helpers.getDocumentationPathFromTemplatePath) ⇒ <code>string</code>
     * [.getInfoPathFromTemplatePath(app, filePath)](#module_helpers.getInfoPathFromTemplatePath) ⇒ <code>string</code>
@@ -103,18 +102,6 @@ Accepts an absolute (file system based) path and returns the short path relative
 | --- | --- |
 | app | <code>require(&#x27;express&#x27;).default</code> | 
 | fullPath | <code>string</code> | 
-
-<a name="module_helpers.getNormalizedShortPath"></a>
-
-### helpers.getNormalizedShortPath(app, shortPath) ⇒ <code>string</code>
-Accepts a short path and returns the normalized version of it
-
-**Kind**: static method of [<code>helpers</code>](#module_helpers)  
-
-| Param | Type |
-| --- | --- |
-| app | <code>require(&#x27;express&#x27;).default</code> | 
-| shortPath | <code>string</code> | 
 
 <a name="module_helpers.getDataPathFromTemplatePath"></a>
 
