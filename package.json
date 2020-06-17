@@ -26,10 +26,11 @@
     "stylelint-config-standard": "^20.0.0"
   },
   "scripts": {
-    "test": "npm run test --prefix packages/core",
-    "lint": "npm run lint --prefix packages/core",
-    "docs": "mkdocs serve",
-    "jsdoc": "npm run docs --prefix packages/core"
+    "core:test": "npm run test --prefix packages/core",
+    "core:lint": "npm run lint --prefix packages/core",
+    "core:jsdoc": "npm run docs --prefix packages/core",
+    "core:build": "npm run build --prefix packages/core",
+    "docs": "mkdocs serve"
   },
   "stylelint": {
     "extends": [
@@ -38,7 +39,7 @@
     ]
   },
   "pre-commit": [
-    "test",
-    "lint"
+    "core:test",
+    "core:lint"
   ]
 }
