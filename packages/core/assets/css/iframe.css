@@ -158,7 +158,11 @@ body {
 }
 
 .RoundupError {
+  align-items: center;
   color: var(--Roundup-color-negative);
+  display: flex;
+  height: 100%;
+  justify-content: center;
 }
 
 .RoundupComponentView {
