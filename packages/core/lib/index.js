@@ -1,5 +1,6 @@
 /**
  * The roundup module
+ *
  * @module index
  */
 
@@ -32,8 +33,9 @@ require("./render/menu/variations.js");
 
 /**
  * Checks if roundup was started with `mocks` command
- * @param {Object} args
- * @returns {Boolean}
+ *
+ * @param {object} args
+ * @returns {boolean}
  */
 function argsIncludeMockGenerator(args) {
   return args._.includes("mocks");
@@ -41,8 +43,9 @@ function argsIncludeMockGenerator(args) {
 
 /**
  * Checks if roundup was started with `new` command
- * @param {Object} args
- * @returns {Boolean}
+ *
+ * @param {object} args
+ * @returns {boolean}
  */
 function argsIncludeComponentGenerator(args) {
   return args._.includes("new");
@@ -50,8 +53,9 @@ function argsIncludeComponentGenerator(args) {
 
 /**
  * Checks if roundup was started with `build` command
- * @param {Object} args
- * @returns {Boolean}
+ *
+ * @param {object} args
+ * @returns {boolean}
  */
 function argsIncludeBuild(args) {
   return args._.includes("build");
@@ -59,8 +63,9 @@ function argsIncludeBuild(args) {
 
 /**
  * Checks if roundup was started with `start` command
- * @param {Object} args
- * @returns {Boolean}
+ *
+ * @param {object} args
+ * @returns {boolean}
  */
 function argsIncludeServer(args) {
   return args._.includes("start");
@@ -68,8 +73,9 @@ function argsIncludeServer(args) {
 
 /**
  * Converts and removes unnecessary cli args
- * @param {Object} args
- * @returns {Object}
+ *
+ * @param {object} args
+ * @returns {object}
  */
 function getCliArgs(args) {
   const cliArgs = { ...args };
@@ -101,6 +107,7 @@ function getCliArgs(args) {
 
 /**
  * Returns all extensions that belong to template files found in the components folder
+ *
  * @param {Array} possibleExtensions
  * @param {string} folder
  * @param {Array} ignores
@@ -129,6 +136,7 @@ async function getAllAvailableTemplateExtensions(
 
 /**
  * Returns the template files extension that belongs to a given engine
+ *
  * @param {string} engineName
  * @returns {string}
  */
@@ -138,6 +146,7 @@ function guessExtensionFromEngine(engineName) {
 
 /**
  * Returns the engine name that belongs to a given extension
+ *
  * @param {string} extension
  * @returns {string}
  */
@@ -148,8 +157,9 @@ function guessEngineFromExtension(extension) {
 /**
  * Scans the files, tries to find template files and based on the result
  * returns an object with engine.name and files.templates.extension
- * @param {Object} config
- * @returns {Object|null}
+ *
+ * @param {object} config
+ * @returns {object|null}
  */
 async function guessEngineAndExtensionFromFiles(config) {
   const extensions = await getAllAvailableTemplateExtensions(

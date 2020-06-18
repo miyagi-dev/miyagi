@@ -8,8 +8,9 @@ const appConfig = require("../config.json");
 
 /**
  * Module for creating a static build
+ *
  * @module build
- * @param {require('express').default} obj.app
+ * @param {object} app - the express instance
  */
 module.exports = (app) => {
   const config = { ...app.get("config") };
@@ -85,6 +86,7 @@ module.exports = (app) => {
 
   /**
    * Creates an "output.json" file with the given array as content
+   *
    * @param {Array} paths
    */
   function createJsonOutputFile(paths) {
@@ -104,6 +106,7 @@ module.exports = (app) => {
 
   /**
    * Accepts an array with arrays and returns its values with cwd and buildFolder
+   *
    * @param {Array} component - An array with file paths
    * @returns {Array}
    */
@@ -127,6 +130,7 @@ module.exports = (app) => {
 
   /**
    * Copies the user favicon
+   *
    * @param {string} buildFolder
    * @param {string} faviconPath
    * @returns {Promise}
@@ -147,6 +151,7 @@ module.exports = (app) => {
 
   /**
    * Copies the dist directory
+   *
    * @param {string} buildFolder
    * @returns {Promise}
    */
@@ -162,8 +167,9 @@ module.exports = (app) => {
 
   /**
    * Copies the user assets
+   *
    * @param {string} buildFolder
-   * @param {Object} assetsConfig
+   * @param {object} assetsConfig
    * @param {string} logoPath
    * @returns {Promise}
    */
@@ -253,8 +259,9 @@ module.exports = (app) => {
 
   /**
    * Rendeers and builds the component overview
+   *
    * @param {string} buildFolder
-   * @param {require('express').default} app
+   * @param {object} app - the express instance
    * @returns {Promise}
    */
   function buildComponentOverview(buildFolder, app) {
@@ -288,8 +295,9 @@ module.exports = (app) => {
 
   /**
    * Renders and builds the index view
+   *
    * @param {string} buildFolder
-   * @param {require('express').default} app
+   * @param {object} app - the express instance
    * @returns {Promise}
    */
   function buildIndex(buildFolder, app) {
@@ -310,9 +318,10 @@ module.exports = (app) => {
 
   /**
    * Renders and builds a variation
-   * @param {Object} obj
+   *
+   * @param {object} obj
    * @param {string} obj.buildFolder
-   * @param {require('express').default} obj.app
+   * @param {object} obj.app
    * @param {string} obj.file - the template file path
    * @param {string} obj.normalizedFileName - the normalized template file path
    * @param {string} obj.variation - the variation name
@@ -383,10 +392,11 @@ module.exports = (app) => {
 
   /**
    * Renders and builds a variation
-   * @param {Object} obj
+   *
+   * @param {object} obj
    * @param {string} obj.file - the template file path
    * @param {string} obj.buildFolder
-   * @param {require('express').default} obj.app
+   * @param {object} obj.app
    * @returns {Promise}
    */
   function buildComponent({ file, buildFolder, app }) {

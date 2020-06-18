@@ -4,9 +4,9 @@
 Module for creating a static build
 
 
-| Param | Type |
-| --- | --- |
-| obj.app | <code>require(&#x27;express&#x27;).default</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| app | <code>object</code> | the express instance |
 
 
 * [build](#module_build)
@@ -75,7 +75,7 @@ Copies the user assets
 | Param | Type |
 | --- | --- |
 | buildFolder | <code>string</code> | 
-| assetsConfig | <code>Object</code> | 
+| assetsConfig | <code>object</code> | 
 | logoPath | <code>string</code> | 
 
 <a name="module_build..buildComponentOverview"></a>
@@ -85,10 +85,10 @@ Rendeers and builds the component overview
 
 **Kind**: inner method of [<code>build</code>](#module_build)  
 
-| Param | Type |
-| --- | --- |
-| buildFolder | <code>string</code> | 
-| app | <code>require(&#x27;express&#x27;).default</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| buildFolder | <code>string</code> |  |
+| app | <code>object</code> | the express instance |
 
 <a name="module_build..buildIndex"></a>
 
@@ -97,10 +97,10 @@ Renders and builds the index view
 
 **Kind**: inner method of [<code>build</code>](#module_build)  
 
-| Param | Type |
-| --- | --- |
-| buildFolder | <code>string</code> | 
-| app | <code>require(&#x27;express&#x27;).default</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| buildFolder | <code>string</code> |  |
+| app | <code>object</code> | the express instance |
 
 <a name="module_build..buildVariation"></a>
 
@@ -111,9 +111,9 @@ Renders and builds a variation
 
 | Param | Type | Description |
 | --- | --- | --- |
-| obj | <code>Object</code> |  |
+| obj | <code>object</code> |  |
 | obj.buildFolder | <code>string</code> |  |
-| obj.app | <code>require(&#x27;express&#x27;).default</code> |  |
+| obj.app | <code>object</code> |  |
 | obj.file | <code>string</code> | the template file path |
 | obj.normalizedFileName | <code>string</code> | the normalized template file path |
 | obj.variation | <code>string</code> | the variation name |
@@ -127,8 +127,8 @@ Renders and builds a variation
 
 | Param | Type | Description |
 | --- | --- | --- |
-| obj | <code>Object</code> |  |
+| obj | <code>object</code> |  |
 | obj.file | <code>string</code> | the template file path |
 | obj.buildFolder | <code>string</code> |  |
-| obj.app | <code>require(&#x27;express&#x27;).default</code> |  |
+| obj.app | <code>object</code> |  |
 

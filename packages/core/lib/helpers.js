@@ -3,12 +3,15 @@ const path = require("path");
 
 /**
  * Module for globally used helper functions
+ *
  * @module helpers
  */
 module.exports = {
   /**
    * Removes all keys starting with $ from an object
-   * @param {Object} obj
+   *
+   * @param {object} [obj] the object whose keys with $ should be removed
+   * @returns {object} the modified object
    */
   removeInternalKeys: function (obj = {}) {
     const o = {};
@@ -24,6 +27,7 @@ module.exports = {
 
   /**
    * Returns everything after the last "." of a file extension (e.g. `html.twig` -> `twig`)
+   *
    * @param {string} extension - File extension with like `twig` or `html.twig`
    * @returns {string}
    */
@@ -33,6 +37,7 @@ module.exports = {
 
   /**
    * Normalizes a string be replacing whitespace, underscore, / etc with - and lowercases it
+   *
    * @param {string} str
    * @returns {string}
    */
@@ -50,6 +55,7 @@ module.exports = {
 
   /**
    * If '<component>' is set as the file name in the config, it returns the given file name, otherwise it returns the value from the config
+   *
    * @param {string} nameInConfig - The defined name for a file in the config
    * @param {string} fileName - The actual file name
    * @returns {string}
@@ -64,8 +70,9 @@ module.exports = {
 
   /**
    * Creates a deep clone of a object using internal v8 methods
-   * @param {Object} obj
-   * @returns {obj}
+   *
+   * @param {object} obj
+   * @returns {object}
    */
   cloneDeep: function (obj) {
     return v8.deserialize(v8.serialize(obj));
@@ -73,7 +80,8 @@ module.exports = {
 
   /**
    * Accepts a path relative from the config.components.folder and returns the complete path based on the file system
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} shortPath
    * @returns {string}
    */
@@ -86,7 +94,8 @@ module.exports = {
 
   /**
    * Accepts an absolute (file system based) path and returns the short path relative from config.components.folder
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} fullPath
    * @returns {string}
    */
@@ -99,7 +108,8 @@ module.exports = {
 
   /**
    * Accepts a template file path and returns the path to the corresponding mock file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
    * @returns {string}
    */
@@ -114,7 +124,8 @@ module.exports = {
 
   /**
    * Accepts a template file path and returns the path to the corresponding documentation file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
    * @returns {string}
    */
@@ -129,7 +140,8 @@ module.exports = {
 
   /**
    * Accepts a template file path and returns the path to the corresponding info file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
    * @returns {string}
    */
@@ -144,7 +156,8 @@ module.exports = {
 
   /**
    * Accepts a template file path and returns the path to the corresponding schema file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
    * @returns {string}
    */
@@ -159,9 +172,10 @@ module.exports = {
 
   /**
    * Accepts a file path and checks if it is a mock file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   fileIsDataFile: function (app, filePath) {
     return (
@@ -176,9 +190,10 @@ module.exports = {
 
   /**
    * Accepts a file path and checks if it is a documentation file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   fileIsDocumentationFile: function (app, filePath) {
     return (
@@ -196,9 +211,10 @@ module.exports = {
 
   /**
    * Accepts a file path and checks if it is an info file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   fileIsInfoFile: function (app, filePath) {
     return (
@@ -211,9 +227,10 @@ module.exports = {
 
   /**
    * Accepts a file path and checks if it is a schema file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   fileIsSchemaFile: function (app, filePath) {
     return (
@@ -226,9 +243,10 @@ module.exports = {
 
   /**
    * Accepts a file path and checks if it is component js or css file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   fileIsAssetFile: function (app, filePath) {
     return (
@@ -247,9 +265,10 @@ module.exports = {
 
   /**
    * Accepts a file path and returns checks if it is a template file
-   * @param {require('express').default} app
+   *
+   * @param {object} app - the express instance
    * @param {string} filePath
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   fileIsTemplateFile: function (app, filePath) {
     return (

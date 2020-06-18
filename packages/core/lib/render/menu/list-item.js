@@ -1,12 +1,21 @@
 /**
  * Module for rendering a list item in the menu
+ *
  * @module render/menu/list-item
  */
 
 const classes = require("./classes.js");
 
-function render(item, content, type) {
-  return `<li class="${classes.listItem} ${classes.listItem}--${type} ${classes.listItem}--lvl${item.index}">${content}</li>`;
+/**
+ * Renders a list element with given content in the menu
+ *
+ * @param {number} index - the depth level of the list in the menu
+ * @param {string} content - the html string for the content of list item
+ * @param {string} type - can be "directory" or "variation"
+ * @returns {string} the html of the list item
+ */
+function render(index, content, type) {
+  return `<li class="${classes.listItem} ${classes.listItem}--${type} ${classes.listItem}--lvl${index}">${content}</li>`;
 }
 
 module.exports = {

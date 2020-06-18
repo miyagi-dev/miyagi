@@ -1,5 +1,6 @@
 /**
  * Module for getting a source tree of the project
+ *
  * @module state/source-tree
  */
 
@@ -9,6 +10,10 @@ const config = require("../config.json");
 const log = require("../logger.js");
 const helpers = require("../helpers.js");
 
+/**
+ * @param {object} app - the express instance
+ * @returns {object} the source tree object
+ */
 function getSourceTree(app) {
   const exclude = [];
 

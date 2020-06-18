@@ -6,9 +6,10 @@ const { messages } = require("../config.json");
 
 /**
  * Module for creating dummy mock data based on JSON schema
+ *
  * @module generator/mocks
  * @param {string} folderPath - the path for the component that should be created
- * @param {Object} filesConfig - the files configuration from the user's roundup config
+ * @param {object} filesConfig - the files configuration from the user's roundup config
  */
 module.exports = async function mockGenerator(folderPath, filesConfig) {
   if (!folderPath) {
@@ -70,8 +71,9 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
 
   /**
    * Returns the dummy mock data in the correct format
+   *
    * @param {string} fileType - the file type of the mock data that should be created
-   * @param {Object} schema - the JSON schema object
+   * @param {object} schema - the JSON schema object
    * @returns {string}
    */
   function getContent(fileType, schema) {
@@ -110,6 +112,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
 
   /**
    * Creates the mock file with the dummy mock data
+   *
    * @param {string} content - the content for the mock file
    * @param {string} mockFilePath - the path to the mock file
    */
@@ -125,6 +128,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
 
   /**
    * Reads the content of a given file
+   *
    * @param {string} filePath
    * @returns {Promise}
    */

@@ -1,5 +1,6 @@
 /**
  * Module for rendering a variation link in the menu
+ *
  * @module render/menu/variation-link
  */
 
@@ -7,7 +8,16 @@ const classes = require("./classes.js");
 const helpers = require("../../helpers.js");
 const menuHelpers = require("./helpers.js");
 
-function render(isBuild, component, variation, current) {
+/**
+ * Renders a variation link of a given component
+ *
+ * @param {boolean} isBuild - renders a build or not
+ * @param {object} component
+ * @param {object} variation
+ * @param {boolean} isCurrent
+ * @returns {string} the html with the variation link
+ */
+function render(isBuild, component, variation, isCurrent) {
   const href = isBuild
     ? `component-${component.normalizedShortPath}-${helpers.normalizeString(
         variation.name
@@ -19,7 +29,7 @@ function render(isBuild, component, variation, current) {
   return `<a class="${classes.link} ${classes.link}--lvl${component.index} ${
     classes.link
   }--variation" target="iframe" href="${href}"${
-    current ? menuHelpers.activeState : ""
+    isCurrent ? menuHelpers.activeState : ""
   }>${variation.name}</a>`;
 }
 

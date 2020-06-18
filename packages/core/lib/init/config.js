@@ -1,5 +1,6 @@
 /**
  * Module for sanitizing the user configuration and merging it with the default configuration
+ *
  * @module init/config
  */
 
@@ -10,6 +11,9 @@ const appConfig = require("../config.json");
 
 const { defaultUserConfig } = appConfig;
 
+/**
+ * @param path
+ */
 function sanitizePath(path) {
   let sanitizedPath = path;
 
@@ -30,16 +34,26 @@ function sanitizePath(path) {
   return sanitizedPath;
 }
 
+/**
+ * @param strOrArr
+ */
 function arrayfy(strOrArr) {
   const arr = typeof strOrArr === "string" ? [strOrArr] : strOrArr;
 
   return arr;
 }
 
+/**
+ * @param obj
+ */
 function objectIsRealObject(obj) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
+/**
+ * @param strOrArrOrObj
+ * @param assetType
+ */
 function getAssetFilesArray(strOrArrOrObj, assetType) {
   let files = strOrArrOrObj;
 

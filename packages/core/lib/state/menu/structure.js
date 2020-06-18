@@ -1,5 +1,6 @@
 /**
  * Module for getting the structure for the menu
+ *
  * @module state/menu/structure
  */
 
@@ -7,6 +8,12 @@ const config = require("../../config.json");
 const log = require("../../logger.js");
 const helpers = require("../../helpers.js");
 
+/**
+ * @param {object} app - the express instance
+ * @param json
+ * @param obj
+ * @param fullPath
+ */
 function handleFileResult(app, json, obj, fullPath) {
   let arr = [];
 
@@ -60,6 +67,11 @@ function handleFileResult(app, json, obj, fullPath) {
   return arr;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param obj
+ * @param jsonChild
+ */
 function getData(app, obj, jsonChild) {
   const fullPath = jsonChild.path;
   let result;
@@ -71,6 +83,10 @@ function getData(app, obj, jsonChild) {
   return handleFileResult(app, result, obj, fullPath);
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param obj
+ */
 function getVariations(app, obj) {
   const tplChild = obj.children.find(
     (o) =>
@@ -96,6 +112,11 @@ function getVariations(app, obj) {
   return [];
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param {object} obj - the source object to update
+ * @returns {object} the updated object
+ */
 function updateSourceObject(app, obj) {
   const o = { ...obj };
 
@@ -107,6 +128,14 @@ function updateSourceObject(app, obj) {
   return o;
 }
 
+/**
+ * Adds the given index to the given object and recursively calls this
+ * method for its children
+ *
+ * @param {object} obj - the object to which the index should be added
+ * @param {number} index - the index that should be added
+ * @returns {object} the updated object
+ */
 function addIndices(obj, index) {
   const o = { ...obj };
   o.index = index;

@@ -1,5 +1,6 @@
 /**
  * Module for registering static files
+ *
  * @module init/static
  */
 
@@ -7,6 +8,9 @@ const path = require("path");
 const express = require("express");
 const config = require("../config.json");
 
+/**
+ * @param {object} app - the express instance
+ */
 function registerUserAssetFolder(app) {
   const { assets } = app.get("config");
 
@@ -20,6 +24,9 @@ function registerUserAssetFolder(app) {
   }
 }
 
+/**
+ * @param {object} app - the express instance
+ */
 function registerThemeFavicon(app) {
   if (app.get("config").ui && app.get("config").ui.theme) {
     const file = app.get("config").ui.theme.favicon;
@@ -30,6 +37,9 @@ function registerThemeFavicon(app) {
   }
 }
 
+/**
+ * @param {object} app - the express instance
+ */
 function registerThemeLogo(app) {
   if (app.get("config").ui && app.get("config").ui.theme) {
     const file = app.get("config").ui.theme.logo;
@@ -43,6 +53,10 @@ function registerThemeLogo(app) {
   }
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param files
+ */
 function registerUserFiles(app, files) {
   if (app.get("config").assets) {
     for (const file of app.get("config").assets[files]) {
@@ -54,6 +68,10 @@ function registerUserFiles(app, files) {
   }
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param nodeModule
+ */
 function registerNodeModule(app, nodeModule) {
   app.use(
     `/${config.projectName}/js`,
@@ -61,6 +79,9 @@ function registerNodeModule(app, nodeModule) {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ */
 function registerAssetFolder(app) {
   const assetFolder =
     config.folders.assets[

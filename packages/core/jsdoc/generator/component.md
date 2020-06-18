@@ -6,8 +6,8 @@ Module for creating component files based on the configuration cli params
 
 | Param | Type | Description |
 | --- | --- | --- |
-| cliParams | <code>Object</code> |  |
-| config | <code>Object</code> | the user's roundup configuration object |
+| cliParams | <code>object</code> |  |
+| config | <code>object</code> | the user's roundup configuration object |
 
 
 * [generator/component](#module_generator/component)
@@ -15,7 +15,7 @@ Module for creating component files based on the configuration cli params
     * [~getFiles(fileNames, args)](#module_generator/component..getFiles) ⇒ <code>Promise</code>
     * [~getDummyFileContent(fileType)](#module_generator/component..getDummyFileContent) ⇒ <code>Promise</code>
     * [~createComponentFiles(filesConfig, componentPath, args)](#module_generator/component..createComponentFiles) ⇒ <code>Promise</code>
-    * [~getFileNames(filesConfig, componentName)](#module_generator/component..getFileNames) ⇒ <code>Object</code>
+    * [~getFileNames(filesConfig, componentName)](#module_generator/component..getFileNames) ⇒ <code>object</code>
     * [~createComponentFolder(path)](#module_generator/component..createComponentFolder) ⇒ <code>Promise</code>
 
 <a name="module_generator/component..getFullComponentPath"></a>
@@ -28,7 +28,7 @@ Returns the component folder path relative from the project root
 | Param | Type | Description |
 | --- | --- | --- |
 | componentName | <code>string</code> |  |
-| componentsFolderPath | <code>Object</code> | the components.folder from the user's roundup config |
+| componentsFolderPath | <code>object</code> | the components.folder from the user's roundup config |
 
 <a name="module_generator/component..getFiles"></a>
 
@@ -39,8 +39,8 @@ Returns an array with file names, if necessary filtered based on args
 
 | Param | Type | Description |
 | --- | --- | --- |
-| fileNames | <code>Object</code> | an object with file names for the component |
-| args | <code>Object</code> | the cli args |
+| fileNames | <code>object</code> | an object with file names for the component |
+| args | <code>object</code> | the cli args |
 
 <a name="module_generator/component..getDummyFileContent"></a>
 
@@ -51,7 +51,7 @@ Returns the dummy content for a component file
 
 | Param | Type |
 | --- | --- |
-| fileType | <code>stirng</code> | 
+| fileType | <code>string</code> | 
 
 <a name="module_generator/component..createComponentFiles"></a>
 
@@ -62,20 +62,20 @@ Creates the component files
 
 | Param | Type | Description |
 | --- | --- | --- |
-| filesConfig | <code>Object</code> | the files configuration from the user's roundup config |
+| filesConfig | <code>object</code> | the files configuration from the user's roundup config |
 | componentPath | <code>string</code> | the path of the component folder |
-| args | <code>Object</code> | the cli args |
+| args | <code>object</code> | the cli args |
 
 <a name="module_generator/component..getFileNames"></a>
 
-### generator/component~getFileNames(filesConfig, componentName) ⇒ <code>Object</code>
+### generator/component~getFileNames(filesConfig, componentName) ⇒ <code>object</code>
 Returns an object with the file names for a given component name
 
 **Kind**: inner method of [<code>generator/component</code>](#module_generator/component)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| filesConfig | <code>Object</code> | the files configuration from the user's roundup config |
+| filesConfig | <code>object</code> | the files configuration from the user's roundup config |
 | componentName | <code>string</code> | the name of the component |
 
 <a name="module_generator/component..createComponentFolder"></a>

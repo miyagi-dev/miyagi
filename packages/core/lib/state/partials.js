@@ -1,5 +1,6 @@
 /**
  * Module for getting all partials
+ *
  * @module state/partials
  */
 
@@ -7,6 +8,11 @@ const path = require("path");
 const { getFiles } = require("./helpers.js");
 const helpers = require("../helpers.js");
 
+/**
+ * @param {object} app - the express instance
+ * @param {object} dir - the directory in which to look for files
+ * @returns {Promise} gets resolved with an array of path strings
+ */
 function getFilePaths(app, dir) {
   return new Promise((resolve) => {
     resolve(

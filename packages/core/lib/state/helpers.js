@@ -1,11 +1,18 @@
 /**
  * Helper functions for all state modules
+ *
  * @module state/helpers
  */
 
 const path = require("path");
 const { readdir } = require("fs").promises;
 
+/**
+ * @param {object} dir - the directory in which to look for files
+ * @param {string[]} ignores - an array of folders which should be ignored
+ * @param {Function} check - checks if the file should be returned, returns null or the file path
+ * @returns {string[]} an array with file paths
+ */
 async function getFiles(dir, ignores, check) {
   const entries = await readdir(path.join(process.cwd(), dir), {
     withFileTypes: true,
@@ -30,8 +37,9 @@ async function getFiles(dir, ignores, check) {
 
 /**
  * Checks if a given file is not in one of the ignored folders
+ *
  * @param {string} file
- * @param {array} ignoredFolders
+ * @param {Array} ignoredFolders
  * @returns {boolean}
  */
 function isNotIgnored(file, ignoredFolders) {

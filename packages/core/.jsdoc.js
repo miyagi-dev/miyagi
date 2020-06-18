@@ -1,5 +1,5 @@
 const jsdoc2md = require("jsdoc-to-markdown");
-const fs = require("fs");
+const fs = require("fs-extra");
 const path = require("path");
 
 const inputFolder = "./lib";
@@ -8,6 +8,8 @@ const outputFolder = "./jsdoc";
 const pages = {};
 
 const templateData = jsdoc2md.getTemplateDataSync({ files: inputFile });
+
+fs.removeSync(path.join(process.cwd(), outputFolder));
 
 for (data of templateData) {
   if (pages[`${data.meta.path}/${data.meta.filename}`]) {

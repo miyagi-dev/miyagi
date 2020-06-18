@@ -1,5 +1,6 @@
 /**
  * Module for saving all relevant data
+ *
  * @module state
  */
 
@@ -8,6 +9,12 @@ const { getFileContents } = require("./file-contents.js");
 const { getMenu } = require("./menu");
 const { getSourceTree } = require("./source-tree.js");
 
+/**
+ * @param {object} app - the express instance
+ * @param {object} methods - object with keys defining what should be set
+ * @param {object} state - the state object
+ * @returns {Promise} gets resolved after the state has been updated
+ */
 function setSourceTreeAndMenu(app, methods, state) {
   return new Promise((resolve) => {
     if (methods.sourceTree) {

@@ -5,71 +5,71 @@ The roundup module
 
 
 * [index](#module_index)
-    * [~argsIncludeMockGenerator(args)](#module_index..argsIncludeMockGenerator) ⇒ <code>Boolean</code>
-    * [~argsIncludeComponentGenerator(args)](#module_index..argsIncludeComponentGenerator) ⇒ <code>Boolean</code>
-    * [~argsIncludeBuild(args)](#module_index..argsIncludeBuild) ⇒ <code>Boolean</code>
-    * [~argsIncludeServer(args)](#module_index..argsIncludeServer) ⇒ <code>Boolean</code>
-    * [~getCliArgs(args)](#module_index..getCliArgs) ⇒ <code>Object</code>
+    * [~argsIncludeMockGenerator(args)](#module_index..argsIncludeMockGenerator) ⇒ <code>boolean</code>
+    * [~argsIncludeComponentGenerator(args)](#module_index..argsIncludeComponentGenerator) ⇒ <code>boolean</code>
+    * [~argsIncludeBuild(args)](#module_index..argsIncludeBuild) ⇒ <code>boolean</code>
+    * [~argsIncludeServer(args)](#module_index..argsIncludeServer) ⇒ <code>boolean</code>
+    * [~getCliArgs(args)](#module_index..getCliArgs) ⇒ <code>object</code>
     * [~getAllAvailableTemplateExtensions(possibleExtensions, folder, ignores)](#module_index..getAllAvailableTemplateExtensions) ⇒ <code>Array</code>
     * [~guessExtensionFromEngine(engineName)](#module_index..guessExtensionFromEngine) ⇒ <code>string</code>
     * [~guessEngineFromExtension(extension)](#module_index..guessEngineFromExtension) ⇒ <code>string</code>
-    * [~guessEngineAndExtensionFromFiles(config)](#module_index..guessEngineAndExtensionFromFiles) ⇒ <code>Object</code> \| <code>null</code>
+    * [~guessEngineAndExtensionFromFiles(config)](#module_index..guessEngineAndExtensionFromFiles) ⇒ <code>object</code> \| <code>null</code>
     * [~Roundup()](#module_index..Roundup)
 
 <a name="module_index..argsIncludeMockGenerator"></a>
 
-### index~argsIncludeMockGenerator(args) ⇒ <code>Boolean</code>
+### index~argsIncludeMockGenerator(args) ⇒ <code>boolean</code>
 Checks if roundup was started with `mocks` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
 | Param | Type |
 | --- | --- |
-| args | <code>Object</code> | 
+| args | <code>object</code> | 
 
 <a name="module_index..argsIncludeComponentGenerator"></a>
 
-### index~argsIncludeComponentGenerator(args) ⇒ <code>Boolean</code>
+### index~argsIncludeComponentGenerator(args) ⇒ <code>boolean</code>
 Checks if roundup was started with `new` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
 | Param | Type |
 | --- | --- |
-| args | <code>Object</code> | 
+| args | <code>object</code> | 
 
 <a name="module_index..argsIncludeBuild"></a>
 
-### index~argsIncludeBuild(args) ⇒ <code>Boolean</code>
+### index~argsIncludeBuild(args) ⇒ <code>boolean</code>
 Checks if roundup was started with `build` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
 | Param | Type |
 | --- | --- |
-| args | <code>Object</code> | 
+| args | <code>object</code> | 
 
 <a name="module_index..argsIncludeServer"></a>
 
-### index~argsIncludeServer(args) ⇒ <code>Boolean</code>
+### index~argsIncludeServer(args) ⇒ <code>boolean</code>
 Checks if roundup was started with `start` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
 | Param | Type |
 | --- | --- |
-| args | <code>Object</code> | 
+| args | <code>object</code> | 
 
 <a name="module_index..getCliArgs"></a>
 
-### index~getCliArgs(args) ⇒ <code>Object</code>
+### index~getCliArgs(args) ⇒ <code>object</code>
 Converts and removes unnecessary cli args
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
 | Param | Type |
 | --- | --- |
-| args | <code>Object</code> | 
+| args | <code>object</code> | 
 
 <a name="module_index..getAllAvailableTemplateExtensions"></a>
 
@@ -108,7 +108,7 @@ Returns the engine name that belongs to a given extension
 
 <a name="module_index..guessEngineAndExtensionFromFiles"></a>
 
-### index~guessEngineAndExtensionFromFiles(config) ⇒ <code>Object</code> \| <code>null</code>
+### index~guessEngineAndExtensionFromFiles(config) ⇒ <code>object</code> \| <code>null</code>
 Scans the files, tries to find template files and based on the result
 returns an object with engine.name and files.templates.extension
 
@@ -116,7 +116,7 @@ returns an object with engine.name and files.templates.extension
 
 | Param | Type |
 | --- | --- |
-| config | <code>Object</code> | 
+| config | <code>object</code> | 
 
 <a name="module_index..Roundup"></a>
 

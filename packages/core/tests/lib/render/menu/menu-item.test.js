@@ -1,5 +1,9 @@
 const helpersSrc = "../../../../lib/render/menu/helpers.js";
 
+/**
+ * @param componentName
+ * @param mock
+ */
 function requireComponent(componentName, mock) {
   const component = require(`../../../../lib/render/menu/${componentName}`);
 
@@ -46,13 +50,7 @@ describe("lib/menu/elements/menu-item", () => {
 
       menuItem.render(directoryObject, request, app);
 
-      expect(menu.render).toHaveBeenCalledWith(
-        app,
-        children,
-        request,
-        id,
-        index
-      );
+      expect(menu.render).toHaveBeenCalledWith(app, children, request, index);
     });
 
     test("adds the menu html to the return value", () => {

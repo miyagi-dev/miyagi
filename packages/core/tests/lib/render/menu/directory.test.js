@@ -3,6 +3,10 @@ const config = require("../../../../lib/config.json");
 
 const helpersSrc = "../../../../lib/render/menu/helpers.js";
 
+/**
+ * @param componentName
+ * @param mock
+ */
 function requireComponent(componentName, mock) {
   const component = require(`../../../../lib/render/menu/${componentName}`);
 

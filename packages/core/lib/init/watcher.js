@@ -1,5 +1,6 @@
 /**
  * Module for watching user file changes
+ *
  * @module init/watcher
  */
 
@@ -18,6 +19,10 @@ let timeout;
 let appInstance;
 let ioInstance;
 
+/**
+ * @param reload
+ * @param reloadParent
+ */
 function changeFileCallback(reload, reloadParent) {
   if (reload && appInstance.get("config").ui.reload) {
     ioInstance.emit("fileChanged", reloadParent);
@@ -27,6 +32,10 @@ function changeFileCallback(reload, reloadParent) {
   log("success", `${messages.updatingDone}\n`);
 }
 
+/**
+ * @param triggered
+ * @param events
+ */
 function triggeredEventsIncludes(triggered, events) {
   const flattened = triggered.map((event) => event.event);
 
@@ -39,6 +48,10 @@ function triggeredEventsIncludes(triggered, events) {
   return false;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param events
+ */
 async function updateFileContents(app, events) {
   const data = helpers.cloneDeep(app.get("state").fileContents);
   const promises = [];
@@ -77,6 +90,9 @@ async function updateFileContents(app, events) {
   });
 }
 
+/**
+ *
+ */
 async function handleFileChange() {
   if (
     triggeredEvents.find(({ changedPath }) => {
@@ -174,6 +190,9 @@ async function handleFileChange() {
   }
 }
 
+/**
+ * @param srcFolderIgnores
+ */
 function getIgnoredPathsArr(srcFolderIgnores) {
   return [
     // ignore dotfiles

@@ -86,8 +86,8 @@
     "build:docs": "node .jsdoc.js",
     "docs": "npm run build:docs && mkdocs serve",
     "test": "jest --colors --detectOpenHandles",
-    "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/ && eslint tests/",
-    "fix": "eslint lib/ --fix && eslint assets/js/ --fix && eslint tests/ --fix"
+    "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/",
+    "fix": "eslint lib/ --fix && eslint assets/js/ --fix"
   },
   "jest": {
     "collectCoverage": true,

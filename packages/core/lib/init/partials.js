@@ -1,5 +1,6 @@
 /**
  * Module for registering all partials
+ *
  * @module init/partials
  */
 
@@ -10,6 +11,10 @@ const log = require("../logger.js");
 const helpers = require("../helpers.js");
 const config = require("../config.json");
 
+/**
+ * @param shortPath
+ * @param fullFilePath
+ */
 async function register(shortPath, fullFilePath) {
   return new Promise((resolve) => {
     fs.readFile(fullFilePath, "utf8", function registerPartialCallback(
@@ -32,6 +37,9 @@ async function register(shortPath, fullFilePath) {
   });
 }
 
+/**
+ *
+ */
 async function registerLayouts() {
   return Promise.all(
     ["main", "iframe", "component_iframe"].map(
@@ -49,6 +57,9 @@ async function registerLayouts() {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ */
 async function registerComponents(app) {
   return Promise.all(
     Object.entries(app.get("state").partials).map(
@@ -60,6 +71,10 @@ async function registerComponents(app) {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param fullPath
+ */
 async function registerPartial(app, fullPath) {
   return new Promise((resolve) => {
     register(helpers.getShortPathFromFullPath(app, fullPath), fullPath).then(
@@ -68,6 +83,9 @@ async function registerPartial(app, fullPath) {
   });
 }
 
+/**
+ * @param {object} app - the express instance
+ */
 async function registerAll(app) {
   const promises = [];
 

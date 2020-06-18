@@ -1,5 +1,6 @@
 /**
  * Module for printing and parsing CLI arguments
+ *
  * @module init/args
  */
 

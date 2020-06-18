@@ -1,5 +1,6 @@
 /**
  * Module for rendering a directory in the menu
+ *
  * @module render/menu/directory
  */
 
@@ -9,6 +10,14 @@ const classes = require("./classes.js");
 const helpers = require("../../helpers.js");
 const menu = require("./index.js");
 
+/**
+ * Renders a directory in the menu
+ *
+ * @param {object} app - the express instance
+ * @param {object} directory - the directory which should be rendered
+ * @param {object} request - the request object
+ * @returns {string} the directory html
+ */
 function render(app, directory, request) {
   let html = "";
 
@@ -39,7 +48,6 @@ function render(app, directory, request) {
         app,
         directory.children,
         request,
-        directory.id,
         directory.children.find((child) => typeof child.index !== "undefined")
           .index
       )}</div>`;

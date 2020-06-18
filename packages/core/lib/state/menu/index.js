@@ -1,5 +1,6 @@
 /**
  * Module for creating a menu object
+ *
  * @module state/menu
  */
 
@@ -7,6 +8,10 @@ const path = require("path");
 const getSourceStructure = require("./structure.js");
 const helpers = require("../../helpers.js");
 
+/**
+ * @param {object} app - the express instance
+ * @param directory
+ */
 function getComponentFile(app, directory) {
   return directory.children.find(
     (child) =>
@@ -18,6 +23,10 @@ function getComponentFile(app, directory) {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param directory
+ */
 function hasComponentFileWithCorrectNameAsChild(app, directory) {
   return (
     directory.children &&
@@ -26,6 +35,10 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param directory
+ */
 function getDataForLinkedDirectory(app, directory) {
   const info = app.get("state").fileContents[
     path.join(
@@ -50,6 +63,9 @@ function getDataForLinkedDirectory(app, directory) {
   };
 }
 
+/**
+ * @param directory
+ */
 function getDataForDirectory(directory) {
   return {
     type: directory.type,
@@ -60,6 +76,10 @@ function getDataForDirectory(directory) {
   };
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param directory
+ */
 function restructureDirectory(app, directory) {
   let item;
 
@@ -76,10 +96,16 @@ function restructureDirectory(app, directory) {
   return item;
 }
 
+/**
+ * @param item
+ */
 function hasChildren(item) {
   return item.children && item.children.length > 0;
 }
 
+/**
+ * @param {object} app - the express instance
+ */
 function getMenu(app) {
   const srcStructure = getSourceStructure(app);
   const arr = [];

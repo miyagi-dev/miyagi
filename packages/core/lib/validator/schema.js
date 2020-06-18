@@ -6,10 +6,12 @@ const config = require("../config.json");
 
 /**
  * Module for validating mock data against JSON schema
+ *
  * @module validator/schema
- * @param {require('express').default} app
+ * @param {object} app - the express instance
  * @param {string} filePath - the path to a template file
  * @param {Array} dataArray - an array with mock data
+ * @returns {null|boolean[]} null if there is no schema or an array with booleans defining the validity of the entries in the data array
  */
 module.exports = function validateSchema(app, filePath, dataArray) {
   const jsonSchemaValidator = new AJV();

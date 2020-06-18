@@ -1,5 +1,9 @@
 const helpersSrc = "../../../../lib/render/menu/helpers.js";
 
+/**
+ * @param componentName
+ * @param mock
+ */
 function requireComponent(componentName, mock) {
   const component = require(`../../../../lib/render/menu/${componentName}`);
 
@@ -43,7 +47,7 @@ describe("lib/menu/elements/variations", () => {
       variations.render(false, component, { path: "foo", variation: "bar" });
 
       expect(listItem.render).toHaveBeenCalledWith(
-        component,
+        component.index,
         variationLink.render(),
         "variation"
       );

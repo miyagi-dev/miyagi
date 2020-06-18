@@ -1,5 +1,6 @@
 /**
  * Module for initializing roundup
+ *
  * @module init
  */
 

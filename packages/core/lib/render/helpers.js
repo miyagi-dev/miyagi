@@ -1,5 +1,6 @@
 /**
  * Helper functions for the render module
+ *
  * @module render/helpers
  */
 
@@ -9,6 +10,11 @@ const config = require("../config.json");
 const helpers = require("../helpers.js");
 const log = require("../logger.js");
 
+/**
+ * @param config
+ * @param data
+ * @param filePath
+ */
 async function extendTemplateData(config, data, filePath) {
   let o = {};
 
@@ -26,6 +32,11 @@ async function extendTemplateData(config, data, filePath) {
   return deepMerge(data, o);
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ * @param rootData
+ */
 async function resolveData(app, data, rootData) {
   if (rootData) {
     data = mergeRootDataWithVariationData(rootData, data);
@@ -38,6 +49,10 @@ async function resolveData(app, data, rootData) {
   return data;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 function getDataForRenderFunction(app, data) {
   const fullPath = path.join(
     process.cwd(),
@@ -57,6 +72,10 @@ function getDataForRenderFunction(app, data) {
   };
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 function mergeWithGlobalData(app, data) {
   return {
     ...app.get("state").fileContents[
@@ -69,6 +88,10 @@ function mergeWithGlobalData(app, data) {
   };
 }
 
+/**
+ * @param variations
+ * @param rootData
+ */
 function getFallbackData(variations, rootData) {
   for (let i = 0; i < variations.length; i += 1) {
     const variationData = helpers.removeInternalKeys(variations[i]);
@@ -85,12 +108,19 @@ function getFallbackData(variations, rootData) {
   return {};
 }
 
+/**
+ * @param err
+ */
 function getComponentErrorHtml(err) {
   return `<p class="RoundupError">${
     err === null ? config.messages.componentCouldNotBeRendered : err
   }</p>`;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param value
+ */
 function getRootOrVariantData(app, value) {
   const [shortVal, variation] = value.$ref.split("#");
   const val = `${shortVal}/${app.get("config").files.mocks.name}.${
@@ -137,6 +167,10 @@ function getRootOrVariantData(app, value) {
   return {};
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 function overwriteRenderKey(app, data) {
   let o;
 
@@ -161,6 +195,10 @@ function overwriteRenderKey(app, data) {
   return o;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param entry
+ */
 function resolveTpl(app, entry) {
   return new Promise((resolve1) => {
     if (entry) {
@@ -240,6 +278,10 @@ function resolveTpl(app, entry) {
   });
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param entry
+ */
 async function resolveJson(app, entry) {
   if (entry !== null) {
     if (Array.isArray(entry)) {
@@ -264,6 +306,10 @@ async function resolveJson(app, entry) {
   return entry;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 async function iterateOverTplData(app, data) {
   if (data) {
     if (typeof data === "string" || typeof data === "number") {
@@ -308,10 +354,18 @@ async function iterateOverTplData(app, data) {
   return data;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 async function overwriteTplLinksWithTplContent(app, data) {
   return new Promise((resolve) => iterateOverTplData(app, data).then(resolve));
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 async function iterateOverJsonData(app, data) {
   if (data) {
     if (typeof data === "string" || typeof data === "number") {
@@ -356,10 +410,18 @@ async function iterateOverJsonData(app, data) {
   return data;
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param data
+ */
 async function overwriteJsonLinksWithJsonData(app, data) {
   return new Promise((resolve) => iterateOverJsonData(app, data).then(resolve));
 }
 
+/**
+ * @param rootData
+ * @param variationData
+ */
 function mergeRootDataWithVariationData(rootData, variationData) {
   if (!rootData) {
     return variationData;
@@ -372,6 +434,10 @@ function mergeRootDataWithVariationData(rootData, variationData) {
   return deepMerge(rootData, variationData);
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param directoryPath
+ */
 function getTemplateFilePathFromDirectoryPath(app, directoryPath) {
   return path.join(
     directoryPath,

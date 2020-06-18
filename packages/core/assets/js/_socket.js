@@ -1,5 +1,8 @@
 /* globals io */
 
+/**
+ * @param reloadParent
+ */
 function fileChangedCallback(reloadParent) {
   setTimeout(() => {
     if (reloadParent) {

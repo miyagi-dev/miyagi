@@ -10,6 +10,10 @@ const directory = {
   id: directoryId,
 };
 
+/**
+ * @param componentName
+ * @param mock
+ */
 function requireComponent(componentName, mock) {
   const component = require(`../../../../lib/render/menu/${componentName}`);
 

@@ -1,5 +1,6 @@
 /**
  * Module for rendering a component in the menu
+ *
  * @module render/menu/component
  */
 
@@ -10,6 +11,14 @@ const classes = require("./classes.js");
 const menuHelpers = require("./helpers.js");
 const menu = require("./index.js");
 
+/**
+ * Renders a component in the menu
+ *
+ * @param {object} app - the express instance
+ * @param {string} component - the component which should be rendered
+ * @param {object} request - the request object
+ * @returns {string} the component html
+ */
 function render(app, component, request) {
   const hasVariations = menuHelpers.componentHasVariations(component);
   let html = "";
@@ -62,7 +71,6 @@ function render(app, component, request) {
       app,
       component.children,
       request,
-      component.id,
       component.children.find((child) => typeof child.index !== "undefined")
         .index
     );

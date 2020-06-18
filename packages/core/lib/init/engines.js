@@ -1,5 +1,6 @@
 /**
  * Module for setting the express engines
+ *
  * @module init/engines
  */
 
@@ -8,10 +9,17 @@ const config = require("../config.json");
 const log = require("../logger.js");
 const helpers = require("../helpers.js");
 
+/**
+ * @param {object} app - the express instance
+ */
 function setRoundupEngine(app) {
   app.engine("hbs", engines.handlebars);
 }
 
+/**
+ * @param {object} app - the express instance
+ * @returns {boolean} describes if setting the engine was successful
+ */
 function setUserEngine(app) {
   const { extension } = app.get("config").files.templates;
   const { engine, plugins } = app.get("config");

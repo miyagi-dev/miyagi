@@ -27,6 +27,9 @@ jest.mock("../../../lib/state");
 jest.mock("handlebars");
 jest.mock("handlebars-layouts");
 
+/**
+ *
+ */
 function getRandomPort() {
   return Math.floor(Math.random() * (65536 + 1));
 }

@@ -1,5 +1,6 @@
 /**
  * Module for pretty cli logs
+ *
  * @module logger
  * @param {string} [type] - Can be any of "error", "warn" or "success"
  * @param {string} message

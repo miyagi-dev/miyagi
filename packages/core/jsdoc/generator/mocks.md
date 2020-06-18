@@ -7,7 +7,7 @@ Module for creating dummy mock data based on JSON schema
 | Param | Type | Description |
 | --- | --- | --- |
 | folderPath | <code>string</code> | the path for the component that should be created |
-| filesConfig | <code>Object</code> | the files configuration from the user's roundup config |
+| filesConfig | <code>object</code> | the files configuration from the user's roundup config |
 
 
 * [generator/mocks](#module_generator/mocks)
@@ -25,7 +25,7 @@ Returns the dummy mock data in the correct format
 | Param | Type | Description |
 | --- | --- | --- |
 | fileType | <code>string</code> | the file type of the mock data that should be created |
-| schema | <code>Object</code> | the JSON schema object |
+| schema | <code>object</code> | the JSON schema object |
 
 <a name="module_generator/mocks..createFile"></a>
 

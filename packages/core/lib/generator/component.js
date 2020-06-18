@@ -6,9 +6,10 @@ const { messages } = require("../config.json");
 
 /**
  * Module for creating component files based on the configuration cli params
+ *
  * @module generator/component
- * @param {Object} cliParams
- * @param {Object} config - the user's roundup configuration object
+ * @param {object} cliParams
+ * @param {object} config - the user's roundup configuration object
  */
 module.exports = async function componentGenerator(cliParams, config) {
   const commands = cliParams._.slice(1);
@@ -39,8 +40,9 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Returns the component folder path relative from the project root
+   *
    * @param {string} componentName
-   * @param {Object} componentsFolderPath - the components.folder from the user's roundup config
+   * @param {object} componentsFolderPath - the components.folder from the user's roundup config
    * @returns {string}
    */
   function getFullComponentPath(componentName, componentsFolderPath) {
@@ -49,8 +51,9 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Returns an array with file names, if necessary filtered based on args
-   * @param {Object} fileNames - an object with file names for the component
-   * @param {Object} args - the cli args
+   *
+   * @param {object} fileNames - an object with file names for the component
+   * @param {object} args - the cli args
    * @returns {Promise}
    */
   function getFiles(fileNames, args) {
@@ -76,7 +79,8 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Returns the dummy content for a component file
-   * @param {stirng} fileType
+   *
+   * @param {string} fileType
    * @returns {Promise}
    */
   function getDummyFileContent(fileType) {
@@ -123,9 +127,10 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Creates the component files
-   * @param {Object} filesConfig - the files configuration from the user's roundup config
+   *
+   * @param {object} filesConfig - the files configuration from the user's roundup config
    * @param {string} componentPath - the path of the component folder
-   * @param {Object} args - the cli args
+   * @param {object} args - the cli args
    * @returns {Promise}
    */
   function createComponentFiles(filesConfig, componentPath, args) {
@@ -179,9 +184,10 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Returns an object with the file names for a given component name
-   * @param {Object} filesConfig - the files configuration from the user's roundup config
+   *
+   * @param {object} filesConfig - the files configuration from the user's roundup config
    * @param {string} componentName - the name of the component
-   * @returns {Object}
+   * @returns {object}
    */
   function getFileNames(filesConfig, componentName) {
     return {
@@ -204,6 +210,7 @@ module.exports = async function componentGenerator(cliParams, config) {
 
   /**
    * Creates the component folder
+   *
    * @param {string} path
    * @returns {Promise}
    */

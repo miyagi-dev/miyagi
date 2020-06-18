@@ -1,5 +1,6 @@
 /**
  * Rendering module
+ *
  * @module render
  */
 
@@ -18,6 +19,18 @@ const {
   getTemplateFilePathFromDirectoryPath,
 } = require("./helpers.js");
 
+/**
+ * @param {object} obj
+ * @param {object} obj.app
+ * @param {object} obj.res
+ * @param {string} obj.file
+ * @param {Array} obj.context
+ * @param {string} obj.componentDocumentation
+ * @param {string} obj.componentSchema
+ * @param {string} obj.name
+ * @param {Function} obj.cb
+ * @param {string} obj.schemaType
+ */
 async function renderVariations({
   app,
   res,
@@ -115,6 +128,16 @@ async function renderVariations({
   });
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.file
+ * @param object.context
+ * @param object.standaloneUrl
+ * @param object.cb
+ * @returns {Promise} resolves when the component has been rendered
+ */
 async function renderSingleComponent({
   app,
   res,
@@ -167,6 +190,12 @@ async function renderSingleComponent({
   });
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.cb
+ */
 function renderMain({ app, res, cb }) {
   res.render(
     "index.hbs",
@@ -204,6 +233,14 @@ function renderMain({ app, res, cb }) {
   );
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.file
+ * @param object.variation
+ * @param object.cb
+ */
 async function renderMainWithComponent({ app, res, file, variation, cb }) {
   let iframeSrc = app.get("config").isBuild
     ? `/component-${helpers.normalizeString(
@@ -267,6 +304,13 @@ async function renderMainWithComponent({ app, res, file, variation, cb }) {
   );
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.file
+ * @param object.variation
+ */
 async function renderMainWith404({ app, res, file, variation }) {
   let iframeSrc = `/component?file=${file}`;
 
@@ -296,6 +340,15 @@ async function renderMainWith404({ app, res, file, variation }) {
   });
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.file
+ * @param object.variation
+ * @param object.embedded
+ * @param object.cb
+ */
 async function renderComponent({ app, res, file, variation, embedded, cb }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
 
@@ -362,6 +415,13 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
   });
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.file
+ * @param object.cb
+ */
 async function renderComponentVariations({ app, res, file, cb }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
 
@@ -517,6 +577,12 @@ async function renderComponentVariations({ app, res, file, cb }) {
   }
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.cb
+ */
 async function renderComponentOverview({ app, res, cb }) {
   const arr = [];
   const promises = [];
@@ -655,6 +721,13 @@ async function renderComponentOverview({ app, res, cb }) {
   });
 }
 
+/**
+ * @param object
+ * @param object.app
+ * @param object.res
+ * @param object.embedded
+ * @param object.target
+ */
 async function renderComponentNotFound({ app, res, embedded, target }) {
   await res.render(embedded ? "component_frame.hbs" : "component.hbs", {
     html: `<p class="RoundupError">${target} not found.</p>`,

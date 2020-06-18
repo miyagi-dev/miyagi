@@ -1,15 +1,30 @@
 /**
  * Module for registering handlebars view helpers
+ *
  * @module init/view-helpers
  */
 
 const handlebars = require("handlebars");
 const menu = require("../render/menu");
 
-function getMenuHtml(children, path, variation, id) {
-  return menu.render(this, children, { path, variation }, id, 0);
+/**
+ * Returns the menu html
+ *
+ * @param {object[]} children - all items in the menu
+ * @param {string} path - the requested component
+ * @param {string} variation - the requested variation
+ * @returns {string} the menu html
+ */
+function getMenuHtml(children, path, variation) {
+  return menu.render(this, children, { path, variation }, 0);
 }
 
+/**
+ * Renders all link tags for given stylesheet files
+ *
+ * @param {string[]} files - the paths to CSS files
+ * @returns {string} the html with link tags
+ */
 function getCssFilesHtml(files) {
   let html = "";
 
@@ -20,6 +35,13 @@ function getCssFilesHtml(files) {
   return html;
 }
 
+/**
+ * Renders all script tags for given javascript files
+ *
+ * @param {string[]} files - the paths to JS files
+ * @param {boolean} es6Modules - describes if the scripts should be rendered with type="module"
+ * @returns {string} the html with script tags
+ */
 function getJsFilesHtml(files, es6Modules) {
   let html = "";
 

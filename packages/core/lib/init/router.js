@@ -1,5 +1,6 @@
 /**
  * Module for accepting and routing requests
+ *
  * @module init/router
  */
 
@@ -8,6 +9,10 @@ const helpers = require("../helpers.js");
 const config = require("../config.json");
 const render = require("../render");
 
+/**
+ * @param {object} app - the express instance
+ * @param component
+ */
 function getDataForComponent(app, component) {
   return app.get("state").fileContents[
     helpers.getFullPathFromShortPath(
@@ -22,6 +27,10 @@ function getDataForComponent(app, component) {
   ];
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param component
+ */
 function checkIfRequestedComponentIsValid(app, component) {
   const { partials } = app.get("state");
 
@@ -30,6 +39,10 @@ function checkIfRequestedComponentIsValid(app, component) {
     .includes(component);
 }
 
+/**
+ * @param data
+ * @param variation
+ */
 function checkIfDataIncludesVariation(data, variation) {
   return (
     data.$variants &&
@@ -38,6 +51,11 @@ function checkIfDataIncludesVariation(data, variation) {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ * @param component
+ * @param variation
+ */
 function checkIfRequestedVariationIsValid(app, component, variation) {
   const data = getDataForComponent(app, component);
 
@@ -56,6 +74,9 @@ function checkIfRequestedVariationIsValid(app, component, variation) {
   return checkIfDataIncludesVariation(data, variation);
 }
 
+/**
+ * @param middleware
+ */
 function awaitHandlerFactory(middleware) {
   return async (req, res, next) => {
     try {

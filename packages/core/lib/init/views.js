@@ -1,5 +1,6 @@
 /**
  * Module for registering the views in express
+ *
  * @module init/views
  */
 

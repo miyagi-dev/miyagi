@@ -1,11 +1,19 @@
 /**
  * Module for rendering the menu
+ *
  * @module render/menu
  */
 
 const list = require("./list.js");
 
-function render(app, children, request, id, index) {
+/**
+ * @param {object} app - the express instance
+ * @param children
+ * @param {object} request - the request object
+ * @param index
+ * @returns {string} the html of the menu
+ */
+function render(app, children, request, index) {
   if (children.length) {
     return list.render(
       "components",

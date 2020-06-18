@@ -1,11 +1,20 @@
 /* globals axe */
 
+/**
+ * Escapes an HTML string
+ *
+ * @param {string} str
+ * @returns {string} the escaped html
+ */
 function escapeHtml(str) {
   var div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 }
 
+/**
+ * @param {HTMLElement} container
+ */
 function addToggle(container) {
   const summaries = Array.from(
     container.querySelectorAll(".RoundupResults-summary")
@@ -25,10 +34,19 @@ function addToggle(container) {
   });
 }
 
+/**
+ * @param label
+ * @param result
+ * @param impactClass
+ * @returns {string} - the result item html
+ */
 function getHtmlForResultItem(label, result, impactClass) {
   return `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">${label}</dt> <dd class="RoundupResult-value ${impactClass}">${result}</dd></div>`;
 }
 
+/**
+ * @param container
+ */
 function a11yTest(container) {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
 
@@ -107,6 +125,9 @@ function a11yTest(container) {
   });
 }
 
+/**
+ * @param container
+ */
 function htmlTest(container) {
   const states = ["error", "warning"];
 

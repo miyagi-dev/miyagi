@@ -1,5 +1,6 @@
 /**
  * Helper functions for the render/menu module
+ *
  * @module render/menu/helpers
  */
 
@@ -10,6 +11,10 @@ const path = require("path");
  */
 
 /* Based on https://stackoverflow.com/a/14853974 */
+/**
+ * @param a
+ * @param b
+ */
 function arraysAreEqual(a, b) {
   // compare lengths - can save a lot of time
   if (a.length !== b.length) return false;
@@ -23,12 +28,20 @@ function arraysAreEqual(a, b) {
   return true;
 }
 
+/**
+ * @param a
+ * @param b
+ */
 function reduceArrayToSameLengthOfOtherArray(a, b) {
   const aLength = a.length;
 
   return a.slice(0, aLength - (aLength - b.length));
 }
 
+/**
+ * @param directoryPath
+ * @param isFile
+ */
 function getDirectoriesArrayFromDirectoryPath(directoryPath, isFile) {
   let directorys = directoryPath.split(path.sep);
 
@@ -39,6 +52,9 @@ function getDirectoriesArrayFromDirectoryPath(directoryPath, isFile) {
   return directorys;
 }
 
+/**
+ * @param filePath
+ */
 function getDirectoriesArrayFromFilePath(filePath) {
   return filePath.split(path.sep).slice(0, filePath.split(path.sep).length - 1);
 }
@@ -49,6 +65,11 @@ function getDirectoriesArrayFromFilePath(filePath) {
 
 const activeState = ' aria-current="page"';
 
+/**
+ * @param child
+ * @param parent
+ * @param childIsFile
+ */
 function pathIsChildOfSecondPath(child, parent, childIsFile) {
   if (!parent) return false;
 
@@ -66,10 +87,18 @@ function pathIsChildOfSecondPath(child, parent, childIsFile) {
   return arraysAreEqual(childDirectories, parentDirectories);
 }
 
+/**
+ * @param p
+ * @param variation
+ * @param {object} request - the request object
+ */
 function pathEqualsRequest(p, variation, request) {
   return request.path === p && request.variation === variation.name;
 }
 
+/**
+ * @param directory
+ */
 function childrenOfDirectoryContainDirectory(directory) {
   return (
     directory.children &&
@@ -78,6 +107,9 @@ function childrenOfDirectoryContainDirectory(directory) {
   );
 }
 
+/**
+ * @param component
+ */
 function componentHasVariations(component) {
   return (
     component.variations &&
@@ -86,10 +118,16 @@ function componentHasVariations(component) {
   );
 }
 
+/**
+ * @param directory
+ */
 function directoryIsNotTopLevel(directory) {
   return directory.index > 0;
 }
 
+/**
+ * @param directory
+ */
 function directoryHasComponent(directory) {
   if (directory.shortPath) {
     if (

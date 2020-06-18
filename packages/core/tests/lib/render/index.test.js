@@ -46,6 +46,9 @@ const path9 = path.join(
 );
 const fileContents = {};
 
+/**
+ *
+ */
 function addGlobalData() {
   app.get("state").fileContents[
     path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
