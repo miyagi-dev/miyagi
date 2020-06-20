@@ -1,7 +1,7 @@
 site_name: JSDoc
 site_description: JSdoc for miyagi, a node based component development tool for JavaScript templating engines.
 
-docs_dir: jsdoc
+docs_dir: docs
 
 extra_css:
   - extra.css

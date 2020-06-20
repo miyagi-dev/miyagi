@@ -4,15 +4,15 @@ const path = require("path");
 
 const inputFolder = "./lib";
 const inputFile = `${inputFolder}/**/*.js`;
-const outputFolder = "./jsdoc";
+const outputFolder = "./jsdoc/docs";
 const pages = {};
 
 const templateData = jsdoc2md.getTemplateDataSync({ files: inputFile });
 
 fs.removeSync(path.join(process.cwd(), outputFolder));
 
-fs.copy('../../docs/img', 'jsdoc/img');
-fs.copy('../../docs/extra.css', 'jsdoc/extra.css');
+fs.copy('../../docs/docs/img', 'jsdoc/docs/img');
+fs.copy('../../docs/docs/extra.css', 'jsdoc/docs/extra.css');
 
 for (data of templateData) {
   if (pages[`${data.meta.path}/${data.meta.filename}`]) {
