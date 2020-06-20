@@ -1,13 +1,13 @@
 {
-  "name": "@roundup/core",
+  "name": "@miyagi/core",
   "version": "0.4.1",
-  "description": "roundup is a component development tool for JavaScript template engines.",
+  "description": "miyagi is a component development tool for JavaScript template engines.",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgrsskls/roundup.git",
+    "url": "git@github.com:mgrsskls/miyagi.git",
     "directory": "packages/core"
   },
   "keywords": [
@@ -29,7 +29,7 @@
     "lib"
   ],
   "bin": {
-    "roundup": "./bin/roundup.js"
+    "miyagi": "./bin/miyagi.js"
   },
   "dependencies": {
     "ajv": "^6.12.2",

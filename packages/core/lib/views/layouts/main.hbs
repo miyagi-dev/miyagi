@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,width=device-width">
   <title>{{userProjectName}}</title>
-  <script src="{{projectName}}/js/main{{#if isBuild}}.build{{/if}}.js" {{#if roundupDev}}type="module"
-    {{/if}}{{#if roundupProd}}defer{{/if}}></script>
+  <script src="{{projectName}}/js/main{{#if isBuild}}.build{{/if}}.js" {{#if miyagiDev}}type="module"
+    {{/if}}{{#if miyagiProd}}defer{{/if}}></script>
   <link rel="stylesheet" href="{{projectName}}/css/main.css">
   <style>
     :root {
@@ -22,7 +22,7 @@
         }
       }
 
-      --Roundup-color-bg: {
+      --Miyagi-color-bg: {
           {
           theme.navigation.colorBackground
         }
@@ -42,7 +42,7 @@
         }
       }
 
-      --Roundup-color-link: {
+      --Miyagi-color-link: {
           {
           theme.navigation.colorLinks
         }
@@ -62,7 +62,7 @@
         }
       }
 
-      --Roundup-color-linkActive: {
+      --Miyagi-color-linkActive: {
           {
           theme.navigation.colorLinksActive
         }
@@ -88,7 +88,7 @@
         }
       }
 
-      --Roundup-fontFamily: {
+      --Miyagi-fontFamily: {
           {
           theme.fontFamily
         }
@@ -105,7 +105,7 @@
   </style>
 </head>
 
-<body class="Roundup">
+<body class="Miyagi">
   {{#block "body"}}{{/block}}
 </body>
 

@@ -9,7 +9,7 @@ const { messages } = require("../config.json");
  *
  * @module generator/component
  * @param {object} cliParams
- * @param {object} config - the user's roundup configuration object
+ * @param {object} config - the user's miyagi configuration object
  */
 module.exports = async function componentGenerator(cliParams, config) {
   const commands = cliParams._.slice(1);
@@ -42,7 +42,7 @@ module.exports = async function componentGenerator(cliParams, config) {
    * Returns the component folder path relative from the project root
    *
    * @param {string} componentName
-   * @param {object} componentsFolderPath - the components.folder from the user's roundup config
+   * @param {object} componentsFolderPath - the components.folder from the user's miyagi config
    * @returns {string}
    */
   function getFullComponentPath(componentName, componentsFolderPath) {
@@ -128,7 +128,7 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Creates the component files
    *
-   * @param {object} filesConfig - the files configuration from the user's roundup config
+   * @param {object} filesConfig - the files configuration from the user's miyagi config
    * @param {string} componentPath - the path of the component folder
    * @param {object} args - the cli args
    * @returns {Promise}
@@ -185,7 +185,7 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Returns an object with the file names for a given component name
    *
-   * @param {object} filesConfig - the files configuration from the user's roundup config
+   * @param {object} filesConfig - the files configuration from the user's miyagi config
    * @param {string} componentName - the name of the component
    * @returns {object}
    */

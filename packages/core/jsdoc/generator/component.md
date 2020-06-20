@@ -7,7 +7,7 @@ Module for creating component files based on the configuration cli params
 | Param | Type | Description |
 | --- | --- | --- |
 | cliParams | <code>object</code> |  |
-| config | <code>object</code> | the user's roundup configuration object |
+| config | <code>object</code> | the user's miyagi configuration object |
 
 
 * [generator/component](#module_generator/component)
@@ -28,7 +28,7 @@ Returns the component folder path relative from the project root
 | Param | Type | Description |
 | --- | --- | --- |
 | componentName | <code>string</code> |  |
-| componentsFolderPath | <code>object</code> | the components.folder from the user's roundup config |
+| componentsFolderPath | <code>object</code> | the components.folder from the user's miyagi config |
 
 <a name="module_generator/component..getFiles"></a>
 
@@ -62,7 +62,7 @@ Creates the component files
 
 | Param | Type | Description |
 | --- | --- | --- |
-| filesConfig | <code>object</code> | the files configuration from the user's roundup config |
+| filesConfig | <code>object</code> | the files configuration from the user's miyagi config |
 | componentPath | <code>string</code> | the path of the component folder |
 | args | <code>object</code> | the cli args |
 
@@ -75,7 +75,7 @@ Returns an object with the file names for a given component name
 
 | Param | Type | Description |
 | --- | --- | --- |
-| filesConfig | <code>object</code> | the files configuration from the user's roundup config |
+| filesConfig | <code>object</code> | the files configuration from the user's miyagi config |
 | componentName | <code>string</code> | the name of the component |
 
 <a name="module_generator/component..createComponentFolder"></a>

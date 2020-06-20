@@ -22,8 +22,8 @@ describe("index", () => {
       };
     });
 
-    describe("with parseable result from .roundup.js", () => {
-      describe("with templates.extension, components.folder and engine.name defined in .roundup.js", () => {
+    describe("with parseable result from .miyagi.js", () => {
+      describe("with templates.extension, components.folder and engine.name defined in .miyagi.js", () => {
         test("calls lib/init with parsed config", () => {
           const init = require("../lib/init");
           jest.mock("../lib/logger");
@@ -57,13 +57,13 @@ describe("index", () => {
         });
       });
 
-      describe("without extension defined in .roundup.js", () => {
+      describe("without extension defined in .miyagi.js", () => {
         test("it calls log with the correct error msg", () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
           jest.mock(
-            path.resolve(process.cwd(), ".roundup.js"),
+            path.resolve(process.cwd(), ".miyagi.js"),
             () => ({
               engine: {
                 name: "handlebars",
@@ -99,7 +99,7 @@ describe("index", () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".roundup.js"), () => {
+          jest.mock(path.resolve(process.cwd(), ".miyagi.js"), () => {
             return {
               engine: {
                 name: "handlebars",
@@ -114,12 +114,12 @@ describe("index", () => {
         });
       });
 
-      describe("without engine defined in .roundup.js", () => {
+      describe("without engine defined in .miyagi.js", () => {
         test("it calls log with the correct error msg", () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".roundup.js"), () => {
+          jest.mock(path.resolve(process.cwd(), ".miyagi.js"), () => {
             return {
               files: {
                 templates: {
@@ -156,7 +156,7 @@ describe("index", () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".roundup.js"), () => {
+          jest.mock(path.resolve(process.cwd(), ".miyagi.js"), () => {
             return {
               files: {
                 templates: {

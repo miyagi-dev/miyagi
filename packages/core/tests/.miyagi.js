@@ -13,7 +13,7 @@ module.exports = {
   components: {
     folder: "src/",
   },
-  projectName: "roundup",
+  projectName: "miyagi",
   ui: {
     validations: {
       html: true,

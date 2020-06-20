@@ -1,13 +1,13 @@
-site_name: roundup
-site_description: roundup is a node based component development tool for JavaScript templating engines.
+site_name: miyagi
+site_description: miyagi is a node based component development tool for JavaScript templating engines.
 
 docs_dir: docs
 
 extra_css:
   - extra.css
 
-repo_name: mgrsskls/roundup
-repo_url: https://github.com/mgrsskls/roundup
+repo_name: mgrsskls/miyagi
+repo_url: https://github.com/mgrsskls/miyagi
 edit_uri: ""
 
 theme:
@@ -27,7 +27,7 @@ nav:
   - Home: index.md
   - Installation: installation.md
   - CLI commands:
-      - Starting roundup: cli-commands/start.md
+      - Starting miyagi: cli-commands/start.md
       - Creating a component: cli-commands/components.md
       - Creating mock data: cli-commands/mocks.md
       - Creating a build: cli-commands/build.md

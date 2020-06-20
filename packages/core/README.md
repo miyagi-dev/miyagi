@@ -1,14 +1,14 @@
-# roundup
+# miyagi
 
-_roundup_ is a component development tool for JavaScript templating engines.
+_miyagi_ is a component development tool for JavaScript templating engines.
 
 ## Demo
 
-[roundup.mgrossklaus.de](https://roundup.mgrossklaus.de) (Code: [https://github.com/mgrsskls/roundup-demo](https://github.com/mgrsskls/roundup-demo))
+[miyagi.mgrossklaus.de](https://miyagi.mgrossklaus.de) (Code: [https://github.com/mgrsskls/miyagi-demo](https://github.com/mgrsskls/miyagi-demo))
 
 ## Benefits
 
-- No overhead in your project by running _roundup_ without a configuration file.
+- No overhead in your project by running _miyagi_ without a configuration file.
 - Works with any folder structure.
 - Helps you developing your components encapsulated.
 - Validates your components for HTML and accessibility violations.

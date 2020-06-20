@@ -17,7 +17,7 @@ function escapeHtml(str) {
  */
 function addToggle(container) {
   const summaries = Array.from(
-    container.querySelectorAll(".RoundupResults-summary")
+    container.querySelectorAll(".MiyagiResults-summary")
   );
 
   summaries.forEach((summary) => {
@@ -41,7 +41,7 @@ function addToggle(container) {
  * @returns {string} - the result item html
  */
 function getHtmlForResultItem(label, result, impactClass) {
-  return `<div class="RoundupResult-wrapper"><dt class="RoundupResult-attr">${label}</dt> <dd class="RoundupResult-value ${impactClass}">${result}</dd></div>`;
+  return `<div class="MiyagiResult-wrapper"><dt class="MiyagiResult-attr">${label}</dt> <dd class="MiyagiResult-value ${impactClass}">${result}</dd></div>`;
 }
 
 /**
@@ -52,12 +52,12 @@ function a11yTest(container) {
 
   addToggle(container);
 
-  axe.run(document.getElementById("RoundupComponent"), function (err, results) {
+  axe.run(document.getElementById("MiyagiComponent"), function (err, results) {
     if (err) throw err;
 
     states.forEach((state) => {
       const resultElement = container.querySelector(
-        `.RoundupResults--${state} .RoundupResults-value`
+        `.MiyagiResults--${state} .MiyagiResults-value`
       );
       let html = "";
 
@@ -73,8 +73,8 @@ function a11yTest(container) {
       if (results[state].length) {
         html += "<ul>";
         results[state].forEach((result) => {
-          html += '<li class="RoundupResult">';
-          html += '<dl class="RoundupResult-data">';
+          html += '<li class="MiyagiResult">';
+          html += '<dl class="MiyagiResult-data">';
 
           if (result.description) {
             html += getHtmlForResultItem(
@@ -99,10 +99,10 @@ function a11yTest(container) {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "RoundupResults-value--negative";
+                impactClass = "MiyagiResults-value--negative";
                 break;
               case "moderate":
-                impactClass = "RoundupResults-value--warning";
+                impactClass = "MiyagiResults-value--warning";
             }
 
             html += getHtmlForResultItem("Impact", result.impact, impactClass);
@@ -113,11 +113,11 @@ function a11yTest(container) {
         });
         html += "</ul>";
       } else {
-        html += '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
+        html += '<p><i class="MiyagiResults-empty">Nothing to report.</i></p>';
       }
 
       container.querySelector(
-        `.RoundupResults--${state} .RoundupResults-details`
+        `.MiyagiResults--${state} .MiyagiResults-details`
       ).innerHTML = html;
     });
 
@@ -154,7 +154,7 @@ function htmlTest(container) {
                 );
 
                 const resultElement = container.querySelector(
-                  `.RoundupResults--${state} .RoundupResults-value`
+                  `.MiyagiResults--${state} .MiyagiResults-value`
                 );
                 let html = "";
 
@@ -165,8 +165,8 @@ function htmlTest(container) {
 
                   html += "<ul>";
                   results.forEach((result) => {
-                    html += '<li class="RoundupResult">';
-                    html += '<dl class="RoundupResult-data">';
+                    html += '<li class="MiyagiResult">';
+                    html += '<dl class="MiyagiResult-data">';
 
                     if (result.message) {
                       html += getHtmlForResultItem("Message", result.message);
@@ -188,7 +188,7 @@ function htmlTest(container) {
 
                       html += getHtmlForResultItem(
                         "Extract",
-                        `<code class="RoundupResult-extract">${markedExtract.replace(
+                        `<code class="MiyagiResult-extract">${markedExtract.replace(
                           /\n/g,
                           "↩"
                         )}</code>`
@@ -213,11 +213,11 @@ function htmlTest(container) {
                 } else {
                   resultElement.classList.remove("has-positiveValue");
                   html +=
-                    '<p><i class="RoundupResults-empty">Nothing to report.</i></p>';
+                    '<p><i class="MiyagiResults-empty">Nothing to report.</i></p>';
                 }
 
                 container.querySelector(
-                  `.RoundupResults--${state} .RoundupResults-details`
+                  `.MiyagiResults--${state} .MiyagiResults-details`
                 ).innerHTML = html;
               });
 
@@ -235,9 +235,9 @@ function htmlTest(container) {
 }
 
 export default (tests) => {
-  if (document.getElementById("RoundupComponent")) {
-    const a11yContainer = parent.document.querySelector(".RoundupTest--a11y");
-    const htmlContainer = parent.document.querySelector(".RoundupTest--html");
+  if (document.getElementById("MiyagiComponent")) {
+    const a11yContainer = parent.document.querySelector(".MiyagiTest--a11y");
+    const htmlContainer = parent.document.querySelector(".MiyagiTest--html");
 
     if (a11yContainer) {
       if (window.validations.accessibility) {

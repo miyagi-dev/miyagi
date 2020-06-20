@@ -1,30 +1,30 @@
 {{#extend "iframe"}}
 {{#content "body"}}
-<div class="RoundupWrapper">
-  <div class="RoundupDocumentation">
+<div class="MiyagiWrapper">
+  <div class="MiyagiDocumentation">
     <h1>{{ userProjectName }}</h1>
     {{{documentation}}}
   </div>
   {{#if renderComponentOverview}}
-  <h2 class="Roundup-sectionTitle">Overview</h2>
+  <h2 class="Miyagi-sectionTitle">Overview</h2>
   {{#if components}}
-  <div class="RoundupComponents">
+  <div class="MiyagiComponents">
     {{#each components}}
-    <div class="RoundupComponent">
-      <a href="{{this.url}}" class="RoundupComponent-file">
+    <div class="MiyagiComponent">
+      <a href="{{this.url}}" class="MiyagiComponent-file">
         {{#if folders}}
-        <span class="RoundupComponent-fileFolders">
+        <span class="MiyagiComponent-fileFolders">
           {{#each folders}}{{this}} / {{/each}}
         </span>
         {{/if}}&nbsp;{{this.name}}
       </a>
-      <div class="RoundupComponent-html">
+      <div class="MiyagiComponent-html">
         {{{this.html}}}
       </div>
     </div>
     {{/each}}
     {{else}}
-    <div class="RoundupDocumentation">
+    <div class="MiyagiDocumentation">
       <p>No components found. Check out the <a href="http://example.com" target="_blank">documentation</a> if you need
         help!</p>
     </div>

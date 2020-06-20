@@ -1,15 +1,15 @@
 class Main {
   constructor() {
     this.classes = {
-      list: "Roundup-list",
-      listContainer: "Roundup-listContainer",
-      listItem: "Roundup-listItem",
-      content: "Roundup-content",
-      iframe: "Roundup-frame",
-      frameWrapper: "Roundup-frameWrapper",
-      toggleComponent: "Roundup-toggle",
-      toggleMenu: "Roundup-toggleMobileMenu",
-      link: "Roundup-link",
+      list: "Miyagi-list",
+      listContainer: "Miyagi-listContainer",
+      listItem: "Miyagi-listItem",
+      content: "Miyagi-content",
+      iframe: "Miyagi-frame",
+      frameWrapper: "Miyagi-frameWrapper",
+      toggleComponent: "Miyagi-toggle",
+      toggleMenu: "Miyagi-toggleMobileMenu",
+      link: "Miyagi-link",
     };
 
     this.elements = {

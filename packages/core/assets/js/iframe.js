@@ -10,8 +10,8 @@ if (
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  const links = Array.from(document.querySelectorAll(`.RoundupComponent-file`));
-  const tests = parent.document.querySelector(".Roundup-tests");
+  const links = Array.from(document.querySelectorAll(`.MiyagiComponent-file`));
+  const tests = parent.document.querySelector(".Miyagi-tests");
 
   if (tests) {
     Tests(tests);
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (document.querySelector(".Roundup-code")) {
+  if (document.querySelector(".Miyagi-code")) {
     import("./_prism.js");
   }
 });

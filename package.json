@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgrsskls/roundup.git"
+    "url": "git@github.com:mgrsskls/miyagi.git"
   },
   "devDependencies": {
     "@babel/core": "^7.10.2",
@@ -42,5 +42,6 @@
   "pre-commit": [
     "core:test",
     "core:lint"
-  ]
+  ],
+  "dependencies": {}
 }

@@ -1,5 +1,5 @@
 module.exports = {
-  projectName: "roundup demo",
+  projectName: "miyagi demo",
   cssFiles: {
     development: ["src/index.css"],
     production: ["dist/index.css"],

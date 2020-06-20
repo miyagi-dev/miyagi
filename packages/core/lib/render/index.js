@@ -212,8 +212,8 @@ function renderMain({ app, res, cb }) {
       indexPath: app.get("config").isBuild
         ? "component-all-embedded.html"
         : "/component?file=all&embedded=true",
-      roundupDev: !!process.env.ROUNDUP_DEVELOPMENT,
-      roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
+      miyagiDev: !!process.env.MIYAGI_DEVELOPMENT,
+      miyagiProd: !process.env.MIYAGI_DEVELOPMENT,
       isBuild: app.get("config").isBuild,
       theme: app.get("config").ui.theme,
     },
@@ -283,8 +283,8 @@ async function renderMainWithComponent({ app, res, file, variation, cb }) {
       indexPath: app.get("config").isBuild
         ? "component-all-embedded.html"
         : "/component?file=all&embedded=true",
-      roundupDev: !!process.env.ROUNDUP_DEVELOPMENT,
-      roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
+      miyagiDev: !!process.env.MIYAGI_DEVELOPMENT,
+      miyagiProd: !process.env.MIYAGI_DEVELOPMENT,
       isBuild: app.get("config").isBuild,
       theme: app.get("config").ui.theme,
     },
@@ -330,8 +330,8 @@ async function renderMainWith404({ app, res, file, variation }) {
     userProjectName: app.get("config").projectName,
     htmlValidation: false,
     accessibilityValidation: false,
-    roundupDev: !!process.env.ROUNDUP_DEVELOPMENT,
-    roundupProd: !process.env.ROUNDUP_DEVELOPMENT,
+    miyagiDev: !!process.env.MIYAGI_DEVELOPMENT,
+    miyagiProd: !process.env.MIYAGI_DEVELOPMENT,
     isBuild: app.get("config").isBuild,
     theme: app.get("config").ui.theme,
     indexPath: app.get("config").isBuild
@@ -730,7 +730,7 @@ async function renderComponentOverview({ app, res, cb }) {
  */
 async function renderComponentNotFound({ app, res, embedded, target }) {
   await res.render(embedded ? "component_frame.hbs" : "component.hbs", {
-    html: `<p class="RoundupError">${target} not found.</p>`,
+    html: `<p class="MiyagiError">${target} not found.</p>`,
     dev: process.env.NODE_ENV === "development",
     prod: process.env.NODE_ENV === "production",
     projectName: config.projectName,

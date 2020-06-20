@@ -85,7 +85,7 @@ function registerNodeModule(app, nodeModule) {
 function registerAssetFolder(app) {
   const assetFolder =
     config.folders.assets[
-      process.env.ROUNDUP_DEVELOPMENT ? "development" : "production"
+      process.env.MIYAGI_DEVELOPMENT ? "development" : "production"
     ];
 
   app.use(

@@ -1,5 +1,5 @@
 ```bash
-roundup new <folderName>/<componentName>`
+miyagi new <folderName>/<componentName>`
 ```
 
 This will create a component folder including the following files:
@@ -18,7 +18,7 @@ _**NOTE:** The component will be located based on your [`components.folder` sett
 You can skip any of the files like this:
 
 ```bash
-roundup new <folderName>/<componentName> --skip=css,js
+miyagi new <folderName>/<componentName> --skip=css,js
 ```
 
 **--only:**
@@ -26,5 +26,5 @@ roundup new <folderName>/<componentName> --skip=css,js
 Alternatively, you can explicitly say which files you need like this:
 
 ```bash
-roundup new <folderName>/<componentName> --only=tpl,docs
+miyagi new <folderName>/<componentName> --only=tpl,docs
 ```

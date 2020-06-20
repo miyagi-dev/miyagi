@@ -1,14 +1,14 @@
 {
   "name": "demo",
   "scripts": {
-    "start": "node node_modules/roundup/"
+    "start": "node node_modules/miyagi/"
   },
   "dependencies": {
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
-    "roundup": "^0.4.1",
+    "miyagi": "^0.4.1",
     "postcss-import": "^12.0.1",
     "postcss-preset-env": "^6.7.0"
   }

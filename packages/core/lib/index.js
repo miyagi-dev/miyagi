@@ -1,5 +1,5 @@
 /**
- * The roundup module
+ * The miyagi module
  *
  * @module index
  */
@@ -32,7 +32,7 @@ require("./render/menu/variation-link.js");
 require("./render/menu/variations.js");
 
 /**
- * Checks if roundup was started with `mocks` command
+ * Checks if miyagi was started with `mocks` command
  *
  * @param {object} args
  * @returns {boolean}
@@ -42,7 +42,7 @@ function argsIncludeMockGenerator(args) {
 }
 
 /**
- * Checks if roundup was started with `new` command
+ * Checks if miyagi was started with `new` command
  *
  * @param {object} args
  * @returns {boolean}
@@ -52,7 +52,7 @@ function argsIncludeComponentGenerator(args) {
 }
 
 /**
- * Checks if roundup was started with `build` command
+ * Checks if miyagi was started with `build` command
  *
  * @param {object} args
  * @returns {boolean}
@@ -62,7 +62,7 @@ function argsIncludeBuild(args) {
 }
 
 /**
- * Checks if roundup was started with `start` command
+ * Checks if miyagi was started with `start` command
  *
  * @param {object} args
  * @returns {boolean}
@@ -188,7 +188,7 @@ async function guessEngineAndExtensionFromFiles(config) {
 /**
  * Requires the user config and initializes and calls correct modules based on command
  */
-function Roundup() {
+function Miyagi() {
   (async function () {
     const args = yargs.argv;
     const isServer = argsIncludeServer(args);
@@ -216,7 +216,7 @@ function Roundup() {
       let userFile = {};
 
       try {
-        userFile = require(path.resolve(process.cwd(), ".roundup"));
+        userFile = require(path.resolve(process.cwd(), ".miyagi"));
       } catch (err) {
         log("warn", messages.userConfigUnparseable);
       }
@@ -312,4 +312,4 @@ function Roundup() {
   })();
 }
 
-module.exports = new Roundup();
+module.exports = new Miyagi();

@@ -9,7 +9,7 @@ const { messages } = require("../config.json");
  *
  * @module generator/mocks
  * @param {string} folderPath - the path for the component that should be created
- * @param {object} filesConfig - the files configuration from the user's roundup config
+ * @param {object} filesConfig - the files configuration from the user's miyagi config
  */
 module.exports = async function mockGenerator(folderPath, filesConfig) {
   if (!folderPath) {

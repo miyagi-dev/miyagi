@@ -40,8 +40,8 @@ describe("lib/state/source-tree", () => {
         new RegExp(".git"),
         new RegExp("package.json"),
         new RegExp("package-lock.json"),
-        new RegExp(".roundup.js"),
-        new RegExp(".roundup.json"),
+        new RegExp(".miyagi.js"),
+        new RegExp(".miyagi.json"),
         new RegExp("/ignoredFolder"),
       ],
     });

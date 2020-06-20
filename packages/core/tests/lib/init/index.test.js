@@ -75,7 +75,7 @@ describe("lib/init", () => {
         const server = await init({});
         expect(log).toHaveBeenCalledWith(
           "success",
-          "Running roundup server at http://localhost:1234!\n"
+          "Running miyagi server at http://localhost:1234!\n"
         );
         server.close();
         done();
@@ -89,7 +89,7 @@ describe("lib/init", () => {
         const server = await init({});
         expect(log).toHaveBeenCalledWith(
           "success",
-          `Running roundup server at http://localhost:${appConfig.defaultPort}!\n`
+          `Running miyagi server at http://localhost:${appConfig.defaultPort}!\n`
         );
         server.close();
         done();

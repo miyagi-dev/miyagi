@@ -112,7 +112,7 @@ function getFallbackData(variations, rootData) {
  * @param err
  */
 function getComponentErrorHtml(err) {
-  return `<p class="RoundupError">${
+  return `<p class="MiyagiError">${
     err === null ? config.messages.componentCouldNotBeRendered : err
   }</p>`;
 }

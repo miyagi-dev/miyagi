@@ -1,7 +1,7 @@
 <a name="module_index"></a>
 
 ## index
-The roundup module
+The miyagi module
 
 
 * [index](#module_index)
@@ -14,12 +14,12 @@ The roundup module
     * [~guessExtensionFromEngine(engineName)](#module_index..guessExtensionFromEngine) ⇒ <code>string</code>
     * [~guessEngineFromExtension(extension)](#module_index..guessEngineFromExtension) ⇒ <code>string</code>
     * [~guessEngineAndExtensionFromFiles(config)](#module_index..guessEngineAndExtensionFromFiles) ⇒ <code>object</code> \| <code>null</code>
-    * [~Roundup()](#module_index..Roundup)
+    * [~Miyagi()](#module_index..Miyagi)
 
 <a name="module_index..argsIncludeMockGenerator"></a>
 
 ### index~argsIncludeMockGenerator(args) ⇒ <code>boolean</code>
-Checks if roundup was started with `mocks` command
+Checks if miyagi was started with `mocks` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -30,7 +30,7 @@ Checks if roundup was started with `mocks` command
 <a name="module_index..argsIncludeComponentGenerator"></a>
 
 ### index~argsIncludeComponentGenerator(args) ⇒ <code>boolean</code>
-Checks if roundup was started with `new` command
+Checks if miyagi was started with `new` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -41,7 +41,7 @@ Checks if roundup was started with `new` command
 <a name="module_index..argsIncludeBuild"></a>
 
 ### index~argsIncludeBuild(args) ⇒ <code>boolean</code>
-Checks if roundup was started with `build` command
+Checks if miyagi was started with `build` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -52,7 +52,7 @@ Checks if roundup was started with `build` command
 <a name="module_index..argsIncludeServer"></a>
 
 ### index~argsIncludeServer(args) ⇒ <code>boolean</code>
-Checks if roundup was started with `start` command
+Checks if miyagi was started with `start` command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  
 
@@ -118,9 +118,9 @@ returns an object with engine.name and files.templates.extension
 | --- | --- |
 | config | <code>object</code> | 
 
-<a name="module_index..Roundup"></a>
+<a name="module_index..Miyagi"></a>
 
-### index~Roundup()
+### index~Miyagi()
 Requires the user config and initializes and calls correct modules based on command
 
 **Kind**: inner method of [<code>index</code>](#module_index)  

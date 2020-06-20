@@ -12,7 +12,7 @@ const helpers = require("../helpers.js");
 /**
  * @param {object} app - the express instance
  */
-function setRoundupEngine(app) {
+function setMiyagiEngine(app) {
   app.engine("hbs", engines.handlebars);
 }
 
@@ -45,7 +45,7 @@ function setUserEngine(app) {
 }
 
 module.exports = function initEngines(app) {
-  setRoundupEngine(app);
+  setMiyagiEngine(app);
   const userEngineSet = setUserEngine(app);
 
   return userEngineSet;

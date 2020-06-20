@@ -1,17 +1,17 @@
-.RoundupTest {
+.MiyagiTest {
   font-size: 1.4rem;
 }
 
-.RoundupTest:not(:first-child) {
-  margin-top: var(--Roundup-spacing-y);
+.MiyagiTest:not(:first-child) {
+  margin-top: var(--Miyagi-spacing-y);
 }
 
-.RoundupTest:last-child {
-  margin-bottom: var(--Roundup-spacing-y);
+.MiyagiTest:last-child {
+  margin-bottom: var(--Miyagi-spacing-y);
 }
 
-.RoundupTest-title {
-  color: var(--Roundup-colorHeadlines);
+.MiyagiTest-title {
+  color: var(--Miyagi-colorHeadlines);
   display: block;
   font-weight: bold;
   margin: 0 0 0.5rem;

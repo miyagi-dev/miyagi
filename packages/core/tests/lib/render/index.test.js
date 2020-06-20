@@ -177,8 +177,8 @@ describe("lib/render/index", () => {
         tests,
         projectName,
         userProjectName,
-        roundupDev: false,
-        roundupProd: true,
+        miyagiDev: false,
+        miyagiProd: true,
         isBuild: undefined,
       });
 
@@ -212,8 +212,8 @@ describe("lib/render/index", () => {
           tests,
           projectName,
           userProjectName,
-          roundupDev: false,
-          roundupProd: true,
+          miyagiDev: false,
+          miyagiProd: true,
           isBuild: undefined,
         });
 
@@ -243,8 +243,8 @@ describe("lib/render/index", () => {
           tests,
           projectName,
           userProjectName,
-          roundupDev: false,
-          roundupProd: true,
+          miyagiDev: false,
+          miyagiProd: true,
           isBuild: undefined,
         });
 
@@ -279,8 +279,8 @@ describe("lib/render/index", () => {
           userProjectName,
           htmlValidation: false,
           accessibilityValidation: false,
-          roundupDev: false,
-          roundupProd: true,
+          miyagiDev: false,
+          miyagiProd: true,
           isBuild: undefined,
           indexPath: "/component?file=all&embedded=true",
         });
@@ -311,8 +311,8 @@ describe("lib/render/index", () => {
           userProjectName,
           htmlValidation: false,
           accessibilityValidation: false,
-          roundupDev: false,
-          roundupProd: true,
+          miyagiDev: false,
+          miyagiProd: true,
           isBuild: undefined,
           indexPath: "/component?file=all&embedded=true",
         });
@@ -712,7 +712,7 @@ describe("lib/render/index", () => {
               {
                 file: "component6/index.hbs",
                 html:
-                  '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
+                  '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
                 variation: "variation1",
                 url:
                   "/component?file=component6&variation=variation1&embedded=true",
@@ -992,7 +992,7 @@ describe("lib/render/index", () => {
               name: "component6",
               folders: [],
               html:
-                '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
+                '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6&embedded=true",
             },
             {
@@ -1061,7 +1061,7 @@ describe("lib/render/index", () => {
               name: "component6",
               folders: [],
               html:
-                '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
+                '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6&embedded=true",
             },
             {
@@ -1129,7 +1129,7 @@ describe("lib/render/index", () => {
             {
               name: "component6",
               html:
-                '<p class="RoundupError">Error: The partial doesntexist.hbs could not be found</p>',
+                '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
               url: "/component?file=component6&embedded=true",
               folders: [],
             },
@@ -1177,7 +1177,7 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: `<p class="RoundupError">${component} not found.</p>`,
+          html: `<p class="MiyagiError">${component} not found.</p>`,
           theme: {},
           dev: false,
           prod: false,
@@ -1205,7 +1205,7 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: `<p class="RoundupError">${component} not found.</p>`,
+          html: `<p class="MiyagiError">${component} not found.</p>`,
           theme: {},
           dev: false,
           prod: false,

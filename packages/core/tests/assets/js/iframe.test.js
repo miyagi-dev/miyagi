@@ -4,7 +4,7 @@ describe("assets/js/iframe.js", () => {
   describe("is embedded", () => {
     describe.skip("clicking on a link", () => {
       const link = document.createElement("a");
-      link.classList.add("RoundupComponent-file");
+      link.classList.add("MiyagiComponent-file");
       link.setAttribute("href", "the target");
       document.body.appendChild(link);
 
@@ -39,7 +39,7 @@ describe("assets/js/iframe.js", () => {
   describe("is not embedded", () => {
     test("", () => {
       const link = document.createElement("a");
-      link.classList.add("RoundupComponent-file");
+      link.classList.add("MiyagiComponent-file");
       document.body.appendChild(link);
       document.dispatchEvent(new Event("DOMContentLoaded"));
 

@@ -9,7 +9,7 @@ jest.mock("../../../../lib/state/menu/structure.js", () => {
   };
 });
 
-process.cwd = () => "/roundup/tests";
+process.cwd = () => "/miyagi/tests";
 
 afterEach(() => {
   jest.resetModules();

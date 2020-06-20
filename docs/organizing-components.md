@@ -1,4 +1,4 @@
-_roundup_ assumes that you have a dedicated folder for each of your components, including a template, css and js file, all named like the folder.
+_miyagi_ assumes that you have a dedicated folder for each of your components, including a template, css and js file, all named like the folder.
 
 #### Example
 

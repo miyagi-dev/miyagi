@@ -1,6 +1,6 @@
 export default (links) => {
   if (parent.window) {
-    const linkClass = "RoundupComponent-file";
+    const linkClass = "MiyagiComponent-file";
 
     links.forEach((link) => {
       link.addEventListener("click", (e) => {

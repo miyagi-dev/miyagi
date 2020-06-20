@@ -1,8 +1,8 @@
 module.exports = {
-  toggle: "Roundup-toggle",
-  component: "Roundup-component",
-  link: "Roundup-link",
-  list: "Roundup-list",
-  listContainer: "Roundup-listContainer",
-  listItem: "Roundup-listItem",
+  toggle: "Miyagi-toggle",
+  component: "Miyagi-component",
+  link: "Miyagi-link",
+  list: "Miyagi-list",
+  listContainer: "Miyagi-listContainer",
+  listItem: "Miyagi-listItem",
 };

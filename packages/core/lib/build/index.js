@@ -159,7 +159,7 @@ module.exports = (app) => {
     return new Promise((resolve) =>
       fs.copy(
         path.join(__dirname, "../../dist/"),
-        `${buildFolder}/roundup/`,
+        `${buildFolder}/miyagi/`,
         resolve
       )
     );

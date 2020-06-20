@@ -1,8 +1,8 @@
-.RoundupResults + .RoundupResults {
+.MiyagiResults + .MiyagiResults {
   margin-top: var(--results-spacing);
 }
 
-.RoundupResults-summary {
+.MiyagiResults-summary {
   cursor: default;
   list-style-type: none;
   padding: 0 0 0 1.5rem;
@@ -10,38 +10,38 @@
   white-space: nowrap;
 }
 
-.RoundupResults-summary::after {
-  border: var(--Roundup-toggle-border);
+.MiyagiResults-summary::after {
+  border: var(--Miyagi-toggle-border);
   border-color: currentColor;
-  border-width: var(--Roundup-toggle-borderWidth);
+  border-width: var(--Miyagi-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: var(--Roundup-toggle-fontSize);
-  height: var(--Roundup-toggle-height);
+  font-size: var(--Miyagi-toggle-fontSize);
+  height: var(--Miyagi-toggle-height);
   left: 0.25rem;
   position: absolute;
   top: 50%;
-  transition: var(--Roundup-toggle-transition);
-  width: var(--Roundup-toggle-width);
+  transition: var(--Miyagi-toggle-transition);
+  width: var(--Miyagi-toggle-width);
 }
 
-.RoundupResults-summary::-webkit-details-marker {
+.MiyagiResults-summary::-webkit-details-marker {
   display: none;
 }
 
-.RoundupResults:not([open]) .RoundupResults-summary::after {
-  transform: var(--Roundup-toggle-transition-closed);
+.MiyagiResults:not([open]) .MiyagiResults-summary::after {
+  transform: var(--Miyagi-toggle-transition-closed);
 }
 
-.RoundupResults[open] .RoundupResults-summary::after {
-  transform: var(--Roundup-toggle-transition-opened);
+.MiyagiResults[open] .MiyagiResults-summary::after {
+  transform: var(--Miyagi-toggle-transition-opened);
 }
 
-.RoundupResults-value:not(:last-child) {
+.MiyagiResults-value:not(:last-child) {
   padding-right: 1rem;
 }
 
-.RoundupResults-value.has-positiveValue {
+.MiyagiResults-value.has-positiveValue {
   border-radius: 0.25em;
   color: #fff;
   display: inline-block;
@@ -51,54 +51,54 @@
   text-align: center;
 }
 
-.RoundupResults-value--positive {
-  color: var(--Roundup-color-positive);
+.MiyagiResults-value--positive {
+  color: var(--Miyagi-color-positive);
 }
 
-.RoundupResults-value--positive.has-positiveValue {
-  background: var(--Roundup-color-positive);
+.MiyagiResults-value--positive.has-positiveValue {
+  background: var(--Miyagi-color-positive);
 }
 
-.RoundupResults-value--neutral {
-  color: var(--Roundup-color-lightGray);
+.MiyagiResults-value--neutral {
+  color: var(--Miyagi-color-lightGray);
 }
 
-.RoundupResults-value--neutral.has-positiveValue {
-  background: var(--Roundup-color-lightGray);
+.MiyagiResults-value--neutral.has-positiveValue {
+  background: var(--Miyagi-color-lightGray);
 }
 
-.RoundupResults-value--negative {
-  color: var(--Roundup-color-negative);
+.MiyagiResults-value--negative {
+  color: var(--Miyagi-color-negative);
 }
 
-.RoundupResults-value--negative.has-positiveValue {
-  background: var(--Roundup-color-negative);
+.MiyagiResults-value--negative.has-positiveValue {
+  background: var(--Miyagi-color-negative);
 }
 
-.RoundupResults-value--warning {
-  color: var(--Roundup-color-warning);
+.MiyagiResults-value--warning {
+  color: var(--Miyagi-color-warning);
 }
 
-.RoundupResults-value--warning.has-positiveValue {
-  background: var(--Roundup-color-warning);
+.MiyagiResults-value--warning.has-positiveValue {
+  background: var(--Miyagi-color-warning);
 }
 
-.RoundupResults-details {
+.MiyagiResults-details {
   margin: 1rem 0 1rem 0;
 }
 
-.RoundupResults-empty {
+.MiyagiResults-empty {
   font-style: italic;
 }
 
 @media (pointer: coarse) {
-  .RoundupResults + .RoundupResults {
+  .MiyagiResults + .MiyagiResults {
     --results-spacing: 0.75rem;
   }
 }
 
 @media (pointer: fine) {
-  .RoundupResults + .RoundupResults {
+  .MiyagiResults + .MiyagiResults {
     --results-spacing: 0.5rem;
   }
 }

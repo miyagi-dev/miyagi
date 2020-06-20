@@ -1,5 +1,5 @@
 /**
- * Module for initializing roundup
+ * Module for initializing miyagi
  *
  * @module init
  */

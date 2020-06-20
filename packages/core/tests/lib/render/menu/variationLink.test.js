@@ -16,7 +16,7 @@ describe("lib/menu/elements/variation-link", () => {
           true
         )
       ).toEqual(
-        `<a class="Roundup-link Roundup-link--lvl1 Roundup-link--variation" target="iframe" href="/component?file=foo/bar&variation=baz&embedded=true" aria-current="page">baz</a>`
+        `<a class="Miyagi-link Miyagi-link--lvl1 Miyagi-link--variation" target="iframe" href="/component?file=foo/bar&variation=baz&embedded=true" aria-current="page">baz</a>`
       );
     });
   });
@@ -31,7 +31,7 @@ describe("lib/menu/elements/variation-link", () => {
           false
         )
       ).toEqual(
-        `<a class="Roundup-link Roundup-link--lvl1 Roundup-link--variation" target="iframe" href="/component?file=foo/bar&variation=baz&embedded=true">baz</a>`
+        `<a class="Miyagi-link Miyagi-link--lvl1 Miyagi-link--variation" target="iframe" href="/component?file=foo/bar&variation=baz&embedded=true">baz</a>`
       );
     });
   });

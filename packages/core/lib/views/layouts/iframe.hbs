@@ -19,16 +19,16 @@
     {{/if}}
     <style>
       :root {
-        {{#if theme.fontFamily}}--Roundup-fontFamily: {{ theme.fontFamily }};{{/if}}
-        {{#if theme.content.colorText}}--Roundup-color: {{ theme.content.colorText }};{{/if}}
-        {{#if theme.content.colorHeadlines}}--Roundup-colorHeadlines: {{ theme.content.colorHeadlines }};{{/if}}
+        {{#if theme.fontFamily}}--Miyagi-fontFamily: {{ theme.fontFamily }};{{/if}}
+        {{#if theme.content.colorText}}--Miyagi-color: {{ theme.content.colorText }};{{/if}}
+        {{#if theme.content.colorHeadlines}}--Miyagi-colorHeadlines: {{ theme.content.colorHeadlines }};{{/if}}
       }
     </style>
   </head>
   <body>
     {{#block "body"}}{{/block}}
     {{#if standaloneUrl}}
-      <a class="RoundupIframe-newTabLink" href="{{standaloneUrl}}" target="_blank">
+      <a class="MiyagiIframe-newTabLink" href="{{standaloneUrl}}" target="_blank">
         Open in new tab
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">

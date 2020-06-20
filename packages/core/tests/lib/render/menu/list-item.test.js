@@ -8,7 +8,7 @@ beforeEach(() => {
 describe("lib/menu/elements/list-item", () => {
   test("renders the correct listItem html", () => {
     expect(listItem.render(1, "content", "variation")).toEqual(
-      `<li class="Roundup-listItem Roundup-listItem--variation Roundup-listItem--lvl1">content</li>`
+      `<li class="Miyagi-listItem Miyagi-listItem--variation Miyagi-listItem--lvl1">content</li>`
     );
   });
 });

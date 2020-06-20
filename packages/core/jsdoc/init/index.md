@@ -1,5 +1,5 @@
 <a name="module_init"></a>
 
 ## init
-Module for initializing roundup
+Module for initializing miyagi
 

@@ -1,8 +1,8 @@
 **File:** `mocks.json`, `mocks.js` or `mocks.yaml`
 
-_roundup_ tries to make using mock data as convenient as possible. Therefore you can create multiple [variants](#variants) in one file, [reference other mock files](#referencing-other-mock-files), [reference template files](#referencing-template-files) and [join those](#joining-templates). It is even possible to use CommonJS modules if you want to [asynchronously create mock data](#asynchronous-mock-data).
+_miyagi_ tries to make using mock data as convenient as possible. Therefore you can create multiple [variants](#variants) in one file, [reference other mock files](#referencing-other-mock-files), [reference template files](#referencing-template-files) and [join those](#joining-templates). It is even possible to use CommonJS modules if you want to [asynchronously create mock data](#asynchronous-mock-data).
 
-_**NOTE:** Please do not use keys that start with `$` as roundup uses these for specific functionality (more about that below)._
+_**NOTE:** Please do not use keys that start with `$` as miyagi uses these for specific functionality (more about that below)._
 
 _**NOTE:** The concept of inheriting mock data works best with template engines which allow you to pass data objects into an include. Please check the section [supported template engines](/template-engines) for limitations with certain template engines._
 

@@ -1,39 +1,39 @@
 {{#extend "main"}}
 {{#content "body"}}
-<nav class="Roundup-nav">
-  <h1 class="Roundup-title">
-    <a class="Roundup-link Roundup-link--showAll{{#if theme.logo}} has-logo{{/if}}" href="{{ indexPath }}" target="iframe" {{#if showAll }}
+<nav class="Miyagi-nav">
+  <h1 class="Miyagi-title">
+    <a class="Miyagi-link Miyagi-link--showAll{{#if theme.logo}} has-logo{{/if}}" href="{{ indexPath }}" target="iframe" {{#if showAll }}
       aria-current="page" {{/if}}>
       {{#if theme.logo}}
-      <img class="Roundup-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
+      <img class="Miyagi-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
       {{/if}}
-      <span class="Roundup-projectName">Overview</span>
+      <span class="Miyagi-projectName">Overview</span>
     </a>
   </h1>
   {{#if folders}}
-  <button class="Roundup-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
-  <div class="Roundup-menu">
+  <button class="Miyagi-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
+  <div class="Miyagi-menu">
     {{#menu folders requestedComponent requestedVariation null null }}{{/menu}}
   </div>
   {{/if}}
 </nav>
 
-<main class="Roundup-content">
-  <div class="Roundup-frameWrapper">
-    <iframe class="Roundup-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
+<main class="Miyagi-content">
+  <div class="Miyagi-frameWrapper">
+    <iframe class="Miyagi-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
   </div>
 </main>
 
-<aside class="Roundup-tests" {{#if hideTests}} hidden{{/if}}>
+<aside class="Miyagi-tests" {{#if hideTests}} hidden{{/if}}>
   {{#each tests}}
-  <div class="RoundupTest RoundupTest--{{this.alias}}" hidden>
-    <b class="RoundupTest-title">{{this.title}}</b>
+  <div class="MiyagiTest MiyagiTest--{{this.alias}}" hidden>
+    <b class="MiyagiTest-title">{{this.title}}</b>
     {{#each this.results}}
-    <details class="RoundupResults RoundupResults--{{this.alias}}">
-      <summary class="RoundupResults-summary">
-        {{this.label}}: <span class="RoundupResults-value RoundupResults-value--{{this.class}}">0</span>
+    <details class="MiyagiResults MiyagiResults--{{this.alias}}">
+      <summary class="MiyagiResults-summary">
+        {{this.label}}: <span class="MiyagiResults-value MiyagiResults-value--{{this.class}}">0</span>
       </summary>
-      <div class="RoundupResults-details"></div>
+      <div class="MiyagiResults-details"></div>
     </details>
     {{/each}}
   </div>

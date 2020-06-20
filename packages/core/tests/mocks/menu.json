@@ -2,14 +2,14 @@
   {
     "type": "directory",
     "name": "components",
-    "fullPath": "/roundup/tests/src/components",
+    "fullPath": "/miyagi/tests/src/components",
     "index": 0,
-    "id": "-roundup-tests-src-components",
+    "id": "-miyagi-tests-src-components",
     "children": [
       {
         "type": "directory",
         "name": "button",
-        "fullPath": "/roundup/tests/src/components/button",
+        "fullPath": "/miyagi/tests/src/components/button",
         "shortPath": "components/button",
         "normalizedShortPath": "components-button",
         "variations": [
@@ -40,12 +40,12 @@
           }
         ],
         "index": 1,
-        "id": "-roundup-tests-src-components-button"
+        "id": "-miyagi-tests-src-components-button"
       },
       {
         "type": "directory",
         "name": "headline",
-        "fullPath": "/roundup/tests/src/components/headline",
+        "fullPath": "/miyagi/tests/src/components/headline",
         "shortPath": "components/headline",
         "normalizedShortPath": "components-headline",
         "variations": [
@@ -54,12 +54,12 @@
           { "name": "4", "data": { "type": "4", "copy": "Headline 4" } }
         ],
         "index": 1,
-        "id": "-roundup-tests-src-components-headline"
+        "id": "-miyagi-tests-src-components-headline"
       },
       {
         "type": "directory",
         "name": "link",
-        "fullPath": "/roundup/tests/src/components/link",
+        "fullPath": "/miyagi/tests/src/components/link",
         "shortPath": "components/link",
         "normalizedShortPath": "components-link",
         "variations": [
@@ -69,12 +69,12 @@
           }
         ],
         "index": 1,
-        "id": "-roundup-tests-src-components-link"
+        "id": "-miyagi-tests-src-components-link"
       },
       {
         "type": "directory",
         "name": "link-list",
-        "fullPath": "/roundup/tests/src/components/link-list",
+        "fullPath": "/miyagi/tests/src/components/link-list",
         "shortPath": "components/link-list",
         "normalizedShortPath": "components-link-list",
         "variations": [
@@ -104,67 +104,67 @@
           }
         ],
         "index": 1,
-        "id": "-roundup-tests-src-components-link-list"
+        "id": "-miyagi-tests-src-components-link-list"
       },
       {
         "type": "directory",
         "name": "rte",
-        "fullPath": "/roundup/tests/src/components/rte",
+        "fullPath": "/miyagi/tests/src/components/rte",
         "shortPath": "components/rte",
         "normalizedShortPath": "components-rte",
         "variations": [
           {
             "name": "RTE element",
             "data": {
-              "html": "<h2>Introduction</h2><p><em>roundup</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>roundup</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
+              "html": "<h2>Introduction</h2><p><em>miyagi</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>miyagi</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
             }
           }
         ],
         "index": 1,
-        "id": "-roundup-tests-src-components-rte"
+        "id": "-miyagi-tests-src-components-rte"
       }
     ]
   },
   {
     "type": "directory",
     "name": "templates",
-    "fullPath": "/roundup/tests/src/templates",
+    "fullPath": "/miyagi/tests/src/templates",
     "index": 0,
-    "id": "-roundup-tests-src-templates",
+    "id": "-miyagi-tests-src-templates",
     "children": [
       {
         "type": "directory",
         "name": "_includes",
-        "fullPath": "/roundup/tests/src/templates/_includes",
+        "fullPath": "/miyagi/tests/src/templates/_includes",
         "index": 1,
-        "id": "-roundup-tests-src-templates--includes",
+        "id": "-miyagi-tests-src-templates--includes",
         "children": [
           {
             "type": "directory",
             "name": "footer",
-            "fullPath": "/roundup/tests/src/templates/_includes/footer",
+            "fullPath": "/miyagi/tests/src/templates/_includes/footer",
             "shortPath": "templates/_includes/footer",
             "normalizedShortPath": "templates--includes-footer",
             "variations": [{ "name": "default", "data": {} }],
             "index": 2,
-            "id": "-roundup-tests-src-templates--includes-footer"
+            "id": "-miyagi-tests-src-templates--includes-footer"
           },
           {
             "type": "directory",
             "name": "header",
-            "fullPath": "/roundup/tests/src/templates/_includes/header",
+            "fullPath": "/miyagi/tests/src/templates/_includes/header",
             "shortPath": "templates/_includes/header",
             "normalizedShortPath": "templates--includes-header",
             "variations": [{ "name": "default", "data": {} }],
             "index": 2,
-            "id": "-roundup-tests-src-templates--includes-header"
+            "id": "-miyagi-tests-src-templates--includes-header"
           }
         ]
       },
       {
         "type": "directory",
         "name": "homepage",
-        "fullPath": "/roundup/tests/src/templates/homepage",
+        "fullPath": "/miyagi/tests/src/templates/homepage",
         "shortPath": "templates/homepage",
         "normalizedShortPath": "templates-homepage",
         "variations": [
@@ -190,7 +190,7 @@
           }
         ],
         "index": 1,
-        "id": "-roundup-tests-src-templates-homepage"
+        "id": "-miyagi-tests-src-templates-homepage"
       }
     ]
   }

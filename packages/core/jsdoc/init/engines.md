@@ -5,12 +5,12 @@ Module for setting the express engines
 
 
 * [init/engines](#module_init/engines)
-    * [~setRoundupEngine(app)](#module_init/engines..setRoundupEngine)
+    * [~setMiyagiEngine(app)](#module_init/engines..setMiyagiEngine)
     * [~setUserEngine(app)](#module_init/engines..setUserEngine) ⇒ <code>boolean</code>
 
-<a name="module_init/engines..setRoundupEngine"></a>
+<a name="module_init/engines..setMiyagiEngine"></a>
 
-### init/engines~setRoundupEngine(app)
+### init/engines~setMiyagiEngine(app)
 **Kind**: inner method of [<code>init/engines</code>](#module_init/engines)  
 
 | Param | Type | Description |

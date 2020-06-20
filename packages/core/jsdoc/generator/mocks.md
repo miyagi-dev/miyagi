@@ -7,7 +7,7 @@ Module for creating dummy mock data based on JSON schema
 | Param | Type | Description |
 | --- | --- | --- |
 | folderPath | <code>string</code> | the path for the component that should be created |
-| filesConfig | <code>object</code> | the files configuration from the user's roundup config |
+| filesConfig | <code>object</code> | the files configuration from the user's miyagi config |
 
 
 * [generator/mocks](#module_generator/mocks)

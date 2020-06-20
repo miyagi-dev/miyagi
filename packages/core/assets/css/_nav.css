@@ -1,96 +1,96 @@
-.Roundup-projectLogo {
+.Miyagi-projectLogo {
   max-width: 100%;
 }
 
-.Roundup-projectLogo + .Roundup-projectName {
+.Miyagi-projectLogo + .Miyagi-projectName {
   display: none;
 }
 
-.Roundup-menu {
+.Miyagi-menu {
   font-size: 1.4rem;
-  margin-top: var(--Roundup-spacing-y);
+  margin-top: var(--Miyagi-spacing-y);
 }
 
-[aria-expanded="true"] ~ .Roundup-listContainer {
+[aria-expanded="true"] ~ .Miyagi-listContainer {
   display: block;
 }
 
-[aria-expanded="false"] ~ .Roundup-listContainer {
+[aria-expanded="false"] ~ .Miyagi-listContainer {
   display: none;
 }
 
-.Roundup-listItem {
+.Miyagi-listItem {
   position: relative;
 }
 
-.Roundup-listItem--directory.Roundup-listItem--lvl0 {
+.Miyagi-listItem--directory.Miyagi-listItem--lvl0 {
   padding-bottom: 2rem;
 }
 
-.Roundup-list--variations,
-.Roundup-list--components:not(.Roundup-list--lvl0) {
+.Miyagi-list--variations,
+.Miyagi-list--components:not(.Miyagi-list--lvl0) {
   padding-top: var(--spacingTop);
 }
 
-.Roundup-list--variations + .Roundup-list--components {
+.Miyagi-list--variations + .Miyagi-list--components {
   padding-bottom: 0.5rem;
   padding-top: 1rem;
 }
 
-.Roundup-link,
-.Roundup-component {
+.Miyagi-link,
+.Miyagi-component {
   display: block;
 }
 
-.Roundup-link,
-a.Roundup-component {
-  padding: 0 var(--Roundup-linkSpacing);
+.Miyagi-link,
+a.Miyagi-component {
+  padding: 0 var(--Miyagi-linkSpacing);
 }
 
-.Roundup-component--lvl0:not(a) {
+.Miyagi-component--lvl0:not(a) {
   font-size: 0.875em;
   font-weight: 500;
   letter-spacing: 0.025em;
   text-transform: uppercase;
 }
 
-.Roundup-component:not(.Roundup-link) {
-  color: var(--Roundup-color-link);
+.Miyagi-component:not(.Miyagi-link) {
+  color: var(--Miyagi-color-link);
   opacity: 0.75;
 }
 
-.Roundup-link {
-  color: var(--Roundup-color-link);
+.Miyagi-link {
+  color: var(--Miyagi-color-link);
   text-decoration: none;
 }
 
-.Roundup-link:hover,
-.Roundup-link:focus {
+.Miyagi-link:hover,
+.Miyagi-link:focus {
   text-decoration: underline;
 }
 
-.Roundup-link--showAll {
+.Miyagi-link--showAll {
   display: inline-block;
   font-size: 1.4rem;
   font-weight: bold;
 }
 
-.Roundup-link--variation {
+.Miyagi-link--variation {
   font-weight: 500;
 }
 
-.Roundup-link:not(.has-logo)[aria-current] {
-  background: var(--Roundup-color-link);
-  border-radius: var(--Roundup-borderRadius);
-  color: var(--Roundup-color-linkActive);
+.Miyagi-link:not(.has-logo)[aria-current] {
+  background: var(--Miyagi-color-link);
+  border-radius: var(--Miyagi-borderRadius);
+  color: var(--Miyagi-color-linkActive);
   display: inline-block;
 }
 
-.Roundup-component.Roundup-link {
+.Miyagi-component.Miyagi-link {
   font-weight: bold;
 }
 
-.Roundup-toggle {
+.Miyagi-toggle {
   display: block;
   font-size: 1.5em;
   height: 1em;
@@ -101,76 +101,76 @@ a.Roundup-component {
   width: 1em;
 }
 
-.Roundup-toggle::after {
-  border: var(--Roundup-toggle-border);
-  border-width: var(--Roundup-toggle-borderWidth);
+.Miyagi-toggle::after {
+  border: var(--Miyagi-toggle-border);
+  border-width: var(--Miyagi-toggle-borderWidth);
   content: "";
   display: block;
-  font-size: var(--Roundup-toggle-fontSize);
-  height: var(--Roundup-toggle-height);
+  font-size: var(--Miyagi-toggle-fontSize);
+  height: var(--Miyagi-toggle-height);
   left: 50%;
   position: absolute;
   top: 50%;
-  transition: var(--Roundup-toggle-transition);
-  width: var(--Roundup-toggle-width);
+  transition: var(--Miyagi-toggle-transition);
+  width: var(--Miyagi-toggle-width);
 }
 
-.Roundup-toggle[aria-expanded="false"]::after {
-  transform: var(--Roundup-toggle-transition-closed);
+.Miyagi-toggle[aria-expanded="false"]::after {
+  transform: var(--Miyagi-toggle-transition-closed);
 }
 
-.Roundup-toggle[aria-expanded="true"]::after {
-  transform: var(--Roundup-toggle-transition-opened);
+.Miyagi-toggle[aria-expanded="true"]::after {
+  transform: var(--Miyagi-toggle-transition-opened);
 }
 
 @media (max-width: 40em) {
-  .Roundup-projectLogo {
+  .Miyagi-projectLogo {
     height: 3rem;
   }
 }
 
 @media (pointer: coarse) {
-  .Roundup-list {
+  .Miyagi-list {
     --spacingTop: 1.25rem;
     --spacingLeft: 1.5rem;
   }
 
-  .Roundup-listContainer {
+  .Miyagi-listContainer {
     margin-left: 2rem;
   }
 
-  .Roundup-listItem:not(.Roundup-listItem--lvl0):not(:last-child) {
+  .Miyagi-listItem:not(.Miyagi-listItem--lvl0):not(:last-child) {
     padding-bottom: 1rem;
   }
 
-  .Roundup-toggle {
+  .Miyagi-toggle {
     --right: -0.75rem;
   }
 
-  .Roundup-toggle--lvl0 {
+  .Miyagi-toggle--lvl0 {
     --right: 0.25em !important;
   }
 
-  .Roundup-component--lvl0 {
+  .Miyagi-component--lvl0 {
     margin-left: 1rem;
   }
 }
 
 @media (pointer: fine) {
-  .Roundup-list {
+  .Miyagi-list {
     --spacingTop: 0.5rem;
     --spacingLeft: 1rem;
   }
 
-  .Roundup-listContainer {
+  .Miyagi-listContainer {
     margin-left: 1.5rem;
   }
 
-  .Roundup-listItem:not(.Roundup-listItem--lvl0):not(:last-child) {
+  .Miyagi-listItem:not(.Miyagi-listItem--lvl0):not(:last-child) {
     padding-bottom: 0.5rem;
   }
 
-  .Roundup-toggle {
+  .Miyagi-toggle {
     --right: 0rem; /* stylelint-disable-line */
   }
 }

@@ -1,11 +1,11 @@
-**`.roundup.json`** or **`.roundup.js`**
+**`.miyagi.json`** or **`.miyagi.js`**
 
 The config file can either be a JSON file or JS file with a CommonJS module, if you want to [extend your template engine](/configuration/extending-template-engine).
 
 This is an example for a JSON config file:
 
 ```javascript
-// .roundup.json
+// .miyagi.json
 
 {
   "assets": {
@@ -33,7 +33,7 @@ This is an example for a JSON config file:
     "name": "twig",
     "options": {
       "namespaces": {
-        "roundup": "src/"
+        "miyagi": "src/"
       }
     }
   },
@@ -42,7 +42,7 @@ This is an example for a JSON config file:
       "extension": "twig",
     },
   },
-  "projectName": "roundup",
+  "projectName": "miyagi",
   "ui": {
     "reload": false,
     "theme": {

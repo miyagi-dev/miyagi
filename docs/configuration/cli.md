@@ -6,7 +6,7 @@ All [available options](/configuration/options) can be set via command line.
 **Example:**
 
 ```bash
-roundup start --engine.name twig --files.template.extension twig --assets.css.development css/index.css css/forms.css
+miyagi start --engine.name twig --files.template.extension twig --assets.css.development css/index.css css/forms.css
 ```
 
-_**Note:** If an option is passed as a CLI argument and defined in your `.roundup.js`, the CLI argument is used._
+_**Note:** If an option is passed as a CLI argument and defined in your `.miyagi.js`, the CLI argument is used._
