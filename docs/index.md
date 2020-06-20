@@ -18,4 +18,4 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 
 ## Demo
 
-[miyagi.mgrossklaus.de](https://miyagi.mgrossklaus.de) (Code: [https://github.com/mgrsskls/miyagi-demo](https://github.com/mgrsskls/miyagi-demo))
+[demo.miyagi.dev](https://demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demo))

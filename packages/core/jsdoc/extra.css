@@ -53,7 +53,3 @@ h4 {
 .md-nav__item .md-nav__link--active {
   text-decoration: underline;
 }
-
-.md-footer-copyright {
-  color: inherit;
-}

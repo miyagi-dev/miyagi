@@ -1,5 +1,5 @@
-site_name: miyagi
-site_description: miyagi is a node based component development tool for JavaScript templating engines.
+site_name: Documentation
+site_description: Documentation for miyagi, a node based component development tool for JavaScript templating engines.
 
 docs_dir: docs
 
@@ -13,6 +13,8 @@ edit_uri: ""
 theme:
   name: material
   font: false
+  favicon: img/favicon.svg
+  logo: img/logo.svg
 
 plugins:
   - search # necessary for search to work

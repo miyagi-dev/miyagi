@@ -11,6 +11,9 @@ const templateData = jsdoc2md.getTemplateDataSync({ files: inputFile });
 
 fs.removeSync(path.join(process.cwd(), outputFolder));
 
+fs.copy('../../docs/img', 'jsdoc/img');
+fs.copy('../../docs/extra.css', 'jsdoc/extra.css');
+
 for (data of templateData) {
   if (pages[`${data.meta.path}/${data.meta.filename}`]) {
     pages[`${data.meta.path}/${data.meta.filename}`].push(data);
@@ -25,6 +28,6 @@ Object.entries(pages).forEach(([page, entries]) => {
     .replace(`${process.cwd()}/lib`, outputFolder)
     .replace(".js", ".md");
   fs.mkdir(path.dirname(filePath), { recursive: true }, function () {
-    fs.writeFile(filePath, output, () => {});
+    fs.writeFile(filePath, output, () => { });
   });
 });

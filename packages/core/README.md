@@ -2,10 +2,6 @@
 
 _miyagi_ is a component development tool for JavaScript templating engines.
 
-## Demo
-
-[miyagi.mgrossklaus.de](https://miyagi.mgrossklaus.de) (Code: [https://github.com/mgrsskls/miyagi-demo](https://github.com/mgrsskls/miyagi-demo))
-
 ## Benefits
 
 - No overhead in your project by running _miyagi_ without a configuration file.
@@ -20,6 +16,10 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 - Allows creating a static build.
 - Lets you create components via CLI.
 
+## Demo
+
+[demo.miyagi.dev](https://demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demo))
+
 ## Documentation
 
-[https://flamboyant-euclid-7361c7.netlify.app/](https://flamboyant-euclid-7361c7.netlify.app/)
+[https://docs.miyagi.dev](https://docs.miyagi.dev)
