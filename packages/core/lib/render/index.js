@@ -41,6 +41,7 @@ async function renderVariations({
   name,
   cb,
   schemaType,
+  fullFilePath,
 }) {
   const variations = [];
   const promises = [];
@@ -51,7 +52,7 @@ async function renderVariations({
     promises.push(
       new Promise((resolve) => {
         app.render(
-          file,
+          fullFilePath,
           getDataForRenderFunction(app, entry.data),
           (err, result) => {
             const baseName = path.dirname(file);
@@ -351,13 +352,11 @@ async function renderMainWith404({ app, res, file, variation }) {
  */
 async function renderComponent({ app, res, file, variation, embedded, cb }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
+  const fullFilePath = helpers.getFullPathFromShortPath(app, file);
 
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
-        app,
-        helpers.getDataPathFromTemplatePath(app, file)
-      )
+      helpers.getDataPathFromTemplatePath(app, fullFilePath)
     ] || {}
   );
   const componentVariations = componentJson.$variants;
@@ -408,7 +407,7 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
   await renderSingleComponent({
     app,
     res,
-    file,
+    file: fullFilePath,
     context: componentData,
     standaloneUrl,
     cb,
@@ -424,32 +423,21 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
  */
 async function renderComponentVariations({ app, res, file, cb }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
+  const fullFilePath = helpers.getFullPathFromShortPath(app, file);
 
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
-        app,
-        helpers.getDataPathFromTemplatePath(app, file)
-      )
+      helpers.getDataPathFromTemplatePath(app, fullFilePath)
     ]
   );
   const componentDocumentation = app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
-      app,
-      helpers.getDocumentationPathFromTemplatePath(app, file)
-    )
+    helpers.getDocumentationPathFromTemplatePath(app, fullFilePath)
   ];
   const componentInfo = app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
-      app,
-      helpers.getInfoPathFromTemplatePath(app, file)
-    )
+    helpers.getInfoPathFromTemplatePath(app, fullFilePath)
   ];
   const componentSchema = app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
-      app,
-      helpers.getSchemaPathFromTemplatePath(app, file)
-    )
+    helpers.getSchemaPathFromTemplatePath(app, fullFilePath)
   ];
 
   let componentSchemaString;
@@ -538,6 +526,7 @@ async function renderComponentVariations({ app, res, file, cb }) {
           name: componentName,
           cb,
           schemaType: app.get("config").files.schema.extension,
+          fullFilePath,
         });
       });
     } else {
@@ -551,6 +540,7 @@ async function renderComponentVariations({ app, res, file, cb }) {
         name: componentName,
         cb,
         schemaType: app.get("config").files.schema.extension,
+        fullFilePath,
       });
     }
   } else {
@@ -573,6 +563,7 @@ async function renderComponentVariations({ app, res, file, cb }) {
       name: componentName,
       cb,
       schemaType: app.get("config").files.schema.extension,
+      fullFilePath,
     });
   }
 }
@@ -599,20 +590,18 @@ async function renderComponentOverview({ app, res, cb }) {
     components = [];
 
     for (const partialPath in app.get("state").partials) {
+      const fullPartialPath = helpers.getFullPathFromShortPath(
+        app,
+        partialPath
+      );
       const directoryPath = path.dirname(partialPath);
       const componentInfo =
         app.get("state").fileContents[
-          helpers.getFullPathFromShortPath(
-            app,
-            helpers.getInfoPathFromTemplatePath(app, partialPath)
-          )
+          helpers.getInfoPathFromTemplatePath(app, fullPartialPath)
         ] || {};
       const componentJson =
         app.get("state").fileContents[
-          helpers.getFullPathFromShortPath(
-            app,
-            helpers.getDataPathFromTemplatePath(app, partialPath)
-          )
+          helpers.getDataPathFromTemplatePath(app, fullPartialPath)
         ] || {};
       let componentData;
       const componentRootData = helpers.removeInternalKeys(componentJson);
@@ -637,7 +626,7 @@ async function renderComponentOverview({ app, res, cb }) {
         componentData,
         componentInfo.name || path.basename(directoryPath),
         partialPath.split(path.sep).slice(0, -2),
-        partialPath,
+        fullPartialPath,
       ]);
     }
 
