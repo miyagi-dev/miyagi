@@ -1,6 +1,6 @@
 :root {
-  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
-    "Roboto", "Helvetica", "Arial", sans-serif;
+  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+    "Helvetica", "Arial", sans-serif;
   --Miyagi-color: #222;
   --Miyagi-color-negative: #d9173e;
   --Miyagi-color-warning: purple;
@@ -49,8 +49,11 @@ body {
 .MiyagiInformation,
 .MiyagiDocumentation,
 .MiyagiDocumentation a,
+.MiyagiDocumentation a:hover,
+.MiyagiDocumentation a:focus,
 .Miyagi-sectionTitle,
 .MiyagiIframe-newTabLink {
+  all: revert;
   color: var(--Miyagi-color);
   font-family: var(--Miyagi-fontFamily);
 }
