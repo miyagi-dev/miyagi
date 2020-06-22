@@ -1,8 +1,4 @@
 {
-  "name": "Link",
-  "status": "",
-  "data": {
-    "label": "GitHub",
-    "url": "https://github.com/mgrsskls"
-  }
+  "label": "GitHub",
+  "url": "https://github.com/mgrsskls"
 }

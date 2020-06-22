@@ -1,39 +1,27 @@
 {
-  "name": "Button",
-  "status": "done",
-  "data": {
-    "label": "Regular button"
-  },
-  "variations": [
+  "label": "Regular button",
+  "$variants": [
     {
-      "name": "external link",
-      "data": {
-        "label": "External link",
-        "url": "https://mgrossklaus.de",
-        "external": true
-      }
+      "$name": "external link",
+      "label": "External link",
+      "url": "https://mgrossklaus.de",
+      "external": true
     },
     {
-      "name": "secondary",
-      "data": {
-        "label": "Secondary button",
-        "modifiers": ["secondary"]
-      }
+      "$name": "secondary",
+      "label": "Secondary button",
+      "modifiers": ["secondary"]
     },
     {
-      "name": "disabled",
-      "data": {
-        "label": "Disabled button",
-        "disabled": true
-      }
+      "$name": "disabled",
+      "label": "Disabled button",
+      "disabled": true
     },
     {
-      "name": "disabled/secondary",
-      "data": {
-        "label": "Disabled secondary button",
-        "disabled": true,
-        "modifiers": ["secondary"]
-      }
+      "$name": "disabled/secondary",
+      "label": "Disabled secondary button",
+      "disabled": true,
+      "modifiers": ["secondary"]
     }
   ]
 }

@@ -1,33 +1,32 @@
 {
-  "name": "Homepage",
-  "data": {
-    "content": {
-      "$ref": "components/rte"
-    },
-    "cta": {
-      "$tpl": "components/button",
-      "$ref": "components/button#secondary"
-    },
-    "linkList": {
-      "title": "Links",
-      "headlineType": "2",
-      "links": [
-        {
-          "$tpl": "components/link",
-          "$ref": "components/link"
-        },
-        {
-          "$tpl": "components/link",
-          "$ref": "components/link"
-        },
-        {
-          "$tpl": "components/link",
-          "$ref": "components/link"
-        }
-      ]
-    },
-    "authorLinks": {
-      "$ref": "components/link-list"
-    }
+  "content": {
+    "$ref": "components/rte"
+  },
+  "cta": {
+    "$tpl": "components/button",
+    "$ref": "components/button",
+    "label": "Get it @ npm",
+    "url": "https://npmjs.com/package/@miyagi/core"
+  },
+  "linkList": {
+    "title": "Links",
+    "headlineType": "2",
+    "links": [
+      {
+        "$tpl": "components/link",
+        "$ref": "components/link",
+        "label": "GitHub",
+        "url": "https://github.com/mgrsskls/miyagi"
+      },
+      {
+        "$tpl": "components/link",
+        "$ref": "components/link",
+        "label": "npm",
+        "url": "https://npmjs.com/org/miyagi/"
+      }
+    ]
+  },
+  "authorLinks": {
+    "$ref": "components/link-list"
   }
 }

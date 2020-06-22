@@ -1,12 +1,19 @@
 module.exports = {
   projectName: "miyagi demo",
-  cssFiles: {
-    development: ["src/index.css"],
-    production: ["dist/index.css"],
+  assets: {
+    css: {
+      development: ["src/index.css"],
+      production: ["dist/index.css"],
+    },
+    js: ["src/index.js"],
   },
-  jsFiles: ["src/index.js"],
-  validations: {
-    html: false,
-    accessibility: true,
+  ui: {
+    theme: {
+      logo: "src/logo.svg",
+    },
+    validations: {
+      html: false,
+      accessibility: true,
+    },
   },
 };
