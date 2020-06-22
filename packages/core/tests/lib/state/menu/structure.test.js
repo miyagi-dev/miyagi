@@ -52,7 +52,7 @@ describe("lib/state/menu/structure", () => {
             },
           },
           components: {
-            folder: "src/",
+            folder: "src",
           },
         })
       );

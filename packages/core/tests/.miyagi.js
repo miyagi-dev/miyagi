@@ -11,7 +11,7 @@ module.exports = {
     },
   },
   components: {
-    folder: "src/",
+    folder: "src",
   },
   projectName: "miyagi",
   ui: {

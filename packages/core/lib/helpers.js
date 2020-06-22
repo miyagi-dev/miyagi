@@ -101,7 +101,7 @@ module.exports = {
    */
   getShortPathFromFullPath: function (app, fullPath) {
     return fullPath.replace(
-      path.join(process.cwd(), app.get("config").components.folder),
+      `${path.join(process.cwd(), app.get("config").components.folder)}/`,
       ""
     );
   },

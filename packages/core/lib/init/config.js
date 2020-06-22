@@ -97,10 +97,6 @@ module.exports = (userConfig = {}) => {
   }
 
   if (config.components) {
-    if (config.components.folder) {
-      config.components.folder = sanitizePath(config.components.folder);
-    }
-
     if (config.components.ignores) {
       config.components.ignores = arrayfy(config.components.ignores).map(
         sanitizePath
@@ -118,6 +114,7 @@ module.exports = (userConfig = {}) => {
 
   const merged = deepMerge(defaultUserConfig, config);
 
+  merged.components.folder = sanitizePath(merged.components.folder);
   merged.components.ignores = merged.components.ignores.map((folder) =>
     path.join(process.cwd(), merged.components.folder, folder)
   );

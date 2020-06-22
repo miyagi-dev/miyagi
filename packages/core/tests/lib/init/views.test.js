@@ -15,7 +15,7 @@ describe("lib/init/views", () => {
     "config",
     deepMerge(config.defaultUserConfig, {
       components: {
-        folder: "src/",
+        folder: "src",
       },
     })
   );

@@ -31,7 +31,7 @@ describe("state/menu/index", () => {
           },
         },
         components: {
-          folder: "src/",
+          folder: "src",
         },
       })
     );
