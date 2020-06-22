@@ -11,10 +11,9 @@ const helpers = require("../../helpers.js");
 /**
  * @param {object} app - the express instance
  * @param json
- * @param obj
  * @param fullPath
  */
-function handleFileResult(app, json, obj, fullPath) {
+function handleFileResult(app, json, fullPath) {
   let arr = [];
 
   if (json) {
@@ -31,7 +30,6 @@ function handleFileResult(app, json, obj, fullPath) {
     if (variations) {
       for (const [i, variation] of variations.entries()) {
         const variationData = helpers.removeInternalKeys(variation);
-
         if (variation.$name && Object.keys(variationData).length > 0) {
           arr.push({
             name: variation.$name,
@@ -69,10 +67,9 @@ function handleFileResult(app, json, obj, fullPath) {
 
 /**
  * @param {object} app - the express instance
- * @param obj
  * @param jsonChild
  */
-function getData(app, obj, jsonChild) {
+function getData(app, jsonChild) {
   const fullPath = jsonChild.path;
   let result;
 
@@ -80,7 +77,7 @@ function getData(app, obj, jsonChild) {
     result = app.get("state").fileContents[fullPath];
   }
 
-  return handleFileResult(app, result, obj, fullPath);
+  return handleFileResult(app, result, fullPath);
 }
 
 /**
@@ -106,7 +103,7 @@ function getVariations(app, obj) {
     ) || {};
 
   if (tplChild) {
-    return getData(app, obj, jsonChild);
+    return getData(app, jsonChild);
   }
 
   return [];

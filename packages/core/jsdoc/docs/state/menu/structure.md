@@ -5,33 +5,31 @@ Module for getting the structure for the menu
 
 
 * [state/menu/structure](#module_state/menu/structure)
-    * [~handleFileResult(app, json, obj, fullPath)](#module_state/menu/structure..handleFileResult)
-    * [~getData(app, obj, jsonChild)](#module_state/menu/structure..getData)
+    * [~handleFileResult(app, json, fullPath)](#module_state/menu/structure..handleFileResult)
+    * [~getData(app, jsonChild)](#module_state/menu/structure..getData)
     * [~getVariations(app, obj)](#module_state/menu/structure..getVariations)
     * [~updateSourceObject(app, obj)](#module_state/menu/structure..updateSourceObject) ⇒ <code>object</code>
     * [~addIndices(obj, index)](#module_state/menu/structure..addIndices) ⇒ <code>object</code>
 
 <a name="module_state/menu/structure..handleFileResult"></a>
 
-### state/menu/structure~handleFileResult(app, json, obj, fullPath)
+### state/menu/structure~handleFileResult(app, json, fullPath)
 **Kind**: inner method of [<code>state/menu/structure</code>](#module_state/menu/structure)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
 | json |  |  |
-| obj |  |  |
 | fullPath |  |  |
 
 <a name="module_state/menu/structure..getData"></a>
 
-### state/menu/structure~getData(app, obj, jsonChild)
+### state/menu/structure~getData(app, jsonChild)
 **Kind**: inner method of [<code>state/menu/structure</code>](#module_state/menu/structure)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| obj |  |  |
 | jsonChild |  |  |
 
 <a name="module_state/menu/structure..getVariations"></a>
