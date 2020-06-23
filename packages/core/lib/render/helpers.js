@@ -17,13 +17,18 @@ const log = require("../logger.js");
  */
 async function extendTemplateData(config, data, filePath) {
   let o = {};
+  let fullFilePath = filePath.endsWith(config.files.templates.extension)
+    ? filePath
+    : `${filePath}/${path.basename(filePath)}.${
+        config.files.templates.extension
+      }`;
 
-  for (const plugin of config.plugins) {
-    if (plugin.extendTemplateData) {
+  for (const extension of config.extensions) {
+    if (extension.extendTemplateData) {
       o = deepMerge(
         o,
-        await plugin.extendTemplateData(
-          path.join(config.components.folder, filePath)
+        await extension.extendTemplateData(
+          path.join(config.components.folder, fullFilePath)
         )
       );
     }

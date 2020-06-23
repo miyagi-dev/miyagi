@@ -480,7 +480,7 @@ describe("lib/init/config", () => {
           reload: true,
           theme: {},
         },
-        plugins: [],
+        extensions: [],
         files: {
           css: {
             extension: "css",

@@ -22,14 +22,14 @@ function setMiyagiEngine(app) {
  */
 function setUserEngine(app) {
   const { extension } = app.get("config").files.templates;
-  const { engine, plugins } = app.get("config");
+  const { engine, extensions } = app.get("config");
 
   if (engine.instance) {
     engines.requires[engine.name] = engine.instance;
   } else {
-    for (const plugin of plugins) {
-      if (plugin.engine) {
-        engines.requires[engine.name] = plugin.engine;
+    for (const extension of extensions) {
+      if (extension.engine) {
+        engines.requires[engine.name] = extension.engine;
       }
     }
   }

@@ -53,7 +53,7 @@
         "name": "index"
       }
     },
-    "plugins": [],
+    "extensions": [],
     "projectName": "miyagi",
     "ui": {
       "reload": true,

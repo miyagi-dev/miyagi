@@ -10,7 +10,7 @@ jest.mock("../../../lib/logger.js");
 describe("lib/init/engines", () => {
   test("it sets the handlebars engine for the hbs extension", () => {
     const app = express();
-    app.set("plugins", []);
+    app.set("extensions", []);
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
@@ -33,7 +33,7 @@ describe("lib/init/engines", () => {
 
   test("it sets the user engine for the user extension", () => {
     const app = express();
-    app.set("plugins", []);
+    app.set("extensions", []);
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
@@ -56,7 +56,7 @@ describe("lib/init/engines", () => {
 
   describe("with invalid engine", () => {
     const app = express();
-    app.set("plugins", []);
+    app.set("extensions", []);
     app.set(
       "config",
       deepMerge(config.defaultUserConfig, {
@@ -85,7 +85,7 @@ describe("lib/init/engines", () => {
     test("the options param for app.render doesnt not extended with a path and allowInlineIncludes key", () => {
       const app = express();
       app.render = jest.fn();
-      app.set("plugins", []);
+      app.set("extensions", []);
       app.set(
         "config",
         deepMerge(config.defaultUserConfig, {
