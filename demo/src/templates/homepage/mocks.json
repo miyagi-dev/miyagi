@@ -6,7 +6,8 @@
     "$tpl": "components/button",
     "$ref": "components/button",
     "label": "Get it @ npm",
-    "url": "https://npmjs.com/package/@miyagi/core"
+    "url": "https://npmjs.com/package/@miyagi/core",
+    "external": true
   },
   "linkList": {
     "title": "Links",
