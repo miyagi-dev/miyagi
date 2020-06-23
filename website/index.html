@@ -12,6 +12,10 @@
     <link rel="alternate icon" href="/favicon.ico" />
     <link rel="canonical" href="https://www.miyagi.dev" />
     <style>
+      :root {
+        --color: 255, 255, 255;
+      }
+
       html {
         font-size: 62.5%;
       }
@@ -30,7 +34,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        color: #767676;
+        color: rgb(var(--color));
+        background: #062b3e;
       }
 
       h1 {
@@ -39,13 +44,21 @@
         margin: 0 auto;
       }
 
+      path {
+        fill: currentColor;
+      }
+
       a {
-        color: #000;
+        color: inherit;
       }
 
       a:hover,
       a:focus {
-        color: #e11081;
+        color: #ff3ba5;
+      }
+
+      p {
+        color: rgba(var(--color), 0.5);
       }
 
       .Links {
