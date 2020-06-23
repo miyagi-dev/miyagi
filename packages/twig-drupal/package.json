@@ -1,7 +1,7 @@
 {
   "name": "@miyagi/twig-drupal",
   "version": "0.1.0",
-  "description": "Adds twig/Drupal functionality to @miyagi/core",
+  "description": "Adds twig and Drupal functionality to @miyagi/core",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
@@ -15,6 +15,6 @@
     "twig": "^1.15.1"
   },
   "peerDependencies": {
-    "@miyagi/core": "^0.4.1"
+    "@miyagi/core": "^1.0.0"
   }
 }

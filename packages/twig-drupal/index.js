@@ -1,25 +1,24 @@
 const twig = require("twig");
 const deepMerge = require("deepmerge");
 
+twig.extendFilter("clean_class", (value) => value);
+twig.extendFilter("clean_id", (value) => value);
+twig.extendFilter("safe_join", (value) => value);
 twig.extendFilter("t", (value) => value);
 twig.extendFilter("without", (value) => value);
-twig.extendFilter("clean_id", (value) => value);
-twig.extendFilter("clean_class", (value) => value);
-twig.extendFilter("safe_join", (value) => value);
-twig.extendFilter("trans", () => "");
 
-twig.extendFunction("attach_library", () => "");
+twig.extendFunction("attach_library", () => null);
 
-twig.extend(function(Twig) {
+twig.extend(function (Twig) {
   Twig.exports.extendTag({
     type: "trans",
     regex: /^trans$/,
     next: ["endtrans", "plural", "variable"],
     open: true,
-    compile: function(token) {
+    compile: function (token) {
       return token;
     },
-    parse: function(token, context, chain) {
+    parse: function (token, context, chain) {
       var html = "";
 
       token.output.forEach((output) => {
@@ -58,7 +57,7 @@ module.exports = {
   engine: twig.twig,
 
   async extendTemplateData(file) {
-    const opts = await resolveTwig(file);
+    const opts = await convertTokensToAttributes(file);
     const o = {};
 
     Object.entries(opts).forEach(([attr, entries]) => {
@@ -68,14 +67,14 @@ module.exports = {
         ent.forEach((method) => {
           switch (method) {
             case "addClass":
-              o[attr][method] = function(values) {
+              o[attr][method] = function (values) {
                 return ` class="${
                   values instanceof Array ? values.join(" ") : values
                 }"`;
               };
               break;
             case "setAttribute":
-              o[attr][method] = function(attr, values) {
+              o[attr][method] = function (attr, values) {
                 return ` ${attr}="${
                   values instanceof Array ? values.join(" ") : values
                 }"`;
@@ -90,7 +89,14 @@ module.exports = {
   },
 };
 
-function resolveTwig(path) {
+/**
+ * Accepts a path to a twig templates, gets all it tokens and based on that
+ * returns an object with all Drupal attributes
+ *
+ * @param {string} path - twig template path
+ * @returns {Promise} gets resolved with an object containing all Drupal attributes
+ */
+function convertTokensToAttributes(path) {
   return new Promise((resolve) => {
     twig.twig({
       path,
@@ -145,7 +151,7 @@ function resolveTwig(path) {
             if (token.token.type === "Twig.logic.type.extends") {
               opts = deepMerge(
                 opts,
-                await resolveTwig(token.token.stack[0].value)
+                await convertTokensToAttributes(token.token.stack[0].value)
               );
             }
 
@@ -188,7 +194,6 @@ function resolveTwig(path) {
               });
             }
           }
-
           resolve(opts);
         } else {
           resolve(opts);
