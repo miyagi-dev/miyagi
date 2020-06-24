@@ -69,7 +69,7 @@ function getAssetFilesArray(strOrArrOrObj, assetType) {
 
       log(
         "warn",
-        appConfig.messages.nodeEndAndKeysDontMatch
+        appConfig.messages.nodeEnvAndKeysDontMatch
           .replace("{{nodeEnv}}", nodeEnv)
           .replace("{{assetType}}", assetType)
       );

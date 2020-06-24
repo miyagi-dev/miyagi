@@ -111,7 +111,7 @@
     "missingEngine": "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
     "noDataSetForVariation": "No mock data defined for variation \"{{variation}}\" in {{file}}.",
-    "nodeEndAndKeysDontMatch": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in folders.assets in your config file, so miyagi is not able to deliver your {{assetType}} files.",
+    "nodeEnvAndKeysDontMatch": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in folders.assets in your config file, so miyagi is not able to deliver your {{assetType}} files.",
     "noNameSetForVariation": "No name defined for variation {{i}} in {{file}}.",
     "renderingTemplateFailed": "Rendering {{filePath}} failed. Please check that it is linked correctly and that its content is correct {{engine}} syntax.",
     "scanningFiles": "Scanning and analyzing files…",

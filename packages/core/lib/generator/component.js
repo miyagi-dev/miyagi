@@ -60,17 +60,16 @@ module.exports = async function componentGenerator(cliParams, config) {
     if (args) {
       if (args.skip) {
         const files = [];
-        const targets = args.skip.split(",");
         const entries = Object.entries(fileNames);
         for (const [alias, name] of entries) {
-          if (!targets.includes(alias)) {
+          if (!args.skip.includes(alias)) {
             files.push(name);
           }
         }
         return files;
       }
       if (args.only) {
-        return args.only.split(",").map((entry) => fileNames[entry]);
+        return args.only.map((entry) => fileNames[entry]);
       }
       return Object.values(fileNames);
     }

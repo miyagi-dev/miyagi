@@ -24,14 +24,14 @@ describe("index", () => {
 
     describe("with parseable result from .miyagi.js", () => {
       describe("with templates.extension, components.folder and engine.name defined in .miyagi.js", () => {
-        test("calls lib/init with parsed config", () => {
+        test("calls lib/init with parsed config", async () => {
           const init = require("../lib/init");
           jest.mock("../lib/logger");
           jest.mock("../lib/init");
 
           process.argv = [1, 2, "start"];
 
-          require("../index.js");
+          await require("../index.js");
 
           const conf = deepMerge(appConfig.defaultUserConfig, {
             isBuild: false,
@@ -58,7 +58,7 @@ describe("index", () => {
       });
 
       describe("without extension defined in .miyagi.js", () => {
-        test("it calls log with the correct error msg", () => {
+        test("it calls log with the correct error msg", async () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
@@ -73,7 +73,7 @@ describe("index", () => {
             { virtual: true }
           );
 
-          require("../index.js");
+          await require("../index.js");
 
           expect(log).toHaveBeenNthCalledWith(
             1,
@@ -95,7 +95,7 @@ describe("index", () => {
           );
         });
 
-        test("calls lib/init", () => {
+        test("calls lib/init", async () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
@@ -108,14 +108,14 @@ describe("index", () => {
             };
           });
 
-          require("../index.js");
+          await require("../index.js");
 
           expect(init).toHaveBeenCalled();
         });
       });
 
       describe("without engine defined in .miyagi.js", () => {
-        test("it calls log with the correct error msg", () => {
+        test("it calls log with the correct error msg", async () => {
           const log = require("../lib/logger.js");
 
           jest.mock("../lib/logger");
@@ -130,7 +130,7 @@ describe("index", () => {
             };
           });
 
-          require("../index.js");
+          await require("../index.js");
 
           expect(log).toHaveBeenNthCalledWith(
             1,
@@ -152,7 +152,7 @@ describe("index", () => {
           );
         });
 
-        test("calls lib/init", () => {
+        test("calls lib/init", async () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
@@ -167,7 +167,7 @@ describe("index", () => {
             };
           });
 
-          require("../index.js");
+          await require("../index.js");
 
           expect(init).toHaveBeenCalled();
         });

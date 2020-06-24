@@ -40,6 +40,8 @@ module.exports = yargs
   .array("assets.folder")
   .array("assets.js")
   .array("components.ignores")
+  .array("only")
+  .array("skip")
   .boolean("build.outputFile")
   .boolean("ui.reload")
   .boolean("ui.renderComponentOverview")
