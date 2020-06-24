@@ -6,8 +6,8 @@ Module for registering all partials
 
 * [init/partials](#module_init/partials)
     * [~register(shortPath, fullFilePath)](#module_init/partials..register)
-    * [~registerLayouts()](#module_init/partials..registerLayouts)
-    * [~registerComponents(app)](#module_init/partials..registerComponents)
+    * [~registerLayouts()](#module_init/partials..registerLayouts) ⇒ <code>Promise</code>
+    * [~registerComponents(app)](#module_init/partials..registerComponents) ⇒ <code>Promise</code>
     * [~registerPartial(app, fullPath)](#module_init/partials..registerPartial)
     * [~registerAll(app)](#module_init/partials..registerAll)
 
@@ -23,12 +23,18 @@ Module for registering all partials
 
 <a name="module_init/partials..registerLayouts"></a>
 
-### init/partials~registerLayouts()
+### init/partials~registerLayouts() ⇒ <code>Promise</code>
+Register all internal layout partials
+
 **Kind**: inner method of [<code>init/partials</code>](#module_init/partials)  
+**Returns**: <code>Promise</code> - gets resolved when all partials are registered  
 <a name="module_init/partials..registerComponents"></a>
 
-### init/partials~registerComponents(app)
+### init/partials~registerComponents(app) ⇒ <code>Promise</code>
+Registers all user partials
+
 **Kind**: inner method of [<code>init/partials</code>](#module_init/partials)  
+**Returns**: <code>Promise</code> - gets resolved when all partials are registered  
 
 | Param | Type | Description |
 | --- | --- | --- |

@@ -21,7 +21,7 @@ async function register(shortPath, fullFilePath) {
       err,
       data
     ) {
-      if (data) {
+      if (typeof data === "string") {
         handlebars.registerPartial(
           shortPath,
           handlebars.compile(data.toString())
@@ -38,7 +38,9 @@ async function register(shortPath, fullFilePath) {
 }
 
 /**
+ * Register all internal layout partials
  *
+ * @returns {Promise} gets resolved when all partials are registered
  */
 async function registerLayouts() {
   return Promise.all(
@@ -58,7 +60,10 @@ async function registerLayouts() {
 }
 
 /**
+ * Registers all user partials
+ *
  * @param {object} app - the express instance
+ * @returns {Promise} gets resolved when all partials are registered
  */
 async function registerComponents(app) {
   return Promise.all(
