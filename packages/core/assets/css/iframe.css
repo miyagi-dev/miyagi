@@ -25,6 +25,19 @@ body {
   width: 100%;
 }
 
+.MiyagiSchemaTable,
+.MiyagiInformation,
+.MiyagiDocumentation,
+.MiyagiDocumentation a,
+.MiyagiDocumentation a:hover,
+.MiyagiDocumentation a:focus,
+.Miyagi-sectionTitle,
+.MiyagiIframe-newTabLink {
+  all: revert;
+  color: var(--Miyagi-color);
+  font-family: var(--Miyagi-fontFamily);
+}
+
 .MiyagiDocumentation,
 .MiyagiInformation {
   line-height: 1.5;
@@ -43,19 +56,6 @@ body {
 
 .MiyagiDocumentation i {
   font-style: italic;
-}
-
-.MiyagiSchemaTable,
-.MiyagiInformation,
-.MiyagiDocumentation,
-.MiyagiDocumentation a,
-.MiyagiDocumentation a:hover,
-.MiyagiDocumentation a:focus,
-.Miyagi-sectionTitle,
-.MiyagiIframe-newTabLink {
-  all: revert;
-  color: var(--Miyagi-color);
-  font-family: var(--Miyagi-fontFamily);
 }
 
 .MiyagiInformation-val {
