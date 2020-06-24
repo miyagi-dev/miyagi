@@ -46,4 +46,6 @@ module.exports = yargs
   .boolean("ui.validations.accessibility")
   .boolean("ui.validations.html")
   .demandCommand()
-  .epilogue("Please check http://example.com for all options");
+  .epilogue(
+    "Please check https://docs.miyagi.dev/configuration/options/ for all options"
+  );
