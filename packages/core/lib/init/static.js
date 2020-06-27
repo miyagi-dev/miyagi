@@ -17,7 +17,7 @@ function registerUserAssetFolder(app) {
   if (assets && assets.folder) {
     for (const folder of assets.folder) {
       app.use(
-        folder.startsWith("/") ? folder : `/${folder}`,
+        path.join("/", path.basename(folder)),
         express.static(path.resolve(folder))
       );
     }
