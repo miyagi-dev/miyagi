@@ -28,12 +28,20 @@ body {
 .MiyagiSchemaTable,
 .MiyagiInformation,
 .MiyagiDocumentation,
+.MiyagiDocumentation *,
+.Miyagi-sectionTitle,
+.MiyagiIframe-newTabLink {
+  all: revert;
+}
+
+.MiyagiSchemaTable,
+.MiyagiInformation,
+.MiyagiDocumentation,
 .MiyagiDocumentation a,
 .MiyagiDocumentation a:hover,
 .MiyagiDocumentation a:focus,
 .Miyagi-sectionTitle,
 .MiyagiIframe-newTabLink {
-  all: revert;
   color: var(--Miyagi-color);
   font-family: var(--Miyagi-fontFamily);
 }
