@@ -21,3 +21,5 @@ or
 ```bash
 yarn global add miyagi
 ```
+
+_**NOTE:** miyagi does not install any template engines for you, so you still need to install them manually._
