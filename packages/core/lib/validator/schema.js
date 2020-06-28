@@ -23,22 +23,32 @@ module.exports = function validateSchema(app, filePath, dataArray) {
   ];
 
   if (componentSchema) {
-    const validate = jsonSchemaValidator.compile(componentSchema);
     const validity = [];
+    let validate;
 
-    for (const entry of dataArray) {
-      const valid = validate(entry.data);
+    try {
+      validate = jsonSchemaValidator.compile(componentSchema);
+    } catch (e) {
+      const msg = e.toString();
+      log("error", msg);
+      return msg;
+    }
 
-      if (!valid) {
-        log(
-          "error",
-          `${path.dirname(filePath)}#${entry.name}: ${
-            config.messages.schemaValidator.invalid
-          }`
-        );
+    if (validate) {
+      for (const entry of dataArray) {
+        const valid = validate(entry.data);
+
+        if (!valid) {
+          log(
+            "error",
+            `${path.dirname(filePath)}#${entry.name}: ${
+              config.messages.schemaValidator.invalid
+            }`
+          );
+        }
+
+        validity.push(valid);
       }
-
-      validity.push(valid);
     }
 
     return validity;

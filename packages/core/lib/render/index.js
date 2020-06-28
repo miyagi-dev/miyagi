@@ -72,7 +72,7 @@ async function renderVariations({
               variation,
             };
 
-            if (validatedSchema !== null) {
+            if (validatedSchema && Array.isArray(validatedSchema)) {
               variations[i].schemaValidation = {
                 valid: validatedSchema[i],
                 copy:
@@ -111,6 +111,8 @@ async function renderVariations({
         ),
         name,
         schemaType,
+        schemaError:
+          typeof validatedSchema === "string" ? validatedSchema : null,
       },
       (err, html) => {
         if (res.send) {

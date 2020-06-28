@@ -176,6 +176,11 @@ body {
   justify-content: center;
 }
 
+.MiyagiErrorMessage {
+  color: var(--Miyagi-color-negative);
+  margin: 1.5em 0;
+}
+
 .MiyagiComponentView {
   border: 1px solid #ddd;
   height: calc(100vh - 2 * var(--Miyagi-spacing));
