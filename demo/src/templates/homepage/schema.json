@@ -3,16 +3,16 @@
   "required": ["authorLinks", "content", "cta", "linkList"],
   "properties": {
     "authorLinks": {
-      "type": ""
+      "type": "object"
     },
     "content": {
-      "type": ""
+      "type": "object"
     },
     "cta": {
       "type": "string"
     },
     "linkList": {
-      "type": ""
+      "type": "object"
     }
   }
 }
