@@ -191,8 +191,28 @@ function overwriteRenderKey(app, data) {
         }
 
         o = str;
-      } else if (typeof val !== "string" && typeof val !== "number") {
-        o[key] = overwriteRenderKey(app, val);
+      } else {
+        if (
+          typeof val == "string" ||
+          typeof val === "number" ||
+          typeof val === "boolean"
+        ) {
+          o[key] = val;
+        } else if (Array.isArray(val)) {
+          val.forEach((v, i) => {
+            if (
+              typeof v == "string" ||
+              typeof v === "number" ||
+              typeof v === "boolean"
+            ) {
+              o[key][i] = v;
+            } else {
+              o[key][i] = overwriteRenderKey(app, v);
+            }
+          });
+        } else {
+          o[key] = overwriteRenderKey(app, val);
+        }
       }
     }
   }
@@ -227,7 +247,11 @@ function resolveTpl(app, entry) {
         });
       }
 
-      if (typeof entry === "string" || typeof entry === "number") {
+      if (
+        typeof entry === "string" ||
+        typeof entry === "number" ||
+        typeof entry === "boolean"
+      ) {
         return resolve1(entry);
       }
 
@@ -293,7 +317,11 @@ async function resolveJson(app, entry) {
       return entry;
     }
 
-    if (typeof entry === "string" || typeof entry === "number") {
+    if (
+      typeof entry === "string" ||
+      typeof entry === "number" ||
+      typeof entry === "boolean"
+    ) {
       return entry;
     }
 
@@ -317,7 +345,11 @@ async function resolveJson(app, entry) {
  */
 async function iterateOverTplData(app, data) {
   if (data) {
-    if (typeof data === "string" || typeof data === "number") {
+    if (
+      typeof data === "string" ||
+      typeof data === "number" ||
+      typeof data === "boolean"
+    ) {
       return data;
     }
 
@@ -373,7 +405,11 @@ async function overwriteTplLinksWithTplContent(app, data) {
  */
 async function iterateOverJsonData(app, data) {
   if (data) {
-    if (typeof data === "string" || typeof data === "number") {
+    if (
+      typeof data === "string" ||
+      typeof data === "number" ||
+      typeof data === "boolean"
+    ) {
       return data;
     }
 
