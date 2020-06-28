@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "required": ["label"],
+  "properties": {
+    "disabled": {
+      "type": "boolean"
+    },
+    "external": {
+      "type": "boolean"
+    },
+    "label": {
+      "type": "string"
+    },
+    "modifiers": {
+      "type": "array"
+    },
+    "type": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

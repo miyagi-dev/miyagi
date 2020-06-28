@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "required": ["authorLinks", "content", "cta", "linkList"],
+  "properties": {
+    "authorLinks": {
+      "type": ""
+    },
+    "content": {
+      "type": ""
+    },
+    "cta": {
+      "type": "string"
+    },
+    "linkList": {
+      "type": ""
+    }
+  }
+}

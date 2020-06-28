@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "required": ["headlineType", "links", "title"],
+  "properties": {
+    "headlineType": {
+      "type": "string"
+    },
+    "links": {
+      "type": "array"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}
