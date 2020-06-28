@@ -22,6 +22,7 @@
     "jest": "^26.0.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.0.5",
+    "standard-version": "^8.0.0",
     "stylelint": "^13.5.0",
     "stylelint-config-prettier": "^8.0.1",
     "stylelint-config-standard": "^20.0.0"
@@ -31,6 +32,8 @@
     "core:lint": "npm run lint --prefix packages/core",
     "core:jsdoc": "npm run docs --prefix packages/core",
     "core:build": "npm run build --prefix packages/core",
+    "core:release": "npm run release --prefix packages/core",
+    "twig-drupal:release": "npm run release --prefix packages/twig-drupal",
     "docs": "cd docs/ && mkdocs serve"
   },
   "stylelint": {

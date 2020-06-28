@@ -10,9 +10,15 @@
     "url": "git@github.com:mgrsskls/miyagi.git",
     "directory": "packages/twig-drupal"
   },
+  "scripts": {
+    "release": "standard-version -t twig-drupal/v"
+  },
   "dependencies": {
     "deepmerge": "^4.2.2",
     "twig": "^1.15.1"
+  },
+  "devDependencies": {
+    "release": "standard-version"
   },
   "peerDependencies": {
     "@miyagi/core": "^1.0.0"
