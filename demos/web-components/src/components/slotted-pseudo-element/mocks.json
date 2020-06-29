@@ -1,0 +1,23 @@
+{
+  "$variants": [
+    {
+      "$name": "Morgan Stanley",
+      "name": "Morgan Stanley",
+      "age": 36,
+      "occupation": "Accountant"
+    },
+
+    {
+      "$name": "Dr. Shazaam",
+      "name": "Dr. Shazaam",
+      "age": "Immortal",
+      "occupation": "Superhero"
+    },
+    {
+      "$name": "Boris",
+      "name": "Boris",
+      "age": 27,
+      "iAmAwesome": "Time traveller"
+    }
+  ]
+}

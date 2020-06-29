@@ -1,0 +1,12 @@
+{
+  "name": "demo",
+  "devDependencies": {
+    "rollup": "^2.18.1"
+  },
+  "dependencies": {
+    "@miyagi/core": "^1.0.4"
+  },
+  "scripts": {
+    "build": "rollup src/index.js --file dist/index.js --format iife"
+  }
+}

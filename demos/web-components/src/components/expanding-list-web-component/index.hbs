@@ -1,0 +1,81 @@
+<style>
+  ul {
+    all: revert;
+    list-style-type: none;
+  }
+
+  li {
+    all: revert;
+  }
+
+  li::before {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.25rem;
+    content: "";
+  }
+
+  .open::before,
+  .closed::before {
+    background-size: 1em 1em;
+    position: relative;
+    top: 0.25rem;
+    opacity: 0.3;
+  }
+
+  .open::before {
+    background-image: url(src/components/expanding-list-web-component/img/down.png);
+  }
+
+  .closed::before {
+    background-image: url(src/components/expanding-list-web-component/img/right.png);
+  }
+
+  .closed .closed::before,
+  .closed .open::before {
+    display: none;
+  }
+</style>
+
+<ul is="expanding-list">
+  {{#each list}}
+  <li>
+    {{this.label}}
+    {{#if this.children}}
+    <ul>
+      {{#each this.children}}
+      <li>
+        {{this.label}}
+        {{#if this.children}}
+        <ul>
+          {{#each this.children}}
+          <li>
+            {{this.label}}
+            {{#if this.children}}
+            <ul>
+              {{#each this.children}}
+              <li>
+                {{this.label}}
+              </li>
+              {{/each}}
+            </ul>
+            {{/if}}
+          </li>
+          {{/each}}
+        </ul>
+        {{/if}}
+      </li>
+      {{/each}}
+    </ul>
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
+
+<ul>
+  <li>Not</li>
+  <li>an</li>
+  <li>expanding</li>
+  <li>list</li>
+</ul>

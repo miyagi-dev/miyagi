@@ -1,0 +1,21 @@
+<template id="person-template">
+  <div>
+    <h2>Personal ID Card</h2>
+    <slot name="person-name">NAME MISSING</slot>
+    <ul>
+      <li>
+        <slot name="person-age">AGE MISSING</slot>
+      </li>
+      <li>
+        <slot name="person-occupation">OCCUPATION MISSING</slot>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<person-details>
+  {{#if name}}<p slot="person-name">{{name}}</p>{{/if}}
+  {{#if age}}<span slot="person-age">{{age}}</span>{{/if}}
+  {{#if occupation}}<span slot="person-occupation">{{occupation}}</span>{{/if}}
+  {{#if iAmAwesome}}<span slot="i-am-awesome">{{iAmAwesome}}</span>{{/if}}
+</person-details>

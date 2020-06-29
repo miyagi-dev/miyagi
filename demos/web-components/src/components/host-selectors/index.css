@@ -1,0 +1,30 @@
+.wrapper {
+  background-color: #a60000;
+  font-family: sans-serif;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  width: 80%;
+}
+
+header,
+article,
+aside,
+footer {
+  background-color: white;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+header,
+footer {
+  background-color: #ddd;
+}
+
+li,
+p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+}

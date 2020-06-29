@@ -1,0 +1,20 @@
+{
+  "$variants": [
+    {
+      "$name": "Slot",
+      "name": "slot",
+      "description": "A placeholder inside a web component that users can fill with their own markup, with the effect of composing different DOM trees together.",
+      "attributes": [
+        {
+          "key": "name",
+          "val": "The name of the slot."
+        }
+      ]
+    },
+    {
+      "$name": "Template",
+      "name": "template",
+      "description": "A mechanism for holding client- side content that is not to be rendered when a page is loaded but may subsequently be instantiated during runtime using JavaScript."
+    }
+  ]
+}
