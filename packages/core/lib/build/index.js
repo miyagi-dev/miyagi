@@ -187,11 +187,18 @@ module.exports = (app) => {
                 const assetFiles = await stateHelpers.getFiles(
                   folder,
                   [],
-                  function isCssOrJsFile(file) {
-                    return path.extname(file) === ".css" ||
-                      path.extname(file) === ".js"
-                      ? file
-                      : null;
+                  function isAssetsFile(file) {
+                    const extname = path.extname(file);
+                    const extensions = new Set([
+                      ".css",
+                      ".js",
+                      ".jpg",
+                      ".png",
+                      ".gif",
+                      ".svg",
+                      ".ico",
+                    ]);
+                    return extensions.has(extname) ? file : null;
                   }
                 );
                 for (const file of assetFiles) {
@@ -220,10 +227,18 @@ module.exports = (app) => {
         const assetFiles = await stateHelpers.getFiles(
           folder,
           [],
-          function isCssOrJsFile(file) {
-            return path.extname(file) === ".css" || path.extname(file) === ".js"
-              ? file
-              : null;
+          function isAssetsFile(file) {
+            const extname = path.extname(file);
+            const extensions = new Set([
+              ".css",
+              ".js",
+              ".jpg",
+              ".png",
+              ".gif",
+              ".svg",
+              ".ico",
+            ]);
+            return extensions.has(extname) ? file : null;
           }
         );
         for (const file of assetFiles) {
