@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.5](https://github.com/mgrsskls/miyagi/compare/core/v1.0.4...core/v1.0.5) (2020-06-30)
+
+
+### Bug Fixes
+
+* **core:** copy all sorts of assets to build folder ([b514120](https://github.com/mgrsskls/miyagi/commit/b514120736eb6ae43769142ee3abdce17d439001))
+
 ### [1.0.4](https://github.com/mgrsskls/miyagi/compare/core/v1.0.3...core/v1.0.4) (2020-06-28)
 
 
