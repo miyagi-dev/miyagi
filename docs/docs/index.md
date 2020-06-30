@@ -16,6 +16,12 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 - Allows creating a static build.
 - Lets you create components and mock data via CLI.
 
-## Demo
+## Demos
 
-[demo.miyagi.dev](https://demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demo))
+### Handlebars
+
+[handlebars.demo.miyagi.dev](https://handlebars.demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/handlebars))
+
+### Web Components
+
+[web-components.demo.miyagi.dev](https://web-components.demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/web-components))

@@ -4,11 +4,13 @@ This is the monorepo for _miyagi_, a node based component development tool for J
 
 It includes the source code for:
 
-- [demo.miyagi.dev](https://demo.miyagi.dev): [/demo](/demo)
-- [docs.miyagi.dev](https://docs.miyagi.dev): [/docs](/docs)
+- Demos:
+  - Web Components ([web-components.demos.miyagi.dev](https://web-components.demos.miyagi.dev)):<br>[/demos/web-components](/demos/web-components)
+  - Handlebars ([handlebars.demos.miyagi.dev](https://handlebars.demos.miyagi.dev)):<br>[/demos/handlebars](/demos/handlebars)
+- Docs ([docs.miyagi.dev](https://docs.miyagi.dev)): [/docs](/docs)
 - Packages
-    - [npmjs.com/package/@miyagi/core](https://npmjs.com/package/@miyagi/core): [/packages/core](/packages/core)
-    - [npmjs.com/package/@miyagi/twig-drupal](https://npmjs.com/package/@miyagi/twig-drupal): [/packages/twig-drupal](/packages/twig-drupal)
+  - core ([npmjs.com/package/@miyagi/core](https://npmjs.com/package/@miyagi/core)):<br>[/packages/core](/packages/core)
+  - twig-drupal ([npmjs.com/package/@miyagi/twig-drupal](https://npmjs.com/package/@miyagi/twig-drupal)):<br>[/packages/twig-drupal](/packages/twig-drupal)
 
 ## core
 

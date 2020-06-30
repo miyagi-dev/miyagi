@@ -65,6 +65,20 @@
         color: rgba(var(--color), 0.5);
       }
 
+      .LinksWrapper {
+        display: flex;
+        align-items: center;
+      }
+
+      .LinksWrapper-title {
+        font-size: 1em;
+        margin: 0 1em 0 0;
+      }
+
+      .LinksWrapper-title::after {
+        content: ":";
+      }
+
       .Links {
         list-style: none;
         display: flex;
@@ -120,10 +134,19 @@
         …is a node based component development tool for JavaScript template
         engines.
       </p>
+      <div class="LinksWrapper">
+        <h2 class="LinksWrapper-title">Demos</h2>
+        <ul class="Links">
+          <li class="Links-item">
+            <a href="https://handlebars.demos.miyagi.dev">Handlebars</a>
+          </li>
+          <li class="Links-item">
+            <a href="https://web-components.demos.miyagi.dev">Web Components</a>
+          </li>
+        </ul>
+      </div>
+
       <ul class="Links">
-        <li class="Links-item">
-          <a href="https://demo.miyagi.dev">Demo</a>
-        </li>
         <li class="Links-item">
           <a href="https://docs.miyagi.dev">Documentation</a>
         </li>
