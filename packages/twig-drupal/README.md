@@ -13,21 +13,11 @@ This extension adds support for specific twig and Drupal functionality to [@miya
 
 ### twig
 
-The following filters, functions and tags do not actually do anything in _miyagi_. Using this extension merely makes sure that compilation does not fail.
-
 **NOTE:** If you need to add additional filters, functions or tags, please refer to the [_miyagi_ documentation](https://docs.miyagi.dev/configuration/extending-template-engine/).
 
-#### Filters
+#### Functions and filters
 
-- `clean_class`
-- `clean_id`
-- `safe_join`
-- `t`
-- `without`
-
-#### Functions
-
-- `attach_library`
+This plugin uses [twig-drupal-filters](https://www.npmjs.com/package/twig-drupal-filters), so all its functions and filters are supported.
 
 #### Tags
 

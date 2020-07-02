@@ -1,13 +1,8 @@
 const twig = require("twig");
+const twigDrupal = require("twig-drupal-filters");
 const deepMerge = require("deepmerge");
 
-twig.extendFilter("clean_class", (value) => value);
-twig.extendFilter("clean_id", (value) => value);
-twig.extendFilter("safe_join", (value) => value);
-twig.extendFilter("t", (value) => value);
-twig.extendFilter("without", (value) => value);
-
-twig.extendFunction("attach_library", () => null);
+twigDrupal(twig);
 
 twig.extend(function (Twig) {
   Twig.exports.extendTag({
