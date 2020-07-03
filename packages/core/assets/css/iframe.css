@@ -34,6 +34,10 @@ body {
   all: revert;
 }
 
+.MiyagiDocumentation a {
+  text-decoration: underline;
+}
+
 .MiyagiSchemaTable,
 .MiyagiInformation,
 .MiyagiDocumentation,
