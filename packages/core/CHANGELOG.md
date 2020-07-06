@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.6](https://github.com/mgrsskls/miyagi/compare/core/v1.0.5...core/v1.0.6) (2020-07-06)
+
+
+### Bug Fixes
+
+* **core:** added rel="noopener" to link in component overview ([27caead](https://github.com/mgrsskls/miyagi/commit/27caeadf8b85988c04c8a273b8edec990aa406ca))
+* **core:** invalid markup on overview page ([10a9e58](https://github.com/mgrsskls/miyagi/commit/10a9e58171595b7b82e7aeedd79d533abaa4e39c))
+* **core:** links not underlined in iframe ([c0cf110](https://github.com/mgrsskls/miyagi/commit/c0cf110eb329db1c7d8341b877b30b6e07787da6))
+
 ### [1.0.5](https://github.com/mgrsskls/miyagi/compare/core/v1.0.4...core/v1.0.5) (2020-06-30)
 
 
