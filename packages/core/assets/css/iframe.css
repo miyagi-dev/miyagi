@@ -187,6 +187,7 @@ body {
 
 .MiyagiComponentView {
   border: 1px solid #ddd;
+  box-sizing: border-box;
   height: calc(100vh - 2 * var(--Miyagi-spacing));
   overflow: auto;
   resize: both;
