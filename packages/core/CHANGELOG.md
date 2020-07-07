@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.8](https://github.com/mgrsskls/miyagi/compare/core/v1.0.7...core/v1.0.8) (2020-07-07)
+
+
+### Bug Fixes
+
+* **core:** fixed formatting of iframe tpl, causing broken styles ([338d9e0](https://github.com/mgrsskls/miyagi/commit/338d9e03bf0fbc5c5f33b4bf7f0e41125781299b))
+
 ### [1.0.7](https://github.com/mgrsskls/miyagi/compare/core/v1.0.6...core/v1.0.7) (2020-07-07)
 
 
