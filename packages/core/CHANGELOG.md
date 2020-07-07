@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.9](https://github.com/mgrsskls/miyagi/compare/core/v1.0.8...core/v1.0.9) (2020-07-07)
+
+
+### Bug Fixes
+
+* **core:** encode variation in new tab link ([5ed8f81](https://github.com/mgrsskls/miyagi/commit/5ed8f81621c7e09430798a65c4a5644f698b888e))
+* **core:** fix scrollbar in iframe ([d8fe1c1](https://github.com/mgrsskls/miyagi/commit/d8fe1c1fd157d171d8129cc36ab0294c84a1ddbe))
+* **core:** fixed formatting of main tpl, causing broken styles ([2a21509](https://github.com/mgrsskls/miyagi/commit/2a21509816976653cb1842f0775c475ac27f7a6a))
+
 ### [1.0.8](https://github.com/mgrsskls/miyagi/compare/core/v1.0.7...core/v1.0.8) (2020-07-07)
 
 
