@@ -1,112 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,width=device-width">
-  <title>{{userProjectName}}</title>
-  <script src="{{projectName}}/js/main{{#if isBuild}}.build{{/if}}.js" {{#if miyagiDev}}type="module"
-    {{/if}}{{#if miyagiProd}}defer{{/if}}></script>
-  <link rel="stylesheet" href="{{projectName}}/css/main.css">
-  <style>
-    :root {
-        {
-          {
-          #if theme.navigation
-        }
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,width=device-width">
+    <title>{{userProjectName}}</title>
+    <script src="{{projectName}}/js/main{{#if isBuild}}.build{{/if}}.js" {{#if miyagiDev}}type="module"
+      {{/if}}{{#if miyagiProd}}defer{{/if}}></script>
+    <link rel="stylesheet" href="{{projectName}}/css/main.css">
+    <style>
+      :root {
+        {{#if theme.navigation}}
+          {{#if theme.navigation.colorBackground}}--Miyagi-color-bg: {{theme.navigation.colorBackground}};{{/if}}
+          {{#if theme.navigation.colorLinks}}--Miyagi-color-link: {{theme.navigation.colorLinks}};{{/if}}
+          {{#if theme.navigation.colorLinksActive}}--Miyagi-color-linkActive: {{theme.navigation.colorLinksActive}};{{/if}}
+        {{/if}}
+        {{#if theme.fontFamily}}--Miyagi-fontFamily: {{theme.fontFamily}};{{/if}}
       }
-
-        {
-          {
-          #if theme.navigation.colorBackground
-        }
-      }
-
-      --Miyagi-color-bg: {
-          {
-          theme.navigation.colorBackground
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-
-        {
-          {
-          #if theme.navigation.colorLinks
-        }
-      }
-
-      --Miyagi-color-link: {
-          {
-          theme.navigation.colorLinks
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-
-        {
-          {
-          #if theme.navigation.colorLinksActive
-        }
-      }
-
-      --Miyagi-color-linkActive: {
-          {
-          theme.navigation.colorLinksActive
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-
-        {
-          {
-          /if
-        }
-      }
-
-        {
-          {
-          #if theme.fontFamily
-        }
-      }
-
-      --Miyagi-fontFamily: {
-          {
-          theme.fontFamily
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-    }
-  </style>
-</head>
-
-<body class="Miyagi">
-  {{#block "body"}}{{/block}}
-</body>
-
+    </style>
+  </head>
+  <body class="Miyagi">
+    {{#block "body"}}{{/block}}
+  </body>
 </html>
