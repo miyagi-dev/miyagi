@@ -400,7 +400,7 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
     } else {
       standaloneUrl = `/component?file=${path.dirname(
         file
-      )}&variation=${variation}`;
+      )}&variation=${encodeURIComponent(variation)}`;
     }
   } else {
     standaloneUrl = null;
