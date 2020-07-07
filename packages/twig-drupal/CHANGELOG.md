@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.1...twig-drupal/v0.1.2) (2020-07-07)
+
+
+### Bug Fixes
+
+* **twig-drupal:** use full file path for resolving twig templates ([a52b30e](https://github.com/mgrsskls/miyagi/commit/a52b30e680ab6ba2b88f39702434e91c6b328245))
+
 ### [0.1.1](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.0...twig-drupal/v0.1.1) (2020-07-02)
 
 
