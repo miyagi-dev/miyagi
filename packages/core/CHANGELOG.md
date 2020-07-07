@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.10](https://github.com/mgrsskls/miyagi/compare/core/v1.0.9...core/v1.0.10) (2020-07-07)
+
+
+### Bug Fixes
+
+* **core:** do not resolve ignored component folders to full paths, so regexes work properly ([409ebb3](https://github.com/mgrsskls/miyagi/commit/409ebb3192aa8b72ee14d92d994977a9e7dfa29b))
+
 ### [1.0.9](https://github.com/mgrsskls/miyagi/compare/core/v1.0.8...core/v1.0.9) (2020-07-07)
 
 
