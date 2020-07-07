@@ -456,12 +456,12 @@ describe("lib/init/config", () => {
         components: {
           folder: "src",
           ignores: [
-            path.join(process.cwd(), "src/node_modules"),
-            path.join(process.cwd(), "src/.git"),
-            path.join(process.cwd(), "src/package.json"),
-            path.join(process.cwd(), "src/package-lock.json"),
-            path.join(process.cwd(), "src/.miyagi.js"),
-            path.join(process.cwd(), "src/.miyagi.json"),
+            "node_modules",
+            ".git",
+            "package.json",
+            "package-lock.json",
+            ".miyagi.js",
+            ".miyagi.json",
           ],
         },
         engine: {

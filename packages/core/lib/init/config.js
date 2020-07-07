@@ -5,7 +5,6 @@
  */
 
 const deepMerge = require("deepmerge");
-const path = require("path");
 const log = require("../logger.js");
 const appConfig = require("../config.json");
 
@@ -115,9 +114,6 @@ module.exports = (userConfig = {}) => {
   const merged = deepMerge(defaultUserConfig, config);
 
   merged.components.folder = sanitizePath(merged.components.folder);
-  merged.components.ignores = merged.components.ignores.map((folder) =>
-    path.join(process.cwd(), merged.components.folder, folder)
-  );
 
   return merged;
 };

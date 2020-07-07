@@ -197,7 +197,7 @@ function getIgnoredPathsArr(srcFolderIgnores) {
   return [
     // ignore dotfiles
     /(^|[\/\\])\../ /* eslint-disable-line */,
-    ...srcFolderIgnores.map((dir) => path.resolve(dir)),
+    ...srcFolderIgnores.map((dir) => new RegExp(dir)),
   ];
 }
 

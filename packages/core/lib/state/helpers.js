@@ -44,7 +44,7 @@ async function getFiles(dir, ignores, check) {
  */
 function isNotIgnored(file, ignoredFolders) {
   for (let i = 0; i < ignoredFolders.length; i += 1) {
-    if (file.indexOf(ignoredFolders[i]) === 0) {
+    if (file.includes(ignoredFolders[i])) {
       return false;
     }
   }

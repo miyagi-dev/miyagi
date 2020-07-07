@@ -49,10 +49,6 @@ describe("index", () => {
             },
           });
 
-          conf.components.ignores = conf.components.ignores.map((folder) =>
-            path.join(process.cwd(), "src", folder)
-          );
-
           expect(init).toHaveBeenCalledWith(conf);
         });
       });
