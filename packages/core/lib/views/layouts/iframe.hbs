@@ -1,99 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1,width=device-width">
-  <title>Component</title>
-  {{{jsFiles}}}
-  {{#if dev}}
-  <script src="{{projectName}}/js/socket.io.slim.js" defer></script>
-  {{/if}}
-  {{#if accessibilityValidation}}
-  <script src="{{projectName}}/js/axe.min.js" defer></script>
-  {{/if}}
-  <script src="{{projectName}}/js/iframe{{#if isBuild}}.build{{/if}}.js" {{#if dev}} type="module" {{/if}}{{#if prod}}
-    defer{{/if}}></script>
-  {{{cssFiles}}}
-  <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
-  {{#if a11yTestsPreload}}
-  <link rel="prefetch" href="{{projectName}}/js/axe.min.js">
-  {{/if}}
-  <style>
-    :root {
-        {
-          {
-          #if theme.fontFamily
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,width=device-width">
+    <title>Component</title>
+    {{{jsFiles}}}
+    {{#if dev}}
+    <script src="{{projectName}}/js/socket.io.slim.js" defer></script>
+    {{/if}}
+    {{#if accessibilityValidation}}
+    <script src="{{projectName}}/js/axe.min.js" defer></script>
+    {{/if}}
+    <script src="{{projectName}}/js/iframe{{#if isBuild}}.build{{/if}}.js" {{#if dev}} type="module" {{/if}}{{#if prod}}
+      defer{{/if}}></script>
+    {{{cssFiles}}}
+    <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
+    {{#if a11yTestsPreload}}
+    <link rel="prefetch" href="{{projectName}}/js/axe.min.js">
+    {{/if}}
+    <style>
+      :root {
+          {{#if theme.fontFamily}}--Miyagi-fontFamily: {{ theme.fontFamily }};{{/if}}
+          {{#if theme.content.colorText}}--Miyagi-color: {{ theme.content.colorText }};{{/if}}
+          {{#if theme.content.colorHeadlines}}--Miyagi-colorHeadlines: {{ theme.content.colorHeadlines }};{{/if}}
         }
-      }
-
-      --Miyagi-fontFamily: {
-          {
-          theme.fontFamily
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-
-        {
-          {
-          #if theme.content.colorText
-        }
-      }
-
-      --Miyagi-color: {
-          {
-          theme.content.colorText
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-
-        {
-          {
-          #if theme.content.colorHeadlines
-        }
-      }
-
-      --Miyagi-colorHeadlines: {
-          {
-          theme.content.colorHeadlines
-        }
-      }
-
-      ;
-
-        {
-          {
-          /if
-        }
-      }
-    }
-  </style>
-</head>
-
-<body>
-  {{#block "body"}}{{/block}}
-  {{#if standaloneUrl}}
-  <a class="MiyagiIframe-newTabLink" href="{{standaloneUrl}}" target="_blank" rel="noopener">
-    Open in new tab
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-      stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-      <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
-  </a>
-  {{/if}}
-</body>
-
+    </style>
+  </head>
+  <body>
+    {{#block "body"}}{{/block}}
+    {{#if standaloneUrl}}
+    <a class="MiyagiIframe-newTabLink" href="{{standaloneUrl}}" target="_blank" rel="noopener">
+      Open in new tab
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
+    </a>
+    {{/if}}
+  </body>
 </html>
