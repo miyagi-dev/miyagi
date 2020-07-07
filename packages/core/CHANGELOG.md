@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.7](https://github.com/mgrsskls/miyagi/compare/core/v1.0.6...core/v1.0.7) (2020-07-07)
+
+
+### Bug Fixes
+
+* **core:** added rel=noopener to new tab link ([5fc9660](https://github.com/mgrsskls/miyagi/commit/5fc96601d54bf4aba0f19188981039298f90b2ac))
+
 ### [1.0.6](https://github.com/mgrsskls/miyagi/compare/core/v1.0.5...core/v1.0.6) (2020-07-06)
 
 
