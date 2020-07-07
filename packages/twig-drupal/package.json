@@ -22,6 +22,6 @@
     "release": "standard-version"
   },
   "peerDependencies": {
-    "@miyagi/core": "^1.0.0"
+    "@miyagi/core": "^1.0.10"
   }
 }

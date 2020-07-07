@@ -94,7 +94,7 @@ module.exports = {
 function convertTokensToAttributes(path) {
   return new Promise((resolve) => {
     twig.twig({
-      path,
+      path: require("path").join(process.cwd(), path),
       async load(template) {
         let opts = {};
         const tokens = template.tokens;
