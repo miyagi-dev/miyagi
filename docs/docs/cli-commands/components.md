@@ -11,7 +11,7 @@ This will create a component folder including the following files:
 - `mocks`: mocks.json
 - `schema`: schema.json
 
-_**NOTE:** The component will be located based on your [`components.folder` setting](/configuration/options#components) and the file names depend on your [`files` settings](/configuration/options#files)._
+_**NOTE:** The component will be located based on your current working directoy (so you are able to use autocompletion) and the file names depend on your [`files` settings](/configuration/options#files)._
 
 **--skip:**
 

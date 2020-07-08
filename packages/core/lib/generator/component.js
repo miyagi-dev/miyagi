@@ -21,33 +21,25 @@ module.exports = async function componentGenerator(cliParams, config) {
   }
 
   const [componentNameWithFolder] = commands;
-  const componentPath = getFullComponentPath(
-    componentNameWithFolder,
-    config.components.folder
-  );
 
-  createComponentFolder(componentPath)
+  createComponentFolder(componentNameWithFolder)
     .then(async () => {
-      await createComponentFiles(config.files, componentPath, cliParams);
+      await createComponentFiles(
+        config.files,
+        componentNameWithFolder,
+        cliParams
+      );
       log("success", messages.generator.done);
     })
     .catch(() => {
       log(
         "error",
-        messages.generator.unknownError.replace("{{name}}", componentPath)
+        messages.generator.unknownError.replace(
+          "{{name}}",
+          componentNameWithFolder
+        )
       );
     });
-
-  /**
-   * Returns the component folder path relative from the project root
-   *
-   * @param {string} componentName
-   * @param {object} componentsFolderPath - the components.folder from the user's miyagi config
-   * @returns {string}
-   */
-  function getFullComponentPath(componentName, componentsFolderPath) {
-    return path.join(componentsFolderPath, componentName);
-  }
 
   /**
    * Returns an array with file names, if necessary filtered based on args

@@ -11,24 +11,11 @@ Module for creating component files based on the configuration cli params
 
 
 * [generator/component](#module_generator/component)
-    * [~getFullComponentPath(componentName, componentsFolderPath)](#module_generator/component..getFullComponentPath) ⇒ <code>string</code>
     * [~getFiles(fileNames, args)](#module_generator/component..getFiles) ⇒ <code>Promise</code>
     * [~getDummyFileContent(fileType)](#module_generator/component..getDummyFileContent) ⇒ <code>Promise</code>
     * [~createComponentFiles(filesConfig, componentPath, args)](#module_generator/component..createComponentFiles) ⇒ <code>Promise</code>
     * [~getFileNames(filesConfig, componentName)](#module_generator/component..getFileNames) ⇒ <code>object</code>
     * [~createComponentFolder(path)](#module_generator/component..createComponentFolder) ⇒ <code>Promise</code>
-
-<a name="module_generator/component..getFullComponentPath"></a>
-
-### generator/component~getFullComponentPath(componentName, componentsFolderPath) ⇒ <code>string</code>
-Returns the component folder path relative from the project root
-
-**Kind**: inner method of [<code>generator/component</code>](#module_generator/component)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| componentName | <code>string</code> |  |
-| componentsFolderPath | <code>object</code> | the components.folder from the user's miyagi config |
 
 <a name="module_generator/component..getFiles"></a>
 
