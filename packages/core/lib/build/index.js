@@ -382,7 +382,7 @@ module.exports = (app) => {
       )
     ];
 
-    promises.push(
+    /*promises.push(
       new Promise((resolve) => {
         render.renderMainWithComponent({
           app,
@@ -397,7 +397,7 @@ module.exports = (app) => {
           },
         });
       })
-    );
+    );*/
 
     for (const embedded of [false, true]) {
       promises.push(
@@ -423,29 +423,40 @@ module.exports = (app) => {
       );
     }
 
-    const variations = [
-      { $name: "default" },
-      ...(data && data.$variants ? data.$variants : []),
-    ];
+    if (data) {
+      const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
+      let variations = [];
 
-    for (const variation of variations) {
-      const name = variation.$name;
+      if (Object.keys(dataWithoutInternalKeys).length > 0) {
+        variations.push({
+          $name: data.$name || "default",
+          ...dataWithoutInternalKeys,
+        });
+      }
 
-      if (!name) break;
+      if (data.$variants) {
+        variations = [...variations, ...data.$variants];
+      }
 
-      promises.push(
-        new Promise((resolve) =>
-          buildVariation({
-            buildFolder,
-            app,
-            file,
-            normalizedFileName,
-            variation: name,
-          }).then((fileName) => {
-            resolve(fileName);
-          })
-        )
-      );
+      for (const variation of variations) {
+        const name = variation.$name;
+
+        if (!name) break;
+
+        promises.push(
+          new Promise((resolve) =>
+            buildVariation({
+              buildFolder,
+              app,
+              file,
+              normalizedFileName,
+              variation: name,
+            }).then((fileName) => {
+              resolve(fileName);
+            })
+          )
+        );
+      }
     }
 
     return Promise.all(promises);
