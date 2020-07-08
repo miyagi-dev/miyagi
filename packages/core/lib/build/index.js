@@ -1,7 +1,6 @@
 const fs = require("fs-extra");
 const path = require("path");
 const helpers = require("../helpers.js");
-const stateHelpers = require("../state/helpers.js");
 const render = require("../render/index.js");
 const log = require("../logger.js");
 const appConfig = require("../config.json");
@@ -184,38 +183,19 @@ module.exports = (app) => {
             `${buildFolder}/${logoPath}`,
             async () => {
               for (const folder of assetsConfig.folder) {
-                const assetFiles = await stateHelpers.getFiles(
-                  folder,
-                  [],
-                  function isAssetsFile(file) {
-                    const extname = path.extname(file);
-                    const extensions = new Set([
-                      ".css",
-                      ".js",
-                      ".jpg",
-                      ".png",
-                      ".gif",
-                      ".svg",
-                      ".ico",
-                    ]);
-                    return extensions.has(extname) ? file : null;
-                  }
+                promises.push(
+                  new Promise((resolve) => {
+                    fs.copy(
+                      path.resolve(folder),
+                      path.join(
+                        process.cwd(),
+                        buildFolder,
+                        path.basename(folder)
+                      ),
+                      resolve
+                    );
+                  })
                 );
-                for (const file of assetFiles) {
-                  promises.push(
-                    new Promise((resolve) => {
-                      fs.copy(
-                        file,
-                        path.join(
-                          process.cwd(),
-                          buildFolder,
-                          file.replace(process.cwd(), "")
-                        ),
-                        resolve
-                      );
-                    })
-                  );
-                }
               }
               resolve();
             }
@@ -224,38 +204,15 @@ module.exports = (app) => {
       );
     } else {
       for (const folder of assetsConfig.folder) {
-        const assetFiles = await stateHelpers.getFiles(
-          folder,
-          [],
-          function isAssetsFile(file) {
-            const extname = path.extname(file);
-            const extensions = new Set([
-              ".css",
-              ".js",
-              ".jpg",
-              ".png",
-              ".gif",
-              ".svg",
-              ".ico",
-            ]);
-            return extensions.has(extname) ? file : null;
-          }
+        promises.push(
+          new Promise((resolve) => {
+            fs.copy(
+              path.resolve(folder),
+              path.join(process.cwd(), buildFolder, path.basename(folder)),
+              resolve
+            );
+          })
         );
-        for (const file of assetFiles) {
-          promises.push(
-            new Promise((resolve) => {
-              fs.copy(
-                file,
-                path.join(
-                  process.cwd(),
-                  buildFolder,
-                  file.replace(process.cwd(), "")
-                ),
-                resolve
-              );
-            })
-          );
-        }
       }
     }
 
