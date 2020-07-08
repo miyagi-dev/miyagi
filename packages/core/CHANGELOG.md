@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.11](https://github.com/mgrsskls/miyagi/compare/core/v1.0.10...core/v1.0.11) (2020-07-08)
+
+
+### Bug Fixes
+
+* **core:** copy content of asset folders when creating a build instead of complete folder ([8898b67](https://github.com/mgrsskls/miyagi/commit/8898b6700e415e24a62b897c8e7890aa943d7bf0))
+
 ### [1.0.10](https://github.com/mgrsskls/miyagi/compare/core/v1.0.9...core/v1.0.10) (2020-07-07)
 
 
