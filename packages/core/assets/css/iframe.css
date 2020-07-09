@@ -78,6 +78,10 @@ body {
   margin-top: 0;
 }
 
+.MiyagiDocumentation p {
+  max-width: 64ch;
+}
+
 .Miyagi-sectionTitle {
   align-items: center;
   color: var(--Miyagi-colorHeadlines);
