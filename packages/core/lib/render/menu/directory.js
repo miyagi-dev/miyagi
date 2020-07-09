@@ -42,7 +42,7 @@ function render(app, directory, request) {
   // starts recursion
   if (directory.children && directory.children.length) {
     html += `<div class="${classes.listContainer}"${
-      directory.id ? ` id="${directory.id}-variations"` : ""
+      directory.id ? ` id="${directory.id}-components"` : ""
     }>
       ${menu.render(
         app,
