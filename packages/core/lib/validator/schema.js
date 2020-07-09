@@ -14,7 +14,6 @@ const config = require("../config.json");
  * @returns {null|boolean[]} null if there is no schema or an array with booleans defining the validity of the entries in the data array
  */
 module.exports = function validateSchema(app, filePath, dataArray) {
-  const jsonSchemaValidator = new AJV();
   const componentSchema = app.get("state").fileContents[
     helpers.getFullPathFromShortPath(
       app,
@@ -23,6 +22,19 @@ module.exports = function validateSchema(app, filePath, dataArray) {
   ];
 
   if (componentSchema) {
+    const schemas = Object.entries(app.get("state").fileContents)
+      .filter(([key]) =>
+        key.endsWith(
+          `${app.get("config").files.schema.name}.${
+            app.get("config").files.schema.extension
+          }`
+        )
+      )
+      .map((schema) => schema[1]);
+
+    const jsonSchemaValidator = new AJV({
+      schemas,
+    });
     const validity = [];
     let validate;
 
