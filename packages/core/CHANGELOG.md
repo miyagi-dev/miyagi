@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.14](https://github.com/mgrsskls/miyagi/compare/core/v1.0.13...core/v1.0.14) (2020-07-09)
+
+
+### Bug Fixes
+
+* **core:** fix opening of menu when requesting component via link in iframe ([7013b18](https://github.com/mgrsskls/miyagi/commit/7013b187a985cdabaf70b55873af2376780ff520))
+* **core:** make sure only the correct folders are opened in the navigation when requesting a component view ([e3bf589](https://github.com/mgrsskls/miyagi/commit/e3bf5893562cea6b05e56c7aab508a0aae6f707e))
+* **core:** max width for documentation copy ([7f2c07c](https://github.com/mgrsskls/miyagi/commit/7f2c07c9e18ef91d4904d7d89ea111c73c93b174))
+
 ### [1.0.13](https://github.com/mgrsskls/miyagi/compare/core/v1.0.12...core/v1.0.13) (2020-07-09)
 
 
