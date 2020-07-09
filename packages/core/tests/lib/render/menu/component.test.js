@@ -101,7 +101,7 @@ describe("lib/menu/elements/component", () => {
       ).toBeGreaterThanOrEqual(0);
     });
 
-    describe("request directory is parent of current directory", () => {
+    describe("requested component is the current component", () => {
       test("calls toggle.render with the correct params", () => {
         const helpers = require(helpersSrc);
         const component = requireComponent("component");
@@ -111,7 +111,7 @@ describe("lib/menu/elements/component", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
         helpers.pathIsChildOfSecondPath = jest.fn(() => true);
 
-        component.render(app, directory, {});
+        component.render(app, directory, { path: directory.shortPath });
 
         expect(toggle.render).toHaveBeenCalledWith(
           `${directoryId}-variations`,
@@ -121,7 +121,7 @@ describe("lib/menu/elements/component", () => {
       });
     });
 
-    describe("request directory is not parent of current directory", () => {
+    describe("requested component is not the current component", () => {
       test("calls toggle.render with the correct params", () => {
         const helpers = require(helpersSrc);
         const component = requireComponent("component");
@@ -131,7 +131,9 @@ describe("lib/menu/elements/component", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
         helpers.pathIsChildOfSecondPath = jest.fn(() => false);
 
-        component.render(app, directory, {});
+        component.render(app, directory, {
+          path: directory.shortPath + "different-directory",
+        });
 
         expect(toggle.render).toHaveBeenCalledWith(
           `${directoryId}-variations`,
