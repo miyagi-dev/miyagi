@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.13](https://github.com/mgrsskls/miyagi/compare/core/v1.0.12...core/v1.0.13) (2020-07-09)
+
+
+### Bug Fixes
+
+* **core:** "new" creates component relative from current folder, not component folder ([e6cb345](https://github.com/mgrsskls/miyagi/commit/e6cb3451373e746b1a124053e7528fcfb788a42b))
+* **core:** load all schemas when validating to make sure using $ref works ([2d501b2](https://github.com/mgrsskls/miyagi/commit/2d501b2af413a78c60674b97f44e879b72411606))
+
 ### [1.0.12](https://github.com/mgrsskls/miyagi/compare/core/v1.0.11...core/v1.0.12) (2020-07-08)
 
 
