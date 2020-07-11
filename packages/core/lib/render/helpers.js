@@ -330,9 +330,10 @@ async function resolveJson(app, entry) {
       const resolvedJson = getRootOrVariantData(app, {
         $ref: entry.$ref,
       });
+
       delete dataWithoutComponentAndVariation.$ref;
 
-      return deepMerge(resolvedJson, dataWithoutComponentAndVariation);
+      return deepMerge(dataWithoutComponentAndVariation, resolvedJson);
     }
   }
 
