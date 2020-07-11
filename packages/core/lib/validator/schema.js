@@ -33,7 +33,12 @@ module.exports = function validateSchema(app, filePath, dataArray) {
       .map((schema) => schema[1]);
 
     const jsonSchemaValidator = new AJV({
-      schemas,
+      schemas: schemas.map((schema, i) => {
+        if (!schema.$id) {
+          schema.$id = i.toString();
+        }
+        return schema;
+      }),
     });
     const validity = [];
     let validate;
