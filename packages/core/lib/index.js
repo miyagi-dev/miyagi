@@ -406,6 +406,7 @@ function Miyagi() {
       try {
         userFile = require(path.resolve(process.cwd(), ".miyagi"));
       } catch (err) {
+        log("error", err);
         log("warn", messages.userConfigUnparseable);
       }
 
