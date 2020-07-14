@@ -246,7 +246,7 @@ function renderMain({ app, res, cb }) {
  */
 async function renderMainWithComponent({ app, res, file, variation, cb }) {
   let iframeSrc = app.get("config").isBuild
-    ? `/component-${helpers.normalizeString(
+    ? `component-${helpers.normalizeString(
         file.replace(`.${app.get("config").files.templates.extension}`, "")
       )}.html`
     : `/component?file=${file}`;
