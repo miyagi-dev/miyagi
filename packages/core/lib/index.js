@@ -94,6 +94,11 @@ function getCliArgs(args) {
     delete cliArgs.outputFile;
   }
 
+  if (cliArgs.basePath) {
+    buildArgs.basePath = cliArgs.basePath;
+    delete cliArgs.basePath;
+  }
+
   cliArgs.build = buildArgs;
 
   if (cliArgs.assets) {

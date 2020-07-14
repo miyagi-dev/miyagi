@@ -81,6 +81,18 @@ function getAssetFilesArray(strOrArrOrObj, assetType) {
 module.exports = (userConfig = {}) => {
   const config = { ...userConfig };
 
+  if (config.build) {
+    if (config.build.basePath) {
+      if (!config.build.basePath.startsWith("/")) {
+        config.build.basePath = `/${config.build.basePath}`;
+      }
+
+      if (!config.build.basePath.endsWith("/")) {
+        config.build.basePath = `${config.build.basePath}/`;
+      }
+    }
+  }
+
   if (config.assets) {
     if (config.assets.folder) {
       config.assets.folder = arrayfy(config.assets.folder).map(sanitizePath);

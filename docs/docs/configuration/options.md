@@ -54,6 +54,13 @@ This would serve different assets based on your `NODE_ENV`.
 
 _Settings for creating a static build._
 
+### `basePath`
+
+default: `/`<br>
+type: `string`
+
+If you deploy your build into a subfolder instead of the root folder, set this option to the path of the subfolder.
+
 ### `folder`
 
 default: `"build/"`<br>

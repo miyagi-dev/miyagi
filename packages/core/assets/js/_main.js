@@ -119,7 +119,7 @@ class Main {
 
   updateUrl(src) {
     if (src === this.indexPath) {
-      history.pushState(null, src, "/");
+      history.pushState(null, src, document.querySelector("base").href);
     } else {
       history.pushState(null, src, this.convertPathToMainPath(src));
     }

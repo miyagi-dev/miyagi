@@ -444,6 +444,7 @@ describe("lib/init/config", () => {
     test("it returns the default values", () => {
       expect(getMergedConfig({ files: { templates: {} } })).toEqual({
         build: {
+          basePath: "/",
           folder: "build",
           outputFile: false,
         },
