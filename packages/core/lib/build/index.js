@@ -221,7 +221,11 @@ module.exports = (app) => {
     for (const file of cssJsFiles) {
       promises.push(
         new Promise((resolve) =>
-          fs.copy(path.resolve(file), `${buildFolder}/${file}`, resolve)
+          fs.copy(
+            path.resolve(file),
+            `${buildFolder}/${path.basename(file)}`,
+            resolve
+          )
         )
       );
     }
