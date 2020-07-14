@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/mgrsskls/miyagi/compare/core/v1.0.16...core/v1.1.0) (2020-07-14)
+
+
+### Features
+
+* **core:** basePath option for deploying the static build into a subfolder ([93b43fd](https://github.com/mgrsskls/miyagi/commit/93b43fd9964f3ea54de07d3c55bf915917ba44c1))
+
+
+### Bug Fixes
+
+* **core:** breadcrumb links not over full width ([e2cabc9](https://github.com/mgrsskls/miyagi/commit/e2cabc9291cb2267786d1d9b352a1c3aed58fd44))
+* **core:** create html build file also when no mock data exists ([5038bb0](https://github.com/mgrsskls/miyagi/commit/5038bb0e033fc1cffe34fe3e05973ef12ff5b01b))
+* **core:** in build serve assets from root ([8b7f029](https://github.com/mgrsskls/miyagi/commit/8b7f029aae0161732db3d6e7b3f4ff18968866b0))
+* **core:** reload whole page when info file gets updated ([be86dc2](https://github.com/mgrsskls/miyagi/commit/be86dc2741e258c7ac0463a45615f1317e8587ed))
+
 ### [1.0.16](https://github.com/mgrsskls/miyagi/compare/core/v1.0.15...core/v1.0.16) (2020-07-14)
 
 
