@@ -167,7 +167,7 @@ async function handleFileChange() {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
       menu: true,
     });
-    changeFileCallback(true, false);
+    changeFileCallback(true, true);
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsSchemaFile(appInstance, changedPath)
