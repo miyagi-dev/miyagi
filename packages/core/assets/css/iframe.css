@@ -153,7 +153,7 @@ body {
 .MiyagiComponent-file {
   align-items: center;
   color: #767676;
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
   font-family: var(--Miyagi-fontFamily);
   font-size: 0.875em;
