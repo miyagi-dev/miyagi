@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.16](https://github.com/mgrsskls/miyagi/compare/core/v1.0.15...core/v1.0.16) (2020-07-14)
+
+
+### Bug Fixes
+
+* **core:** fix wrong iframe src in build ([09c3aff](https://github.com/mgrsskls/miyagi/commit/09c3aff911a67644d655fd11509038525672d019))
+
 ### [1.0.15](https://github.com/mgrsskls/miyagi/compare/core/v1.0.14...core/v1.0.15) (2020-07-14)
 
 
