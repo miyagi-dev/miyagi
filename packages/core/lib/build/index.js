@@ -423,13 +423,14 @@ module.exports = (app) => {
       );
     }
 
+    let variations = [];
+
     if (data) {
       const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
-      let variations = [];
 
       if (Object.keys(dataWithoutInternalKeys).length > 0) {
         variations.push({
-          $name: data.$name || "default",
+          $name: data.$name || appConfig.defaultVariationName,
           ...dataWithoutInternalKeys,
         });
       }
@@ -437,26 +438,30 @@ module.exports = (app) => {
       if (data.$variants) {
         variations = [...variations, ...data.$variants];
       }
+    } else {
+      variations.push({
+        $name: appConfig.defaultVariationName,
+      });
+    }
 
-      for (const variation of variations) {
-        const name = variation.$name;
+    for (const variation of variations) {
+      const name = variation.$name;
 
-        if (!name) break;
+      if (!name) break;
 
-        promises.push(
-          new Promise((resolve) =>
-            buildVariation({
-              buildFolder,
-              app,
-              file,
-              normalizedFileName,
-              variation: name,
-            }).then((fileName) => {
-              resolve(fileName);
-            })
-          )
-        );
-      }
+      promises.push(
+        new Promise((resolve) =>
+          buildVariation({
+            buildFolder,
+            app,
+            file,
+            normalizedFileName,
+            variation: name,
+          }).then((fileName) => {
+            resolve(fileName);
+          })
+        )
+      );
     }
 
     return Promise.all(promises);
