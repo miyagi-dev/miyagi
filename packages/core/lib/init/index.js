@@ -24,6 +24,8 @@ const setWatcher = require("./watcher.js");
 module.exports = async function init(mergedConfig) {
   const app = express();
   app.set("config", mergedConfig);
+  app.set("view cache", false);
+  app.set("cache", false);
 
   if (setEngines(app)) {
     const port = process.env.PORT || appConfig.defaultPort;
