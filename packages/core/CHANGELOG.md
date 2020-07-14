@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.15](https://github.com/mgrsskls/miyagi/compare/core/v1.0.14...core/v1.0.15) (2020-07-14)
+
+
+### Bug Fixes
+
+* **core:** added id to schemas if not set in files to avoid error msg by ajv ([cdac32a](https://github.com/mgrsskls/miyagi/commit/cdac32a57b182cd54d73be4e73db57c66df67db7))
+* **core:** fix certain missing build html files ([2d4153f](https://github.com/mgrsskls/miyagi/commit/2d4153f26ed74cab9c51d07867033122c58aaf1f))
+* **core:** fix wrong merging of data when resolving $ref in mock files ([aedaf57](https://github.com/mgrsskls/miyagi/commit/aedaf57857df050795bba9f2c530ae83493a5545))
+
 ### [1.0.14](https://github.com/mgrsskls/miyagi/compare/core/v1.0.13...core/v1.0.14) (2020-07-09)
 
 
