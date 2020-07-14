@@ -382,7 +382,7 @@ module.exports = (app) => {
       )
     ];
 
-    /*promises.push(
+    promises.push(
       new Promise((resolve) => {
         render.renderMainWithComponent({
           app,
@@ -397,7 +397,7 @@ module.exports = (app) => {
           },
         });
       })
-    );*/
+    );
 
     for (const embedded of [false, true]) {
       promises.push(

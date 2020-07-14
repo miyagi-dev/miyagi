@@ -126,7 +126,7 @@ describe("lib/build/index", () => {
       expect(spyComponentOverview).toHaveBeenCalledTimes(2);
       expect(spyComponent).toHaveBeenCalledTimes(4);
       expect(spyComponentVariations).toHaveBeenCalledTimes(2);
-      expect(spyMainWithComponent).toHaveBeenCalledTimes(2);
+      expect(spyMainWithComponent).toHaveBeenCalledTimes(3);
       expect(spyMain).toHaveBeenCalled();
 
       done();
