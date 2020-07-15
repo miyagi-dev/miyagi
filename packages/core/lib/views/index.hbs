@@ -19,6 +19,10 @@
 
       {{#if buildDate}}
         <p class="Miyagi-buildDate">Build at: <time datetime="{{buildDate}}">{{formattedBuildDate}}</time></p>
+        <script>
+          const time = document.querySelector(".Miyagi-buildDate time");
+          time.textContent = new Date(time.dateTime).toLocaleString();
+        </script>
       {{/if}}
     </nav>
 

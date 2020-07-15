@@ -16,13 +16,21 @@ module.exports = (app) => {
   const { build } = config;
   const buildFolder = build.folder;
   const date = new Date();
-  const buildDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+  const utcDate = new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+  const buildDate = `${utcDate.getFullYear()}-${(utcDate.getMonth() + 1)
     .toString()
     .padStart(
       2,
       "0"
-    )}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-  const formattedBuildDate = date.toLocaleString();
+    )}-${utcDate.getDate()} ${utcDate.getHours()}:${utcDate.getMinutes()}:${utcDate.getSeconds()}Z`;
+  const formattedBuildDate = `${utcDate.getFullYear()}/${(
+    utcDate.getMonth() + 1
+  )
+    .toString()
+    .padStart(
+      2,
+      "0"
+    )}/${utcDate.getDate()} ${utcDate.getHours()}:${utcDate.getMinutes()}:${utcDate.getSeconds()} UTC`;
 
   config.ui.validations.accessibility = false;
   config.ui.validations.html = false;
