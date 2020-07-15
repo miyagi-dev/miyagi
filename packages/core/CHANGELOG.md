@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/mgrsskls/miyagi/compare/core/v1.1.0...core/v1.2.0) (2020-07-15)
+
+
+### Features
+
+* **core:** added build date ([ea445cf](https://github.com/mgrsskls/miyagi/commit/ea445cfbaba8ebf520a2d455e79b8652c88d1b22))
+* **core:** render "Page not found" when page in iframe cant be found ([6b44274](https://github.com/mgrsskls/miyagi/commit/6b442740f7465e5a44a5c1381d1e378e148d7fdd))
+
 ## [1.1.0](https://github.com/mgrsskls/miyagi/compare/core/v1.0.16...core/v1.1.0) (2020-07-14)
 
 
