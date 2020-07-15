@@ -32,8 +32,8 @@
     "miyagi": "./bin/miyagi.js"
   },
   "dependencies": {
-    "ajv": "^6.12.2",
-    "axe-core": "^3.5.4",
+    "ajv": "^6.12.3",
+    "axe-core": "^3.5.5",
     "chalk": "^4.0.0",
     "chokidar": "^3.4.0",
     "consolidate": "git+https://github.com/mgrsskls/consolidate.js.git",
@@ -48,11 +48,11 @@
     "json-to-pretty-yaml": "^1.2.2",
     "markdown-it": "^11.0.0",
     "socket.io": "^2.3.0",
-    "yargs": "^15.3.1"
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^7.0.0",
-    "babel-jest": "^26.0.1",
+    "babel-jest": "^26.1.0",
     "codecov": "^3.7.0",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
@@ -64,7 +64,7 @@
     "gulp-postcss": "^8.0.0",
     "hamljs": "^0.6.2",
     "hogan.js": "^3.0.2",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "jsdoc-to-markdown": "^6.0.1",
     "mustache": "^4.0.1",
     "nunjucks": "^3.2.1",
@@ -72,11 +72,11 @@
     "postcss-preset-env": "^6.7.0",
     "pre-commit": "^1.2.2",
     "pug": "^3.0.0",
-    "rollup": "^2.10.9",
+    "rollup": "^2.21.0",
     "rollup-plugin-terser": "^6.1.0",
     "supertest": "^4.0.2",
     "twig": "^1.15.1",
-    "twing": "^5.0.1",
+    "twing": "^5.0.2",
     "underscore": "^1.10.2"
   },
   "scripts": {
