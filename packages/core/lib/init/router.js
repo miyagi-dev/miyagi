@@ -157,7 +157,16 @@ module.exports = function Router(app) {
     })
   );
 
-  app.all("*", (req, res) => {
-    res.redirect("/");
+  app.all("*", async (req, res) => {
+    if (req.headers.referer) {
+      await render.renderComponentNotFound({
+        app,
+        res,
+        embedded: true,
+        target: "Page",
+      });
+    } else {
+      res.redirect("/");
+    }
   });
 };
