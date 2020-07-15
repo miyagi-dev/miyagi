@@ -5,8 +5,8 @@
 @import "./_result.css";
 
 :root {
-  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI",
-    "Roboto", "Helvetica", "Arial", sans-serif;
+  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+    "Helvetica", "Arial", sans-serif;
   --Miyagi-fontSize: 1.6rem;
   --Miyagi-lineHeight: 1.5;
   --Miyagi-color: #222;
@@ -27,7 +27,7 @@
   --Miyagi-toggle-width: 1em;
   --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
   --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
-  --Miyagi-spacing: var(--Miyagi-spacing-y) var(--Miyagi-spacing-y);
+  --Miyagi-spacing: var(--Miyagi-spacing-y);
 }
 
 *,
@@ -55,10 +55,12 @@ body {
 }
 
 .Miyagi-nav {
+  display: flex;
   background: var(--Miyagi-color-bg);
   grid-area: nav;
   overflow-y: auto;
-  padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x);
+  padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x)
+    var(--Miyagi-spacing-x);
 }
 
 .Miyagi-content {
@@ -81,6 +83,12 @@ body {
   padding-right: 4rem;
 }
 
+.Miyagi-buildDate {
+  font-size: 1.2rem;
+  color: var(--Miyagi-color-link);
+  opacity: 0.75;
+}
+
 @media (max-width: 40em) {
   :root {
     --Miyagi-spacing-x: 1rem;
@@ -92,6 +100,11 @@ body {
       "nav"
       "iframe" 1fr
       "tests";
+  }
+
+  .Miyagi-menu,
+  .Miyagi-toggleMobileMenu {
+    order: 1;
   }
 
   .Miyagi-menu {
@@ -106,7 +119,6 @@ body {
 
   .Miyagi-nav {
     align-items: center;
-    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding-left: 0;
@@ -163,7 +175,12 @@ body {
   }
 
   .Miyagi-nav {
+    flex-direction: column;
     height: 100vh;
+  }
+
+  .Miyagi-menu {
+    flex: 1;
   }
 
   .Miyagi-toggleMobileMenu {

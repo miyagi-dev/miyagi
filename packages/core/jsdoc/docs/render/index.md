@@ -59,6 +59,7 @@ Rendering module
 | object | 
 | object.app | 
 | object.res | 
+| object.buildDate | 
 | object.cb | 
 
 <a name="module_render..renderMainWithComponent"></a>
@@ -73,6 +74,7 @@ Rendering module
 | object.res | 
 | object.file | 
 | object.variation | 
+| object.buildDate | 
 | object.cb | 
 
 <a name="module_render..renderMainWith404"></a>

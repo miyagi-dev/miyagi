@@ -6,8 +6,8 @@ Module for registering handlebars view helpers
 
 * [init/view-helpers](#module_init/view-helpers)
     * [~getMenuHtml(children, path, variation)](#module_init/view-helpers..getMenuHtml) ⇒ <code>string</code>
-    * [~getCssFilesHtml(files)](#module_init/view-helpers..getCssFilesHtml) ⇒ <code>string</code>
-    * [~getJsFilesHtml(files, es6Modules)](#module_init/view-helpers..getJsFilesHtml) ⇒ <code>string</code>
+    * [~getCssFilesHtml(isBuild, files)](#module_init/view-helpers..getCssFilesHtml) ⇒ <code>string</code>
+    * [~getJsFilesHtml(isBuild, files, es6Modules)](#module_init/view-helpers..getJsFilesHtml) ⇒ <code>string</code>
 
 <a name="module_init/view-helpers..getMenuHtml"></a>
 
@@ -25,7 +25,7 @@ Returns the menu html
 
 <a name="module_init/view-helpers..getCssFilesHtml"></a>
 
-### init/view-helpers~getCssFilesHtml(files) ⇒ <code>string</code>
+### init/view-helpers~getCssFilesHtml(isBuild, files) ⇒ <code>string</code>
 Renders all link tags for given stylesheet files
 
 **Kind**: inner method of [<code>init/view-helpers</code>](#module_init/view-helpers)  
@@ -33,11 +33,12 @@ Renders all link tags for given stylesheet files
 
 | Param | Type | Description |
 | --- | --- | --- |
+| isBuild | <code>boolean</code> | defines if a build is created or not |
 | files | <code>Array.&lt;string&gt;</code> | the paths to CSS files |
 
 <a name="module_init/view-helpers..getJsFilesHtml"></a>
 
-### init/view-helpers~getJsFilesHtml(files, es6Modules) ⇒ <code>string</code>
+### init/view-helpers~getJsFilesHtml(isBuild, files, es6Modules) ⇒ <code>string</code>
 Renders all script tags for given javascript files
 
 **Kind**: inner method of [<code>init/view-helpers</code>](#module_init/view-helpers)  
@@ -45,6 +46,7 @@ Renders all script tags for given javascript files
 
 | Param | Type | Description |
 | --- | --- | --- |
+| isBuild | <code>boolean</code> | defines if a build is created or not |
 | files | <code>Array.&lt;string&gt;</code> | the paths to JS files |
 | es6Modules | <code>boolean</code> | describes if the scripts should be rendered with type="module" |
 

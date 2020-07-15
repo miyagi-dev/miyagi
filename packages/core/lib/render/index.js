@@ -203,9 +203,11 @@ async function renderSingleComponent({
  * @param object
  * @param object.app
  * @param object.res
+ * @param object.buildDate
+ * @param object.formattedBuildDate
  * @param object.cb
  */
-function renderMain({ app, res, cb }) {
+function renderMain({ app, res, buildDate, formattedBuildDate, cb }) {
   res.render(
     "index.hbs",
     {
@@ -228,6 +230,8 @@ function renderMain({ app, res, cb }) {
       basePath: app.get("config").isBuild
         ? app.get("config").build.basePath
         : "/",
+      buildDate,
+      formattedBuildDate,
     },
     (err, html) => {
       if (res.send) {
@@ -251,9 +255,19 @@ function renderMain({ app, res, cb }) {
  * @param object.res
  * @param object.file
  * @param object.variation
+ * @param object.buildDate
+ * @param object.formattedBuildDate
  * @param object.cb
  */
-async function renderMainWithComponent({ app, res, file, variation, cb }) {
+async function renderMainWithComponent({
+  app,
+  res,
+  file,
+  variation,
+  buildDate,
+  formattedBuildDate,
+  cb,
+}) {
   let iframeSrc = app.get("config").isBuild
     ? `component-${helpers.normalizeString(
         file.replace(`.${app.get("config").files.templates.extension}`, "")
@@ -302,6 +316,8 @@ async function renderMainWithComponent({ app, res, file, variation, cb }) {
       basePath: app.get("config").isBuild
         ? app.get("config").build.basePath
         : "/",
+      buildDate,
+      formattedBuildDate,
     },
     (err, html) => {
       if (res.send) {

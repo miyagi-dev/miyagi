@@ -15,6 +15,14 @@ module.exports = (app) => {
   const config = { ...app.get("config") };
   const { build } = config;
   const buildFolder = build.folder;
+  const date = new Date();
+  const buildDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+    .toString()
+    .padStart(
+      2,
+      "0"
+    )}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  const formattedBuildDate = date.toLocaleString();
 
   config.ui.validations.accessibility = false;
   config.ui.validations.html = false;
@@ -56,7 +64,9 @@ module.exports = (app) => {
 
     promises.push(
       new Promise((resolve) => {
-        buildIndex(buildFolder, app).then(resolve);
+        buildIndex(buildFolder, app, buildDate, formattedBuildDate).then(
+          resolve
+        );
       })
     );
 
@@ -65,7 +75,13 @@ module.exports = (app) => {
     for (const file of partials) {
       promises.push(
         new Promise((resolve) => {
-          buildComponent({ file, buildFolder, app }).then((component) => {
+          buildComponent({
+            file,
+            buildFolder,
+            app,
+            buildDate,
+            formattedBuildDate,
+          }).then((component) => {
             for (const path of getFilePathForJsonOutput(component)) {
               paths.push(path);
             }
@@ -274,13 +290,17 @@ module.exports = (app) => {
    *
    * @param {string} buildFolder
    * @param {object} app - the express instance
+   * @param {string} buildDate - a date time string of the current build
+   * @param {string} formattedBuildDate - a formatted date time string of the current build
    * @returns {Promise}
    */
-  function buildIndex(buildFolder, app) {
+  function buildIndex(buildFolder, app, buildDate, formattedBuildDate) {
     return new Promise((resolve) => {
       render.renderMain({
         app,
         res: app,
+        buildDate,
+        formattedBuildDate,
         cb: (response) => {
           fs.writeFile(
             path.resolve(`${buildFolder}/index.html`),
@@ -301,6 +321,8 @@ module.exports = (app) => {
    * @param {string} obj.file - the template file path
    * @param {string} obj.normalizedFileName - the normalized template file path
    * @param {string} obj.variation - the variation name
+   * @param {string} obj.buildDate - a date time string of the current build
+   * @param {string} obj.formattedBuildDate - a formatted date time string of the current build
    * @returns {Promise}
    */
   function buildVariation({
@@ -309,6 +331,8 @@ module.exports = (app) => {
     file,
     normalizedFileName,
     variation,
+    buildDate,
+    formattedBuildDate,
   }) {
     const promises = [];
 
@@ -348,6 +372,8 @@ module.exports = (app) => {
           res: app,
           file: path.dirname(file),
           variation,
+          buildDate,
+          formattedBuildDate,
           cb: (response) => {
             fs.writeFile(
               path.resolve(
@@ -373,9 +399,17 @@ module.exports = (app) => {
    * @param {string} obj.file - the template file path
    * @param {string} obj.buildFolder
    * @param {object} obj.app
+   * @param {string} obj.buildDate - a date time string of the current build
+   * @param {string} obj.formattedBuildDate - a formatted date time string of the current build
    * @returns {Promise}
    */
-  function buildComponent({ file, buildFolder, app }) {
+  function buildComponent({
+    file,
+    buildFolder,
+    app,
+    buildDate,
+    formattedBuildDate,
+  }) {
     const promises = [];
     const normalizedFileName = helpers.normalizeString(path.dirname(file));
 
@@ -392,6 +426,9 @@ module.exports = (app) => {
           app,
           res: app,
           file: path.dirname(file),
+          variation: null,
+          buildDate,
+          formattedBuildDate,
           cb: (response) => {
             fs.writeFile(
               path.resolve(`${buildFolder}/show-${normalizedFileName}.html`),
@@ -461,6 +498,8 @@ module.exports = (app) => {
             file,
             normalizedFileName,
             variation: name,
+            buildDate,
+            formattedBuildDate,
           }).then((fileName) => {
             resolve(fileName);
           })
