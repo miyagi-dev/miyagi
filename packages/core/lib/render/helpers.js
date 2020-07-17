@@ -43,13 +43,18 @@ async function extendTemplateData(config, data, filePath) {
  * @param rootData
  */
 async function resolveData(app, data, rootData) {
-  if (rootData) {
-    data = mergeRootDataWithVariationData(rootData, data);
-  }
   data = await overwriteJsonLinksWithJsonData(app, data);
-  data = mergeWithGlobalData(app, data);
   data = await overwriteTplLinksWithTplContent(app, data);
   data = await overwriteRenderKey(app, data);
+
+  if (rootData) {
+    rootData = await overwriteJsonLinksWithJsonData(app, rootData);
+    rootData = await overwriteTplLinksWithTplContent(app, rootData);
+    rootData = await overwriteRenderKey(app, rootData);
+    data = mergeRootDataWithVariationData(rootData, data);
+  }
+
+  data = mergeWithGlobalData(app, data);
 
   return data;
 }
@@ -326,14 +331,14 @@ async function resolveJson(app, entry) {
     }
 
     if (entry.$ref) {
-      const dataWithoutComponentAndVariation = helpers.cloneDeep(entry);
+      const customData = helpers.cloneDeep(entry);
+      delete customData.$ref;
+
       const resolvedJson = getRootOrVariantData(app, {
         $ref: entry.$ref,
       });
 
-      delete dataWithoutComponentAndVariation.$ref;
-
-      return deepMerge(dataWithoutComponentAndVariation, resolvedJson);
+      return deepMerge(resolvedJson, customData);
     }
   }
 
