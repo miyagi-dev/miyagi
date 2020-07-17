@@ -122,6 +122,18 @@ function getMenu(app) {
           if (restructured.children.length === 0) {
             delete restructured.children;
           }
+
+          if (restructured.children) {
+            restructured.children.sort(function (a, b) {
+              const nameA = a.name.toLowerCase();
+              const nameB = b.name.toLowerCase();
+
+              if (nameA < nameB) return -1;
+              if (nameA > nameB) return 1;
+
+              return 0;
+            });
+          }
         }
         array.push(restructured);
       }
