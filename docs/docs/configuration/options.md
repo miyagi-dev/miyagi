@@ -264,3 +264,11 @@ type: `boolean`
 
 default: `true`<br>
 type: `boolean`
+
+## `schema`
+
+default: `{}`<br>
+type: `object`
+
+This object gets passed to the instance of the [schema validator AJV](https://github.com/ajv-validator/ajv/). [See all available options](https://github.com/ajv-validator/ajv/#options).
+You can use this to define custom formats e.g..

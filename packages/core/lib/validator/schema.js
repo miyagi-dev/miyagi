@@ -1,4 +1,5 @@
 const AJV = require("ajv");
+const deepMerge = require("deepmerge");
 const path = require("path");
 const helpers = require("../helpers.js");
 const log = require("../logger.js");
@@ -32,14 +33,19 @@ module.exports = function validateSchema(app, filePath, dataArray) {
       )
       .map((schema) => schema[1]);
 
-    const jsonSchemaValidator = new AJV({
-      schemas: schemas.map((schema, i) => {
-        if (!schema.$id) {
-          schema.$id = i.toString();
-        }
-        return schema;
-      }),
-    });
+    const jsonSchemaValidator = new AJV(
+      deepMerge(
+        {
+          schemas: schemas.map((schema, i) => {
+            if (!schema.$id) {
+              schema.$id = i.toString();
+            }
+            return schema;
+          }),
+        },
+        app.get("config").schema
+      )
+    );
     const validity = [];
     let validate;
 
