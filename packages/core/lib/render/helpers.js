@@ -4,6 +4,7 @@
  * @module render/helpers
  */
 
+const fs = require("fs");
 const path = require("path");
 const deepMerge = require("deepmerge");
 const config = require("../config.json");
@@ -284,21 +285,40 @@ function resolveTpl(app, entry) {
             app.get("config").files.templates.name,
             path.basename(entries.$tpl)
           )}.${app.get("config").files.templates.extension}`;
-          data = await extendTemplateData(app.get("config"), data, filePath);
 
-          await app.render(
-            filePath,
-            getDataForRenderFunction(app, data),
-            (err, html) => {
-              if (err)
-                log(
-                  "warn",
-                  config.messages.renderingTemplateFailed
-                    .replace("{{filePath}}", filePath)
-                    .replace("{{engine}}", app.get("config").engine.name)
+          fs.stat(
+            helpers.getFullPathFromShortPath(app, filePath),
+            async function (err) {
+              if (err == null) {
+                data = await extendTemplateData(
+                  app.get("config"),
+                  data,
+                  filePath
                 );
 
-              resolve1(html);
+                await app.render(
+                  filePath,
+                  getDataForRenderFunction(app, data),
+                  (err, html) => {
+                    if (err)
+                      log(
+                        "warn",
+                        config.messages.renderingTemplateFailed
+                          .replace("{{filePath}}", filePath)
+                          .replace("{{engine}}", app.get("config").engine.name)
+                      );
+
+                    resolve1(html);
+                  }
+                );
+              } else if (err.code === "ENOENT") {
+                const msg = config.messages.templateDoesNotExist.replace(
+                  "{{template}}",
+                  filePath
+                );
+                log("error", msg);
+                resolve1(msg);
+              }
             }
           );
         } else {

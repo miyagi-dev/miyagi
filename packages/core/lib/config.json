@@ -125,6 +125,7 @@
     "serverStarting": "Starting miyagi server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
     "srcFolderNotFound": "The provided components folder does not seem to exist.",
+    "templateDoesNotExist": "The template '{{template}}' can't be found.",
     "templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, miyagi assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
     "tryingToGuessEngineAndExtension": "No template engine and template file extension defined. Trying to guess it based on your component files…",
     "tryingToGuessEngineBasedOnExtension": "No template engine defined. Trying to guess it based on your template files extension…",
