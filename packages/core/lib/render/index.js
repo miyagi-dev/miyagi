@@ -640,7 +640,7 @@ async function renderComponentOverview({ app, res, cb }) {
       const componentRootData = helpers.removeInternalKeys(componentJson);
 
       if (Object.keys(componentRootData).length > 0) {
-        if (componentRootData.$hidden) {
+        if (componentJson.$hidden) {
           if (componentJson.$variants && componentJson.$variants.length) {
             componentData = getFallbackData(
               componentJson.$variants,
