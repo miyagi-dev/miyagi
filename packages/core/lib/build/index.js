@@ -477,7 +477,7 @@ module.exports = (app) => {
     if (data) {
       const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
 
-      if (Object.keys(dataWithoutInternalKeys).length > 0) {
+      if (!data.$hidden && Object.keys(dataWithoutInternalKeys).length > 0) {
         variations.push({
           $name: data.$name || appConfig.defaultVariationName,
           ...dataWithoutInternalKeys,

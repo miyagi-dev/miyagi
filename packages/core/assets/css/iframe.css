@@ -30,7 +30,9 @@ body {
 .MiyagiDocumentation,
 .MiyagiDocumentation *,
 .Miyagi-sectionTitle,
-.MiyagiIframe-newTabLink {
+.MiyagiIframe-newTabLink,
+.MiyagiComponent-schemaValidation,
+.MiyagiStatus {
   all: revert;
 }
 
@@ -45,7 +47,9 @@ body {
 .MiyagiDocumentation a:hover,
 .MiyagiDocumentation a:focus,
 .Miyagi-sectionTitle,
-.MiyagiIframe-newTabLink {
+.MiyagiIframe-newTabLink,
+.MiyagiComponent-schemaValidation,
+.MiyagiStatus {
   color: var(--Miyagi-color);
   font-family: var(--Miyagi-fontFamily);
 }
@@ -122,6 +126,10 @@ body {
   font-size: 0.9em;
 }
 
+.MiyagiComponent:not(:last-child) {
+  margin-bottom: calc(2 * var(--Miyagi-spacing));
+}
+
 .MiyagiStatus::before {
   --size: 0.7em;
 
@@ -144,10 +152,20 @@ body {
 .MiyagiComponent-head {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.MiyagiComponent:not(:last-child) {
-  margin-bottom: calc(2 * var(--Miyagi-spacing));
+.MiyagiComponent-headMeta {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-left: 30px;
+}
+
+.MiyagiComponent-headMeta > *:not(:first-child) {
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 1px solid;
 }
 
 .MiyagiComponent-file {
@@ -202,20 +220,23 @@ body {
 .MiyagiIframe-newTabLink {
   align-items: center;
   display: flex;
-  font-size: 14px;
   font-weight: normal;
+  text-decoration: underline;
+}
+
+.MiyagiWrapper ~ .MiyagiIframe-newTabLink {
   line-height: 40px;
   position: absolute;
   right: 40px;
-  text-decoration: underline;
   top: 0;
+  font-size: 14px;
 }
 
 .MiyagiIframe-newTabLink svg {
   --size: 1.2em;
 
   height: var(--size);
-  margin-left: 0.5em;
+  margin-right: 0.5em;
   width: var(--size);
 }
 

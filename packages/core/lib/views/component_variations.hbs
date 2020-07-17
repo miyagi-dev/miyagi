@@ -1,46 +1,53 @@
 {{#extend "iframe"}}
-{{#content "body"}}
-<div class="MiyagiWrapper">
-  <div class="MiyagiDocumentation">
-    <h1>{{ name }}</h1>
-    {{#if documentation}}
-    {{{documentation}}}
-    {{/if}}
-  </div>
-  <h2 class="Miyagi-sectionTitle">Information</h2>
-  <dl class="MiyagiInformation">
-    <div class="MiyagiInformation-wrapper">
-      <dt class="MiyagiInformation-attr">Folder</dt>
-      <dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
-    </div>
-  </dl>
-  {{#if schema}}
-  <link rel="stylesheet" href="miyagi/css/prism.css">
-  <h2 class="Miyagi-sectionTitle">Schema</h2>
-  <pre class="Miyagi-code language-{{schemaType}}"><code>{{{schema}}}</code></pre>
-  {{#if schemaError}}
-  <p class="MiyagiErrorMessage">{{schemaError}}</p>
-  {{/if}}
-  {{/if}}
-  {{#if variations}}
-  <h2 class="Miyagi-sectionTitle">Variations</h2>
-  {{/if}}
-  {{#each variations}}
-  <div class="MiyagiComponent">
-    <div class="MiyagiComponent-head">
-      <a href="{{ this.url }}" class="MiyagiComponent-file">{{
-        this.variation
-      }}</a>
-      {{#if schemaValidation}}
-      <p class="MiyagiComponent-schemaValidation">
-        <span
-          class="MiyagiStatus MiyagiStatus--{{#if schemaValidation.valid}}valid{{else}}invalid{{/if}}">{{schemaValidation.copy}}</span>
-      </p>
+  {{#content "body"}}
+    <div class="MiyagiWrapper">
+      <div class="MiyagiDocumentation">
+        <h1>{{ name }}</h1>
+        {{#if documentation}}
+          {{{documentation}}}
+        {{/if}}
+      </div>
+      <h2 class="Miyagi-sectionTitle">Information</h2>
+      <dl class="MiyagiInformation">
+        <div class="MiyagiInformation-wrapper">
+          <dt class="MiyagiInformation-attr">Folder</dt>
+          <dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
+        </div>
+      </dl>
+      {{#if schema}}
+        <link rel="stylesheet" href="miyagi/css/prism.css">
+        <h2 class="Miyagi-sectionTitle">Schema</h2>
+        <pre class="Miyagi-code language-{{schemaType}}"><code>{{{schema}}}</code></pre>
+        {{#if schemaError}}
+          <p class="MiyagiErrorMessage">{{schemaError}}</p>
+        {{/if}}
       {{/if}}
+      {{#if variations}}
+        <h2 class="Miyagi-sectionTitle">Variations</h2>
+      {{/if}}
+      {{#each variations}}
+        <div class="MiyagiComponent">
+          <div class="MiyagiComponent-head">
+            <a href="{{ this.url }}" class="MiyagiComponent-file">{{this.variation}}</a>
+            <div class="MiyagiComponent-headMeta">
+              {{#if schemaValidation}}
+                <p class="MiyagiComponent-schemaValidation">
+                  <span class="MiyagiStatus MiyagiStatus--{{#if schemaValidation.valid}}valid{{else}}invalid{{/if}}">
+                    Schema
+                  </span>
+                </p>
+              {{/if}}
+              <a class="MiyagiIframe-newTabLink" href="{{standaloneUrl}}" target="_blank" rel="noopener">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" /></svg>
+                Open
+              </a>
+            </div>
+          </div>
+          <div class="MiyagiComponent-html">{{{this.html}}}</div>
+        </div>
+      {{/each}}
     </div>
-    <div class="MiyagiComponent-html">{{{this.html}}}</div>
-  </div>
-  {{/each}}
-</div>
-{{/content}}
+  {{/content}}
 {{/extend}}

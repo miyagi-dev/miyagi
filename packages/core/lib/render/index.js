@@ -49,6 +49,7 @@ async function renderVariations({
 
   for (let i = 0, len = context.length; i < len; i += 1) {
     const entry = context[i];
+
     promises.push(
       new Promise((resolve) => {
         app.render(
@@ -57,6 +58,17 @@ async function renderVariations({
           (err, result) => {
             const baseName = path.dirname(file);
             const variation = context[i].name;
+            let standaloneUrl;
+
+            if (app.get("config").isBuild) {
+              standaloneUrl = `component-${helpers.normalizeString(
+                path.dirname(file)
+              )}-${helpers.normalizeString(variation)}.html`;
+            } else {
+              standaloneUrl = `/component?file=${path.dirname(
+                file
+              )}&variation=${encodeURIComponent(variation)}`;
+            }
 
             variations[i] = {
               url: app.get("config").isBuild
@@ -70,6 +82,7 @@ async function renderVariations({
                   ? result
                   : getComponentErrorHtml(err),
               variation,
+              standaloneUrl,
             };
 
             if (validatedSchema && Array.isArray(validatedSchema)) {
