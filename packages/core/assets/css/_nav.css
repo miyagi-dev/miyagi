@@ -41,10 +41,6 @@
 .Miyagi-link,
 .Miyagi-component {
   display: block;
-}
-
-.Miyagi-link,
-a.Miyagi-component {
   padding: 0 var(--Miyagi-linkSpacing);
 }
 
@@ -58,6 +54,7 @@ a.Miyagi-component {
 .Miyagi-component:not(.Miyagi-link) {
   color: var(--Miyagi-color-link);
   opacity: 0.75;
+  cursor: default;
 }
 
 .Miyagi-link {

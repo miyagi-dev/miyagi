@@ -10,6 +10,7 @@ class Main {
       toggleComponent: "Miyagi-toggle",
       toggleMenu: "Miyagi-toggleMobileMenu",
       link: "Miyagi-link",
+      directory: "Miyagi-component",
     };
 
     this.elements = {
@@ -18,12 +19,18 @@ class Main {
       iframe: document.querySelector(`.${this.classes.iframe}`),
       toggleMenu: document.querySelector(`.${this.classes.toggleMenu}`),
       links: Array.from(document.querySelectorAll(`.${this.classes.link}`)),
+      directories: Array.from(
+        document.querySelectorAll(
+          `.${this.classes.directory}:not(${this.classes.link})`
+        )
+      ),
       componentToggles: Array.from(
         document.querySelectorAll(`.${this.classes.toggleComponent}`)
       ),
     };
 
     this.addToggleMenuClickListener();
+    this.addDirectoriesClickListener();
     this.addComponentTogglesClickListener();
     this.addLinksClickListener();
     this.addPopStateLisener();
@@ -140,6 +147,18 @@ class Main {
     Main.toggleExpandedAttribute(toggle);
   }
 
+  onDirectoryClick(directory) {
+    const toggle = directory.previousElementSibling;
+
+    if (toggle && toggle.classList.contains(this.classes.toggleComponent)) {
+      if (toggle.getAttribute("aria-expanded") === "true") {
+        toggle.setAttribute("aria-expanded", false);
+      } else {
+        toggle.setAttribute("aria-expanded", true);
+      }
+    }
+  }
+
   onComponentToggleClick(toggle) {
     Main.toggleExpandedAttribute(toggle);
   }
@@ -179,6 +198,16 @@ class Main {
         }
       });
     }
+  }
+
+  addDirectoriesClickListener() {
+    this.elements.directories.forEach((directory) => {
+      directory.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        this.onDirectoryClick(e.target);
+      });
+    });
   }
 
   addComponentTogglesClickListener() {
