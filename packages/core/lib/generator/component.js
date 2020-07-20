@@ -1,5 +1,6 @@
 const path = require("path");
 const fs = require("fs");
+const jsonToYaml = require("json-to-pretty-yaml");
 const log = require("../logger.js");
 const helpers = require("../helpers.js");
 const { messages } = require("../config.json");
@@ -74,48 +75,61 @@ module.exports = async function componentGenerator(cliParams, config) {
    * @param {string} fileType
    * @returns {Promise}
    */
-  function getDummyFileContent(fileType) {
+  function getDummyFileContent(fileType, filesConfig) {
     let str;
 
     switch (fileType) {
       case "mocks":
-        str = JSON.stringify(
-          {
+        {
+          const data = {
             $variants: [
               {
                 $name: "",
               },
             ],
-          },
-          0,
-          2
-        );
+          };
+
+          if (filesConfig.mocks.extension === "yaml") {
+            str = jsonToYaml.stringify(data);
+          } else {
+            str = `${JSON.stringify(data, 0, 2)}\n`;
+          }
+        }
         break;
       case "info":
-        str = JSON.stringify(
-          {
+        {
+          const data = {
             name: "",
-          },
-          0,
-          2
-        );
+          };
+
+          if (filesConfig.info.extension === "yaml") {
+            str = jsonToYaml.stringify(data);
+          } else {
+            str = `${JSON.stringify(data, 0, 2)}\n`;
+          }
+        }
         break;
       case "schema":
-        str = JSON.stringify(
-          {
+        {
+          const data = {
             $schema: "http://json-schema.org/draft-07/schema",
+            $id: "",
             required: [],
             properties: {},
-          },
-          0,
-          2
-        );
+          };
+
+          if (filesConfig.schema.extension === "yaml") {
+            str = jsonToYaml.stringify(data);
+          } else {
+            str = `${JSON.stringify(data, 0, 2)}\n`;
+          }
+        }
         break;
       default:
         str = "";
     }
 
-    return `${str}\n`;
+    return str;
   }
 
   /**
@@ -141,7 +155,7 @@ module.exports = async function componentGenerator(cliParams, config) {
 
             fs.writeFile(
               fullFilePath,
-              getDummyFileContent(type),
+              getDummyFileContent(type, filesConfig),
               { flag: "wx" },
               function createComponentFilesCallback(err) {
                 if (err) {
