@@ -28,37 +28,6 @@ function arraysAreEqual(a, b) {
   return true;
 }
 
-/**
- * @param a
- * @param b
- */
-function reduceArrayToSameLengthOfOtherArray(a, b) {
-  const aLength = a.length;
-
-  return a.slice(0, aLength - (aLength - b.length));
-}
-
-/**
- * @param directoryPath
- * @param isFile
- */
-function getDirectoriesArrayFromDirectoryPath(directoryPath, isFile) {
-  let directorys = directoryPath.split(path.sep);
-
-  if (isFile) {
-    directorys = directorys.slice(0, directoryPath.split(path.sep).length - 1);
-  }
-
-  return directorys;
-}
-
-/**
- * @param filePath
- */
-function getDirectoriesArrayFromFilePath(filePath) {
-  return filePath.split(path.sep).slice(0, filePath.split(path.sep).length - 1);
-}
-
 /*
  * Export functions
  */
@@ -70,21 +39,18 @@ const activeState = ' aria-current="page"';
  * @param parent
  * @param childIsFile
  */
-function pathIsChildOfSecondPath(child, parent, childIsFile) {
-  if (!parent) return false;
+function pathIsChildOfOrEqualSecondPath(currentPath, requestedPath) {
+  if (!requestedPath) return false;
+  if (!requestedPath.startsWith(currentPath)) return false;
+  if (currentPath === requestedPath) return true;
 
-  let parentDirectories = getDirectoriesArrayFromFilePath(parent);
-  const childDirectories = getDirectoriesArrayFromDirectoryPath(
-    child,
-    childIsFile
-  );
+  const requestedPathDirectories = requestedPath.split(path.sep);
+  const currentPathDirectories = currentPath.split(path.sep);
 
-  parentDirectories = reduceArrayToSameLengthOfOtherArray(
-    parentDirectories,
-    childDirectories
-  );
+  if (requestedPathDirectories.length === currentPathDirectories.length)
+    return arraysAreEqual(currentPathDirectories, requestedPathDirectories);
 
-  return arraysAreEqual(childDirectories, parentDirectories);
+  return true;
 }
 
 /**
@@ -148,5 +114,5 @@ module.exports = {
   directoryHasComponent,
   directoryIsNotTopLevel,
   pathEqualsRequest,
-  pathIsChildOfSecondPath,
+  pathIsChildOfOrEqualSecondPath,
 };

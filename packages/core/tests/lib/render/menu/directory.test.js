@@ -69,7 +69,7 @@ describe("lib/menu/elements/directory", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
         helpers.directoryIsNotTopLevel = jest.fn(() => true);
-        helpers.pathIsChildOfSecondPath = jest.fn(() => true);
+        helpers.pathIsChildOfOrEqualSecondPath = jest.fn(() => true);
 
         directory.render(app, directoryObject, request);
 
@@ -90,7 +90,7 @@ describe("lib/menu/elements/directory", () => {
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
         helpers.directoryIsNotTopLevel = jest.fn(() => true);
-        helpers.pathIsChildOfSecondPath = jest.fn(() => false);
+        helpers.pathIsChildOfOrEqualSecondPath = jest.fn(() => false);
 
         directory.render(app, directoryObject, request);
 

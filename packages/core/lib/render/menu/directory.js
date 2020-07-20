@@ -25,7 +25,7 @@ function render(app, directory, request) {
     menuHelpers.childrenOfDirectoryContainDirectory(directory) &&
     menuHelpers.directoryIsNotTopLevel(directory)
   ) {
-    const expanded = menuHelpers.pathIsChildOfSecondPath(
+    const expanded = menuHelpers.pathIsChildOfOrEqualSecondPath(
       helpers.getShortPathFromFullPath(app, directory.fullPath),
       request.path
     );

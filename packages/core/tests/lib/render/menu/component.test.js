@@ -109,7 +109,7 @@ describe("lib/menu/elements/component", () => {
         requireComponent("variations", true);
         helpers.componentHasVariations = jest.fn(() => true);
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
-        helpers.pathIsChildOfSecondPath = jest.fn(() => true);
+        helpers.pathIsChildOfOrEqualSecondPath = jest.fn(() => true);
 
         component.render(app, directory, { path: directory.shortPath });
 
@@ -129,7 +129,7 @@ describe("lib/menu/elements/component", () => {
         requireComponent("variations", true);
         helpers.componentHasVariations = jest.fn(() => true);
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
-        helpers.pathIsChildOfSecondPath = jest.fn(() => false);
+        helpers.pathIsChildOfOrEqualSecondPath = jest.fn(() => false);
 
         component.render(app, directory, {
           path: directory.shortPath + "different-directory",
@@ -169,7 +169,7 @@ describe("lib/menu/elements/component", () => {
         const toggle = requireComponent("toggle", true);
         helpers.componentHasVariations = jest.fn(() => false);
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
-        helpers.pathIsChildOfSecondPath = jest.fn(() => true);
+        helpers.pathIsChildOfOrEqualSecondPath = jest.fn(() => true);
 
         component.render(app, directory, request);
 
@@ -192,7 +192,7 @@ describe("lib/menu/elements/component", () => {
         const toggle = requireComponent("toggle", true);
         helpers.componentHasVariations = jest.fn(() => false);
         helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
-        helpers.pathIsChildOfSecondPath = jest.fn(() => false);
+        helpers.pathIsChildOfOrEqualSecondPath = jest.fn(() => false);
 
         component.render(app, directory, request);
 

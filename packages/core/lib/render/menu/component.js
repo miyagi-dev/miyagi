@@ -28,7 +28,11 @@ function render(app, component, request) {
     hasVariations ||
     menuHelpers.childrenOfDirectoryContainDirectory(component)
   ) {
-    const expanded = component.shortPath == request.path;
+    const expanded = menuHelpers.pathIsChildOfOrEqualSecondPath(
+      component.shortPath,
+      request.path,
+      true
+    );
 
     html += toggle.render(
       `${component.id}-variations`,
