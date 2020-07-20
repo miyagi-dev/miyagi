@@ -385,7 +385,7 @@ module.exports = (app) => {
           cb: (response) => {
             fs.writeFile(
               path.resolve(
-                `${buildFolder}/show-${normalizedFileName}-${helpers.normalizeString(
+                `${buildFolder}/show-${normalizedFileName}-variation-${helpers.normalizeString(
                   variation
                 )}.html`
               ),

@@ -297,7 +297,7 @@ async function renderMainWithComponent({
     if (app.get("config").isBuild) {
       iframeSrc = iframeSrc.replace(
         ".html",
-        `-${helpers.normalizeString(variation)}.html`
+        `-variation-${helpers.normalizeString(variation)}.html`
       );
     } else {
       iframeSrc += `&variation=${variation}`;
