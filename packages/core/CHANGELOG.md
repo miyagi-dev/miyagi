@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/mgrsskls/miyagi/compare/core/v1.4.0...core/v1.4.1) (2020-07-20)
+
+
+### Bug Fixes
+
+* **core:** fix menu not opened when request component is deeply nested ([005a7a9](https://github.com/mgrsskls/miyagi/commit/005a7a91dc2c38407da643ddb14b3d17bee070b6))
+* **core:** fix wrong link in build files ([513e350](https://github.com/mgrsskls/miyagi/commit/513e35040170c3a7645df56b9e7065da039045a0))
+
 ## [1.4.0](https://github.com/mgrsskls/miyagi/compare/core/v1.3.0...core/v1.4.0) (2020-07-20)
 
 
