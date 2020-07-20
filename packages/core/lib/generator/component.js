@@ -78,11 +78,14 @@ module.exports = async function componentGenerator(cliParams, config) {
     let str;
 
     switch (fileType) {
-      case "data":
+      case "mocks":
         str = JSON.stringify(
           {
-            data: {},
-            variations: [],
+            $variants: [
+              {
+                $name: "",
+              },
+            ],
           },
           0,
           2
