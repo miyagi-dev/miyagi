@@ -91,7 +91,6 @@ module.exports = async function componentGenerator(cliParams, config) {
       case "info":
         str = JSON.stringify(
           {
-            info: "wip",
             name: "",
           },
           0,
@@ -188,6 +187,7 @@ module.exports = async function componentGenerator(cliParams, config) {
       )}.${filesConfig.templates.extension}`,
       mocks: `${filesConfig.mocks.name}.${filesConfig.mocks.extension}`,
       docs: `${filesConfig.docs.name}.${filesConfig.docs.extension}`,
+      info: `${filesConfig.info.name}.${filesConfig.info.extension}`,
       css: `${helpers.getResolvedFileName(
         filesConfig.css.name,
         componentName
