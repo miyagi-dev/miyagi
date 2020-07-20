@@ -348,7 +348,7 @@ module.exports = (app) => {
       promises.push(
         new Promise((resolve) => {
           const fileName = path.resolve(
-            `${buildFolder}/component-${normalizedFileName}-${helpers.normalizeString(
+            `${buildFolder}/component-${normalizedFileName}-variation-${helpers.normalizeString(
               variation
             )}${embedded ? "-embedded" : ""}.html`
           );

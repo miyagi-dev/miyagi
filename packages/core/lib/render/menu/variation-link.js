@@ -19,9 +19,9 @@ const menuHelpers = require("./helpers.js");
  */
 function render(isBuild, component, variation, isCurrent) {
   const href = isBuild
-    ? `component-${component.normalizedShortPath}-${helpers.normalizeString(
-        variation.name
-      )}-embedded.html`
+    ? `component-${
+        component.normalizedShortPath
+      }-variation-${helpers.normalizeString(variation.name)}-embedded.html`
     : `/component?file=${component.shortPath}&variation=${encodeURI(
         variation.name
       )}&embedded=true`;

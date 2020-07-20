@@ -63,7 +63,7 @@ async function renderVariations({
             if (app.get("config").isBuild) {
               standaloneUrl = `component-${helpers.normalizeString(
                 path.dirname(file)
-              )}-${helpers.normalizeString(variation)}.html`;
+              )}-variation-${helpers.normalizeString(variation)}.html`;
             } else {
               standaloneUrl = `/component?file=${path.dirname(
                 file
@@ -74,7 +74,9 @@ async function renderVariations({
               url: app.get("config").isBuild
                 ? `component-${helpers.normalizeString(
                     baseName
-                  )}-${helpers.normalizeString(variation)}-embedded.html`
+                  )}-variation-${helpers.normalizeString(
+                    variation
+                  )}-embedded.html`
                 : `/component?file=${baseName}&variation=${variation}&embedded=true`,
               file,
               html:
@@ -440,7 +442,7 @@ async function renderComponent({ app, res, file, variation, embedded, cb }) {
     if (app.get("config").isBuild) {
       standaloneUrl = `component-${helpers.normalizeString(
         path.dirname(file)
-      )}-${helpers.normalizeString(variation)}.html`;
+      )}-variation-${helpers.normalizeString(variation)}.html`;
     } else {
       standaloneUrl = `/component?file=${path.dirname(
         file
