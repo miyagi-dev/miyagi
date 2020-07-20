@@ -112,7 +112,7 @@ module.exports = async function componentGenerator(cliParams, config) {
         str = "";
     }
 
-    return str;
+    return `${str}\n`;
   }
 
   /**
