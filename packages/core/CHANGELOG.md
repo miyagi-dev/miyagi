@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.2](https://github.com/mgrsskls/miyagi/compare/core/v1.4.1...core/v1.4.2) (2020-07-20)
+
+
+### Bug Fixes
+
+* **core:** add basePath for builds only to wrapper, not to iframe content ([6106625](https://github.com/mgrsskls/miyagi/commit/61066255700c7e36d8c3d877408ea86b800c86aa))
+
 ### [1.4.1](https://github.com/mgrsskls/miyagi/compare/core/v1.4.0...core/v1.4.1) (2020-07-20)
 
 
