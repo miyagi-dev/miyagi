@@ -128,9 +128,6 @@ async function renderVariations({
         schemaType,
         schemaError:
           typeof validatedSchema === "string" ? validatedSchema : null,
-        basePath: app.get("config").isBuild
-          ? app.get("config").build.basePath
-          : "/",
       },
       (err, html) => {
         if (res.send) {
@@ -191,9 +188,6 @@ async function renderSingleComponent({
             projectName: config.projectName,
             userProjectName: app.get("config").projectName,
             isBuild: app.get("config").isBuild,
-            basePath: app.get("config").isBuild
-              ? app.get("config").build.basePath
-              : "/",
           },
           (err, html) => {
             if (res.send) {
@@ -740,9 +734,6 @@ async function renderComponentOverview({ app, res, cb }) {
         theme: app.get("config").ui.theme,
         documentation,
         renderComponentOverview: ui.renderComponentOverview,
-        basePath: app.get("config").isBuild
-          ? app.get("config").build.basePath
-          : "/",
       },
       (err, html) => {
         if (res.send) {
@@ -779,9 +770,6 @@ async function renderComponentNotFound({ app, res, embedded, target }) {
     accessibilityValidation: false,
     isBuild: app.get("config").isBuild,
     theme: app.get("config").ui.theme,
-    basePath: app.get("config").isBuild
-      ? app.get("config").build.basePath
-      : "/",
   });
 }
 

@@ -351,7 +351,6 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           standalone: true,
-          basePath: "/",
         });
 
         done();
@@ -381,7 +380,6 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
@@ -410,7 +408,6 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
@@ -440,7 +437,6 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
@@ -470,7 +466,6 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
@@ -503,7 +498,6 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
@@ -533,7 +527,6 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           standalone: true,
-          basePath: "/",
         });
 
         done();
@@ -594,7 +587,6 @@ describe("lib/render/index", () => {
           theme: {},
           schemaType: "json",
           schemaError: null,
-          basePath: "/",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -659,7 +651,6 @@ describe("lib/render/index", () => {
             theme: {},
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -715,7 +706,6 @@ describe("lib/render/index", () => {
             name: "component3",
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -763,7 +753,6 @@ describe("lib/render/index", () => {
             name: "component6",
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -808,7 +797,6 @@ describe("lib/render/index", () => {
             name: "component7",
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
 
           done();
@@ -862,7 +850,6 @@ describe("lib/render/index", () => {
             theme: {},
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
 
           done();
@@ -909,7 +896,6 @@ describe("lib/render/index", () => {
             ],
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
 
           done();
@@ -954,7 +940,6 @@ describe("lib/render/index", () => {
             ],
             schemaType: "json",
             schemaError: null,
-            basePath: "/",
           });
 
           done();
@@ -996,7 +981,6 @@ describe("lib/render/index", () => {
           name: "component4",
           schemaType: "json",
           schemaError: null,
-          basePath: "/",
         });
 
         done();
@@ -1068,7 +1052,6 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           documentation: undefined,
           renderComponentOverview: true,
-          basePath: "/",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1138,7 +1121,6 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           documentation: undefined,
           renderComponentOverview: true,
-          basePath: "/",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1208,7 +1190,6 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           documentation: undefined,
           renderComponentOverview: true,
-          basePath: "/",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1240,7 +1221,6 @@ describe("lib/render/index", () => {
           htmlValidation: false,
           accessibilityValidation: false,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
@@ -1269,7 +1249,6 @@ describe("lib/render/index", () => {
           htmlValidation: false,
           accessibilityValidation: false,
           isBuild: undefined,
-          basePath: "/",
         });
 
         done();
