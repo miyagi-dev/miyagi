@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/mgrsskls/miyagi/compare/core/v1.3.0...core/v1.4.0) (2020-07-20)
+
+
+### Features
+
+* **core:** added "new tab" link to component variations ([576bb5d](https://github.com/mgrsskls/miyagi/commit/576bb5d053530dee43a7909da907544e2bd1ae58))
+* **core:** directories in navigation clickable ([d0b23db](https://github.com/mgrsskls/miyagi/commit/d0b23dbffc6e2ae7ccb9e147f37ac1c1469eaa4e))
+
+
+### Bug Fixes
+
+* **core:** "new" creates a new line at EOF ([256711f](https://github.com/mgrsskls/miyagi/commit/256711f0ef99fb0004a93007be4bf0d5436d6876))
+* **core:** "new" creates files with yaml content if thats the defined file type ([9684edd](https://github.com/mgrsskls/miyagi/commit/9684edd0b6db10ccff24ef6818224df13e556d8f))
+* **core:** "new" didnt create info file ([332f0d6](https://github.com/mgrsskls/miyagi/commit/332f0d66f12190bf2e0cadfda0aa627de16e2b1c))
+* **core:** fix components in menu by names based on info file, not filesystem ([512e973](https://github.com/mgrsskls/miyagi/commit/512e9736e341172ab46d699675df1d5ecc694f18))
+* **core:** fix creating mock data using generator ([8c188ca](https://github.com/mgrsskls/miyagi/commit/8c188ca042edd447bb5edd3352bb0e54dcee05e5))
+* **core:** fix endless loading when $tpl reference cant be found ([d9b5161](https://github.com/mgrsskls/miyagi/commit/d9b51618d167aa6cdf96d8754cd677e5a2097e18))
+* **core:** fix specific case where variation and component url in build where identical ([0afa3a0](https://github.com/mgrsskls/miyagi/commit/0afa3a0df27cf9735124a738609514f5372e702a))
+* **core:** fix wrong merging of data with $ref ([0eb2397](https://github.com/mgrsskls/miyagi/commit/0eb23970ae526d5d7e7ccb2220b0831e37409d61))
+* **core:** make sure component root data with $hidden is not used on overview page ([1a81adc](https://github.com/mgrsskls/miyagi/commit/1a81adc8125448ac61b21ded420e39b04de83b2f))
+
 ## [1.3.0](https://github.com/mgrsskls/miyagi/compare/core/v1.2.1...core/v1.3.0) (2020-07-17)
 
 
