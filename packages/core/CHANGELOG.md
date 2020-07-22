@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.3](https://github.com/mgrsskls/miyagi/compare/core/v1.4.2...core/v1.4.3) (2020-07-22)
+
+
+### Bug Fixes
+
+* **core:** fix serving external assets in build ([0a25253](https://github.com/mgrsskls/miyagi/commit/0a252533c3aa65bb9a9ede809499a910c0ab5a0f))
+
 ### [1.4.2](https://github.com/mgrsskls/miyagi/compare/core/v1.4.1...core/v1.4.2) (2020-07-20)
 
 
