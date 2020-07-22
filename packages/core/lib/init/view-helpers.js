@@ -33,9 +33,9 @@ function getCssFilesHtml(isBuild, files) {
   for (let file of files) {
     if (
       isBuild &&
-      (!file.startsWith("http://") ||
-        !file.startsWith("https://") ||
-        !file.startsWith("//"))
+      !file.startsWith("http://") &&
+      !file.startsWith("https://") &&
+      !file.startsWith("//")
     ) {
       file = path.basename(file);
     }
@@ -60,9 +60,9 @@ function getJsFilesHtml(isBuild, files, es6Modules) {
   for (let file of files) {
     if (
       isBuild &&
-      (!file.startsWith("http://") ||
-        !file.startsWith("https://") ||
-        !file.startsWith("//"))
+      !file.startsWith("http://") &&
+      !file.startsWith("https://") &&
+      !file.startsWith("//")
     ) {
       file = path.basename(file);
     }
