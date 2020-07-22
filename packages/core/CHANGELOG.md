@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/mgrsskls/miyagi/compare/core/v1.4.3...core/v1.5.0) (2020-07-22)
+
+
+### Features
+
+* **core:** allow option es6Modules to be set for each NODE_ENV ([f83a062](https://github.com/mgrsskls/miyagi/commit/f83a06294963446263f78e28bf9cc6de1e3be349))
+
 ### [1.4.3](https://github.com/mgrsskls/miyagi/compare/core/v1.4.2...core/v1.4.3) (2020-07-22)
 
 
