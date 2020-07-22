@@ -23,9 +23,16 @@ This would serve different assets based on your `NODE_ENV`.
 ### `es6Modules`
 
 default: `false`<br>
-type: `boolean`
+type: `boolean|object`
 
-If you use ES6 modules, you can set this to true, so `type="module"` is added to the `script` tags of your included JS files (useful when using unbundled JavaScript).
+If you use ES6 modules, you can set this to true, so `type="module"` is added to the `script` tags of your included JS files (useful when using unbundled JavaScript). It is also possible to define this for each `NODE_ENV` via an object like this:
+
+```json
+{
+  "development": true,
+  "production": false
+}
+```
 
 ### `folder`
 

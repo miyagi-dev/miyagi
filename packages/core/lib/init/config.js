@@ -105,6 +105,19 @@ module.exports = (userConfig = {}) => {
     if (config.assets.js) {
       config.assets.js = getAssetFilesArray(config.assets.js, "js");
     }
+
+    if (
+      config.assets.es6Modules &&
+      objectIsRealObject(config.assets.es6Modules)
+    ) {
+      const nodeEnv = process.env.NODE_ENV;
+
+      if (config.assets.es6Modules[nodeEnv]) {
+        config.assets.es6Modules = config.assets.es6Modules[nodeEnv];
+      } else {
+        config.assets.es6Modules = false;
+      }
+    }
   }
 
   if (config.components) {
