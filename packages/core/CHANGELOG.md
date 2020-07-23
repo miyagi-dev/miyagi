@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/mgrsskls/miyagi/compare/core/v1.5.0...core/v1.6.0) (2020-07-23)
+
+
+### Features
+
+* **core:** add more theme customization options ([db47814](https://github.com/mgrsskls/miyagi/commit/db4781449f50d7e601b8248ef7e26b5a2a8413e1))
+
 ## [1.5.0](https://github.com/mgrsskls/miyagi/compare/core/v1.4.3...core/v1.5.0) (2020-07-22)
 
 
