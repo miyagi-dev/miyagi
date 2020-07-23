@@ -45,16 +45,20 @@
 }
 
 .Miyagi-component--lvl0:not(a) {
+  color: var(--Miyagi-color-text);
   font-size: 0.875em;
   font-weight: 500;
   letter-spacing: 0.025em;
   text-transform: uppercase;
 }
 
-.Miyagi-component:not(.Miyagi-link) {
+.Miyagi-component:not(.Miyagi-component--lvl0):not(.Miyagi-link) {
   color: var(--Miyagi-color-link);
-  opacity: 0.75;
   cursor: default;
+}
+
+.Miyagi-component:not(.Miyagi-link):last-child {
+  opacity: 0.6;
 }
 
 .Miyagi-link {
@@ -70,22 +74,18 @@
 .Miyagi-link--showAll {
   display: inline-block;
   font-size: 1.4rem;
-  font-weight: bold;
-}
-
-.Miyagi-link--variation {
   font-weight: 500;
 }
 
 .Miyagi-link:not(.has-logo)[aria-current] {
-  background: var(--Miyagi-color-link);
+  background: var(--Miyagi-color-linkActiveBackground, --Miyagi-color-link);
   border-radius: var(--Miyagi-borderRadius);
   color: var(--Miyagi-color-linkActive);
   display: inline-block;
 }
 
 .Miyagi-component.Miyagi-link {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .Miyagi-toggle {

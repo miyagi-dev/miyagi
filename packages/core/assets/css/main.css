@@ -12,8 +12,10 @@
   --Miyagi-color: #222;
   --Miyagi-color-bg: #f5f5f5;
   --Miyagi-color-lightGray: #707070;
+  --Miyagi-color-text: var(--Miyagi-color-lightGray);
   --Miyagi-color-link: var(--Miyagi-color);
   --Miyagi-color-linkActive: #fff;
+  --Miyagi-color-linkActiveBackground: var(--Miyagi-color-link);
   --Miyagi-color-negative: #d9173e;
   --Miyagi-color-warning: purple;
   --Miyagi-color-positive: #690;

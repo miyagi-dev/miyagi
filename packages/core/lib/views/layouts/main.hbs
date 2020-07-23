@@ -11,9 +11,11 @@
     <style>
       :root {
         {{#if theme.navigation}}
+          {{#if theme.navigation.colorText}}--Miyagi-color-text: {{theme.navigation.colorText}};{{/if}}
           {{#if theme.navigation.colorBackground}}--Miyagi-color-bg: {{theme.navigation.colorBackground}};{{/if}}
           {{#if theme.navigation.colorLinks}}--Miyagi-color-link: {{theme.navigation.colorLinks}};{{/if}}
           {{#if theme.navigation.colorLinksActive}}--Miyagi-color-linkActive: {{theme.navigation.colorLinksActive}};{{/if}}
+          {{#if theme.navigation.colorLinksActiveBackground}}--Miyagi-color-linkActiveBackground: {{theme.navigation.colorLinksActiveBackground}};{{/if}}
         {{/if}}
         {{#if theme.fontFamily}}--Miyagi-fontFamily: {{theme.fontFamily}};{{/if}}
       }

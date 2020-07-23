@@ -247,9 +247,11 @@ default:
   "favicon": null,
   "logo": null,
   "navigation": {
+    "colorText": "#707070",
     "colorBackground": "#f5f5f5",
     "colorLinks": "#222222",
-    "colorLinksActive": "#ffffff"
+    "colorLinksActive": "#ffffff",
+    "colorLinksActiveBackground": "#707070"
   },
   "content": {
     "colorHeadlines": "#222222",

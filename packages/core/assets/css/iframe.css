@@ -55,7 +55,8 @@ body {
 }
 
 .MiyagiDocumentation,
-.MiyagiInformation {
+.MiyagiInformation,
+.Miyagi-code {
   line-height: 1.5;
 }
 
@@ -124,6 +125,11 @@ body {
 .Miyagi-code {
   font-family: "Menlo", "Monaco", monospace;
   font-size: 0.9em;
+}
+
+.MiyagiInformation code,
+.MiyagiDocumentation code {
+  font-weight: 600;
 }
 
 .MiyagiComponent:not(:last-child) {
