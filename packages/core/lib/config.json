@@ -67,7 +67,8 @@
         "html": true,
         "accessibility": true
       }
-    }
+    },
+    "schema": {}
   },
   "projectName": "miyagi",
   "defaultPort": 5000,

@@ -511,6 +511,7 @@ describe("lib/init/config", () => {
             name: "index",
           },
         },
+        schema: {},
       });
     });
   });
