@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.1](https://github.com/mgrsskls/miyagi/compare/core/v1.6.0...core/v1.6.1) (2020-07-23)
+
+
+### Bug Fixes
+
+* **core:** fix error when no schema option is provided ([12def85](https://github.com/mgrsskls/miyagi/commit/12def85ada686808cb3d08aa78247e148697fbb5))
+
 ## [1.6.0](https://github.com/mgrsskls/miyagi/compare/core/v1.5.0...core/v1.6.0) (2020-07-23)
 
 
