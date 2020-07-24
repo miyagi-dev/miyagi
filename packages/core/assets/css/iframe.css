@@ -25,14 +25,15 @@ body {
   width: 100%;
 }
 
-.MiyagiSchemaTable,
 .MiyagiInformation,
 .MiyagiDocumentation,
 .MiyagiDocumentation *,
 .Miyagi-sectionTitle,
 .MiyagiIframe-newTabLink,
 .MiyagiComponent-schemaValidation,
-.MiyagiStatus {
+.MiyagiStatus,
+.Miyagi-code,
+.Miyagi-code code {
   all: revert;
 }
 
@@ -40,12 +41,17 @@ body {
   text-decoration: underline;
 }
 
-.MiyagiSchemaTable,
+.MiyagiDocumentation code,
+.Miyagi-code code {
+  font-size-adjust: 0.525;
+}
+
 .MiyagiInformation,
 .MiyagiDocumentation,
 .MiyagiDocumentation a,
 .MiyagiDocumentation a:hover,
 .MiyagiDocumentation a:focus,
+.MiyagiDocumentation a:active,
 .Miyagi-sectionTitle,
 .MiyagiIframe-newTabLink,
 .MiyagiComponent-schemaValidation,
@@ -55,9 +61,18 @@ body {
 }
 
 .MiyagiDocumentation,
+.MiyagiDocumentation *,
 .MiyagiInformation,
-.Miyagi-code {
-  line-height: 1.5;
+.Miyagi-code,
+.Miyagi-code * {
+  line-height: calc(1ex / 0.32);
+}
+
+.MiyagiInformation code,
+.MiyagiDocumentation code,
+.Miyagi-code,
+.Miyagi-code * {
+  font-family: "Menlo", "Monaco", monospace;
 }
 
 .MiyagiDocumentation h1 {
@@ -68,7 +83,7 @@ body {
 }
 
 .MiyagiDocumentation > * + * {
-  margin-top: 1.5em;
+  margin-top: calc(1ex / 0.32);
 }
 
 .MiyagiDocumentation i {
@@ -118,13 +133,6 @@ body {
 
 .MiyagiInformation-attr:not(:first-child) {
   margin-top: 1em;
-}
-
-.MiyagiInformation code,
-.MiyagiDocumentation code,
-.Miyagi-code {
-  font-family: "Menlo", "Monaco", monospace;
-  font-size: 0.9em;
 }
 
 .MiyagiInformation code,
@@ -253,6 +261,7 @@ body {
 
 .Miyagi-code[class*="language-"] {
   background: #f8f8f8;
+  font-size: 0.875em;
 }
 
 @media screen and (prefers-reduced-motion) {
