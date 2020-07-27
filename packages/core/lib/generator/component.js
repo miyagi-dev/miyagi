@@ -9,8 +9,8 @@ const { messages } = require("../config.json");
  * Module for creating component files based on the configuration cli params
  *
  * @module generator/component
- * @param {object} cliParams
- * @param {object} config - the user's miyagi configuration object
+ * @param {object} cliParams - the cli params object
+ * @param {object} config - the user configuration object
  */
 module.exports = async function componentGenerator(cliParams, config) {
   const commands = cliParams._.slice(1);
@@ -47,7 +47,7 @@ module.exports = async function componentGenerator(cliParams, config) {
    *
    * @param {object} fileNames - an object with file names for the component
    * @param {object} args - the cli args
-   * @returns {Promise}
+   * @returns {Array} all file paths that should be created
    */
   function getFiles(fileNames, args) {
     if (args) {
@@ -72,8 +72,9 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Returns the dummy content for a component file
    *
-   * @param {string} fileType
-   * @returns {Promise}
+   * @param {string} fileType - the file type that should be created
+   * @param {object} filesConfig - the files object from the user congiguration object
+   * @returns {string} dummy file content based on the given file type
    */
   function getDummyFileContent(fileType, filesConfig) {
     let str;
@@ -92,7 +93,7 @@ module.exports = async function componentGenerator(cliParams, config) {
           if (filesConfig.mocks.extension === "yaml") {
             str = jsonToYaml.stringify(data);
           } else {
-            str = `${JSON.stringify(data, 0, 2)}\n`;
+            str = `${JSON.stringify(data, null, 2)}\n`;
           }
         }
         break;
@@ -105,7 +106,7 @@ module.exports = async function componentGenerator(cliParams, config) {
           if (filesConfig.info.extension === "yaml") {
             str = jsonToYaml.stringify(data);
           } else {
-            str = `${JSON.stringify(data, 0, 2)}\n`;
+            str = `${JSON.stringify(data, null, 2)}\n`;
           }
         }
         break;
@@ -121,7 +122,7 @@ module.exports = async function componentGenerator(cliParams, config) {
           if (filesConfig.schema.extension === "yaml") {
             str = jsonToYaml.stringify(data);
           } else {
-            str = `${JSON.stringify(data, 0, 2)}\n`;
+            str = `${JSON.stringify(data, null, 2)}\n`;
           }
         }
         break;
@@ -135,10 +136,10 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Creates the component files
    *
-   * @param {object} filesConfig - the files configuration from the user's miyagi config
+   * @param {object} filesConfig - the files configuration from the user configuration object
    * @param {string} componentPath - the path of the component folder
    * @param {object} args - the cli args
-   * @returns {Promise}
+   * @returns {Promise} gets resolved when all files have been created
    */
   function createComponentFiles(filesConfig, componentPath, args) {
     const componentName = path.basename(componentPath);
@@ -192,9 +193,9 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Returns an object with the file names for a given component name
    *
-   * @param {object} filesConfig - the files configuration from the user's miyagi config
+   * @param {object} filesConfig - the files configuration from the user configuration object
    * @param {string} componentName - the name of the component
-   * @returns {object}
+   * @returns {object} all file names based on the user configuration
    */
   function getFileNames(filesConfig, componentName) {
     return {
@@ -219,8 +220,8 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Creates the component folder
    *
-   * @param {string} path
-   * @returns {Promise}
+   * @param {string} path - component folder path that should be created
+   * @returns {Promise} gets resolved when the folder has been created
    */
   function createComponentFolder(path) {
     return new Promise((resolve, reject) => {

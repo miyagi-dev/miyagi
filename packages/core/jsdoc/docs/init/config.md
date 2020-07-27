@@ -5,45 +5,60 @@ Module for sanitizing the user configuration and merging it with the default con
 
 
 * [init/config](#module_init/config)
-    * [~sanitizePath(path)](#module_init/config..sanitizePath)
-    * [~arrayfy(strOrArr)](#module_init/config..arrayfy)
-    * [~objectIsRealObject(obj)](#module_init/config..objectIsRealObject)
-    * [~getAssetFilesArray(strOrArrOrObj, assetType)](#module_init/config..getAssetFilesArray)
+    * [module.exports([userConfig])](#exp_module_init/config--module.exports) ⇒ <code>object</code> ⏏
+        * [~sanitizePath(path)](#module_init/config--module.exports..sanitizePath) ⇒ <code>string</code>
+        * [~arrayfy(strOrArr)](#module_init/config--module.exports..arrayfy) ⇒ <code>Array</code>
+        * [~objectIsRealObject(obj)](#module_init/config--module.exports..objectIsRealObject) ⇒ <code>boolean</code>
+        * [~getAssetFilesArray(strOrArrOrObj, assetType)](#module_init/config--module.exports..getAssetFilesArray) ⇒ <code>Array.&lt;string&gt;</code>
 
-<a name="module_init/config..sanitizePath"></a>
+<a name="exp_module_init/config--module.exports"></a>
 
-### init/config~sanitizePath(path)
-**Kind**: inner method of [<code>init/config</code>](#module_init/config)  
+### module.exports([userConfig]) ⇒ <code>object</code> ⏏
+**Kind**: Exported function  
+**Returns**: <code>object</code> - the user configuration merged with the default configuration  
 
-| Param |
-| --- |
-| path | 
+| Param | Type | Description |
+| --- | --- | --- |
+| [userConfig] | <code>object</code> | the unmerged user configuration |
 
-<a name="module_init/config..arrayfy"></a>
+<a name="module_init/config--module.exports..sanitizePath"></a>
 
-### init/config~arrayfy(strOrArr)
-**Kind**: inner method of [<code>init/config</code>](#module_init/config)  
+#### module.exports~sanitizePath(path) ⇒ <code>string</code>
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_init/config--module.exports)  
+**Returns**: <code>string</code> - the given path sanitized  
 
-| Param |
-| --- |
-| strOrArr | 
+| Param | Type | Description |
+| --- | --- | --- |
+| path | <code>string</code> | unsanitized directory or file path |
 
-<a name="module_init/config..objectIsRealObject"></a>
+<a name="module_init/config--module.exports..arrayfy"></a>
 
-### init/config~objectIsRealObject(obj)
-**Kind**: inner method of [<code>init/config</code>](#module_init/config)  
+#### module.exports~arrayfy(strOrArr) ⇒ <code>Array</code>
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_init/config--module.exports)  
+**Returns**: <code>Array</code> - the given file path in an array or simply the given array  
 
-| Param |
-| --- |
-| obj | 
+| Param | Type | Description |
+| --- | --- | --- |
+| strOrArr | <code>string</code> \| <code>Array</code> | file path or array of file paths |
 
-<a name="module_init/config..getAssetFilesArray"></a>
+<a name="module_init/config--module.exports..objectIsRealObject"></a>
 
-### init/config~getAssetFilesArray(strOrArrOrObj, assetType)
-**Kind**: inner method of [<code>init/config</code>](#module_init/config)  
+#### module.exports~objectIsRealObject(obj) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_init/config--module.exports)  
+**Returns**: <code>boolean</code> - is true if the given object is a real object  
 
-| Param |
-| --- |
-| strOrArrOrObj | 
-| assetType | 
+| Param | Type | Description |
+| --- | --- | --- |
+| obj | <code>any</code> | any value provided by the user |
+
+<a name="module_init/config--module.exports..getAssetFilesArray"></a>
+
+#### module.exports~getAssetFilesArray(strOrArrOrObj, assetType) ⇒ <code>Array.&lt;string&gt;</code>
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_init/config--module.exports)  
+**Returns**: <code>Array.&lt;string&gt;</code> - converts the given object to an array of asset file path strings  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| strOrArrOrObj | <code>string</code> \| <code>Array</code> \| <code>object</code> | user assets files, either one file as string, an array of files or an object with strings or array for each NODE_ENV |
+| assetType | <code>&quot;css&quot;</code> \| <code>&quot;js&quot;</code> | the current asset type |
 

@@ -29,7 +29,7 @@ describe("index", () => {
           jest.mock("../lib/logger");
           jest.mock("../lib/init");
 
-          process.argv = [1, 2, "start"];
+          process.argv = ["", "", "start"];
 
           await require("../index.js");
 

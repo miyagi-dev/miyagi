@@ -3,7 +3,7 @@
 /**
  * Escapes an HTML string
  *
- * @param {string} str
+ * @param {string} str - an html string
  * @returns {string} the escaped html
  */
 function escapeHtml(str) {
@@ -13,9 +13,12 @@ function escapeHtml(str) {
 }
 
 /**
- * @param {HTMLElement} container
+ * Toggles the details element of a clicked summary element
+ * and closes all other detail elements
+ *
+ * @param {HTMLElement} container - element in which to look for toggle elements
  */
-function addToggle(container) {
+function addToggleClickListener(container) {
   const summaries = Array.from(
     container.querySelectorAll(".MiyagiResults-summary")
   );
@@ -35,22 +38,22 @@ function addToggle(container) {
 }
 
 /**
- * @param label
- * @param result
- * @param impactClass
+ * @param {string} label - type of the given result
+ * @param {string} result - result string
+ * @param {string} [impactClass] optional class when result should be highlighted
  * @returns {string} - the result item html
  */
-function getHtmlForResultItem(label, result, impactClass) {
+function getHtmlForResultItem(label, result, impactClass = "") {
   return `<div class="MiyagiResult-wrapper"><dt class="MiyagiResult-attr">${label}</dt> <dd class="MiyagiResult-value ${impactClass}">${result}</dd></div>`;
 }
 
 /**
- * @param container
+ * @param {HTMLElement} container - the accessibility tests container
  */
 function a11yTest(container) {
   const states = ["passes", "inapplicable", "violations", "incomplete"];
 
-  addToggle(container);
+  addToggleClickListener(container);
 
   axe.run(document.getElementById("MiyagiComponent"), function (err, results) {
     if (err) throw err;
@@ -95,7 +98,7 @@ function a11yTest(container) {
           }
 
           if (result.impact) {
-            let impactClass = "";
+            let impactClass;
 
             switch (result.impact) {
               case "serious":
@@ -126,12 +129,12 @@ function a11yTest(container) {
 }
 
 /**
- * @param container
+ * @param {HTMLElement} container - the html test container
  */
 function htmlTest(container) {
   const states = ["error", "warning"];
 
-  addToggle(container);
+  addToggleClickListener(container);
 
   fetch(location.href).then((response) => {
     if (response.ok) {

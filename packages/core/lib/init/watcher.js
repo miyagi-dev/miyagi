@@ -20,8 +20,8 @@ let appInstance;
 let ioInstance;
 
 /**
- * @param reload
- * @param reloadParent
+ * @param {boolean} [reload] - is true if the page should be reloaded
+ * @param {boolean} [reloadParent] - is true if the parent window should be reloaded
  */
 function changeFileCallback(reload, reloadParent) {
   if (reload && appInstance.get("config").ui.reload) {
@@ -33,8 +33,9 @@ function changeFileCallback(reload, reloadParent) {
 }
 
 /**
- * @param triggered
- * @param events
+ * @param {Array} triggered - the triggered events
+ * @param {Array} events - array of events to check against
+ * @returns {boolean} is true if the triggered events include the events to check against
  */
 function triggeredEventsIncludes(triggered, events) {
   const flattened = triggered.map((event) => event.event);
@@ -50,7 +51,8 @@ function triggeredEventsIncludes(triggered, events) {
 
 /**
  * @param {object} app - the express instance
- * @param events
+ * @param {object[]} events - array of event objects
+ * @returns {Promise<object>} the updated state.fileContents object
  */
 async function updateFileContents(app, events) {
   const data = helpers.cloneDeep(app.get("state").fileContents);
@@ -191,7 +193,8 @@ async function handleFileChange() {
 }
 
 /**
- * @param srcFolderIgnores
+ * @param {string[]} srcFolderIgnores - the components.ignores array from the user configuration
+ * @returns {RegExp[]} array of regexes with all folders to ignore
  */
 function getIgnoredPathsArr(srcFolderIgnores) {
   return [

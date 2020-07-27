@@ -14,7 +14,7 @@ Renders a variation link of a given component
 | Param | Type | Description |
 | --- | --- | --- |
 | isBuild | <code>boolean</code> | renders a build or not |
-| component | <code>object</code> |  |
-| variation | <code>object</code> |  |
-| isCurrent | <code>boolean</code> |  |
+| component | <code>object</code> | the file tree object |
+| variation | <code>object</code> | variation file tree object |
+| isCurrent | <code>boolean</code> | defines if this link should be highlighted |
 

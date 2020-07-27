@@ -13,10 +13,10 @@ module.exports = function log(type, message) {
   const dateStr = `${date.getFullYear()}/${date
     .getMonth()
     .toString()
-    .padStart(2, 0)}/${date
+    .padStart(2, "0")}/${date
     .getDate()
     .toString()
-    .padStart(2, 0)} ${date.getHours()}:${date.getMinutes()}`;
+    .padStart(2, "0")} ${date.getHours()}:${date.getMinutes()}`;
 
   if (type === "error") {
     console.error(`${chalk.grey(dateStr)} ${chalk.red("Error:")} ${message}`);

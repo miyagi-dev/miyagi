@@ -16,19 +16,19 @@ jest.mock("fs-extra", () => {
 
 jest.mock("../../../lib/render/index.js", () => {
   return {
-    renderComponent: jest.fn(() => {
+    renderIframeVariation: jest.fn(() => {
       return new Promise((resolve) => resolve);
     }),
-    renderComponentOverview: jest.fn(() => {
+    renderIframeIndex: jest.fn(() => {
       return new Promise((resolve) => resolve);
     }),
-    renderComponentVariations: jest.fn(() => {
+    renderIframeComponent: jest.fn(() => {
       return new Promise((resolve) => resolve);
     }),
-    renderMain: jest.fn(() => {
+    renderMainIndex: jest.fn(() => {
       return new Promise((resolve) => resolve);
     }),
-    renderMainWithComponent: jest.fn(() => {
+    renderMainComponent: jest.fn(() => {
       return new Promise((resolve) => resolve);
     }),
   };
@@ -86,20 +86,14 @@ describe("lib/build/index", () => {
 
   describe("build()", () => {
     test("calls fs.emptyDir with the build folder path", async (done) => {
-      const spyComponentOverview = jest.spyOn(
-        render,
-        "renderComponentOverview"
-      );
-      const spyComponent = jest.spyOn(render, "renderComponent");
+      const spyComponentOverview = jest.spyOn(render, "renderIframeIndex");
+      const spyComponent = jest.spyOn(render, "renderIframeVariation");
       const spyComponentVariations = jest.spyOn(
         render,
-        "renderComponentVariations"
+        "renderIframeComponent"
       );
-      const spyMainWithComponent = jest.spyOn(
-        render,
-        "renderMainWithComponent"
-      );
-      const spyMain = jest.spyOn(render, "renderMain");
+      const spyMainWithComponent = jest.spyOn(render, "renderMainComponent");
+      const spyMain = jest.spyOn(render, "renderMainIndex");
 
       await build(app);
 

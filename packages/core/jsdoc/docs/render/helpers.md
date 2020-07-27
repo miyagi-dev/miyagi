@@ -5,181 +5,199 @@ Helper functions for the render module
 
 
 * [render/helpers](#module_render/helpers)
-    * [~extendTemplateData(config, data, filePath)](#module_render/helpers..extendTemplateData)
-    * [~resolveData(app, data, rootData)](#module_render/helpers..resolveData)
-    * [~getDataForRenderFunction(app, data)](#module_render/helpers..getDataForRenderFunction)
-    * [~mergeWithGlobalData(app, data)](#module_render/helpers..mergeWithGlobalData)
-    * [~getFallbackData(variations, rootData)](#module_render/helpers..getFallbackData)
-    * [~getComponentErrorHtml(err)](#module_render/helpers..getComponentErrorHtml)
-    * [~getRootOrVariantData(app, value)](#module_render/helpers..getRootOrVariantData)
-    * [~overwriteRenderKey(app, data)](#module_render/helpers..overwriteRenderKey)
-    * [~resolveTpl(app, entry)](#module_render/helpers..resolveTpl)
-    * [~resolveJson(app, entry)](#module_render/helpers..resolveJson)
-    * [~iterateOverTplData(app, data)](#module_render/helpers..iterateOverTplData)
-    * [~overwriteTplLinksWithTplContent(app, data)](#module_render/helpers..overwriteTplLinksWithTplContent)
-    * [~iterateOverJsonData(app, data)](#module_render/helpers..iterateOverJsonData)
-    * [~overwriteJsonLinksWithJsonData(app, data)](#module_render/helpers..overwriteJsonLinksWithJsonData)
-    * [~mergeRootDataWithVariationData(rootData, variationData)](#module_render/helpers..mergeRootDataWithVariationData)
-    * [~getTemplateFilePathFromDirectoryPath(app, directoryPath)](#module_render/helpers..getTemplateFilePathFromDirectoryPath)
+    * _static_
+        * [.extendTemplateData(config, data, filePath)](#module_render/helpers.extendTemplateData) ⇒ <code>Promise.&lt;object&gt;</code>
+        * [.resolveData(app, data, [rootData])](#module_render/helpers.resolveData) ⇒ <code>Promise.&lt;object&gt;</code>
+        * [.getComponentErrorHtml(err)](#module_render/helpers.getComponentErrorHtml) ⇒ <code>string</code>
+        * [.getDataForRenderFunction(app, data)](#module_render/helpers.getDataForRenderFunction) ⇒ <code>object</code>
+        * [.getFallbackData(variations, [rootData])](#module_render/helpers.getFallbackData) ⇒ <code>object</code>
+        * [.getTemplateFilePathFromDirectoryPath(app, directoryPath)](#module_render/helpers.getTemplateFilePathFromDirectoryPath) ⇒ <code>string</code>
+    * _inner_
+        * [~getRootOrVariantDataOfReference(app, ref)](#module_render/helpers..getRootOrVariantDataOfReference) ⇒ <code>object</code>
+        * [~resolveTpl(app, entry)](#module_render/helpers..resolveTpl) ⇒ <code>Promise</code>
+        * [~resolveJson(app, entry)](#module_render/helpers..resolveJson) ⇒ <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code>
+        * [~iterateOverTplData(app, entry)](#module_render/helpers..iterateOverTplData) ⇒ <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code>
+        * [~iterateOverJsonData(app, entry)](#module_render/helpers..iterateOverJsonData) ⇒ <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code>
+        * [~overwriteJsonLinksWithJsonData(app, data)](#module_render/helpers..overwriteJsonLinksWithJsonData) ⇒ <code>Promise</code>
+        * [~overwriteTplLinksWithTplContent(app, data)](#module_render/helpers..overwriteTplLinksWithTplContent) ⇒ <code>Promise</code>
+        * [~overwriteRenderKey(app, data)](#module_render/helpers..overwriteRenderKey) ⇒ <code>object</code>
+        * [~mergeRootDataWithVariationData(rootData, variationData)](#module_render/helpers..mergeRootDataWithVariationData) ⇒ <code>object</code>
+        * [~mergeWithGlobalData(app, data)](#module_render/helpers..mergeWithGlobalData) ⇒ <code>object</code>
 
-<a name="module_render/helpers..extendTemplateData"></a>
+<a name="module_render/helpers.extendTemplateData"></a>
 
-### render/helpers~extendTemplateData(config, data, filePath)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+### render/helpers.extendTemplateData(config, data, filePath) ⇒ <code>Promise.&lt;object&gt;</code>
+**Kind**: static method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise.&lt;object&gt;</code> - the extended data object  
 
-| Param |
-| --- |
-| config | 
-| data | 
-| filePath | 
+| Param | Type | Description |
+| --- | --- | --- |
+| config | <code>object</code> | the user configuration object |
+| data | <code>object</code> | the mock data object that will be passed into the component |
+| filePath | <code>string</code> | the path to the component file |
 
-<a name="module_render/helpers..resolveData"></a>
+<a name="module_render/helpers.resolveData"></a>
 
-### render/helpers~resolveData(app, data, rootData)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+### render/helpers.resolveData(app, data, [rootData]) ⇒ <code>Promise.&lt;object&gt;</code>
+**Kind**: static method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise.&lt;object&gt;</code> - the resolved data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| data |  |  |
-| rootData |  |  |
+| data | <code>object</code> | the mock data object that will be passed into the component |
+| [rootData] | <code>object</code> | the root mock data object |
 
-<a name="module_render/helpers..getDataForRenderFunction"></a>
+<a name="module_render/helpers.getComponentErrorHtml"></a>
 
-### render/helpers~getDataForRenderFunction(app, data)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+### render/helpers.getComponentErrorHtml(err) ⇒ <code>string</code>
+**Kind**: static method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>string</code> - html string including an error message  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| err | <code>string</code> | error message |
+
+<a name="module_render/helpers.getDataForRenderFunction"></a>
+
+### render/helpers.getDataForRenderFunction(app, data) ⇒ <code>object</code>
+**Kind**: static method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>object</code> - the resolved data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| data |  |  |
+| data | <code>object</code> | the mock data object that will be passed into the component |
 
-<a name="module_render/helpers..mergeWithGlobalData"></a>
+<a name="module_render/helpers.getFallbackData"></a>
 
-### render/helpers~mergeWithGlobalData(app, data)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+### render/helpers.getFallbackData(variations, [rootData]) ⇒ <code>object</code>
+**Kind**: static method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>object</code> - the fallback data object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| variations | <code>Array</code> | the variations of the mock data of the component |
+| [rootData] | <code>object</code> | the root mock data of the component |
+
+<a name="module_render/helpers.getTemplateFilePathFromDirectoryPath"></a>
+
+### render/helpers.getTemplateFilePathFromDirectoryPath(app, directoryPath) ⇒ <code>string</code>
+**Kind**: static method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>string</code> - the template file path  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| data |  |  |
+| directoryPath | <code>string</code> | a component file path |
 
-<a name="module_render/helpers..getFallbackData"></a>
+<a name="module_render/helpers..getRootOrVariantDataOfReference"></a>
 
-### render/helpers~getFallbackData(variations, rootData)
+### render/helpers~getRootOrVariantDataOfReference(app, ref) ⇒ <code>object</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
-
-| Param |
-| --- |
-| variations | 
-| rootData | 
-
-<a name="module_render/helpers..getComponentErrorHtml"></a>
-
-### render/helpers~getComponentErrorHtml(err)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
-
-| Param |
-| --- |
-| err | 
-
-<a name="module_render/helpers..getRootOrVariantData"></a>
-
-### render/helpers~getRootOrVariantData(app, value)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>object</code> - the resolved data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| value |  |  |
-
-<a name="module_render/helpers..overwriteRenderKey"></a>
-
-### render/helpers~overwriteRenderKey(app, data)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| app | <code>object</code> | the express instance |
-| data |  |  |
+| ref | <code>string</code> | the reference to another mock data |
 
 <a name="module_render/helpers..resolveTpl"></a>
 
-### render/helpers~resolveTpl(app, entry)
+### render/helpers~resolveTpl(app, entry) ⇒ <code>Promise</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise</code> - gets resolved with the resolved value from the mock data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| entry |  |  |
+| entry | <code>object</code> \| <code>Array</code> \| <code>string</code> \| <code>boolean</code> | a value from the mock data object |
 
 <a name="module_render/helpers..resolveJson"></a>
 
-### render/helpers~resolveJson(app, entry)
+### render/helpers~resolveJson(app, entry) ⇒ <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code> - the resolved value from the mock data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| entry |  |  |
+| entry | <code>object</code> \| <code>Array</code> \| <code>string</code> \| <code>boolean</code> | a value from the mock data object |
 
 <a name="module_render/helpers..iterateOverTplData"></a>
 
-### render/helpers~iterateOverTplData(app, data)
+### render/helpers~iterateOverTplData(app, entry) ⇒ <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code> - the resolved value from the mock data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| data |  |  |
-
-<a name="module_render/helpers..overwriteTplLinksWithTplContent"></a>
-
-### render/helpers~overwriteTplLinksWithTplContent(app, data)
-**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| app | <code>object</code> | the express instance |
-| data |  |  |
+| entry | <code>object</code> \| <code>Array</code> \| <code>string</code> \| <code>boolean</code> | a value from the mock data object |
 
 <a name="module_render/helpers..iterateOverJsonData"></a>
 
-### render/helpers~iterateOverJsonData(app, data)
+### render/helpers~iterateOverJsonData(app, entry) ⇒ <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise.&lt;(object\|Array\|string\|boolean)&gt;</code> - the resolved value from the mock data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| data |  |  |
+| entry | <code>object</code> \| <code>Array</code> \| <code>string</code> \| <code>boolean</code> | a value from the mock data object |
 
 <a name="module_render/helpers..overwriteJsonLinksWithJsonData"></a>
 
-### render/helpers~overwriteJsonLinksWithJsonData(app, data)
+### render/helpers~overwriteJsonLinksWithJsonData(app, data) ⇒ <code>Promise</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise</code> - gets resolved with resolved data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| data |  |  |
+| data | <code>object</code> | the mock data object that will be passed into the component |
+
+<a name="module_render/helpers..overwriteTplLinksWithTplContent"></a>
+
+### render/helpers~overwriteTplLinksWithTplContent(app, data) ⇒ <code>Promise</code>
+**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>Promise</code> - gets resolved with resolved data object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| app | <code>object</code> | the express instance |
+| data | <code>object</code> | the mock data object that will be passed into the component |
+
+<a name="module_render/helpers..overwriteRenderKey"></a>
+
+### render/helpers~overwriteRenderKey(app, data) ⇒ <code>object</code>
+**Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>object</code> - the resolved data object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| app | <code>object</code> | the express instance |
+| data | <code>object</code> | the mock data object that will be passed into the component |
 
 <a name="module_render/helpers..mergeRootDataWithVariationData"></a>
 
-### render/helpers~mergeRootDataWithVariationData(rootData, variationData)
+### render/helpers~mergeRootDataWithVariationData(rootData, variationData) ⇒ <code>object</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>object</code> - the merged data  
 
-| Param |
-| --- |
-| rootData | 
-| variationData | 
+| Param | Type | Description |
+| --- | --- | --- |
+| rootData | <code>object</code> | the root mock data of a component |
+| variationData | <code>object</code> | a variation mock data of a component |
 
-<a name="module_render/helpers..getTemplateFilePathFromDirectoryPath"></a>
+<a name="module_render/helpers..mergeWithGlobalData"></a>
 
-### render/helpers~getTemplateFilePathFromDirectoryPath(app, directoryPath)
+### render/helpers~mergeWithGlobalData(app, data) ⇒ <code>object</code>
 **Kind**: inner method of [<code>render/helpers</code>](#module_render/helpers)  
+**Returns**: <code>object</code> - the merged data object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| directoryPath |  |  |
+| data | <code>object</code> | the mock data object that will be passed into the component |
 

@@ -6,12 +6,12 @@ beforeEach(() => {
 });
 
 describe("lib/menu/elements/helpers", () => {
-  describe("pathIsChildOfOrEqualSecondPath()", () => {
+  describe("pathIsParentOfOrEqualRequestedPath()", () => {
     describe("child is a not file", () => {
       describe("path is parent of child", () => {
         test("returns true", () => {
           expect(
-            helpers.pathIsChildOfOrEqualSecondPath("foo/bar", "foo/bar/baz")
+            helpers.pathIsParentOfOrEqualRequestedPath("foo/bar", "foo/bar/baz")
           ).toBe(true);
         });
       });
@@ -19,7 +19,10 @@ describe("lib/menu/elements/helpers", () => {
       describe("path is same as child", () => {
         test("returns false", () => {
           expect(
-            helpers.pathIsChildOfOrEqualSecondPath("foo/bar/baz", "foo/bar/baz")
+            helpers.pathIsParentOfOrEqualRequestedPath(
+              "foo/bar/baz",
+              "foo/bar/baz"
+            )
           ).toBe(true);
         });
       });
@@ -28,7 +31,7 @@ describe("lib/menu/elements/helpers", () => {
     describe("paths are completely different", () => {
       test("returns false", () => {
         expect(
-          helpers.pathIsChildOfOrEqualSecondPath(
+          helpers.pathIsParentOfOrEqualRequestedPath(
             "foo/bar/baz/foo",
             "bar/baz/foo/bar",
             true

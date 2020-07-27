@@ -12,8 +12,9 @@ const helpers = require("../helpers.js");
 const config = require("../config.json");
 
 /**
- * @param shortPath
- * @param fullFilePath
+ * @param {string} shortPath - relative template file path based from components folder
+ * @param {string} fullFilePath - absolute template file path
+ * @returns {Promise} gets resolved when the given file has been registered
  */
 async function register(shortPath, fullFilePath) {
   return new Promise((resolve) => {
@@ -44,7 +45,7 @@ async function register(shortPath, fullFilePath) {
  */
 async function registerLayouts() {
   return Promise.all(
-    ["main", "iframe", "component_iframe"].map(
+    ["iframe_default"].map(
       (layout) =>
         new Promise((resolve) => {
           register(
@@ -78,7 +79,8 @@ async function registerComponents(app) {
 
 /**
  * @param {object} app - the express instance
- * @param fullPath
+ * @param {string} fullPath - absolute template file path
+ * @returns {Promise} gets resolved when the template has been registered
  */
 async function registerPartial(app, fullPath) {
   return new Promise((resolve) => {
@@ -90,6 +92,7 @@ async function registerPartial(app, fullPath) {
 
 /**
  * @param {object} app - the express instance
+ * @returns {Promise} gets resolved when all components and layouts have been registered
  */
 async function registerAll(app) {
   const promises = [];

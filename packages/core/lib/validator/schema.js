@@ -58,7 +58,7 @@ module.exports = function validateSchema(app, filePath, dataArray) {
     }
 
     if (validate) {
-      for (const entry of dataArray) {
+      dataArray.forEach((entry) => {
         const valid = validate(entry.data || {});
 
         if (!valid) {
@@ -71,7 +71,7 @@ module.exports = function validateSchema(app, filePath, dataArray) {
         }
 
         validity.push(valid);
-      }
+      });
     }
 
     return validity;

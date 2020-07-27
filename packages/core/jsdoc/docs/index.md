@@ -218,7 +218,7 @@ and tpls are not skipped for generating a component
 
 | Param | Type | Description |
 | --- | --- | --- |
-| config | <code>object</code> | the user config object |
+| config | <code>object</code> | the user configuration object |
 | args | <code>object</code> | the cli args |
 
 <a name="module_index..updateConfigForRendererIfNecessary"></a>
@@ -232,7 +232,7 @@ if missing
 
 | Param | Type | Description |
 | --- | --- | --- |
-| config | <code>object</code> | the user config object |
+| config | <code>object</code> | the user configuration object |
 
 <a name="module_index..Miyagi"></a>
 

@@ -28,7 +28,7 @@ module.exports = async function init(mergedConfig) {
   app.set("cache", false);
 
   if (setEngines(app)) {
-    const port = process.env.PORT || appConfig.defaultPort;
+    const port = (process.env.PORT || appConfig.defaultPort).toString();
 
     app.set("port", port);
 
@@ -53,7 +53,7 @@ module.exports = async function init(mergedConfig) {
     const server = http.createServer(app);
     server.listen(app.get("port"));
 
-    setWatcher(server, app, handlebars);
+    setWatcher(server, app);
 
     log(
       "success",

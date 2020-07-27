@@ -10,7 +10,8 @@ const helpers = require("../../helpers.js");
 
 /**
  * @param {object} app - the express instance
- * @param directory
+ * @param {object} directory - file tree object
+ * @returns {object} file tree object of the component file in the given directory
  */
 function getComponentFile(app, directory) {
   return directory.children.find(
@@ -25,7 +26,8 @@ function getComponentFile(app, directory) {
 
 /**
  * @param {object} app - the express instance
- * @param directory
+ * @param {object} directory - file tree object
+ * @returns {boolean} returns true if the given directory has a component file with the same name
  */
 function hasComponentFileWithCorrectNameAsChild(app, directory) {
   return (
@@ -37,7 +39,8 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
 
 /**
  * @param {object} app - the express instance
- * @param directory
+ * @param {object} directory - file tree object
+ * @returns {object} adapted file tree object
  */
 function getDataForLinkedDirectory(app, directory) {
   const info = app.get("state").fileContents[
@@ -64,7 +67,8 @@ function getDataForLinkedDirectory(app, directory) {
 }
 
 /**
- * @param directory
+ * @param {object} directory - file tree object
+ * @returns {object} adapted file tree object
  */
 function getDataForDirectory(directory) {
   return {
@@ -78,17 +82,14 @@ function getDataForDirectory(directory) {
 
 /**
  * @param {object} app - the express instance
- * @param directory
+ * @param {object} directory - file tree object
+ * @returns {object} adapted file tree object
  */
 function restructureDirectory(app, directory) {
   let item;
 
   if (hasComponentFileWithCorrectNameAsChild(app, directory)) {
-    item = getDataForLinkedDirectory(
-      app,
-      directory,
-      getComponentFile(app, directory)
-    );
+    item = getDataForLinkedDirectory(app, directory);
   } else {
     item = getDataForDirectory(directory);
   }
@@ -97,7 +98,8 @@ function restructureDirectory(app, directory) {
 }
 
 /**
- * @param item
+ * @param {object} item - file tree object
+ * @returns {boolean} returns true if the given file tree object has children
  */
 function hasChildren(item) {
   return item.children && item.children.length > 0;
@@ -105,6 +107,7 @@ function hasChildren(item) {
 
 /**
  * @param {object} app - the express instance
+ * @returns {object[]} array with adapted menu items
  */
 function getMenu(app) {
   const srcStructure = getSourceStructure(app);

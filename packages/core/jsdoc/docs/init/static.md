@@ -47,7 +47,7 @@ Module for registering static files
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| files |  |  |
+| files | <code>&quot;css&quot;</code> \| <code>&quot;js&quot;</code> | the type of user assets that should be registered |
 
 <a name="module_init/static..registerNodeModule"></a>
 
@@ -57,7 +57,7 @@ Module for registering static files
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| nodeModule |  |  |
+| nodeModule | <code>string</code> | node module path basename |
 
 <a name="module_init/static..registerAssetFolder"></a>
 

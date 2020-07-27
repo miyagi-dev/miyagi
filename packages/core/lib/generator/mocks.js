@@ -9,7 +9,7 @@ const { messages } = require("../config.json");
  *
  * @module generator/mocks
  * @param {string} folderPath - the path for the component that should be created
- * @param {object} filesConfig - the files configuration from the user's miyagi config
+ * @param {object} filesConfig - the files configuration from the user configuration object
  */
 module.exports = async function mockGenerator(folderPath, filesConfig) {
   if (!folderPath) {
@@ -74,7 +74,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
    *
    * @param {string} fileType - the file type of the mock data that should be created
    * @param {object} schema - the JSON schema object
-   * @returns {string}
+   * @returns {string} the dummy mock data
    */
   function getContent(fileType, schema) {
     let content;
@@ -89,7 +89,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
           {
             data,
           },
-          0,
+          null,
           2
         );
         break;
@@ -98,7 +98,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
           {
             data,
           },
-          0,
+          null,
           2
         )}
       `;
@@ -129,8 +129,8 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
   /**
    * Reads the content of a given file
    *
-   * @param {string} filePath
-   * @returns {Promise}
+   * @param {string} filePath - path to a file that should be read
+   * @returns {Promise} gets resolved when the file has been read
    */
   function readFile(filePath) {
     return new Promise((resolve, reject) => {

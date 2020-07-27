@@ -12,8 +12,9 @@ const path = require("path");
 
 /* Based on https://stackoverflow.com/a/14853974 */
 /**
- * @param a
- * @param b
+ * @param {Array} a - first array
+ * @param {Array} b - second array
+ * @returns {boolean} is true if both arrays are equal
  */
 function arraysAreEqual(a, b) {
   // compare lengths - can save a lot of time
@@ -35,11 +36,11 @@ function arraysAreEqual(a, b) {
 const activeState = ' aria-current="page"';
 
 /**
- * @param child
- * @param parent
- * @param childIsFile
+ * @param {string} currentPath - the current path in iterating over the menu
+ * @param {string} requestedPath - the requested path by the user
+ * @returns {boolean} is true if given path is parent of or equal requested path
  */
-function pathIsChildOfOrEqualSecondPath(currentPath, requestedPath) {
+function pathIsParentOfOrEqualRequestedPath(currentPath, requestedPath) {
   if (!requestedPath) return false;
   if (!requestedPath.startsWith(currentPath)) return false;
   if (currentPath === requestedPath) return true;
@@ -54,16 +55,18 @@ function pathIsChildOfOrEqualSecondPath(currentPath, requestedPath) {
 }
 
 /**
- * @param p
- * @param variation
+ * @param {string} componentPath - the path of the current component in the menu iteration
+ * @param {object} variation - the variation of the current component in the menu iteration
  * @param {object} request - the request object
+ * @returns {boolean} is true if the current component and variation equals the request
  */
-function pathEqualsRequest(p, variation, request) {
-  return request.path === p && request.variation === variation.name;
+function pathEqualsRequest(componentPath, variation, request) {
+  return request.path === componentPath && request.variation === variation.name;
 }
 
 /**
- * @param directory
+ * @param {object} directory - menu tree object
+ * @returns {boolean} is true if the any of the children of the given directory also have children
  */
 function childrenOfDirectoryContainDirectory(directory) {
   return (
@@ -74,7 +77,8 @@ function childrenOfDirectoryContainDirectory(directory) {
 }
 
 /**
- * @param component
+ * @param {object} component - menu tree object
+ * @returns {boolean} is true if the given component has variations
  */
 function componentHasVariations(component) {
   return (
@@ -85,14 +89,16 @@ function componentHasVariations(component) {
 }
 
 /**
- * @param directory
+ * @param {object} directory - menu tree object
+ * @returns {boolean} is true if the given directory is not in the first level
  */
 function directoryIsNotTopLevel(directory) {
   return directory.index > 0;
 }
 
 /**
- * @param directory
+ * @param {object} directory - menu tree object
+ * @returns {boolean} is true if the given directory is a component
  */
 function directoryHasComponent(directory) {
   if (directory.shortPath) {
@@ -114,5 +120,5 @@ module.exports = {
   directoryHasComponent,
   directoryIsNotTopLevel,
   pathEqualsRequest,
-  pathIsChildOfOrEqualSecondPath,
+  pathIsParentOfOrEqualRequestedPath,
 };

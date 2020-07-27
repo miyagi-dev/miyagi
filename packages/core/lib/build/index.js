@@ -66,7 +66,7 @@ module.exports = (app) => {
 
     promises.push(
       new Promise((resolve) => {
-        buildComponentOverview(buildFolder, app).then(resolve);
+        buildIframeIndex(buildFolder, app).then(resolve);
       })
     );
 
@@ -90,7 +90,7 @@ module.exports = (app) => {
             buildDate,
             formattedBuildDate,
           }).then((component) => {
-            for (const path of getFilePathForJsonOutput(component)) {
+            for (const path of getFilePathsForJsonOutput(component)) {
               paths.push(path);
             }
             resolve();
@@ -110,7 +110,7 @@ module.exports = (app) => {
   /**
    * Creates an "output.json" file with the given array as content
    *
-   * @param {Array} paths
+   * @param {Array} paths - all paths to standalone views of component variations
    */
   function createJsonOutputFile(paths) {
     fs.writeFile(
@@ -121,7 +121,7 @@ module.exports = (app) => {
             path,
           };
         }),
-        0,
+        null,
         2
       )
     );
@@ -130,10 +130,10 @@ module.exports = (app) => {
   /**
    * Accepts an array with arrays and returns its values with cwd and buildFolder
    *
-   * @param {Array} component - An array with file paths
-   * @returns {Array}
+   * @param {Array} component - an array containing arrays with file paths
+   * @returns {Array} the flattened arrays
    */
-  function getFilePathForJsonOutput(component) {
+  function getFilePathsForJsonOutput(component) {
     const paths = [];
 
     for (const entries of component) {
@@ -154,9 +154,9 @@ module.exports = (app) => {
   /**
    * Copies the user favicon
    *
-   * @param {string} buildFolder
-   * @param {string} faviconPath
-   * @returns {Promise}
+   * @param {string} buildFolder - the build folder from the user configuration
+   * @param {string} faviconPath - the favicon path from the user configuration
+   * @returns {Promise} gets resolved after the favicon has been copied
    */
   function buildUserFavicon(buildFolder, faviconPath) {
     return new Promise((resolve) => {
@@ -175,8 +175,8 @@ module.exports = (app) => {
   /**
    * Copies the dist directory
    *
-   * @param {string} buildFolder
-   * @returns {Promise}
+   * @param {string} buildFolder - the build folder from the user configuration
+   * @returns {Promise} gets resolved when the dist directory has been copied
    */
   function buildDistDirectory(buildFolder) {
     return new Promise((resolve) =>
@@ -191,10 +191,10 @@ module.exports = (app) => {
   /**
    * Copies the user assets
    *
-   * @param {string} buildFolder
-   * @param {object} assetsConfig
-   * @param {string} logoPath
-   * @returns {Promise}
+   * @param {string} buildFolder - the build folder from the user configuration
+   * @param {object} assetsConfig - the assets object from the user configuration
+   * @param {string} logoPath - the logo path from the user configuration
+   * @returns {Promise} gets resolved when all assets have been copied
    */
   async function buildUserAssets(buildFolder, assetsConfig, logoPath) {
     const promises = [];
@@ -260,20 +260,19 @@ module.exports = (app) => {
   /**
    * Rendeers and builds the component overview
    *
-   * @param {string} buildFolder
+   * @param {string} buildFolder - the build folder from the user configuration
    * @param {object} app - the express instance
-   * @returns {Promise}
+   * @returns {Promise} gets resolved when the view has been rendered
    */
-  function buildComponentOverview(buildFolder, app) {
+  function buildIframeIndex(buildFolder, app) {
     const promises = [];
 
     for (const embedded of [false, true]) {
       promises.push(
         new Promise((resolve) => {
-          render.renderComponentOverview({
+          render.renderIframeIndex({
             app,
             res: app,
-            embedded,
             cb: (response) => {
               fs.writeFile(
                 path.resolve(
@@ -296,15 +295,15 @@ module.exports = (app) => {
   /**
    * Renders and builds the index view
    *
-   * @param {string} buildFolder
+   * @param {string} buildFolder - the build folder from the user configuration
    * @param {object} app - the express instance
-   * @param {string} buildDate - a date time string of the current build
-   * @param {string} formattedBuildDate - a formatted date time string of the current build
-   * @returns {Promise}
+   * @param {string} buildDate - a machine readable date time string of the current build
+   * @param {string} formattedBuildDate - a human readable date time string of the current build
+   * @returns {Promise} gets resolved when the view has been rendered
    */
   function buildIndex(buildFolder, app, buildDate, formattedBuildDate) {
     return new Promise((resolve) => {
-      render.renderMain({
+      render.renderMainIndex({
         app,
         res: app,
         buildDate,
@@ -323,15 +322,15 @@ module.exports = (app) => {
   /**
    * Renders and builds a variation
    *
-   * @param {object} obj
-   * @param {string} obj.buildFolder
-   * @param {object} obj.app
-   * @param {string} obj.file - the template file path
-   * @param {string} obj.normalizedFileName - the normalized template file path
-   * @param {string} obj.variation - the variation name
-   * @param {string} obj.buildDate - a date time string of the current build
-   * @param {string} obj.formattedBuildDate - a formatted date time string of the current build
-   * @returns {Promise}
+   * @param {object} object - parameter object
+   * @param {string} object.buildFolder - the build folder from the user configuration
+   * @param {object} object.app - the express instance
+   * @param {string} object.file - the template file path
+   * @param {string} object.normalizedFileName - the normalized template file path
+   * @param {string} object.variation - the variation name
+   * @param {string} object.buildDate - a date time string of the current build
+   * @param {string} object.formattedBuildDate - a formatted date time string of the current build
+   * @returns {Promise} gets resolved when all variation views have been rendered
    */
   function buildVariation({
     buildFolder,
@@ -353,7 +352,7 @@ module.exports = (app) => {
             )}${embedded ? "-embedded" : ""}.html`
           );
 
-          render.renderComponent({
+          render.renderIframeVariation({
             app,
             res: app,
             file: path.dirname(file),
@@ -375,7 +374,7 @@ module.exports = (app) => {
 
     promises.push(
       new Promise((resolve) => {
-        render.renderMainWithComponent({
+        render.renderMainComponent({
           app,
           res: app,
           file: path.dirname(file),
@@ -403,13 +402,13 @@ module.exports = (app) => {
   /**
    * Renders and builds a variation
    *
-   * @param {object} obj
-   * @param {string} obj.file - the template file path
-   * @param {string} obj.buildFolder
-   * @param {object} obj.app
-   * @param {string} obj.buildDate - a date time string of the current build
-   * @param {string} obj.formattedBuildDate - a formatted date time string of the current build
-   * @returns {Promise}
+   * @param {object} object - parameter object
+   * @param {string} object.file - the template file path
+   * @param {string} object.buildFolder - the build folder from the user configuration
+   * @param {object} object.app - the express instance
+   * @param {string} object.buildDate - a date time string of the current build
+   * @param {string} object.formattedBuildDate - a formatted date time string of the current build
+   * @returns {Promise} gets resolved when all component views have been rendered
    */
   function buildComponent({
     file,
@@ -430,7 +429,7 @@ module.exports = (app) => {
 
     promises.push(
       new Promise((resolve) => {
-        render.renderMainWithComponent({
+        render.renderMainComponent({
           app,
           res: app,
           file: path.dirname(file),
@@ -451,11 +450,10 @@ module.exports = (app) => {
     for (const embedded of [false, true]) {
       promises.push(
         new Promise((resolve) => {
-          render.renderComponentVariations({
+          render.renderIframeComponent({
             app,
             res: app,
             file: path.dirname(file),
-            embedded,
             cb: (response) => {
               fs.writeFile(
                 path.resolve(

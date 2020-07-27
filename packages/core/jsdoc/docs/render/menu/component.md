@@ -14,6 +14,6 @@ Renders a component in the menu
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| component | <code>string</code> | the component which should be rendered |
+| component | <code>object</code> | the component which should be rendered |
 | request | <code>object</code> | the request object |
 

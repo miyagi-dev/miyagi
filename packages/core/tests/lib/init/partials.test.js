@@ -71,15 +71,7 @@ describe("lib/init/partials", () => {
       await partials.registerAll(app, true);
 
       expect(handlebars.registerPartial).toHaveBeenCalledWith(
-        "main",
-        "compiledPartial"
-      );
-      expect(handlebars.registerPartial).toHaveBeenCalledWith(
-        "iframe",
-        "compiledPartial"
-      );
-      expect(handlebars.registerPartial).toHaveBeenCalledWith(
-        "component_iframe",
+        "iframe_default",
         "compiledPartial"
       );
       done();

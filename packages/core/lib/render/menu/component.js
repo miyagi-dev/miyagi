@@ -15,7 +15,7 @@ const menu = require("./index.js");
  * Renders a component in the menu
  *
  * @param {object} app - the express instance
- * @param {string} component - the component which should be rendered
+ * @param {object} component - the component which should be rendered
  * @param {object} request - the request object
  * @returns {string} the component html
  */
@@ -28,10 +28,9 @@ function render(app, component, request) {
     hasVariations ||
     menuHelpers.childrenOfDirectoryContainDirectory(component)
   ) {
-    const expanded = menuHelpers.pathIsChildOfOrEqualSecondPath(
+    const expanded = menuHelpers.pathIsParentOfOrEqualRequestedPath(
       component.shortPath,
-      request.path,
-      true
+      request.path
     );
 
     html += toggle.render(

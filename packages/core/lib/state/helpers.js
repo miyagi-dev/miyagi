@@ -11,7 +11,7 @@ const { readdir } = require("fs").promises;
  * @param {object} dir - the directory in which to look for files
  * @param {string[]} ignores - an array of folders which should be ignored
  * @param {Function} check - checks if the file should be returned, returns null or the file path
- * @returns {string[]} an array with file paths
+ * @returns {Promise<string[]>} an array with file paths
  */
 async function getFiles(dir, ignores, check) {
   const entries = await readdir(path.join(process.cwd(), dir), {
@@ -38,9 +38,9 @@ async function getFiles(dir, ignores, check) {
 /**
  * Checks if a given file is not in one of the ignored folders
  *
- * @param {string} file
- * @param {Array} ignoredFolders
- * @returns {boolean}
+ * @param {string} file - file path
+ * @param {Array} ignoredFolders - folders that should be ignored
+ * @returns {boolean} returns true if the given file is not inside any of the given ignoredFolders
  */
 function isNotIgnored(file, ignoredFolders) {
   for (let i = 0; i < ignoredFolders.length; i += 1) {

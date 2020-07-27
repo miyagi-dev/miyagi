@@ -160,13 +160,13 @@ afterEach(() => {
 });
 
 describe("lib/render/index", () => {
-  describe("renderMain", () => {
-    test("renders index.hbs", async (done) => {
+  describe("renderMainIndex", () => {
+    test("renders main.hbs", async (done) => {
       res.render = jest.fn();
 
-      await render.renderMain({ app, res });
+      await render.renderMainIndex({ app, res });
 
-      expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+      expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
       expect(res.render.mock.calls[0][1]).toEqual({
         folders,
         iframeSrc: "/component?file=all&embedded=true",
@@ -187,19 +187,19 @@ describe("lib/render/index", () => {
     });
   });
 
-  describe("renderMainWithComponent", () => {
+  describe("renderMainComponent", () => {
     describe("with variation", () => {
       test("renders index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderMainWithComponent({
+        await render.renderMainComponent({
           app,
           res,
           file: path.dirname(component),
           variation,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${path.dirname(
@@ -227,13 +227,13 @@ describe("lib/render/index", () => {
       test("renders index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderMainWithComponent({
+        await render.renderMainComponent({
           app,
           res,
           file: path.dirname(component),
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
@@ -256,19 +256,19 @@ describe("lib/render/index", () => {
     });
   });
 
-  describe("renderMainWith404", () => {
+  describe("renderMain404", () => {
     describe("with variation", () => {
       test("renders index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderMainWith404({
+        await render.renderMain404({
           app,
           res,
           file: path.dirname(component),
           variation,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${path.dirname(
@@ -297,13 +297,13 @@ describe("lib/render/index", () => {
       test("renders index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderMainWith404({
+        await render.renderMain404({
           app,
           res,
           file: path.dirname(component),
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("index.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
           iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
@@ -327,19 +327,19 @@ describe("lib/render/index", () => {
     });
   });
 
-  describe("renderComponent", () => {
+  describe("renderIframeVariation", () => {
     describe("with global data", () => {
       test("renders component.hbs with data merged with global data", async (done) => {
         addGlobalData();
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: path.dirname(component),
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1global\n",
           htmlValidation: true,
@@ -361,14 +361,14 @@ describe("lib/render/index", () => {
       test("renders component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: path.dirname(component),
           variation: "variation1",
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component11\n",
           htmlValidation: true,
@@ -390,13 +390,13 @@ describe("lib/render/index", () => {
       test("renders component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: "component2",
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component2\n",
           htmlValidation: true,
@@ -418,14 +418,14 @@ describe("lib/render/index", () => {
       test("renders component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: "component8",
           variation: "variation1",
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component8\n",
           htmlValidation: true,
@@ -447,14 +447,14 @@ describe("lib/render/index", () => {
       test("renders component.hbs without error", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: "component5",
           variation: "component5",
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "",
           htmlValidation: true,
@@ -473,10 +473,10 @@ describe("lib/render/index", () => {
     });
 
     describe("embedded=true", () => {
-      test("renders component_frame.hbs", async (done) => {
+      test("renders iframe_component_variation.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: path.dirname(component),
@@ -484,7 +484,9 @@ describe("lib/render/index", () => {
           embedded: true,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual(
+          "iframe_component_variation.hbs"
+        );
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
           htmlValidation: true,
@@ -508,14 +510,14 @@ describe("lib/render/index", () => {
       test("renders component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponent({
+        await render.renderIframeVariation({
           app,
           res,
           file: path.dirname(component),
           embedded: false,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
           htmlValidation: true,
@@ -534,20 +536,20 @@ describe("lib/render/index", () => {
     });
   });
 
-  describe("renderComponentVariations", () => {
+  describe("renderIframeComponent", () => {
     describe("with global data", () => {
-      test("renders component_variations.hbs with the global data merged into the variations data", async (done) => {
+      test("renders iframe_component.hbs with the global data merged into the variations data", async (done) => {
         addGlobalData();
         res.render = jest.fn();
 
-        await render.renderComponentVariations({
+        await render.renderIframeComponent({
           app,
           res,
           file: "component1",
           embedded: true,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           variations: [
             {
@@ -596,19 +598,17 @@ describe("lib/render/index", () => {
 
     describe("component has variations", () => {
       describe("with data key", () => {
-        test("renders component_variations.hbs", async (done) => {
+        test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: path.dirname(component),
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
@@ -659,19 +659,17 @@ describe("lib/render/index", () => {
       });
 
       describe("without data key", () => {
-        test("renders component_variations.hbs", async (done) => {
+        test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: "component3",
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
@@ -714,19 +712,17 @@ describe("lib/render/index", () => {
       });
 
       describe("variation throws an error", () => {
-        test("renders component_variations.hbs", async (done) => {
+        test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: "component6",
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
@@ -761,19 +757,17 @@ describe("lib/render/index", () => {
       });
 
       describe("variation doesn't have a name", () => {
-        test("renders component_variations.hbs without that variation", async (done) => {
+        test("renders iframe_component.hbs without that variation", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: "component7",
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
@@ -804,19 +798,17 @@ describe("lib/render/index", () => {
       });
 
       describe("component has data, but variation doesn't have data", () => {
-        test("renders component_variations.hbs", async (done) => {
+        test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: "component9",
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             variations: [
               {
@@ -859,19 +851,17 @@ describe("lib/render/index", () => {
 
     describe("component doesn't have variations", () => {
       describe("embedded=true", () => {
-        test("renders component_variations.hbs", async (done) => {
+        test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: "component2",
             embedded: true,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             a11yTestsPreload: true,
             folder: "tests/mocks/srcFolder/component2",
@@ -903,19 +893,17 @@ describe("lib/render/index", () => {
       });
 
       describe("embedded=false", () => {
-        test("renders component_variations.hbs", async (done) => {
+        test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
 
-          await render.renderComponentVariations({
+          await render.renderIframeComponent({
             app,
             res,
             file: "component2",
             embedded: false,
           });
 
-          expect(res.render.mock.calls[0][0]).toEqual(
-            "component_variations.hbs"
-          );
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             documentation: undefined,
             a11yTestsPreload: true,
@@ -948,16 +936,16 @@ describe("lib/render/index", () => {
     });
 
     describe("component doesn't have json data", () => {
-      test("renders component_variations.hbs", async (done) => {
+      test("renders iframe_component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponentVariations({
+        await render.renderIframeComponent({
           app,
           res,
           file: "component4",
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_variations.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           a11yTestsPreload: true,
           folder: "tests/mocks/srcFolder/component4",
@@ -988,15 +976,15 @@ describe("lib/render/index", () => {
     });
   });
 
-  describe("renderComponentOverview", () => {
+  describe("renderIframeIndex", () => {
     describe("with global data", () => {
-      test("renders component_overview.hbs with the global data merged with the components data", async (done) => {
+      test("renders iframe_index.hbs with the global data merged with the components data", async (done) => {
         addGlobalData();
         res.render = jest.fn();
 
-        await render.renderComponentOverview({ app, res, embedded: false });
+        await render.renderIframeIndex({ app, res, embedded: false });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_overview.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
@@ -1060,12 +1048,12 @@ describe("lib/render/index", () => {
     });
 
     describe("embedded=true", () => {
-      test("renders component_overview.hbs", async (done) => {
+      test("renders iframe_index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponentOverview({ app, res, embedded: true });
+        await render.renderIframeIndex({ app, res, embedded: true });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_overview.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
@@ -1129,12 +1117,12 @@ describe("lib/render/index", () => {
     });
 
     describe("embedded=false", () => {
-      test("renders component_overview.hbs", async (done) => {
+      test("renders iframe_index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponentOverview({ app, res, embedded: false });
+        await render.renderIframeIndex({ app, res, embedded: false });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_overview.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           components: [
             {
@@ -1198,19 +1186,21 @@ describe("lib/render/index", () => {
     });
   });
 
-  describe("renderComponentNotFound", () => {
+  describe("renderIframe404", () => {
     describe("embedded=true", () => {
-      test("renders component_frame.hbs", async (done) => {
+      test("renders iframe_component_variation.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponentNotFound({
+        await render.renderIframe404({
           app,
           res,
           embedded: true,
           target: component,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component_frame.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual(
+          "iframe_component_variation.hbs"
+        );
         expect(res.render.mock.calls[0][1]).toEqual({
           html: `<p class="MiyagiError">${component} not found.</p>`,
           theme: {},
@@ -1231,14 +1221,14 @@ describe("lib/render/index", () => {
       test("renders component.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderComponentNotFound({
+        await render.renderIframe404({
           app,
           res,
           embedded: false,
           target: component,
         });
 
-        expect(res.render.mock.calls[0][0]).toEqual("component.hbs");
+        expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: `<p class="MiyagiError">${component} not found.</p>`,
           theme: {},

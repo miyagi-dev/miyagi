@@ -55,7 +55,7 @@ function registerThemeLogo(app) {
 
 /**
  * @param {object} app - the express instance
- * @param files
+ * @param {("css"|"js")} files - the type of user assets that should be registered
  */
 function registerUserFiles(app, files) {
   if (app.get("config").assets) {
@@ -70,7 +70,7 @@ function registerUserFiles(app, files) {
 
 /**
  * @param {object} app - the express instance
- * @param nodeModule
+ * @param {string} nodeModule - node module path basename
  */
 function registerNodeModule(app, nodeModule) {
   app.use(

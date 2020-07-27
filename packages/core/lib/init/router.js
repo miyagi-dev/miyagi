@@ -11,7 +11,8 @@ const render = require("../render");
 
 /**
  * @param {object} app - the express instance
- * @param component
+ * @param {string} component - the component directory
+ * @returns {object} the mock data of the given component
  */
 function getDataForComponent(app, component) {
   return app.get("state").fileContents[
@@ -29,7 +30,8 @@ function getDataForComponent(app, component) {
 
 /**
  * @param {object} app - the express instance
- * @param component
+ * @param {string} component - the component directory
+ * @returns {boolean} is true if the requested component is stored in state.partials
  */
 function checkIfRequestedComponentIsValid(app, component) {
   const { partials } = app.get("state");
@@ -40,8 +42,9 @@ function checkIfRequestedComponentIsValid(app, component) {
 }
 
 /**
- * @param data
- * @param variation
+ * @param {object} data - mock data object
+ * @param {string} variation - requested variation name
+ * @returns {boolean} is true of the requested variation is in the given mock data
  */
 function checkIfDataIncludesVariation(data, variation) {
   return (
@@ -53,8 +56,9 @@ function checkIfDataIncludesVariation(data, variation) {
 
 /**
  * @param {object} app - the express instance
- * @param component
- * @param variation
+ * @param {string} component - the component directory
+ * @param {string} variation - the requested variation name
+ * @returns {boolean} is true if the requested variation exists in the mock data of the given component
  */
 function checkIfRequestedVariationIsValid(app, component, variation) {
   const data = getDataForComponent(app, component);
@@ -75,7 +79,8 @@ function checkIfRequestedVariationIsValid(app, component, variation) {
 }
 
 /**
- * @param middleware
+ * @param {Function} middleware - async callback function for requests
+ * @returns {Function} wrapped async function
  */
 function awaitHandlerFactory(middleware) {
   return async (req, res, next) => {
@@ -94,19 +99,19 @@ module.exports = function Router(app) {
       const { file, variation } = req.query;
 
       if (file === "all") {
-        await render.renderMain({ app, res });
+        await render.renderMainIndex({ app, res });
       } else if (checkIfRequestedComponentIsValid(app, file)) {
         if (variation) {
           if (checkIfRequestedVariationIsValid(app, file, variation)) {
-            await render.renderMainWithComponent({ app, res, file, variation });
+            await render.renderMainComponent({ app, res, file, variation });
           } else {
-            await render.renderMainWith404({ app, res, file, variation });
+            await render.renderMain404({ app, res, file, variation });
           }
         } else {
-          await render.renderMainWithComponent({ app, res, file });
+          await render.renderMainComponent({ app, res, file });
         }
       } else {
-        await render.renderMainWith404({ app, res, file, variation });
+        await render.renderMain404({ app, res, file, variation });
       }
     })
   );
@@ -117,11 +122,11 @@ module.exports = function Router(app) {
       const { file, variation, embedded } = req.query;
 
       if (file === "all") {
-        await render.renderComponentOverview({ app, res, embedded });
+        await render.renderIframeIndex({ app, res });
       } else if (checkIfRequestedComponentIsValid(app, file)) {
         if (variation) {
           if (checkIfRequestedVariationIsValid(app, file, variation)) {
-            await render.renderComponent({
+            await render.renderIframeVariation({
               app,
               res,
               file,
@@ -129,7 +134,7 @@ module.exports = function Router(app) {
               embedded,
             });
           } else {
-            await render.renderComponentNotFound({
+            await render.renderIframe404({
               app,
               res,
               embedded,
@@ -137,10 +142,10 @@ module.exports = function Router(app) {
             });
           }
         } else {
-          await render.renderComponentVariations({ app, res, file, embedded });
+          await render.renderIframeComponent({ app, res, file });
         }
       } else {
-        await render.renderComponentNotFound({
+        await render.renderIframe404({
           app,
           res,
           embedded,
@@ -153,13 +158,13 @@ module.exports = function Router(app) {
   app.get(
     "/",
     awaitHandlerFactory(async (req, res) => {
-      await render.renderMain({ app, res });
+      await render.renderMainIndex({ app, res });
     })
   );
 
   app.all("*", async (req, res) => {
     if (req.headers.referer) {
-      await render.renderComponentNotFound({
+      await render.renderIframe404({
         app,
         res,
         embedded: true,

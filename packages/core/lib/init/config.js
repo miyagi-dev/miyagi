@@ -11,7 +11,8 @@ const appConfig = require("../config.json");
 const { defaultUserConfig } = appConfig;
 
 /**
- * @param path
+ * @param {string} path - unsanitized directory or file path
+ * @returns {string} the given path sanitized
  */
 function sanitizePath(path) {
   let sanitizedPath = path;
@@ -34,7 +35,8 @@ function sanitizePath(path) {
 }
 
 /**
- * @param strOrArr
+ * @param {string|Array} strOrArr - file path or array of file paths
+ * @returns {Array} the given file path in an array or simply the given array
  */
 function arrayfy(strOrArr) {
   const arr = typeof strOrArr === "string" ? [strOrArr] : strOrArr;
@@ -43,15 +45,17 @@ function arrayfy(strOrArr) {
 }
 
 /**
- * @param obj
+ * @param {any} obj - any value provided by the user
+ * @returns {boolean} is true if the given object is a real object
  */
 function objectIsRealObject(obj) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
 /**
- * @param strOrArrOrObj
- * @param assetType
+ * @param {string|Array|object} strOrArrOrObj - user assets files, either one file as string, an array of files or an object with strings or array for each NODE_ENV
+ * @param {("css"|"js")} assetType - the current asset type
+ * @returns {string[]} converts the given object to an array of asset file path strings
  */
 function getAssetFilesArray(strOrArrOrObj, assetType) {
   let files = strOrArrOrObj;
@@ -78,6 +82,10 @@ function getAssetFilesArray(strOrArrOrObj, assetType) {
   return files.map(sanitizePath);
 }
 
+/**
+ * @param {object} [userConfig] the unmerged user configuration
+ * @returns {object} the user configuration merged with the default configuration
+ */
 module.exports = (userConfig = {}) => {
   const config = { ...userConfig };
 

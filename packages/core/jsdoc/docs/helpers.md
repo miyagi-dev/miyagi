@@ -6,8 +6,8 @@ Module for globally used helper functions
 
 * [helpers](#module_helpers)
     * [.removeInternalKeys([obj])](#module_helpers.removeInternalKeys) ⇒ <code>object</code>
-    * [.getSingleFileExtension(extension)](#module_helpers.getSingleFileExtension) ⇒ <code>string</code>
-    * [.normalizeString(str)](#module_helpers.normalizeString) ⇒ <code>string</code>
+    * [.getSingleFileExtension([extension])](#module_helpers.getSingleFileExtension) ⇒ <code>string</code>
+    * [.normalizeString([str])](#module_helpers.normalizeString) ⇒ <code>string</code>
     * [.getResolvedFileName(nameInConfig, fileName)](#module_helpers.getResolvedFileName) ⇒ <code>string</code>
     * [.cloneDeep(obj)](#module_helpers.cloneDeep) ⇒ <code>object</code>
     * [.getFullPathFromShortPath(app, shortPath)](#module_helpers.getFullPathFromShortPath) ⇒ <code>string</code>
@@ -37,25 +37,27 @@ Removes all keys starting with $ from an object
 
 <a name="module_helpers.getSingleFileExtension"></a>
 
-### helpers.getSingleFileExtension(extension) ⇒ <code>string</code>
+### helpers.getSingleFileExtension([extension]) ⇒ <code>string</code>
 Returns everything after the last "." of a file extension (e.g. `html.twig` -> `twig`)
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - the last part of a the file extension  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| extension | <code>string</code> | File extension with like `twig` or `html.twig` |
+| [extension] | <code>string</code> | File extension like `twig` or `html.twig` |
 
 <a name="module_helpers.normalizeString"></a>
 
-### helpers.normalizeString(str) ⇒ <code>string</code>
+### helpers.normalizeString([str]) ⇒ <code>string</code>
 Normalizes a string be replacing whitespace, underscore, / etc with - and lowercases it
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - the normalized string  
 
-| Param | Type |
-| --- | --- |
-| str | <code>string</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| [str] | <code>string</code> | string that should be normalized |
 
 <a name="module_helpers.getResolvedFileName"></a>
 
@@ -63,6 +65,7 @@ Normalizes a string be replacing whitespace, underscore, / etc with - and lowerc
 If '<component>' is set as the file name in the config, it returns the given file name, otherwise it returns the value from the config
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - the filename based on the configuration file  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -75,10 +78,11 @@ If '<component>' is set as the file name in the config, it returns the given fil
 Creates a deep clone of a object using internal v8 methods
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>object</code> - clone of rhe given object  
 
-| Param | Type |
-| --- | --- |
-| obj | <code>object</code> | 
+| Param | Type | Description |
+| --- | --- | --- |
+| obj | <code>object</code> | the object to clone |
 
 <a name="module_helpers.getFullPathFromShortPath"></a>
 
@@ -86,11 +90,12 @@ Creates a deep clone of a object using internal v8 methods
 Accepts a path relative from the config.components.folder and returns the complete path based on the file system
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - absolute file path  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| shortPath | <code>string</code> |  |
+| shortPath | <code>string</code> | a relative file path based from the components folder |
 
 <a name="module_helpers.getShortPathFromFullPath"></a>
 
@@ -98,11 +103,12 @@ Accepts a path relative from the config.components.folder and returns the comple
 Accepts an absolute (file system based) path and returns the short path relative from config.components.folder
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - relative file path based from the components folder  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| fullPath | <code>string</code> |  |
+| fullPath | <code>string</code> | absolute file path |
 
 <a name="module_helpers.getDataPathFromTemplatePath"></a>
 
@@ -110,11 +116,12 @@ Accepts an absolute (file system based) path and returns the short path relative
 Accepts a template file path and returns the path to the corresponding mock file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - file path to the corresponding mock file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | file path to a template file |
 
 <a name="module_helpers.getDocumentationPathFromTemplatePath"></a>
 
@@ -122,11 +129,12 @@ Accepts a template file path and returns the path to the corresponding mock file
 Accepts a template file path and returns the path to the corresponding documentation file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - file path to the corresponding doc file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | file path to a template file |
 
 <a name="module_helpers.getInfoPathFromTemplatePath"></a>
 
@@ -134,11 +142,12 @@ Accepts a template file path and returns the path to the corresponding documenta
 Accepts a template file path and returns the path to the corresponding info file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - file path to the corresponding info file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | file path to a template file |
 
 <a name="module_helpers.getSchemaPathFromTemplatePath"></a>
 
@@ -146,11 +155,12 @@ Accepts a template file path and returns the path to the corresponding info file
 Accepts a template file path and returns the path to the corresponding schema file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - file path to the corresponding schema file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | file path to a template file |
 
 <a name="module_helpers.fileIsDataFile"></a>
 
@@ -158,11 +168,12 @@ Accepts a template file path and returns the path to the corresponding schema fi
 Accepts a file path and checks if it is a mock file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>boolean</code> - is true if the given file is a mock file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | path to any type of file |
 
 <a name="module_helpers.fileIsDocumentationFile"></a>
 
@@ -170,11 +181,12 @@ Accepts a file path and checks if it is a mock file
 Accepts a file path and checks if it is a documentation file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>boolean</code> - is true if the given file is a doc file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | path to any type of file |
 
 <a name="module_helpers.fileIsInfoFile"></a>
 
@@ -182,11 +194,12 @@ Accepts a file path and checks if it is a documentation file
 Accepts a file path and checks if it is an info file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>boolean</code> - is true if the given file is a info file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | path to any type of file |
 
 <a name="module_helpers.fileIsSchemaFile"></a>
 
@@ -194,11 +207,12 @@ Accepts a file path and checks if it is an info file
 Accepts a file path and checks if it is a schema file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>boolean</code> - is true if the given file is a schema file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | path to any type of file |
 
 <a name="module_helpers.fileIsAssetFile"></a>
 
@@ -206,11 +220,12 @@ Accepts a file path and checks if it is a schema file
 Accepts a file path and checks if it is component js or css file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>boolean</code> - is true if the given file is a css or js file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | path to any type of file |
 
 <a name="module_helpers.fileIsTemplateFile"></a>
 
@@ -218,9 +233,10 @@ Accepts a file path and checks if it is component js or css file
 Accepts a file path and returns checks if it is a template file
 
 **Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>boolean</code> - is true if the given file is a template file  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| filePath | <code>string</code> |  |
+| filePath | <code>string</code> | path to any type of file |
 

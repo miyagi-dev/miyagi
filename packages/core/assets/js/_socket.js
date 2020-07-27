@@ -1,7 +1,7 @@
 /* globals io */
 
 /**
- * @param reloadParent
+ * @param {boolean} reloadParent - defines if the parent window instead of the current window should be reloaded
  */
 function fileChangedCallback(reloadParent) {
   setTimeout(() => {

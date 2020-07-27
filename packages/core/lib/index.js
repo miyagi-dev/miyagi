@@ -116,7 +116,7 @@ function getCliArgs(args) {
  * @param {Array} possibleExtensions - an array of possible template files extensions
  * @param {string} folder - the component folder from the user configuration
  * @param {Array} ignores - the folders to ignore from the user configuration
- * @returns {Array} an array of template files extension found in the component folder
+ * @returns {Promise<Array>} an array of template files extension found in the component folder
  */
 async function getAllAvailableTemplateExtensions(
   possibleExtensions,
@@ -143,7 +143,7 @@ async function getAllAvailableTemplateExtensions(
  * Returns the template files extension that belongs to a given engine
  *
  * @param {string} engineName - the engine name from the user configuration
- * @returns {string} the related template files extension
+ * @returns {{engine: string, extension: string}} the related template files extension
  */
 function guessExtensionFromEngine(engineName) {
   return engines.find(({ engine }) => engine === engineName);
@@ -153,7 +153,7 @@ function guessExtensionFromEngine(engineName) {
  * Returns the engine name that belongs to a given extension
  *
  * @param {string} extension - the file extension from the user configuration
- * @returns {string} the related engine name
+ * @returns {{engine: string, extension: string}} the related engine name
  */
 function guessEngineFromExtension(extension) {
   return engines.find((engine) => engine.extension === extension);
@@ -164,7 +164,7 @@ function guessEngineFromExtension(extension) {
  * returns an object with engine.name and files.templates.extension
  *
  * @param {object} config - the user configuration object
- * @returns {object|null} is either an object with `files` and `engine` or `null` if guessing failed
+ * @returns {Promise<{files: object, engine: object}|null>} is either an object with `files` and `engine` or `null` if guessing failed
  */
 async function guessEngineAndExtensionFromFiles(config) {
   const extensions = await getAllAvailableTemplateExtensions(
@@ -289,7 +289,7 @@ function updateConfigWithGuessedEngineBasedOnExtension(config) {
  * the component folder and looking for possible template files.
  *
  * @param {object} config - the user configuration object
- * @returns {object|boolean} is either the updated config or false if guessing failed
+ * @returns {Promise<object|boolean>} is either the updated config or false if guessing failed
  */
 async function updateConfigWithGuessedEngineAndExtensionBasedOnFiles(config) {
   log("info", messages.tryingToGuessEngineAndExtension);
@@ -316,9 +316,9 @@ async function updateConfigWithGuessedEngineAndExtensionBasedOnFiles(config) {
  * Updates the config with smartly guessed template extension if missing
  * and tpls are not skipped for generating a component
  *
- * @param {object} config - the user config object
+ * @param {object} config - the user configuration object
  * @param {object} args - the cli args
- * @returns {object} the updated config
+ * @returns {Promise<object>} the updated config
  */
 async function updateConfigForComponentGeneratorIfNecessary(config, args) {
   if (
@@ -343,8 +343,8 @@ async function updateConfigForComponentGeneratorIfNecessary(config, args) {
  * Updates the config with smartly guessed template extension and/or template engine
  * if missing
  *
- * @param {object} config - the user config object
- * @returns {object} the updated config
+ * @param {object} config - the user configuration object
+ * @returns {Promise<object>} the updated config
  */
 async function updateConfigForRendererIfNecessary(config) {
   if (

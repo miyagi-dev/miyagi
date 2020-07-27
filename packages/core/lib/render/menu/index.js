@@ -8,9 +8,9 @@ const list = require("./list.js");
 
 /**
  * @param {object} app - the express instance
- * @param children
+ * @param {Array} children - all items in the menu
  * @param {object} request - the request object
- * @param index
+ * @param {number} index - the depth level in the navigation
  * @returns {string} the html of the menu
  */
 function render(app, children, request, index) {

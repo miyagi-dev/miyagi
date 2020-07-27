@@ -12,9 +12,9 @@ const menuHelpers = require("./helpers.js");
  * Renders a variation link of a given component
  *
  * @param {boolean} isBuild - renders a build or not
- * @param {object} component
- * @param {object} variation
- * @param {boolean} isCurrent
+ * @param {object} component - the file tree object
+ * @param {object} variation - variation file tree object
+ * @param {boolean} isCurrent - defines if this link should be highlighted
  * @returns {string} the html with the variation link
  */
 function render(isBuild, component, variation, isCurrent) {

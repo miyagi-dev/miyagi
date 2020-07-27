@@ -10,10 +10,11 @@ const helpers = require("../../helpers.js");
 
 /**
  * @param {object} app - the express instance
- * @param json
- * @param fullPath
+ * @param {object} json - mock data object
+ * @param {string} fullPath - the path of the mock file
+ * @returns {Array} all valid variation objects
  */
-function handleFileResult(app, json, fullPath) {
+function getAllValidVariations(app, json, fullPath) {
   let arr = [];
 
   if (json) {
@@ -67,22 +68,23 @@ function handleFileResult(app, json, fullPath) {
 
 /**
  * @param {object} app - the express instance
- * @param jsonChild
+ * @param {string} mockFilePath - mock file to get the data from
+ * @returns {object[]} all valid variations for the given mock file
  */
-function getData(app, jsonChild) {
-  const fullPath = jsonChild.path;
+function getData(app, mockFilePath) {
   let result;
 
-  if (app.get("state").fileContents[fullPath]) {
-    result = app.get("state").fileContents[fullPath];
+  if (app.get("state").fileContents[mockFilePath]) {
+    result = app.get("state").fileContents[mockFilePath];
   }
 
-  return handleFileResult(app, result, fullPath);
+  return getAllValidVariations(app, result, mockFilePath);
 }
 
 /**
  * @param {object} app - the express instance
- * @param obj
+ * @param {object} obj - file tree object
+ * @returns {Array} all variations for the mock file of the given file tree object
  */
 function getVariations(app, obj) {
   const tplChild = obj.children.find(
@@ -93,17 +95,16 @@ function getVariations(app, obj) {
         obj.name
       )}.${app.get("config").files.templates.extension}`
   );
-  const jsonChild =
-    obj.children.find(
-      (o) =>
-        o.name ===
-        `${app.get("config").files.mocks.name}.${
-          app.get("config").files.mocks.extension
-        }`
-    ) || {};
+  const jsonChild = obj.children.find(
+    (o) =>
+      o.name ===
+      `${app.get("config").files.mocks.name}.${
+        app.get("config").files.mocks.extension
+      }`
+  );
 
   if (tplChild) {
-    return getData(app, jsonChild);
+    return getData(app, jsonChild ? jsonChild.path : "");
   }
 
   return [];

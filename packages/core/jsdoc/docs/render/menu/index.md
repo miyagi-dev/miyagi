@@ -12,7 +12,7 @@ Module for rendering the menu
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
-| children |  |  |
+| children | <code>Array</code> | all items in the menu |
 | request | <code>object</code> | the request object |
-| index |  |  |
+| index | <code>number</code> | the depth level in the navigation |
 

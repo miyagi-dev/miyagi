@@ -79,9 +79,12 @@ module.exports = function initViewHelpers(app) {
   const { assets, isBuild } = app.get("config");
 
   handlebars.registerHelper("menu", getMenuHtml.bind(app));
-  handlebars.registerHelper("cssFiles", getCssFilesHtml(isBuild, assets.css));
+  handlebars.registerHelper(
+    "cssFiles",
+    getCssFilesHtml.call(null, isBuild, assets.css)
+  );
   handlebars.registerHelper(
     "jsFiles",
-    getJsFilesHtml(isBuild, assets.js, assets.es6Modules)
+    getJsFilesHtml.call(null, isBuild, assets.js, assets.es6Modules)
   );
 };

@@ -54,27 +54,27 @@ afterEach(() => {
 
 describe("lib/init/router()", () => {
   describe("GET /", () => {
-    test("calls renderMain()", (done) => {
-      render.renderMain = jest.fn((done) => done());
+    test("calls renderMainIndex()", (done) => {
+      render.renderMainIndex = jest.fn((done) => done());
 
       request(app)
         .get("/")
         .expect(() => {
-          return expect(render.renderMain).toHaveBeenCalled();
+          return expect(render.renderMainIndex).toHaveBeenCalled();
         })
         .end(done);
     });
   });
 
   describe("GET /component?file=all", () => {
-    test("calls renderComponentOverview()", (done) => {
-      render.renderComponentOverview = jest.fn((done) => done());
+    test("calls renderIframeIndex()", (done) => {
+      render.renderIframeIndex = jest.fn((done) => done());
 
       request(app)
         .get("/component")
         .query("file=all")
         .expect(() => {
-          return expect(render.renderComponentOverview).toHaveBeenCalled();
+          return expect(render.renderIframeIndex).toHaveBeenCalled();
         })
         .end(done);
     });
@@ -83,46 +83,44 @@ describe("lib/init/router()", () => {
   describe("GET /component?file=", () => {
     describe("with valid file value", () => {
       describe("without a variation value", () => {
-        test("calls renderComponentVariations()", (done) => {
-          render.renderComponentVariations = jest.fn((done) => done());
+        test("calls renderIframeComponent()", (done) => {
+          render.renderIframeComponent = jest.fn((done) => done());
 
           request(app)
             .get("/component")
             .query(`file=${path.dirname(component)}`)
             .expect(() => {
-              return expect(
-                render.renderComponentVariations
-              ).toHaveBeenCalled();
+              return expect(render.renderIframeComponent).toHaveBeenCalled();
             })
             .end(done);
         });
       });
 
       describe("with a valid variation value", () => {
-        test("calls renderComponent()", (done) => {
-          render.renderComponent = jest.fn((done) => done());
+        test("calls renderIframeVariation()", (done) => {
+          render.renderIframeVariation = jest.fn((done) => done());
 
           request(app)
             .get("/component")
             .query(`file=${path.dirname(component)}`)
             .query(`variation=someVariation`)
             .expect(() => {
-              return expect(render.renderComponent).toHaveBeenCalled();
+              return expect(render.renderIframeVariation).toHaveBeenCalled();
             })
             .end(done);
         });
       });
 
       describe("with an invalid variation value", () => {
-        test("calls renderComponentNotFound()", (done) => {
-          render.renderComponentNotFound = jest.fn((done) => done());
+        test("calls renderIframe404()", (done) => {
+          render.renderIframe404 = jest.fn((done) => done());
 
           request(app)
             .get("/component")
             .query(`file=${path.dirname(component)}`)
             .query(`variation=invalidVariation`)
             .expect(() => {
-              return expect(render.renderComponentNotFound).toHaveBeenCalled();
+              return expect(render.renderIframe404).toHaveBeenCalled();
             })
             .end(done);
         });
@@ -130,14 +128,14 @@ describe("lib/init/router()", () => {
     });
 
     describe("with invalid file value", () => {
-      test("calls renderComponentNotFound()", (done) => {
-        render.renderComponentNotFound = jest.fn((done) => done());
+      test("calls renderIframe404()", (done) => {
+        render.renderIframe404 = jest.fn((done) => done());
 
         request(app)
           .get("/component")
           .query(`file=invalidComponent`)
           .expect(() => {
-            return expect(render.renderComponentNotFound).toHaveBeenCalled();
+            return expect(render.renderIframe404).toHaveBeenCalled();
           })
           .end(done);
       });
@@ -146,14 +144,14 @@ describe("lib/init/router()", () => {
 
   describe("GET /show?file=", () => {
     describe("with file=all", () => {
-      test("calls renderMain()", (done) => {
-        render.renderMain = jest.fn((done) => done());
+      test("calls renderMainIndex()", (done) => {
+        render.renderMainIndex = jest.fn((done) => done());
 
         request(app)
           .get("/show")
           .query(`file=all`)
           .expect(() => {
-            return expect(render.renderMain).toHaveBeenCalled();
+            return expect(render.renderMainIndex).toHaveBeenCalled();
           })
           .end(done);
       });
@@ -161,44 +159,44 @@ describe("lib/init/router()", () => {
 
     describe("with valid file value", () => {
       describe("without a variation value", () => {
-        test("calls renderMainWithComponent()", (done) => {
-          render.renderMainWithComponent = jest.fn((done) => done());
+        test("calls renderMainComponent()", (done) => {
+          render.renderMainComponent = jest.fn((done) => done());
 
           request(app)
             .get("/show")
             .query(`file=${path.dirname(component)}`)
             .expect(() => {
-              return expect(render.renderMainWithComponent).toHaveBeenCalled();
+              return expect(render.renderMainComponent).toHaveBeenCalled();
             })
             .end(done);
         });
       });
 
       describe("with a valid variation value", () => {
-        test("calls renderMainWithComponent()", (done) => {
-          render.renderMainWithComponent = jest.fn((done) => done());
+        test("calls renderMainComponent()", (done) => {
+          render.renderMainComponent = jest.fn((done) => done());
 
           request(app)
             .get("/show")
             .query(`file=${path.dirname(component)}`)
             .query(`variation=someVariation`)
             .expect(() => {
-              return expect(render.renderMainWithComponent).toHaveBeenCalled();
+              return expect(render.renderMainComponent).toHaveBeenCalled();
             })
             .end(done);
         });
       });
 
       describe("with an invalid variation value", () => {
-        test("calls renderMainWith404()", (done) => {
-          render.renderMainWith404 = jest.fn((done) => done());
+        test("calls renderMain404()", (done) => {
+          render.renderMain404 = jest.fn((done) => done());
 
           request(app)
             .get("/show")
             .query(`file=${path.dirname(component)}`)
             .query(`variation=invalidVariation`)
             .expect(() => {
-              return expect(render.renderMainWith404).toHaveBeenCalled();
+              return expect(render.renderMain404).toHaveBeenCalled();
             })
             .end(done);
         });
@@ -206,14 +204,14 @@ describe("lib/init/router()", () => {
     });
 
     describe("with invalid file value", () => {
-      test("calls renderMainWith404()", (done) => {
-        render.renderMainWith404 = jest.fn((done) => done());
+      test("calls renderMain404()", (done) => {
+        render.renderMain404 = jest.fn((done) => done());
 
         request(app)
           .get("/show")
           .query(`file=invalidComponent`)
           .expect(() => {
-            return expect(render.renderMainWith404).toHaveBeenCalled();
+            return expect(render.renderMain404).toHaveBeenCalled();
           })
           .end(done);
       });
@@ -222,7 +220,7 @@ describe("lib/init/router()", () => {
 
   describe("GET /somethingInvalid", () => {
     test("redirects to /", (done) => {
-      render.renderMainWith404 = jest.fn((done) => done());
+      render.renderMain404 = jest.fn((done) => done());
 
       request(app)
         .get("/somethingInvalid")

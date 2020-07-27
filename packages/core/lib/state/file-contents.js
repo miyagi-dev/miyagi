@@ -19,8 +19,8 @@ const readFileAsync = promisify(fs.readFile);
 /**
  * Makes sure a requiring a module does not return a cached version
  *
- * @param {string} module
- * @returns {any}
+ * @param {string} module - cjs module name
+ * @returns {object} the required cjs module
  */
 function requireUncached(module) {
   delete require.cache[require.resolve(module)];
@@ -30,9 +30,9 @@ function requireUncached(module) {
 /**
  * Checks if a given array of file paths includes a given file path
  *
- * @param {string} file
- * @param {Array} fileNames
- * @returns {boolean}
+ * @param {string} file - file path string
+ * @param {Array} fileNames - array of file path string
+ * @returns {boolean} is true if given array includes given file path
  */
 function checkIfFileNamesIncludeFile(file, fileNames) {
   return fileNames.includes(path.basename(file));
@@ -44,7 +44,7 @@ function checkIfFileNamesIncludeFile(file, fileNames) {
  *
  * @param {object} components - the components object from the config
  * @param {object} files - the files object from the config
- * @returns {string[]} an array of file paths
+ * @returns {Promise<string[]>} an array of file paths
  */
 async function getFilePaths(components, files) {
   return await stateHelpers.getFiles(
@@ -71,10 +71,10 @@ async function getFilePaths(components, files) {
 
 /**
  * Calls the export function of a CJS module and returns its return value
- * or returns the return value directly if it is not a funcation
+ * or returns the return value directly if it is not a function
  *
- * @param {string} fileName
- * @returns {any}
+ * @param {string} fileName - file path string
+ * @returns {Promise<string>} - the default export of the cjs module or - if the default export is a function - its return value
  */
 async function getJsFileContent(fileName) {
   const file = requireUncached(fileName);
@@ -86,8 +86,8 @@ async function getJsFileContent(fileName) {
  * Returns the content of a YAML file parsed as JSON object
  *
  * @param {object} app - the express instance
- * @param {string} fileName
- * @returns {object}
+ * @param {string} fileName - path to a yaml file
+ * @returns {object} the content of the given file as an object
  */
 function getYamlFileContent(app, fileName) {
   let result;
@@ -112,8 +112,8 @@ function getYamlFileContent(app, fileName) {
  * Returns the parsed content of a JSON file.
  *
  * @param {object} app - the express instance
- * @param {string} fileName
- * @returns {object}
+ * @param {string} fileName - path to a json file
+ * @returns {Promise<object>} the parsed content of the given file
  */
 async function getParsedJsonFileContent(app, fileName) {
   let result;
@@ -150,8 +150,8 @@ async function getParsedJsonFileContent(app, fileName) {
 /**
  * Returns the as HTML rendered content of markdown files.
  *
- * @param {string} fileName
- * @returns {string}
+ * @param {string} fileName - path to a markdown file
+ * @returns {Promise<string>} the markdown of the given file converted into HTML
  */
 async function getConvertedMarkdownFileContent(fileName) {
   const md = new Markdown({ html: true });
@@ -177,8 +177,8 @@ async function getConvertedMarkdownFileContent(fileName) {
  * and returns the (converted) file content.
  *
  * @param {object} app - the express instance
- * @param {string} fileName
- * @returns {any}
+ * @param {string} fileName - path to a file of any type
+ * @returns {Promise<string|object|Array>} content of the given file based on its type
  */
 async function readFile(app, fileName) {
   let result;
@@ -205,7 +205,7 @@ async function readFile(app, fileName) {
  * and their content.
  *
  * @param {object} app - the express instance
- * @returns {Promise}
+ * @returns {Promise} gets resolved with the content of all docs, mocks, schema, info files
  */
 async function getFileContents(app) {
   const fileContents = {};
