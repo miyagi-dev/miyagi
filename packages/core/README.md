@@ -20,11 +20,11 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 
 ### Handlebars
 
-[handlebars.demo.miyagi.dev](https://handlebars.demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/handlebars))
+[handlebars.demos.miyagi.dev](https://handlebars.demos.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/handlebars))
 
 ### Web Components
 
-[web-components.demo.miyagi.dev](https://web-components.demo.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/web-components))
+[web-components.demos.miyagi.dev](https://web-components.demos.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/web-components))
 
 ## Documentation
 
