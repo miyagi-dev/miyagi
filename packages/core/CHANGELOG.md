@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.6.2](https://github.com/mgrsskls/miyagi/compare/core/v1.6.1...core/v1.6.2) (2020-07-30)
+
+
+### Bug Fixes
+
+* **core:** fix validating schema when passed data is undefined instead of {} ([24289b0](https://github.com/mgrsskls/miyagi/commit/24289b03d28d028007b28948b3612017de64930c))
+
 ### [1.6.1](https://github.com/mgrsskls/miyagi/compare/core/v1.6.0...core/v1.6.1) (2020-07-23)
 
 
