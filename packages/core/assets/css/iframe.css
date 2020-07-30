@@ -17,6 +17,9 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  color: var(--Miyagi-color);
+  font-family: var(--Miyagi-fontFamily);
+  line-height: 1;
 }
 
 .MiyagiWrapper {
@@ -25,20 +28,18 @@ body {
   width: 100%;
 }
 
-.MiyagiInformation,
-.MiyagiDocumentation,
-.MiyagiDocumentation *,
-.Miyagi-sectionTitle,
-.MiyagiIframe-newTabLink,
+.MiyagiContent,
+.MiyagiContent *,
+.MiyagiContent a,
+.MiyagiComponent-file,
 .MiyagiComponent-schemaValidation,
-.MiyagiStatus,
-.Miyagi-code,
-.Miyagi-code code {
+.MiyagiIframe-newTabLink {
   all: revert;
 }
 
-.MiyagiDocumentation a {
-  text-decoration: underline;
+.MiyagiContent a,
+.MiyagiIframe-newTabLink {
+  color: inherit;
 }
 
 .MiyagiDocumentation code,
@@ -46,32 +47,15 @@ body {
   font-size-adjust: 0.525;
 }
 
-.MiyagiInformation,
 .MiyagiDocumentation,
-.MiyagiDocumentation a,
-.MiyagiDocumentation a:hover,
-.MiyagiDocumentation a:focus,
-.MiyagiDocumentation a:active,
-.Miyagi-sectionTitle,
-.MiyagiIframe-newTabLink,
-.MiyagiComponent-schemaValidation,
-.MiyagiStatus {
-  color: var(--Miyagi-color);
-  font-family: var(--Miyagi-fontFamily);
-}
-
-.MiyagiDocumentation,
-.MiyagiDocumentation *,
 .MiyagiInformation,
-.Miyagi-code,
-.Miyagi-code * {
+.Miyagi-code code {
   line-height: calc(1ex / 0.32);
 }
 
 .MiyagiInformation code,
 .MiyagiDocumentation code,
-.Miyagi-code,
-.Miyagi-code * {
+.Miyagi-code code {
   font-family: "Menlo", "Monaco", monospace;
 }
 
@@ -257,9 +241,6 @@ body {
 .Miyagi-code {
   border: 0.1rem solid #ddd;
   padding: calc(var(--Miyagi-spacing) / 2);
-}
-
-.Miyagi-code[class*="language-"] {
   background: #f8f8f8;
   font-size: 0.875em;
 }

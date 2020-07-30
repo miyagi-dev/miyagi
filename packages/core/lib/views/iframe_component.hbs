@@ -1,30 +1,32 @@
 {{#extend "iframe_default"}}
   {{#content "body"}}
     <div class="MiyagiWrapper">
-      <div class="MiyagiDocumentation">
-        <h1>{{ name }}</h1>
-        {{#if documentation}}
-          {{{documentation}}}
+      <div class="MiyagiContent">
+        <div class="MiyagiDocumentation">
+          <h1>{{ name }}</h1>
+          {{#if documentation}}
+            {{{documentation}}}
+          {{/if}}
+        </div>
+        <h2 class="Miyagi-sectionTitle">Information</h2>
+        <dl class="MiyagiInformation">
+          <div class="MiyagiInformation-wrapper">
+            <dt class="MiyagiInformation-attr">Folder</dt>
+            <dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
+          </div>
+        </dl>
+        {{#if schema}}
+          <link rel="stylesheet" href="miyagi/css/prism.css">
+          <h2 class="Miyagi-sectionTitle">Schema</h2>
+          <pre class="Miyagi-code language-{{schemaType}}"><code>{{{schema}}}</code></pre>
+          {{#if schemaError}}
+            <p class="MiyagiErrorMessage">{{schemaError}}</p>
+          {{/if}}
+        {{/if}}
+        {{#if variations}}
+          <h2 class="Miyagi-sectionTitle">Variations</h2>
         {{/if}}
       </div>
-      <h2 class="Miyagi-sectionTitle">Information</h2>
-      <dl class="MiyagiInformation">
-        <div class="MiyagiInformation-wrapper">
-          <dt class="MiyagiInformation-attr">Folder</dt>
-          <dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
-        </div>
-      </dl>
-      {{#if schema}}
-        <link rel="stylesheet" href="miyagi/css/prism.css">
-        <h2 class="Miyagi-sectionTitle">Schema</h2>
-        <pre class="Miyagi-code language-{{schemaType}}"><code>{{{schema}}}</code></pre>
-        {{#if schemaError}}
-          <p class="MiyagiErrorMessage">{{schemaError}}</p>
-        {{/if}}
-      {{/if}}
-      {{#if variations}}
-        <h2 class="Miyagi-sectionTitle">Variations</h2>
-      {{/if}}
       {{#each variations}}
         <div class="MiyagiComponent">
           <div class="MiyagiComponent-head">
@@ -45,7 +47,9 @@
               </a>
             </div>
           </div>
-          <div class="MiyagiComponent-html">{{{this.html}}}</div>
+          <div class="MiyagiComponent-html">
+            {{{html}}}
+          </div>
         </div>
       {{/each}}
     </div>
