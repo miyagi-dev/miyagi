@@ -59,7 +59,7 @@ module.exports = function validateSchema(app, filePath, dataArray) {
 
     if (validate) {
       for (const entry of dataArray) {
-        const valid = validate(entry.data);
+        const valid = validate(entry.data || {});
 
         if (!valid) {
           log(
