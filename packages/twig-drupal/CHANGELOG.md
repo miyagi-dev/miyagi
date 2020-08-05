@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.2...twig-drupal/v0.1.3) (2020-08-05)
+
+
+### Bug Fixes
+
+* **twig-drupal:** fix drupal attributes for included twig files ([13985b2](https://github.com/mgrsskls/miyagi/commit/13985b24a36b81d1a384e94857a588d5f231c81f))
+
 ### [0.1.2](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.1...twig-drupal/v0.1.2) (2020-07-07)
 
 
