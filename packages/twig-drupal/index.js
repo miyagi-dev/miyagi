@@ -51,8 +51,11 @@ twig.extend(function (Twig) {
 module.exports = {
   engine: twig.twig,
 
-  async extendTemplateData(file) {
-    const opts = await convertTokensToAttributes(file);
+  async extendTemplateData(file, engineOptions) {
+    const opts = await convertTokensToAttributes(
+      file,
+      engineOptions.namespaces
+    );
     const o = {};
 
     Object.entries(opts).forEach(([attr, entries]) => {
@@ -89,9 +92,19 @@ module.exports = {
  * returns an object with all Drupal attributes
  *
  * @param {string} path - twig template path
+ * @param {object} namespaces - the twig namespace object
  * @returns {Promise} gets resolved with an object containing all Drupal attributes
  */
-function convertTokensToAttributes(path) {
+function convertTokensToAttributes(path, namespaces) {
+  if (path.startsWith("@")) {
+    for (const [namespace, dir] of Object.entries(namespaces)) {
+      if (path.startsWith(`@${namespace}`)) {
+        path = path.replace(`@${namespace}`, dir);
+        break;
+      }
+    }
+  }
+
   return new Promise((resolve) => {
     twig.twig({
       path: require("path").join(process.cwd(), path),
@@ -143,14 +156,18 @@ function convertTokensToAttributes(path) {
           });
 
           for (const token of logicTokens) {
-            if (token.token.type === "Twig.logic.type.extends") {
+            if (
+              token.token.type === "Twig.logic.type.extends" ||
+              token.token.type === "Twig.logic.type.include"
+            ) {
               opts = deepMerge(
                 opts,
-                await convertTokensToAttributes(token.token.stack[0].value)
+                await convertTokensToAttributes(
+                  token.token.stack[0].value,
+                  namespaces
+                )
               );
-            }
-
-            if (
+            } else if (
               token.token.type === "Twig.logic.type.block" ||
               token.token.type === "Twig.logic.type.spaceless" ||
               token.token.type === "Twig.logic.type.if"
