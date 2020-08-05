@@ -29,7 +29,8 @@ async function extendTemplateData(config, data, filePath) {
       o = deepMerge(
         o,
         await extension.extendTemplateData(
-          path.join(config.components.folder, fullFilePath)
+          path.join(config.components.folder, fullFilePath),
+          config.engine.options
         )
       );
     }
