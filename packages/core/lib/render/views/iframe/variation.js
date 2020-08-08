@@ -15,8 +15,8 @@ const {
  * @param {object} object.app - the express instance
  * @param {object} object.res - the express response object
  * @param {string} object.file - the component path
- * @param {string} object.variation - the variation name
- * @param {boolean} object.embedded - defines if the component is rendered inside an iframe or not
+ * @param {string} [object.variation] - the variation name
+ * @param {boolean} [object.embedded] - defines if the component is rendered inside an iframe or not
  * @param {Function} [object.cb] - callback function
  * @returns {Promise} gets resolved when the variation has been rendered
  */

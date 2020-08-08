@@ -33,23 +33,24 @@ module.exports = function validateSchema(app, filePath, dataArray) {
       )
       .map((schema) => schema[1]);
 
-    const jsonSchemaValidator = new AJV(
-      deepMerge(
-        {
-          schemas: schemas.map((schema, i) => {
-            if (!schema.$id) {
-              schema.$id = i.toString();
-            }
-            return schema;
-          }),
-        },
-        app.get("config").schema
-      )
-    );
     const validity = [];
     let validate;
+    let jsonSchemaValidator;
 
     try {
+      jsonSchemaValidator = new AJV(
+        deepMerge(
+          {
+            schemas: schemas.map((schema, i) => {
+              if (!schema.$id) {
+                schema.$id = i.toString();
+              }
+              return schema;
+            }),
+          },
+          app.get("config").schema
+        )
+      );
       validate = jsonSchemaValidator.compile(componentSchema);
     } catch (e) {
       const msg = e.toString();

@@ -9,3 +9,12 @@ if (
 ) {
   window.location = location.href.replace("-embedded.html", ".html");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tabs = Array.from(document.querySelectorAll(".MiyagiTabs"));
+  if (tabs.length > 0) {
+    import("./_tabs.js").then((Tabs) => {
+      tabs.forEach((tab) => new Tabs.default(tab));
+    });
+  }
+});

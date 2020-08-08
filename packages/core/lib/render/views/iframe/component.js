@@ -36,6 +36,9 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
   const componentSchema = app.get("state").fileContents[
     helpers.getSchemaPathFromTemplatePath(app, fullFilePath)
   ];
+  const componentMocks = app.get("state").fileContents[
+    helpers.getDataPathFromTemplatePath(app, fullFilePath)
+  ];
 
   let componentSchemaString;
   if (componentSchema) {
@@ -45,6 +48,32 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       componentSchemaString = JSON.stringify(componentSchema, null, 2);
     }
   }
+
+  let componentMocksString;
+  if (componentMocks) {
+    if (app.get("config").files.mocks.extension === "yaml") {
+      componentMocksString = jsonToYaml.stringify(componentMocks);
+    } else {
+      componentMocksString = JSON.stringify(componentMocks, null, 2);
+    }
+  }
+
+  const fileContents = {
+    schema: componentSchema
+      ? {
+          string: componentSchemaString,
+          type: app.get("config").files.schema.extension,
+          selected: true,
+        }
+      : null,
+    mocks: componentMocks
+      ? {
+          string: componentMocksString,
+          type: app.get("config").files.mocks.extension,
+          selected: !componentSchema,
+        }
+      : null,
+  };
 
   let componentName = path.basename(path.dirname(file));
 
@@ -119,10 +148,9 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
           file,
           context: context.filter((entry) => entry !== null),
           componentDocumentation,
-          componentSchema: componentSchemaString,
+          fileContents,
           name: componentName,
           cb,
-          schemaType: app.get("config").files.schema.extension,
           fullFilePath,
         });
       });
@@ -133,10 +161,9 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
         file,
         context,
         componentDocumentation,
-        componentSchema: componentSchemaString,
+        fileContents,
         name: componentName,
         cb,
-        schemaType: app.get("config").files.schema.extension,
         fullFilePath,
       });
     }
@@ -156,10 +183,9 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       file,
       context: [componentData],
       componentDocumentation,
-      componentSchema: componentSchemaString,
+      fileContents,
       name: componentName,
       cb,
-      schemaType: app.get("config").files.schema.extension,
       fullFilePath,
     });
   }
@@ -172,10 +198,17 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
  * @param {string} object.file - short component path
  * @param {Array} object.context - mock data for each variation
  * @param {string} object.componentDocumentation - html string with documentation
- * @param {string} object.componentSchema - html string with schema
+ * @param {object} object.fileContents - file contents object
+ * @param {object} object.fileContents.schema - schema object
+ * @param {string} object.fileContents.schema.string - html string with schema
+ * @param {("yaml"|"js")} object.fileContents.schema.type - the file type of the schema file
+ * @param {boolean} object.fileContents.schema.selected - true if the schema tab should initially be visible
+ * @param {object} object.fileContents.mocks - mocks object
+ * @param {string} object.fileContents.mocks.string - html string with mocks
+ * @param {("yaml"|"js")} object.fileContents.mocks.type - the file type of the mocks file
+ * @param {boolean} object.fileContents.mocks.selected - true if the mocks tab should initially be visible
  * @param {string} object.name - component name
  * @param {Function} object.cb - callback function
- * @param {("yaml"|"js")} object.schemaType - the file type of the schema file
  * @param {string} object.fullFilePath - the absolute component file path
  */
 async function renderVariations({
@@ -184,10 +217,9 @@ async function renderVariations({
   file,
   context,
   componentDocumentation,
-  componentSchema,
+  fileContents,
   name,
   cb,
-  schemaType,
   fullFilePath,
 }) {
   const variations = [];
@@ -266,15 +298,16 @@ async function renderVariations({
         isBuild: app.get("config").isBuild,
         theme: app.get("config").ui.theme,
         documentation: componentDocumentation,
-        schema: componentSchema,
+        schema: fileContents.schema,
+        schemaError:
+          typeof validatedSchema === "string" ? validatedSchema : null,
+        mocks: fileContents.mocks,
+        renderFileTabs: !!(fileContents.schema || fileContents.mocks),
         folder: path.join(
           app.get("config").components.folder,
           file.split(path.sep).slice(0, -1).join("/")
         ),
         name,
-        schemaType,
-        schemaError:
-          typeof validatedSchema === "string" ? validatedSchema : null,
       },
       (err, html) => {
         if (res.send) {

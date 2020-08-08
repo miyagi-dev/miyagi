@@ -5,7 +5,7 @@ const config = require("../../../config.json");
  * @param {object} object.app - the express instance
  * @param {object} object.res - the express response object
  * @param {string} object.file - the component path
- * @param {string} object.variation - the variation name
+ * @param {string} [object.variation] - the variation name
  */
 module.exports = async function renderMain404({ app, res, file, variation }) {
   let iframeSrc = `/component?file=${file}`;

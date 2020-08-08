@@ -546,7 +546,6 @@ describe("lib/render/index", () => {
           app,
           res,
           file: "component1",
-          embedded: true,
         });
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -583,11 +582,28 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          schema: undefined,
+          schema: null,
+          mocks: {
+            type: "json",
+            selected: true,
+            string: `{
+  "component": "component1",
+  "$variants": [
+    {
+      "$name": "variation1",
+      "variation": 1
+    },
+    {
+      "$name": "variation2",
+      "variation": 2
+    }
+  ]
+}`,
+          },
+          renderFileTabs: true,
           name: "component1",
           documentation: undefined,
           theme: {},
-          schemaType: "json",
           schemaError: null,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -605,7 +621,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: path.dirname(component),
-            embedded: true,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -645,11 +660,28 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "component": "component1",
+  "$variants": [
+    {
+      "$name": "variation1",
+      "variation": 1
+    },
+    {
+      "$name": "variation2",
+      "variation": 2
+    }
+  ]
+}`,
+            },
+            renderFileTabs: true,
             name: "component1",
             documentation: undefined,
             theme: {},
-            schemaType: "json",
             schemaError: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -666,7 +698,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: "component3",
-            embedded: true,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -700,9 +731,25 @@ describe("lib/render/index", () => {
             isBuild: undefined,
             documentation: undefined,
             theme: {},
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "$variants": [
+    {
+      "$name": "variation1",
+      "variation": 1
+    },
+    {
+      "$name": "variation2",
+      "variation": 2
+    }
+  ]
+}`,
+            },
+            renderFileTabs: true,
             name: "component3",
-            schemaType: "json",
             schemaError: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -719,7 +766,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: "component6",
-            embedded: true,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -745,9 +791,20 @@ describe("lib/render/index", () => {
             isBuild: undefined,
             documentation: undefined,
             theme: {},
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "$variants": [
+    {
+      "$name": "variation1"
+    }
+  ]
+}`,
+            },
+            renderFileTabs: true,
             name: "component6",
-            schemaType: "json",
             schemaError: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -764,7 +821,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: "component7",
-            embedded: true,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -787,9 +843,21 @@ describe("lib/render/index", () => {
             isBuild: undefined,
             documentation: undefined,
             theme: {},
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "$variants": [
+    {},
+    {
+      "$name": "foo"
+    }
+  ]
+}`,
+            },
+            renderFileTabs: true,
             name: "component7",
-            schemaType: "json",
             schemaError: null,
           });
 
@@ -805,7 +873,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: "component9",
-            embedded: true,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -836,11 +903,23 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "some": "data",
+  "$variants": [
+    {
+      "$name": "variation1"
+    }
+  ]
+}`,
+            },
+            renderFileTabs: true,
             name: "component9",
             documentation: undefined,
             theme: {},
-            schemaType: "json",
             schemaError: null,
           });
 
@@ -858,7 +937,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: "component2",
-            embedded: true,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -872,7 +950,15 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "component": "component2"
+}`,
+            },
+            renderFileTabs: true,
             name: "component2",
             variations: [
               {
@@ -884,7 +970,6 @@ describe("lib/render/index", () => {
                 variation: "default",
               },
             ],
-            schemaType: "json",
             schemaError: null,
           });
 
@@ -900,7 +985,6 @@ describe("lib/render/index", () => {
             app,
             res,
             file: "component2",
-            embedded: false,
           });
 
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
@@ -914,7 +998,15 @@ describe("lib/render/index", () => {
             projectName,
             userProjectName,
             isBuild: undefined,
-            schema: undefined,
+            schema: null,
+            mocks: {
+              type: "json",
+              selected: true,
+              string: `{
+  "component": "component2"
+}`,
+            },
+            renderFileTabs: true,
             name: "component2",
             variations: [
               {
@@ -926,7 +1018,6 @@ describe("lib/render/index", () => {
                 variation: "default",
               },
             ],
-            schemaType: "json",
             schemaError: null,
           });
 
@@ -965,9 +1056,10 @@ describe("lib/render/index", () => {
               variation: "default",
             },
           ],
-          schema: undefined,
+          schema: null,
+          mocks: null,
+          renderFileTabs: false,
           name: "component4",
-          schemaType: "json",
           schemaError: null,
         });
 
@@ -982,7 +1074,7 @@ describe("lib/render/index", () => {
         addGlobalData();
         res.render = jest.fn();
 
-        await render.renderIframeIndex({ app, res, embedded: false });
+        await render.renderIframeIndex({ app, res });
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
@@ -1051,7 +1143,7 @@ describe("lib/render/index", () => {
       test("renders iframe_index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderIframeIndex({ app, res, embedded: true });
+        await render.renderIframeIndex({ app, res });
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
@@ -1120,7 +1212,7 @@ describe("lib/render/index", () => {
       test("renders iframe_index.hbs", async (done) => {
         res.render = jest.fn();
 
-        await render.renderIframeIndex({ app, res, embedded: false });
+        await render.renderIframeIndex({ app, res });
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({

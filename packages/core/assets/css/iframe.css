@@ -49,7 +49,8 @@ body {
 
 .MiyagiDocumentation,
 .MiyagiInformation,
-.Miyagi-code code {
+.Miyagi-code code,
+.MiyagiErrorMessage {
   line-height: calc(1ex / 0.32);
 }
 
@@ -239,10 +240,43 @@ body {
 }
 
 .Miyagi-code {
-  border: 0.1rem solid #ddd;
+  border: 1px solid #ddd;
   padding: calc(var(--Miyagi-spacing) / 2);
   background: #f8f8f8;
   font-size: 0.875em;
+}
+
+.MiyagiTabs-nav {
+  display: flex;
+  list-style: none;
+  margin: 0 0 -1px;
+  padding: 0;
+}
+
+.MiyagiTabs-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  padding: 0 15px;
+  font: inherit;
+  color: inherit;
+  line-height: 2.5;
+  border: 0 solid transparent;
+  border-width: 1px 1px 0 1px;
+}
+
+.MiyagiTabs-button[aria-selected="true"] {
+  background: #f8f8f8;
+  border-color: #ddd;
+}
+
+.MiyagiTabs-tab[hidden] {
+  display: none;
+}
+
+.MiyagiTabs-tab > *:first-child {
+  margin-top: 0;
 }
 
 @media screen and (prefers-reduced-motion) {
