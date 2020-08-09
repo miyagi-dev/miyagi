@@ -13,7 +13,7 @@ describe("lib/helpers", () => {
     "config",
     deepMerge(config.defaultUserConfig, {
       components: {
-        folder: "srcFolder/",
+        folder: "srcFolder",
       },
       files: {
         templates: { extension: "hbs" },

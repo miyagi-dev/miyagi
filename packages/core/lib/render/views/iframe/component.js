@@ -20,25 +20,30 @@ const {
  */
 module.exports = async function renderIframeComponent({ app, res, file, cb }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
-  const fullFilePath = helpers.getFullPathFromShortPath(app, file);
+  const templateFilePath = helpers.getFullPathFromShortPath(app, file);
 
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
-      helpers.getDataPathFromTemplatePath(app, fullFilePath)
+      helpers.getDataPathFromTemplatePath(app, templateFilePath)
     ]
   );
   const componentDocumentation = app.get("state").fileContents[
-    helpers.getDocumentationPathFromTemplatePath(app, fullFilePath)
+    helpers.getDocumentationPathFromTemplatePath(app, templateFilePath)
   ];
   const componentInfo = app.get("state").fileContents[
-    helpers.getInfoPathFromTemplatePath(app, fullFilePath)
+    helpers.getInfoPathFromTemplatePath(app, templateFilePath)
   ];
-  const componentSchema = app.get("state").fileContents[
-    helpers.getSchemaPathFromTemplatePath(app, fullFilePath)
-  ];
-  const componentMocks = app.get("state").fileContents[
-    helpers.getDataPathFromTemplatePath(app, fullFilePath)
-  ];
+  const schemaFilePath = helpers.getSchemaPathFromTemplatePath(
+    app,
+    templateFilePath
+  );
+  const componentSchema = app.get("state").fileContents[schemaFilePath];
+  const mockFilePath = helpers.getDataPathFromTemplatePath(
+    app,
+    templateFilePath
+  );
+  const componentMocks = app.get("state").fileContents[mockFilePath];
+  const componentTemplate = app.get("state").fileContents[templateFilePath];
 
   let componentSchemaString;
   if (componentSchema) {
@@ -64,6 +69,10 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
           string: componentSchemaString,
           type: app.get("config").files.schema.extension,
           selected: true,
+          file: path.join(
+            app.get("config").components.folder,
+            helpers.getShortPathFromFullPath(app, schemaFilePath)
+          ),
         }
       : null,
     mocks: componentMocks
@@ -71,6 +80,21 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
           string: componentMocksString,
           type: app.get("config").files.mocks.extension,
           selected: !componentSchema,
+          file: path.join(
+            app.get("config").components.folder,
+            helpers.getShortPathFromFullPath(app, mockFilePath)
+          ),
+        }
+      : null,
+    template: componentTemplate
+      ? {
+          string: componentTemplate,
+          type: "html",
+          selected: !componentSchema,
+          file: path.join(
+            app.get("config").components.folder,
+            helpers.getShortPathFromFullPath(app, templateFilePath)
+          ),
         }
       : null,
   };
@@ -151,7 +175,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
           fileContents,
           name: componentName,
           cb,
-          fullFilePath,
+          templateFilePath,
         });
       });
     } else {
@@ -164,7 +188,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
         fileContents,
         name: componentName,
         cb,
-        fullFilePath,
+        templateFilePath,
       });
     }
   } else {
@@ -186,7 +210,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       fileContents,
       name: componentName,
       cb,
-      fullFilePath,
+      templateFilePath,
     });
   }
 };
@@ -194,13 +218,20 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
 /**
  * @typedef {object} FileContents
  * @property {object} schema - schema object
- * @property {string} schema.string - html string with schema
- * @property {("yaml"|"js")} schema.type - the file type of the schema file
+ * @property {string} schema.string - string with schema
+ * @property {("yaml"|"json")} schema.type - the file type of the schema file
  * @property {boolean} schema.selected - true if the schema tab should initially be visible
+ * @property {string} schema.file - the schema file path
  * @property {object} mocks - mocks object
- * @property {string} mocks.string - html string with mocks
- * @property {("yaml"|"js")} mocks.type - the file type of the mocks file
+ * @property {string} mocks.string - string with mocks
+ * @property {("yaml"|"js"|"json")} mocks.type - the file type of the mocks file
  * @property {boolean} mocks.selected - true if the mocks tab should initially be visible
+ * @property {string} mocks.file - the mock file path
+ * @property {object} template - template object
+ * @property {string} template.string - string with template
+ * @property {string} template.type - the file type of the template file
+ * @property {boolean} template.selected - true if the template tab should initially be visible
+ * @property {string} template.file - the template file path
  */
 
 /**
@@ -213,7 +244,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
  * @param {FileContents} object.fileContents - file contents object
  * @param {string} object.name - component name
  * @param {Function} object.cb - callback function
- * @param {string} object.fullFilePath - the absolute component file path
+ * @param {string} object.templateFilePath - the absolute component file path
  */
 async function renderVariations({
   app,
@@ -224,7 +255,7 @@ async function renderVariations({
   fileContents,
   name,
   cb,
-  fullFilePath,
+  templateFilePath,
 }) {
   const variations = [];
   const promises = [];
@@ -236,7 +267,7 @@ async function renderVariations({
     promises.push(
       new Promise((resolve) => {
         app.render(
-          fullFilePath,
+          templateFilePath,
           getDataForRenderFunction(app, entry.data),
           (err, result) => {
             const baseName = path.dirname(file);
@@ -306,7 +337,12 @@ async function renderVariations({
         schemaError:
           typeof validatedSchema === "string" ? validatedSchema : null,
         mocks: fileContents.mocks,
-        renderFileTabs: !!(fileContents.schema || fileContents.mocks),
+        template: fileContents.template,
+        renderFileTabs: !!(
+          fileContents.schema ||
+          fileContents.mocks ||
+          fileContents.template
+        ),
         folder: path.join(
           app.get("config").components.folder,
           file.split(path.sep).slice(0, -1).join("/")

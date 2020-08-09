@@ -38,7 +38,7 @@ beforeEach((done) => {
         },
       },
       components: {
-        folder: "srcFolder/",
+        folder: "srcFolder",
       },
     })
   );

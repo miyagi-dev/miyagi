@@ -60,6 +60,7 @@ async function updateFileContents(app, events) {
 
   for (const { event, changedPath } of events) {
     if (
+      helpers.fileIsTemplateFile(app, changedPath) ||
       helpers.fileIsDataFile(app, changedPath) ||
       helpers.fileIsDocumentationFile(app, changedPath) ||
       helpers.fileIsInfoFile(app, changedPath) ||
@@ -122,6 +123,7 @@ async function handleFileChange() {
   ) {
     if (triggeredEventsIncludes(triggeredEvents, ["add", "unlink"])) {
       await setState(appInstance, {
+        fileContents: await updateFileContents(appInstance, triggeredEvents),
         sourceTree: true,
         menu: true,
         partials: true,
@@ -135,6 +137,9 @@ async function handleFileChange() {
       }
       changeFileCallback(true, true);
     } else if (triggeredEventsIncludes(triggeredEvents, ["change"])) {
+      await setState(appInstance, {
+        fileContents: await updateFileContents(appInstance, triggeredEvents),
+      });
       changeFileCallback(true, false);
     }
   } else if (

@@ -133,7 +133,7 @@ beforeEach(() => {
         },
       },
       components: {
-        folder: "tests/mocks/srcFolder/",
+        folder: "tests/mocks/srcFolder",
       },
       projectName: userProjectName,
       ui: {
@@ -541,6 +541,7 @@ describe("lib/render/index", () => {
       test("renders iframe_component.hbs with the global data merged into the variations data", async (done) => {
         addGlobalData();
         res.render = jest.fn();
+        const folder = "tests/mocks/srcFolder/component1";
 
         await render.renderIframeComponent({
           app,
@@ -578,7 +579,7 @@ describe("lib/render/index", () => {
           dev: false,
           prod: false,
           a11yTestsPreload: true,
-          folder: "tests/mocks/srcFolder/component1",
+          folder,
           projectName,
           userProjectName,
           isBuild: undefined,
@@ -586,6 +587,7 @@ describe("lib/render/index", () => {
           mocks: {
             type: "json",
             selected: true,
+            file: `${folder}/mocks.json`,
             string: `{
   "component": "component1",
   "$variants": [
@@ -605,6 +607,7 @@ describe("lib/render/index", () => {
           documentation: undefined,
           theme: {},
           schemaError: null,
+          template: null,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -616,6 +619,7 @@ describe("lib/render/index", () => {
       describe("with data key", () => {
         test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component1";
 
           await render.renderIframeComponent({
             app,
@@ -656,7 +660,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component1",
+            folder,
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -664,6 +668,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "component": "component1",
   "$variants": [
@@ -683,6 +688,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {},
             schemaError: null,
+            template: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -693,6 +699,7 @@ describe("lib/render/index", () => {
       describe("without data key", () => {
         test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component3";
 
           await render.renderIframeComponent({
             app,
@@ -725,7 +732,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component3",
+            folder,
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -735,6 +742,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "$variants": [
     {
@@ -751,6 +759,7 @@ describe("lib/render/index", () => {
             renderFileTabs: true,
             name: "component3",
             schemaError: null,
+            template: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -761,6 +770,7 @@ describe("lib/render/index", () => {
       describe("variation throws an error", () => {
         test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component6";
 
           await render.renderIframeComponent({
             app,
@@ -785,7 +795,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component6",
+            folder,
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -795,6 +805,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "$variants": [
     {
@@ -806,6 +817,7 @@ describe("lib/render/index", () => {
             renderFileTabs: true,
             name: "component6",
             schemaError: null,
+            template: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -816,6 +828,7 @@ describe("lib/render/index", () => {
       describe("variation doesn't have a name", () => {
         test("renders iframe_component.hbs without that variation", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component7";
 
           await render.renderIframeComponent({
             app,
@@ -837,7 +850,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component7",
+            folder,
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -847,6 +860,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "$variants": [
     {},
@@ -859,6 +873,7 @@ describe("lib/render/index", () => {
             renderFileTabs: true,
             name: "component7",
             schemaError: null,
+            template: null,
           });
 
           done();
@@ -868,6 +883,7 @@ describe("lib/render/index", () => {
       describe("component has data, but variation doesn't have data", () => {
         test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component9";
 
           await render.renderIframeComponent({
             app,
@@ -899,7 +915,7 @@ describe("lib/render/index", () => {
             dev: false,
             prod: false,
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component9",
+            folder,
             projectName,
             userProjectName,
             isBuild: undefined,
@@ -907,6 +923,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "some": "data",
   "$variants": [
@@ -921,6 +938,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {},
             schemaError: null,
+            template: null,
           });
 
           done();
@@ -932,6 +950,7 @@ describe("lib/render/index", () => {
       describe("embedded=true", () => {
         test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component2";
 
           await render.renderIframeComponent({
             app,
@@ -942,7 +961,7 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
           expect(res.render.mock.calls[0][1]).toEqual({
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component2",
+            folder,
             documentation: undefined,
             theme: {},
             dev: false,
@@ -954,6 +973,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "component": "component2"
 }`,
@@ -971,6 +991,7 @@ describe("lib/render/index", () => {
               },
             ],
             schemaError: null,
+            template: null,
           });
 
           done();
@@ -980,6 +1001,7 @@ describe("lib/render/index", () => {
       describe("embedded=false", () => {
         test("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
+          const folder = "tests/mocks/srcFolder/component2";
 
           await render.renderIframeComponent({
             app,
@@ -991,7 +1013,7 @@ describe("lib/render/index", () => {
           expect(res.render.mock.calls[0][1]).toEqual({
             documentation: undefined,
             a11yTestsPreload: true,
-            folder: "tests/mocks/srcFolder/component2",
+            folder,
             theme: {},
             dev: false,
             prod: false,
@@ -1002,6 +1024,7 @@ describe("lib/render/index", () => {
             mocks: {
               type: "json",
               selected: true,
+              file: `${folder}/mocks.json`,
               string: `{
   "component": "component2"
 }`,
@@ -1019,6 +1042,7 @@ describe("lib/render/index", () => {
               },
             ],
             schemaError: null,
+            template: null,
           });
 
           done();
@@ -1061,6 +1085,7 @@ describe("lib/render/index", () => {
           renderFileTabs: false,
           name: "component4",
           schemaError: null,
+          template: null,
         });
 
         done();

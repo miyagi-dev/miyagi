@@ -53,6 +53,10 @@ async function getFilePaths(components, files) {
     function (res) {
       if (
         checkIfFileNamesIncludeFile(res, [
+          `${helpers.getResolvedFileName(
+            files.templates.name,
+            path.basename(res, `.${files.templates.extension}`)
+          )}.${files.templates.extension}`,
           `${files.docs.name}.${files.docs.extension}`,
           `${files.mocks.name}.${files.mocks.extension}`,
           `${files.schema.name}.${files.schema.extension}`,
@@ -183,7 +187,11 @@ async function getConvertedMarkdownFileContent(fileName) {
 async function readFile(app, fileName) {
   let result;
 
-  if (path.extname(fileName) === ".yaml") {
+  if (
+    path.extname(fileName) === `.${app.get("config").files.templates.extension}`
+  ) {
+    result = fs.readFileSync(fileName, "utf-8");
+  } else if (path.extname(fileName) === ".yaml") {
     result = getYamlFileContent(app, fileName);
   } else if (helpers.fileIsDocumentationFile(app, fileName)) {
     result = getConvertedMarkdownFileContent(fileName);

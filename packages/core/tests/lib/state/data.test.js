@@ -17,7 +17,7 @@ describe("lib/state/menu/data", () => {
       app.set("config", {
         ...appConfig.defaultUserConfig,
         components: {
-          folder: "tests/mocks/srcFolder/",
+          folder: "tests/mocks/srcFolder",
           ignores: [
             path.join(process.cwd(), "tests/mocks/srcFolder", "ignored/"),
           ],

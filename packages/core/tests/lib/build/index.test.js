@@ -63,7 +63,7 @@ describe("lib/build/index", () => {
         folder: "buildFolder",
       },
       components: {
-        folder: "srcFolder/",
+        folder: "srcFolder",
       },
       files: {
         templates: {

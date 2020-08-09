@@ -43,20 +43,23 @@ body {
 }
 
 .MiyagiDocumentation code,
-.Miyagi-code code {
+.Miyagi-code code,
+:not(pre) > code[class*="language-"] {
   font-size-adjust: 0.525;
 }
 
 .MiyagiDocumentation,
 .MiyagiInformation,
 .Miyagi-code code,
+:not(pre) > code[class*="language-"],
 .MiyagiErrorMessage {
   line-height: calc(1ex / 0.32);
 }
 
 .MiyagiInformation code,
 .MiyagiDocumentation code,
-.Miyagi-code code {
+.Miyagi-code code,
+:not(pre) > code[class*="language-"] {
   font-family: "Menlo", "Monaco", monospace;
 }
 
@@ -239,10 +242,15 @@ body {
   width: var(--size);
 }
 
-.Miyagi-code {
+.Miyagi-code,
+:not(pre) > code[class*="language-"] {
   border: 1px solid #ddd;
   padding: calc(var(--Miyagi-spacing) / 2);
   background: #f8f8f8;
+}
+
+.Miyagi-code,
+pre[class*="language-"] {
   font-size: 0.875em;
 }
 
@@ -266,7 +274,9 @@ body {
   border-width: 1px 1px 0 1px;
 }
 
-.MiyagiTabs-button[aria-selected="true"] {
+.MiyagiTabs-button[aria-selected="true"],
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
   background: #f8f8f8;
   border-color: #ddd;
 }

@@ -281,7 +281,7 @@ describe("lib/render/helpers", () => {
         "config",
         deepMerge(config.defaultUserConfig, {
           components: {
-            folder: "srcFolder/",
+            folder: "srcFolder",
           },
         })
       );

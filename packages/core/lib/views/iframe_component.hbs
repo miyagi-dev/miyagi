@@ -16,7 +16,6 @@
           </div>
         </dl>
         {{#if renderFileTabs}}
-          <link rel="stylesheet" href="miyagi/css/prism.css">
           <h2 class="Miyagi-sectionTitle">Files</h2>
           <div class="MiyagiTabs">
             <ul class="MiyagiTabs-nav" role="tablist">
@@ -32,17 +31,35 @@
                     aria-selected="{{mocks.selected}}">Mocks</button>
                 </li>
               {{/if}}
+              {{#if template}}
+                <li>
+                  <button role="tab" class="MiyagiTabs-button" id="tab-template" aria-controls="template"
+                    aria-selected="{{template.selected}}">Template</button>
+                </li>
+              {{/if}}
             </ul>
             {{#if schema}}
               <div class="MiyagiTabs-tab" id="schema" role="tabpanel" aria-labelledby="tab-schema"
                 {{#unless schema.selected }} hidden{{/unless}}>
-                <pre class="Miyagi-code language-{{schema.type}}"><code>{{{schema.string}}}</code></pre>
+                <pre class="Miyagi-code language-{{schema.type}}"><span class="token comment">// {{schema.file}}</span>
+
+<code>{{schema.string}}</code></pre>
               </div>
             {{/if}}
             {{#if mocks}}
               <div class="MiyagiTabs-tab" id="mocks" role="tabpanel" aria-labelledby="tab-mocks"
                 {{#unless mocks.selected }} hidden{{/unless}}>
-                <pre class="Miyagi-code language-{{mocks.type}}"><code>{{{mocks.string}}}</code></pre>
+                <pre class="Miyagi-code language-{{mocks.type}}"><span class="token comment">// {{mocks.file}}</span>
+
+<code>{{mocks.string}}</code></pre>
+              </div>
+            {{/if}}
+            {{#if template}}
+              <div class="MiyagiTabs-tab" id="template" role="tabpanel" aria-labelledby="tab-template"
+                {{#unless template.selected }} hidden{{/unless}}>
+                <pre class="Miyagi-code language-{{template.type}}"><span class="token comment">// {{template.file}}</span>
+
+<code>{{template.string}}</code></pre>
               </div>
             {{/if}}
           </div>
