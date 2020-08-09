@@ -5,6 +5,8 @@
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
+  "homepage": "https://www.miyagi.dev",
+  "bugs": "https://github.com/mgrsskls/miyagi/issues",
   "repository": {
     "type": "git",
     "url": "git@github.com:mgrsskls/miyagi.git",
