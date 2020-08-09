@@ -1,7 +1,7 @@
 /**
  * Helper functions for all state modules
  *
- * @module state/helpers
+ * @module stateHelpers
  */
 
 const path = require("path");

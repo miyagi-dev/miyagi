@@ -1,7 +1,7 @@
 /**
  * Module for setting the express engines
  *
- * @module init/engines
+ * @module initEngines
  */
 
 const engines = require("consolidate");

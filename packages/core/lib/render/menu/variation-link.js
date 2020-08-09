@@ -1,7 +1,7 @@
 /**
  * Module for rendering a variation link in the menu
  *
- * @module render/menu/variation-link
+ * @module renderMenuVariationLink
  */
 
 const classes = require("./classes.js");

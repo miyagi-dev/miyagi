@@ -1,7 +1,7 @@
 /**
  * Module for rendering a component in the menu
  *
- * @module render/menu/component
+ * @module renderMenuComponent
  */
 
 const toggle = require("./toggle.js");

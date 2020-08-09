@@ -1,7 +1,7 @@
 /**
  * Module for getting the structure for the menu
  *
- * @module state/menu/structure
+ * @module stateMenuStructure
  */
 
 const config = require("../../config.json");

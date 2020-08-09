@@ -1,7 +1,7 @@
 /**
  * Module for rendering a toggle button in the menu
  *
- * @module render/menu/toggle
+ * @module renderMenuToggle
  */
 
 const classes = require("./classes.js");

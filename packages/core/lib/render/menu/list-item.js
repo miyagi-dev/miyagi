@@ -1,7 +1,7 @@
 /**
  * Module for rendering a list item in the menu
  *
- * @module render/menu/list-item
+ * @module renderMenuListitem
  */
 
 const classes = require("./classes.js");

@@ -1,7 +1,7 @@
 /**
  * Helper functions for the render module
  *
- * @module render/helpers
+ * @module renderHelpers
  */
 
 const fs = require("fs");

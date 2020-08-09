@@ -8,7 +8,7 @@ const config = require("../config.json");
 /**
  * Module for validating mock data against JSON schema
  *
- * @module validator/schema
+ * @module validatorSchema
  * @param {object} app - the express instance
  * @param {string} filePath - the path to a template file
  * @param {Array} dataArray - an array with mock data

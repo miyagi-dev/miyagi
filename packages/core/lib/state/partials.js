@@ -1,7 +1,7 @@
 /**
  * Module for getting all partials
  *
- * @module state/partials
+ * @module statePartials
  */
 
 const path = require("path");

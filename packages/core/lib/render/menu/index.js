@@ -1,7 +1,7 @@
 /**
  * Module for rendering the menu
  *
- * @module render/menu
+ * @module renderMenu
  */
 
 const list = require("./list.js");

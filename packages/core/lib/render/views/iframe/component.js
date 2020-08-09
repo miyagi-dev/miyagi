@@ -192,21 +192,25 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
 };
 
 /**
+ * @typedef {object} FileContents
+ * @property {object} schema - schema object
+ * @property {string} schema.string - html string with schema
+ * @property {("yaml"|"js")} schema.type - the file type of the schema file
+ * @property {boolean} schema.selected - true if the schema tab should initially be visible
+ * @property {object} mocks - mocks object
+ * @property {string} mocks.string - html string with mocks
+ * @property {("yaml"|"js")} mocks.type - the file type of the mocks file
+ * @property {boolean} mocks.selected - true if the mocks tab should initially be visible
+ */
+
+/**
  * @param {object} object - parameter object
  * @param {object} object.app - the express instance
  * @param {object} object.res - the express response object
  * @param {string} object.file - short component path
  * @param {Array} object.context - mock data for each variation
  * @param {string} object.componentDocumentation - html string with documentation
- * @param {object} object.fileContents - file contents object
- * @param {object} object.fileContents.schema - schema object
- * @param {string} object.fileContents.schema.string - html string with schema
- * @param {("yaml"|"js")} object.fileContents.schema.type - the file type of the schema file
- * @param {boolean} object.fileContents.schema.selected - true if the schema tab should initially be visible
- * @param {object} object.fileContents.mocks - mocks object
- * @param {string} object.fileContents.mocks.string - html string with mocks
- * @param {("yaml"|"js")} object.fileContents.mocks.type - the file type of the mocks file
- * @param {boolean} object.fileContents.mocks.selected - true if the mocks tab should initially be visible
+ * @param {FileContents} object.fileContents - file contents object
  * @param {string} object.name - component name
  * @param {Function} object.cb - callback function
  * @param {string} object.fullFilePath - the absolute component file path

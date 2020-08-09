@@ -1,7 +1,7 @@
 /**
  * Module for registering all partials
  *
- * @module init/partials
+ * @module initPartials
  */
 
 const fs = require("fs");

@@ -1,7 +1,7 @@
 /**
  * Module for registering static files
  *
- * @module init/static
+ * @module initStatic
  */
 
 const path = require("path");

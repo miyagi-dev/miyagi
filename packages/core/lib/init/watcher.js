@@ -1,7 +1,7 @@
 /**
  * Module for watching user file changes
  *
- * @module init/watcher
+ * @module initWatcher
  */
 
 const path = require("path");

@@ -1,7 +1,7 @@
 /**
  * Module for rendering a directory in the menu
  *
- * @module render/menu/directory
+ * @module renderMenuDirectory
  */
 
 const toggle = require("./toggle.js");

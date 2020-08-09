@@ -1,7 +1,7 @@
 /**
  * Module for getting a source tree of the project
  *
- * @module state/source-tree
+ * @module stateSourcetree
  */
 
 const dirTree = require("directory-tree");

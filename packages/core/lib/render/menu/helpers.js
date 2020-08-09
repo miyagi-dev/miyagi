@@ -1,7 +1,7 @@
 /**
  * Helper functions for the render/menu module
  *
- * @module render/menu/helpers
+ * @module renderMenuHelpers
  */
 
 const path = require("path");

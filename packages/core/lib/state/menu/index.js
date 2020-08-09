@@ -1,7 +1,7 @@
 /**
  * Module for creating a menu object
  *
- * @module state/menu
+ * @module stateMenu
  */
 
 const path = require("path");

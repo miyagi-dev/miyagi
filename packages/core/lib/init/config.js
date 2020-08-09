@@ -1,7 +1,7 @@
 /**
  * Module for sanitizing the user configuration and merging it with the default configuration
  *
- * @module init/config
+ * @module initConfig
  */
 
 const deepMerge = require("deepmerge");

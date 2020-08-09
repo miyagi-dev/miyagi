@@ -1,7 +1,7 @@
 /**
  * Module for registering handlebars view helpers
  *
- * @module init/view-helpers
+ * @module initViewhelpers
  */
 
 const handlebars = require("handlebars");

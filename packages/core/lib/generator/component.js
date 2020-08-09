@@ -8,7 +8,7 @@ const { messages } = require("../config.json");
 /**
  * Module for creating component files based on the configuration cli params
  *
- * @module generator/component
+ * @module generatorComponent
  * @param {object} cliParams - the cli params object
  * @param {object} config - the user configuration object
  */

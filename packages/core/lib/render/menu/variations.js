@@ -1,7 +1,7 @@
 /**
  * Module for rendering a list of variations in the menu
  *
- * @module render/menu/variations
+ * @module renderMenuVariations
  */
 
 const listItem = require("./list-item.js");

@@ -1,7 +1,7 @@
 /**
  * Module for printing and parsing CLI arguments
  *
- * @module init/args
+ * @module initArgs
  */
 
 const yargs = require("yargs");

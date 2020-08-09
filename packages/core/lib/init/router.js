@@ -1,7 +1,7 @@
 /**
  * Module for accepting and routing requests
  *
- * @module init/router
+ * @module initRouter
  */
 
 const path = require("path");

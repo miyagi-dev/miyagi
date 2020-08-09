@@ -1,7 +1,7 @@
 /**
  * Module for rendering an item in the menu
  *
- * @module render/menu/menu-item
+ * @module renderMenuMenuitem
  */
 
 const component = require("./component.js");

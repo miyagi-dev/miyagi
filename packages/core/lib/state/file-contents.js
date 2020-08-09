@@ -1,7 +1,7 @@
 /**
  * Module for getting the content of all relevant files
  *
- * @module state/file-contents
+ * @module stateFilecontents
  */
 
 const path = require("path");
