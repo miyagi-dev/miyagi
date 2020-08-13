@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.1](https://github.com/mgrsskls/miyagi/compare/core/v1.6.3...core/v1.7.1) (2020-08-13)
+
+
+### Features
+
+* **core:** render tabs with schema and mocks on component view ([a7bd4a8](https://github.com/mgrsskls/miyagi/commit/a7bd4a8c25e4741e3289b7dd766f861b6222a4db))
+* **core:** render template content on component view ([07c5790](https://github.com/mgrsskls/miyagi/commit/07c57904ef7e983a90312b8618544a75942b28cd))
+
 ### [1.6.3](https://github.com/mgrsskls/miyagi/compare/core/v1.6.2...core/v1.6.3) (2020-08-05)
 
 ### [1.6.2](https://github.com/mgrsskls/miyagi/compare/core/v1.6.1...core/v1.6.2) (2020-07-30)
