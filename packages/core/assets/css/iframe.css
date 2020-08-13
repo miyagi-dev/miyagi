@@ -10,6 +10,11 @@
   --Miyagi-spacing: 40px;
 }
 
+.MiyagiContent *,
+.MiyagiIframe-newTabLink {
+  all: revert;
+}
+
 html {
   height: 100%;
 }
@@ -17,9 +22,6 @@ html {
 body {
   margin: 0;
   min-height: 100%;
-  color: var(--Miyagi-color);
-  font-family: var(--Miyagi-fontFamily);
-  line-height: 1;
 }
 
 .MiyagiWrapper {
@@ -29,12 +31,11 @@ body {
 }
 
 .MiyagiContent,
-.MiyagiContent *,
-.MiyagiContent a,
-.MiyagiComponent-file,
-.MiyagiComponent-schemaValidation,
-.MiyagiIframe-newTabLink {
-  all: revert;
+.MiyagiIframe-newTabLink,
+.MiyagiComponent-head {
+  color: var(--Miyagi-color);
+  font-family: var(--Miyagi-fontFamily);
+  line-height: 1;
 }
 
 .MiyagiContent a,
@@ -42,55 +43,55 @@ body {
   color: inherit;
 }
 
-.MiyagiDocumentation code,
-.Miyagi-code code,
-:not(pre) > code[class*="language-"] {
+.MiyagiContent .MiyagiDocumentation code,
+.MiyagiContent .Miyagi-code code,
+.MiyagiContent :not(pre) > code[class*="language-"] {
   font-size-adjust: 0.525;
 }
 
-.MiyagiDocumentation,
-.MiyagiInformation,
-.Miyagi-code code,
-:not(pre) > code[class*="language-"],
-.MiyagiErrorMessage {
+.MiyagiContent .MiyagiDocumentation,
+.MiyagiContent .MiyagiInformation,
+.MiyagiContent .Miyagi-code code,
+.MiyagiContent :not(pre) > code[class*="language-"],
+.MiyagiContent .MiyagiErrorMessage {
   line-height: calc(1ex / 0.32);
 }
 
-.MiyagiInformation code,
-.MiyagiDocumentation code,
-.Miyagi-code code,
-:not(pre) > code[class*="language-"] {
+.MiyagiContent .MiyagiInformation code,
+.MiyagiContent .MiyagiDocumentation code,
+.MiyagiContent .Miyagi-code code,
+.MiyagiContent :not(pre) > code[class*="language-"] {
   font-family: "Menlo", "Monaco", monospace;
 }
 
-.MiyagiDocumentation h1 {
+.MiyagiContent .MiyagiDocumentation h1 {
   color: var(--Miyagi-colorHeadlines);
   font-size: 2.4em;
   font-weight: bold;
   line-height: 1;
 }
 
-.MiyagiDocumentation > * + * {
+.MiyagiContent .MiyagiDocumentation > * + * {
   margin-top: calc(1ex / 0.32);
 }
 
-.MiyagiDocumentation i {
+.MiyagiContent .MiyagiDocumentation i {
   font-style: italic;
 }
 
-.MiyagiInformation-val {
+.MiyagiContent .MiyagiInformation-val {
   margin-left: 0;
 }
 
-.MiyagiDocumentation > *:first-child {
+.MiyagiContent .MiyagiDocumentation > *:first-child {
   margin-top: 0;
 }
 
-.MiyagiDocumentation p {
+.MiyagiContent .MiyagiDocumentation p {
   max-width: 64ch;
 }
 
-.Miyagi-sectionTitle {
+.MiyagiContent .Miyagi-sectionTitle {
   align-items: center;
   color: var(--Miyagi-colorHeadlines);
   display: flex;
@@ -98,7 +99,7 @@ body {
   margin: 2em 0 1em;
 }
 
-.Miyagi-sectionTitle::after {
+.MiyagiContent .Miyagi-sectionTitle::after {
   background: #ddd;
   content: "";
   flex: 1;
@@ -106,11 +107,11 @@ body {
   margin-left: 20px;
 }
 
-.MiyagiInformation-wrapper + .MiyagiInformation-wrapper {
+.MiyagiContent .MiyagiInformation-wrapper + .MiyagiInformation-wrapper {
   margin-top: 30px;
 }
 
-.MiyagiInformation-attr {
+.MiyagiContent .MiyagiInformation-attr {
   color: #767676;
   font-family: var(--Miyagi-fontFamily);
   font-size: 0.875em;
@@ -119,12 +120,12 @@ body {
   text-transform: uppercase;
 }
 
-.MiyagiInformation-attr:not(:first-child) {
+.MiyagiContent .MiyagiInformation-attr:not(:first-child) {
   margin-top: 1em;
 }
 
-.MiyagiInformation code,
-.MiyagiDocumentation code {
+.MiyagiContent .MiyagiInformation code,
+.MiyagiContent .MiyagiDocumentation code {
   font-weight: 600;
 }
 
@@ -196,7 +197,7 @@ body {
   margin: calc(var(--Miyagi-spacing) / 2) 0 0;
 }
 
-.MiyagiError {
+.MiyagiContent .MiyagiError {
   align-items: center;
   color: var(--Miyagi-color-negative);
   display: flex;
@@ -205,7 +206,7 @@ body {
   margin: 0;
 }
 
-.MiyagiErrorMessage {
+.MiyagiContent .MiyagiErrorMessage {
   color: var(--Miyagi-color-negative);
   margin: 1.5em 0;
 }
@@ -242,26 +243,26 @@ body {
   width: var(--size);
 }
 
-.Miyagi-code,
-:not(pre) > code[class*="language-"] {
+.MiyagiContent .Miyagi-code,
+.MiyagiContent :not(pre) > code[class*="language-"] {
   border: 1px solid #ddd;
   padding: calc(var(--Miyagi-spacing) / 2);
   background: #f8f8f8;
 }
 
-.Miyagi-code,
-pre[class*="language-"] {
+.MiyagiContent .Miyagi-code,
+.MiyagiContent pre[class*="language-"] {
   font-size: 0.875em;
 }
 
-.MiyagiTabs-nav {
+.MiyagiContent .MiyagiTabs-nav {
   display: flex;
   list-style: none;
   margin: 0 0 -1px;
   padding: 0;
 }
 
-.MiyagiTabs-button {
+.MiyagiContent .MiyagiTabs-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -274,25 +275,25 @@ pre[class*="language-"] {
   border-width: 1px 1px 0 1px;
 }
 
-.MiyagiTabs-button[aria-selected="true"],
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
+.MiyagiContent .MiyagiTabs-button[aria-selected="true"],
+.MiyagiContent :not(pre) > code[class*="language-"],
+.MiyagiContent pre[class*="language-"] {
   background: #f8f8f8;
   border-color: #ddd;
 }
 
-.MiyagiTabs-tab[hidden] {
+.MiyagiContent .MiyagiTabs-tab[hidden] {
   display: none;
 }
 
-.MiyagiTabs-tab > *:first-child {
+.MiyagiContent .MiyagiTabs-tab > *:first-child {
   margin-top: 0;
 }
 
 @media screen and (prefers-reduced-motion) {
-  *,
-  *::after,
-  *::before {
+  .MiyagiContent *,
+  .MiyagiContent *::after,
+  .MiyagiContent *::before {
     animation: none !important;
     transition: none !important;
   }
