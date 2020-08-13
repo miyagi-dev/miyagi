@@ -1,20 +1,20 @@
-<a name="module_init/router"></a>
+<a name="module_initRouter"></a>
 
-## init/router
+## initRouter
 Module for accepting and routing requests
 
 
-* [init/router](#module_init/router)
-    * [~getDataForComponent(app, component)](#module_init/router..getDataForComponent) ⇒ <code>object</code>
-    * [~checkIfRequestedComponentIsValid(app, component)](#module_init/router..checkIfRequestedComponentIsValid) ⇒ <code>boolean</code>
-    * [~checkIfDataIncludesVariation(data, variation)](#module_init/router..checkIfDataIncludesVariation) ⇒ <code>boolean</code>
-    * [~checkIfRequestedVariationIsValid(app, component, variation)](#module_init/router..checkIfRequestedVariationIsValid) ⇒ <code>boolean</code>
-    * [~awaitHandlerFactory(middleware)](#module_init/router..awaitHandlerFactory) ⇒ <code>function</code>
+* [initRouter](#module_initRouter)
+    * [~getDataForComponent(app, component)](#module_initRouter..getDataForComponent) ⇒ <code>object</code>
+    * [~checkIfRequestedComponentIsValid(app, component)](#module_initRouter..checkIfRequestedComponentIsValid) ⇒ <code>boolean</code>
+    * [~checkIfDataIncludesVariation(data, variation)](#module_initRouter..checkIfDataIncludesVariation) ⇒ <code>boolean</code>
+    * [~checkIfRequestedVariationIsValid(app, component, variation)](#module_initRouter..checkIfRequestedVariationIsValid) ⇒ <code>boolean</code>
+    * [~awaitHandlerFactory(middleware)](#module_initRouter..awaitHandlerFactory) ⇒ <code>function</code>
 
-<a name="module_init/router..getDataForComponent"></a>
+<a name="module_initRouter..getDataForComponent"></a>
 
-### init/router~getDataForComponent(app, component) ⇒ <code>object</code>
-**Kind**: inner method of [<code>init/router</code>](#module_init/router)  
+### initRouter~getDataForComponent(app, component) ⇒ <code>object</code>
+**Kind**: inner method of [<code>initRouter</code>](#module_initRouter)  
 **Returns**: <code>object</code> - the mock data of the given component  
 
 | Param | Type | Description |
@@ -22,10 +22,10 @@ Module for accepting and routing requests
 | app | <code>object</code> | the express instance |
 | component | <code>string</code> | the component directory |
 
-<a name="module_init/router..checkIfRequestedComponentIsValid"></a>
+<a name="module_initRouter..checkIfRequestedComponentIsValid"></a>
 
-### init/router~checkIfRequestedComponentIsValid(app, component) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>init/router</code>](#module_init/router)  
+### initRouter~checkIfRequestedComponentIsValid(app, component) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>initRouter</code>](#module_initRouter)  
 **Returns**: <code>boolean</code> - is true if the requested component is stored in state.partials  
 
 | Param | Type | Description |
@@ -33,10 +33,10 @@ Module for accepting and routing requests
 | app | <code>object</code> | the express instance |
 | component | <code>string</code> | the component directory |
 
-<a name="module_init/router..checkIfDataIncludesVariation"></a>
+<a name="module_initRouter..checkIfDataIncludesVariation"></a>
 
-### init/router~checkIfDataIncludesVariation(data, variation) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>init/router</code>](#module_init/router)  
+### initRouter~checkIfDataIncludesVariation(data, variation) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>initRouter</code>](#module_initRouter)  
 **Returns**: <code>boolean</code> - is true of the requested variation is in the given mock data  
 
 | Param | Type | Description |
@@ -44,10 +44,10 @@ Module for accepting and routing requests
 | data | <code>object</code> | mock data object |
 | variation | <code>string</code> | requested variation name |
 
-<a name="module_init/router..checkIfRequestedVariationIsValid"></a>
+<a name="module_initRouter..checkIfRequestedVariationIsValid"></a>
 
-### init/router~checkIfRequestedVariationIsValid(app, component, variation) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>init/router</code>](#module_init/router)  
+### initRouter~checkIfRequestedVariationIsValid(app, component, variation) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>initRouter</code>](#module_initRouter)  
 **Returns**: <code>boolean</code> - is true if the requested variation exists in the mock data of the given component  
 
 | Param | Type | Description |
@@ -56,10 +56,10 @@ Module for accepting and routing requests
 | component | <code>string</code> | the component directory |
 | variation | <code>string</code> | the requested variation name |
 
-<a name="module_init/router..awaitHandlerFactory"></a>
+<a name="module_initRouter..awaitHandlerFactory"></a>
 
-### init/router~awaitHandlerFactory(middleware) ⇒ <code>function</code>
-**Kind**: inner method of [<code>init/router</code>](#module_init/router)  
+### initRouter~awaitHandlerFactory(middleware) ⇒ <code>function</code>
+**Kind**: inner method of [<code>initRouter</code>](#module_initRouter)  
 **Returns**: <code>function</code> - wrapped async function  
 
 | Param | Type | Description |

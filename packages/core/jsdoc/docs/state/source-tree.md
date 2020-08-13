@@ -1,12 +1,12 @@
-<a name="module_state/source-tree"></a>
+<a name="module_stateSourcetree"></a>
 
-## state/source-tree
+## stateSourcetree
 Module for getting a source tree of the project
 
-<a name="module_state/source-tree..getSourceTree"></a>
+<a name="module_stateSourcetree..getSourceTree"></a>
 
-### state/source-tree~getSourceTree(app) ⇒ <code>object</code>
-**Kind**: inner method of [<code>state/source-tree</code>](#module_state/source-tree)  
+### stateSourcetree~getSourceTree(app) ⇒ <code>object</code>
+**Kind**: inner method of [<code>stateSourcetree</code>](#module_stateSourcetree)  
 **Returns**: <code>object</code> - the source tree object  
 
 | Param | Type | Description |

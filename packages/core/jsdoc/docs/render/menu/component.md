@@ -1,14 +1,14 @@
-<a name="module_render/menu/component"></a>
+<a name="module_renderMenuComponent"></a>
 
-## render/menu/component
+## renderMenuComponent
 Module for rendering a component in the menu
 
-<a name="module_render/menu/component..render"></a>
+<a name="module_renderMenuComponent..render"></a>
 
-### render/menu/component~render(app, component, request) ⇒ <code>string</code>
+### renderMenuComponent~render(app, component, request) ⇒ <code>string</code>
 Renders a component in the menu
 
-**Kind**: inner method of [<code>render/menu/component</code>](#module_render/menu/component)  
+**Kind**: inner method of [<code>renderMenuComponent</code>](#module_renderMenuComponent)  
 **Returns**: <code>string</code> - the component html  
 
 | Param | Type | Description |

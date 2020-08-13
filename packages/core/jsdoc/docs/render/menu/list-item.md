@@ -1,14 +1,14 @@
-<a name="module_render/menu/list-item"></a>
+<a name="module_renderMenuListitem"></a>
 
-## render/menu/list-item
+## renderMenuListitem
 Module for rendering a list item in the menu
 
-<a name="module_render/menu/list-item..render"></a>
+<a name="module_renderMenuListitem..render"></a>
 
-### render/menu/list-item~render(index, content, type) ⇒ <code>string</code>
+### renderMenuListitem~render(index, content, type) ⇒ <code>string</code>
 Renders a list element with given content in the menu
 
-**Kind**: inner method of [<code>render/menu/list-item</code>](#module_render/menu/list-item)  
+**Kind**: inner method of [<code>renderMenuListitem</code>](#module_renderMenuListitem)  
 **Returns**: <code>string</code> - the html of the list item  
 
 | Param | Type | Description |

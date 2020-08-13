@@ -1,14 +1,14 @@
-<a name="module_render/menu/toggle"></a>
+<a name="module_renderMenuToggle"></a>
 
-## render/menu/toggle
+## renderMenuToggle
 Module for rendering a toggle button in the menu
 
-<a name="module_render/menu/toggle..render"></a>
+<a name="module_renderMenuToggle..render"></a>
 
-### render/menu/toggle~render(id, expanded, index) ⇒ <code>string</code>
+### renderMenuToggle~render(id, expanded, index) ⇒ <code>string</code>
 Renders a toggle button for a list in the menu
 
-**Kind**: inner method of [<code>render/menu/toggle</code>](#module_render/menu/toggle)  
+**Kind**: inner method of [<code>renderMenuToggle</code>](#module_renderMenuToggle)  
 **Returns**: <code>string</code> - the html with the toggle button  
 
 | Param | Type | Description |

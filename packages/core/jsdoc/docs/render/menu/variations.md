@@ -1,14 +1,14 @@
-<a name="module_render/menu/variations"></a>
+<a name="module_renderMenuVariations"></a>
 
-## render/menu/variations
+## renderMenuVariations
 Module for rendering a list of variations in the menu
 
-<a name="module_render/menu/variations..render"></a>
+<a name="module_renderMenuVariations..render"></a>
 
-### render/menu/variations~render(isBuild, component, request) ⇒ <code>string</code>
+### renderMenuVariations~render(isBuild, component, request) ⇒ <code>string</code>
 Renders the variations of a component in the menu
 
-**Kind**: inner method of [<code>render/menu/variations</code>](#module_render/menu/variations)  
+**Kind**: inner method of [<code>renderMenuVariations</code>](#module_renderMenuVariations)  
 **Returns**: <code>string</code> - the html with list items  
 
 | Param | Type | Description |

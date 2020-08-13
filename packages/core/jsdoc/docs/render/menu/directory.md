@@ -1,14 +1,14 @@
-<a name="module_render/menu/directory"></a>
+<a name="module_renderMenuDirectory"></a>
 
-## render/menu/directory
+## renderMenuDirectory
 Module for rendering a directory in the menu
 
-<a name="module_render/menu/directory..render"></a>
+<a name="module_renderMenuDirectory..render"></a>
 
-### render/menu/directory~render(app, directory, request) ⇒ <code>string</code>
+### renderMenuDirectory~render(app, directory, request) ⇒ <code>string</code>
 Renders a directory in the menu
 
-**Kind**: inner method of [<code>render/menu/directory</code>](#module_render/menu/directory)  
+**Kind**: inner method of [<code>renderMenuDirectory</code>](#module_renderMenuDirectory)  
 **Returns**: <code>string</code> - the directory html  
 
 | Param | Type | Description |

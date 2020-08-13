@@ -1,5 +1,5 @@
-<a name="module_init/views"></a>
+<a name="module_initViews"></a>
 
-## init/views
+## initViews
 Module for registering the views in express
 

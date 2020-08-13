@@ -1,6 +1,6 @@
-<a name="module_generator/mocks"></a>
+<a name="module_generatorMocks"></a>
 
-## generator/mocks
+## generatorMocks
 Module for creating dummy mock data based on JSON schema
 
 
@@ -10,17 +10,17 @@ Module for creating dummy mock data based on JSON schema
 | filesConfig | <code>object</code> | the files configuration from the user configuration object |
 
 
-* [generator/mocks](#module_generator/mocks)
-    * [~getContent(fileType, schema)](#module_generator/mocks..getContent) ⇒ <code>string</code>
-    * [~createFile(content, mockFilePath)](#module_generator/mocks..createFile)
-    * [~readFile(filePath)](#module_generator/mocks..readFile) ⇒ <code>Promise</code>
+* [generatorMocks](#module_generatorMocks)
+    * [~getContent(fileType, schema)](#module_generatorMocks..getContent) ⇒ <code>string</code>
+    * [~createFile(content, mockFilePath)](#module_generatorMocks..createFile)
+    * [~readFile(filePath)](#module_generatorMocks..readFile) ⇒ <code>Promise</code>
 
-<a name="module_generator/mocks..getContent"></a>
+<a name="module_generatorMocks..getContent"></a>
 
-### generator/mocks~getContent(fileType, schema) ⇒ <code>string</code>
+### generatorMocks~getContent(fileType, schema) ⇒ <code>string</code>
 Returns the dummy mock data in the correct format
 
-**Kind**: inner method of [<code>generator/mocks</code>](#module_generator/mocks)  
+**Kind**: inner method of [<code>generatorMocks</code>](#module_generatorMocks)  
 **Returns**: <code>string</code> - the dummy mock data  
 
 | Param | Type | Description |
@@ -28,24 +28,24 @@ Returns the dummy mock data in the correct format
 | fileType | <code>string</code> | the file type of the mock data that should be created |
 | schema | <code>object</code> | the JSON schema object |
 
-<a name="module_generator/mocks..createFile"></a>
+<a name="module_generatorMocks..createFile"></a>
 
-### generator/mocks~createFile(content, mockFilePath)
+### generatorMocks~createFile(content, mockFilePath)
 Creates the mock file with the dummy mock data
 
-**Kind**: inner method of [<code>generator/mocks</code>](#module_generator/mocks)  
+**Kind**: inner method of [<code>generatorMocks</code>](#module_generatorMocks)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | content | <code>string</code> | the content for the mock file |
 | mockFilePath | <code>string</code> | the path to the mock file |
 
-<a name="module_generator/mocks..readFile"></a>
+<a name="module_generatorMocks..readFile"></a>
 
-### generator/mocks~readFile(filePath) ⇒ <code>Promise</code>
+### generatorMocks~readFile(filePath) ⇒ <code>Promise</code>
 Reads the content of a given file
 
-**Kind**: inner method of [<code>generator/mocks</code>](#module_generator/mocks)  
+**Kind**: inner method of [<code>generatorMocks</code>](#module_generatorMocks)  
 **Returns**: <code>Promise</code> - gets resolved when the file has been read  
 
 | Param | Type | Description |

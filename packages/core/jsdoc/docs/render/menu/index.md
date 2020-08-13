@@ -1,12 +1,12 @@
-<a name="module_render/menu"></a>
+<a name="module_renderMenu"></a>
 
-## render/menu
+## renderMenu
 Module for rendering the menu
 
-<a name="module_render/menu..render"></a>
+<a name="module_renderMenu..render"></a>
 
-### render/menu~render(app, children, request, index) ⇒ <code>string</code>
-**Kind**: inner method of [<code>render/menu</code>](#module_render/menu)  
+### renderMenu~render(app, children, request, index) ⇒ <code>string</code>
+**Kind**: inner method of [<code>renderMenu</code>](#module_renderMenu)  
 **Returns**: <code>string</code> - the html of the menu  
 
 | Param | Type | Description |

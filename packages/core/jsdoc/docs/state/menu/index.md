@@ -1,22 +1,22 @@
-<a name="module_state/menu"></a>
+<a name="module_stateMenu"></a>
 
-## state/menu
+## stateMenu
 Module for creating a menu object
 
 
-* [state/menu](#module_state/menu)
-    * [~getComponentFile(app, directory)](#module_state/menu..getComponentFile) ⇒ <code>object</code>
-    * [~hasComponentFileWithCorrectNameAsChild(app, directory)](#module_state/menu..hasComponentFileWithCorrectNameAsChild) ⇒ <code>boolean</code>
-    * [~getDataForLinkedDirectory(app, directory)](#module_state/menu..getDataForLinkedDirectory) ⇒ <code>object</code>
-    * [~getDataForDirectory(directory)](#module_state/menu..getDataForDirectory) ⇒ <code>object</code>
-    * [~restructureDirectory(app, directory)](#module_state/menu..restructureDirectory) ⇒ <code>object</code>
-    * [~hasChildren(item)](#module_state/menu..hasChildren) ⇒ <code>boolean</code>
-    * [~getMenu(app)](#module_state/menu..getMenu) ⇒ <code>Array.&lt;object&gt;</code>
+* [stateMenu](#module_stateMenu)
+    * [~getComponentFile(app, directory)](#module_stateMenu..getComponentFile) ⇒ <code>object</code>
+    * [~hasComponentFileWithCorrectNameAsChild(app, directory)](#module_stateMenu..hasComponentFileWithCorrectNameAsChild) ⇒ <code>boolean</code>
+    * [~getDataForLinkedDirectory(app, directory)](#module_stateMenu..getDataForLinkedDirectory) ⇒ <code>object</code>
+    * [~getDataForDirectory(directory)](#module_stateMenu..getDataForDirectory) ⇒ <code>object</code>
+    * [~restructureDirectory(app, directory)](#module_stateMenu..restructureDirectory) ⇒ <code>object</code>
+    * [~hasChildren(item)](#module_stateMenu..hasChildren) ⇒ <code>boolean</code>
+    * [~getMenu(app)](#module_stateMenu..getMenu) ⇒ <code>Array.&lt;object&gt;</code>
 
-<a name="module_state/menu..getComponentFile"></a>
+<a name="module_stateMenu..getComponentFile"></a>
 
-### state/menu~getComponentFile(app, directory) ⇒ <code>object</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~getComponentFile(app, directory) ⇒ <code>object</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>object</code> - file tree object of the component file in the given directory  
 
 | Param | Type | Description |
@@ -24,10 +24,10 @@ Module for creating a menu object
 | app | <code>object</code> | the express instance |
 | directory | <code>object</code> | file tree object |
 
-<a name="module_state/menu..hasComponentFileWithCorrectNameAsChild"></a>
+<a name="module_stateMenu..hasComponentFileWithCorrectNameAsChild"></a>
 
-### state/menu~hasComponentFileWithCorrectNameAsChild(app, directory) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~hasComponentFileWithCorrectNameAsChild(app, directory) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>boolean</code> - returns true if the given directory has a component file with the same name  
 
 | Param | Type | Description |
@@ -35,10 +35,10 @@ Module for creating a menu object
 | app | <code>object</code> | the express instance |
 | directory | <code>object</code> | file tree object |
 
-<a name="module_state/menu..getDataForLinkedDirectory"></a>
+<a name="module_stateMenu..getDataForLinkedDirectory"></a>
 
-### state/menu~getDataForLinkedDirectory(app, directory) ⇒ <code>object</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~getDataForLinkedDirectory(app, directory) ⇒ <code>object</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>object</code> - adapted file tree object  
 
 | Param | Type | Description |
@@ -46,20 +46,20 @@ Module for creating a menu object
 | app | <code>object</code> | the express instance |
 | directory | <code>object</code> | file tree object |
 
-<a name="module_state/menu..getDataForDirectory"></a>
+<a name="module_stateMenu..getDataForDirectory"></a>
 
-### state/menu~getDataForDirectory(directory) ⇒ <code>object</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~getDataForDirectory(directory) ⇒ <code>object</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>object</code> - adapted file tree object  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | directory | <code>object</code> | file tree object |
 
-<a name="module_state/menu..restructureDirectory"></a>
+<a name="module_stateMenu..restructureDirectory"></a>
 
-### state/menu~restructureDirectory(app, directory) ⇒ <code>object</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~restructureDirectory(app, directory) ⇒ <code>object</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>object</code> - adapted file tree object  
 
 | Param | Type | Description |
@@ -67,20 +67,20 @@ Module for creating a menu object
 | app | <code>object</code> | the express instance |
 | directory | <code>object</code> | file tree object |
 
-<a name="module_state/menu..hasChildren"></a>
+<a name="module_stateMenu..hasChildren"></a>
 
-### state/menu~hasChildren(item) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~hasChildren(item) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>boolean</code> - returns true if the given file tree object has children  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | item | <code>object</code> | file tree object |
 
-<a name="module_state/menu..getMenu"></a>
+<a name="module_stateMenu..getMenu"></a>
 
-### state/menu~getMenu(app) ⇒ <code>Array.&lt;object&gt;</code>
-**Kind**: inner method of [<code>state/menu</code>](#module_state/menu)  
+### stateMenu~getMenu(app) ⇒ <code>Array.&lt;object&gt;</code>
+**Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>Array.&lt;object&gt;</code> - array with adapted menu items  
 
 | Param | Type | Description |

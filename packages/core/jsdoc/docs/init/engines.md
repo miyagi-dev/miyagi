@@ -1,26 +1,26 @@
-<a name="module_init/engines"></a>
+<a name="module_initEngines"></a>
 
-## init/engines
+## initEngines
 Module for setting the express engines
 
 
-* [init/engines](#module_init/engines)
-    * [~setMiyagiEngine(app)](#module_init/engines..setMiyagiEngine)
-    * [~setUserEngine(app)](#module_init/engines..setUserEngine) ⇒ <code>boolean</code>
+* [initEngines](#module_initEngines)
+    * [~setMiyagiEngine(app)](#module_initEngines..setMiyagiEngine)
+    * [~setUserEngine(app)](#module_initEngines..setUserEngine) ⇒ <code>boolean</code>
 
-<a name="module_init/engines..setMiyagiEngine"></a>
+<a name="module_initEngines..setMiyagiEngine"></a>
 
-### init/engines~setMiyagiEngine(app)
-**Kind**: inner method of [<code>init/engines</code>](#module_init/engines)  
+### initEngines~setMiyagiEngine(app)
+**Kind**: inner method of [<code>initEngines</code>](#module_initEngines)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
 
-<a name="module_init/engines..setUserEngine"></a>
+<a name="module_initEngines..setUserEngine"></a>
 
-### init/engines~setUserEngine(app) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>init/engines</code>](#module_init/engines)  
+### initEngines~setUserEngine(app) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>initEngines</code>](#module_initEngines)  
 **Returns**: <code>boolean</code> - describes if setting the engine was successful  
 
 | Param | Type | Description |

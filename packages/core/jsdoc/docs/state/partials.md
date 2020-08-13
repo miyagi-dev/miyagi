@@ -1,12 +1,12 @@
-<a name="module_state/partials"></a>
+<a name="module_statePartials"></a>
 
-## state/partials
+## statePartials
 Module for getting all partials
 
-<a name="module_state/partials..getFilePaths"></a>
+<a name="module_statePartials..getFilePaths"></a>
 
-### state/partials~getFilePaths(app, dir) ⇒ <code>Promise</code>
-**Kind**: inner method of [<code>state/partials</code>](#module_state/partials)  
+### statePartials~getFilePaths(app, dir) ⇒ <code>Promise</code>
+**Kind**: inner method of [<code>statePartials</code>](#module_statePartials)  
 **Returns**: <code>Promise</code> - gets resolved with an array of path strings  
 
 | Param | Type | Description |

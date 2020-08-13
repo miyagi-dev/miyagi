@@ -1,30 +1,30 @@
-<a name="module_init/watcher"></a>
+<a name="module_initWatcher"></a>
 
-## init/watcher
+## initWatcher
 Module for watching user file changes
 
 
-* [init/watcher](#module_init/watcher)
-    * [~changeFileCallback([reload], [reloadParent])](#module_init/watcher..changeFileCallback)
-    * [~triggeredEventsIncludes(triggered, events)](#module_init/watcher..triggeredEventsIncludes) ⇒ <code>boolean</code>
-    * [~updateFileContents(app, events)](#module_init/watcher..updateFileContents) ⇒ <code>Promise.&lt;object&gt;</code>
-    * [~handleFileChange()](#module_init/watcher..handleFileChange)
-    * [~getIgnoredPathsArr(srcFolderIgnores)](#module_init/watcher..getIgnoredPathsArr) ⇒ <code>Array.&lt;RegExp&gt;</code>
+* [initWatcher](#module_initWatcher)
+    * [~changeFileCallback([reload], [reloadParent])](#module_initWatcher..changeFileCallback)
+    * [~triggeredEventsIncludes(triggered, events)](#module_initWatcher..triggeredEventsIncludes) ⇒ <code>boolean</code>
+    * [~updateFileContents(app, events)](#module_initWatcher..updateFileContents) ⇒ <code>Promise.&lt;object&gt;</code>
+    * [~handleFileChange()](#module_initWatcher..handleFileChange)
+    * [~getIgnoredPathsArr(srcFolderIgnores)](#module_initWatcher..getIgnoredPathsArr) ⇒ <code>Array.&lt;RegExp&gt;</code>
 
-<a name="module_init/watcher..changeFileCallback"></a>
+<a name="module_initWatcher..changeFileCallback"></a>
 
-### init/watcher~changeFileCallback([reload], [reloadParent])
-**Kind**: inner method of [<code>init/watcher</code>](#module_init/watcher)  
+### initWatcher~changeFileCallback([reload], [reloadParent])
+**Kind**: inner method of [<code>initWatcher</code>](#module_initWatcher)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | [reload] | <code>boolean</code> | is true if the page should be reloaded |
 | [reloadParent] | <code>boolean</code> | is true if the parent window should be reloaded |
 
-<a name="module_init/watcher..triggeredEventsIncludes"></a>
+<a name="module_initWatcher..triggeredEventsIncludes"></a>
 
-### init/watcher~triggeredEventsIncludes(triggered, events) ⇒ <code>boolean</code>
-**Kind**: inner method of [<code>init/watcher</code>](#module_init/watcher)  
+### initWatcher~triggeredEventsIncludes(triggered, events) ⇒ <code>boolean</code>
+**Kind**: inner method of [<code>initWatcher</code>](#module_initWatcher)  
 **Returns**: <code>boolean</code> - is true if the triggered events include the events to check against  
 
 | Param | Type | Description |
@@ -32,10 +32,10 @@ Module for watching user file changes
 | triggered | <code>Array</code> | the triggered events |
 | events | <code>Array</code> | array of events to check against |
 
-<a name="module_init/watcher..updateFileContents"></a>
+<a name="module_initWatcher..updateFileContents"></a>
 
-### init/watcher~updateFileContents(app, events) ⇒ <code>Promise.&lt;object&gt;</code>
-**Kind**: inner method of [<code>init/watcher</code>](#module_init/watcher)  
+### initWatcher~updateFileContents(app, events) ⇒ <code>Promise.&lt;object&gt;</code>
+**Kind**: inner method of [<code>initWatcher</code>](#module_initWatcher)  
 **Returns**: <code>Promise.&lt;object&gt;</code> - the updated state.fileContents object  
 
 | Param | Type | Description |
@@ -43,14 +43,14 @@ Module for watching user file changes
 | app | <code>object</code> | the express instance |
 | events | <code>Array.&lt;object&gt;</code> | array of event objects |
 
-<a name="module_init/watcher..handleFileChange"></a>
+<a name="module_initWatcher..handleFileChange"></a>
 
-### init/watcher~handleFileChange()
-**Kind**: inner method of [<code>init/watcher</code>](#module_init/watcher)  
-<a name="module_init/watcher..getIgnoredPathsArr"></a>
+### initWatcher~handleFileChange()
+**Kind**: inner method of [<code>initWatcher</code>](#module_initWatcher)  
+<a name="module_initWatcher..getIgnoredPathsArr"></a>
 
-### init/watcher~getIgnoredPathsArr(srcFolderIgnores) ⇒ <code>Array.&lt;RegExp&gt;</code>
-**Kind**: inner method of [<code>init/watcher</code>](#module_init/watcher)  
+### initWatcher~getIgnoredPathsArr(srcFolderIgnores) ⇒ <code>Array.&lt;RegExp&gt;</code>
+**Kind**: inner method of [<code>initWatcher</code>](#module_initWatcher)  
 **Returns**: <code>Array.&lt;RegExp&gt;</code> - array of regexes with all folders to ignore  
 
 | Param | Type | Description |
