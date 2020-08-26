@@ -34,11 +34,32 @@ function getDataForComponent(app, component) {
  * @returns {boolean} is true if the requested component is stored in state.partials
  */
 function checkIfRequestedComponentIsValid(app, component) {
-  const { partials } = app.get("state");
+  const { fileContents } = app.get("state");
 
-  return Object.keys(partials)
-    .map((partial) => path.dirname(partial))
-    .includes(component);
+  const files = Object.keys(fileContents).map((file) =>
+    file.replace(
+      path.join(process.cwd(), app.get("config").components.folder, "/"),
+      ""
+    )
+  );
+
+  return (
+    files.includes(
+      `${component}/${helpers.getResolvedFileName(
+        app.get("config").files.templates.name,
+        path.basename(
+          component,
+          `.${app.get("config").files.templates.extension}`
+        )
+      )}.${app.get("config").files.templates.extension}`
+    ) ||
+    files.includes(
+      `${component}/${helpers.getResolvedFileName(
+        app.get("config").files.docs.name,
+        path.basename(component, `.${app.get("config").files.docs.extension}`)
+      )}.${app.get("config").files.docs.extension}`
+    )
+  );
 }
 
 /**

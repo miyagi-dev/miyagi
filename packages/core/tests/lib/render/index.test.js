@@ -120,6 +120,7 @@ beforeEach(() => {
       "component6/index.hbs": path6,
       "component7/index.hbs": path7,
       "component8/index.hbs": path8,
+      "component9/index.hbs": path9,
     },
     fileContents,
   });
@@ -881,7 +882,7 @@ describe("lib/render/index", () => {
       });
 
       describe("component has data, but variation doesn't have data", () => {
-        test("renders iframe_component.hbs", async (done) => {
+        test.only("renders iframe_component.hbs", async (done) => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component9";
 

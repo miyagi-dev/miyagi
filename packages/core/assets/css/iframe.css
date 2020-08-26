@@ -43,6 +43,10 @@ body {
   color: inherit;
 }
 
+.MiyagiContent a {
+  text-decoration: underline;
+}
+
 .MiyagiContent .MiyagiDocumentation code,
 .MiyagiContent .Miyagi-code code,
 .MiyagiContent :not(pre) > code[class*="language-"] {

@@ -79,12 +79,40 @@ module.exports = (app) => {
     );
 
     const partials = Object.keys(app.get("state").partials);
+    const readMes = Object.keys(app.get("state").fileContents)
+      .filter((file) => file.endsWith("/README.md"))
+      .map((file) =>
+        file
+          .replace(
+            path.join(process.cwd(), app.get("config").components.folder, "/"),
+            ""
+          )
+          .replace("/README.md", "")
+      )
+      .filter((file) => file !== "README.md");
+    const files = partials.map((partial) => {
+      return {
+        file: partial,
+        dir: path.dirname(partial),
+      };
+    });
+
+    readMes.forEach((readMe) => {
+      if (!files.find((file) => file.dir === readMe)) {
+        files.push({
+          file: null,
+          dir: readMe,
+        });
+      }
+    });
+
     const paths = [];
-    for (const file of partials) {
+    for (const { file, dir } of files) {
       promises.push(
         new Promise((resolve) => {
           buildComponent({
             file,
+            dir,
             buildFolder,
             app,
             buildDate,
@@ -404,6 +432,7 @@ module.exports = (app) => {
    *
    * @param {object} object - parameter object
    * @param {string} object.file - the template file path
+   * @param {string} object.dir - the directory of the component
    * @param {string} object.buildFolder - the build folder from the user configuration
    * @param {object} object.app - the express instance
    * @param {string} object.buildDate - a date time string of the current build
@@ -412,13 +441,14 @@ module.exports = (app) => {
    */
   function buildComponent({
     file,
+    dir,
     buildFolder,
     app,
     buildDate,
     formattedBuildDate,
   }) {
     const promises = [];
-    const normalizedFileName = helpers.normalizeString(path.dirname(file));
+    const normalizedFileName = helpers.normalizeString(dir);
 
     const data = app.get("state").fileContents[
       helpers.getDataPathFromTemplatePath(
@@ -432,7 +462,7 @@ module.exports = (app) => {
         render.renderMainComponent({
           app,
           res: app,
-          file: path.dirname(file),
+          file: dir,
           variation: null,
           buildDate,
           formattedBuildDate,
@@ -453,7 +483,7 @@ module.exports = (app) => {
           render.renderIframeComponent({
             app,
             res: app,
-            file: path.dirname(file),
+            file: dir,
             cb: (response) => {
               fs.writeFile(
                 path.resolve(
@@ -470,47 +500,49 @@ module.exports = (app) => {
       );
     }
 
-    let variations = [];
+    if (file) {
+      let variations = [];
 
-    if (data) {
-      const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
+      if (data) {
+        const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
 
-      if (!data.$hidden && Object.keys(dataWithoutInternalKeys).length > 0) {
+        if (!data.$hidden && Object.keys(dataWithoutInternalKeys).length > 0) {
+          variations.push({
+            $name: data.$name || appConfig.defaultVariationName,
+            ...dataWithoutInternalKeys,
+          });
+        }
+
+        if (data.$variants) {
+          variations = [...variations, ...data.$variants];
+        }
+      } else {
         variations.push({
-          $name: data.$name || appConfig.defaultVariationName,
-          ...dataWithoutInternalKeys,
+          $name: appConfig.defaultVariationName,
         });
       }
 
-      if (data.$variants) {
-        variations = [...variations, ...data.$variants];
+      for (const variation of variations) {
+        const name = variation.$name;
+
+        if (!name) break;
+
+        promises.push(
+          new Promise((resolve) =>
+            buildVariation({
+              buildFolder,
+              app,
+              file,
+              normalizedFileName,
+              variation: name,
+              buildDate,
+              formattedBuildDate,
+            }).then((fileName) => {
+              resolve(fileName);
+            })
+          )
+        );
       }
-    } else {
-      variations.push({
-        $name: appConfig.defaultVariationName,
-      });
-    }
-
-    for (const variation of variations) {
-      const name = variation.$name;
-
-      if (!name) break;
-
-      promises.push(
-        new Promise((resolve) =>
-          buildVariation({
-            buildFolder,
-            app,
-            file,
-            normalizedFileName,
-            variation: name,
-            buildDate,
-            formattedBuildDate,
-          }).then((fileName) => {
-            resolve(fileName);
-          })
-        )
-      );
     }
 
     return Promise.all(promises);

@@ -9,7 +9,7 @@
 
 .Miyagi-menu {
   font-size: 1.4rem;
-  margin-top: var(--Miyagi-spacing-y);
+  margin: var(--Miyagi-spacing-y) 0 0 1.5rem;
 }
 
 [aria-expanded="true"] ~ .Miyagi-listContainer {
@@ -25,7 +25,7 @@
 }
 
 .Miyagi-listItem--directory.Miyagi-listItem--lvl0 {
-  padding-bottom: 2rem;
+  padding-bottom: 1em;
 }
 
 .Miyagi-list--variations,
@@ -44,15 +44,7 @@
   padding: 0 var(--Miyagi-linkSpacing);
 }
 
-.Miyagi-component--lvl0:not(a) {
-  color: var(--Miyagi-color-text);
-  font-size: 0.875em;
-  font-weight: 500;
-  letter-spacing: 0.025em;
-  text-transform: uppercase;
-}
-
-.Miyagi-component:not(.Miyagi-component--lvl0):not(.Miyagi-link) {
+.Miyagi-component:not(.Miyagi-link) {
   color: var(--Miyagi-color-link);
   cursor: default;
 }

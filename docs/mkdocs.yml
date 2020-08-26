@@ -46,6 +46,7 @@ nav:
       - Mocks: component-files/mocks.md
       - Schema: component-files/schema.md
       - Template: component-files/template.md
+  - Documentation: documentation.md
   - The web UI:
       - Overview: web-ui/overview.md
       - Component: web-ui/component.md

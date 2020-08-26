@@ -22,8 +22,8 @@
   --Miyagi-borderRadius: 0.25rem;
   --Miyagi-linkSpacing: 0.35rem;
   --Miyagi-toggle-border: 0 solid var(--Miyagi-color-link);
-  --Miyagi-toggle-borderWidth: 0.15em 0.15em 0 0;
-  --Miyagi-toggle-fontSize: 0.75rem;
+  --Miyagi-toggle-borderWidth: 0.25em 0.25em 0 0;
+  --Miyagi-toggle-fontSize: 0.6rem;
   --Miyagi-toggle-height: 1em;
   --Miyagi-toggle-transition: transform 0.15s ease;
   --Miyagi-toggle-width: 1em;

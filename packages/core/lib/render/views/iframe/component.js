@@ -21,6 +21,9 @@ const {
 module.exports = async function renderIframeComponent({ app, res, file, cb }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
   const templateFilePath = helpers.getFullPathFromShortPath(app, file);
+  const hasTemplate = Object.values(app.get("state").partials).includes(
+    templateFilePath
+  );
 
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
@@ -128,11 +131,9 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
         });
       }
     } else {
-      componentData = await extendTemplateData(
-        app.get("config"),
-        componentData,
-        file
-      );
+      componentData = hasTemplate
+        ? await extendTemplateData(app.get("config"), componentData, file)
+        : {};
     }
 
     if (componentVariations) {
@@ -146,11 +147,9 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
 
               resolveData(app, variationData, componentData).then(
                 async (data) => {
-                  data = await extendTemplateData(
-                    app.get("config"),
-                    data,
-                    file
-                  );
+                  data = hasTemplate
+                    ? await extendTemplateData(app.get("config"), data, file)
+                    : {};
 
                   context[startIndex + index] = {
                     component: file,
@@ -175,7 +174,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
           fileContents,
           name: componentName,
           cb,
-          templateFilePath,
+          templateFilePath: hasTemplate ? templateFilePath : null,
         });
       });
     } else {
@@ -188,18 +187,20 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
         fileContents,
         name: componentName,
         cb,
-        templateFilePath,
+        templateFilePath: hasTemplate ? templateFilePath : null,
       });
     }
   } else {
-    const componentData = await extendTemplateData(
-      app.get("config"),
-      {
-        component: file,
-        name: config.defaultVariationName,
-      },
-      file
-    );
+    const componentData = hasTemplate
+      ? await extendTemplateData(
+          app.get("config"),
+          {
+            component: file,
+            name: config.defaultVariationName,
+          },
+          file
+        )
+      : {};
 
     await renderVariations({
       app,
@@ -210,7 +211,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       fileContents,
       name: componentName,
       cb,
-      templateFilePath,
+      templateFilePath: hasTemplate ? templateFilePath : null,
     });
   }
 };
@@ -261,61 +262,65 @@ async function renderVariations({
   const promises = [];
   const validatedSchema = validateSchema(app, file, context);
 
-  for (let i = 0, len = context.length; i < len; i += 1) {
-    const entry = context[i];
+  if (templateFilePath) {
+    for (let i = 0, len = context.length; i < len; i += 1) {
+      const entry = context[i];
 
-    promises.push(
-      new Promise((resolve) => {
-        app.render(
-          templateFilePath,
-          getDataForRenderFunction(app, entry.data),
-          (err, result) => {
-            const baseName = path.dirname(file);
-            const variation = context[i].name;
-            let standaloneUrl;
+      promises.push(
+        new Promise((resolve) => {
+          app.render(
+            templateFilePath,
+            getDataForRenderFunction(app, entry.data),
+            (err, result) => {
+              const baseName = path.dirname(file);
+              const variation = context[i].name;
+              let standaloneUrl;
 
-            if (app.get("config").isBuild) {
-              standaloneUrl = `component-${helpers.normalizeString(
-                path.dirname(file)
-              )}-variation-${helpers.normalizeString(variation)}.html`;
-            } else {
-              standaloneUrl = `/component?file=${path.dirname(
-                file
-              )}&variation=${encodeURIComponent(variation)}`;
-            }
+              if (app.get("config").isBuild) {
+                standaloneUrl = `component-${helpers.normalizeString(
+                  path.dirname(file)
+                )}-variation-${helpers.normalizeString(variation)}.html`;
+              } else {
+                standaloneUrl = `/component?file=${path.dirname(
+                  file
+                )}&variation=${encodeURIComponent(variation)}`;
+              }
 
-            variations[i] = {
-              url: app.get("config").isBuild
-                ? `component-${helpers.normalizeString(
-                    baseName
-                  )}-variation-${helpers.normalizeString(
-                    variation
-                  )}-embedded.html`
-                : `/component?file=${baseName}&variation=${variation}&embedded=true`,
-              file,
-              html:
-                typeof result === "string"
-                  ? result
-                  : getComponentErrorHtml(err),
-              variation,
-              standaloneUrl,
-            };
-
-            if (validatedSchema && Array.isArray(validatedSchema)) {
-              variations[i].schemaValidation = {
-                valid: validatedSchema[i],
-                copy:
-                  config.messages.schemaValidator[
-                    validatedSchema[i] ? "valid" : "invalid"
-                  ],
+              variations[i] = {
+                url: app.get("config").isBuild
+                  ? `component-${helpers.normalizeString(
+                      baseName
+                    )}-variation-${helpers.normalizeString(
+                      variation
+                    )}-embedded.html`
+                  : `/component?file=${baseName}&variation=${variation}&embedded=true`,
+                file,
+                html:
+                  typeof result === "string"
+                    ? result
+                    : getComponentErrorHtml(err),
+                variation,
+                standaloneUrl,
               };
-            }
 
-            resolve(result);
-          }
-        );
-      })
-    );
+              if (validatedSchema && Array.isArray(validatedSchema)) {
+                variations[i].schemaValidation = {
+                  valid: validatedSchema[i],
+                  copy:
+                    config.messages.schemaValidator[
+                      validatedSchema[i] ? "valid" : "invalid"
+                    ],
+                };
+              }
+
+              resolve(result);
+            }
+          );
+        })
+      );
+    }
+  } else {
+    promises.push(Promise.resolve());
   }
 
   await Promise.all(promises).then(async () => {

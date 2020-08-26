@@ -13,15 +13,15 @@ const helpers = require("../../helpers.js");
  * @param {object} directory - file tree object
  * @returns {object} file tree object of the component file in the given directory
  */
-function getComponentFile(app, directory) {
-  return directory.children.find(
-    (child) =>
-      path.basename(child.name) ===
-      `${helpers.getResolvedFileName(
-        app.get("config").files.templates.name,
-        directory.name
-      )}.${app.get("config").files.templates.extension}`
-  );
+function getComponentFiles(app, directory) {
+  return directory.children.filter((child) => {
+    const baseName = path.basename(child.name);
+
+    return (
+      helpers.fileIsTemplateFile(app, baseName) ||
+      helpers.fileIsDocumentationFile(app, baseName)
+    );
+  });
 }
 
 /**
@@ -33,7 +33,7 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
   return (
     directory.children &&
     directory.children.length &&
-    typeof getComponentFile(app, directory) !== "undefined"
+    getComponentFiles(app, directory).length > 0
   );
 }
 

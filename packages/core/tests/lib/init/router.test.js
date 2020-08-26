@@ -23,6 +23,7 @@ beforeEach((done) => {
   fileContents[componentJsonFullPath.replace("index.hbs", "mocks.json")] = {
     $variants: [{ $name: "someVariation" }],
   };
+  fileContents[componentJsonFullPath] = "";
   app.set("state", {
     partials: {
       "components/component/index.hbs": component,

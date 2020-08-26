@@ -161,10 +161,18 @@ async function handleFileChange() {
       helpers.fileIsDocumentationFile(appInstance, changedPath)
     )
   ) {
+    const addedOrDeleted = triggeredEventsIncludes(triggeredEvents, [
+      "add",
+      "unlink",
+    ]);
+
     await setState(appInstance, {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
+      sourceTree: addedOrDeleted,
+      menu: addedOrDeleted,
     });
-    changeFileCallback(true, false);
+
+    changeFileCallback(true, addedOrDeleted);
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsInfoFile(appInstance, changedPath)

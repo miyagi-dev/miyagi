@@ -21,10 +21,7 @@ const menu = require("./index.js");
 function render(app, directory, request) {
   let html = "";
 
-  if (
-    menuHelpers.childrenOfDirectoryContainDirectory(directory) &&
-    menuHelpers.directoryIsNotTopLevel(directory)
-  ) {
+  if (menuHelpers.childrenOfDirectoryContainDirectory(directory)) {
     const expanded = menuHelpers.pathIsParentOfOrEqualRequestedPath(
       helpers.getShortPathFromFullPath(app, directory.fullPath),
       request.path

@@ -5,17 +5,17 @@ Module for creating a menu object
 
 
 * [stateMenu](#module_stateMenu)
-    * [~getComponentFile(app, directory)](#module_stateMenu..getComponentFile) ⇒ <code>object</code>
+    * [~getComponentFiles(app, directory)](#module_stateMenu..getComponentFiles) ⇒ <code>object</code>
     * [~hasComponentFileWithCorrectNameAsChild(app, directory)](#module_stateMenu..hasComponentFileWithCorrectNameAsChild) ⇒ <code>boolean</code>
     * [~getDataForLinkedDirectory(app, directory)](#module_stateMenu..getDataForLinkedDirectory) ⇒ <code>object</code>
-    * [~getDataForDirectory(directory)](#module_stateMenu..getDataForDirectory) ⇒ <code>object</code>
+    * [~getDataForDirectory(app, directory)](#module_stateMenu..getDataForDirectory) ⇒ <code>object</code>
     * [~restructureDirectory(app, directory)](#module_stateMenu..restructureDirectory) ⇒ <code>object</code>
     * [~hasChildren(item)](#module_stateMenu..hasChildren) ⇒ <code>boolean</code>
     * [~getMenu(app)](#module_stateMenu..getMenu) ⇒ <code>Array.&lt;object&gt;</code>
 
-<a name="module_stateMenu..getComponentFile"></a>
+<a name="module_stateMenu..getComponentFiles"></a>
 
-### stateMenu~getComponentFile(app, directory) ⇒ <code>object</code>
+### stateMenu~getComponentFiles(app, directory) ⇒ <code>object</code>
 **Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>object</code> - file tree object of the component file in the given directory  
 
@@ -48,12 +48,13 @@ Module for creating a menu object
 
 <a name="module_stateMenu..getDataForDirectory"></a>
 
-### stateMenu~getDataForDirectory(directory) ⇒ <code>object</code>
+### stateMenu~getDataForDirectory(app, directory) ⇒ <code>object</code>
 **Kind**: inner method of [<code>stateMenu</code>](#module_stateMenu)  
 **Returns**: <code>object</code> - adapted file tree object  
 
 | Param | Type | Description |
 | --- | --- | --- |
+| app | <code>object</code> | the express instance |
 | directory | <code>object</code> | file tree object |
 
 <a name="module_stateMenu..restructureDirectory"></a>
