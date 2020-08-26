@@ -67,13 +67,23 @@ function getDataForLinkedDirectory(app, directory) {
 }
 
 /**
+ * @param {object} app - the express instance
  * @param {object} directory - file tree object
  * @returns {object} adapted file tree object
  */
-function getDataForDirectory(directory) {
+function getDataForDirectory(app, directory) {
+  const info = app.get("state").fileContents[
+    path.join(
+      directory.path,
+      `${app.get("config").files.info.name}.${
+        app.get("config").files.info.extension
+      }`
+    )
+  ];
+
   return {
     type: directory.type,
-    name: directory.name,
+    name: info && info.name ? info.name : directory.name,
     fullPath: directory.path,
     index: directory.index,
     id: helpers.normalizeString(directory.path),
@@ -91,7 +101,7 @@ function restructureDirectory(app, directory) {
   if (hasComponentFileWithCorrectNameAsChild(app, directory)) {
     item = getDataForLinkedDirectory(app, directory);
   } else {
-    item = getDataForDirectory(directory);
+    item = getDataForDirectory(app, directory);
   }
 
   return item;
