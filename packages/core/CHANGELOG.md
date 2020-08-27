@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/mgrsskls/miyagi/compare/core/v1.7.1...core/v1.8.0) (2020-08-27)
+
+
+### Features
+
+* **core:** allow putting info files in other folders ([59d49af](https://github.com/mgrsskls/miyagi/commit/59d49af8cb5a159185be3e41ac5426672bc0f659))
+* **core:** render a view when README.md exists in a folder which is not a component folder ([0bb10ee](https://github.com/mgrsskls/miyagi/commit/0bb10eed9722eca53bf3a9c39681033785ff0af4))
+
 ## [1.7.1](https://github.com/mgrsskls/miyagi/compare/core/v1.6.3...core/v1.7.1) (2020-08-13)
 
 
