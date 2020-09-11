@@ -1,6 +1,7 @@
 import "./_prism.js";
 import "./_tests.js";
 import "./_iframe-links.js";
+import Tabs from "./_tabs.js";
 
 if (
   location.href.indexOf("/component-") >= 0 &&
@@ -13,8 +14,6 @@ if (
 document.addEventListener("DOMContentLoaded", function () {
   const tabs = Array.from(document.querySelectorAll(".MiyagiTabs"));
   if (tabs.length > 0) {
-    import("./_tabs.js").then((Tabs) => {
-      tabs.forEach((tab) => new Tabs.default(tab));
-    });
+    tabs.forEach((tab) => new Tabs(tab));
   }
 });
