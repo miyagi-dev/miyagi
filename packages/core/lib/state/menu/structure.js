@@ -153,5 +153,5 @@ module.exports = function setMenuStructure(app) {
 
   result = addIndices(result, -1);
 
-  return result && result.children ? result.children : [];
+  return result?.children ? result.children : [];
 };

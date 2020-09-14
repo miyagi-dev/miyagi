@@ -37,7 +37,7 @@ function render(app, directory, request) {
   html += `<span class="${classes.component} ${classes.component}--lvl${directory.index}">${directory.name}</span>`;
 
   // starts recursion
-  if (directory.children && directory.children.length) {
+  if (directory.children?.length) {
     html += `<div class="${classes.listContainer}"${
       directory.id ? ` id="${directory.id}-components"` : ""
     }>

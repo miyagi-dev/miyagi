@@ -49,7 +49,7 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
 
       if (Object.keys(componentRootData).length > 0) {
         if (componentJson.$hidden) {
-          if (componentJson.$variants && componentJson.$variants.length) {
+          if (componentJson.$variants?.length) {
             componentData = getFallbackData(
               componentJson.$variants,
               componentRootData
@@ -58,7 +58,7 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
         } else {
           componentData = componentRootData;
         }
-      } else if (componentJson.$variants && componentJson.$variants.length) {
+      } else if (componentJson.$variants?.length) {
         componentData = getFallbackData(componentJson.$variants);
       }
 

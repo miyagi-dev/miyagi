@@ -65,7 +65,7 @@ function render(app, component, request) {
   }
 
   // starts recursion
-  if (component.children && component.children.length) {
+  if (component.children?.length) {
     html += menu.render(
       app,
       component.children,

@@ -154,7 +154,7 @@ function getRootOrVariantDataOfReference(app, ref) {
     let variantJson = {};
     const rootJson = helpers.removeInternalKeys(embeddedJson);
 
-    if (variation && embeddedJson.$variants && embeddedJson.$variants.length) {
+    if (variation && embeddedJson.$variants?.length) {
       const variant = embeddedJson.$variants.find((vari) => {
         if (vari.$name) {
           return (

@@ -56,7 +56,7 @@ function getDataForLinkedDirectory(app, directory) {
 
   return {
     type: directory.type,
-    name: info && info.name ? info.name : directory.name,
+    name: info?.name ? info.name : directory.name,
     fullPath: directory.path,
     shortPath,
     normalizedShortPath,
@@ -83,7 +83,7 @@ function getDataForDirectory(app, directory) {
 
   return {
     type: directory.type,
-    name: info && info.name ? info.name : directory.name,
+    name: info?.name ? info.name : directory.name,
     fullPath: directory.path,
     index: directory.index,
     id: helpers.normalizeString(directory.path),
@@ -112,7 +112,7 @@ function restructureDirectory(app, directory) {
  * @returns {boolean} returns true if the given file tree object has children
  */
 function hasChildren(item) {
-  return item.children && item.children.length > 0;
+  return item.children?.length > 0;
 }
 
 /**

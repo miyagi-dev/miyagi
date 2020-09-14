@@ -327,7 +327,7 @@ async function updateConfigForComponentGeneratorIfNecessary(config, args) {
       (args.skip && !args.skip.includes("tpl")) ||
       !args.skip)
   ) {
-    if (config.engine && config.engine.name) {
+    if (config.engine?.name) {
       config = updateConfigWithGuessedExtensionBasedOnEngine(config);
     } else {
       config = await updateConfigWithGuessedEngineAndExtensionBasedOnFiles(

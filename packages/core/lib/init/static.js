@@ -14,7 +14,7 @@ const config = require("../config.json");
 function registerUserAssetFolder(app) {
   const { assets } = app.get("config");
 
-  if (assets && assets.folder) {
+  if (assets?.folder) {
     for (const folder of assets.folder) {
       app.use(
         path.join("/", path.basename(folder)),
@@ -28,7 +28,7 @@ function registerUserAssetFolder(app) {
  * @param {object} app - the express instance
  */
 function registerThemeFavicon(app) {
-  if (app.get("config").ui && app.get("config").ui.theme) {
+  if (app.get("config").ui?.theme) {
     const file = app.get("config").ui.theme.favicon;
 
     if (file) {
@@ -41,7 +41,7 @@ function registerThemeFavicon(app) {
  * @param {object} app - the express instance
  */
 function registerThemeLogo(app) {
-  if (app.get("config").ui && app.get("config").ui.theme) {
+  if (app.get("config").ui?.theme) {
     const file = app.get("config").ui.theme.logo;
 
     if (file) {
