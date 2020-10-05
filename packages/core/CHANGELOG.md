@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.2](https://github.com/mgrsskls/miyagi/compare/core/v1.8.1...core/v1.8.2) (2020-10-05)
+
+
+### Bug Fixes
+
+* **core:** removed accidentally commited console.log ([3b9e581](https://github.com/mgrsskls/miyagi/commit/3b9e58128cb92dca6d62849fe74d30cc9120fe03))
+
 ### [1.8.1](https://github.com/mgrsskls/miyagi/compare/core/v1.8.0...core/v1.8.1) (2020-10-05)
 
 
