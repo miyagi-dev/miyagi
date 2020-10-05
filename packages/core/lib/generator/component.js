@@ -228,7 +228,6 @@ module.exports = async function componentGenerator(cliParams, config) {
    * @returns {Promise} gets resolved when the folder has been created
    */
   function createComponentFolder(folder) {
-    console.log(path.join(process.env.INIT_CWD, folder));
     return new Promise((resolve, reject) => {
       fs.mkdir(
         path.join(process.env.INIT_CWD, folder),
