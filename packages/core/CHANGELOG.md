@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/mgrsskls/miyagi/compare/core/v1.8.0...core/v1.8.1) (2020-10-05)
+
+
+### Bug Fixes
+
+* **core:** components are always created relative from actual cwd when using "miyagi new" ([0139efe](https://github.com/mgrsskls/miyagi/commit/0139efed2644b1b15bccb7b3f33b825f4cc4b2e0))
+* **core:** Fixes that tabs on the component view did sometimes not work in builds ([959be47](https://github.com/mgrsskls/miyagi/commit/959be47ed7977f8b3db81023bb8f27bf7337d3dd))
+
 ## [1.8.0](https://github.com/mgrsskls/miyagi/compare/core/v1.7.1...core/v1.8.0) (2020-08-27)
 
 
