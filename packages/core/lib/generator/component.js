@@ -152,7 +152,11 @@ module.exports = async function componentGenerator(cliParams, config) {
       if (files.includes(file)) {
         promises.push(
           new Promise((resolve) => {
-            const fullFilePath = path.join(componentPath, file);
+            const fullFilePath = path.join(
+              process.env.INIT_CWD,
+              componentPath,
+              file
+            );
 
             fs.writeFile(
               fullFilePath,
@@ -220,20 +224,23 @@ module.exports = async function componentGenerator(cliParams, config) {
   /**
    * Creates the component folder
    *
-   * @param {string} path - component folder path that should be created
+   * @param {string} folder - component folder path that should be created
    * @returns {Promise} gets resolved when the folder has been created
    */
-  function createComponentFolder(path) {
+  function createComponentFolder(folder) {
+    console.log(path.join(process.env.INIT_CWD, folder));
     return new Promise((resolve, reject) => {
-      fs.mkdir(path, { recursive: true }, function createComponentCallback(
-        err
-      ) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
+      fs.mkdir(
+        path.join(process.env.INIT_CWD, folder),
+        { recursive: true },
+        function createComponentCallback(err) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve();
+          }
         }
-      });
+      );
     });
   }
 };
