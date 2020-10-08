@@ -45,12 +45,13 @@ module.exports = {
 
       getFilePaths(app, app.get("config").components.folder).then((paths) => {
         for (const shortPath of paths) {
-          if (shortPath === path.basename(shortPath)) break; // ignore files that live directly in the srcFolder
-
-          partials[shortPath] = path.join(
-            process.cwd(),
-            `${app.get("config").components.folder}/${shortPath}`
-          );
+          // ignore files that live directly in the srcFolder
+          if (shortPath !== path.basename(shortPath)) {
+            partials[shortPath] = path.join(
+              process.cwd(),
+              `${app.get("config").components.folder}/${shortPath}`
+            );
+          }
         }
 
         resolve(partials);
