@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.3](https://github.com/mgrsskls/miyagi/compare/core/v1.8.2...core/v1.8.3) (2020-10-08)
+
+
+### Bug Fixes
+
+* **core:** fix variants not showing up when there are template files directly in the root folder ([5934f2e](https://github.com/mgrsskls/miyagi/commit/5934f2e2ac8c46ee8e74dcaacd59bf3145622ef7))
+
 ### [1.8.2](https://github.com/mgrsskls/miyagi/compare/core/v1.8.1...core/v1.8.2) (2020-10-05)
 
 
