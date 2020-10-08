@@ -40,7 +40,7 @@ body {
 
 .MiyagiContent a,
 .MiyagiIframe-newTabLink {
-  color: inherit;
+  color: var(--Miyagi-color);
 }
 
 .MiyagiContent a {
