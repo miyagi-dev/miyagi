@@ -453,6 +453,7 @@ describe("lib/init/config", () => {
           js: [],
           es6Modules: false,
           folder: [],
+          manifest: null,
         },
         components: {
           folder: "src",

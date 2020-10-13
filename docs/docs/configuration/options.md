@@ -57,6 +57,13 @@ Can either be a string, an array of strings or an object with your `NODE_ENV`s a
 
 This would serve different assets based on your `NODE_ENV`.
 
+### `manifest`
+
+default: `null`<br>
+type: `string`
+
+If you create CSS and JS files with hashes and have therefore a manifest file, you can set this here and then use the same keys of the manifest file for your CSS and JS files in `assets.css` and `assets.js`. _miyagi_ will then resolve these.
+
 ## `build`
 
 _Settings for creating a static build._

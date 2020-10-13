@@ -4,7 +4,8 @@
       "css": [],
       "es6Modules": false,
       "js": [],
-      "folder": []
+      "folder": [],
+      "manifest": null
     },
     "build": {
       "basePath": "/",
@@ -110,6 +111,7 @@
     "guessingEngineFailed": "miyagi wasn't able to guess your engine.",
     "guessingExtensionFailed": "miyagi wasn't able to guess your template files extension.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
+    "manifestNotFound": "Manifest file {{manifest}} not found or unparseable.",
     "missingEngine": "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
     "noDataSetForVariation": "No mock data defined for variation \"{{variation}}\" in {{file}}.",

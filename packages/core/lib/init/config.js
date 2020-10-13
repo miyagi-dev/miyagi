@@ -7,6 +7,8 @@
 const deepMerge = require("deepmerge");
 const log = require("../logger.js");
 const appConfig = require("../config.json");
+const fs = require("fs");
+const path = require("path");
 
 const { defaultUserConfig } = appConfig;
 
@@ -54,10 +56,13 @@ function objectIsRealObject(obj) {
 
 /**
  * @param {string|Array|object} strOrArrOrObj - user assets files, either one file as string, an array of files or an object with strings or array for each NODE_ENV
+ * @param {object} manifest - manifest object
+ * @param {string} manifest.file - manifest file path
+ * @param {object} manifest.content - parsed json content of manifest file
  * @param {("css"|"js")} assetType - the current asset type
  * @returns {string[]} converts the given object to an array of asset file path strings
  */
-function getAssetFilesArray(strOrArrOrObj, assetType) {
+function getAssetFilesArray(strOrArrOrObj, manifest, assetType) {
   let files = strOrArrOrObj;
 
   if (typeof files === "string") {
@@ -77,6 +82,22 @@ function getAssetFilesArray(strOrArrOrObj, assetType) {
           .replace("{{assetType}}", assetType)
       );
     }
+  }
+
+  if (manifest) {
+    files = files.map((file) => {
+      const manifestEntry = Object.entries(manifest.content).find(([key]) => {
+        return (
+          path.resolve(sanitizePath(key)) === path.resolve(sanitizePath(file))
+        );
+      });
+
+      if (manifestEntry) {
+        return path.join(path.dirname(manifest.file), manifestEntry[1]);
+      } else {
+        return file;
+      }
+    });
   }
 
   return files.map(sanitizePath);
@@ -102,16 +123,44 @@ module.exports = (userConfig = {}) => {
   }
 
   if (config.assets) {
+    let manifest;
+
+    if (config.assets.manifest) {
+      try {
+        const manifestContent = fs.readFileSync(
+          path.resolve(config.assets.manifest),
+          "utf-8"
+        );
+
+        manifest = {
+          file: config.assets.manifest,
+          content: JSON.parse(manifestContent),
+        };
+      } catch (e) {
+        log(
+          "warn",
+          appConfig.messages.manifestNotFound.replace(
+            "{{manifest}}",
+            config.assets.manifest
+          )
+        );
+      }
+    }
+
     if (config.assets.folder) {
       config.assets.folder = arrayfy(config.assets.folder).map(sanitizePath);
     }
 
     if (config.assets.css) {
-      config.assets.css = getAssetFilesArray(config.assets.css, "css");
+      config.assets.css = getAssetFilesArray(
+        config.assets.css,
+        manifest,
+        "css"
+      );
     }
 
     if (config.assets.js) {
-      config.assets.js = getAssetFilesArray(config.assets.js, "js");
+      config.assets.js = getAssetFilesArray(config.assets.js, manifest, "js");
     }
 
     if (
