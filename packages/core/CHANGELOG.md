@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/mgrsskls/miyagi/compare/core/v1.8.4...core/v1.9.0) (2020-10-13)
+
+
+### Features
+
+* **core:** added assets.manifest option to be able to use a manifest file for CSS and JS files ([e357f83](https://github.com/mgrsskls/miyagi/commit/e357f83b8c273a5055cd952aa780db0b99e0b297))
+
 ### [1.8.4](https://github.com/mgrsskls/miyagi/compare/core/v1.8.3...core/v1.8.4) (2020-10-08)
 
 
