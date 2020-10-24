@@ -107,6 +107,7 @@ module.exports = async function renderIframeVariation({
             projectName: config.projectName,
             userProjectName: app.get("config").projectName,
             isBuild: app.get("config").isBuild,
+            theme: app.get("config").ui.theme,
           },
           (err, html) => {
             if (res.send) {

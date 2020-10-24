@@ -9,19 +9,29 @@
     "Helvetica", "Arial", sans-serif;
   --Miyagi-fontSize: 1.6rem;
   --Miyagi-lineHeight: 1.5;
-  --Miyagi-color: #222;
-  --Miyagi-color-bg: #f5f5f5;
-  --Miyagi-color-lightGray: #707070;
-  --Miyagi-color-text: var(--Miyagi-color-lightGray);
-  --Miyagi-color-link: var(--Miyagi-color);
-  --Miyagi-color-linkActive: #fff;
-  --Miyagi-color-linkActiveBackground: var(--Miyagi-color-link);
-  --Miyagi-color-negative: #d9173e;
-  --Miyagi-color-warning: purple;
-  --Miyagi-color-positive: #690;
+
+  /* light */
+  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
+  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
+  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
+  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
+  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+
+  /* colors */
+  --Miyagi-color-Background: var(--Miyagi-color-Grey-5);
+  --Miyagi-color-Background2: #fff;
+  --Miyagi-color-Text: var(--Miyagi-color-Grey-2);
+  --Miyagi-color-Link: var(--Miyagi-color-Grey-1);
+  --Miyagi-color-Link-active: var(--Miyagi-color-Grey-5);
+  --Miyagi-color-Link-active-background: var(--Miyagi-color-Link);
+  --Miyagi-color-Negative: #d9173e;
+  --Miyagi-color-Warning: purple;
+  --Miyagi-color-Positive: #690;
+
+  /* misc */
   --Miyagi-borderRadius: 0.25rem;
   --Miyagi-linkSpacing: 0.35rem;
-  --Miyagi-toggle-border: 0 solid var(--Miyagi-color-link);
+  --Miyagi-toggle-border: 0 solid var(--Miyagi-color-Link);
   --Miyagi-toggle-borderWidth: 0.25em 0.25em 0 0;
   --Miyagi-toggle-fontSize: 0.6rem;
   --Miyagi-toggle-height: 1em;
@@ -30,6 +40,19 @@
   --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
   --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
   --Miyagi-spacing: var(--Miyagi-spacing-y);
+}
+
+.MiyagiTheme--dark {
+  --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
+  --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
+  --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
+  --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
+  --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
+  --Miyagi-color-Background: hsl(0, 0%, 10%);
+  --Miyagi-color-Background2: hsl(0, 0%, 12%);
+  --Miyagi-color-Negative: #ff305a;
+  --Miyagi-color-Warning: #b578b5;
+  --Miyagi-color-Positive: #8dd203;
 }
 
 *,
@@ -44,8 +67,8 @@ html {
 }
 
 body {
-  background: #fff;
-  color: var(--Miyagi-color);
+  background: var(--Miyagi-color-Background2);
+  color: var(--Miyagi-color-Text);
 }
 
 .Miyagi {
@@ -58,7 +81,7 @@ body {
 
 .Miyagi-nav {
   display: flex;
-  background: var(--Miyagi-color-bg);
+  background: var(--Miyagi-color-Background);
   grid-area: nav;
   overflow-y: auto;
   padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x)
@@ -87,7 +110,7 @@ body {
 
 .Miyagi-buildDate {
   font-size: 1.2rem;
-  color: var(--Miyagi-color-link);
+  color: var(--Miyagi-color-Link);
   opacity: 0.75;
 }
 

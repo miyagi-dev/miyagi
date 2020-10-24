@@ -45,7 +45,7 @@
 }
 
 .Miyagi-component:not(.Miyagi-link) {
-  color: var(--Miyagi-color-link);
+  color: var(--Miyagi-color-Link);
   cursor: default;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .Miyagi-link {
-  color: var(--Miyagi-color-link);
+  color: var(--Miyagi-color-Link);
   text-decoration: none;
 }
 
@@ -70,9 +70,9 @@
 }
 
 .Miyagi-link:not(.has-logo)[aria-current] {
-  background: var(--Miyagi-color-linkActiveBackground, --Miyagi-color-link);
+  background: var(--Miyagi-color-Link-active-background, --Miyagi-color-Link);
   border-radius: var(--Miyagi-borderRadius);
-  color: var(--Miyagi-color-linkActive);
+  color: var(--Miyagi-color-Link-active);
   display: inline-block;
 }
 

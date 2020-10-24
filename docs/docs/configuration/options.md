@@ -253,6 +253,8 @@ default:
 {
   "favicon": null,
   "logo": null,
+  "mode": "light", // "light" or "dark"
+  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
   "navigation": {
     "colorText": "#707070",
     "colorBackground": "#f5f5f5",
@@ -261,7 +263,9 @@ default:
     "colorLinksActiveBackground": "#707070"
   },
   "content": {
-    "colorHeadlines": "#222222",
+    "colorBackground": "#ffffff",
+    "colorHeadline1": "#222222",
+    "colorHeadline2": "#222222",
     "colorText": "#222222"
   }
 }

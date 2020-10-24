@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="MiyagiTheme--{{theme.mode}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
@@ -15,7 +15,7 @@
       defer{{/if}}></script>
     {{{cssFiles}}}
     {{#if renderFileTabs}}
-      <link rel="stylesheet" href="miyagi/css/prism.css">
+      <link rel="stylesheet" href="miyagi/css/prism.{{theme.mode}}.css">
     {{/if}}
     <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
     {{#if a11yTestsPreload}}
@@ -23,10 +23,12 @@
     {{/if}}
     <style>
       :root {
-          {{#if theme.fontFamily}}--Miyagi-fontFamily: {{ theme.fontFamily }};{{/if}}
-          {{#if theme.content.colorText}}--Miyagi-color: {{ theme.content.colorText }};{{/if}}
-          {{#if theme.content.colorHeadlines}}--Miyagi-colorHeadlines: {{ theme.content.colorHeadlines }};{{/if}}
-        }
+        {{#if theme.fontFamily}}--Miyagi-fontFamily: {{ theme.fontFamily }};{{/if}}
+        {{#if theme.content.colorBackground}}--Miyagi-colorBackground: {{ theme.content.colorBackground }};{{/if}}
+        {{#if theme.content.colorText}}--Miyagi-color: {{ theme.content.colorText }};{{/if}}
+        {{#if theme.content.colorHeadline1}}--Miyagi-color-Headline1: {{ theme.content.colorHeadline1 }};{{/if}}
+        {{#if theme.content.colorHeadline2}}--Miyagi-color-Headline2: {{ theme.content.colorHeadline2 }};{{/if}}
+      }
     </style>
   </head>
   <body>

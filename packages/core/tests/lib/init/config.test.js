@@ -480,7 +480,9 @@ describe("lib/init/config", () => {
             accessibility: true,
           },
           reload: true,
-          theme: {},
+          theme: {
+            mode: "light",
+          },
         },
         extensions: [],
         files: {
