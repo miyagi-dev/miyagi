@@ -23,39 +23,19 @@
 
 .MiyagiResult a {
   color: currentColor;
-  padding: 0 0.35rem 0 2rem;
+  padding: 0 0.35rem;
   position: relative;
   word-break: break-all;
-}
-
-.MiyagiResult a::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' focusable='false' aria-hidden='true'%3E%3Cpath d='M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  content: "";
-  display: inline-block;
-  height: 1em;
-  left: 0;
-  margin: 0 0 0 0.25rem;
-  position: absolute;
-  top: 0.2rem;
-  width: 1em;
 }
 
 .MiyagiResult a:hover,
 .MiyagiResult a:focus,
 .MiyagiResult a:active {
-  background: var(--Miyagi-color-link);
+  background: var(--Miyagi-color-Link);
   border-radius: var(--Miyagi-borderRadius);
-  box-shadow: 0 0.2rem 0 var(--Miyagi-color-link);
-  color: var(--Miyagi-color-linkActive);
+  box-shadow: 0 0.2rem 0 var(--Miyagi-color-Link);
+  color: var(--Miyagi-color-Link-active);
   text-decoration: none;
-}
-
-.MiyagiResult a:hover::before,
-.MiyagiResult a:focus::before,
-.MiyagiResult a:active::before {
-  filter: invert(1);
 }
 
 .MiyagiResult-extract {

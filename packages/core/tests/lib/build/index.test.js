@@ -74,7 +74,9 @@ describe("lib/build/index", () => {
         css: ["index.css"],
         js: ["index.js"],
       },
-      theme: {},
+      theme: {
+        mode: "light",
+      },
     })
   );
   app.set("state", {

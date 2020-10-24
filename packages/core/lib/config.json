@@ -63,7 +63,9 @@
         "componentAssets": false
       },
       "renderComponentOverview": true,
-      "theme": {},
+      "theme": {
+        "mode": "light"
+      },
       "validations": {
         "html": true,
         "accessibility": true

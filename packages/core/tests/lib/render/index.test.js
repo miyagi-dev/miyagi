@@ -937,7 +937,9 @@ describe("lib/render/index", () => {
             renderFileTabs: true,
             name: "component9",
             documentation: undefined,
-            theme: {},
+            theme: {
+              mode: "light",
+            },
             schemaError: null,
             template: null,
           });

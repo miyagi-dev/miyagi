@@ -52,35 +52,35 @@
 }
 
 .MiyagiResults-value--positive {
-  color: var(--Miyagi-color-positive);
+  color: var(--Miyagi-color-Positive);
 }
 
 .MiyagiResults-value--positive.has-positiveValue {
-  background: var(--Miyagi-color-positive);
+  background: var(--Miyagi-color-Positive);
 }
 
 .MiyagiResults-value--neutral {
-  color: var(--Miyagi-color-lightGray);
+  color: var(--Miyagi-color-Text);
 }
 
 .MiyagiResults-value--neutral.has-positiveValue {
-  background: var(--Miyagi-color-lightGray);
+  background: var(--Miyagi-color-Text);
 }
 
 .MiyagiResults-value--negative {
-  color: var(--Miyagi-color-negative);
+  color: var(--Miyagi-color-Negative);
 }
 
 .MiyagiResults-value--negative.has-positiveValue {
-  background: var(--Miyagi-color-negative);
+  background: var(--Miyagi-color-Negative);
 }
 
 .MiyagiResults-value--warning {
-  color: var(--Miyagi-color-warning);
+  color: var(--Miyagi-color-Warning);
 }
 
 .MiyagiResults-value--warning.has-positiveValue {
-  background: var(--Miyagi-color-warning);
+  background: var(--Miyagi-color-Warning);
 }
 
 .MiyagiResults-details {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="MiyagiTheme--{{theme.mode}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
@@ -11,11 +11,11 @@
     <style>
       :root {
         {{#if theme.navigation}}
-          {{#if theme.navigation.colorText}}--Miyagi-color-text: {{theme.navigation.colorText}};{{/if}}
-          {{#if theme.navigation.colorBackground}}--Miyagi-color-bg: {{theme.navigation.colorBackground}};{{/if}}
-          {{#if theme.navigation.colorLinks}}--Miyagi-color-link: {{theme.navigation.colorLinks}};{{/if}}
-          {{#if theme.navigation.colorLinksActive}}--Miyagi-color-linkActive: {{theme.navigation.colorLinksActive}};{{/if}}
-          {{#if theme.navigation.colorLinksActiveBackground}}--Miyagi-color-linkActiveBackground: {{theme.navigation.colorLinksActiveBackground}};{{/if}}
+          {{#if theme.navigation.colorText}}--Miyagi-color-Text: {{theme.navigation.colorText}};{{/if}}
+          {{#if theme.navigation.colorBackground}}--Miyagi-color-Background: {{theme.navigation.colorBackground}};{{/if}}
+          {{#if theme.navigation.colorLinks}}--Miyagi-color-Link: {{theme.navigation.colorLinks}};{{/if}}
+          {{#if theme.navigation.colorLinksActive}}--Miyagi-color-Link-active: {{theme.navigation.colorLinksActive}};{{/if}}
+          {{#if theme.navigation.colorLinksActiveBackground}}--Miyagi-color-Link-active-background: {{theme.navigation.colorLinksActiveBackground}};{{/if}}
         {{/if}}
         {{#if theme.fontFamily}}--Miyagi-fontFamily: {{theme.fontFamily}};{{/if}}
       }
