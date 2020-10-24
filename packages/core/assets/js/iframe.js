@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const links = Array.from(document.querySelectorAll(".MiyagiComponent-file"));
   const tabs = Array.from(document.querySelectorAll(".MiyagiTabs"));
   const tests = parent.document.querySelector(".Miyagi-tests");
+  const styleguide = document.querySelector(".MiyagiStyleguide");
 
   if (tests) {
     Tests(tests);
@@ -32,5 +33,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (document.querySelector(".Miyagi-code")) {
     import("./_prism.js");
+  }
+
+  if (styleguide) {
+    import("./styleguide/index.js").then(
+      (Styleguide) => new Styleguide.default(styleguide)
+    );
   }
 });

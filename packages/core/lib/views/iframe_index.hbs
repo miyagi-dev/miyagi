@@ -6,6 +6,95 @@
           <h1>{{ userProjectName }}</h1>
           {{{documentation}}}
         </div>
+
+        <div class="MiyagiStyleguide" data-media-queries='{{mediaQueries}}'>
+          <ul class="MiyagiIndex">
+            {{#if colors}}
+              <li class="MiyagiIndex-item"><a href="#colors">Colors</a></li>
+            {{/if}}
+            {{#if fonts}}
+              <li class="MiyagiIndex-item"><a href="#fonts">Fonts</a></li>
+            {{/if}}
+            {{#if spacings}}
+              <li class="MiyagiIndex-item"><a href="#spacings">Spacings</a></li>
+            {{/if}}
+          </ul>
+
+          {{#if colors}}
+            <h2 class="Miyagi-sectionTitle" id="colors">Colors</h2>
+            {{#each colors}}
+              {{#if this.styles.length}}
+                <ul class="MiyagiCustomPropsGroup MiyagiColors MiyagiColors--{{this.type}}">
+                  {{#each this.styles}}
+                    {{#if this.customProp}}
+                      <li class="MiyagiCustomProp MiyagiColors-item"
+                        style="--color: var({{this.customProp}});{{#if this.isWhite}} --backdrop: #000;{{/if}}">
+                        <button class="MiyagiCustomProp-button MiyagiColors-button"
+                          aria-controls="styleguide-color-{{this.name}}" aria-expanded="false" {{#if this.type}}
+                          data-type="{{this.type}}" {{/if}}>
+                          <span class="MiyagiColors-prop MiyagiCustomProp-prop">{{this.name}}</span>
+                        </button>
+                        <dl class="MiyagiCustomProp-details" id="styleguide-color-{{this.name}}" hidden>
+                          <dt class="MiyagiCustomProp-detailsProperty">Name</dt>
+                          <dd class="MiyagiCustomProp-detailsValue">{{this.customProp}}</dd>
+                          {{#each this.values}}
+                            <dt class="MiyagiCustomProp-detailsProperty">{{this}}</dt>
+                            <dd class="MiyagiCustomProp-detailsValue" data-value="{{this}}"></dd>
+                          {{/each}}
+                        </dl>
+                      </li>
+                    {{/if}}
+                  {{/each}}
+                </ul>
+              {{/if}}
+            {{/each}}
+          {{/if}}
+          {{#if fonts}}
+            <h2 class="Miyagi-sectionTitle" id="fonts">Fonts</h2>
+            <ul class="MiyagiCustomPropsGroup MiyagiFonts">
+              {{#each fonts}}
+                {{#if this.[1].customProp}}
+                  <li class="MiyagiCustomProp MiyagiFonts-item"
+                    style='{{#each this.[1].values}}--{{this.label}}: var({{this.value}});{{/each}}'>
+                    <button class="MiyagiFonts-button MiyagiCustomProp-button"
+                      aria-controls="styleguide-fonts-{{this.[0]}}" aria-expanded="false">
+                      <span class="MiyagiFonts-prop MiyagiCustomProp-prop">{{this.[0]}}</span>
+                    </button>
+                    <dl class="MiyagiCustomProp-details" id="styleguide-fonts-{{this.[0]}}" hidden>
+                      <dt class="MiyagiCustomProp-detailsProperty">Name</dt>
+                      <dd class="MiyagiCustomProp-detailsValue">{{this.[1].customProp}}</dd>
+                      {{#each this.[1].values}}
+                        <dt class="MiyagiCustomProp-detailsProperty">{{this.label}}</dt>
+                        <dd class="MiyagiCustomProp-detailsValue" data-value="{{this.value}}"></dd>
+                      {{/each}}
+                    </dl>
+                  </li>
+                {{/if}}
+              {{/each}}
+            </ul>
+          {{/if}}
+          {{#if spacings}}
+            <h2 class="Miyagi-sectionTitle" id="spacings">Spacings</h2>
+            <ul class="MiyagiCustomPropsGroup MiyagiSpacings">
+              {{#each spacings}}
+                {{#if this.[1].customProp}}
+                  <li class="MiyagiCustomProp MiyagiSpacings-item" style="--spacing: var({{this.[1].customProp}});">
+                    <button class="MiyagiSpacings-button MiyagiCustomProp-button"
+                      aria-controls="styleguide-spacings-{{this.[0]}}" aria-expanded="false">
+                      <span class="MiyagiSpacings-prop MiyagiCustomProp-prop">{{this.[0]}}</span>
+                    </button>
+                    <dl class="MiyagiCustomProp-details" id="styleguide-spacings-{{this.[0]}}" hidden>
+                      <dt class="MiyagiCustomProp-detailsProperty">Name</dt>
+                      <dd class="MiyagiCustomProp-detailsValue">{{this.[1].customProp}}</dd>
+                      <dt class="MiyagiCustomProp-detailsProperty">Size</dt>
+                      <dd class="MiyagiCustomProp-detailsValue" data-value="{{this.[1].customProp}}"></dd>
+                    </dl>
+                  </li>
+                {{/if}}
+              {{/each}}
+            </ul>
+          {{/if}}
+        </div>
       </div>
       {{#if renderComponentOverview}}
         <div class="MiyagiContent">

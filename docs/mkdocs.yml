@@ -39,6 +39,7 @@ nav:
       - Via CLI: configuration/cli.md
       - Extending template engine: configuration/extending-template-engine.md
   - Organizing your components: organizing-components.md
+  - Automated styleguide: automated-styleguide.md
   - Component files:
       - Assets: component-files/assets.md
       - Documentation: component-files/documentation.md

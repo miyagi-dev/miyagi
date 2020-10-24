@@ -5,7 +5,14 @@
       "es6Modules": false,
       "js": [],
       "folder": [],
-      "manifest": null
+      "manifest": null,
+      "customProperties": {
+        "prefixes": {
+          "typo": "typo",
+          "color": "color",
+          "spacing": "spacing"
+        }
+      }
     },
     "build": {
       "basePath": "/",
@@ -89,6 +96,7 @@
     "buildDone": "Build done!",
     "commandNotFound": "Please run `miyagi --help` for all available commands.",
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
+    "customPropertyFileNotFound": "Couldn't find file {{filePath}}. Is the 'assets.customProperties.files' in your configuration set correctly?",
     "dataGenerator": {
       "dataFileExists": "The mock file {{fileName}} exists already.",
       "done": "Done!",

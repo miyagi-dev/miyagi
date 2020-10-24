@@ -39,6 +39,7 @@
     "chalk": "^4.1.0",
     "chokidar": "^3.4.3",
     "consolidate": "^0.16.0",
+    "css": "^3.0.0",
     "deepmerge": "^4.2.2",
     "directory-tree": "^2.2.5",
     "express": "^4.17.1",

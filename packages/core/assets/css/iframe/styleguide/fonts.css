@@ -1,0 +1,37 @@
+.MiyagiContent .MiyagiFonts-item:not(:first-child) {
+  margin-top: 3em;
+}
+
+.MiyagiContent .MiyagiFonts-button {
+  color: inherit;
+}
+
+.MiyagiContent .MiyagiFonts-button::before {
+  content: "The quick brown fox jumps over the lazy dog";
+  font-family: var(--font-family);
+  font-feature-settings: var(--font-feature-settings);
+  font-kerning: var(--font-kerning);
+  font-size-adjust: var(--font-size-adjust);
+  font-size: var(--font-size);
+  font-stretch: var(--font-stretch);
+  font-style: var(--font-style);
+  font-variant-caps: var(--font-variant-caps);
+  font-variant: var(--font-variant);
+  font-weight: var(--font-weight);
+  letter-spacing: var(--letter-spacing);
+  line-height: var(--line-height);
+  text-shadow: var(--text-shadow);
+  text-transform: var(--text-transform);
+}
+
+.MiyagiContent .MiyagiFonts-details {
+  display: flex;
+  padding: 0;
+  list-style: none;
+}
+
+.MiyagiContent .MiyagiFonts-details > li:not(:last-child) {
+  margin-right: 0.5em;
+  padding-right: 0.5em;
+  border-right: 1px solid currentColor;
+}

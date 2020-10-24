@@ -1,0 +1,129 @@
+@import "./colors.css";
+@import "./fonts.css";
+@import "./spacings.css";
+
+.MiyagiContent .MiyagiCustomPropsGroup {
+  list-style: none;
+  margin: 3em 0;
+  padding: 0;
+}
+
+.MiyagiContent .MiyagiCustomProp {
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.MiyagiContent .MiyagiCustomProp[aria-selected="true"] {
+  position: relative;
+}
+
+.MiyagiContent .MiyagiCustomProp-prop,
+.MiyagiContent .MiyagiCustomProp-value {
+  color: #767676;
+  display: block;
+  margin: 10px 0 0;
+}
+
+.MiyagiContent .MiyagiCustomProp-prop {
+  word-break: break-all;
+}
+
+.MiyagiContent .MiyagiCustomProp-value {
+  display: none;
+}
+
+.MiyagiContent .MiyagiCustomProp-button {
+  background: none;
+  border: none;
+  appearance: none;
+  font: inherit;
+  width: 100%;
+  padding: 0;
+  text-align: left;
+}
+
+.MiyagiContent .MiyagiCustomProp-button:focus {
+  outline: none;
+}
+
+.MiyagiContent
+  .MiyagiCustomProp-button:not([aria-expanded="true"]):hover
+  .MiyagiCustomProp-prop,
+.MiyagiContent
+  .MiyagiCustomProp-button:not([aria-expanded="true"]):focus
+  .MiyagiCustomProp-prop {
+  text-decoration: underline;
+}
+
+.MiyagiContent .MiyagiCustomProp-details {
+  --bg-color: #f5f5f5;
+  --outline-color: #ddd;
+
+  position: absolute;
+  bottom: calc(100% + 15px);
+  left: 0;
+  padding: 15px;
+  margin: 0;
+  z-index: 1;
+  background: var(--bg-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  outline: 1px solid var(--outline-color);
+  box-sizing: border-box;
+  font-size: 14px;
+  display: none;
+  grid-template-columns: fit-content(50%) 1fr;
+  grid-gap: 0.5rem 1rem;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.MiyagiTheme--dark .MiyagiContent .MiyagiCustomProp-details {
+  --bg-color: #333;
+  --outline-color: #444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.MiyagiContent .MiyagiCustomProp-details:not([hidden]),
+.MiyagiContent .MiyagiCustomProp-button:hover + .MiyagiCustomProp-details {
+  display: grid;
+  animation: fadeIn 0.15s ease;
+}
+
+.MiyagiContent .MiyagiCustomProp-details::before,
+.MiyagiContent .MiyagiCustomProp-details::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 15px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+.MiyagiContent .MiyagiCustomProp-details::before {
+  border-top-color: var(--outline-color);
+  top: 100%;
+}
+
+.MiyagiContent .MiyagiCustomProp-details::after {
+  border-top-color: var(--bg-color);
+  top: calc(100% - 2px);
+}
+
+.MiyagiContent .MiyagiCustomProp-detailsProperty {
+  font-weight: 600;
+}
+
+.MiyagiContent .MiyagiCustomProp-detailsValue {
+  margin: 0;
+}

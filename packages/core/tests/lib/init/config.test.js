@@ -454,6 +454,13 @@ describe("lib/init/config", () => {
           es6Modules: false,
           folder: [],
           manifest: null,
+          customProperties: {
+            prefixes: {
+              color: "color",
+              spacing: "spacing",
+              typo: "typo",
+            },
+          },
         },
         components: {
           folder: "src",

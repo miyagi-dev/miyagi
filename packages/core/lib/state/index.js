@@ -6,6 +6,7 @@
 
 const { getPartials } = require("./partials.js");
 const { getFileContents } = require("./file-contents.js");
+const getCSS = require("./css");
 const { getMenu } = require("./menu");
 const { getSourceTree } = require("./source-tree.js");
 
@@ -69,6 +70,17 @@ module.exports = async function setState(app, methods) {
       new Promise((resolve) => {
         getPartials(app).then((result) => {
           state.partials = result;
+          resolve();
+        });
+      })
+    );
+  }
+
+  if (methods.css) {
+    promises.push(
+      new Promise((resolve) => {
+        getCSS(app).then((result) => {
+          state.css = result;
           resolve();
         });
       })

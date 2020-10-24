@@ -9,7 +9,7 @@ Module for sanitizing the user configuration and merging it with the default con
         * [~sanitizePath(path)](#module_initConfig--module.exports..sanitizePath) ⇒ <code>string</code>
         * [~arrayfy(strOrArr)](#module_initConfig--module.exports..arrayfy) ⇒ <code>Array</code>
         * [~objectIsRealObject(obj)](#module_initConfig--module.exports..objectIsRealObject) ⇒ <code>boolean</code>
-        * [~getAssetFilesArray(strOrArrOrObj, assetType)](#module_initConfig--module.exports..getAssetFilesArray) ⇒ <code>Array.&lt;string&gt;</code>
+        * [~getAssetFilesArray(strOrArrOrObj, manifest, assetType)](#module_initConfig--module.exports..getAssetFilesArray) ⇒ <code>Array.&lt;string&gt;</code>
 
 <a name="exp_module_initConfig--module.exports"></a>
 
@@ -53,12 +53,15 @@ Module for sanitizing the user configuration and merging it with the default con
 
 <a name="module_initConfig--module.exports..getAssetFilesArray"></a>
 
-#### module.exports~getAssetFilesArray(strOrArrOrObj, assetType) ⇒ <code>Array.&lt;string&gt;</code>
+#### module.exports~getAssetFilesArray(strOrArrOrObj, manifest, assetType) ⇒ <code>Array.&lt;string&gt;</code>
 **Kind**: inner method of [<code>module.exports</code>](#exp_module_initConfig--module.exports)  
 **Returns**: <code>Array.&lt;string&gt;</code> - converts the given object to an array of asset file path strings  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | strOrArrOrObj | <code>string</code> \| <code>Array</code> \| <code>object</code> | user assets files, either one file as string, an array of files or an object with strings or array for each NODE_ENV |
+| manifest | <code>object</code> | manifest object |
+| manifest.file | <code>string</code> | manifest file path |
+| manifest.content | <code>object</code> | parsed json content of manifest file |
 | assetType | <code>&quot;css&quot;</code> \| <code>&quot;js&quot;</code> | the current asset type |
 

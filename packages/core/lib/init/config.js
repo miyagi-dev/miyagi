@@ -164,6 +164,15 @@ module.exports = (userConfig = {}) => {
     }
 
     if (
+      config.assets.customProperties &&
+      config.assets.customProperties.files
+    ) {
+      config.assets.customProperties.files = arrayfy(
+        config.assets.customProperties.files
+      );
+    }
+
+    if (
       config.assets.es6Modules &&
       objectIsRealObject(config.assets.es6Modules)
     ) {

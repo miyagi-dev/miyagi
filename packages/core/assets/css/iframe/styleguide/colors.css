@@ -1,0 +1,61 @@
+.MiyagiContent .MiyagiColors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
+  grid-gap: 3em;
+}
+
+.MiyagiContent .MiyagiColors-button {
+  --size: 3em;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.MiyagiContent .MiyagiColors-button::before,
+.MiyagiContent .MiyagiColors-button::after {
+  display: block;
+}
+
+.MiyagiContent .MiyagiColors--all .MiyagiColors-button::before {
+  margin-right: 10px;
+  width: var(--size);
+}
+
+.MiyagiContent .MiyagiColors--all .MiyagiColors-button::before,
+.MiyagiContent .MiyagiColors--decoration .MiyagiColors-button::before {
+  height: var(--size);
+  background: var(--color);
+  border: 1px solid var(--backdrop, transparent);
+  content: "";
+  order: -1;
+}
+
+.MiyagiContent .MiyagiColors--decoration .MiyagiColors-button::before {
+  width: 100%;
+}
+
+.MiyagiContent .MiyagiColors--all .MiyagiColors-button::after,
+.MiyagiContent .MiyagiColors--typo .MiyagiColors-button::after {
+  font-size: var(--size);
+  color: var(--color);
+  font-weight: bold;
+  order: -1;
+  /* stylelint-disable */
+  -webkit-text-stroke: 1px var(--backdrop, transparent);
+  text-stroke: 1px var(--backdrop, transparent);
+  /* stylelint-enable */
+}
+
+.MiyagiContent .MiyagiColors--all .MiyagiColors-button::after {
+  content: "Aa";
+}
+
+.MiyagiContent .MiyagiColors--typo .MiyagiColors-button::after {
+  content: "AaBbCc";
+}
+
+.MiyagiContent .MiyagiColors-prop,
+.MiyagiContent .MiyagiColors-value {
+  flex: 1 0 100%;
+  margin: 10px 0 0;
+}

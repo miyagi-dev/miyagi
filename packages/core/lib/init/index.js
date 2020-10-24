@@ -37,6 +37,7 @@ module.exports = async function init(mergedConfig) {
       menu: true,
       partials: true,
       fileContents: true,
+      css: true,
     });
 
     setStatic(app);

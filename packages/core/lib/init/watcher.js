@@ -105,6 +105,18 @@ async function handleFileChange() {
       );
     })
   ) {
+    if (
+      triggeredEvents.find(({ changedPath }) => {
+        return appInstance
+          .get("config")
+          .assets.customProperties.files.includes(changedPath);
+      })
+    ) {
+      await setState(appInstance, {
+        css: true,
+      });
+    }
+
     changeFileCallback(true, false);
   } else if (
     triggeredEventsIncludes(triggeredEvents, ["addDir", "unlinkDir"])
@@ -197,9 +209,33 @@ async function handleFileChange() {
       helpers.fileIsAssetFile(appInstance, changedPath)
     )
   ) {
+    if (
+      triggeredEvents.find(({ changedPath }) => {
+        return appInstance
+          .get("config")
+          .assets.customProperties.includes(changedPath);
+      })
+    ) {
+      await setState(appInstance, {
+        css: true,
+      });
+    }
+
     if (appInstance.get("config").ui.reloadAfterChanges.componentAssets) {
       changeFileCallback(true, false);
     }
+  } else if (
+    triggeredEvents.find(({ changedPath }) => {
+      return appInstance
+        .get("config")
+        .assets.customProperties.includes(changedPath);
+    })
+  ) {
+    await setState(appInstance, {
+      css: true,
+    });
+
+    changeFileCallback(true, false);
   } else {
     changeFileCallback();
   }

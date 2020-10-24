@@ -141,6 +141,7 @@ Renders and builds a variation
 | --- | --- | --- |
 | object | <code>object</code> | parameter object |
 | object.file | <code>string</code> | the template file path |
+| object.dir | <code>string</code> | the directory of the component |
 | object.buildFolder | <code>string</code> | the build folder from the user configuration |
 | object.app | <code>object</code> | the express instance |
 | object.buildDate | <code>string</code> | a date time string of the current build |

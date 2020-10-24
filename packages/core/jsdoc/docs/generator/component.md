@@ -15,7 +15,7 @@ Module for creating component files based on the configuration cli params
     * [~getDummyFileContent(fileType, filesConfig)](#module_generatorComponent..getDummyFileContent) ⇒ <code>string</code>
     * [~createComponentFiles(filesConfig, componentPath, args)](#module_generatorComponent..createComponentFiles) ⇒ <code>Promise</code>
     * [~getFileNames(filesConfig, componentName)](#module_generatorComponent..getFileNames) ⇒ <code>object</code>
-    * [~createComponentFolder(path)](#module_generatorComponent..createComponentFolder) ⇒ <code>Promise</code>
+    * [~createComponentFolder(folder)](#module_generatorComponent..createComponentFolder) ⇒ <code>Promise</code>
 
 <a name="module_generatorComponent..getFiles"></a>
 
@@ -72,7 +72,7 @@ Returns an object with the file names for a given component name
 
 <a name="module_generatorComponent..createComponentFolder"></a>
 
-### generatorComponent~createComponentFolder(path) ⇒ <code>Promise</code>
+### generatorComponent~createComponentFolder(folder) ⇒ <code>Promise</code>
 Creates the component folder
 
 **Kind**: inner method of [<code>generatorComponent</code>](#module_generatorComponent)  
@@ -80,5 +80,5 @@ Creates the component folder
 
 | Param | Type | Description |
 | --- | --- | --- |
-| path | <code>string</code> | component folder path that should be created |
+| folder | <code>string</code> | component folder path that should be created |
 

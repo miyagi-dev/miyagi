@@ -1,0 +1,21 @@
+.MiyagiContent .MiyagiSpacings {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.MiyagiContent .MiyagiSpacings-item:not(:first-child) {
+  margin-top: 3em;
+}
+
+.MiyagiContent .MiyagiSpacings-button {
+  color: inherit;
+}
+
+.MiyagiContent .MiyagiSpacings-button::before {
+  height: var(--spacing);
+  width: var(--spacing);
+  background: currentColor;
+  content: "";
+  display: block;
+}

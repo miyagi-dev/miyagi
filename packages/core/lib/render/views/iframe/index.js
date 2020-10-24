@@ -8,6 +8,12 @@ const {
   getDataForRenderFunction,
   getFallbackData,
 } = require("../../helpers.js");
+const {
+  getColors,
+  getFonts,
+  getSpacings,
+  getMediaQueries,
+} = require("../../../styleguide/index.js");
 
 /**
  * @param {object} object - parameter object
@@ -120,6 +126,28 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
   await Promise.all(promises).then(async () => {
     const { ui } = app.get("config");
 
+    const colors = app.get("state").css
+      ? getColors(
+          app.get("state").css,
+          app.get("config").assets.customProperties.prefixes.color
+        )
+      : [];
+    const fonts = app.get("state").css
+      ? getFonts(
+          app.get("state").css,
+          app.get("config").assets.customProperties.prefixes.typo
+        )
+      : [];
+    const spacings = app.get("state").css
+      ? getSpacings(
+          app.get("state").css,
+          app.get("config").assets.customProperties.prefixes.spacing
+        )
+      : [];
+    const mediaQueries = app.get("state").css
+      ? getMediaQueries(app.get("state").css)
+      : [];
+
     await res.render(
       "iframe_index.hbs",
       {
@@ -133,6 +161,14 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
         theme: app.get("config").ui.theme,
         documentation,
         renderComponentOverview: ui.renderComponentOverview,
+        colors:
+          colors.map(({ styles }) => styles.length).reduce((a, b) => a + b, 0) >
+          0
+            ? colors
+            : [],
+        fonts: fonts.length > 0 ? fonts : null,
+        spacings: spacings.length > 0 ? spacings : null,
+        mediaQueries,
       },
       (err, html) => {
         if (res.send) {

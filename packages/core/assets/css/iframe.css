@@ -1,47 +1,5 @@
-:root {
-  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
-    "Helvetica", "Arial", sans-serif;
-  --Miyagi-color-Negative: #d9173e;
-  --Miyagi-color-Positive: #690;
-
-  /* light */
-  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
-  --Miyagi-color-BG: hsl(0, 0%, 100%);
-
-  /* general */
-  --Miyagi-color-Background: var(--Miyagi-color-BG);
-  --Miyagi-color-Text: var(--Miyagi-color-Grey-1);
-  --Miyagi-color-TextSecondary: var(--Miyagi-color-Grey-2);
-  --Miyagi-color-TextTertiary: var(--Miyagi-color-Grey-3);
-  --Miyagi-color-Link: var(--Miyagi-color-Grey-1);
-  --Miyagi-color-Outline: var(--Miyagi-color-Grey-4);
-
-  /* specific */
-  --Miyagi-color-NewTabLink: var(--Miyagi-color-Link);
-  --Miyagi-color-Headline1: var(--Miyagi-color-Grey-1);
-  --Miyagi-color-Headline2: var(--Miyagi-color-Grey-1);
-  --Miyagi-color-Headline2-divider: var(--Miyagi-color-Outline);
-  --Miyagi-color-Code-background: var(--Miyagi-color-Grey-5);
-  --Miyagi-color-Code-outline: var(--Miyagi-color-Outline);
-  --Miyagi-transition: all 0.15s ease;
-  --Miyagi-spacing: 40px;
-}
-
-.MiyagiTheme--dark {
-  --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
-  --Miyagi-color-BG: hsl(0, 0%, 12%);
-  --Miyagi-color-Negative: #ff305a;
-  --Miyagi-color-Warning: #b578b5;
-  --Miyagi-color-Positive: #8dd203;
-}
+@import "./iframe/theme.css";
+@import "./iframe/styleguide/index.css";
 
 .MiyagiContent *,
 .MiyagiIframe-newTabLink {
@@ -148,6 +106,7 @@ body {
   display: flex;
   font-size: 1.6em;
   margin: 2em 0 1em;
+  scroll-margin-top: 1.5em;
 }
 
 .MiyagiContent .Miyagi-sectionTitle::after {
@@ -342,6 +301,27 @@ body {
   right: 40px;
   top: 0;
   font-size: 14px;
+}
+
+.MiyagiIndex {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.MiyagiIndex-item:not(:last-child) {
+  display: flex;
+  align-items: center;
+}
+
+.MiyagiIndex-item:not(:last-child)::after {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 1em;
+  background: currentColor;
+  margin: 0 0.5em;
 }
 
 @media screen and (prefers-reduced-motion) {
