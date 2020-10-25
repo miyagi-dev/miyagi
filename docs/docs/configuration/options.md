@@ -240,7 +240,7 @@ _**NOTE:** This is disabled by default for the case that you have a build proces
 
 ### `renderComponentOverview`
 
-default: `true`<br>
+default: `false`<br>
 type: `boolean`
 
 Defines if an overview of all your components should be rendered on the start page.

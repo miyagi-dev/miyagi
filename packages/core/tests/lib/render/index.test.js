@@ -1159,7 +1159,7 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           documentation: undefined,
-          renderComponentOverview: true,
+          renderComponentOverview: false,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1228,7 +1228,7 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           documentation: undefined,
-          renderComponentOverview: true,
+          renderComponentOverview: false,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 
@@ -1297,7 +1297,7 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           documentation: undefined,
-          renderComponentOverview: true,
+          renderComponentOverview: false,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 

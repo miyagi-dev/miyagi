@@ -69,7 +69,7 @@
       "reloadAfterChanges": {
         "componentAssets": false
       },
-      "renderComponentOverview": true,
+      "renderComponentOverview": false,
       "theme": {
         "mode": "light"
       },
