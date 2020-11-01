@@ -127,6 +127,7 @@
     "noDataSetForVariation": "No mock data defined for variation \"{{variation}}\" in {{file}}.",
     "nodeEnvAndKeysDontMatch": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in folders.assets in your config file, so miyagi is not able to deliver your {{assetType}} files.",
     "noNameSetForVariation": "No name defined for variation {{i}} in {{file}}.",
+    "portInUse": "Port {{port}} already in use, trying to find a free port…",
     "renderingTemplateFailed": "Rendering {{filePath}} failed. Please check that it is linked correctly and that its content is correct {{engine}} syntax.",
     "scanningFiles": "Scanning and analyzing files…",
     "schemaValidator": {

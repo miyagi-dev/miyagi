@@ -28,7 +28,7 @@ module.exports = async function init(mergedConfig) {
   app.set("cache", false);
 
   if (setEngines(app)) {
-    const port = (process.env.PORT || appConfig.defaultPort).toString();
+    const port = process.env.PORT || appConfig.defaultPort;
 
     app.set("port", port);
 
@@ -51,14 +51,16 @@ module.exports = async function init(mergedConfig) {
       return build(app);
     }
 
-    const server = http.createServer(app);
-    server.listen(app.get("port"));
+    const { server, port: actualPort } = await startServer(
+      app,
+      app.get("port")
+    );
 
     setWatcher(server, app);
 
     log(
       "success",
-      `${appConfig.messages.serverStarted.replace("{{port}}", port)}\n`
+      `${appConfig.messages.serverStarted.replace("{{port}}", actualPort)}\n`
     );
 
     return server;
@@ -66,3 +68,29 @@ module.exports = async function init(mergedConfig) {
 
   return false;
 };
+
+/**
+ * @param {object} app - the express instance
+ * @param {number} port - the port that should be used
+ * @returns {Promise} gets resolved with the server instance and the actual port
+ */
+function startServer(app, port) {
+  const server = http.createServer(app);
+
+  return new Promise((resolve) => {
+    server
+      .listen(port, function () {
+        resolve({ server, port });
+      })
+      .on("error", (error) => {
+        if (error.code === "EADDRINUSE") {
+          log("error", appConfig.messages.portInUse.replace("{{port}}", port));
+          server.close(async function () {
+            const response = await startServer(app, port + 1);
+
+            resolve(response);
+          });
+        }
+      });
+  });
+}
