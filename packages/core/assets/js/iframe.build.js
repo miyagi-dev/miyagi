@@ -13,7 +13,15 @@ if (
 
 document.addEventListener("DOMContentLoaded", function () {
   const tabs = Array.from(document.querySelectorAll(".MiyagiTabs"));
+  const styleguide = document.querySelector(".MiyagiStyleguide");
+
   if (tabs.length > 0) {
     tabs.forEach((tab) => new Tabs(tab));
+  }
+
+  if (styleguide) {
+    import("./styleguide/index.js").then(
+      (Styleguide) => new Styleguide.default(styleguide)
+    );
   }
 });
