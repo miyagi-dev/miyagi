@@ -9,6 +9,6 @@
     "postcss-preset-env": "^6.7.0"
   },
   "dependencies": {
-    "@miyagi/core": "^1.10.0"
+    "@miyagi/core": "^1.10.2"
   }
 }
