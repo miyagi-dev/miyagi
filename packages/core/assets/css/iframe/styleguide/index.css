@@ -2,6 +2,10 @@
 @import "./fonts.css";
 @import "./spacings.css";
 
+.MiyagiContent .MiyagiStyleguide {
+  margin-top: 3em;
+}
+
 .MiyagiContent .MiyagiCustomPropsGroup {
   list-style: none;
   margin: 3em 0;
