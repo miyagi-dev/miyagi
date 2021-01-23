@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.2](https://github.com/mgrsskls/miyagi/compare/core/v1.10.1...core/v1.10.2) (2021-01-23)
+
 ### [1.10.1](https://github.com/mgrsskls/miyagi/compare/core/v1.10.0...core/v1.10.1) (2021-01-23)
 
 ## [1.10.0](https://github.com/mgrsskls/miyagi/compare/core/v1.9.0...core/v1.10.0) (2021-01-23)
