@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/mgrsskls/miyagi/compare/core/v1.9.0...core/v1.10.0) (2021-01-23)
+
+
+### Features
+
+* **core:** added automatically created styleguide based on custom properties ([e0e77e5](https://github.com/mgrsskls/miyagi/commit/e0e77e54bf2e0ad4f2efab796ca51b46f00fa769))
+* **core:** Added theme.mode for light and dark miyagi themes ([3680f4b](https://github.com/mgrsskls/miyagi/commit/3680f4b1c53e6b327f8537fbdaae8ebccc9fcff5))
+* **core:** automatically try to find a free port if defined port is in use ([7b0c2bd](https://github.com/mgrsskls/miyagi/commit/7b0c2bd5953042caffde5ae5d3b639ed3c463490))
+
 ## [1.9.0](https://github.com/mgrsskls/miyagi/compare/core/v1.8.4...core/v1.9.0) (2020-10-13)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@miyagi/core",
-  "version": "1.9.0",
+  "version": "1.10.0",
   "description": "miyagi is a component development tool for JavaScript template engines.",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
