@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.10.3](https://github.com/mgrsskls/miyagi/compare/core/v1.10.2...core/v1.10.3) (2021-01-23)
+
+
+### Bug Fixes
+
+* **core:** added missing styleguide js to build ([c760344](https://github.com/mgrsskls/miyagi/commit/c760344e7d00769265dce16b2ae3ae177f355798))
+
 ### [1.10.2](https://github.com/mgrsskls/miyagi/compare/core/v1.10.1...core/v1.10.2) (2021-01-23)
 
 ### [1.10.1](https://github.com/mgrsskls/miyagi/compare/core/v1.10.0...core/v1.10.1) (2021-01-23)
