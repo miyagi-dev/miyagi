@@ -1,6 +1,6 @@
 .Rte p,
 .Rte ul {
-  color: var(--FreitagDemo-color-font);
+  color: var(--color-Font);
 }
 
 .Rte em {

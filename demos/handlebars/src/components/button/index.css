@@ -5,8 +5,8 @@
 .Button-label {
   --box-shadow-position: 0.5rem 0.5rem;
 
-  background: var(--FreitagDemo-color-primary);
-  box-shadow: var(--box-shadow-position) 0 var(--FreitagDemo-color-secondary);
+  background: var(--color-Primary);
+  box-shadow: var(--box-shadow-position) 0 var(--color-Secondary);
   color: #000;
   display: inline-block;
   font: inherit;
@@ -18,7 +18,7 @@
 
 .Button:hover .Button-label,
 .Button:focus .Button-label {
-  background-color: var(--FreitagDemo-color-hover);
+  background-color: var(--color-Hover);
   transform: translate(-0.2rem, -0.2rem);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .Button--secondary .Button-label {
-  background-color: var(--FreitagDemo-color-lightGrey);
+  background-color: var(--color-LightGrey);
 }
 
 .Button[disabled] {

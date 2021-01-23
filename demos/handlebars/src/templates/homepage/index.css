@@ -1,14 +1,14 @@
 .Homepage {
   margin: 0 auto;
   max-width: 120rem;
-  padding: var(--FreitagDemo-spacing);
+  padding: var(--MiyagiDemo-spacing);
 }
 
 .Homepage-main {
   display: grid;
-  grid-gap: var(--FreitagDemo-spacing);
+  grid-gap: var(--MiyagiDemo-spacing);
   grid-template: "content sub" 1fr / 1fr 32rem;
-  margin: var(--FreitagDemo-spacing) 0 0;
+  margin: var(--MiyagiDemo-spacing) 0 0;
 }
 
 .Homepage-content {
@@ -16,7 +16,7 @@
 }
 
 .Homepage-cta {
-  margin: var(--FreitagDemo-spacing) 0 0;
+  margin: var(--MiyagiDemo-spacing) 0 0;
 }
 
 .Homepage-subContent {
@@ -24,18 +24,18 @@
 }
 
 .Homepage-footer {
-  margin-top: var(--FreitagDemo-spacing);
+  margin-top: var(--MiyagiDemo-spacing);
 }
 
 @media (max-width: 64em) {
   :root {
-    --FreitagDemo-spacing: 4rem;
+    --MiyagiDemo-spacing: var(--spacing-4);
   }
 }
 
 @media (min-width: 64.03125em) {
   :root {
-    --FreitagDemo-spacing: 8rem;
+    --MiyagiDemo-spacing: var(--spacing-8);
   }
 }
 

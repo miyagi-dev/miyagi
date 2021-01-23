@@ -5,10 +5,9 @@ h4 {
 }
 
 h2 {
-  font-size: 3.2rem;
-  line-height: 1.125;
+  font: var(--typo-H2);
 }
 
 h3 {
-  font-size: 2.4rem;
+  font: var(--typo-H3);
 }

@@ -5,6 +5,9 @@ module.exports = {
       development: ["src/index.css"],
       production: ["dist/index.css"],
     },
+    customProperties: {
+      files: ["src/index.css"],
+    },
     js: ["src/index.js"],
   },
   ui: {
