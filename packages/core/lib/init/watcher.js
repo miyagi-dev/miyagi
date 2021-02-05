@@ -213,7 +213,7 @@ async function handleFileChange() {
       triggeredEvents.find(({ changedPath }) => {
         return appInstance
           .get("config")
-          .assets.customProperties.includes(changedPath);
+          .assets.customProperties.files.includes(changedPath);
       })
     ) {
       await setState(appInstance, {
@@ -228,7 +228,7 @@ async function handleFileChange() {
     triggeredEvents.find(({ changedPath }) => {
       return appInstance
         .get("config")
-        .assets.customProperties.includes(changedPath);
+        .assets.customProperties.files.includes(changedPath);
     })
   ) {
     await setState(appInstance, {
