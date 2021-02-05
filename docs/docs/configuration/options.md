@@ -251,8 +251,8 @@ default:
 
 ```json
 {
-  "favicon": null,
-  "logo": null,
+  "favicon": null, // path to a favicon
+  "logo": null, // path to a logo
   "mode": "light", // "light" or "dark"
   "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
   "navigation": {
@@ -267,7 +267,8 @@ default:
     "colorHeadline1": "#222222",
     "colorHeadline2": "#222222",
     "colorText": "#222222"
-  }
+  },
+  "css": "" // string of CSS which can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`
 }
 ```
 
