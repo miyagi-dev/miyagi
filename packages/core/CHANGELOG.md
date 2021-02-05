@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/mgrsskls/miyagi/compare/core/v1.10.3...core/v1.11.0) (2021-02-05)
+
+
+### Features
+
+* **core:** allow adding extra css to change miyagi styling ([c870d85](https://github.com/mgrsskls/miyagi/commit/c870d85bcd6fab05faaac74f65748be3917e5a99))
+
+
+### Bug Fixes
+
+* **core:** fix error message caused by watcher ([f6f610d](https://github.com/mgrsskls/miyagi/commit/f6f610d3d06f662e8aad3fc53cbce080a609ea0c))
+
 ### [1.10.3](https://github.com/mgrsskls/miyagi/compare/core/v1.10.2...core/v1.10.3) (2021-01-23)
 
 
