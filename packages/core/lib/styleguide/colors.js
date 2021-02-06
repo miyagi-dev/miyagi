@@ -7,22 +7,22 @@ module.exports = function getColors(obj, prefix) {
 
   const colors = getCustomProperties(obj, "color")
     .filter(({ property, value }) => {
-      const uppercasedValue = value.toLowerCase();
+      const lowerCasedValue = value.toLowerCase();
       return (
         property.match(`--${prefix}-(.)*`) &&
-        (uppercasedValue.startsWith("rgb(") ||
-          uppercasedValue.startsWith("rgba(") ||
-          (uppercasedValue.startsWith("#") &&
-            Boolean(uppercasedValue.match(new RegExp(/^#[a-f0-9]{3,8}$/)))) ||
-          uppercasedValue.startsWith("hsl(") ||
-          uppercasedValue.startsWith("hsla(") ||
-          (uppercasedValue.startsWith("var(--") &&
-            uppercasedValue.endsWith(")")) ||
+        (lowerCasedValue.startsWith("rgb(") ||
+          lowerCasedValue.startsWith("rgba(") ||
+          (lowerCasedValue.startsWith("#") &&
+            Boolean(lowerCasedValue.match(new RegExp(/^#[a-f0-9]{3,8}$/)))) ||
+          lowerCasedValue.startsWith("hsl(") ||
+          lowerCasedValue.startsWith("hsla(") ||
+          (lowerCasedValue.startsWith("var(--") &&
+            lowerCasedValue.endsWith(")")) ||
           colorNames.includes(value))
       );
     })
     .map(({ property, value }) => {
-      const uppercasedValue = value.toLowerCase();
+      const lowerCasedValue = value.toLowerCase();
       const whitesArr = [
         "#fff",
         "#ffff",
@@ -79,7 +79,7 @@ module.exports = function getColors(obj, prefix) {
         type,
         customProp: property,
         values: ["RGB", "Hex", "HSL"],
-        isWhite: whites.has(uppercasedValue),
+        isWhite: whites.has(lowerCasedValue),
       };
     });
 
