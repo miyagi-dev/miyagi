@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.1](https://github.com/mgrsskls/miyagi/compare/core/v1.11.0...core/v1.11.1) (2021-02-06)
+
+
+### Bug Fixes
+
+* **core:** better detection of colors for styleguide ([3828f08](https://github.com/mgrsskls/miyagi/commit/3828f0862f284022c5f64adfade9c7c04b2a596a))
+* **core:** make sure miyagi is reloaded when any css or js file changes ([0e133e2](https://github.com/mgrsskls/miyagi/commit/0e133e2d6109371f047591cebca5e7f768ea057f))
+
 ## [1.11.0](https://github.com/mgrsskls/miyagi/compare/core/v1.10.3...core/v1.11.0) (2021-02-05)
 
 
