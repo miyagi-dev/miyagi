@@ -97,14 +97,13 @@ async function updateFileContents(app, events) {
  *
  */
 async function handleFileChange() {
+  // updated file is a css file
   if (
     triggeredEvents.find(({ changedPath }) => {
-      return (
-        appInstance.get("config").assets.css.includes(changedPath) ||
-        appInstance.get("config").assets.js.includes(changedPath)
-      );
+      return changedPath.endsWith(".css");
     })
   ) {
+    // updated file contains custom properties for the styleguide
     if (
       triggeredEvents.find(({ changedPath }) => {
         return appInstance
@@ -118,6 +117,14 @@ async function handleFileChange() {
     }
 
     changeFileCallback(true, false);
+    // updates file is a js file
+  } else if (
+    triggeredEvents.find(({ changedPath }) => {
+      return changedPath.endsWith(".js");
+    })
+  ) {
+    changeFileCallback(true, false);
+    // a folder has been added or deleted
   } else if (
     triggeredEventsIncludes(triggeredEvents, ["addDir", "unlinkDir"])
   ) {
@@ -133,6 +140,7 @@ async function handleFileChange() {
       helpers.fileIsTemplateFile(appInstance, event.changedPath)
     ).length > 0
   ) {
+    // a template file has been added or removed
     if (triggeredEventsIncludes(triggeredEvents, ["add", "unlink"])) {
       await setState(appInstance, {
         fileContents: await updateFileContents(appInstance, triggeredEvents),
@@ -141,6 +149,7 @@ async function handleFileChange() {
         partials: true,
       });
 
+      // a template file has been added
       if (triggeredEventsIncludes(triggeredEvents, ["add"])) {
         await setPartials.registerPartial(
           appInstance,
@@ -148,12 +157,14 @@ async function handleFileChange() {
         );
       }
       changeFileCallback(true, true);
+      // a template file has been changed
     } else if (triggeredEventsIncludes(triggeredEvents, ["change"])) {
       await setState(appInstance, {
         fileContents: await updateFileContents(appInstance, triggeredEvents),
       });
       changeFileCallback(true, false);
     }
+    // updated file is a mock file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsDataFile(appInstance, changedPath)
@@ -168,6 +179,7 @@ async function handleFileChange() {
       true,
       triggeredEventsIncludes(triggeredEvents, ["add", "unlink", "change"])
     );
+    // updated file is a doc file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsDocumentationFile(appInstance, changedPath)
@@ -185,6 +197,7 @@ async function handleFileChange() {
     });
 
     changeFileCallback(true, addedOrDeleted);
+    // updated file is an info file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsInfoFile(appInstance, changedPath)
@@ -195,6 +208,7 @@ async function handleFileChange() {
       menu: true,
     });
     changeFileCallback(true, true);
+    // updated file is a schema file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsSchemaFile(appInstance, changedPath)
@@ -204,38 +218,15 @@ async function handleFileChange() {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
     });
     changeFileCallback(true, false);
+    // updated file is an asset file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsAssetFile(appInstance, changedPath)
     )
   ) {
-    if (
-      triggeredEvents.find(({ changedPath }) => {
-        return appInstance
-          .get("config")
-          .assets.customProperties.files.includes(changedPath);
-      })
-    ) {
-      await setState(appInstance, {
-        css: true,
-      });
-    }
-
     if (appInstance.get("config").ui.reloadAfterChanges.componentAssets) {
       changeFileCallback(true, false);
     }
-  } else if (
-    triggeredEvents.find(({ changedPath }) => {
-      return appInstance
-        .get("config")
-        .assets.customProperties.files.includes(changedPath);
-    })
-  ) {
-    await setState(appInstance, {
-      css: true,
-    });
-
-    changeFileCallback(true, false);
   } else {
     changeFileCallback();
   }
@@ -259,7 +250,12 @@ module.exports = function Watcher(server, app) {
 
   const { components, assets } = appInstance.get("config");
   const ignored = getIgnoredPathsArr(components.ignores);
-  const foldersToWatch = [components.folder, ...assets.css, ...assets.js];
+  const foldersToWatch = [
+    components.folder,
+    assets.folder,
+    ...assets.css,
+    ...assets.js,
+  ];
 
   chokidar
     .watch(foldersToWatch, {
