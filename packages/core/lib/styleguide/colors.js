@@ -1,4 +1,5 @@
 const { getCustomProperties } = require("./helpers.js");
+const colorNames = require("./color-names.js");
 
 module.exports = function getColors(obj, prefix) {
   const types = ["typo", "decoration"];
@@ -6,38 +7,55 @@ module.exports = function getColors(obj, prefix) {
 
   const colors = getCustomProperties(obj, "color")
     .filter(({ property, value }) => {
-      const uppercasedValue = value.toUpperCase();
+      const uppercasedValue = value.toLowerCase();
       return (
         property.match(`--${prefix}-(.)*`) &&
-        (uppercasedValue.startsWith("RGBA") ||
-          uppercasedValue.startsWith("#") ||
-          uppercasedValue.startsWith("HSL") ||
-          uppercasedValue.startsWith("VAR(--"))
+        (uppercasedValue.startsWith("rgb(") ||
+          uppercasedValue.startsWith("rgba(") ||
+          (uppercasedValue.startsWith("#") &&
+            Boolean(uppercasedValue.match(new RegExp(/^#[a-f0-9]{3,8}$/)))) ||
+          uppercasedValue.startsWith("hsl(") ||
+          uppercasedValue.startsWith("hsla(") ||
+          (uppercasedValue.startsWith("var(--") &&
+            uppercasedValue.endsWith(")")) ||
+          colorNames.includes(value))
       );
     })
     .map(({ property, value }) => {
-      const uppercasedValue = value.toUpperCase();
+      const uppercasedValue = value.toLowerCase();
       const whitesArr = [
-        "#FFF",
-        "#FFFFFF",
-        "HSL(0, 0%, 100%)",
-        "HSL(0,0%,100%)",
-        "RGB(255, 255, 255)",
-        "RGB(255,255,255)",
-        "RGBA(255, 255, 255, 1)",
-        "RGBA(255,255,255,1)",
-        "WHITE",
-        `VAR(--${uppercasedPrefix}-WHITE)`,
+        "#fff",
+        "#ffff",
+        "#ffffff",
+        "#ffffffff",
+        "hsl(0,0%,100%)",
+        "hsl(0, 0%,100%)",
+        "hsl(0,0%, 100%)",
+        "hsl(0, 0%, 100%)",
+        "rgb(255,255,255)",
+        "rgb(255, 255,255)",
+        "rgb(255,255, 255)",
+        "rgb(255, 255, 255)",
+        "rgba(255,255,255,1)",
+        "rgba(255, 255,255,1)",
+        "rgba(255, 255, 255,1)",
+        "rgba(255, 255,255, 1)",
+        "rgba(255,255, 255,1)",
+        "rgba(255,255, 255, 1)",
+        "rgba(255,255,255, 1)",
+        "rgba(255, 255, 255, 1)",
+        "white",
+        `var(--${uppercasedPrefix}-white)`,
       ];
 
       types.forEach((type) => {
         const uppercasedType = type.toUpperCase();
 
         whitesArr.push(
-          `RGB(VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-R),VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-G),VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-B))`,
-          `RGB(VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-R), VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-G), VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-B))`,
-          `RGBA(VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-R),VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-G),VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-B),VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-A))`,
-          `RGBA(VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-R), VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-G), VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-B), VAR(--${uppercasedPrefix}-${uppercasedType}-WHITE-A))`
+          `rgba(var(--${uppercasedPrefix}-${uppercasedType}-white-r),var(--${uppercasedPrefix}-${uppercasedType}-white-g),var(--${uppercasedPrefix}-${uppercasedType}-white-b))`,
+          `rgba(var(--${uppercasedPrefix}-${uppercasedType}-white-r), var(--${uppercasedPrefix}-${uppercasedType}-white-g), var(--${uppercasedPrefix}-${uppercasedType}-white-b))`,
+          `rgbaa(var(--${uppercasedPrefix}-${uppercasedType}-white-r),var(--${uppercasedPrefix}-${uppercasedType}-white-g),var(--${uppercasedPrefix}-${uppercasedType}-white-b),var(--${uppercasedPrefix}-${uppercasedType}-white-a))`,
+          `rgbaa(var(--${uppercasedPrefix}-${uppercasedType}-white-r), var(--${uppercasedPrefix}-${uppercasedType}-white-g), var(--${uppercasedPrefix}-${uppercasedType}-white-b), var(--${uppercasedPrefix}-${uppercasedType}-white-a))`
         );
       });
 
