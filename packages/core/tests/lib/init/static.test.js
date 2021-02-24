@@ -19,31 +19,7 @@ afterEach(() => {
 });
 
 describe("lib/init/static", () => {
-  const nodeEnv = process.env.NODE_ENV;
-
   describe("GET app assets", () => {
-    test("returns the correct assets based on NODE_ENV", () => {
-      app.set(
-        "config",
-        deepMerge(config.defaultUserConfig, {
-          assets: {
-            css: [],
-            js: [],
-          },
-        })
-      );
-
-      process.env.NODE_ENV = "production";
-      setStatic(app);
-
-      request(app)
-        .get(`/${config.projectName}/css/prod.css`)
-        .expect(200)
-        .end(() => {
-          process.env.NODE_ENV = nodeEnv;
-        });
-    });
-
     describe("GET /js/socket.io.slim.js", () => {
       test("returns 200", (done) => {
         app.set(
@@ -95,9 +71,7 @@ describe("lib/init/static", () => {
         );
 
         setStatic(app);
-        request(app)
-          .get("/gulpfile.js")
-          .expect(404, done);
+        request(app).get("/gulpfile.js").expect(404, done);
       });
     });
   });
@@ -116,9 +90,7 @@ describe("lib/init/static", () => {
         );
 
         setStatic(app);
-        request(app)
-          .get("/tests/mocks/user/css/index.css")
-          .expect(200, done);
+        request(app).get("/tests/mocks/user/css/index.css").expect(200, done);
       });
     });
 
@@ -135,9 +107,7 @@ describe("lib/init/static", () => {
         );
 
         setStatic(app);
-        request(app)
-          .get("/tests/mocks/user/js/index.js")
-          .expect(200, done);
+        request(app).get("/tests/mocks/user/js/index.js").expect(200, done);
       });
     });
   });

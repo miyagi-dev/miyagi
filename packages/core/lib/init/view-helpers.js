@@ -40,7 +40,7 @@ function getCssFilesHtml(isBuild, files) {
       file = path.basename(file);
     }
 
-    html += `<link rel="stylesheet" href="${file}">`;
+    html += `<link rel="stylesheet" href="${file}">\n`;
   }
 
   return html;
@@ -81,7 +81,9 @@ module.exports = function initViewHelpers(app) {
   handlebars.registerHelper("menu", getMenuHtml.bind(app));
   handlebars.registerHelper(
     "cssFiles",
-    getCssFilesHtml.call(null, isBuild, assets.css)
+    getCssFilesHtml.call(null, isBuild, [
+      ...new Set([...assets.css, ...assets.customProperties.files]),
+    ])
   );
   handlebars.registerHelper(
     "jsFiles",

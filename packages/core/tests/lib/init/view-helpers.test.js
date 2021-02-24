@@ -26,6 +26,9 @@ describe("lib/init/view-helpers", () => {
       assets: {
         css: ["index.css"],
         js: ["index.js"],
+        customProperties: {
+          files: ["custom-props.css"],
+        },
       },
     })
   );
@@ -47,7 +50,7 @@ describe("lib/init/view-helpers", () => {
 
       expect(handlebars.registerHelper.mock.calls[1][0]).toEqual("cssFiles");
       expect(handlebars.registerHelper.mock.calls[1][1]).toEqual(
-        '<link rel="stylesheet" href="index.css">'
+        '<link rel="stylesheet" href="index.css">\n<link rel="stylesheet" href="custom-props.css">\n'
       );
     });
 
@@ -58,6 +61,9 @@ describe("lib/init/view-helpers", () => {
           assets: {
             css: ["index.css"],
             js: ["index.js"],
+            customProperties: {
+              files: ["custom-props.css"],
+            },
             es6Modules: true,
           },
         });
@@ -90,6 +96,9 @@ describe("lib/init/view-helpers", () => {
         assets: {
           css: ["index.css"],
           js: ["index.js"],
+          customProperties: {
+            files: ["custom-props.css"],
+          },
         },
       })
     );

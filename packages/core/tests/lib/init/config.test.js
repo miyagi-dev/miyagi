@@ -20,6 +20,9 @@ describe("lib/init/config", () => {
         assets: {
           css: "user/css/index.css",
           js: "user/js/index.js",
+          customProperties: {
+            files: ["user/css/custom-props.css"],
+          },
         },
         files: {
           css: {
@@ -50,6 +53,9 @@ describe("lib/init/config", () => {
 
       expect(conf.assets.css).toEqual(["user/css/index.css"]);
       expect(conf.assets.js).toEqual(["user/js/index.js"]);
+      expect(conf.assets.customProperties.files).toEqual([
+        "user/css/custom-props.css",
+      ]);
     });
 
     test("sanitizes all given paths by the user", () => {
@@ -455,6 +461,7 @@ describe("lib/init/config", () => {
           folder: [],
           manifest: null,
           customProperties: {
+            files: [],
             prefixes: {
               color: "color",
               spacing: "spacing",

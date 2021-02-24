@@ -70,6 +70,20 @@ function registerUserFiles(app, files) {
 
 /**
  * @param {object} app - the express instance
+ */
+function registerCustomPropertyFiles(app) {
+  if (app.get("config").assets?.customProperties?.files) {
+    for (const file of app.get("config").assets.customProperties.files) {
+      app.use(
+        `/${path.dirname(file)}`,
+        express.static(path.resolve(path.dirname(file)))
+      );
+    }
+  }
+}
+
+/**
+ * @param {object} app - the express instance
  * @param {string} nodeModule - node module path basename
  */
 function registerNodeModule(app, nodeModule) {
@@ -100,6 +114,7 @@ module.exports = function initStatic(app) {
   registerUserAssetFolder(app);
   registerUserFiles(app, "css");
   registerUserFiles(app, "js");
+  registerCustomPropertyFiles(app);
   registerNodeModule(app, "socket.io-client/dist");
   registerNodeModule(app, "axe-core");
   registerAssetFolder(app);

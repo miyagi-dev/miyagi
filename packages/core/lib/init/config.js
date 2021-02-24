@@ -163,13 +163,15 @@ module.exports = (userConfig = {}) => {
       config.assets.js = getAssetFilesArray(config.assets.js, manifest, "js");
     }
 
-    if (
-      config.assets.customProperties &&
-      config.assets.customProperties.files
-    ) {
+    if (!config.assets.customProperties) {
+      config.assets.customProperties = {};
+    }
+    if (config.assets.customProperties.files) {
       config.assets.customProperties.files = arrayfy(
         config.assets.customProperties.files
       );
+    } else {
+      config.assets.customProperties.files = [];
     }
 
     if (
