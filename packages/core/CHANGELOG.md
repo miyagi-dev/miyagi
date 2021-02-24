@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.2](https://github.com/mgrsskls/miyagi/compare/core/v1.11.1...core/v1.11.2) (2021-02-24)
+
+
+### Bug Fixes
+
+* **core:** separately serve custom properties files to make sure custom props are available in styleguide ([9f10958](https://github.com/mgrsskls/miyagi/commit/9f10958e2a6e86cf110e77fc7809aeb07ef4954b))
+
 ### [1.11.1](https://github.com/mgrsskls/miyagi/compare/core/v1.11.0...core/v1.11.1) (2021-02-06)
 
 
