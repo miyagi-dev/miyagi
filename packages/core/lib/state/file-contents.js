@@ -97,7 +97,7 @@ function getYamlFileContent(app, fileName) {
   let result;
 
   try {
-    result = yaml.safeLoad(fs.readFileSync(fileName, "utf8"));
+    result = yaml.load(fs.readFileSync(fileName, "utf8"));
   } catch (e) {
     result = {};
     log(

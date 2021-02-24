@@ -1,4 +1,4 @@
-const AJV = require("ajv");
+const AJV = require("ajv").default;
 const deepMerge = require("deepmerge");
 const path = require("path");
 const helpers = require("../helpers.js");
@@ -23,15 +23,20 @@ module.exports = function validateSchema(app, filePath, dataArray) {
   ];
 
   if (componentSchema) {
-    const schemas = Object.entries(app.get("state").fileContents)
-      .filter(([key]) =>
+    const schemas = [];
+    Object.entries(app.get("state").fileContents).forEach(([key, value]) => {
+      if (
         key.endsWith(
           `${app.get("config").files.schema.name}.${
             app.get("config").files.schema.extension
           }`
         )
-      )
-      .map((schema) => schema[1]);
+      ) {
+        if (componentSchema.$id !== value.$id) {
+          schemas.push(value);
+        }
+      }
+    });
 
     const validity = [];
     let validate;

@@ -246,7 +246,7 @@ function getIgnoredPathsArr(srcFolderIgnores) {
 
 module.exports = function Watcher(server, app) {
   appInstance = app;
-  ioInstance = socketIo.listen(server);
+  ioInstance = socketIo(server);
 
   const { components, assets } = appInstance.get("config");
   const ignored = getIgnoredPathsArr(components.ignores);
