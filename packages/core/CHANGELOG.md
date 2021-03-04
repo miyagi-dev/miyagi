@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.4](https://github.com/mgrsskls/miyagi/compare/core/v1.11.3...core/v1.11.4) (2021-03-04)
+
+
+### Bug Fixes
+
+* **core:** fix broken auto reload due to socket.io not found ([f9718ba](https://github.com/mgrsskls/miyagi/commit/f9718baf946c64e1d9333e772dfdf3b63b5da645))
+
 ### [1.11.3](https://github.com/mgrsskls/miyagi/compare/core/v1.11.2...core/v1.11.3) (2021-02-24)
 
 
