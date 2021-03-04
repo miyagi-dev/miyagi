@@ -20,7 +20,7 @@ afterEach(() => {
 
 describe("lib/init/static", () => {
   describe("GET app assets", () => {
-    describe("GET /js/socket.io.slim.js", () => {
+    describe("GET /js/socket.io.min.js", () => {
       test("returns 200", (done) => {
         app.set(
           "config",
@@ -34,7 +34,7 @@ describe("lib/init/static", () => {
 
         setStatic(app);
         request(app)
-          .get(`/${config.projectName}/js/socket.io.slim.js`)
+          .get(`/${config.projectName}/js/socket.io.min.js`)
           .expect(200, done);
       });
     });

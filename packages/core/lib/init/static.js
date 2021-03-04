@@ -115,7 +115,7 @@ module.exports = function initStatic(app) {
   registerUserFiles(app, "css");
   registerUserFiles(app, "js");
   registerCustomPropertyFiles(app);
-  registerNodeModule(app, "socket.io-client/dist");
+  registerNodeModule(app, "socket.io/client-dist");
   registerNodeModule(app, "axe-core");
   registerAssetFolder(app);
 };
