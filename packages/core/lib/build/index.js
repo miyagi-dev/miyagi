@@ -268,7 +268,11 @@ module.exports = (app) => {
       }
     }
 
-    const cssJsFiles = [...assetsConfig.css, ...assetsConfig.js];
+    const cssJsFiles = [
+      ...assetsConfig.css,
+      ...assetsConfig.js,
+      ...assetsConfig.customProperties.files,
+    ];
 
     for (const file of cssJsFiles) {
       promises.push(
