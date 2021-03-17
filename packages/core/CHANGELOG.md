@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.5](https://github.com/mgrsskls/miyagi/compare/core/v1.11.4...core/v1.11.5) (2021-03-17)
+
+
+### Bug Fixes
+
+* **core:** added missing customProperties files to build ([8de8899](https://github.com/mgrsskls/miyagi/commit/8de8899b2e8d5024e2eb66666298ca003de2a322))
+
 ### [1.11.4](https://github.com/mgrsskls/miyagi/compare/core/v1.11.3...core/v1.11.4) (2021-03-04)
 
 
