@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.12.0](https://github.com/mgrsskls/miyagi/compare/core/v1.11.5...core/v1.12.0) (2021-03-22)
+
+
+### Features
+
+* **core:** allow extensions to extend watch files and engine ([f14ffd5](https://github.com/mgrsskls/miyagi/commit/f14ffd5f64cc86cd4c9d71d9916af29a1ca91e1a))
+
+
+### Bug Fixes
+
+* **core:** fix watching asset files ([44e19b4](https://github.com/mgrsskls/miyagi/commit/44e19b450941586bae958d1caea6196018c14237))
+
 ### [1.11.5](https://github.com/mgrsskls/miyagi/compare/core/v1.11.4...core/v1.11.5) (2021-03-17)
 
 
