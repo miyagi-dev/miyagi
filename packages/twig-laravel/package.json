@@ -10,10 +10,10 @@
   "repository": {
     "type": "git",
     "url": "git@github.com:mgrsskls/miyagi.git",
-    "directory": "packages/locales"
+    "directory": "packages/twig-laravel"
   },
   "scripts": {
-    "release": "standard-version -t locales/v"
+    "release": "standard-version -t twig-laravel/v"
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
