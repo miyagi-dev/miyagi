@@ -36,6 +36,7 @@
     "core:build": "npm run build --prefix packages/core",
     "core:release": "npm run release --prefix packages/core",
     "twig-drupal:release": "npm run release --prefix packages/twig-drupal",
+    "twig-laravel:release": "npm run release --prefix packages/twig-laravel",
     "docs": "cd docs/ && mkdocs serve"
   },
   "stylelint": {
