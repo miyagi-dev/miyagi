@@ -15,6 +15,7 @@ const log = require("../logger.js");
 const { messages } = require("../config.json");
 
 let triggeredEvents = [];
+let foldersToWatch;
 let timeout;
 let appInstance;
 let ioInstance;
@@ -97,6 +98,16 @@ async function updateFileContents(app, events) {
  *
  */
 async function handleFileChange() {
+  for (const extension of appInstance.get("config").extensions) {
+    const ext = Array.isArray(extension) ? extension[0] : extension;
+    const opts =
+      Array.isArray(extension) && extension[1] ? extension[1] : { locales: {} };
+
+    if (ext.callbacks?.fileChanged) {
+      await ext.callbacks.fileChanged(opts);
+    }
+  }
+
   // updated file is a css file
   if (
     triggeredEvents.find(({ changedPath }) => {
@@ -227,6 +238,15 @@ async function handleFileChange() {
     if (appInstance.get("config").ui.reloadAfterChanges.componentAssets) {
       changeFileCallback(true, false);
     }
+    // updated a file which is watched by an extension like locales
+  } else if (
+    triggeredEvents.some(({ changedPath }) => {
+      return foldersToWatch.some((folder) => {
+        return changedPath.startsWith(folder);
+      });
+    })
+  ) {
+    changeFileCallback(true);
   } else {
     changeFileCallback();
   }
@@ -248,14 +268,27 @@ module.exports = function Watcher(server, app) {
   appInstance = app;
   ioInstance = socketIo(server);
 
-  const { components, assets } = appInstance.get("config");
+  const { components, assets, extensions } = appInstance.get("config");
   const ignored = getIgnoredPathsArr(components.ignores);
-  const foldersToWatch = [
+
+  foldersToWatch = [
     components.folder,
     ...assets.folder,
     ...assets.css,
     ...assets.js,
   ];
+
+  for (const extension of extensions) {
+    const ext = Array.isArray(extension) ? extension[0] : extension;
+    const opts =
+      Array.isArray(extension) && extension[1] ? extension[1] : { locales: {} };
+
+    if (ext.extendWatcher) {
+      const watch = ext.extendWatcher(opts);
+
+      foldersToWatch.push(path.join(watch.folder, watch.lang));
+    }
+  }
 
   chokidar
     .watch(foldersToWatch, {
