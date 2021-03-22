@@ -252,7 +252,7 @@ module.exports = function Watcher(server, app) {
   const ignored = getIgnoredPathsArr(components.ignores);
   const foldersToWatch = [
     components.folder,
-    assets.folder,
+    ...assets.folder,
     ...assets.css,
     ...assets.js,
   ];
