@@ -26,11 +26,21 @@ function setUserEngine(app) {
 
   if (engine.instance) {
     engines.requires[engine.name] = engine.instance;
-  } else {
-    for (const extension of extensions) {
-      if (extension.engine) {
-        engines.requires[engine.name] = extension.engine;
+  }
+
+  for (const extension of extensions) {
+    const ext = Array.isArray(extension) ? extension[0] : extension;
+    const opts =
+      Array.isArray(extension) && extension[1] ? extension[1] : { locales: {} };
+
+    if (!engines.requires[engine.name]) {
+      if (ext.engine) {
+        engines.requires[engine.name] = ext.engine;
       }
+    }
+
+    if (ext.extendEngine) {
+      ext.extendEngine(opts);
     }
   }
 
