@@ -83,12 +83,12 @@ function getAssetFilesArray(strOrArrOrObj, manifest, assetType) {
       );
     }
   }
-
-  if (manifest) {
+  if (files.length > 0 && manifest) {
     files = files.map((file) => {
       const manifestEntry = Object.entries(manifest.content).find(([key]) => {
         return (
-          path.resolve(sanitizePath(key)) === path.resolve(sanitizePath(file))
+          path.resolve(path.dirname(manifest.file), sanitizePath(key)) ===
+          path.resolve(sanitizePath(file))
         );
       });
 
