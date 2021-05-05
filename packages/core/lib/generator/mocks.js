@@ -1,5 +1,6 @@
 const jsf = require("json-schema-faker");
 const jsonToYaml = require("json-to-pretty-yaml");
+const yamlToJson = require("js-yaml");
 const fs = require("fs");
 const log = require("../logger.js");
 const { messages } = require("../config.json");
@@ -29,8 +30,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
   readFile(schemaFilePath)
     .then((result) => {
       try {
-        const schema = JSON.parse(result);
-        const content = getContent(filesConfig.mocks.extension, schema);
+        const content = getContent(filesConfig.mocks.extension, result);
 
         readFile(mockFilePath)
           .then((res) => {
@@ -138,7 +138,11 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
         if (err) {
           reject(err);
         } else {
-          resolve(result);
+          if (filesConfig.schema.extension === "yaml") {
+            resolve(yamlToJson.load(result));
+          } else {
+            resolve(JSON.parse(result));
+          }
         }
       });
     });
