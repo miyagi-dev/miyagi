@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/mgrsskls/miyagi/compare/core/v1.13.0...core/v1.13.1) (2021-05-05)
+
+
+### Bug Fixes
+
+* **core:** fix mock generator not working when yaml is used for schema and/or mock files ([0af52fe](https://github.com/mgrsskls/miyagi/commit/0af52fe75ced9cde58440b794a9ddc0a18b5c67c))
+* **core:** fix parsing templates when file names have two extensions like *.html.twig ([5a9fb0f](https://github.com/mgrsskls/miyagi/commit/5a9fb0fb79d81ddea214923a8601e99fa0ace621))
+
 ## [1.13.0](https://github.com/mgrsskls/miyagi/compare/core/v1.11.5...core/v1.13.0) (2021-03-23)
 
 
