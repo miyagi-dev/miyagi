@@ -187,9 +187,7 @@ async function getConvertedMarkdownFileContent(fileName) {
 async function readFile(app, fileName) {
   let result;
 
-  if (
-    path.extname(fileName) === `.${app.get("config").files.templates.extension}`
-  ) {
+  if (helpers.fileIsTemplateFile(app, fileName)) {
     result = fs.readFileSync(fileName, "utf-8");
   } else if (path.extname(fileName) === ".yaml") {
     result = getYamlFileContent(app, fileName);
