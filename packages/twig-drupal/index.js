@@ -51,7 +51,7 @@ twig.extend(function (Twig) {
 module.exports = {
   engine: twig.twig,
 
-  async extendTemplateData(file, engineOptions) {
+  async extendTemplateData(file, engineOptions = {}) {
     const opts = await convertTokensToAttributes(
       file,
       engineOptions.namespaces
