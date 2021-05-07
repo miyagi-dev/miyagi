@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.2](https://github.com/mgrsskls/miyagi/compare/core/v1.13.1...core/v1.13.2) (2021-05-07)
+
+
+### Bug Fixes
+
+* **core:** when using custom css for the theme, render it in separate style tag to make sure [@import](https://github.com/import) works ([fb62ffa](https://github.com/mgrsskls/miyagi/commit/fb62ffaafcf417fc198e48d478e0c264f5037081))
+
 ### [1.13.1](https://github.com/mgrsskls/miyagi/compare/core/v1.13.0...core/v1.13.1) (2021-05-05)
 
 
