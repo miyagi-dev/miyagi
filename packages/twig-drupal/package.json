@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "twig": "^1.15.2",
+    "twig": "^1.15.4",
     "twig-drupal-filters": "^3.1.2"
   },
   "peerDependencies": {
-    "@miyagi/core": "^1.8.0"
+    "@miyagi/core": "^1.13.2"
   }
 }
