@@ -7,7 +7,7 @@ _Settings for assets that miyagi serves (independently from your components)._
 ### `css`
 
 default: `null`<br>
-type: `string|array|object`
+type: `object`
 
 Can either be a string, an array of strings or an object with your `NODE_ENV`s as key and a string or array as values:
 
@@ -19,6 +19,27 @@ Can either be a string, an array of strings or an object with your `NODE_ENV`s a
 ```
 
 This would serve different assets based on your `NODE_ENV`.
+
+### `customProperties`
+
+default:
+
+```json
+{
+  "files": [],
+  "prefixes": {
+    "color": "color",
+    "typo": "typo",
+    "spacing": "spacing"
+  }
+}
+```
+
+type: `object`
+
+This object is used to generate your automated styleguide.
+
+[More information about automated styleguides](/automated-styleguide).
 
 ### `es6Modules`
 

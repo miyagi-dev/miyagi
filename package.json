@@ -48,6 +48,5 @@
   "pre-commit": [
     "core:test",
     "core:lint"
-  ],
-  "dependencies": {}
+  ]
 }
