@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.3...twig-drupal/v0.1.4) (2021-05-07)
+
+
+### Bug Fixes
+
+* **twig-drupal:** fix error when engine.options in miyagi config is not defined ([042864f](https://github.com/mgrsskls/miyagi/commit/042864f01856380e191a673780f1660cdaae859e))
+
 ### [0.1.3](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.2...twig-drupal/v0.1.3) (2020-08-05)
 
 
