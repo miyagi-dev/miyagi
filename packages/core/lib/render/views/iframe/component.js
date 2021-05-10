@@ -192,21 +192,20 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     }
   } else {
     const componentData = hasTemplate
-      ? await extendTemplateData(
-          app.get("config"),
-          {
-            component: file,
-            name: config.defaultVariationName,
-          },
-          file
-        )
+      ? await extendTemplateData(app.get("config"), {}, file)
       : {};
 
     await renderVariations({
       app,
       res,
       file,
-      context: [componentData],
+      context: [
+        {
+          component: file,
+          data: componentData,
+          name: config.defaultVariationName,
+        },
+      ],
       componentDocumentation,
       fileContents,
       name: componentName,
