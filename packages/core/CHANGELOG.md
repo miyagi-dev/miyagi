@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.3](https://github.com/mgrsskls/miyagi/compare/core/v1.13.2...core/v1.13.3) (2021-05-10)
+
+
+### Bug Fixes
+
+* **core:** fix extending template data via extensions not working when a component does not have mock data ([93c9a51](https://github.com/mgrsskls/miyagi/commit/93c9a51e707af91e36cf22befbf7e243876db830))
+
 ### [1.13.2](https://github.com/mgrsskls/miyagi/compare/core/v1.13.1...core/v1.13.2) (2021-05-07)
 
 
