@@ -120,23 +120,6 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
 
     if (Object.keys(componentData).length > 0) {
       componentData = await resolveVariationData(app, componentData);
-      componentData = await extendTemplateData(
-        app.get("config"),
-        componentData,
-        file
-      );
-
-      if (!componentJson.$hidden) {
-        context.push({
-          component: file,
-          data: componentData,
-          name: componentJson.$name || config.defaultVariationName,
-        });
-      }
-    } else {
-      componentData = hasTemplate
-        ? await extendTemplateData(app.get("config"), componentData, file)
-        : {};
     }
 
     if (componentVariations) {
@@ -148,26 +131,47 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
             new Promise((resolve) => {
               let variationData = helpers.removeInternalKeys(variationJson);
 
-              resolveVariationData(app, variationData, componentData).then(
-                async (data) => {
-                  data = hasTemplate
-                    ? await extendTemplateData(app.get("config"), data, file)
-                    : {};
-
-                  context[startIndex + index] = {
-                    component: file,
-                    data: data || {},
-                    name: variationJson.$name,
-                  };
-                  resolve();
-                }
-              );
+              resolveVariationData(
+                app,
+                variationData,
+                helpers.cloneDeep(componentData)
+              ).then(async (data) => {
+                data = hasTemplate
+                  ? await extendTemplateData(app.get("config"), data, file)
+                  : {};
+                context[startIndex + index] = {
+                  component: file,
+                  data: data || {},
+                  name: variationJson.$name,
+                };
+                resolve();
+              });
             })
           );
         }
       }
 
       await Promise.all(promises).then(async () => {
+        if (Object.keys(componentData).length > 0) {
+          componentData = await extendTemplateData(
+            app.get("config"),
+            componentData,
+            file
+          );
+
+          if (!componentJson.$hidden) {
+            context.unshift({
+              component: file,
+              data: componentData,
+              name: componentJson.$name || config.defaultVariationName,
+            });
+          }
+        } else {
+          componentData = hasTemplate
+            ? await extendTemplateData(app.get("config"), componentData, file)
+            : {};
+        }
+
         await renderVariations({
           app,
           res,
@@ -181,6 +185,27 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
         });
       });
     } else {
+      if (Object.keys(componentData).length > 0) {
+        componentData = await resolveVariationData(app, componentData);
+        componentData = await extendTemplateData(
+          app.get("config"),
+          componentData,
+          file
+        );
+
+        if (!componentJson.$hidden) {
+          context.unshift({
+            component: file,
+            data: componentData,
+            name: componentJson.$name || config.defaultVariationName,
+          });
+        }
+      } else {
+        componentData = hasTemplate
+          ? await extendTemplateData(app.get("config"), componentData, file)
+          : {};
+      }
+
       await renderVariations({
         app,
         res,
