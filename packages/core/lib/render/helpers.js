@@ -26,13 +26,14 @@ module.exports = {
 
     for (const extension of config.extensions) {
       if (extension.extendTemplateData) {
-        o = deepMerge(
-          o,
-          await extension.extendTemplateData(
+        o = {
+          ...o,
+          ...(await extension.extendTemplateData(
             path.join(config.components.folder, fullFilePath),
-            config.engine.options
-          )
-        );
+            config.engine.options,
+            data
+          )),
+        };
       }
     }
 
@@ -84,7 +85,7 @@ module.exports = {
 
       if (Object.keys(variationData).length > 0) {
         if (rootData) {
-          return { ...rootData, ...variationData };
+          return deepMerge(rootData, variationData);
         }
 
         return variationData;

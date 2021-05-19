@@ -17,18 +17,13 @@ module.exports =
    * @returns {Promise<object>} the resolved data object
    */
   async function resolveData(app, data, rootData) {
+    if (rootData) {
+      data = mergeRootDataWithVariationData(rootData, data);
+    }
+    data = mergeWithGlobalData(app, data);
     data = await overwriteJsonLinksWithJsonData(app, data);
     data = await overwriteTplLinksWithTplContent(app, data);
     data = await overwriteRenderKey(app, data);
-
-    if (rootData) {
-      rootData = await overwriteJsonLinksWithJsonData(app, rootData);
-      rootData = await overwriteTplLinksWithTplContent(app, rootData);
-      rootData = await overwriteRenderKey(app, rootData);
-      data = mergeRootDataWithVariationData(rootData, data);
-    }
-
-    data = mergeWithGlobalData(app, data);
 
     return data;
   };
@@ -299,6 +294,7 @@ async function resolveJson(app, entry) {
 
   return entry;
 }
+
 /**
  * @param {object} app - the express instance
  * @param {string} ref - the reference to another mock data
@@ -340,12 +336,13 @@ function getRootOrVariantDataOfReference(app, ref) {
       }
     }
 
-    return { ...rootJson, ...variantJson };
+    return deepMerge(helpers.cloneDeep(rootJson), variantJson);
   }
   log(
     "warn",
     config.messages.fileNotFoundLinkIncorrect.replace("{{filePath}}", val)
   );
+
   return {};
 }
 

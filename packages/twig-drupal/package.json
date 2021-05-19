@@ -16,7 +16,6 @@
     "release": "standard-version -t twig-drupal/v"
   },
   "dependencies": {
-    "deepmerge": "^4.2.2",
     "twig": "^1.15.4",
     "twig-drupal-filters": "^3.1.2"
   },

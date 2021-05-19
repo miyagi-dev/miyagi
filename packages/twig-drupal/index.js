@@ -1,238 +1,242 @@
-const fs = require("fs");
 const twig = require("twig");
 const twigDrupal = require("twig-drupal-filters");
-const deepMerge = require("deepmerge");
+const twigDrupalWithout = require("twig-drupal-filters/filters/without");
 
-twigDrupal(twig);
+/**
+ * @param {Array} args
+ */
+function DrupalAttribute(args) {
+  this.args = args;
 
-twig.extend(function (Twig) {
-  Twig.exports.extendTag({
-    type: "trans",
-    regex: /^trans$/,
-    next: ["endtrans", "plural", "variable"],
-    open: true,
-    compile: function (token) {
-      return token;
-    },
-    parse: function (token, context, chain) {
-      var html = "";
+  this.args.forEach((arg) => {
+    if (arg[0] !== "$drupal") {
+      this[arg[0]] = arg[1];
+    }
+  });
 
-      token.output.forEach((output) => {
-        if (output.type === "raw") {
-          html += output.value;
-        } else {
-          if (output.type === "output") {
-            html += Twig.expression.parse.apply(this, [output.stack, context]);
-          }
+  /**
+   * @returns {DrupalAttribute}
+   */
+  this.addClass = function () {
+    let self = this;
+    let values = [];
+
+    for (let i = 0; i < arguments.length; i++) {
+      values.push(arguments[i]);
+    }
+
+    values.forEach(function (value) {
+      if (!Array.isArray(value)) {
+        value = [value];
+      }
+
+      if (!self.class) {
+        self.class = [];
+      }
+
+      let classes = self.class;
+
+      value.forEach(function (d) {
+        if (classes.indexOf(d) < 0) {
+          classes.push(d);
         }
       });
+    });
 
-      return {
-        chain: chain,
-        output: html,
-      };
-    },
+    return this;
+  };
+
+  this.removeClass = function (value) {
+    let classes = [];
+
+    if (this.class) {
+      classes = this.class;
+    }
+
+    if (!Array.isArray(value)) {
+      value = [value];
+    }
+
+    value.forEach(function (v) {
+      let index = classes.indexOf(v);
+
+      if (index > -1) {
+        classes.splice(index, 1);
+      }
+    });
+
+    return this;
+  };
+
+  this.hasClass = function (value) {
+    let classes = [];
+
+    if (this.class) {
+      classes = this.class;
+    }
+
+    return classes.indexOf(value) > -1;
+  };
+
+  this.setAttribute = function (key, value) {
+    this.set(key, value);
+
+    return this;
+  };
+
+  this.removeAttribute = function (key) {
+    this.delete(key);
+
+    return this;
+  };
+}
+DrupalAttribute.prototype.toString = function () {
+  let result = "";
+  let components = [];
+
+  this.args.forEach(([value, key]) => {
+    if (Array.isArray(value)) {
+      value = value.join(" ");
+    }
+
+    if (value !== "$drupal") {
+      components.push([value, '"' + key + '"'].join("="));
+    }
   });
 
-  Twig.exports.extendTag({
-    type: "endtrans",
-    regex: /^endtrans$/,
-    next: [],
-    open: false,
-  });
+  let rendered = components.join(" ");
 
-  Twig.exports.extendTag({
-    type: "plural",
-    regex: /^plural\s+(.+)$/,
-    next: ["endtrans"],
-    open: false,
-  });
-});
+  if (rendered) {
+    result += " " + rendered;
+  }
+
+  return result;
+};
 
 module.exports = {
   engine: twig.twig,
 
-  async extendTemplateData(file, engineOptions = {}) {
-    try {
-      const opts = await convertTokensToAttributes(
-        file,
-        engineOptions.namespaces
-      );
+  extendEngine({ engine, init }) {
+    const engineInstance = engine || twig;
 
-      const o = {};
+    engineInstance.cache(false);
 
-      Object.entries(opts).forEach(([attr, entries]) => {
-        const ent = Object.keys(entries);
-        if (ent.length > 0) {
-          o[attr] = {};
-          ent.forEach((method) => {
-            switch (method) {
-              case "addClass":
-                o[attr][method] = function (values) {
-                  return ` class="${
-                    values instanceof Array ? values.join(" ") : values
-                  }"`;
-                };
-                break;
-              case "setAttribute":
-                o[attr][method] = function (attr, values) {
-                  return ` ${attr}="${
-                    values instanceof Array ? values.join(" ") : values
-                  }"`;
-                };
-                break;
+    twigDrupal(engineInstance);
+
+    engineInstance.extendFilter("without", function (value, b) {
+      if (!value) return {};
+
+      if (typeof value === "string") {
+        let str = value;
+
+        b.forEach((a) => {
+          const pattern = `/\\s${a}="[^"]*"/`;
+          str = value.replace(new RegExp(pattern), "");
+        });
+
+        return str;
+      }
+
+      if (value.args && value.args.find((arg) => arg[0] === "$drupal")) {
+        const values = { ...value };
+        values.args = values.args.filter((arg) => {
+          return !b.includes(arg[0]);
+        });
+
+        return DrupalAttribute.prototype.toString.call(values);
+      }
+
+      return twigDrupalWithout(value);
+    });
+
+    engineInstance.extend(function (Twig) {
+      Twig.exports.extendTag({
+        type: "trans",
+        regex: /^trans$/,
+        next: ["endtrans", "plural", "variable"],
+        open: true,
+        compile: function (token) {
+          return token;
+        },
+        parse: function (token, context, chain) {
+          var html = "";
+
+          token.output.forEach((output) => {
+            if (output.type === "raw") {
+              html += output.value;
+            } else {
+              if (output.type === "output") {
+                html += Twig.expression.parse.apply(this, [
+                  output.stack,
+                  context,
+                ]);
+              }
             }
           });
-        }
+
+          return {
+            chain: chain,
+            output: html,
+          };
+        },
       });
 
-      return o;
-    } catch (e) {
-      return {};
+      Twig.exports.extendTag({
+        type: "endtrans",
+        regex: /^endtrans$/,
+        next: [],
+        open: false,
+      });
+
+      Twig.exports.extendTag({
+        type: "plural",
+        regex: /^plural\s+(.+)$/,
+        next: ["endtrans"],
+        open: false,
+      });
+    });
+
+    if (init && typeof init === "function") {
+      init(engineInstance);
     }
+
+    return engineInstance.twig;
   },
-};
 
-/**
- * Accepts a path to a twig templates, gets all it tokens and based on that
- * returns an object with all Drupal attributes
- *
- * @param {string} path - twig template path
- * @param {object} namespaces - the twig namespace object
- * @returns {Promise} gets resolved with an object containing all Drupal attributes
- */
-function convertTokensToAttributes(path, namespaces) {
-  if (path.startsWith("@")) {
-    for (const [namespace, dir] of Object.entries(namespaces)) {
-      if (path.startsWith(`@${namespace}`)) {
-        path = path.replace(`@${namespace}`, dir);
-        break;
-      }
+  async extendTemplateData(file, engineOptions = {}, data = {}) {
+    if (
+      typeof data === "string" ||
+      typeof data === "number" ||
+      typeof data === "boolean"
+    ) {
+      return data;
     }
-  }
 
-  return new Promise((resolve, reject) => {
-    const filePath = require("path").join(process.cwd(), path);
-    fs.stat(filePath, function (err) {
-      if (err == null) {
-        twig.twig({
-          path: filePath,
-          async load(template) {
-            let opts = {};
-            const tokens = template.tokens;
-            if (tokens) {
-              const outputTokens = tokens.filter(
-                (token) => token.type === "output"
-              );
-              const logicTokens = tokens.filter(
-                (token) => token.type === "logic"
-              );
+    if (Array.isArray(data)) {
+      data.forEach(async (entry, i) => {
+        data[i] = await this.extendTemplateData(file, engineOptions, entry);
+      });
 
-              outputTokens.forEach((token) => {
-                const stackItem = token.stack.find(
-                  (item) =>
-                    item.type === "Twig.expression.type.variable" ||
-                    item.type === "Twig.logic.type.extends"
-                );
+      return data;
+    }
 
-                if (stackItem) {
-                  if (token.stack.length > 1) {
-                    const entry = token.stack.find(
-                      (item) => item.type === "Twig.expression.type.variable"
-                    );
-
-                    if (entry) {
-                      const key = entry.value;
-                      const entries = {};
-                      token.stack.forEach((item, i) => {
-                        if (
-                          item.type === "Twig.expression.type.key.period" &&
-                          token.stack[i + 1] &&
-                          token.stack[i + 1].type ===
-                            "Twig.expression.type.parameter.end"
-                        ) {
-                          entries[item.key] = token.stack[i + 1].params
-                            .filter((param) =>
-                              Object.prototype.hasOwnProperty.call(
-                                param,
-                                "value"
-                              )
-                            )
-                            .map((param) => param.value);
-                        }
-                      });
-
-                      opts[key] = entries;
-                    }
-                  }
-                }
-              });
-
-              for (const token of logicTokens) {
-                if (
-                  token.token.type === "Twig.logic.type.extends" ||
-                  token.token.type === "Twig.logic.type.include"
-                ) {
-                  try {
-                    const converted = await convertTokensToAttributes(
-                      token.token.stack[0].value,
-                      namespaces
-                    );
-                    opts = deepMerge(opts, converted);
-                  } catch (e) {
-                    if (e.message) {
-                      console.error(e.message);
-                    }
-                  }
-                } else if (
-                  token.token.type === "Twig.logic.type.block" ||
-                  token.token.type === "Twig.logic.type.spaceless" ||
-                  token.token.type === "Twig.logic.type.if"
-                ) {
-                  token.token.output.forEach((outputItem) => {
-                    if (outputItem.type === "output") {
-                      if (outputItem.stack.length > 1) {
-                        const entry = outputItem.stack.find(
-                          (item) =>
-                            item.type === "Twig.expression.type.variable"
-                        );
-
-                        if (entry) {
-                          const key = entry.value;
-                          const entries = {};
-                          outputItem.stack.forEach((item, i) => {
-                            if (
-                              item.type === "Twig.expression.type.key.period" &&
-                              outputItem.stack[i + 1] &&
-                              outputItem.stack[i + 1].type ===
-                                "Twig.expression.type.parameter.end"
-                            ) {
-                              entries[item.key] = outputItem.stack[i + 1].params
-                                .filter((param) =>
-                                  Object.prototype.hasOwnProperty.call(
-                                    param,
-                                    "value"
-                                  )
-                                )
-                                .map((param) => param.value);
-                            }
-                          });
-                          opts[key] = entries;
-                        }
-                      }
-                    }
-                  });
-                }
-              }
-              resolve(opts);
-            } else {
-              resolve(opts);
-            }
-          },
-        });
-      } else if (err.code == "ENOENT") {
-        reject({});
+    const o = {};
+    Object.entries(data).forEach(async ([attr, entries]) => {
+      if (entries) {
+        if (entries["$drupal"]) {
+          o[attr] = new DrupalAttribute(Object.entries(entries));
+        } else if (
+          typeof entries === "string" ||
+          typeof entries === "number" ||
+          typeof entries === "boolean"
+        ) {
+          o[attr] = entries;
+        } else {
+          o[attr] = await this.extendTemplateData(file, engineOptions, entries);
+        }
       }
     });
-  });
-}
+
+    return o;
+  },
+};

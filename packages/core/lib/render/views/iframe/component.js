@@ -11,6 +11,7 @@ const {
   getTemplateFilePathFromDirectoryPath,
 } = require("../../helpers");
 const log = require("../../../logger.js");
+const { cloneDeep } = require("../../../helpers.js");
 
 /**
  * @param {object} object - parameter object
@@ -116,6 +117,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
   if (componentJson) {
     let context = [];
     let componentData = helpers.removeInternalKeys(componentJson);
+    const rootData = cloneDeep(componentData);
     const componentVariations = componentJson.$variants;
 
     if (Object.keys(componentData).length > 0) {
@@ -129,23 +131,22 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
         if (variationJson.$name) {
           promises.push(
             new Promise((resolve) => {
-              let variationData = helpers.removeInternalKeys(variationJson);
+              const variationData = helpers.removeInternalKeys(variationJson);
 
-              resolveVariationData(
-                app,
-                variationData,
-                helpers.cloneDeep(componentData)
-              ).then(async (data) => {
-                data = hasTemplate
-                  ? await extendTemplateData(app.get("config"), data, file)
-                  : {};
-                context[startIndex + index] = {
-                  component: file,
-                  data: data || {},
-                  name: variationJson.$name,
-                };
-                resolve();
-              });
+              resolveVariationData(app, variationData, rootData).then(
+                async (data) => {
+                  data = hasTemplate
+                    ? await extendTemplateData(app.get("config"), data, file)
+                    : {};
+
+                  context[startIndex + index] = {
+                    component: file,
+                    data: data || {},
+                    name: variationJson.$name,
+                  };
+                  resolve();
+                }
+              );
             })
           );
         }
