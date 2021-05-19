@@ -4,6 +4,7 @@ const helpers = require("../helpers");
 
 module.exports = async function getVariationData(app, file, variation) {
   const fullFilePath = helpers.getFullPathFromShortPath(app, file);
+
   const componentJson = helpers.cloneDeep(
     app.get("state").fileContents[
       helpers.getDataPathFromTemplatePath(app, fullFilePath)
@@ -24,6 +25,5 @@ module.exports = async function getVariationData(app, file, variation) {
   }
 
   componentData = await resolveData(app, componentData, componentRootData);
-
   return await extendTemplateData(app.get("config"), componentData, file);
 };

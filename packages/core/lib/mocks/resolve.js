@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const deepMerge = require("deepmerge");
 const config = require("../config.json");
 const helpers = require("../helpers.js");
 const log = require("../logger.js");
@@ -17,16 +16,13 @@ module.exports =
    * @returns {Promise<object>} the resolved data object
    */
   async function resolveData(app, data, rootData) {
+    if (rootData) {
+      data = mergeRootDataWithVariationData(rootData, data);
+    }
+
     data = await overwriteJsonLinksWithJsonData(app, data);
     data = await overwriteTplLinksWithTplContent(app, data);
     data = await overwriteRenderKey(app, data);
-
-    if (rootData) {
-      rootData = await overwriteJsonLinksWithJsonData(app, rootData);
-      rootData = await overwriteTplLinksWithTplContent(app, rootData);
-      rootData = await overwriteRenderKey(app, rootData);
-      data = mergeRootDataWithVariationData(rootData, data);
-    }
 
     data = mergeWithGlobalData(app, data);
 
@@ -293,12 +289,13 @@ async function resolveJson(app, entry) {
 
       const resolvedJson = getRootOrVariantDataOfReference(app, entry.$ref);
 
-      return deepMerge(resolvedJson, customData);
+      return helpers.deepMerge(resolvedJson, customData);
     }
   }
 
   return entry;
 }
+
 /**
  * @param {object} app - the express instance
  * @param {string} ref - the reference to another mock data
@@ -340,7 +337,7 @@ function getRootOrVariantDataOfReference(app, ref) {
       }
     }
 
-    return { ...rootJson, ...variantJson };
+    return helpers.deepMerge(helpers.cloneDeep(rootJson), variantJson);
   }
   log(
     "warn",
@@ -414,7 +411,7 @@ function mergeRootDataWithVariationData(rootData, variationData) {
     return rootData;
   }
 
-  return deepMerge(rootData, variationData);
+  return helpers.deepMerge(rootData, variationData);
 }
 
 /**

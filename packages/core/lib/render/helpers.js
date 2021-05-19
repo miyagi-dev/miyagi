@@ -5,7 +5,6 @@
  */
 
 const path = require("path");
-const deepMerge = require("deepmerge");
 const config = require("../config.json");
 const helpers = require("../helpers.js");
 
@@ -26,17 +25,18 @@ module.exports = {
 
     for (const extension of config.extensions) {
       if (extension.extendTemplateData) {
-        o = deepMerge(
-          o,
-          await extension.extendTemplateData(
+        o = {
+          ...o,
+          ...(await extension.extendTemplateData(
             path.join(config.components.folder, fullFilePath),
-            config.engine.options
-          )
-        );
+            config.engine.options,
+            data
+          )),
+        };
       }
     }
 
-    return deepMerge(data, o);
+    return helpers.deepMerge(data, o);
   },
 
   /**
@@ -84,7 +84,7 @@ module.exports = {
 
       if (Object.keys(variationData).length > 0) {
         if (rootData) {
-          return { ...rootData, ...variationData };
+          return helpers.deepMerge(rootData, variationData);
         }
 
         return variationData;

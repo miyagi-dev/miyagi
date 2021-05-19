@@ -139,6 +139,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
                 data = hasTemplate
                   ? await extendTemplateData(app.get("config"), data, file)
                   : {};
+
                 context[startIndex + index] = {
                   component: file,
                   data: data || {},
