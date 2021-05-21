@@ -289,7 +289,8 @@ default:
     "colorHeadline2": "#222222",
     "colorText": "#222222"
   },
-  "css": "" // string of CSS which can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`
+  "css": "", // string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`,
+  "js": "" // string of JS which gets added to components
 }
 ```
 
