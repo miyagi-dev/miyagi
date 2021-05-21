@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/mgrsskls/miyagi/compare/core/v1.13.3...core/v1.14.0) (2021-05-21)
+
+
+### Features
+
+* **core:** also serve root folder for static files ([3c0bce0](https://github.com/mgrsskls/miyagi/commit/3c0bce044f167ac98cf3419bde24661f4ded4256))
+
 ### [1.13.3](https://github.com/mgrsskls/miyagi/compare/core/v1.13.2...core/v1.13.3) (2021-05-10)
 
 
