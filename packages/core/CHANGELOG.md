@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.15.0](https://github.com/mgrsskls/miyagi/compare/core/v1.14.0...core/v1.15.0) (2021-05-21)
+
+
+### Features
+
+* **core:** added theme.js which can be used to add additional js to components ([c349874](https://github.com/mgrsskls/miyagi/commit/c3498742a0c8a8bc43ca3ed4c2c8eb305fb6a10c))
+
 ## [1.14.0](https://github.com/mgrsskls/miyagi/compare/core/v1.13.3...core/v1.14.0) (2021-05-21)
 
 
