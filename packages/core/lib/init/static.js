@@ -20,6 +20,7 @@ function registerUserAssetFolder(app) {
         path.join("/", path.basename(folder)),
         express.static(path.resolve(folder))
       );
+      app.use(express.static(process.cwd()));
     }
   }
 }
