@@ -5,7 +5,6 @@
  */
 
 const handlebars = require("handlebars");
-const path = require("path");
 const menu = require("../render/menu");
 
 /**
@@ -23,23 +22,13 @@ function getMenuHtml(children, path, variation) {
 /**
  * Renders all link tags for given stylesheet files
  *
- * @param {boolean} isBuild - defines if a build is created or not
  * @param {string[]} files - the paths to CSS files
  * @returns {string} the html with link tags
  */
-function getCssFilesHtml(isBuild, files) {
+function getCssFilesHtml(files) {
   let html = "";
 
   for (let file of files) {
-    if (
-      isBuild &&
-      !file.startsWith("http://") &&
-      !file.startsWith("https://") &&
-      !file.startsWith("//")
-    ) {
-      file = path.basename(file);
-    }
-
     html += `<link rel="stylesheet" href="${file}">\n`;
   }
 
@@ -49,24 +38,14 @@ function getCssFilesHtml(isBuild, files) {
 /**
  * Renders all script tags for given javascript files
  *
- * @param {boolean} isBuild - defines if a build is created or not
  * @param {string[]} files - the paths to JS files
  * @param {boolean} es6Modules - describes if the scripts should be rendered with type="module"
  * @returns {string} the html with script tags
  */
-function getJsFilesHtml(isBuild, files, es6Modules) {
+function getJsFilesHtml(files, es6Modules) {
   let html = "";
 
   for (let file of files) {
-    if (
-      isBuild &&
-      !file.startsWith("http://") &&
-      !file.startsWith("https://") &&
-      !file.startsWith("//")
-    ) {
-      file = path.basename(file);
-    }
-
     html += `<script src="${file}" ${
       es6Modules ? 'type="module"' : "defer"
     }></script>`;
@@ -76,17 +55,12 @@ function getJsFilesHtml(isBuild, files, es6Modules) {
 }
 
 module.exports = function initViewHelpers(app) {
-  const { assets, isBuild } = app.get("config");
+  const { assets } = app.get("config");
 
   handlebars.registerHelper("menu", getMenuHtml.bind(app));
-  handlebars.registerHelper(
-    "cssFiles",
-    getCssFilesHtml.call(null, isBuild, [
-      ...new Set([...assets.css, ...assets.customProperties.files]),
-    ])
-  );
+  handlebars.registerHelper("cssFiles", getCssFilesHtml.call(null, assets.css));
   handlebars.registerHelper(
     "jsFiles",
-    getJsFilesHtml.call(null, isBuild, assets.js, assets.es6Modules)
+    getJsFilesHtml.call(null, assets.js, assets.es6Modules)
   );
 };

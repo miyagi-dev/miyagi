@@ -1,4 +1,9 @@
-{{#extend "iframe_default"}}
+{{#extend "iframe_index"}}
+  {{#content "additionalCss"}}
+    {{#each additionalCssFiles}}
+    <link rel="stylesheet" href="{{ this }}">
+    {{/each}}
+  {{/content}}
   {{#content "body"}}
     <div class="MiyagiWrapper">
       <div class="MiyagiContent">

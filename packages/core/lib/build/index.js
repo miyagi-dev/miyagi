@@ -269,19 +269,17 @@ module.exports = (app) => {
     }
 
     const cssJsFiles = [
-      ...assetsConfig.css,
-      ...assetsConfig.js,
-      ...assetsConfig.customProperties.files,
+      ...new Set([
+        ...assetsConfig.css,
+        ...assetsConfig.js,
+        ...assetsConfig.customProperties.files,
+      ]),
     ];
 
     for (const file of cssJsFiles) {
       promises.push(
         new Promise((resolve) =>
-          fs.copy(
-            path.resolve(file),
-            `${buildFolder}/${path.basename(file)}`,
-            resolve
-          )
+          fs.copy(path.resolve(file), `${buildFolder}/${file}`, resolve)
         )
       );
     }

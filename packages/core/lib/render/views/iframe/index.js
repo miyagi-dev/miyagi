@@ -148,6 +148,9 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
       ? getMediaQueries(app.get("state").css)
       : [];
 
+    const additionalCssFiles =
+      app.get("config").assets?.customProperties?.files || [];
+
     await res.render(
       "iframe_index.hbs",
       {
@@ -169,6 +172,7 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
         fonts: fonts.length > 0 ? fonts : null,
         spacings: spacings.length > 0 ? spacings : null,
         mediaQueries,
+        additionalCssFiles,
       },
       (err, html) => {
         if (res.send) {
