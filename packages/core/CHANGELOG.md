@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.15.1](https://github.com/mgrsskls/miyagi/compare/core/v1.15.0...core/v1.15.1) (2021-05-22)
+
+
+### Bug Fixes
+
+* **core:** fix corrupted css/js files in build when two files have the same name ([8f594ca](https://github.com/mgrsskls/miyagi/commit/8f594caa6fa94465532a3f6a5dee88858eb4f395))
+
 ## [1.15.0](https://github.com/mgrsskls/miyagi/compare/core/v1.14.0...core/v1.15.0) (2021-05-21)
 
 
