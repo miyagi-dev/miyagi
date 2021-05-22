@@ -9,6 +9,7 @@ Module for registering static files
     * [~registerThemeFavicon(app)](#module_initStatic..registerThemeFavicon)
     * [~registerThemeLogo(app)](#module_initStatic..registerThemeLogo)
     * [~registerUserFiles(app, files)](#module_initStatic..registerUserFiles)
+    * [~registerCustomPropertyFiles(app)](#module_initStatic..registerCustomPropertyFiles)
     * [~registerNodeModule(app, nodeModule)](#module_initStatic..registerNodeModule)
     * [~registerAssetFolder(app)](#module_initStatic..registerAssetFolder)
 
@@ -48,6 +49,15 @@ Module for registering static files
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
 | files | <code>&quot;css&quot;</code> \| <code>&quot;js&quot;</code> | the type of user assets that should be registered |
+
+<a name="module_initStatic..registerCustomPropertyFiles"></a>
+
+### initStatic~registerCustomPropertyFiles(app)
+**Kind**: inner method of [<code>initStatic</code>](#module_initStatic)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| app | <code>object</code> | the express instance |
 
 <a name="module_initStatic..registerNodeModule"></a>
 

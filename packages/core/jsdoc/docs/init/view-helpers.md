@@ -6,8 +6,8 @@ Module for registering handlebars view helpers
 
 * [initViewhelpers](#module_initViewhelpers)
     * [~getMenuHtml(children, path, variation)](#module_initViewhelpers..getMenuHtml) ⇒ <code>string</code>
-    * [~getCssFilesHtml(isBuild, files)](#module_initViewhelpers..getCssFilesHtml) ⇒ <code>string</code>
-    * [~getJsFilesHtml(isBuild, files, es6Modules)](#module_initViewhelpers..getJsFilesHtml) ⇒ <code>string</code>
+    * [~getCssFilesHtml(files)](#module_initViewhelpers..getCssFilesHtml) ⇒ <code>string</code>
+    * [~getJsFilesHtml(files, es6Modules)](#module_initViewhelpers..getJsFilesHtml) ⇒ <code>string</code>
 
 <a name="module_initViewhelpers..getMenuHtml"></a>
 
@@ -25,7 +25,7 @@ Returns the menu html
 
 <a name="module_initViewhelpers..getCssFilesHtml"></a>
 
-### initViewhelpers~getCssFilesHtml(isBuild, files) ⇒ <code>string</code>
+### initViewhelpers~getCssFilesHtml(files) ⇒ <code>string</code>
 Renders all link tags for given stylesheet files
 
 **Kind**: inner method of [<code>initViewhelpers</code>](#module_initViewhelpers)  
@@ -33,12 +33,11 @@ Renders all link tags for given stylesheet files
 
 | Param | Type | Description |
 | --- | --- | --- |
-| isBuild | <code>boolean</code> | defines if a build is created or not |
 | files | <code>Array.&lt;string&gt;</code> | the paths to CSS files |
 
 <a name="module_initViewhelpers..getJsFilesHtml"></a>
 
-### initViewhelpers~getJsFilesHtml(isBuild, files, es6Modules) ⇒ <code>string</code>
+### initViewhelpers~getJsFilesHtml(files, es6Modules) ⇒ <code>string</code>
 Renders all script tags for given javascript files
 
 **Kind**: inner method of [<code>initViewhelpers</code>](#module_initViewhelpers)  
@@ -46,7 +45,6 @@ Renders all script tags for given javascript files
 
 | Param | Type | Description |
 | --- | --- | --- |
-| isBuild | <code>boolean</code> | defines if a build is created or not |
 | files | <code>Array.&lt;string&gt;</code> | the paths to JS files |
 | es6Modules | <code>boolean</code> | describes if the scripts should be rendered with type="module" |
 
