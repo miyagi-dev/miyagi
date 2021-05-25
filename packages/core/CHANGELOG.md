@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.16.1](https://github.com/mgrsskls/miyagi/compare/core/v1.16.0...core/v1.16.1) (2021-05-25)
+
+
+### Bug Fixes
+
+* **core:** fix missing custom props css in build ([846ad0a](https://github.com/mgrsskls/miyagi/commit/846ad0a6e04ff282661f2a26b4b29a9215855f35))
+
 ## [1.16.0](https://github.com/mgrsskls/miyagi/compare/core/v1.15.2...core/v1.16.0) (2021-05-25)
 
 
