@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.16.0](https://github.com/mgrsskls/miyagi/compare/core/v1.15.2...core/v1.16.0) (2021-05-25)
+
+
+### Features
+
+* **core:** added assets.root option (see docs) ([f7692aa](https://github.com/mgrsskls/miyagi/commit/f7692aa3c743ce46cc8c0f49fbe1746d652f82ee))
+
 ### [1.15.2](https://github.com/mgrsskls/miyagi/compare/core/v1.15.1...core/v1.15.2) (2021-05-22)
 
 ### [1.15.1](https://github.com/mgrsskls/miyagi/compare/core/v1.15.0...core/v1.15.1) (2021-05-22)
