@@ -270,20 +270,18 @@ module.exports = (app) => {
 
     const cssJsFiles = [
       ...new Set([
-        ...assetsConfig.css,
-        ...assetsConfig.js,
-        ...assetsConfig.customProperties.files,
+        ...assetsConfig.css.map((file) => path.join(assetsConfig.root, file)),
+        ...assetsConfig.js.map((file) => path.join(assetsConfig.root, file)),
+        ...assetsConfig.customProperties.files.map((file) =>
+          path.join(assetsConfig.root, file)
+        ),
       ]),
     ];
 
     for (const file of cssJsFiles) {
       promises.push(
         new Promise((resolve) =>
-          fs.copy(
-            path.resolve(path.join(assetsConfig.root, file)),
-            path.join(buildFolder, file),
-            resolve
-          )
+          fs.copy(file, path.join(buildFolder, file), resolve)
         )
       );
     }

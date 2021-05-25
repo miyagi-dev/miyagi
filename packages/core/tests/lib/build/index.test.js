@@ -112,10 +112,10 @@ describe("lib/build/index", () => {
       expect(typeof fs.copy.mock.calls[0][2]).toEqual("function");
 
       // buildUserAssets
-      expect(fs.copy.mock.calls[1][0]).toEqual(path.resolve("index.css"));
+      expect(fs.copy.mock.calls[1][0]).toEqual("index.css");
       expect(fs.copy.mock.calls[1][1]).toEqual("buildFolder/index.css");
       expect(typeof fs.copy.mock.calls[1][2]).toEqual("function");
-      expect(fs.copy.mock.calls[2][0]).toEqual(path.resolve("index.js"));
+      expect(fs.copy.mock.calls[2][0]).toEqual("index.js");
       expect(fs.copy.mock.calls[2][1]).toEqual("buildFolder/index.js");
       expect(typeof fs.copy.mock.calls[2][2]).toEqual("function");
 
