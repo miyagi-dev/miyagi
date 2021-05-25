@@ -6,16 +6,18 @@ const log = require("../logger");
 const { messages } = require("../config.json");
 
 module.exports = function getCSS(app) {
-  if (app.get("config").assets.customProperties.files) {
+  const { assets } = app.get("config");
+
+  if (assets?.customProperties?.files) {
     const promises = [];
 
     let cssObject = {};
 
-    app.get("config").assets.customProperties.files.forEach((file) => {
+    assets.customProperties.files.forEach((file) => {
       promises.push(
         new Promise((resolve) => {
           fs.readFile(
-            path.join(process.cwd(), file),
+            path.join(assets.root, file),
             "utf-8",
             (err, response) => {
               if (err) {

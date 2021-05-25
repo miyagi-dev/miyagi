@@ -128,12 +128,12 @@ module.exports = (userConfig = {}) => {
     if (config.assets.manifest) {
       try {
         const manifestContent = fs.readFileSync(
-          path.resolve(config.assets.manifest),
+          path.resolve(path.join(config.assets.root, config.assets.manifest)),
           "utf-8"
         );
 
         manifest = {
-          file: config.assets.manifest,
+          file: path.join(config.assets.root, config.assets.manifest),
           content: JSON.parse(manifestContent),
         };
       } catch (e) {
@@ -141,7 +141,7 @@ module.exports = (userConfig = {}) => {
           "warn",
           appConfig.messages.manifestNotFound.replace(
             "{{manifest}}",
-            config.assets.manifest
+            path.join(config.assets.root, config.assets.manifest)
           )
         );
       }

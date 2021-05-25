@@ -4,6 +4,13 @@ _miyagi_ works without setting any configuration by analyzing your files and gue
 
 _Settings for assets that miyagi serves (independently from your components)._
 
+### `root`
+
+default: `""`<br>
+type: `string`
+
+This settings can be helpful if assets are located in another folder, e.g. `public/assets`, but they should actually be served from `assets/`. In that case you could set this option to `public`.
+
 ### `css`
 
 default: `null`<br>

@@ -232,13 +232,13 @@ module.exports = (app) => {
         new Promise((resolve) =>
           fs.copy(
             path.resolve(logoPath),
-            `${buildFolder}/${logoPath}`,
+            path.join(buildFolder, logoPath),
             async () => {
               for (const folder of assetsConfig.folder) {
                 promises.push(
                   new Promise((resolve) => {
                     fs.copy(
-                      path.resolve(folder),
+                      path.resolve(path.join(assetsConfig.root, folder)),
                       path.join(
                         process.cwd(),
                         buildFolder,
@@ -259,7 +259,7 @@ module.exports = (app) => {
         promises.push(
           new Promise((resolve) => {
             fs.copy(
-              path.resolve(folder),
+              path.resolve(path.join(assetsConfig.root, folder)),
               path.join(process.cwd(), buildFolder, path.basename(folder)),
               resolve
             );
@@ -279,7 +279,11 @@ module.exports = (app) => {
     for (const file of cssJsFiles) {
       promises.push(
         new Promise((resolve) =>
-          fs.copy(path.resolve(file), `${buildFolder}/${file}`, resolve)
+          fs.copy(
+            path.resolve(path.join(assetsConfig.root, file)),
+            path.join(buildFolder, file),
+            resolve
+          )
         )
       );
     }
@@ -452,12 +456,13 @@ module.exports = (app) => {
     const promises = [];
     const normalizedFileName = helpers.normalizeString(dir);
 
-    const data = app.get("state").fileContents[
-      helpers.getDataPathFromTemplatePath(
-        app,
-        helpers.getFullPathFromShortPath(app, file)
-      )
-    ];
+    const data =
+      app.get("state").fileContents[
+        helpers.getDataPathFromTemplatePath(
+          app,
+          helpers.getFullPathFromShortPath(app, file)
+        )
+      ];
 
     promises.push(
       new Promise((resolve) => {

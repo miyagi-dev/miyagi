@@ -468,6 +468,7 @@ describe("lib/init/config", () => {
               typo: "typo",
             },
           },
+          root: "",
         },
         components: {
           folder: "src",
