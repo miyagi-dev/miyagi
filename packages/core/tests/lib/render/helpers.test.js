@@ -4,7 +4,6 @@ const deepMerge = require("deepmerge");
 const config = require("../../../lib/config.json");
 const helpers = require("../../../lib/render/helpers.js");
 const log = require("../../../lib/logger.js");
-const { doesNotMatch } = require("assert");
 
 jest.mock("../../../lib/logger");
 
@@ -31,32 +30,29 @@ describe("lib/render/helpers", () => {
     };
 
     describe("with only rootData given", () => {
-      test("", async (done) => {
+      test("", async () => {
         expect(await helpers.resolveData(app, null, rootData)).toEqual({
           merged: {
             root: true,
             data: "root",
           },
         });
-        done();
       });
     });
 
     describe("with only variationData given", () => {
-      test("", async (done) => {
+      test("", async () => {
         expect(await helpers.resolveData(app, variationData, null)).toEqual({
           merged: {
             variation: true,
             data: "variation",
           },
         });
-
-        done();
       });
     });
 
     describe("with rootData and variationData given", () => {
-      test("", async (done) => {
+      test("", async () => {
         expect(await helpers.resolveData(app, variationData, rootData)).toEqual(
           {
             merged: {
@@ -66,14 +62,12 @@ describe("lib/render/helpers", () => {
             },
           }
         );
-
-        done();
       });
     });
   });
 
   describe("overwriteJsonLinksWithJsonData()", () => {
-    test("resolves linked json data", async (done) => {
+    test("resolves linked json data", async () => {
       const app = express();
       app.set(
         "config",
@@ -96,13 +90,12 @@ describe("lib/render/helpers", () => {
           },
         ],
       };
-      fileContents[
-        `${process.cwd()}/tests/mocks/resolve/resolve/mocks.json`
-      ] = {
-        resolve: {
-          $ref: "resolve/resolve/resolve",
-        },
-      };
+      fileContents[`${process.cwd()}/tests/mocks/resolve/resolve/mocks.json`] =
+        {
+          resolve: {
+            $ref: "resolve/resolve/resolve",
+          },
+        };
       fileContents[
         `${process.cwd()}/tests/mocks/resolve/resolve/resolve/mocks.json`
       ] = {
@@ -131,12 +124,10 @@ describe("lib/render/helpers", () => {
           ],
         },
       });
-
-      done();
     });
 
     describe("with passing null", () => {
-      test("", async (done) => {
+      test("", async () => {
         const app = express();
         app.set(
           "config",
@@ -159,13 +150,11 @@ describe("lib/render/helpers", () => {
         ).toEqual({
           resolve: null,
         });
-
-        done();
       });
     });
 
     describe("with value for component not being stored in data", () => {
-      test("returns {}, logs error", async (done) => {
+      test("returns {}, logs error", async () => {
         const app = express();
         app.set(
           "config",
@@ -193,13 +182,11 @@ describe("lib/render/helpers", () => {
           "warn",
           "Couldn't find file some/component/mocks.json. Please check that it's linked correctly."
         );
-
-        done();
       });
     });
 
     describe("variant not having any data", () => {
-      test("returns {}", async (done) => {
+      test("returns {}", async () => {
         const app = express();
         app.set(
           "config",
@@ -232,13 +219,11 @@ describe("lib/render/helpers", () => {
         ).toEqual({
           resolve: {},
         });
-
-        done();
       });
     });
 
     describe("variant not having any data", () => {
-      test("returns {}", async (done) => {
+      test("returns {}", async () => {
         const app = express();
         app.set(
           "config",
@@ -264,14 +249,12 @@ describe("lib/render/helpers", () => {
             $name: "variation",
           },
         });
-
-        done();
       });
     });
   });
 
   describe("mergeWithGlobalData()", () => {
-    test("returns the json from data.json with the passed json", async (done) => {
+    test("returns the json from data.json with the passed json", async () => {
       const app = express();
       const fileContents = {};
       const fullPath = path.join(process.cwd(), "srcFolder/data.json");
@@ -293,8 +276,6 @@ describe("lib/render/helpers", () => {
         foo: "bar",
         bar: "foo",
       });
-
-      done();
     });
   });
 

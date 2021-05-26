@@ -17,7 +17,7 @@ afterEach(() => {
 });
 
 describe("state/menu/index", () => {
-  test("returns the structure for the menu", async (done) => {
+  test("returns the structure for the menu", async () => {
     const app = express();
     app.set(
       "config",
@@ -41,7 +41,6 @@ describe("state/menu/index", () => {
     });
 
     const { getMenu } = require("../../../../lib/state/menu");
-    await expect(getMenu(app)).toEqual(menuJson);
-    done();
+    return await expect(getMenu(app)).toEqual(menuJson);
   });
 });

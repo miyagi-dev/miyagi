@@ -35,7 +35,7 @@ describe("lib/init/partials", () => {
 
   describe("registerAll()", () => {
     describe("with valid file", () => {
-      test("calls hbs.registerPartial after reading the file", async (done) => {
+      test("calls hbs.registerPartial after reading the file", async () => {
         handlebars.compile = jest.fn(() => "compiledPartial");
 
         await partials.registerAll(app, true);
@@ -44,12 +44,11 @@ describe("lib/init/partials", () => {
           "foo/index.hbs",
           "compiledPartial"
         );
-        done();
       });
     });
 
     describe("with invalid file", () => {
-      test("doesn't call hbs.registerPartial, but logs an error", async (done) => {
+      test("doesn't call hbs.registerPartial, but logs an error", async () => {
         handlebars.compile = jest.fn(() => "compiledPartial");
 
         await partials.registerAll(app, true);
@@ -61,11 +60,10 @@ describe("lib/init/partials", () => {
         expect(handlebars.registerPartial).not.toHaveBeenCalledWith(
           "foo/index2.hbs"
         );
-        done();
       });
     });
 
-    test("calls hbs.registerPartial with layout files", async (done) => {
+    test("calls hbs.registerPartial with layout files", async () => {
       handlebars.compile = jest.fn(() => "compiledPartial");
 
       await partials.registerAll(app, true);
@@ -74,13 +72,12 @@ describe("lib/init/partials", () => {
         "iframe_default",
         "compiledPartial"
       );
-      done();
     });
   });
 
   describe("registerPartial()", () => {
     describe("with valid file", () => {
-      test("calls hbs.registerPartial after reading the file", async (done) => {
+      test("calls hbs.registerPartial after reading the file", async () => {
         helpers.getShortPathFromFullPath = jest.fn(() => "fullName");
         handlebars.compile = jest.fn(() => "compiledPartial");
 
@@ -93,12 +90,11 @@ describe("lib/init/partials", () => {
           "fullName",
           "compiledPartial"
         );
-        done();
       });
     });
 
     describe("with invalid file", () => {
-      test("doesn't call hbs.registerPartial, but logs an error", async (done) => {
+      test("doesn't call hbs.registerPartial, but logs an error", async () => {
         helpers.getShortPathFromFullPath = jest.fn(() => "fullName");
 
         await partials.registerPartial(
@@ -111,7 +107,6 @@ describe("lib/init/partials", () => {
           "Couldn't find file fullName. Is the 'components.folder' in your configuration set correctly?"
         );
         expect(handlebars.registerPartial).not.toHaveBeenCalled();
-        done();
       });
     });
   });

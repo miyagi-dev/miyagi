@@ -87,7 +87,7 @@ describe("lib/build/index", () => {
   });
 
   describe("build()", () => {
-    test("calls fs.emptyDir with the build folder path", async (done) => {
+    test("calls fs.emptyDir with the build folder path", async () => {
       const spyComponentOverview = jest.spyOn(render, "renderIframeIndex");
       const spyComponent = jest.spyOn(render, "renderIframeVariation");
       const spyComponentVariations = jest.spyOn(
@@ -124,8 +124,6 @@ describe("lib/build/index", () => {
       expect(spyComponentVariations).toHaveBeenCalledTimes(2);
       expect(spyMainWithComponent).toHaveBeenCalledTimes(3);
       expect(spyMain).toHaveBeenCalled();
-
-      done();
     });
   });
 });

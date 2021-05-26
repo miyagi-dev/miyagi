@@ -11,8 +11,8 @@ beforeEach(() => {
   express = require("express");
   /* eslint-disable */
   getPartials = require("../../../lib/state/partials.js").getPartials;
-  getFileContents = require("../../../lib/state/file-contents.js")
-    .getFileContents;
+  getFileContents =
+    require("../../../lib/state/file-contents.js").getFileContents;
   getMenu = require("../../../lib/state/menu/index.js").getMenu;
   getSourceTree = require("../../../lib/state/source-tree.js").getSourceTree;
   /* eslint-enable */
@@ -55,7 +55,7 @@ afterEach(() => {
 
 describe("lib/state/index", () => {
   describe("with data=false, menu=false, sourceTree=false, partials=false", () => {
-    test("calls nothing", async (done) => {
+    test("calls nothing", async () => {
       const app = express();
       app.set("config", {
         ...config.defaultUserConfig,
@@ -71,11 +71,10 @@ describe("lib/state/index", () => {
       expect(getFileContents).not.toHaveBeenCalled();
       expect(getMenu).not.toHaveBeenCalled();
       expect(getSourceTree).not.toHaveBeenCalled();
-      done();
     });
 
     describe("no state set yet", () => {
-      test("sets the state to {}", async (done) => {
+      test("sets the state to {}", async () => {
         const app = express();
         app.set("config", {
           ...config.defaultUserConfig,
@@ -86,12 +85,11 @@ describe("lib/state/index", () => {
         await setState(app, {});
 
         expect(app.get("state")).toEqual({});
-        done();
       });
     });
 
     describe(" state already set set", () => {
-      test("returns that state", async (done) => {
+      test("returns that state", async () => {
         const app = express();
         app.set("config", {
           ...config.defaultUserConfig,
@@ -107,13 +105,12 @@ describe("lib/state/index", () => {
         expect(app.get("state")).toEqual({
           foo: "bar",
         });
-        done();
       });
     });
   });
 
   describe("with sourceTree=true", () => {
-    test("calls nothing", async (done) => {
+    test("calls nothing", async () => {
       const app = express();
       app.set("config", {
         ...config.defaultUserConfig,
@@ -128,12 +125,11 @@ describe("lib/state/index", () => {
       });
 
       expect(getSourceTree).toHaveBeenCalledWith(app);
-      done();
     });
   });
 
   describe("with partials=true", () => {
-    test("calls getPartials", async (done) => {
+    test("calls getPartials", async () => {
       const app = express();
       app.set("config", {
         ...config.defaultUserConfig,
@@ -148,12 +144,11 @@ describe("lib/state/index", () => {
       });
 
       expect(getPartials).toHaveBeenCalledWith(app);
-      done();
     });
   });
 
   describe("with menu=true", () => {
-    test("calls getMenu", async (done) => {
+    test("calls getMenu", async () => {
       const app = express();
       app.set("config", {
         ...config.defaultUserConfig,
@@ -168,13 +163,12 @@ describe("lib/state/index", () => {
       });
 
       expect(getMenu).toHaveBeenCalledWith(app);
-      done();
     });
   });
 
   describe("with data being set", () => {
     describe("with data=true", () => {
-      test("calls getFileContents", async (done) => {
+      test("calls getFileContents", async () => {
         const app = express();
         app.set("config", {
           ...config.defaultUserConfig,
@@ -187,12 +181,11 @@ describe("lib/state/index", () => {
         });
 
         expect(getFileContents).toHaveBeenCalledWith(app);
-        done();
       });
     });
 
     describe("with data being an object", () => {
-      test("calls nothing", async (done) => {
+      test("calls nothing", async () => {
         const app = express();
         app.set("config", {
           ...config.defaultUserConfig,
@@ -205,13 +198,12 @@ describe("lib/state/index", () => {
         });
 
         expect(getFileContents).not.toHaveBeenCalled();
-        done();
       });
     });
   });
 
   describe("with sourceTree=true", () => {
-    test("calls getSourceTree after getFileContents", async (done) => {
+    test("calls getSourceTree after getFileContents", async () => {
       const app = express();
       app.set("config", {
         ...config.defaultUserConfig,
@@ -228,12 +220,11 @@ describe("lib/state/index", () => {
 
       expect(getFileContents).toHaveBeenCalledWith(app);
       expect(getSourceTree).toHaveBeenCalledWith(app);
-      done();
     });
   });
 
   describe("with data=true, sourceTree=true", () => {
-    test("sets app.state after getFileContents and getSourceTree", async (done) => {
+    test("sets app.state after getFileContents and getSourceTree", async () => {
       const app = express();
       app.set("config", {
         ...config.defaultUserConfig,
@@ -253,11 +244,10 @@ describe("lib/state/index", () => {
         fileContents: "data",
         sourceTree: "sourceTree",
       });
-      done();
     });
 
     describe("with menu=true", () => {
-      test("calls getMenu after setting app.state", async (done) => {
+      test("calls getMenu after setting app.state", async () => {
         const app = express();
         app.set("config", {
           ...config.defaultUserConfig,
@@ -280,7 +270,6 @@ describe("lib/state/index", () => {
           menu: "menu",
         });
         expect(getMenu).toHaveBeenCalledWith(app);
-        done();
       });
     });
   });

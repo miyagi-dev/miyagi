@@ -24,13 +24,10 @@ describe.skip("lib/state/partials", () => {
   );
 
   describe("with files not being filtered out", () => {
-    test.todo(
-      "returns an object with shortPath as key and fullPath as value",
-      () => {}
-    );
+    test.todo("returns an object with shortPath as key and fullPath as value");
   });
 
   describe("with files being filtered out", () => {
-    test.todo("returns an object without the files", () => {});
+    test.todo("returns an object without the files");
   });
 });

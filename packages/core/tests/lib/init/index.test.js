@@ -46,15 +46,14 @@ afterEach(() => {
 
 describe("lib/init", () => {
   describe("always", () => {
-    test("calls setEngines", async (done) => {
+    test("calls setEngines", async () => {
       await init({});
       expect(setEngines).toHaveBeenCalled();
-      done();
     });
   });
 
   describe("setEngines() was successful", () => {
-    test("call init methods", async (done) => {
+    test("call init methods", async () => {
       setEngines.mockImplementationOnce(() => true);
       const server = await init({});
       expect(setState).toHaveBeenCalled();
@@ -65,11 +64,10 @@ describe("lib/init", () => {
       expect(setPartials.registerAll).toHaveBeenCalled();
       expect(handlebarsLayouts.register).toHaveBeenCalledWith(handlebars);
       server.close();
-      done();
     });
 
     describe("with process.env.PORT set", () => {
-      test("sets app.port to process.env.PORT", async (done) => {
+      test("sets app.port to process.env.PORT", async () => {
         setEngines.mockImplementationOnce(() => true);
         process.env.PORT = 1234;
         const server = await init({});
@@ -78,12 +76,11 @@ describe("lib/init", () => {
           "Running miyagi server at http://localhost:1234!\n"
         );
         server.close();
-        done();
       });
     });
 
     describe("without process.env.PORT set", () => {
-      test("logs the correct port", async (done) => {
+      test("logs the correct port", async () => {
         setEngines.mockImplementationOnce(() => true);
         delete process.env.PORT;
         const server = await init({});
@@ -92,13 +89,12 @@ describe("lib/init", () => {
           `Running miyagi server at http://localhost:${appConfig.defaultPort}!\n`
         );
         server.close();
-        done();
       });
     });
   });
 
   describe("setEngines() was not successful", () => {
-    test("doesn't call init methods", async (done) => {
+    test("doesn't call init methods", async () => {
       setEngines.mockImplementationOnce(() => false);
       await init({ ...appConfig, defaultPort: getRandomPort() });
       expect(setState).not.toHaveBeenCalled();
@@ -109,7 +105,6 @@ describe("lib/init", () => {
       expect(setPartials.registerAll).not.toHaveBeenCalled();
       expect(handlebarsLayouts.register).not.toHaveBeenCalled();
       expect(log).not.toHaveBeenCalled();
-      done();
     });
   });
 });

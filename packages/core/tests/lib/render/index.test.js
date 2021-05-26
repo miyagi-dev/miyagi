@@ -162,7 +162,7 @@ afterEach(() => {
 
 describe("lib/render/index", () => {
   describe("renderMainIndex", () => {
-    test("renders main.hbs", async (done) => {
+    test("renders main.hbs", async () => {
       res.render = jest.fn();
 
       await render.renderMainIndex({ app, res });
@@ -174,7 +174,7 @@ describe("lib/render/index", () => {
         indexPath: "/component?file=all&embedded=true",
         showAll: true,
         hideTests: true,
-        theme: {},
+        theme: { mode: "light" },
         tests,
         projectName,
         userProjectName,
@@ -183,14 +183,12 @@ describe("lib/render/index", () => {
         isBuild: undefined,
         basePath: "/",
       });
-
-      done();
     });
   });
 
   describe("renderMainComponent", () => {
     describe("with variation", () => {
-      test("renders index.hbs", async (done) => {
+      test("renders index.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderMainComponent({
@@ -210,7 +208,7 @@ describe("lib/render/index", () => {
           requestedComponent: path.dirname(component),
           requestedVariation: variation,
           hideTests: false,
-          theme: {},
+          theme: { mode: "light" },
           tests,
           projectName,
           userProjectName,
@@ -219,13 +217,11 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           basePath: "/",
         });
-
-        done();
       });
     });
 
     describe("without variation", () => {
-      test("renders index.hbs", async (done) => {
+      test("renders index.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderMainComponent({
@@ -242,7 +238,7 @@ describe("lib/render/index", () => {
           requestedComponent: path.dirname(component),
           requestedVariation: undefined,
           hideTests: false,
-          theme: {},
+          theme: { mode: "light" },
           tests,
           projectName,
           userProjectName,
@@ -251,15 +247,13 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           basePath: "/",
         });
-
-        done();
       });
     });
   });
 
   describe("renderMain404", () => {
     describe("with variation", () => {
-      test("renders index.hbs", async (done) => {
+      test("renders index.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderMain404({
@@ -278,7 +272,7 @@ describe("lib/render/index", () => {
           requestedComponent: null,
           requestedVariation: null,
           hideTests: true,
-          theme: {},
+          theme: { mode: "light" },
           projectName,
           userProjectName,
           htmlValidation: false,
@@ -289,13 +283,11 @@ describe("lib/render/index", () => {
           indexPath: "/component?file=all&embedded=true",
           basePath: "/",
         });
-
-        done();
       });
     });
 
     describe("without variation", () => {
-      test("renders index.hbs", async (done) => {
+      test("renders index.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderMain404({
@@ -311,7 +303,7 @@ describe("lib/render/index", () => {
           requestedComponent: null,
           requestedVariation: null,
           hideTests: true,
-          theme: {},
+          theme: { mode: "light" },
           projectName,
           userProjectName,
           htmlValidation: false,
@@ -322,15 +314,13 @@ describe("lib/render/index", () => {
           indexPath: "/component?file=all&embedded=true",
           basePath: "/",
         });
-
-        done();
       });
     });
   });
 
   describe("renderIframeVariation", () => {
     describe("with global data", () => {
-      test("renders component.hbs with data merged with global data", async (done) => {
+      test("renders component.hbs with data merged with global data", async () => {
         addGlobalData();
         res.render = jest.fn();
 
@@ -352,14 +342,13 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           standalone: true,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
 
     describe("with variation", () => {
-      test("renders component.hbs", async (done) => {
+      test("renders component.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframeVariation({
@@ -381,14 +370,13 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
 
     describe("without variation", () => {
-      test("renders component.hbs", async (done) => {
+      test("renders component.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframeVariation({
@@ -409,14 +397,13 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
 
     describe("with variation not having a data key", () => {
-      test("renders component.hbs", async (done) => {
+      test("renders component.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframeVariation({
@@ -438,14 +425,13 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
 
     describe("rendering an empty component", () => {
-      test("renders component.hbs without error", async (done) => {
+      test("renders component.hbs without error", async () => {
         res.render = jest.fn();
 
         await render.renderIframeVariation({
@@ -467,14 +453,13 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
 
     describe("embedded=true", () => {
-      test("renders iframe_component_variation.hbs", async (done) => {
+      test("renders iframe_component_variation.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframeVariation({
@@ -501,14 +486,13 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
 
     describe("embedded=false", () => {
-      test("renders component.hbs", async (done) => {
+      test("renders component.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframeVariation({
@@ -530,16 +514,15 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           standalone: true,
+          theme: { mode: "light" },
         });
-
-        done();
       });
     });
   });
 
   describe("renderIframeComponent", () => {
     describe("with global data", () => {
-      test("renders iframe_component.hbs with the global data merged into the variations data", async (done) => {
+      test("renders iframe_component.hbs with the global data merged into the variations data", async () => {
         addGlobalData();
         res.render = jest.fn();
         const folder = "tests/mocks/srcFolder/component1";
@@ -565,16 +548,14 @@ describe("lib/render/index", () => {
               html: "component11global\n",
               variation: "variation1",
               standaloneUrl: "/component?file=component1&variation=variation1",
-              url:
-                "/component?file=component1&variation=variation1&embedded=true",
+              url: "/component?file=component1&variation=variation1&embedded=true",
             },
             {
               file: "component1/index.hbs",
               html: "component12global\n",
               variation: "variation2",
               standaloneUrl: "/component?file=component1&variation=variation2",
-              url:
-                "/component?file=component1&variation=variation2&embedded=true",
+              url: "/component?file=component1&variation=variation2&embedded=true",
             },
           ],
           dev: false,
@@ -606,19 +587,17 @@ describe("lib/render/index", () => {
           renderFileTabs: true,
           name: "component1",
           documentation: undefined,
-          theme: {},
+          theme: { mode: "light" },
           schemaError: null,
           template: null,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
-
-        done();
       });
     });
 
     describe("component has variations", () => {
       describe("with data key", () => {
-        test("renders iframe_component.hbs", async (done) => {
+        test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component1";
 
@@ -636,8 +615,7 @@ describe("lib/render/index", () => {
                 html: "component1\n",
                 variation: "default",
                 standaloneUrl: "/component?file=component1&variation=default",
-                url:
-                  "/component?file=component1&variation=default&embedded=true",
+                url: "/component?file=component1&variation=default&embedded=true",
               },
               {
                 file: "component1/index.hbs",
@@ -645,8 +623,7 @@ describe("lib/render/index", () => {
                 variation: "variation1",
                 standaloneUrl:
                   "/component?file=component1&variation=variation1",
-                url:
-                  "/component?file=component1&variation=variation1&embedded=true",
+                url: "/component?file=component1&variation=variation1&embedded=true",
               },
               {
                 file: "component1/index.hbs",
@@ -654,8 +631,7 @@ describe("lib/render/index", () => {
                 variation: "variation2",
                 standaloneUrl:
                   "/component?file=component1&variation=variation2",
-                url:
-                  "/component?file=component1&variation=variation2&embedded=true",
+                url: "/component?file=component1&variation=variation2&embedded=true",
               },
             ],
             dev: false,
@@ -687,18 +663,16 @@ describe("lib/render/index", () => {
             renderFileTabs: true,
             name: "component1",
             documentation: undefined,
-            theme: {},
+            theme: { mode: "light" },
             schemaError: null,
             template: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
-
-          done();
         });
       });
 
       describe("without data key", () => {
-        test("renders iframe_component.hbs", async (done) => {
+        test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component3";
 
@@ -717,8 +691,7 @@ describe("lib/render/index", () => {
                 variation: "variation1",
                 standaloneUrl:
                   "/component?file=component3&variation=variation1",
-                url:
-                  "/component?file=component3&variation=variation1&embedded=true",
+                url: "/component?file=component3&variation=variation1&embedded=true",
               },
               {
                 file: "component3/index.hbs",
@@ -726,8 +699,7 @@ describe("lib/render/index", () => {
                 variation: "variation2",
                 standaloneUrl:
                   "/component?file=component3&variation=variation2",
-                url:
-                  "/component?file=component3&variation=variation2&embedded=true",
+                url: "/component?file=component3&variation=variation2&embedded=true",
               },
             ],
             dev: false,
@@ -738,7 +710,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
-            theme: {},
+            theme: { mode: "light" },
             schema: null,
             mocks: {
               type: "json",
@@ -763,13 +735,11 @@ describe("lib/render/index", () => {
             template: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
-
-          done();
         });
       });
 
       describe("variation throws an error", () => {
-        test("renders iframe_component.hbs", async (done) => {
+        test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component6";
 
@@ -784,13 +754,11 @@ describe("lib/render/index", () => {
             variations: [
               {
                 file: "component6/index.hbs",
-                html:
-                  '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
                 variation: "variation1",
                 standaloneUrl:
                   "/component?file=component6&variation=variation1",
-                url:
-                  "/component?file=component6&variation=variation1&embedded=true",
+                url: "/component?file=component6&variation=variation1&embedded=true",
               },
             ],
             dev: false,
@@ -801,7 +769,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
-            theme: {},
+            theme: { mode: "light" },
             schema: null,
             mocks: {
               type: "json",
@@ -821,13 +789,11 @@ describe("lib/render/index", () => {
             template: null,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
-
-          done();
         });
       });
 
       describe("variation doesn't have a name", () => {
-        test("renders iframe_component.hbs without that variation", async (done) => {
+        test("renders iframe_component.hbs without that variation", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component7";
 
@@ -856,7 +822,7 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
-            theme: {},
+            theme: { mode: "light" },
             schema: null,
             mocks: {
               type: "json",
@@ -876,13 +842,11 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
           });
-
-          done();
         });
       });
 
       describe("component has data, but variation doesn't have data", () => {
-        test.only("renders iframe_component.hbs", async (done) => {
+        test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component9";
 
@@ -900,8 +864,7 @@ describe("lib/render/index", () => {
                 html: "component9\n",
                 variation: "default",
                 standaloneUrl: "/component?file=component9&variation=default",
-                url:
-                  "/component?file=component9&variation=default&embedded=true",
+                url: "/component?file=component9&variation=default&embedded=true",
               },
               {
                 file: "component9/index.hbs",
@@ -909,8 +872,7 @@ describe("lib/render/index", () => {
                 variation: "variation1",
                 standaloneUrl:
                   "/component?file=component9&variation=variation1",
-                url:
-                  "/component?file=component9&variation=variation1&embedded=true",
+                url: "/component?file=component9&variation=variation1&embedded=true",
               },
             ],
             dev: false,
@@ -943,15 +905,13 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
           });
-
-          done();
         });
       });
     });
 
     describe("component doesn't have variations", () => {
       describe("embedded=true", () => {
-        test("renders iframe_component.hbs", async (done) => {
+        test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component2";
 
@@ -966,7 +926,7 @@ describe("lib/render/index", () => {
             a11yTestsPreload: true,
             folder,
             documentation: undefined,
-            theme: {},
+            theme: { mode: "light" },
             dev: false,
             prod: false,
             projectName,
@@ -988,21 +948,18 @@ describe("lib/render/index", () => {
                 file: "component2/index.hbs",
                 html: "component2\n",
                 standaloneUrl: "/component?file=component2&variation=default",
-                url:
-                  "/component?file=component2&variation=default&embedded=true",
+                url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
               },
             ],
             schemaError: null,
             template: null,
           });
-
-          done();
         });
       });
 
       describe("embedded=false", () => {
-        test("renders iframe_component.hbs", async (done) => {
+        test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
           const folder = "tests/mocks/srcFolder/component2";
 
@@ -1017,7 +974,7 @@ describe("lib/render/index", () => {
             documentation: undefined,
             a11yTestsPreload: true,
             folder,
-            theme: {},
+            theme: { mode: "light" },
             dev: false,
             prod: false,
             projectName,
@@ -1039,22 +996,19 @@ describe("lib/render/index", () => {
                 file: "component2/index.hbs",
                 html: "component2\n",
                 standaloneUrl: "/component?file=component2&variation=default",
-                url:
-                  "/component?file=component2&variation=default&embedded=true",
+                url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
               },
             ],
             schemaError: null,
             template: null,
           });
-
-          done();
         });
       });
     });
 
     describe("component doesn't have json data", () => {
-      test("renders iframe_component.hbs", async (done) => {
+      test("renders iframe_component.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframeComponent({
@@ -1073,7 +1027,7 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: {},
+          theme: { mode: "light" },
           variations: [
             {
               file: "component4/index.hbs",
@@ -1090,225 +1044,350 @@ describe("lib/render/index", () => {
           schemaError: null,
           template: null,
         });
-
-        done();
       });
     });
   });
 
   describe("renderIframeIndex", () => {
     describe("with global data", () => {
-      test("renders iframe_index.hbs with the global data merged with the components data", async (done) => {
-        addGlobalData();
-        res.render = jest.fn();
+      describe("with config.ui.renderComponentOverview=false", () => {
+        test("renders iframe_index.hbs with the global data merged with the components data", async () => {
+          addGlobalData();
+          res.render = jest.fn();
 
-        await render.renderIframeIndex({ app, res });
+          app.get("config").ui.renderComponentOverview = false;
 
-        expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
-        expect(res.render.mock.calls[0][1]).toEqual({
-          components: [
-            {
-              name: "component1",
-              folders: [],
-              html: "component1global\n",
-              url: "/component?file=component1&embedded=true",
-            },
-            {
-              name: "component2",
-              folders: [],
-              html: "component2\n",
-              url: "/component?file=component2&embedded=true",
-            },
-            {
-              name: "component3",
-              folders: [],
-              html: "component31\n",
-              url: "/component?file=component3&embedded=true",
-            },
-            {
-              name: "component4",
-              folders: [],
-              html: "component4\n",
-              url: "/component?file=component4&embedded=true",
-            },
-            {
-              name: "component6",
-              folders: [],
-              html:
-                '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6&embedded=true",
-            },
-            {
-              name: "component7",
-              folders: [],
-              html: "component7\n",
-              url: "/component?file=component7&embedded=true",
-            },
-            {
-              name: "component8",
-              folders: [],
-              html: "component8\n",
-              url: "/component?file=component8&embedded=true",
-            },
-          ],
-          theme: {},
-          dev: false,
-          prod: false,
-          a11yTestsPreload: true,
-          projectName,
-          userProjectName,
-          isBuild: undefined,
-          documentation: undefined,
-          renderComponentOverview: false,
+          await render.renderIframeIndex({ app, res });
+
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
+            components: [],
+            theme: { mode: "light" },
+            dev: false,
+            prod: false,
+            a11yTestsPreload: true,
+            projectName,
+            userProjectName,
+            isBuild: undefined,
+            documentation: undefined,
+            renderComponentOverview: false,
+            additionalCssFiles: [],
+            colors: [],
+            fonts: null,
+            mediaQueries: [],
+            spacings: null,
+          });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
-        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
+      });
 
-        done();
+      describe("with config.ui.renderComponentOverview=true", () => {
+        test("renders iframe_index.hbs with the global data merged with the components data", async () => {
+          addGlobalData();
+          res.render = jest.fn();
+
+          app.get("config").ui.renderComponentOverview = true;
+
+          await render.renderIframeIndex({ app, res });
+
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
+            components: [
+              {
+                name: "component1",
+                folders: [],
+                html: "component1global\n",
+                url: "/component?file=component1&embedded=true",
+              },
+              {
+                name: "component2",
+                folders: [],
+                html: "component2\n",
+                url: "/component?file=component2&embedded=true",
+              },
+              {
+                name: "component3",
+                folders: [],
+                html: "component31\n",
+                url: "/component?file=component3&embedded=true",
+              },
+              {
+                name: "component4",
+                folders: [],
+                html: "component4\n",
+                url: "/component?file=component4&embedded=true",
+              },
+              {
+                name: "component6",
+                folders: [],
+                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                url: "/component?file=component6&embedded=true",
+              },
+              {
+                name: "component7",
+                folders: [],
+                html: "component7\n",
+                url: "/component?file=component7&embedded=true",
+              },
+              {
+                name: "component8",
+                folders: [],
+                html: "component8\n",
+                url: "/component?file=component8&embedded=true",
+              },
+              {
+                name: "component9",
+                folders: [],
+                html: "component9\n",
+                url: "/component?file=component9&embedded=true",
+              },
+            ],
+            theme: { mode: "light" },
+            dev: false,
+            prod: false,
+            a11yTestsPreload: true,
+            projectName,
+            userProjectName,
+            isBuild: undefined,
+            documentation: undefined,
+            renderComponentOverview: true,
+            additionalCssFiles: [],
+            colors: [],
+            fonts: null,
+            mediaQueries: [],
+            spacings: null,
+          });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
+        });
       });
     });
 
     describe("embedded=true", () => {
-      test("renders iframe_index.hbs", async (done) => {
-        res.render = jest.fn();
+      describe("with config.ui.renderComponentOverview=false", () => {
+        test("renders iframe_index.hbs", async () => {
+          res.render = jest.fn();
 
-        await render.renderIframeIndex({ app, res });
+          app.get("config").ui.renderComponentOverview = false;
 
-        expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
-        expect(res.render.mock.calls[0][1]).toEqual({
-          components: [
-            {
-              name: "component1",
-              folders: [],
-              html: "component1\n",
-              url: "/component?file=component1&embedded=true",
-            },
-            {
-              name: "component2",
-              folders: [],
-              html: "component2\n",
-              url: "/component?file=component2&embedded=true",
-            },
-            {
-              name: "component3",
-              folders: [],
-              html: "component31\n",
-              url: "/component?file=component3&embedded=true",
-            },
-            {
-              name: "component4",
-              folders: [],
-              html: "component4\n",
-              url: "/component?file=component4&embedded=true",
-            },
-            {
-              name: "component6",
-              folders: [],
-              html:
-                '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6&embedded=true",
-            },
-            {
-              name: "component7",
-              folders: [],
-              html: "component7\n",
-              url: "/component?file=component7&embedded=true",
-            },
-            {
-              name: "component8",
-              folders: [],
-              html: "component8\n",
-              url: "/component?file=component8&embedded=true",
-            },
-          ],
-          theme: {},
-          dev: false,
-          prod: false,
-          a11yTestsPreload: true,
-          projectName,
-          userProjectName,
-          isBuild: undefined,
-          documentation: undefined,
-          renderComponentOverview: false,
+          await render.renderIframeIndex({ app, res });
+
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
+            components: [],
+            theme: { mode: "light" },
+            dev: false,
+            prod: false,
+            a11yTestsPreload: true,
+            projectName,
+            userProjectName,
+            isBuild: undefined,
+            documentation: undefined,
+            renderComponentOverview: false,
+            additionalCssFiles: [],
+            colors: [],
+            fonts: null,
+            mediaQueries: [],
+            spacings: null,
+          });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
-        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
+      });
 
-        done();
+      describe("with config.ui.renderComponentOverview=true", () => {
+        test("renders iframe_index.hbs", async () => {
+          res.render = jest.fn();
+
+          app.get("config").ui.renderComponentOverview = true;
+
+          await render.renderIframeIndex({ app, res });
+
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
+            components: [
+              {
+                name: "component1",
+                folders: [],
+                html: "component1\n",
+                url: "/component?file=component1&embedded=true",
+              },
+              {
+                name: "component2",
+                folders: [],
+                html: "component2\n",
+                url: "/component?file=component2&embedded=true",
+              },
+              {
+                name: "component3",
+                folders: [],
+                html: "component31\n",
+                url: "/component?file=component3&embedded=true",
+              },
+              {
+                name: "component4",
+                folders: [],
+                html: "component4\n",
+                url: "/component?file=component4&embedded=true",
+              },
+              {
+                name: "component6",
+                folders: [],
+                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                url: "/component?file=component6&embedded=true",
+              },
+              {
+                name: "component7",
+                folders: [],
+                html: "component7\n",
+                url: "/component?file=component7&embedded=true",
+              },
+              {
+                name: "component8",
+                folders: [],
+                html: "component8\n",
+                url: "/component?file=component8&embedded=true",
+              },
+              {
+                name: "component9",
+                folders: [],
+                html: "component9\n",
+                url: "/component?file=component9&embedded=true",
+              },
+            ],
+            theme: { mode: "light" },
+            dev: false,
+            prod: false,
+            a11yTestsPreload: true,
+            projectName,
+            userProjectName,
+            isBuild: undefined,
+            documentation: undefined,
+            renderComponentOverview: true,
+            additionalCssFiles: [],
+            colors: [],
+            fonts: null,
+            mediaQueries: [],
+            spacings: null,
+          });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
+        });
       });
     });
 
     describe("embedded=false", () => {
-      test("renders iframe_index.hbs", async (done) => {
-        res.render = jest.fn();
+      describe("with config.ui.renderComponentOverview=false", () => {
+        test("renders iframe_index.hbs", async () => {
+          res.render = jest.fn();
 
-        await render.renderIframeIndex({ app, res });
+          app.get("config").ui.renderComponentOverview = false;
 
-        expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
-        expect(res.render.mock.calls[0][1]).toEqual({
-          components: [
-            {
-              name: "component1",
-              html: "component1\n",
-              url: "/component?file=component1&embedded=true",
-              folders: [],
-            },
-            {
-              name: "component2",
-              html: "component2\n",
-              url: "/component?file=component2&embedded=true",
-              folders: [],
-            },
-            {
-              name: "component3",
-              html: "component31\n",
-              url: "/component?file=component3&embedded=true",
-              folders: [],
-            },
-            {
-              name: "component4",
-              html: "component4\n",
-              url: "/component?file=component4&embedded=true",
-              folders: [],
-            },
-            {
-              name: "component6",
-              html:
-                '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
-              url: "/component?file=component6&embedded=true",
-              folders: [],
-            },
-            {
-              name: "component7",
-              html: "component7\n",
-              url: "/component?file=component7&embedded=true",
-              folders: [],
-            },
-            {
-              name: "component8",
-              html: "component8\n",
-              url: "/component?file=component8&embedded=true",
-              folders: [],
-            },
-          ],
-          theme: {},
-          dev: false,
-          prod: false,
-          a11yTestsPreload: true,
-          projectName,
-          userProjectName,
-          isBuild: undefined,
-          documentation: undefined,
-          renderComponentOverview: false,
+          await render.renderIframeIndex({ app, res });
+
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
+            components: [],
+            theme: { mode: "light" },
+            dev: false,
+            prod: false,
+            a11yTestsPreload: true,
+            projectName,
+            userProjectName,
+            isBuild: undefined,
+            documentation: undefined,
+            renderComponentOverview: false,
+            additionalCssFiles: [],
+            colors: [],
+            fonts: null,
+            mediaQueries: [],
+            spacings: null,
+          });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
-        expect(typeof res.render.mock.calls[0][2]).toEqual("function");
+      });
 
-        done();
+      describe("with config.ui.renderComponentOverview=true", () => {
+        test("renders iframe_index.hbs", async () => {
+          res.render = jest.fn();
+
+          app.get("config").ui.renderComponentOverview = true;
+
+          await render.renderIframeIndex({ app, res });
+
+          expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+          expect(res.render.mock.calls[0][1]).toEqual({
+            components: [
+              {
+                name: "component1",
+                html: "component1\n",
+                url: "/component?file=component1&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component2",
+                html: "component2\n",
+                url: "/component?file=component2&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component3",
+                html: "component31\n",
+                url: "/component?file=component3&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component4",
+                html: "component4\n",
+                url: "/component?file=component4&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component6",
+                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                url: "/component?file=component6&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component7",
+                html: "component7\n",
+                url: "/component?file=component7&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component8",
+                html: "component8\n",
+                url: "/component?file=component8&embedded=true",
+                folders: [],
+              },
+              {
+                name: "component9",
+                html: "component9\n",
+                url: "/component?file=component9&embedded=true",
+                folders: [],
+              },
+            ],
+            theme: { mode: "light" },
+            dev: false,
+            prod: false,
+            a11yTestsPreload: true,
+            projectName,
+            userProjectName,
+            isBuild: undefined,
+            documentation: undefined,
+            renderComponentOverview: true,
+            additionalCssFiles: [],
+            colors: [],
+            fonts: null,
+            mediaQueries: [],
+            spacings: null,
+          });
+          expect(typeof res.render.mock.calls[0][2]).toEqual("function");
+        });
       });
     });
   });
 
   describe("renderIframe404", () => {
     describe("embedded=true", () => {
-      test("renders iframe_component_variation.hbs", async (done) => {
+      test("renders iframe_component_variation.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframe404({
@@ -1323,7 +1402,7 @@ describe("lib/render/index", () => {
         );
         expect(res.render.mock.calls[0][1]).toEqual({
           html: `<p class="MiyagiError">${component} not found.</p>`,
-          theme: {},
+          theme: { mode: "light" },
           dev: false,
           prod: false,
           projectName,
@@ -1332,13 +1411,11 @@ describe("lib/render/index", () => {
           accessibilityValidation: false,
           isBuild: undefined,
         });
-
-        done();
       });
     });
 
     describe("embedded=false", () => {
-      test("renders component.hbs", async (done) => {
+      test("renders component.hbs", async () => {
         res.render = jest.fn();
 
         await render.renderIframe404({
@@ -1351,7 +1428,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: `<p class="MiyagiError">${component} not found.</p>`,
-          theme: {},
+          theme: { mode: "light" },
           dev: false,
           prod: false,
           projectName,
@@ -1360,8 +1437,6 @@ describe("lib/render/index", () => {
           accessibilityValidation: false,
           isBuild: undefined,
         });
-
-        done();
       });
     });
   });

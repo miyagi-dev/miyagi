@@ -13,7 +13,7 @@ describe("lib/state/menu/data", () => {
   const app = express();
 
   describe("getFileContents()", () => {
-    test("returns an object with stored data from json files and ignores ignored files", async (done) => {
+    test("returns an object with stored data from json files and ignores ignored files", async () => {
       app.set("config", {
         ...appConfig.defaultUserConfig,
         components: {
@@ -41,14 +41,13 @@ describe("lib/state/menu/data", () => {
         `${process.cwd()}/tests/mocks/srcFolder/foo/mocks.json`,
         { bar: "bar" },
       ]);
-      done();
     });
   });
 
   describe("readFile()", () => {
     describe("with file found", () => {
       describe("parseable", () => {
-        test("returns the parsed data", async (done) => {
+        test("returns the parsed data", async () => {
           util.promisify = jest.fn(() => {
             return () => {
               return '{"foo": "foo"}';
@@ -62,12 +61,11 @@ describe("lib/state/menu/data", () => {
           );
 
           expect(result).toEqual({ foo: "foo" });
-          done();
         });
       });
 
       describe("not parseable", () => {
-        test("returns {}", async (done) => {
+        test("returns {}", async () => {
           util.promisify = jest.fn(() => {
             return () => {
               return "";
@@ -85,13 +83,12 @@ describe("lib/state/menu/data", () => {
 
           expect(result).toEqual({});
           expect(log).toHaveBeenCalled();
-          done();
         });
       });
     });
 
     describe("with file not found", () => {
-      test("returns {}", async (done) => {
+      test("returns {}", async () => {
         util.promisify = jest.fn(() => {
           return () => {
             throw new Error();
@@ -109,7 +106,6 @@ describe("lib/state/menu/data", () => {
 
         expect(result).toEqual({});
         expect(log).toHaveBeenCalled();
-        done();
       });
     });
   });

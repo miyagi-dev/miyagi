@@ -13,7 +13,7 @@ afterEach(() => {
 });
 
 describe("lib/state/menu/structure", () => {
-  test.only("returns the updated source structure for the menu", async (done) => {
+  test.only("returns the updated source structure for the menu", async () => {
     const app = express();
     app.set(
       "config",
@@ -36,8 +36,7 @@ describe("lib/state/menu/structure", () => {
     process.cwd = () => "/miyagi/tests";
 
     const structure = require("../../../../lib/state/menu/structure.js");
-    await expect(structure(app)).toEqual(structureJson);
-    done();
+    return await expect(structure(app)).toEqual(structureJson);
   });
 
   describe("with no result", () => {
