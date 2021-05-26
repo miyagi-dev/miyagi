@@ -142,20 +142,24 @@ body {
 .MiyagiContent .MiyagiStatus::before {
   --size: 0.7em;
 
-  border-radius: 50%;
-  content: "";
   display: inline-block;
-  height: var(--size);
   margin: 0 0.25em 0 0;
-  width: var(--size);
+}
+
+.MiyagiContent .MiyagiStatus--valid {
+  color: var(--Miyagi-color-Positive);
 }
 
 .MiyagiContent .MiyagiStatus--valid::before {
-  background-color: var(--Miyagi-color-Positive);
+  content: "✓";
+}
+
+.MiyagiContent .MiyagiStatus--invalid {
+  color: var(--Miyagi-color-Negative);
 }
 
 .MiyagiContent .MiyagiStatus--invalid::before {
-  background-color: var(--Miyagi-color-Negative);
+  content: "✗";
 }
 
 .MiyagiContent .MiyagiError {
@@ -251,13 +255,17 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 .MiyagiComponent .MiyagiComponent-headMeta {
   display: flex;
   align-items: center;
   font-size: 14px;
-  margin-left: 30px;
+}
+
+.MiyagiComponent .MiyagiComponent-schemaValidation {
+  margin: 0;
 }
 
 .MiyagiComponent .MiyagiComponent-file {
