@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.17.1](https://github.com/mgrsskls/miyagi/compare/core/v1.17.0...core/v1.17.1) (2021-05-27)
+
+
+### Bug Fixes
+
+* **core:** fix serving static assets ([96513f3](https://github.com/mgrsskls/miyagi/commit/96513f32ef5da7703ffd76e9befbb2b670667b68))
+
 ## [1.17.0](https://github.com/mgrsskls/miyagi/compare/core/v1.16.1...core/v1.17.0) (2021-05-26)
 
 
