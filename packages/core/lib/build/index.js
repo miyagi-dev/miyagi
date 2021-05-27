@@ -239,11 +239,7 @@ module.exports = (app) => {
                   new Promise((resolve) => {
                     fs.copy(
                       path.resolve(path.join(assetsConfig.root, folder)),
-                      path.join(
-                        process.cwd(),
-                        buildFolder,
-                        path.basename(folder)
-                      ),
+                      path.join(process.cwd(), buildFolder, folder),
                       resolve
                     );
                   })
@@ -260,7 +256,7 @@ module.exports = (app) => {
           new Promise((resolve) => {
             fs.copy(
               path.resolve(path.join(assetsConfig.root, folder)),
-              path.join(process.cwd(), buildFolder, path.basename(folder)),
+              path.join(process.cwd(), buildFolder, folder),
               resolve
             );
           })

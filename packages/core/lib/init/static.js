@@ -17,10 +17,9 @@ function registerUserAssetFolder(app) {
   if (assets && assets.folder) {
     for (const folder of assets.folder) {
       app.use(
-        `/${path.basename(folder)}`,
+        path.join("/", folder),
         express.static(path.join(assets.root, folder))
       );
-      app.use(express.static(process.cwd()));
     }
   }
 }
@@ -47,7 +46,7 @@ function registerThemeLogo(app) {
 
     if (file) {
       app.use(
-        `/${path.dirname(file)}`,
+        path.join("/", path.dirname(file)),
         express.static(path.resolve(path.dirname(file)))
       );
     }
@@ -64,7 +63,7 @@ function registerUserFiles(app, files) {
   if (assets) {
     for (const file of assets[files]) {
       app.use(
-        `/${path.dirname(file)}`,
+        path.join("/", path.dirname(file)),
         express.static(path.join(assets.root, path.dirname(file)))
       );
     }
@@ -75,13 +74,13 @@ function registerUserFiles(app, files) {
  * @param {object} app - the express instance
  */
 function registerCustomPropertyFiles(app) {
-  const { assets } = app.get("config").assets;
+  const { assets } = app.get("config");
 
   if (assets?.customProperties?.files) {
     for (const file of assets.customProperties.files) {
       app.use(
-        `/${path.dirname(file)}`,
-        express.static(path.join(assets.root, path.dirname(file)))
+        path.join("/", path.dirname(path.join(assets.root, file))),
+        express.static(path.dirname(path.join(assets.root, file)))
       );
     }
   }
