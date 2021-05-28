@@ -47,15 +47,15 @@ module.exports = async function setState(app, methods) {
         })
       );
     } else {
-      getFileContents(app).then((data) => {
-        state.fileContents = data;
+      promises.push(
+        new Promise((resolve) => {
+          getFileContents(app).then((data) => {
+            state.fileContents = data;
 
-        promises.push(
-          new Promise((resolve) => {
             setSourceTreeAndMenu(app, methods, state).then(resolve);
-          })
-        );
-      });
+          });
+        })
+      );
     }
   } else {
     promises.push(

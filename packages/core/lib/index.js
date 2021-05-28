@@ -233,7 +233,7 @@ async function initRendering(config) {
 async function initApi(config) {
   config = await updateConfigForRendererIfNecessary(config);
 
-  return require("../api/app")(config);
+  return await require("../api/app")(config);
 }
 
 /**
