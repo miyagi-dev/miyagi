@@ -25,6 +25,7 @@
     "node": ">=10.20.1"
   },
   "files": [
+    "api",
     "bin",
     "dist",
     "index.js",
