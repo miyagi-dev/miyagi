@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.18.2](https://github.com/mgrsskls/miyagi/compare/core/v1.18.1...core/v1.18.2) (2021-05-28)
+
+
+### Bug Fixes
+
+* **core:** fix race condition ([381e13c](https://github.com/mgrsskls/miyagi/commit/381e13cb1e556ccd62d05fa879e7167b5136ba8a))
+
 ### [1.18.1](https://github.com/mgrsskls/miyagi/compare/core/v1.18.0...core/v1.18.1) (2021-05-28)
 
 
