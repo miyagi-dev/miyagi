@@ -12,7 +12,7 @@ describe.skip("lib/state/partials", () => {
     "config",
     deepMerge(config.defaultUserConfig, {
       components: {
-        folder: "/tests/mocks/files",
+        folder: "/tests/mock-data/files",
         ignores: [],
       },
       files: {

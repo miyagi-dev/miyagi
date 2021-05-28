@@ -24,11 +24,11 @@ describe("lib/init/partials", () => {
     partials: {
       "foo/index.hbs": path.join(
         process.cwd(),
-        "tests/mocks/srcFolder/component/index.hbs"
+        "tests/mock-data/srcFolder/component/index.hbs"
       ),
       "foo/index2.hbs": path.join(
         process.cwd(),
-        "tests/mocks/srcFolder/component/doesNotExist.hbs"
+        "tests/mock-data/srcFolder/component/doesNotExist.hbs"
       ),
     },
   });
@@ -83,7 +83,10 @@ describe("lib/init/partials", () => {
 
         await partials.registerPartial(
           {},
-          path.join(process.cwd(), "tests/mocks/srcFolder/component/index.hbs")
+          path.join(
+            process.cwd(),
+            "tests/mock-data/srcFolder/component/index.hbs"
+          )
         );
 
         expect(handlebars.registerPartial).toHaveBeenCalledWith(
@@ -99,7 +102,7 @@ describe("lib/init/partials", () => {
 
         await partials.registerPartial(
           app,
-          "tests/mocks/srcFolder/component/doesNotExist.hbs"
+          "tests/mock-data/srcFolder/component/doesNotExist.hbs"
         );
 
         expect(log).toHaveBeenCalledWith(

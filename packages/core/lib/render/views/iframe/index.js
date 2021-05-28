@@ -1,9 +1,9 @@
 const path = require("path");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
+const { resolveVariationData } = require("../../../mocks");
 const {
   extendTemplateData,
-  resolveData,
   getComponentErrorHtml,
   getDataForRenderFunction,
   getFallbackData,
@@ -26,12 +26,13 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
   const promises = [];
   let components;
 
-  const documentation = app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
-      app,
-      `README.${app.get("config").files.docs.extension}`
-    )
-  ];
+  const documentation =
+    app.get("state").fileContents[
+      helpers.getFullPathFromShortPath(
+        app,
+        `README.${app.get("config").files.docs.extension}`
+      )
+    ];
 
   if (app.get("config").ui.renderComponentOverview) {
     components = [];
@@ -84,7 +85,7 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
           const [componentPath, , , , partial] = component;
 
           let [, componentData = {}] = component;
-          resolveData(app, componentData).then(async (data) => {
+          resolveVariationData(app, componentData).then(async (data) => {
             data = await extendTemplateData(
               app.get("config"),
               data,

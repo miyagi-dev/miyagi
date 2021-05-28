@@ -1,8 +1,8 @@
 const express = require("express");
 const deepMerge = require("deepmerge");
-const structureJson = require("../../../mocks/structure.json");
-const dataJson = require("../../../mocks/data.json");
-const sourceTreeJson = require("../../../mocks/source-tree.json");
+const structureJson = require("../../../mock-data/structure.json");
+const dataJson = require("../../../mock-data/data.json");
+const sourceTreeJson = require("../../../mock-data/source-tree.json");
 const config = require("../../../../lib/config.json");
 
 jest.mock("../../../../lib/logger");

@@ -14,35 +14,35 @@ const menu = "menu";
 const userProjectName = "projectName";
 const path1 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component1/index.hbs"
+  "/tests/mock-data/srcFolder/component1/index.hbs"
 );
 const path2 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component2/index.hbs"
+  "/tests/mock-data/srcFolder/component2/index.hbs"
 );
 const path3 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component3/index.hbs"
+  "/tests/mock-data/srcFolder/component3/index.hbs"
 );
 const path4 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component4/index.hbs"
+  "/tests/mock-data/srcFolder/component4/index.hbs"
 );
 const path6 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component6/index.hbs"
+  "/tests/mock-data/srcFolder/component6/index.hbs"
 );
 const path7 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component7/index.hbs"
+  "/tests/mock-data/srcFolder/component7/index.hbs"
 );
 const path8 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component8/index.hbs"
+  "/tests/mock-data/srcFolder/component8/index.hbs"
 );
 const path9 = path.join(
   process.cwd(),
-  "/tests/mocks/srcFolder/component9/index.hbs"
+  "/tests/mock-data/srcFolder/component9/index.hbs"
 );
 const fileContents = {};
 
@@ -51,7 +51,7 @@ const fileContents = {};
  */
 function addGlobalData() {
   app.get("state").fileContents[
-    path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
+    path.join(process.cwd(), "/tests/mock-data/srcFolder/data.json")
   ] = {
     global: "global",
   };
@@ -124,7 +124,7 @@ beforeEach(() => {
     },
     fileContents,
   });
-  app.set("views", [path.join(process.cwd(), "/tests/mocks/srcFolder/")]);
+  app.set("views", [path.join(process.cwd(), "/tests/mock-data/srcFolder/")]);
   app.set(
     "config",
     deepMerge(config.defaultUserConfig, {
@@ -134,7 +134,7 @@ beforeEach(() => {
         },
       },
       components: {
-        folder: "tests/mocks/srcFolder",
+        folder: "tests/mock-data/srcFolder",
       },
       projectName: userProjectName,
       ui: {
@@ -156,7 +156,7 @@ afterEach(() => {
   jest.resetAllMocks();
 
   app.set("state").fileContents[
-    path.join(process.cwd(), "/tests/mocks/srcFolder/data.json")
+    path.join(process.cwd(), "/tests/mock-data/srcFolder/data.json")
   ] = null;
 });
 
@@ -525,7 +525,7 @@ describe("lib/render/index", () => {
       test("renders iframe_component.hbs with the global data merged into the variations data", async () => {
         addGlobalData();
         res.render = jest.fn();
-        const folder = "tests/mocks/srcFolder/component1";
+        const folder = "tests/mock-data/srcFolder/component1";
 
         await render.renderIframeComponent({
           app,
@@ -599,7 +599,7 @@ describe("lib/render/index", () => {
       describe("with data key", () => {
         test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component1";
+          const folder = "tests/mock-data/srcFolder/component1";
 
           await render.renderIframeComponent({
             app,
@@ -674,7 +674,7 @@ describe("lib/render/index", () => {
       describe("without data key", () => {
         test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component3";
+          const folder = "tests/mock-data/srcFolder/component3";
 
           await render.renderIframeComponent({
             app,
@@ -741,7 +741,7 @@ describe("lib/render/index", () => {
       describe("variation throws an error", () => {
         test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component6";
+          const folder = "tests/mock-data/srcFolder/component6";
 
           await render.renderIframeComponent({
             app,
@@ -795,7 +795,7 @@ describe("lib/render/index", () => {
       describe("variation doesn't have a name", () => {
         test("renders iframe_component.hbs without that variation", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component7";
+          const folder = "tests/mock-data/srcFolder/component7";
 
           await render.renderIframeComponent({
             app,
@@ -848,7 +848,7 @@ describe("lib/render/index", () => {
       describe("component has data, but variation doesn't have data", () => {
         test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component9";
+          const folder = "tests/mock-data/srcFolder/component9";
 
           await render.renderIframeComponent({
             app,
@@ -913,7 +913,7 @@ describe("lib/render/index", () => {
       describe("embedded=true", () => {
         test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component2";
+          const folder = "tests/mock-data/srcFolder/component2";
 
           await render.renderIframeComponent({
             app,
@@ -961,7 +961,7 @@ describe("lib/render/index", () => {
       describe("embedded=false", () => {
         test("renders iframe_component.hbs", async () => {
           res.render = jest.fn();
-          const folder = "tests/mocks/srcFolder/component2";
+          const folder = "tests/mock-data/srcFolder/component2";
 
           await render.renderIframeComponent({
             app,
@@ -1020,7 +1020,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           a11yTestsPreload: true,
-          folder: "tests/mocks/srcFolder/component4",
+          folder: "tests/mock-data/srcFolder/component4",
           documentation: undefined,
           dev: false,
           prod: false,

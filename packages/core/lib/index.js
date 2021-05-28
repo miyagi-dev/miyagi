@@ -228,6 +228,15 @@ async function initRendering(config) {
 }
 
 /**
+ * @param {object} config
+ */
+async function initApi(config) {
+  config = await updateConfigForRendererIfNecessary(config);
+
+  return require("../api/app")(config);
+}
+
+/**
  * Tries to guess the template files extension based on defined engine name.
  *
  * @param {object} config - the user configuration object
@@ -372,11 +381,37 @@ async function updateConfigForRendererIfNecessary(config) {
   return config;
 }
 
+function getConfig(args, isBuild, isComponentGenerator) {
+  let userFile = {};
+
+  try {
+    userFile = require(path.resolve(process.cwd(), ".miyagi"));
+  } catch (err) {
+    log("error", err);
+    log("warn", messages.userConfigUnparseable);
+  }
+
+  let userConfig = args ? deepMerge(userFile, getCliArgs(args)) : userFile;
+
+  userConfig.isBuild = isBuild;
+  userConfig.isComponentGenerator = isComponentGenerator;
+
+  delete userConfig._;
+
+  return getMergedConfig(userConfig);
+}
+
 /**
  * Requires the user config and initializes and calls correct modules based on command
  */
-function Miyagi() {
-  (async function () {
+module.exports = async function Miyagi(cmd) {
+  if (cmd === "api") {
+    process.env.NODE_ENV = "development";
+
+    const config = getConfig();
+
+    return await initApi(config);
+  } else {
     const args = yargs.argv;
     const isServer = argsIncludeServer(args);
     const isBuild = argsIncludeBuild(args);
@@ -395,7 +430,6 @@ function Miyagi() {
         if (isComponentGenerator) {
           log("info", messages.generator.starting);
         } else if (isServer) {
-          // console.clear();
           log(
             "info",
             messages.serverStarting.replace(
@@ -406,35 +440,18 @@ function Miyagi() {
         }
       }
 
-      let userFile = {};
-
-      try {
-        userFile = require(path.resolve(process.cwd(), ".miyagi"));
-      } catch (err) {
-        log("error", err);
-        log("warn", messages.userConfigUnparseable);
-      }
-
-      let userConfig = deepMerge(userFile, getCliArgs(args));
-
-      userConfig.isBuild = isBuild;
-      userConfig.isComponentGenerator = isComponentGenerator;
-
-      delete userConfig._;
-
-      let config = getMergedConfig(userConfig);
+      const config = getConfig(args, isBuild, isComponentGenerator);
 
       if (isMockGenerator) {
         runMockGenerator(config, args);
       } else if (isComponentGenerator) {
         runComponentGenerator(config, args);
       } else {
-        initRendering(config);
+        return initRendering(config);
       }
     } else {
       log("error", messages.commandNotFound);
+      process.exit(1);
     }
-  })();
-}
-
-module.exports = new Miyagi();
+  }
+};

@@ -53,3 +53,4 @@ nav:
       - Component: web-ui/component.md
       - Variation: web-ui/variation.md
   - Supported template engines: template-engines.md
+  - JavaScript API: javascript-api.md

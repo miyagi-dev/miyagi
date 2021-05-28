@@ -1,3 +1,7 @@
 "use strict";
 
-module.exports = require("./lib");
+const Miyagi = require("./lib");
+
+module.exports = (async () => {
+  return await Miyagi();
+})();

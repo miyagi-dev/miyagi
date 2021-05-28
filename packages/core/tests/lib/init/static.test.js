@@ -83,14 +83,16 @@ describe("lib/init/static", () => {
           "config",
           deepMerge(config.defaultUserConfig, {
             assets: {
-              css: ["tests/mocks/user/css/index.css"],
-              js: ["tests/mocks/user/js/index.js"],
+              css: ["tests/mock-data/user/css/index.css"],
+              js: ["tests/mock-data/user/js/index.js"],
             },
           })
         );
 
         setStatic(app);
-        request(app).get("/tests/mocks/user/css/index.css").expect(200, done);
+        request(app)
+          .get("/tests/mock-data/user/css/index.css")
+          .expect(200, done);
       });
     });
 
@@ -100,14 +102,14 @@ describe("lib/init/static", () => {
           "config",
           deepMerge(config.defaultUserConfig, {
             assets: {
-              css: ["tests/mocks/user/css/index.css"],
-              js: ["tests/mocks/user/js/index.js"],
+              css: ["tests/mock-data/user/css/index.css"],
+              js: ["tests/mock-data/user/js/index.js"],
             },
           })
         );
 
         setStatic(app);
-        request(app).get("/tests/mocks/user/js/index.js").expect(200, done);
+        request(app).get("/tests/mock-data/user/js/index.js").expect(200, done);
       });
     });
   });

@@ -1,11 +1,11 @@
 const express = require("express");
 const deepMerge = require("deepmerge");
-const menuJson = require("../../../mocks/menu.json");
+const menuJson = require("../../../mock-data/menu.json");
 const config = require("../../../../lib/config.json");
 
 jest.mock("../../../../lib/state/menu/structure.js", () => {
   return () => {
-    return require("../../../mocks/structure.json");
+    return require("../../../mock-data/structure.json");
   };
 });
 

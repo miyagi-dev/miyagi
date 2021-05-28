@@ -2,9 +2,9 @@ const path = require("path");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateSchema = require("../../../validator/schema.js");
+const { getVariationData } = require("../../../mocks");
+
 const {
-  extendTemplateData,
-  resolveData,
   getComponentErrorHtml,
   getDataForRenderFunction,
   getTemplateFilePathFromDirectoryPath,
@@ -29,34 +29,8 @@ module.exports = async function renderIframeVariation({
   cb,
 }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
-  const fullFilePath = helpers.getFullPathFromShortPath(app, file);
 
-  const componentJson = helpers.cloneDeep(
-    app.get("state").fileContents[
-      helpers.getDataPathFromTemplatePath(app, fullFilePath)
-    ] || {}
-  );
-  const componentVariations = componentJson.$variants;
-  let componentRootData = helpers.removeInternalKeys(componentJson);
-  let componentData;
-
-  if (componentVariations && variation) {
-    let variationJson = componentVariations.find(
-      (vari) => vari.$name === decodeURI(variation)
-    );
-
-    if (variationJson) {
-      componentData = helpers.removeInternalKeys(variationJson);
-    }
-  }
-
-  componentData = await resolveData(app, componentData, componentRootData);
-
-  componentData = await extendTemplateData(
-    app.get("config"),
-    componentData,
-    file
-  );
+  const componentData = await getVariationData(app, file, variation);
 
   validateSchema(app, file, [
     {

@@ -17,9 +17,9 @@ describe("lib/state/menu/data", () => {
       app.set("config", {
         ...appConfig.defaultUserConfig,
         components: {
-          folder: "tests/mocks/srcFolder",
+          folder: "tests/mock-data/srcFolder",
           ignores: [
-            path.join(process.cwd(), "tests/mocks/srcFolder", "ignored/"),
+            path.join(process.cwd(), "tests/mock-data/srcFolder", "ignored/"),
           ],
         },
       });
@@ -34,11 +34,11 @@ describe("lib/state/menu/data", () => {
 
       expect(Object.entries(data).length).toBe(2);
       expect(Object.entries(data)[0]).toEqual([
-        `${process.cwd()}/tests/mocks/srcFolder/foo/bar/mocks.json`,
+        `${process.cwd()}/tests/mock-data/srcFolder/foo/bar/mocks.json`,
         { bar: "bar" },
       ]);
       expect(Object.entries(data)[1]).toEqual([
-        `${process.cwd()}/tests/mocks/srcFolder/foo/mocks.json`,
+        `${process.cwd()}/tests/mock-data/srcFolder/foo/mocks.json`,
         { bar: "bar" },
       ]);
     });

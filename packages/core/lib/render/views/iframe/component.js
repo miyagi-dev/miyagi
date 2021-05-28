@@ -3,9 +3,9 @@ const jsonToYaml = require("json-to-pretty-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateSchema = require("../../../validator/schema.js");
+const { resolveVariationData } = require("../../../mocks");
 const {
   extendTemplateData,
-  resolveData,
   getComponentErrorHtml,
   getDataForRenderFunction,
   getTemplateFilePathFromDirectoryPath,
@@ -30,12 +30,14 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       helpers.getDataPathFromTemplatePath(app, templateFilePath)
     ]
   );
-  const componentDocumentation = app.get("state").fileContents[
-    helpers.getDocumentationPathFromTemplatePath(app, templateFilePath)
-  ];
-  const componentInfo = app.get("state").fileContents[
-    helpers.getInfoPathFromTemplatePath(app, templateFilePath)
-  ];
+  const componentDocumentation =
+    app.get("state").fileContents[
+      helpers.getDocumentationPathFromTemplatePath(app, templateFilePath)
+    ];
+  const componentInfo =
+    app.get("state").fileContents[
+      helpers.getInfoPathFromTemplatePath(app, templateFilePath)
+    ];
   const schemaFilePath = helpers.getSchemaPathFromTemplatePath(
     app,
     templateFilePath
@@ -116,7 +118,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     const componentVariations = componentJson.$variants;
 
     if (Object.keys(componentData).length > 0) {
-      componentData = await resolveData(app, componentData);
+      componentData = await resolveVariationData(app, componentData);
       componentData = await extendTemplateData(
         app.get("config"),
         componentData,
@@ -145,7 +147,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
             new Promise((resolve) => {
               let variationData = helpers.removeInternalKeys(variationJson);
 
-              resolveData(app, variationData, componentData).then(
+              resolveVariationData(app, variationData, componentData).then(
                 async (data) => {
                   data = hasTemplate
                     ? await extendTemplateData(app.get("config"), data, file)
@@ -305,10 +307,9 @@ async function renderVariations({
               if (validatedSchema && Array.isArray(validatedSchema)) {
                 variations[i].schemaValidation = {
                   valid: validatedSchema[i],
-                  copy:
-                    config.messages.schemaValidator[
-                      validatedSchema[i] ? "valid" : "invalid"
-                    ],
+                  copy: config.messages.schemaValidator[
+                    validatedSchema[i] ? "valid" : "invalid"
+                  ],
                 };
               }
 
