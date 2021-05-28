@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.18.0](https://github.com/mgrsskls/miyagi/compare/core/v1.17.1...core/v1.18.0) (2021-05-28)
+
+
+### Features
+
+* **core:** added javascript api for resolving mock data ([30ec270](https://github.com/mgrsskls/miyagi/commit/30ec270ba51ec71d3436452de20aa07fba1f7937))
+
 ### [1.17.1](https://github.com/mgrsskls/miyagi/compare/core/v1.17.0...core/v1.17.1) (2021-05-27)
 
 
