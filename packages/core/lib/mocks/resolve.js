@@ -25,7 +25,7 @@ module.exports =
     data = await overwriteRenderKey(app, data);
 
     data = mergeWithGlobalData(app, data);
-
+    console.log(data);
     return data;
   };
 
@@ -91,6 +91,7 @@ async function iterateOverTplData(app, entry) {
       Object.keys(o).map(async (key) => {
         o[key] = await resolveTpl(app, o[key]);
         o[key] = await iterateOverTplData(app, o[key]);
+
         return o[key];
       })
     );
@@ -212,46 +213,68 @@ function resolveTpl(app, entry) {
         if (entries.$tpl) {
           let data = { ...entries };
           delete data.$tpl;
-          const filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
-            app.get("config").files.templates.name,
-            path.basename(entries.$tpl)
-          )}.${app.get("config").files.templates.extension}`;
+          let filePath;
+          let fullFilePath;
 
-          fs.stat(
-            helpers.getFullPathFromShortPath(app, filePath),
-            async function (err) {
-              if (err == null) {
-                data = await extendTemplateData(
-                  app.get("config"),
-                  data,
-                  filePath
-                );
+          if (entries.$tpl.startsWith("@")) {
+            const namespace = entries.$tpl.split("/")[0];
+            const resolvedNamespace =
+              app.get("config").engine.options.namespaces[namespace.slice(1)];
 
-                await app.render(
-                  filePath,
-                  getDataForRenderFunction(app, data),
-                  (err, html) => {
-                    if (err)
-                      log(
-                        "warn",
-                        config.messages.renderingTemplateFailed
-                          .replace("{{filePath}}", filePath)
-                          .replace("{{engine}}", app.get("config").engine.name)
-                      );
+            filePath = `${entries.$tpl.replace(
+              namespace,
+              resolvedNamespace.replace(
+                path.join(app.get("config").components.folder, "/"),
+                ""
+              ),
+              ""
+            )}/${helpers.getResolvedFileName(
+              app.get("config").files.templates.name,
+              path.basename(entries.$tpl)
+            )}.${app.get("config").files.templates.extension}`;
 
-                    resolve1(html);
-                  }
-                );
-              } else if (err.code === "ENOENT") {
-                const msg = config.messages.templateDoesNotExist.replace(
-                  "{{template}}",
-                  filePath
-                );
-                log("error", msg);
-                resolve1(msg);
-              }
+            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+          } else {
+            filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
+              app.get("config").files.templates.name,
+              path.basename(entries.$tpl)
+            )}.${app.get("config").files.templates.extension}`;
+
+            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+          }
+
+          fs.stat(fullFilePath, async function (err) {
+            if (err == null) {
+              data = await extendTemplateData(
+                app.get("config"),
+                data,
+                filePath
+              );
+
+              await app.render(
+                filePath,
+                getDataForRenderFunction(app, data),
+                (err, html) => {
+                  if (err)
+                    log(
+                      "warn",
+                      config.messages.renderingTemplateFailed
+                        .replace("{{filePath}}", filePath)
+                        .replace("{{engine}}", app.get("config").engine.name)
+                    );
+
+                  resolve1(html);
+                }
+              );
+            } else if (err.code === "ENOENT") {
+              const msg = config.messages.templateDoesNotExist.replace(
+                "{{template}}",
+                filePath
+              );
+              log("error", msg);
+              resolve1(msg);
             }
-          );
+          });
         } else {
           entries = await overwriteRenderKey(app, entries);
           resolve1(entries);
@@ -302,8 +325,25 @@ async function resolveJson(app, entry) {
  * @returns {object} the resolved data object
  */
 function getRootOrVariantDataOfReference(app, ref) {
-  const [shortVal, variation] = ref.split("#");
-  const val = `${shortVal}/${app.get("config").files.mocks.name}.${
+  let [shortVal, variation] = ref.split("#");
+  let val;
+
+  if (shortVal.startsWith("@")) {
+    const namespace = shortVal.split("/")[0];
+    const resolvedNamespace =
+      app.get("config").engine.options.namespaces[namespace.slice(1)];
+
+    shortVal = shortVal.replace(
+      namespace,
+      resolvedNamespace.replace(
+        path.join(app.get("config").components.folder, "/"),
+        ""
+      ),
+      ""
+    );
+  }
+
+  val = `${shortVal}/${app.get("config").files.mocks.name}.${
     app.get("config").files.mocks.extension
   }`;
   const jsonFromData =
@@ -343,6 +383,7 @@ function getRootOrVariantDataOfReference(app, ref) {
     "warn",
     config.messages.fileNotFoundLinkIncorrect.replace("{{filePath}}", val)
   );
+
   return {};
 }
 
