@@ -1,5 +1,6 @@
 const v8 = require("v8");
 const path = require("path");
+const deepMerge = require("deepmerge");
 
 const isObject = (item) => {
   return item && typeof item === "object" && !Array.isArray(item);
@@ -11,7 +12,8 @@ const isObject = (item) => {
  * @module helpers
  */
 module.exports = {
-  deepMerge: function (target, ...sources) {
+  deepMerge,
+  /*deepMerge: function (target, ...sources) {
     if (!sources.length) return target;
     const source = sources.shift();
 
@@ -32,8 +34,6 @@ module.exports = {
               //   target[key][i],
               //   source[key][i]
               // );
-              console.log(target[key][i]);
-              console.log(Object.assign(target[key][i], source[key][i]));
               target[key][i] = Object.assign(target[key][i], source[key][i]);
             });
           }
@@ -47,7 +47,7 @@ module.exports = {
     }
 
     return module.exports.deepMerge(target, ...sources);
-  },
+  },*/
 
   /**
    * Removes all keys starting with $ from an object
