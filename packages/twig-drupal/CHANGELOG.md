@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.4...twig-drupal/v0.1.5) (2021-06-03)
+
+
+### Bug Fixes
+
+* **twig-drupal:** properly throw an error when an included template cant be parsed due to wrong path ([4f3a660](https://github.com/mgrsskls/miyagi/commit/4f3a6609cc152f1c67a6ffee41d529b86ca1e315))
+
 ### [0.1.4](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.3...twig-drupal/v0.1.4) (2021-05-07)
 
 
