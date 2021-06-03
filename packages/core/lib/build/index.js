@@ -136,12 +136,16 @@ module.exports = (app) => {
     }
 
     Promise.all(promises)
-      .then(() => {
+      .then(async () => {
         if (app.get("config").build.outputFile) {
-          createJsonOutputFile(paths);
+          await createJsonOutputFile(paths, () => {
+            log("success", appConfig.messages.buildDone);
+            process.exit(0);
+          });
+        } else {
+          log("success", appConfig.messages.buildDone);
+          process.exit(0);
         }
-        log("success", appConfig.messages.buildDone);
-        process.exit(0);
       })
       .catch(() => {
         log("error", appConfig.messages.buildFailed);
@@ -153,8 +157,9 @@ module.exports = (app) => {
    * Creates an "output.json" file with the given array as content
    *
    * @param {Array} paths - all paths to standalone views of component variations
+   * @param {Function} cb
    */
-  function createJsonOutputFile(paths) {
+  function createJsonOutputFile(paths, cb) {
     fs.writeFile(
       path.join(buildFolder, "output.json"),
       JSON.stringify(
@@ -165,7 +170,8 @@ module.exports = (app) => {
         }),
         null,
         2
-      )
+      ),
+      cb
     );
   }
 
@@ -499,9 +505,7 @@ module.exports = (app) => {
         })
       );
 
-      return Promise.all(promises)
-        .then(() => res())
-        .catch(() => rej());
+      return Promise.all(promises).then(res).catch(rej);
     });
   }
 
@@ -670,13 +674,7 @@ module.exports = (app) => {
         }
       }
 
-      return Promise.all(promises)
-        .then(() => {
-          res();
-        })
-        .catch(() => {
-          rej();
-        });
+      return Promise.all(promises).then(res).catch(rej);
     });
   }
 };
