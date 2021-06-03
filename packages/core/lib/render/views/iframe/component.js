@@ -10,6 +10,7 @@ const {
   getDataForRenderFunction,
   getTemplateFilePathFromDirectoryPath,
 } = require("../../helpers");
+const log = require("../../../logger.js");
 
 /**
  * @param {object} object - parameter object
@@ -268,11 +269,21 @@ async function renderVariations({
       const entry = context[i];
 
       promises.push(
-        new Promise((resolve) => {
+        new Promise((resolve, reject) => {
           app.render(
             templateFilePath,
             getDataForRenderFunction(app, entry.data),
             (err, result) => {
+              if (err) {
+                if (typeof err === "string") {
+                  log("error", err);
+                }
+
+                if (app.get("config").isBuild) {
+                  reject();
+                }
+              }
+
               const baseName = path.dirname(file);
               const variation = context[i].name;
               let standaloneUrl;
@@ -296,10 +307,13 @@ async function renderVariations({
                     )}-embedded.html`
                   : `/component?file=${baseName}&variation=${variation}&embedded=true`,
                 file,
-                html:
-                  typeof result === "string"
-                    ? result
-                    : getComponentErrorHtml(err),
+                html: err
+                  ? getComponentErrorHtml(
+                      `${err}<br><br>${config.messages.checkShellForFurtherErrors}`
+                    )
+                  : typeof result === "string"
+                  ? result
+                  : getComponentErrorHtml(err),
                 variation,
                 standaloneUrl,
               };
@@ -323,50 +337,55 @@ async function renderVariations({
     promises.push(Promise.resolve());
   }
 
-  await Promise.all(promises).then(async () => {
-    const { ui } = app.get("config");
+  return Promise.all(promises)
+    .then(async () => {
+      const { ui } = app.get("config");
+      await res.render(
+        "iframe_component.hbs",
+        {
+          variations,
+          dev: process.env.NODE_ENV === "development",
+          prod: process.env.NODE_ENV === "production",
+          a11yTestsPreload: ui.validations.accessibility,
+          projectName: config.projectName,
+          userProjectName: app.get("config").projectName,
+          isBuild: app.get("config").isBuild,
+          theme: app.get("config").ui.theme,
+          documentation: componentDocumentation,
+          schema: fileContents.schema,
+          schemaError:
+            typeof validatedSchema === "string" ? validatedSchema : null,
+          mocks: fileContents.mocks,
+          template: fileContents.template,
+          renderFileTabs: !!(
+            fileContents.schema ||
+            fileContents.mocks ||
+            fileContents.template
+          ),
+          folder: path.join(
+            app.get("config").components.folder,
+            file.split(path.sep).slice(0, -1).join("/")
+          ),
+          name,
+        },
+        (err, html) => {
+          if (res.send) {
+            if (err) {
+              res.send(err);
+            } else {
+              res.send(html);
+            }
+          }
 
-    await res.render(
-      "iframe_component.hbs",
-      {
-        variations,
-        dev: process.env.NODE_ENV === "development",
-        prod: process.env.NODE_ENV === "production",
-        a11yTestsPreload: ui.validations.accessibility,
-        projectName: config.projectName,
-        userProjectName: app.get("config").projectName,
-        isBuild: app.get("config").isBuild,
-        theme: app.get("config").ui.theme,
-        documentation: componentDocumentation,
-        schema: fileContents.schema,
-        schemaError:
-          typeof validatedSchema === "string" ? validatedSchema : null,
-        mocks: fileContents.mocks,
-        template: fileContents.template,
-        renderFileTabs: !!(
-          fileContents.schema ||
-          fileContents.mocks ||
-          fileContents.template
-        ),
-        folder: path.join(
-          app.get("config").components.folder,
-          file.split(path.sep).slice(0, -1).join("/")
-        ),
-        name,
-      },
-      (err, html) => {
-        if (res.send) {
-          if (html) {
-            res.send(html);
-          } else {
-            res.send(err);
+          if (cb) {
+            cb(err, html);
           }
         }
-
-        if (cb) {
-          cb(html);
-        }
+      );
+    })
+    .catch(() => {
+      if (cb) {
+        cb(true);
       }
-    );
-  });
+    });
 }

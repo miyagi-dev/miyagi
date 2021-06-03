@@ -3,6 +3,7 @@ const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateSchema = require("../../../validator/schema.js");
 const { getVariationData } = require("../../../mocks");
+const log = require("../../../logger.js");
 
 const {
   getComponentErrorHtml,
@@ -55,11 +56,24 @@ module.exports = async function renderIframeVariation({
     standaloneUrl = null;
   }
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     app.render(
       file,
       getDataForRenderFunction(app, componentData),
       async (error, result) => {
+        if (error) {
+          if (typeof error === "string") {
+            log("error", error);
+          }
+
+          if (app.get("config").isBuild) {
+            if (cb) {
+              cb(error);
+            }
+            reject();
+          }
+        }
+
         const { ui } = app.get("config");
 
         await res.render(
@@ -67,10 +81,13 @@ module.exports = async function renderIframeVariation({
             ? "iframe_component_variation.hbs"
             : "component_variation.hbs",
           {
-            html:
-              typeof result === "string"
-                ? result
-                : getComponentErrorHtml(error),
+            html: error
+              ? getComponentErrorHtml(
+                  `${error}<br><br>${config.messages.checkShellForFurtherErrors}`
+                )
+              : typeof result === "string"
+              ? result
+              : getComponentErrorHtml(error),
             htmlValidation: ui.validations.html,
             accessibilityValidation:
               standaloneUrl && ui.validations.accessibility,
@@ -85,13 +102,15 @@ module.exports = async function renderIframeVariation({
           },
           (err, html) => {
             if (res.send) {
-              if (html) {
+              if (err) {
+                res.send(err);
+              } else {
                 res.send(html);
               }
             }
 
             if (cb) {
-              cb(html);
+              cb(err, html);
             }
           }
         );

@@ -98,7 +98,7 @@ fileContents[path9.replace("index.hbs", "mocks.json")] = {
     },
   ],
 };
-const { projectName } = config;
+const { projectName, messages } = config;
 const folders = menu;
 
 let app;
@@ -754,7 +754,7 @@ describe("lib/render/index", () => {
             variations: [
               {
                 file: "component6/index.hbs",
-                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                html: `<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found<br><br>${messages.checkShellForFurtherErrors}</p>`,
                 variation: "variation1",
                 standaloneUrl:
                   "/component?file=component6&variation=variation1",
@@ -1120,7 +1120,7 @@ describe("lib/render/index", () => {
               {
                 name: "component6",
                 folders: [],
-                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                html: `<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found<br><br>${messages.checkShellForFurtherErrors}</p>`,
                 url: "/component?file=component6&embedded=true",
               },
               {
@@ -1231,7 +1231,7 @@ describe("lib/render/index", () => {
               {
                 name: "component6",
                 folders: [],
-                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                html: `<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found<br><br>${messages.checkShellForFurtherErrors}</p>`,
                 url: "/component?file=component6&embedded=true",
               },
               {
@@ -1341,7 +1341,7 @@ describe("lib/render/index", () => {
               },
               {
                 name: "component6",
-                html: '<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found</p>',
+                html: `<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found<br><br>${messages.checkShellForFurtherErrors}</p>`,
                 url: "/component?file=component6&embedded=true",
                 folders: [],
               },

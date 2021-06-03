@@ -41,40 +41,42 @@ module.exports = (app) => {
     const promises = [];
 
     promises.push(
-      new Promise((resolve) => {
-        buildDistDirectory(buildFolder).then(resolve);
+      new Promise((resolve, reject) => {
+        buildDistDirectory(buildFolder).then(resolve).catch(reject);
       })
     );
 
     promises.push(
-      new Promise((resolve) => {
-        buildUserFavicon(buildFolder, app.get("config").ui.theme.favicon).then(
-          resolve
-        );
+      new Promise((resolve, reject) => {
+        buildUserFavicon(buildFolder, app.get("config").ui.theme.favicon)
+          .then(resolve)
+          .catch(reject);
       })
     );
 
     promises.push(
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         buildUserAssets(
           buildFolder,
           app.get("config").assets,
           app.get("config").ui.theme.logo
-        ).then(resolve);
+        )
+          .then(resolve)
+          .catch(reject);
       })
     );
 
     promises.push(
-      new Promise((resolve) => {
-        buildIframeIndex(buildFolder, app).then(resolve);
+      new Promise((resolve, reject) => {
+        buildIframeIndex(buildFolder, app).then(resolve).catch(reject);
       })
     );
 
     promises.push(
-      new Promise((resolve) => {
-        buildIndex(buildFolder, app, buildDate, formattedBuildDate).then(
-          resolve
-        );
+      new Promise((resolve, reject) => {
+        buildIndex(buildFolder, app, buildDate, formattedBuildDate)
+          .then(resolve)
+          .catch(reject);
       })
     );
 
@@ -109,7 +111,7 @@ module.exports = (app) => {
     const paths = [];
     for (const { file, dir } of files) {
       promises.push(
-        new Promise((resolve) => {
+        new Promise((resolve, reject) => {
           buildComponent({
             file,
             dir,
@@ -117,22 +119,34 @@ module.exports = (app) => {
             app,
             buildDate,
             formattedBuildDate,
-          }).then((component) => {
-            for (const path of getFilePathsForJsonOutput(component)) {
-              paths.push(path);
-            }
-            resolve();
-          });
+          })
+            .then((component) => {
+              if (component) {
+                for (const path of getFilePathsForJsonOutput(component)) {
+                  paths.push(path);
+                }
+              }
+              resolve();
+            })
+            .catch(() => {
+              reject();
+            });
         })
       );
     }
 
-    Promise.all(promises).then(() => {
-      if (app.get("config").build.outputFile) {
-        createJsonOutputFile(paths);
-      }
-      log("success", appConfig.messages.buildDone);
-    });
+    Promise.all(promises)
+      .then(() => {
+        if (app.get("config").build.outputFile) {
+          createJsonOutputFile(paths);
+        }
+        log("success", appConfig.messages.buildDone);
+        process.exit(0);
+      })
+      .catch(() => {
+        log("error", appConfig.messages.buildFailed);
+        process.exit(1);
+      });
   });
 
   /**
@@ -297,22 +311,40 @@ module.exports = (app) => {
 
     for (const embedded of [false, true]) {
       promises.push(
-        new Promise((resolve) => {
-          render.renderIframeIndex({
-            app,
-            res: app,
-            cb: (response) => {
-              fs.writeFile(
-                path.resolve(
-                  `${buildFolder}/component-all${
-                    embedded ? "-embedded" : ""
-                  }.html`
-                ),
-                response,
-                resolve
-              );
-            },
-          });
+        new Promise((resolve, reject) => {
+          render
+            .renderIframeIndex({
+              app,
+              res: app,
+              cb: (err, response) => {
+                if (err) {
+                  if (typeof err === "string") {
+                    log("error", err);
+                  }
+                  reject();
+                } else {
+                  fs.writeFile(
+                    path.resolve(
+                      `${buildFolder}/component-all${
+                        embedded ? "-embedded" : ""
+                      }.html`
+                    ),
+                    response,
+                    (err) => {
+                      if (err) {
+                        if (typeof err === "string") {
+                          log("error", err);
+                        }
+                        reject();
+                      } else {
+                        resolve();
+                      }
+                    }
+                  );
+                }
+              },
+            })
+            .catch(reject);
         })
       );
     }
@@ -330,18 +362,34 @@ module.exports = (app) => {
    * @returns {Promise} gets resolved when the view has been rendered
    */
   function buildIndex(buildFolder, app, buildDate, formattedBuildDate) {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       render.renderMainIndex({
         app,
         res: app,
         buildDate,
         formattedBuildDate,
-        cb: (response) => {
-          fs.writeFile(
-            path.resolve(`${buildFolder}/index.html`),
-            response,
-            resolve
-          );
+        cb: (err, response) => {
+          if (err) {
+            if (typeof err === "string") {
+              log("error", err);
+            }
+            reject();
+          } else {
+            fs.writeFile(
+              path.resolve(`${buildFolder}/index.html`),
+              response,
+              (err) => {
+                if (err) {
+                  if (typeof err === "string") {
+                    log("error", err);
+                  }
+                  reject();
+                } else {
+                  resolve();
+                }
+              }
+            );
+          }
         },
       });
     });
@@ -369,62 +417,96 @@ module.exports = (app) => {
     buildDate,
     formattedBuildDate,
   }) {
-    const promises = [];
+    return new Promise((res, rej) => {
+      const promises = [];
 
-    for (const embedded of [false, true]) {
+      for (const embedded of [false, true]) {
+        promises.push(
+          new Promise((resolve, reject) => {
+            const fileName = path.resolve(
+              `${buildFolder}/component-${normalizedFileName}-variation-${helpers.normalizeString(
+                variation
+              )}${embedded ? "-embedded" : ""}.html`
+            );
+
+            render.renderIframeVariation({
+              app,
+              res: app,
+              file: path.dirname(file),
+              variation,
+              embedded,
+              cb: (err, response) => {
+                if (err) {
+                  if (typeof err === "string") {
+                    log("error", err);
+                  }
+                  reject();
+                } else {
+                  fs.writeFile(fileName, response, (err) => {
+                    if (err) {
+                      if (typeof err === "string") {
+                        log("error", err);
+                      }
+                      reject();
+                    } else {
+                      if (embedded) {
+                        resolve(null);
+                      } else {
+                        resolve(fileName);
+                      }
+                    }
+                  });
+                }
+              },
+            });
+          })
+        );
+      }
+
       promises.push(
-        new Promise((resolve) => {
-          const fileName = path.resolve(
-            `${buildFolder}/component-${normalizedFileName}-variation-${helpers.normalizeString(
-              variation
-            )}${embedded ? "-embedded" : ""}.html`
-          );
-
-          render.renderIframeVariation({
+        new Promise((resolve, reject) => {
+          render.renderMainComponent({
             app,
             res: app,
             file: path.dirname(file),
             variation,
-            embedded,
-            cb: (response) => {
-              fs.writeFile(fileName, response, () => {
-                if (embedded) {
-                  resolve(null);
-                } else {
-                  resolve(fileName);
+            buildDate,
+            formattedBuildDate,
+            cb: (err, response) => {
+              if (err) {
+                if (typeof err === "string") {
+                  log("error", err);
                 }
-              });
+                reject();
+              } else {
+                fs.writeFile(
+                  path.resolve(
+                    `${buildFolder}/show-${normalizedFileName}-variation-${helpers.normalizeString(
+                      variation
+                    )}.html`
+                  ),
+                  response,
+                  (err) => {
+                    if (err) {
+                      if (typeof err === "string") {
+                        log("error", err);
+                      }
+                      reject();
+                    } else {
+                      resolve();
+                    }
+                  }
+                );
+              }
             },
           });
         })
       );
-    }
 
-    promises.push(
-      new Promise((resolve) => {
-        render.renderMainComponent({
-          app,
-          res: app,
-          file: path.dirname(file),
-          variation,
-          buildDate,
-          formattedBuildDate,
-          cb: (response) => {
-            fs.writeFile(
-              path.resolve(
-                `${buildFolder}/show-${normalizedFileName}-variation-${helpers.normalizeString(
-                  variation
-                )}.html`
-              ),
-              response,
-              resolve
-            );
-          },
-        });
-      })
-    );
-
-    return Promise.all(promises);
+      return Promise.all(promises)
+        .then(() => res())
+        .catch(() => rej());
+    });
   }
 
   /**
@@ -447,105 +529,158 @@ module.exports = (app) => {
     buildDate,
     formattedBuildDate,
   }) {
-    const promises = [];
-    const normalizedFileName = helpers.normalizeString(dir);
+    return new Promise((res, rej) => {
+      const promises = [];
+      const normalizedFileName = helpers.normalizeString(dir);
 
-    const data =
-      app.get("state").fileContents[
-        helpers.getDataPathFromTemplatePath(
-          app,
-          helpers.getFullPathFromShortPath(app, file)
-        )
-      ];
+      const data =
+        app.get("state").fileContents[
+          helpers.getDataPathFromTemplatePath(
+            app,
+            helpers.getFullPathFromShortPath(app, file)
+          )
+        ];
 
-    promises.push(
-      new Promise((resolve) => {
-        render.renderMainComponent({
-          app,
-          res: app,
-          file: dir,
-          variation: null,
-          buildDate,
-          formattedBuildDate,
-          cb: (response) => {
-            fs.writeFile(
-              path.resolve(`${buildFolder}/show-${normalizedFileName}.html`),
-              response,
-              resolve
-            );
-          },
-        });
-      })
-    );
-
-    for (const embedded of [false, true]) {
       promises.push(
-        new Promise((resolve) => {
-          render.renderIframeComponent({
+        new Promise((resolve, reject) => {
+          render.renderMainComponent({
             app,
             res: app,
             file: dir,
-            cb: (response) => {
-              fs.writeFile(
-                path.resolve(
-                  `${buildFolder}/component-${normalizedFileName}${
-                    -embedded ? "-embedded" : ""
-                  }.html`
-                ),
-                response,
-                resolve
-              );
+            variation: null,
+            buildDate,
+            formattedBuildDate,
+            cb: (err, response) => {
+              if (err) {
+                if (typeof err === "string") {
+                  log("error", err);
+                }
+                reject();
+              } else {
+                fs.writeFile(
+                  path.resolve(
+                    `${buildFolder}/show-${normalizedFileName}.html`
+                  ),
+                  response,
+                  (err) => {
+                    if (err) {
+                      if (typeof err === "string") {
+                        log("error", err);
+                      }
+                      reject();
+                    } else {
+                      resolve();
+                    }
+                  }
+                );
+              }
             },
           });
         })
       );
-    }
 
-    if (file) {
-      let variations = [];
+      for (const embedded of [false, true]) {
+        promises.push(
+          new Promise((resolve, reject) => {
+            render.renderIframeComponent({
+              app,
+              res: app,
+              file: dir,
+              cb: (err, response) => {
+                if (err) {
+                  if (typeof err === "string") {
+                    if (typeof err === "string") {
+                      log("error", err);
+                    }
+                  }
+                  reject();
+                } else {
+                  fs.writeFile(
+                    path.resolve(
+                      `${buildFolder}/component-${normalizedFileName}${
+                        -embedded ? "-embedded" : ""
+                      }.html`
+                    ),
+                    response,
+                    (err) => {
+                      if (err) {
+                        if (typeof err === "string") {
+                          if (typeof err === "string") {
+                            log("error", err);
+                          }
+                        }
+                        reject();
+                      } else {
+                        resolve();
+                      }
+                    }
+                  );
+                }
+              },
+            });
+          })
+        );
+      }
 
-      if (data) {
-        const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
+      if (file) {
+        let variations = [];
 
-        if (!data.$hidden && Object.keys(dataWithoutInternalKeys).length > 0) {
+        if (data) {
+          const dataWithoutInternalKeys = helpers.removeInternalKeys(data);
+
+          if (
+            !data.$hidden &&
+            Object.keys(dataWithoutInternalKeys).length > 0
+          ) {
+            variations.push({
+              $name: data.$name || appConfig.defaultVariationName,
+              ...dataWithoutInternalKeys,
+            });
+          }
+
+          if (data.$variants) {
+            variations = [...variations, ...data.$variants];
+          }
+        } else {
           variations.push({
-            $name: data.$name || appConfig.defaultVariationName,
-            ...dataWithoutInternalKeys,
+            $name: appConfig.defaultVariationName,
           });
         }
 
-        if (data.$variants) {
-          variations = [...variations, ...data.$variants];
+        for (const variation of variations) {
+          const name = variation.$name;
+
+          if (!name) break;
+
+          promises.push(
+            new Promise((resolve, reject) =>
+              buildVariation({
+                buildFolder,
+                app,
+                file,
+                normalizedFileName,
+                variation: name,
+                buildDate,
+                formattedBuildDate,
+              })
+                .then((fileName) => {
+                  resolve(fileName);
+                })
+                .catch(() => {
+                  reject();
+                })
+            )
+          );
         }
-      } else {
-        variations.push({
-          $name: appConfig.defaultVariationName,
+      }
+
+      return Promise.all(promises)
+        .then(() => {
+          res();
+        })
+        .catch(() => {
+          rej();
         });
-      }
-
-      for (const variation of variations) {
-        const name = variation.$name;
-
-        if (!name) break;
-
-        promises.push(
-          new Promise((resolve) =>
-            buildVariation({
-              buildFolder,
-              app,
-              file,
-              normalizedFileName,
-              variation: name,
-              buildDate,
-              formattedBuildDate,
-            }).then((fileName) => {
-              resolve(fileName);
-            })
-          )
-        );
-      }
-    }
-
-    return Promise.all(promises);
+    });
   }
 };

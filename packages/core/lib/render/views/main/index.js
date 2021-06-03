@@ -43,15 +43,15 @@ module.exports = function renderMainIndex({
     },
     (err, html) => {
       if (res.send) {
-        if (html) {
-          res.send(html);
-        } else {
+        if (err) {
           res.send(err);
+        } else {
+          res.send(html);
         }
       }
 
       if (cb) {
-        cb(html);
+        cb(err, html);
       }
     }
   );

@@ -96,6 +96,7 @@
   "messages": {
     "buildStarting": "Creating miyagi build…",
     "buildDone": "Build done!",
+    "buildFailed": "Build failed!",
     "commandNotFound": "Please run `miyagi --help` for all available commands.",
     "componentCouldNotBeRendered": "Component couldn't be rendered.",
     "customPropertyFileNotFound": "Couldn't find file {{filePath}}. Is the 'assets.customProperties.files' in your configuration set correctly?",
@@ -108,6 +109,7 @@
       "starting": "Creating mock file {{fileName}}…"
     },
     "jsonFileHasInvalidFormat": "It seems like the file {{filePath}} has an invalid format as miyagi was not able to parse it.",
+    "checkShellForFurtherErrors": "Please also check the messages printed by miyagi in your shell as there might be more information.",
     "engineAndExtensionGuessedBasedOnFiles": "After scanning your files, miyagi guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
     "engineGuessedBasedOnExtension": "Based on your template files extension, miyagi assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
     "fileNotFound": "Couldn't find file {{filePath}}. Is the 'components.folder' in your configuration set correctly?",

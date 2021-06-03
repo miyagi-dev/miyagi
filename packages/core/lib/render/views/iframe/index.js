@@ -14,6 +14,7 @@ const {
   getSpacings,
   getMediaQueries,
 } = require("../../../styleguide/index.js");
+const log = require("../../../logger.js");
 
 /**
  * @param {object} object - parameter object
@@ -21,7 +22,7 @@ const {
  * @param {object} object.res - the express response object
  * @param {Function} [object.cb] - callback function
  */
-module.exports = async function renderIframeIndex({ app, res, cb }) {
+module.exports = function renderIframeIndex({ app, res, cb }) {
   const arr = [];
   const promises = [];
   let components;
@@ -81,7 +82,7 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
     for (let i = 0, len = components.length; i < len; i += 1) {
       const component = components[i];
       promises.push(
-        new Promise((resolve) => {
+        new Promise((resolve, reject) => {
           const [componentPath, , , , partial] = component;
 
           let [, componentData = {}] = component;
@@ -96,6 +97,16 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
               partial,
               getDataForRenderFunction(app, data),
               (err, result) => {
+                if (err) {
+                  if (typeof err === "string") {
+                    log("error", err);
+                  }
+
+                  if (app.get("config").isBuild) {
+                    reject();
+                  }
+                }
+
                 const [file, , name, folders] = components[i];
 
                 arr[i] = {
@@ -109,10 +120,13 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
                     : `/component?file=${file}&embedded=true`,
                   name,
                   folders,
-                  html:
-                    typeof result === "string"
-                      ? result
-                      : getComponentErrorHtml(err),
+                  html: err
+                    ? getComponentErrorHtml(
+                        `${err}<br><br>${config.messages.checkShellForFurtherErrors}`
+                      )
+                    : typeof result === "string"
+                    ? result
+                    : getComponentErrorHtml(err),
                 };
 
                 resolve();
@@ -124,7 +138,7 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
     }
   }
 
-  await Promise.all(promises).then(async () => {
+  return Promise.all(promises).then(async () => {
     const { ui } = app.get("config");
 
     const colors = app.get("state").css
@@ -177,15 +191,15 @@ module.exports = async function renderIframeIndex({ app, res, cb }) {
       },
       (err, html) => {
         if (res.send) {
-          if (html) {
-            res.send(html);
-          } else {
+          if (err) {
             res.send(err);
+          } else {
+            res.send(html);
           }
         }
 
         if (cb) {
-          cb(html);
+          cb(err, html);
         }
       }
     );
