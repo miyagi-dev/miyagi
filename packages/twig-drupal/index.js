@@ -1,3 +1,4 @@
+const fs = require("fs");
 const twig = require("twig");
 const twigDrupal = require("twig-drupal-filters");
 const deepMerge = require("deepmerge");
@@ -52,38 +53,43 @@ module.exports = {
   engine: twig.twig,
 
   async extendTemplateData(file, engineOptions = {}) {
-    const opts = await convertTokensToAttributes(
-      file,
-      engineOptions.namespaces
-    );
-    const o = {};
+    try {
+      const opts = await convertTokensToAttributes(
+        file,
+        engineOptions.namespaces
+      );
 
-    Object.entries(opts).forEach(([attr, entries]) => {
-      const ent = Object.keys(entries);
-      if (ent.length > 0) {
-        o[attr] = {};
-        ent.forEach((method) => {
-          switch (method) {
-            case "addClass":
-              o[attr][method] = function (values) {
-                return ` class="${
-                  values instanceof Array ? values.join(" ") : values
-                }"`;
-              };
-              break;
-            case "setAttribute":
-              o[attr][method] = function (attr, values) {
-                return ` ${attr}="${
-                  values instanceof Array ? values.join(" ") : values
-                }"`;
-              };
-              break;
-          }
-        });
-      }
-    });
+      const o = {};
 
-    return o;
+      Object.entries(opts).forEach(([attr, entries]) => {
+        const ent = Object.keys(entries);
+        if (ent.length > 0) {
+          o[attr] = {};
+          ent.forEach((method) => {
+            switch (method) {
+              case "addClass":
+                o[attr][method] = function (values) {
+                  return ` class="${
+                    values instanceof Array ? values.join(" ") : values
+                  }"`;
+                };
+                break;
+              case "setAttribute":
+                o[attr][method] = function (attr, values) {
+                  return ` ${attr}="${
+                    values instanceof Array ? values.join(" ") : values
+                  }"`;
+                };
+                break;
+            }
+          });
+        }
+      });
+
+      return o;
+    } catch (e) {
+      return {};
+    }
   },
 };
 
@@ -105,91 +111,47 @@ function convertTokensToAttributes(path, namespaces) {
     }
   }
 
-  return new Promise((resolve) => {
-    twig.twig({
-      path: require("path").join(process.cwd(), path),
-      async load(template) {
-        let opts = {};
-        const tokens = template.tokens;
+  return new Promise((resolve, reject) => {
+    const filePath = require("path").join(process.cwd(), path);
+    fs.stat(filePath, function (err) {
+      if (err == null) {
+        twig.twig({
+          path: filePath,
+          async load(template) {
+            let opts = {};
+            const tokens = template.tokens;
+            if (tokens) {
+              const outputTokens = tokens.filter(
+                (token) => token.type === "output"
+              );
+              const logicTokens = tokens.filter(
+                (token) => token.type === "logic"
+              );
 
-        if (tokens) {
-          const outputTokens = tokens.filter(
-            (token) => token.type === "output"
-          );
-          const logicTokens = tokens.filter((token) => token.type === "logic");
-
-          outputTokens.forEach((token) => {
-            const stackItem = token.stack.find(
-              (item) =>
-                item.type === "Twig.expression.type.variable" ||
-                item.type === "Twig.logic.type.extends"
-            );
-
-            if (stackItem) {
-              if (token.stack.length > 1) {
-                const entry = token.stack.find(
-                  (item) => item.type === "Twig.expression.type.variable"
+              outputTokens.forEach((token) => {
+                const stackItem = token.stack.find(
+                  (item) =>
+                    item.type === "Twig.expression.type.variable" ||
+                    item.type === "Twig.logic.type.extends"
                 );
 
-                if (entry) {
-                  const key = entry.value;
-                  const entries = {};
-                  token.stack.forEach((item, i) => {
-                    if (
-                      item.type === "Twig.expression.type.key.period" &&
-                      token.stack[i + 1] &&
-                      token.stack[i + 1].type ===
-                        "Twig.expression.type.parameter.end"
-                    ) {
-                      entries[item.key] = token.stack[i + 1].params
-                        .filter((param) =>
-                          Object.prototype.hasOwnProperty.call(param, "value")
-                        )
-                        .map((param) => param.value);
-                    }
-                  });
-
-                  opts[key] = entries;
-                }
-              }
-            }
-          });
-
-          for (const token of logicTokens) {
-            if (
-              token.token.type === "Twig.logic.type.extends" ||
-              token.token.type === "Twig.logic.type.include"
-            ) {
-              opts = deepMerge(
-                opts,
-                await convertTokensToAttributes(
-                  token.token.stack[0].value,
-                  namespaces
-                )
-              );
-            } else if (
-              token.token.type === "Twig.logic.type.block" ||
-              token.token.type === "Twig.logic.type.spaceless" ||
-              token.token.type === "Twig.logic.type.if"
-            ) {
-              token.token.output.forEach((outputItem) => {
-                if (outputItem.type === "output") {
-                  if (outputItem.stack.length > 1) {
-                    const entry = outputItem.stack.find(
+                if (stackItem) {
+                  if (token.stack.length > 1) {
+                    const entry = token.stack.find(
                       (item) => item.type === "Twig.expression.type.variable"
                     );
 
                     if (entry) {
                       const key = entry.value;
                       const entries = {};
-                      outputItem.stack.forEach((item, i) => {
+                      token.stack.forEach((item, i) => {
                         if (
                           item.type === "Twig.expression.type.key.period" &&
-                          outputItem.stack[i + 1] &&
-                          outputItem.stack[i + 1].type ===
+                          token.stack[i + 1] &&
+                          token.stack[i + 1].type ===
                             "Twig.expression.type.parameter.end"
                         ) {
-                          entries[item.key] = outputItem.stack[i + 1].params
+                          entries[item.key] = token.stack[i + 1].params
                             .filter((param) =>
                               Object.prototype.hasOwnProperty.call(
                                 param,
@@ -199,18 +161,78 @@ function convertTokensToAttributes(path, namespaces) {
                             .map((param) => param.value);
                         }
                       });
+
                       opts[key] = entries;
                     }
                   }
                 }
               });
+
+              for (const token of logicTokens) {
+                if (
+                  token.token.type === "Twig.logic.type.extends" ||
+                  token.token.type === "Twig.logic.type.include"
+                ) {
+                  try {
+                    const converted = await convertTokensToAttributes(
+                      token.token.stack[0].value,
+                      namespaces
+                    );
+                    opts = deepMerge(opts, converted);
+                  } catch (e) {
+                    if (e.message) {
+                      console.error(e.message);
+                    }
+                  }
+                } else if (
+                  token.token.type === "Twig.logic.type.block" ||
+                  token.token.type === "Twig.logic.type.spaceless" ||
+                  token.token.type === "Twig.logic.type.if"
+                ) {
+                  token.token.output.forEach((outputItem) => {
+                    if (outputItem.type === "output") {
+                      if (outputItem.stack.length > 1) {
+                        const entry = outputItem.stack.find(
+                          (item) =>
+                            item.type === "Twig.expression.type.variable"
+                        );
+
+                        if (entry) {
+                          const key = entry.value;
+                          const entries = {};
+                          outputItem.stack.forEach((item, i) => {
+                            if (
+                              item.type === "Twig.expression.type.key.period" &&
+                              outputItem.stack[i + 1] &&
+                              outputItem.stack[i + 1].type ===
+                                "Twig.expression.type.parameter.end"
+                            ) {
+                              entries[item.key] = outputItem.stack[i + 1].params
+                                .filter((param) =>
+                                  Object.prototype.hasOwnProperty.call(
+                                    param,
+                                    "value"
+                                  )
+                                )
+                                .map((param) => param.value);
+                            }
+                          });
+                          opts[key] = entries;
+                        }
+                      }
+                    }
+                  });
+                }
+              }
+              resolve(opts);
+            } else {
+              resolve(opts);
             }
-          }
-          resolve(opts);
-        } else {
-          resolve(opts);
-        }
-      },
+          },
+        });
+      } else if (err.code == "ENOENT") {
+        reject({});
+      }
     });
   });
 }
