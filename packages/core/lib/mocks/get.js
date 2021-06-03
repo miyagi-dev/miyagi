@@ -1,4 +1,4 @@
-const resolveData = require("./resolve");
+const resolveVariationData = require("./resolve");
 const { extendTemplateData } = require("../render/helpers");
 const helpers = require("../helpers");
 
@@ -24,6 +24,11 @@ module.exports = async function getVariationData(app, file, variation) {
     }
   }
 
-  componentData = await resolveData(app, componentData, componentRootData);
+  componentData = await resolveVariationData(
+    app,
+    componentData,
+    componentRootData
+  );
+
   return await extendTemplateData(app.get("config"), componentData, file);
 };

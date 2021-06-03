@@ -1,5 +1,7 @@
 const fs = require("fs");
 const path = require("path");
+const { promisify } = require("util");
+const fileStat = promisify(fs.stat);
 const config = require("../config.json");
 const helpers = require("../helpers.js");
 const log = require("../logger.js");
@@ -19,13 +21,11 @@ module.exports =
     if (rootData) {
       data = mergeRootDataWithVariationData(rootData, data);
     }
-
+    data = mergeWithGlobalData(app, data);
     data = await overwriteJsonLinksWithJsonData(app, data);
     data = await overwriteTplLinksWithTplContent(app, data);
     data = await overwriteRenderKey(app, data);
 
-    data = mergeWithGlobalData(app, data);
-    console.log(data);
     return data;
   };
 
@@ -221,17 +221,33 @@ function resolveTpl(app, entry) {
             const resolvedNamespace =
               app.get("config").engine.options.namespaces[namespace.slice(1)];
 
-            filePath = `${entries.$tpl.replace(
-              namespace,
-              resolvedNamespace.replace(
-                path.join(app.get("config").components.folder, "/"),
+            const stat = await fileStat(path.resolve(resolvedNamespace));
+
+            if (stat.isSymbolicLink()) {
+              filePath = `${entries.$tpl.replace(
+                namespace,
+                resolvedNamespace.replace(
+                  path.join(app.get("config").components.folder, "/"),
+                  ""
+                ),
                 ""
-              ),
-              ""
-            )}/${helpers.getResolvedFileName(
-              app.get("config").files.templates.name,
-              path.basename(entries.$tpl)
-            )}.${app.get("config").files.templates.extension}`;
+              )}/${helpers.getResolvedFileName(
+                app.get("config").files.templates.name,
+                path.basename(entries.$tpl)
+              )}.${app.get("config").files.templates.extension}`;
+            } else {
+              filePath = `${entries.$tpl.replace(
+                namespace,
+                resolvedNamespace.replace(
+                  app.get("config").components.folder,
+                  ""
+                ),
+                ""
+              )}/${helpers.getResolvedFileName(
+                app.get("config").files.templates.name,
+                path.basename(entries.$tpl)
+              )}.${app.get("config").files.templates.extension}`.slice(1);
+            }
 
             fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
           } else {
@@ -310,7 +326,10 @@ async function resolveJson(app, entry) {
       const customData = helpers.cloneDeep(entry);
       delete customData.$ref;
 
-      const resolvedJson = getRootOrVariantDataOfReference(app, entry.$ref);
+      const resolvedJson = await getRootOrVariantDataOfReference(
+        app,
+        entry.$ref
+      );
 
       return helpers.deepMerge(resolvedJson, customData);
     }
@@ -324,7 +343,7 @@ async function resolveJson(app, entry) {
  * @param {string} ref - the reference to another mock data
  * @returns {object} the resolved data object
  */
-function getRootOrVariantDataOfReference(app, ref) {
+async function getRootOrVariantDataOfReference(app, ref) {
   let [shortVal, variation] = ref.split("#");
   let val;
 
@@ -332,15 +351,24 @@ function getRootOrVariantDataOfReference(app, ref) {
     const namespace = shortVal.split("/")[0];
     const resolvedNamespace =
       app.get("config").engine.options.namespaces[namespace.slice(1)];
+    const stat = await fileStat(path.resolve(resolvedNamespace));
 
-    shortVal = shortVal.replace(
-      namespace,
-      resolvedNamespace.replace(
-        path.join(app.get("config").components.folder, "/"),
+    if (stat.isSymbolicLink()) {
+      shortVal = shortVal.replace(
+        namespace,
+        resolvedNamespace.replace(
+          path.join(app.get("config").components.folder, "/"),
+          ""
+        ),
         ""
-      ),
-      ""
-    );
+      );
+    } else {
+      shortVal = shortVal.replace(
+        namespace,
+        resolvedNamespace.replace(app.get("config").components.folder, ""),
+        ""
+      );
+    }
   }
 
   val = `${shortVal}/${app.get("config").files.mocks.name}.${

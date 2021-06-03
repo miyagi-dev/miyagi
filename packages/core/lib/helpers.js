@@ -18,15 +18,30 @@ module.exports = {
     if (isObject(target) && isObject(source)) {
       for (const key in source) {
         if (isObject(source[key])) {
-          if (!target[key])
-            Object.assign(target, {
-              [key]: {},
-            });
+          if (!target[key]) {
+            target[key] = {};
+            // Object.assign(target, {
+            //   [key]: {},
+            // });
+          }
           module.exports.deepMerge(target[key], source[key]);
+        } else if (Array.isArray(source[key])) {
+          if (target[key]) {
+            target[key].forEach((k, i) => {
+              // target[key][i] = module.exports.deepMerge(
+              //   target[key][i],
+              //   source[key][i]
+              // );
+              console.log(target[key][i]);
+              console.log(Object.assign(target[key][i], source[key][i]));
+              target[key][i] = Object.assign(target[key][i], source[key][i]);
+            });
+          }
         } else {
-          Object.assign(target, {
-            [key]: source[key],
-          });
+          target[key] = source[key];
+          // Object.assign(target, {
+          //   [key]: source[key],
+          // });
         }
       }
     }
