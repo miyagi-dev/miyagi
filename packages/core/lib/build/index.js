@@ -241,41 +241,32 @@ module.exports = (app) => {
   async function buildUserAssets(buildFolder, assetsConfig, logoPath) {
     const promises = [];
 
-    if (logoPath) {
+    for (const folder of assetsConfig.folder) {
+      promises.push(
+        new Promise((resolve) => {
+          fs.copy(
+            path.resolve(path.join(assetsConfig.root, folder)),
+            path.join(process.cwd(), buildFolder, folder),
+            resolve
+          );
+        })
+      );
+    }
+
+    if (
+      logoPath &&
+      assetsConfig.folder.filter((entry) => logoPath.startsWith(entry))
+        .length === 0
+    ) {
       promises.push(
         new Promise((resolve) =>
           fs.copy(
             path.resolve(logoPath),
             path.join(buildFolder, logoPath),
-            async () => {
-              for (const folder of assetsConfig.folder) {
-                promises.push(
-                  new Promise((resolve) => {
-                    fs.copy(
-                      path.resolve(path.join(assetsConfig.root, folder)),
-                      path.join(process.cwd(), buildFolder, folder),
-                      resolve
-                    );
-                  })
-                );
-              }
-              resolve();
-            }
+            resolve
           )
         )
       );
-    } else {
-      for (const folder of assetsConfig.folder) {
-        promises.push(
-          new Promise((resolve) => {
-            fs.copy(
-              path.resolve(path.join(assetsConfig.root, folder)),
-              path.join(process.cwd(), buildFolder, folder),
-              resolve
-            );
-          })
-        );
-      }
     }
 
     const cssJsFiles = [
@@ -289,11 +280,16 @@ module.exports = (app) => {
     ];
 
     for (const file of cssJsFiles) {
-      promises.push(
-        new Promise((resolve) =>
-          fs.copy(file, path.join(buildFolder, file), resolve)
-        )
-      );
+      if (
+        assetsConfig.folder.filter((entry) => file.startsWith(entry)).length ===
+        0
+      ) {
+        promises.push(
+          new Promise((resolve) =>
+            fs.copy(file, path.join(buildFolder, file), resolve)
+          )
+        );
+      }
     }
 
     return Promise.all(promises);
