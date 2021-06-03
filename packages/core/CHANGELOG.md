@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/mgrsskls/miyagi/compare/core/v1.18.2...core/v2.0.0) (2021-06-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** properly exit the process when a build fails
+
+### Bug Fixes
+
+* **core:** fix assets in build might have been missing in specific cases ([58218bc](https://github.com/mgrsskls/miyagi/commit/58218bce25d58a156f692f1fc45db2608003ed7c))
+* **core:** properly exit the process when a build fails ([598a184](https://github.com/mgrsskls/miyagi/commit/598a184166d9998ffbc9678585b0405f28867622))
+
 ### [1.18.2](https://github.com/mgrsskls/miyagi/compare/core/v1.18.1...core/v1.18.2) (2021-05-28)
 
 
