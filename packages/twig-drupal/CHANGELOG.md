@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.6](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.5...twig-drupal/v0.1.6) (2021-06-06)
+
+
+### Features
+
+* **twig-drupal:** improved Drupal attributes support ([decff30](https://github.com/mgrsskls/miyagi/commit/decff303fd62537fdae5b8ca975fdf7611f9936f))
+
 ### [0.1.5](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.4...twig-drupal/v0.1.5) (2021-06-03)
 
 
