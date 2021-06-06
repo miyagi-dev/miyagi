@@ -15,3 +15,27 @@ module.exports = {
   ...
 }
 ```
+
+If you are using the `twig-drupal` or `twig-laravel` extension, you need to pass you need to extend `twig` like this:
+
+```js
+const twig = require("twig");
+
+module.exports = {
+  ...
+  engine: {
+    instance: twig.twig,
+  },
+  extensions: [
+    [
+      twigDrupal,
+      {
+        init(twig) {
+          twig.extendFunction("customFunction", function customFunction() { ... });
+        },
+      },
+    ],
+  ],
+  ...
+}
+```

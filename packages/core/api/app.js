@@ -22,7 +22,7 @@ module.exports = async function init(mergedConfig) {
   app.set("view cache", false);
   app.set("cache", false);
 
-  if (setEngines(app)) {
+  if (await setEngines(app)) {
     await setState(app, {
       sourceTree: true,
       menu: true,

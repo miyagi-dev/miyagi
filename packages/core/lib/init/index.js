@@ -27,7 +27,7 @@ module.exports = async function init(mergedConfig) {
   app.set("view cache", false);
   app.set("cache", false);
 
-  if (setEngines(app)) {
+  if (await setEngines(app)) {
     const port = process.env.PORT || appConfig.defaultPort;
 
     app.set("port", port);

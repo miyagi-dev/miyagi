@@ -20,7 +20,7 @@ function setMiyagiEngine(app) {
  * @param {object} app - the express instance
  * @returns {boolean} describes if setting the engine was successful
  */
-function setUserEngine(app) {
+async function setUserEngine(app) {
   const { extension } = app.get("config").files.templates;
   const { engine, extensions } = app.get("config");
 
@@ -33,14 +33,14 @@ function setUserEngine(app) {
     const opts =
       Array.isArray(extension) && extension[1] ? extension[1] : { locales: {} };
 
+    if (ext.extendEngine) {
+      engines.requires[engine.name] = await ext.extendEngine(opts);
+    }
+
     if (!engines.requires[engine.name]) {
       if (ext.engine) {
         engines.requires[engine.name] = ext.engine;
       }
-    }
-
-    if (ext.extendEngine) {
-      ext.extendEngine(opts);
     }
   }
 
