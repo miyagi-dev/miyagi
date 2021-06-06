@@ -21,6 +21,6 @@
     "twig": "^1.15.4"
   },
   "peerDependencies": {
-    "@miyagi/core": "^1.12.0"
+    "@miyagi/core": "^2.1.0"
   }
 }
