@@ -12,13 +12,15 @@ module.exports = {
   engine: Twig.twig,
 
   async extendEngine({ engine, locales }) {
-    const twig = engine || Twig;
+    const engineInstance = engine || Twig;
 
     locales = { ...defaults, ...locales };
 
-    twig.cache(false);
+    engineInstance.cache(false);
 
-    await extendFunctions(twig, await getLocales(locales));
+    await extendFunctions(engineInstance, await getLocales(locales));
+
+    return engineInstance.twig;
   },
 
   extendWatcher({ locales }) {
