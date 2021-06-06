@@ -22,7 +22,7 @@
     "frontend"
   ],
   "engines": {
-    "node": ">=10.20.1"
+    "node": ">=11"
   },
   "files": [
     "api",
@@ -55,21 +55,31 @@
     "yargs": "^17.0.1"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.4",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "babel-jest": "^27.0.1",
     "codecov": "^3.8.2",
     "cssnano": "^5.0.4",
     "del": "^6.0.0",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsdoc": "^35.1.3",
+    "eslint-plugin-prettier": "^3.4.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-postcss": "^9.0.0",
     "jest": "^27.0.1",
     "jsdoc-to-markdown": "^7.0.1",
+    "postcss": "^8.3.0",
     "postcss-import": "^14.0.2",
     "postcss-preset-env": "^5.3.0",
     "pre-commit": "^1.2.2",
+    "prettier": "^2.3.1",
     "rollup": "^2.50.1",
     "rollup-plugin-terser": "^7.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^22.0.0",
     "supertest": "^6.1.3"
   },
   "scripts": {
