@@ -14,12 +14,18 @@ const { readdir } = require("fs").promises;
  * @returns {Promise<string[]>} an array with file paths
  */
 async function getFiles(dir, ignores, check) {
-  const entries = await readdir(path.join(process.cwd(), dir), {
-    withFileTypes: true,
-  });
+  try {
+    var entries = await readdir(path.join(process.cwd(), dir), {
+      withFileTypes: true,
+    });
+  } catch (error) {
+    return check(dir);
+  }
+
   const files = await Promise.all(
     entries.map(async (entry) => {
       const res = path.resolve(dir, entry.name);
+
       if (isNotIgnored(res, ignores)) {
         if (entry.isDirectory()) {
           return await getFiles(path.join(dir, entry.name), ignores, check);
