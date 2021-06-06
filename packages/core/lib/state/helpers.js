@@ -27,7 +27,7 @@ async function getFiles(dir, ignores, check) {
       const res = path.resolve(dir, entry.name);
 
       if (isNotIgnored(res, ignores)) {
-        if (entry.isDirectory()) {
+        if (entry.isDirectory() || entry.isSymbolicLink()) {
           return await getFiles(path.join(dir, entry.name), ignores, check);
         } else {
           return check(res);

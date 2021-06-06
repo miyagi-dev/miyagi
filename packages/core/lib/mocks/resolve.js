@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const { promisify } = require("util");
 const deepMerge = require("deepmerge");
+const fileStat = promisify(fs.stat);
 const config = require("../config.json");
 const helpers = require("../helpers.js");
 const log = require("../logger.js");
@@ -211,46 +213,86 @@ function resolveTpl(app, entry) {
         if (entries.$tpl) {
           let data = { ...entries };
           delete data.$tpl;
-          const filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
-            app.get("config").files.templates.name,
-            path.basename(entries.$tpl)
-          )}.${app.get("config").files.templates.extension}`;
+          let filePath;
+          let fullFilePath;
 
-          fs.stat(
-            helpers.getFullPathFromShortPath(app, filePath),
-            async function (err) {
-              if (err == null) {
-                data = await extendTemplateData(
-                  app.get("config"),
-                  data,
-                  filePath
-                );
+          if (entries.$tpl.startsWith("@")) {
+            const namespace = entries.$tpl.split("/")[0];
+            const resolvedNamespace =
+              app.get("config").engine.options.namespaces[namespace.slice(1)];
 
-                await app.render(
-                  filePath,
-                  getDataForRenderFunction(app, data),
-                  (err, html) => {
-                    if (err)
-                      log(
-                        "warn",
-                        config.messages.renderingTemplateFailed
-                          .replace("{{filePath}}", filePath)
-                          .replace("{{engine}}", app.get("config").engine.name)
-                      );
+            const stat = await fileStat(path.resolve(resolvedNamespace));
 
-                    resolve1(html);
-                  }
-                );
-              } else if (err.code === "ENOENT") {
-                const msg = config.messages.templateDoesNotExist.replace(
-                  "{{template}}",
-                  filePath
-                );
-                log("error", msg);
-                resolve1(msg);
-              }
+            if (stat.isSymbolicLink()) {
+              filePath = `${entries.$tpl.replace(
+                namespace,
+                resolvedNamespace.replace(
+                  path.join(app.get("config").components.folder, "/"),
+                  ""
+                ),
+                ""
+              )}/${helpers.getResolvedFileName(
+                app.get("config").files.templates.name,
+                path.basename(entries.$tpl)
+              )}.${app.get("config").files.templates.extension}`;
+
+              fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+            } else {
+              filePath = `${entries.$tpl.replace(
+                namespace,
+                resolvedNamespace.replace(
+                  app.get("config").components.folder,
+                  ""
+                ),
+                ""
+              )}/${helpers.getResolvedFileName(
+                app.get("config").files.templates.name,
+                path.basename(entries.$tpl)
+              )}.${app.get("config").files.templates.extension}`.slice(1);
             }
-          );
+
+            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+          } else {
+            filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
+              app.get("config").files.templates.name,
+              path.basename(entries.$tpl)
+            )}.${app.get("config").files.templates.extension}`;
+
+            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+          }
+
+          fs.stat(fullFilePath, async function (err) {
+            if (err == null) {
+              data = await extendTemplateData(
+                app.get("config"),
+                data,
+                filePath
+              );
+
+              await app.render(
+                filePath,
+                getDataForRenderFunction(app, data),
+                (err, html) => {
+                  if (err)
+                    log(
+                      "warn",
+                      config.messages.renderingTemplateFailed
+                        .replace("{{filePath}}", filePath)
+                        .replace("{{engine}}", app.get("config").engine.name)
+                    );
+
+                  resolve1(html);
+                }
+              );
+            } else if (err.code === "ENOENT") {
+              const msg = config.messages.templateDoesNotExist.replace(
+                "{{template}}",
+                filePath
+              );
+              log("error", msg);
+              resolve1(msg);
+            }
+          });
         } else {
           entries = await overwriteRenderKey(app, entries);
           resolve1(entries);
@@ -286,7 +328,10 @@ async function resolveJson(app, entry) {
       const customData = helpers.cloneDeep(entry);
       delete customData.$ref;
 
-      const resolvedJson = getRootOrVariantDataOfReference(app, entry.$ref);
+      const resolvedJson = await getRootOrVariantDataOfReference(
+        app,
+        entry.$ref
+      );
 
       return deepMerge(resolvedJson, customData);
     }
@@ -300,9 +345,35 @@ async function resolveJson(app, entry) {
  * @param {string} ref - the reference to another mock data
  * @returns {object} the resolved data object
  */
-function getRootOrVariantDataOfReference(app, ref) {
-  const [shortVal, variation] = ref.split("#");
-  const val = `${shortVal}/${app.get("config").files.mocks.name}.${
+async function getRootOrVariantDataOfReference(app, ref) {
+  let [shortVal, variation] = ref.split("#");
+  let val;
+
+  if (shortVal.startsWith("@")) {
+    const namespace = shortVal.split("/")[0];
+    const resolvedNamespace =
+      app.get("config").engine.options.namespaces[namespace.slice(1)];
+    const stat = await fileStat(path.resolve(resolvedNamespace));
+
+    if (stat.isSymbolicLink()) {
+      shortVal = shortVal.replace(
+        namespace,
+        resolvedNamespace.replace(
+          path.join(app.get("config").components.folder, "/"),
+          ""
+        ),
+        ""
+      );
+    } else {
+      shortVal = shortVal.replace(
+        namespace,
+        resolvedNamespace.replace(app.get("config").components.folder, ""),
+        ""
+      );
+    }
+  }
+
+  val = `${shortVal}/${app.get("config").files.mocks.name}.${
     app.get("config").files.mocks.extension
   }`;
   const jsonFromData =
