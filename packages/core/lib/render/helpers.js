@@ -25,15 +25,19 @@ module.exports = {
         }`;
 
     for (const extension of config.extensions) {
-      if (extension.extendTemplateData) {
-        o = {
-          ...o,
-          ...(await extension.extendTemplateData(
-            path.join(config.components.folder, fullFilePath),
-            config.engine.options,
-            data
-          )),
-        };
+      if (extension) {
+        const ext = Array.isArray(extension) ? extension[0] : extension;
+
+        if (ext.extendTemplateData) {
+          o = {
+            ...o,
+            ...(await ext.extendTemplateData(
+              path.join(config.components.folder, fullFilePath),
+              config.engine.options,
+              data
+            )),
+          };
+        }
       }
     }
 
