@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/mgrsskls/miyagi/compare/core/v2.0.1...core/v2.1.0) (2021-06-06)
+
+
+### Features
+
+* **core:** enables using symlinks for directories in the components folder ([820fd53](https://github.com/mgrsskls/miyagi/commit/820fd532aa1dca6e135d91534f7b273503f0b780))
+* **twig-drupal:** improved Drupal attributes support ([decff30](https://github.com/mgrsskls/miyagi/commit/decff303fd62537fdae5b8ca975fdf7611f9936f))
+
+
+### Bug Fixes
+
+* **core:** fix calling extendTemplateData of extension when extension is added as array in miyagi config ([bfb6eb1](https://github.com/mgrsskls/miyagi/commit/bfb6eb176669fbf811bbf67102fb9b643fdbfef4))
+* **core:** fix updating engine via extension ([fae34d9](https://github.com/mgrsskls/miyagi/commit/fae34d9022fbadac32720f67552d50c1067e445d))
+* **core:** make sure variant data gets merged with root data first, then resolved ([21cc023](https://github.com/mgrsskls/miyagi/commit/21cc0236d411f9d2fef4b3c326e00013baabdd23))
+* **core:** proper error handling when a file is included in a template which does not exist ([9e42d96](https://github.com/mgrsskls/miyagi/commit/9e42d9672ca5eec888a9638209bac44f0ad3ed52))
+
 ### [2.0.1](https://github.com/mgrsskls/miyagi/compare/core/v2.0.0...core/v2.0.1) (2021-06-03)
 
 
