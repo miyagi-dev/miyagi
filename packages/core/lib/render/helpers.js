@@ -17,7 +17,6 @@ module.exports = {
    * @returns {Promise<object>} the extended data object
    */
   async extendTemplateData(config, data, filePath) {
-    let o = {};
     let fullFilePath = filePath.endsWith(config.files.templates.extension)
       ? filePath
       : `${filePath}/${path.basename(filePath)}.${
@@ -29,19 +28,16 @@ module.exports = {
         const ext = Array.isArray(extension) ? extension[0] : extension;
 
         if (ext.extendTemplateData) {
-          o = {
-            ...o,
-            ...(await ext.extendTemplateData(
-              path.join(config.components.folder, fullFilePath),
-              config.engine.options,
-              data
-            )),
-          };
+          data = await ext.extendTemplateData(
+            path.join(config.components.folder, fullFilePath),
+            config.engine.options,
+            data
+          );
         }
       }
     }
 
-    return deepMerge(data, o);
+    return data;
   },
 
   /**
