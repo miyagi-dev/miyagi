@@ -14,7 +14,7 @@ const {
 /**
  * @param {object} object - parameter object
  * @param {object} object.app - the express instance
- * @param {object} object.res - the express response object
+ * @param {object} [object.res] - the express response object
  * @param {string} object.file - the component path
  * @param {string} [object.variation] - the variation name
  * @param {boolean} [object.embedded] - defines if the component is rendered inside an iframe or not
@@ -75,47 +75,52 @@ module.exports = async function renderIframeVariation({
         }
 
         const { ui } = app.get("config");
+        const html = error
+          ? getComponentErrorHtml(
+              `${error}<br><br>${config.messages.checkShellForFurtherErrors}`
+            )
+          : typeof result === "string"
+          ? result
+          : getComponentErrorHtml(error);
 
-        await res.render(
-          standaloneUrl
-            ? "iframe_component_variation.hbs"
-            : "component_variation.hbs",
-          {
-            html: error
-              ? getComponentErrorHtml(
-                  `${error}<br><br>${config.messages.checkShellForFurtherErrors}`
-                )
-              : typeof result === "string"
-              ? result
-              : getComponentErrorHtml(error),
-            htmlValidation: ui.validations.html,
-            accessibilityValidation:
-              standaloneUrl && ui.validations.accessibility,
-            standalone: !standaloneUrl,
-            standaloneUrl,
-            dev: process.env.NODE_ENV === "development",
-            prod: process.env.NODE_ENV === "production",
-            projectName: config.projectName,
-            userProjectName: app.get("config").projectName,
-            isBuild: app.get("config").isBuild,
-            theme: app.get("config").ui.theme,
-          },
-          (err, html) => {
-            if (res.send) {
-              if (err) {
-                res.send(err);
-              } else {
-                res.send(html);
+        if (res) {
+          await res.render(
+            standaloneUrl
+              ? "iframe_component_variation.hbs"
+              : "component_variation.hbs",
+            {
+              html,
+              htmlValidation: ui.validations.html,
+              accessibilityValidation:
+                standaloneUrl && ui.validations.accessibility,
+              standalone: !standaloneUrl,
+              standaloneUrl,
+              dev: process.env.NODE_ENV === "development",
+              prod: process.env.NODE_ENV === "production",
+              projectName: config.projectName,
+              userProjectName: app.get("config").projectName,
+              isBuild: app.get("config").isBuild,
+              theme: app.get("config").ui.theme,
+            },
+            (err, html) => {
+              if (res.send) {
+                if (err) {
+                  res.send(err);
+                } else {
+                  res.send(html);
+                }
+              }
+
+              if (cb) {
+                cb(err, html);
               }
             }
+          );
 
-            if (cb) {
-              cb(err, html);
-            }
-          }
-        );
-
-        resolve();
+          resolve();
+        } else {
+          resolve(html);
+        }
       }
     );
   });
