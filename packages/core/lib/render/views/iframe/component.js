@@ -303,6 +303,8 @@ async function renderVariations({
               if (err) {
                 if (typeof err === "string") {
                   log("error", err);
+                } else if (err.message) {
+                  log("error", err.message);
                 }
 
                 if (app.get("config").isBuild) {

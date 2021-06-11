@@ -322,6 +322,8 @@ module.exports = (app) => {
                 if (err) {
                   if (typeof err === "string") {
                     log("error", err);
+                  } else if (err.message) {
+                    log("error", err.message);
                   }
                   reject();
                 } else {
@@ -336,6 +338,8 @@ module.exports = (app) => {
                       if (err) {
                         if (typeof err === "string") {
                           log("error", err);
+                        } else if (err.message) {
+                          log("error", err.message);
                         }
                         reject();
                       } else {
@@ -374,6 +378,8 @@ module.exports = (app) => {
           if (err) {
             if (typeof err === "string") {
               log("error", err);
+            } else if (err.message) {
+              log("error", err.message);
             }
             reject();
           } else {
@@ -384,6 +390,8 @@ module.exports = (app) => {
                 if (err) {
                   if (typeof err === "string") {
                     log("error", err);
+                  } else if (err.message) {
+                    log("error", err.message);
                   }
                   reject();
                 } else {
@@ -441,6 +449,8 @@ module.exports = (app) => {
                 if (err) {
                   if (typeof err === "string") {
                     log("error", err);
+                  } else if (err.message) {
+                    log("error", err.message);
                   }
                   reject();
                 } else {
@@ -448,6 +458,8 @@ module.exports = (app) => {
                     if (err) {
                       if (typeof err === "string") {
                         log("error", err);
+                      } else if (err.message) {
+                        log("error", err.message);
                       }
                       reject();
                     } else {
@@ -478,6 +490,8 @@ module.exports = (app) => {
               if (err) {
                 if (typeof err === "string") {
                   log("error", err);
+                } else if (err.message) {
+                  log("error", err.message);
                 }
                 reject();
               } else {
@@ -492,6 +506,8 @@ module.exports = (app) => {
                     if (err) {
                       if (typeof err === "string") {
                         log("error", err);
+                      } else if (err.message) {
+                        log("error", err.message);
                       }
                       reject();
                     } else {
@@ -554,6 +570,8 @@ module.exports = (app) => {
               if (err) {
                 if (typeof err === "string") {
                   log("error", err);
+                } else if (err.message) {
+                  log("error", err.message);
                 }
                 reject();
               } else {
@@ -566,6 +584,8 @@ module.exports = (app) => {
                     if (err) {
                       if (typeof err === "string") {
                         log("error", err);
+                      } else if (err.message) {
+                        log("error", err.message);
                       }
                       reject();
                     } else {
@@ -589,9 +609,9 @@ module.exports = (app) => {
               cb: (err, response) => {
                 if (err) {
                   if (typeof err === "string") {
-                    if (typeof err === "string") {
-                      log("error", err);
-                    }
+                    log("error", err);
+                  } else if (err.message) {
+                    log("error", err.message);
                   }
                   reject();
                 } else {
@@ -605,9 +625,9 @@ module.exports = (app) => {
                     (err) => {
                       if (err) {
                         if (typeof err === "string") {
-                          if (typeof err === "string") {
-                            log("error", err);
-                          }
+                          log("error", err);
+                        } else if (err.message) {
+                          log("error", err.message);
                         }
                         reject();
                       } else {
