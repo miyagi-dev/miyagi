@@ -1,7 +1,7 @@
 const path = require("path");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
-const validateSchema = require("../../../validator/schema.js");
+const validateSchema = require("../../../validator/mocks.js");
 const { getVariationData } = require("../../../mocks");
 const log = require("../../../logger.js");
 

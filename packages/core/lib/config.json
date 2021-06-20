@@ -134,10 +134,12 @@
     "portInUse": "Port {{port}} already in use, trying to find a free port…",
     "renderingTemplateFailed": "Rendering {{filePath}} failed. Please check that it is linked correctly and that its content is correct {{engine}} syntax.",
     "scanningFiles": "Scanning and analyzing files…",
-    "schemaValidator": {
-      "valid": "Data matches schema.",
-      "invalid": "Data does not match schema file.",
-      "noSchemaFound": "No schema file found."
+    "validator": {
+      "mocks": {
+        "valid": "Data matches schema.",
+        "invalid": "Data does not match schema file.",
+        "noSchemaFound": "No schema file found."
+      }
     },
     "serverStarted": "Running miyagi server at http://localhost:{{port}}!",
     "serverStarting": "Starting miyagi server in {{node_env}} mode…",

@@ -2,7 +2,7 @@ const path = require("path");
 const jsonToYaml = require("json-to-pretty-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
-const validateSchema = require("../../../validator/schema.js");
+const validateMocks = require("../../../validator/mocks.js");
 const { resolveVariationData } = require("../../../mocks");
 const {
   extendTemplateData,
@@ -288,7 +288,7 @@ async function renderVariations({
 }) {
   const variations = [];
   const promises = [];
-  const validatedSchema = validateSchema(app, file, context);
+  const validatedMocks = validateMocks(app, file, context);
 
   if (templateFilePath) {
     for (let i = 0, len = context.length; i < len; i += 1) {
@@ -346,11 +346,11 @@ async function renderVariations({
                 standaloneUrl,
               };
 
-              if (validatedSchema && Array.isArray(validatedSchema)) {
-                variations[i].schemaValidation = {
-                  valid: validatedSchema[i],
-                  copy: config.messages.schemaValidator[
-                    validatedSchema[i] ? "valid" : "invalid"
+              if (validatedMocks && Array.isArray(validatedMocks)) {
+                variations[i].mockValidation = {
+                  valid: validatedMocks[i],
+                  copy: config.messages.validator.mocks[
+                    validatedMocks[i] ? "valid" : "invalid"
                   ],
                 };
               }
@@ -382,7 +382,7 @@ async function renderVariations({
           documentation: componentDocumentation,
           schema: fileContents.schema,
           schemaError:
-            typeof validatedSchema === "string" ? validatedSchema : null,
+            typeof validatedMocks === "string" ? validatedMocks : null,
           mocks: fileContents.mocks,
           template: fileContents.template,
           renderFileTabs: !!(
