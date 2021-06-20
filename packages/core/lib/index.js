@@ -9,10 +9,11 @@ const deepMerge = require("deepmerge");
 const { messages, engines } = require("./config.json");
 const init = require("./init");
 const log = require("./logger.js");
-const getMergedConfig = require("./init/config.js");
 const yargs = require("./init/args.js");
 const mockGenerator = require("./generator/mocks");
 const componentGenerator = require("./generator/component");
+const getConfig = require("./config.js");
+const { lint } = require("./cli");
 const { getFiles } = require("./state/helpers.js");
 
 /* preload rendering modules */
@@ -72,42 +73,13 @@ function argsIncludeServer(args) {
 }
 
 /**
- * Converts and removes unnecessary cli args
+ * Checks if miyagi was started with "lint" command
  *
- * @param {object} args - the cli args
- * @returns {object} configuration object based on cli args
+ * @param {object} args
+ * @returns {boolean}
  */
-function getCliArgs(args) {
-  const cliArgs = { ...args };
-  const buildArgs = {};
-
-  delete cliArgs._;
-  delete cliArgs.$0;
-
-  if (cliArgs.folder) {
-    buildArgs.folder = cliArgs.folder;
-    delete cliArgs.folder;
-  }
-
-  if (cliArgs.outputFile) {
-    buildArgs.outputFile = cliArgs.outputFile;
-    delete cliArgs.outputFile;
-  }
-
-  if (cliArgs.basePath) {
-    buildArgs.basePath = cliArgs.basePath;
-    delete cliArgs.basePath;
-  }
-
-  cliArgs.build = buildArgs;
-
-  if (cliArgs.assets) {
-    if (cliArgs.assets.es6Modules) {
-      cliArgs.assets.es6Modules = cliArgs.assets.es6Modules !== "false";
-    }
-  }
-
-  return cliArgs;
+function argsIncludeLint(args) {
+  return args._.includes("lint");
 }
 
 /**
@@ -381,26 +353,6 @@ async function updateConfigForRendererIfNecessary(config) {
   return config;
 }
 
-function getConfig(args, isBuild, isComponentGenerator) {
-  let userFile = {};
-
-  try {
-    userFile = require(path.resolve(process.cwd(), ".miyagi"));
-  } catch (err) {
-    log("error", err);
-    log("warn", messages.userConfigUnparseable);
-  }
-
-  let userConfig = args ? deepMerge(userFile, getCliArgs(args)) : userFile;
-
-  userConfig.isBuild = isBuild;
-  userConfig.isComponentGenerator = isComponentGenerator;
-
-  delete userConfig._;
-
-  return getMergedConfig(userConfig);
-}
-
 /**
  * Requires the user config and initializes and calls correct modules based on command
  */
@@ -417,8 +369,11 @@ module.exports = async function Miyagi(cmd) {
     const isBuild = argsIncludeBuild(args);
     const isComponentGenerator = argsIncludeComponentGenerator(args);
     const isMockGenerator = argsIncludeMockGenerator(args);
+    const isLinter = argsIncludeLint(args);
 
-    if (isBuild || isComponentGenerator || isServer || isMockGenerator) {
+    if (isLinter) {
+      lint(args);
+    } else if (isBuild || isComponentGenerator || isServer || isMockGenerator) {
       if (isBuild) {
         process.env.NODE_ENV = "production";
         log("info", messages.buildStarting);

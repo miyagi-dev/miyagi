@@ -94,19 +94,4 @@ module.exports = {
 
     return {};
   },
-
-  /**
-   * @param {object} app - the express instance
-   * @param {string} directoryPath - a component file path
-   * @returns {string} the template file path
-   */
-  getTemplateFilePathFromDirectoryPath(app, directoryPath) {
-    return path.join(
-      directoryPath,
-      `${helpers.getResolvedFileName(
-        app.get("config").files.templates.name,
-        path.basename(directoryPath)
-      )}.${app.get("config").files.templates.extension}`
-    );
-  },
 };

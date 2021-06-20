@@ -3,15 +3,14 @@ const jsonToYaml = require("json-to-pretty-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
-const { resolveVariationData } = require("../../../mocks");
+const { getComponentData } = require("../../../mocks");
 const {
   extendTemplateData,
   getComponentErrorHtml,
   getDataForRenderFunction,
-  getTemplateFilePathFromDirectoryPath,
 } = require("../../helpers");
 const log = require("../../../logger.js");
-const { cloneDeep } = require("../../../helpers.js");
+const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
 
 /**
  * @param {object} object - parameter object
@@ -27,11 +26,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     templateFilePath
   );
 
-  const componentJson = helpers.cloneDeep(
-    app.get("state").fileContents[
-      helpers.getDataPathFromTemplatePath(app, templateFilePath)
-    ]
-  );
+  const componentJson = await getComponentData(app, file);
   const componentDocumentation =
     app.get("state").fileContents[
       helpers.getDocumentationPathFromTemplatePath(app, templateFilePath)
@@ -114,111 +109,18 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     }
   }
 
-  if (componentJson) {
-    let context = [];
-    let componentData = helpers.removeInternalKeys(componentJson);
-    const rootData = cloneDeep(componentData);
-    const componentVariations = componentJson.$variants;
-
-    if (Object.keys(componentData).length > 0) {
-      componentData = await resolveVariationData(app, componentData);
-    }
-
-    if (componentVariations) {
-      const promises = [];
-      let startIndex = context.length;
-      for (const [index, variationJson] of componentVariations.entries()) {
-        if (variationJson.$name) {
-          promises.push(
-            new Promise((resolve) => {
-              const variationData = helpers.removeInternalKeys(variationJson);
-
-              resolveVariationData(app, variationData, rootData).then(
-                async (data) => {
-                  data = hasTemplate
-                    ? await extendTemplateData(app.get("config"), data, file)
-                    : {};
-
-                  context[startIndex + index] = {
-                    component: file,
-                    data: data || {},
-                    name: variationJson.$name,
-                  };
-                  resolve();
-                }
-              );
-            })
-          );
-        }
-      }
-
-      await Promise.all(promises).then(async () => {
-        if (Object.keys(componentData).length > 0) {
-          componentData = await extendTemplateData(
-            app.get("config"),
-            componentData,
-            file
-          );
-
-          if (!componentJson.$hidden) {
-            context.unshift({
-              component: file,
-              data: componentData,
-              name: componentJson.$name || config.defaultVariationName,
-            });
-          }
-        } else {
-          componentData = hasTemplate
-            ? await extendTemplateData(app.get("config"), componentData, file)
-            : {};
-        }
-
-        await renderVariations({
-          app,
-          res,
-          file,
-          context: context.filter((entry) => entry !== null),
-          componentDocumentation,
-          fileContents,
-          name: componentName,
-          cb,
-          templateFilePath: hasTemplate ? templateFilePath : null,
-        });
-      });
-    } else {
-      if (Object.keys(componentData).length > 0) {
-        componentData = await resolveVariationData(app, componentData);
-        componentData = await extendTemplateData(
-          app.get("config"),
-          componentData,
-          file
-        );
-
-        if (!componentJson.$hidden) {
-          context.unshift({
-            component: file,
-            data: componentData,
-            name: componentJson.$name || config.defaultVariationName,
-          });
-        }
-      } else {
-        componentData = hasTemplate
-          ? await extendTemplateData(app.get("config"), componentData, file)
-          : {};
-      }
-
-      await renderVariations({
-        app,
-        res,
-        file,
-        context,
-        componentDocumentation,
-        fileContents,
-        name: componentName,
-        cb,
-        templateFilePath: hasTemplate ? templateFilePath : null,
-      });
-    }
+  if (componentJson.length > 0) {
+    await renderVariations({
+      app,
+      res,
+      file,
+      context: componentJson.filter((entry) => entry !== null),
+      componentDocumentation,
+      fileContents,
+      name: componentName,
+      cb,
+      templateFilePath: hasTemplate ? templateFilePath : null,
+    });
   } else {
     const componentData = hasTemplate
       ? await extendTemplateData(app.get("config"), {}, file)
