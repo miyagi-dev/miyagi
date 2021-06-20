@@ -60,7 +60,7 @@ module.exports = function validateMockData(app, filePath, dataArray) {
       validate = jsonSchemaValidator.compile(componentSchema);
     } catch (e) {
       const msg = e.toString();
-      log("error", msg);
+      log("error", `${path.dirname(filePath)}: ${msg}`);
       return msg;
     }
 

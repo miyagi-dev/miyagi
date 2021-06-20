@@ -125,6 +125,28 @@
     "guessingEngineFailed": "miyagi wasn't able to guess your engine.",
     "guessingExtensionFailed": "miyagi wasn't able to guess your template files extension.",
     "htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
+    "linter": {
+      "all": {
+        "start": "Validating schema files and mock data for all components…",
+        "valid": "All schema and mock data is valid!",
+        "schema": {
+          "invalid": {
+            "one": "1 schema file is invalid!",
+            "other": "{{amount}} schema files are invalid!"
+          }
+        },
+        "mocks": {
+          "invalid": {
+            "one": "1 mock data is invalid!",
+            "other": "{{amount}} mock data are invalid!"
+          }
+        }
+      },
+      "component": {
+        "start": "Validating schema file and mock data for {{component}}…",
+        "valid": "Schema file and mock data is valid!"
+      }
+    },
     "manifestNotFound": "Manifest file {{manifest}} not found or unparseable.",
     "missingEngine": "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
     "missingExtension": "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",

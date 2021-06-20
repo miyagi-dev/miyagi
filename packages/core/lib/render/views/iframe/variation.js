@@ -8,7 +8,6 @@ const log = require("../../../logger.js");
 const {
   getComponentErrorHtml,
   getDataForRenderFunction,
-  getTemplateFilePathFromDirectoryPath,
 } = require("../../helpers.js");
 
 /**
@@ -29,9 +28,8 @@ module.exports = async function renderIframeVariation({
   embedded,
   cb,
 }) {
-  file = getTemplateFilePathFromDirectoryPath(app, file);
-
-  const componentData = await getVariationData(app, file, variation);
+  file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
+  const componentData = await getVariationData(app, file, decodeURI(variation));
 
   validateSchema(app, file, [
     {

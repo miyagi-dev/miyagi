@@ -183,7 +183,7 @@ module.exports = {
         `${app.get("config").files.mocks.name}.${
           app.get("config").files.mocks.extension
         }` ||
-      this.getShortPathFromFullPath(app, filePath) ===
+      module.exports.getShortPathFromFullPath(app, filePath) ===
         `data.${app.get("config").files.mocks.extension}`
     );
   },
@@ -251,12 +251,12 @@ module.exports = {
   fileIsAssetFile: function (app, filePath) {
     return (
       path.basename(filePath) ===
-        `${this.getResolvedFileName(
+        `${module.exports.getResolvedFileName(
           app.get("config").files.css.name,
           path.basename(filePath, `.${app.get("config").files.css.extension}`)
         )}.${app.get("config").files.css.extension}` ||
       path.basename(filePath) ===
-        `${this.getResolvedFileName(
+        `${module.exports.getResolvedFileName(
           app.get("config").files.js.name,
           path.basename(filePath, `.${app.get("config").files.js.extension}`)
         )}.${app.get("config").files.js.extension}`
@@ -273,13 +273,39 @@ module.exports = {
   fileIsTemplateFile: function (app, filePath) {
     return (
       path.basename(filePath) ===
-      `${this.getResolvedFileName(
+      `${module.exports.getResolvedFileName(
         app.get("config").files.templates.name,
         path.basename(
           filePath,
           `.${app.get("config").files.templates.extension}`
         )
       )}.${app.get("config").files.templates.extension}`
+    );
+  },
+
+  /**
+   * @param {object} app - the express instance
+   * @param {string} directoryPath - a component file path
+   * @returns {string} the template file path
+   */
+  getTemplateFilePathFromDirectoryPath: function (app, directoryPath) {
+    return path.join(
+      directoryPath,
+      `${module.exports.getResolvedFileName(
+        app.get("config").files.templates.name,
+        path.basename(directoryPath)
+      )}.${app.get("config").files.templates.extension}`
+    );
+  },
+
+  /**
+   * @param {object} app
+   * @param {string} templateFilePath
+   * @returns {string}
+   */
+  getDirectoryPathFromFullTemplateFilePath: function (app, templateFilePath) {
+    return path.dirname(
+      module.exports.getShortPathFromFullPath(app, templateFilePath)
     );
   },
 };
