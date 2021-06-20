@@ -77,9 +77,9 @@
             <div class="MiyagiComponent-head">
               <a href="{{ this.url }}" class="MiyagiComponent-file">{{this.variation}}</a>
               <div class="MiyagiComponent-headMeta">
-                {{#if schemaValidation}}
-                  <p class="MiyagiComponent-schemaValidation">
-                    <span class="MiyagiStatus MiyagiStatus--{{#if schemaValidation.valid}}valid{{else}}invalid{{/if}}">{{#if schemaValidation.valid}}Valid{{else}}Invalid{{/if}} data</span>
+                {{#if mockValidation}}
+                  <p class="MiyagiComponent-mockValidation">
+                    <span class="MiyagiStatus MiyagiStatus--{{#if mockValidation.valid}}valid{{else}}invalid{{/if}}">{{#if mockValidation.valid}}Valid{{else}}Invalid{{/if}} data</span>
                   </p>
                 {{/if}}
                 <a class="MiyagiIframe-newTabLink" href="{{standaloneUrl}}" target="_blank" rel="noopener">

@@ -14,13 +14,14 @@ const config = require("../config.json");
  * @param {Array} dataArray - an array with mock data
  * @returns {null|boolean[]} null if there is no schema or an array with booleans defining the validity of the entries in the data array
  */
-module.exports = function validateSchema(app, filePath, dataArray) {
-  const componentSchema = app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
-      app,
-      helpers.getSchemaPathFromTemplatePath(app, filePath)
-    )
-  ];
+module.exports = function validateMockData(app, filePath, dataArray) {
+  const componentSchema =
+    app.get("state").fileContents[
+      helpers.getFullPathFromShortPath(
+        app,
+        helpers.getSchemaPathFromTemplatePath(app, filePath)
+      )
+    ];
 
   if (componentSchema) {
     const schemas = [];
@@ -71,7 +72,7 @@ module.exports = function validateSchema(app, filePath, dataArray) {
           log(
             "error",
             `${path.dirname(filePath)}#${entry.name}: ${
-              config.messages.schemaValidator.invalid
+              config.messages.validator.mocks.invalid
             }`
           );
         }
@@ -87,7 +88,7 @@ module.exports = function validateSchema(app, filePath, dataArray) {
     log(
       "warn",
       `${path.dirname(filePath)}: ${
-        config.messages.schemaValidator.noSchemaFound
+        config.messages.validator.mocks.noSchemaFound
       }`
     );
   }
