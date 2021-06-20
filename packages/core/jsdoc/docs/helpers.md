@@ -22,6 +22,8 @@ Module for globally used helper functions
     * [.fileIsSchemaFile(app, filePath)](#module_helpers.fileIsSchemaFile) ⇒ <code>boolean</code>
     * [.fileIsAssetFile(app, filePath)](#module_helpers.fileIsAssetFile) ⇒ <code>boolean</code>
     * [.fileIsTemplateFile(app, filePath)](#module_helpers.fileIsTemplateFile) ⇒ <code>boolean</code>
+    * [.getTemplateFilePathFromDirectoryPath(app, directoryPath)](#module_helpers.getTemplateFilePathFromDirectoryPath) ⇒ <code>string</code>
+    * [.getDirectoryPathFromFullTemplateFilePath(app, templateFilePath)](#module_helpers.getDirectoryPathFromFullTemplateFilePath) ⇒ <code>string</code>
 
 <a name="module_helpers.removeInternalKeys"></a>
 
@@ -239,4 +241,25 @@ Accepts a file path and returns checks if it is a template file
 | --- | --- | --- |
 | app | <code>object</code> | the express instance |
 | filePath | <code>string</code> | path to any type of file |
+
+<a name="module_helpers.getTemplateFilePathFromDirectoryPath"></a>
+
+### helpers.getTemplateFilePathFromDirectoryPath(app, directoryPath) ⇒ <code>string</code>
+**Kind**: static method of [<code>helpers</code>](#module_helpers)  
+**Returns**: <code>string</code> - the template file path  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| app | <code>object</code> | the express instance |
+| directoryPath | <code>string</code> | a component file path |
+
+<a name="module_helpers.getDirectoryPathFromFullTemplateFilePath"></a>
+
+### helpers.getDirectoryPathFromFullTemplateFilePath(app, templateFilePath) ⇒ <code>string</code>
+**Kind**: static method of [<code>helpers</code>](#module_helpers)  
+
+| Param | Type |
+| --- | --- |
+| app | <code>object</code> | 
+| templateFilePath | <code>string</code> | 
 

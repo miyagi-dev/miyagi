@@ -5,91 +5,97 @@ The miyagi module
 
 
 * [index](#module_index)
-    * [~argsIncludeMockGenerator(args)](#module_index..argsIncludeMockGenerator) ⇒ <code>boolean</code>
-    * [~argsIncludeComponentGenerator(args)](#module_index..argsIncludeComponentGenerator) ⇒ <code>boolean</code>
-    * [~argsIncludeBuild(args)](#module_index..argsIncludeBuild) ⇒ <code>boolean</code>
-    * [~argsIncludeServer(args)](#module_index..argsIncludeServer) ⇒ <code>boolean</code>
-    * [~getCliArgs(args)](#module_index..getCliArgs) ⇒ <code>object</code>
-    * [~getAllAvailableTemplateExtensions(possibleExtensions, folder, ignores)](#module_index..getAllAvailableTemplateExtensions) ⇒ <code>Promise.&lt;Array&gt;</code>
-    * [~guessExtensionFromEngine(engineName)](#module_index..guessExtensionFromEngine) ⇒ <code>Object</code>
-    * [~guessEngineFromExtension(extension)](#module_index..guessEngineFromExtension) ⇒ <code>Object</code>
-    * [~guessEngineAndExtensionFromFiles(config)](#module_index..guessEngineAndExtensionFromFiles) ⇒ <code>Promise.&lt;({files: object, engine: object}\|null)&gt;</code>
-    * [~runComponentGenerator(config, args)](#module_index..runComponentGenerator)
-    * [~runMockGenerator(config, args)](#module_index..runMockGenerator)
-    * [~initRendering(config)](#module_index..initRendering)
-    * [~updateConfigWithGuessedExtensionBasedOnEngine(config)](#module_index..updateConfigWithGuessedExtensionBasedOnEngine) ⇒ <code>object</code> \| <code>boolean</code>
-    * [~updateConfigWithGuessedEngineBasedOnExtension(config)](#module_index..updateConfigWithGuessedEngineBasedOnExtension) ⇒ <code>object</code> \| <code>boolean</code>
-    * [~updateConfigWithGuessedEngineAndExtensionBasedOnFiles(config)](#module_index..updateConfigWithGuessedEngineAndExtensionBasedOnFiles) ⇒ <code>Promise.&lt;(object\|boolean)&gt;</code>
-    * [~updateConfigForComponentGeneratorIfNecessary(config, args)](#module_index..updateConfigForComponentGeneratorIfNecessary) ⇒ <code>Promise.&lt;object&gt;</code>
-    * [~updateConfigForRendererIfNecessary(config)](#module_index..updateConfigForRendererIfNecessary) ⇒ <code>Promise.&lt;object&gt;</code>
-    * [~Miyagi()](#module_index..Miyagi)
+    * [module.exports()](#exp_module_index--module.exports) ⏏
+        * [~argsIncludeMockGenerator(args)](#module_index--module.exports..argsIncludeMockGenerator) ⇒ <code>boolean</code>
+        * [~argsIncludeComponentGenerator(args)](#module_index--module.exports..argsIncludeComponentGenerator) ⇒ <code>boolean</code>
+        * [~argsIncludeBuild(args)](#module_index--module.exports..argsIncludeBuild) ⇒ <code>boolean</code>
+        * [~argsIncludeServer(args)](#module_index--module.exports..argsIncludeServer) ⇒ <code>boolean</code>
+        * [~argsIncludeLint(args)](#module_index--module.exports..argsIncludeLint) ⇒ <code>boolean</code>
+        * [~getAllAvailableTemplateExtensions(possibleExtensions, folder, ignores)](#module_index--module.exports..getAllAvailableTemplateExtensions) ⇒ <code>Promise.&lt;Array&gt;</code>
+        * [~guessExtensionFromEngine(engineName)](#module_index--module.exports..guessExtensionFromEngine) ⇒ <code>Object</code>
+        * [~guessEngineFromExtension(extension)](#module_index--module.exports..guessEngineFromExtension) ⇒ <code>Object</code>
+        * [~guessEngineAndExtensionFromFiles(config)](#module_index--module.exports..guessEngineAndExtensionFromFiles) ⇒ <code>Promise.&lt;({files: object, engine: object}\|null)&gt;</code>
+        * [~runComponentGenerator(config, args)](#module_index--module.exports..runComponentGenerator)
+        * [~runMockGenerator(config, args)](#module_index--module.exports..runMockGenerator)
+        * [~initRendering(config)](#module_index--module.exports..initRendering)
+        * [~initApi(config)](#module_index--module.exports..initApi)
+        * [~updateConfigWithGuessedExtensionBasedOnEngine(config)](#module_index--module.exports..updateConfigWithGuessedExtensionBasedOnEngine) ⇒ <code>object</code> \| <code>boolean</code>
+        * [~updateConfigWithGuessedEngineBasedOnExtension(config)](#module_index--module.exports..updateConfigWithGuessedEngineBasedOnExtension) ⇒ <code>object</code> \| <code>boolean</code>
+        * [~updateConfigWithGuessedEngineAndExtensionBasedOnFiles(config)](#module_index--module.exports..updateConfigWithGuessedEngineAndExtensionBasedOnFiles) ⇒ <code>Promise.&lt;(object\|boolean)&gt;</code>
+        * [~updateConfigForComponentGeneratorIfNecessary(config, args)](#module_index--module.exports..updateConfigForComponentGeneratorIfNecessary) ⇒ <code>Promise.&lt;object&gt;</code>
+        * [~updateConfigForRendererIfNecessary(config)](#module_index--module.exports..updateConfigForRendererIfNecessary) ⇒ <code>Promise.&lt;object&gt;</code>
 
-<a name="module_index..argsIncludeMockGenerator"></a>
+<a name="exp_module_index--module.exports"></a>
 
-### index~argsIncludeMockGenerator(args) ⇒ <code>boolean</code>
+### module.exports() ⏏
+Requires the user config and initializes and calls correct modules based on command
+
+**Kind**: Exported function  
+<a name="module_index--module.exports..argsIncludeMockGenerator"></a>
+
+#### module.exports~argsIncludeMockGenerator(args) ⇒ <code>boolean</code>
 Checks if miyagi was started with "mocks" command
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>boolean</code> - is true if the miyagi was started with "mocks"  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..argsIncludeComponentGenerator"></a>
+<a name="module_index--module.exports..argsIncludeComponentGenerator"></a>
 
-### index~argsIncludeComponentGenerator(args) ⇒ <code>boolean</code>
+#### module.exports~argsIncludeComponentGenerator(args) ⇒ <code>boolean</code>
 Checks if miyagi was started with "new" command
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>boolean</code> - is true if the miyagi was started with "new"  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..argsIncludeBuild"></a>
+<a name="module_index--module.exports..argsIncludeBuild"></a>
 
-### index~argsIncludeBuild(args) ⇒ <code>boolean</code>
+#### module.exports~argsIncludeBuild(args) ⇒ <code>boolean</code>
 Checks if miyagi was started with "build" command
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>boolean</code> - is true if the miyagi was started with "new"  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..argsIncludeServer"></a>
+<a name="module_index--module.exports..argsIncludeServer"></a>
 
-### index~argsIncludeServer(args) ⇒ <code>boolean</code>
+#### module.exports~argsIncludeServer(args) ⇒ <code>boolean</code>
 Checks if miyagi was started with "start" command
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>boolean</code> - is true if the miyagi was started with "start"  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..getCliArgs"></a>
+<a name="module_index--module.exports..argsIncludeLint"></a>
 
-### index~getCliArgs(args) ⇒ <code>object</code>
-Converts and removes unnecessary cli args
+#### module.exports~argsIncludeLint(args) ⇒ <code>boolean</code>
+Checks if miyagi was started with "lint" command
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
-**Returns**: <code>object</code> - configuration object based on cli args  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 
-| Param | Type | Description |
-| --- | --- | --- |
-| args | <code>object</code> | the cli args |
+| Param | Type |
+| --- | --- |
+| args | <code>object</code> | 
 
-<a name="module_index..getAllAvailableTemplateExtensions"></a>
+<a name="module_index--module.exports..getAllAvailableTemplateExtensions"></a>
 
-### index~getAllAvailableTemplateExtensions(possibleExtensions, folder, ignores) ⇒ <code>Promise.&lt;Array&gt;</code>
+#### module.exports~getAllAvailableTemplateExtensions(possibleExtensions, folder, ignores) ⇒ <code>Promise.&lt;Array&gt;</code>
 Returns all extensions that belong to template files found in the components folder
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Promise.&lt;Array&gt;</code> - an array of template files extension found in the component folder  
 
 | Param | Type | Description |
@@ -98,122 +104,131 @@ Returns all extensions that belong to template files found in the components fol
 | folder | <code>string</code> | the component folder from the user configuration |
 | ignores | <code>Array</code> | the folders to ignore from the user configuration |
 
-<a name="module_index..guessExtensionFromEngine"></a>
+<a name="module_index--module.exports..guessExtensionFromEngine"></a>
 
-### index~guessExtensionFromEngine(engineName) ⇒ <code>Object</code>
+#### module.exports~guessExtensionFromEngine(engineName) ⇒ <code>Object</code>
 Returns the template files extension that belongs to a given engine
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Object</code> - the related template files extension  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | engineName | <code>string</code> | the engine name from the user configuration |
 
-<a name="module_index..guessEngineFromExtension"></a>
+<a name="module_index--module.exports..guessEngineFromExtension"></a>
 
-### index~guessEngineFromExtension(extension) ⇒ <code>Object</code>
+#### module.exports~guessEngineFromExtension(extension) ⇒ <code>Object</code>
 Returns the engine name that belongs to a given extension
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Object</code> - the related engine name  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | extension | <code>string</code> | the file extension from the user configuration |
 
-<a name="module_index..guessEngineAndExtensionFromFiles"></a>
+<a name="module_index--module.exports..guessEngineAndExtensionFromFiles"></a>
 
-### index~guessEngineAndExtensionFromFiles(config) ⇒ <code>Promise.&lt;({files: object, engine: object}\|null)&gt;</code>
+#### module.exports~guessEngineAndExtensionFromFiles(config) ⇒ <code>Promise.&lt;({files: object, engine: object}\|null)&gt;</code>
 Scans the files, tries to find template files and based on the result
 returns an object with engine.name and files.templates.extension
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Promise.&lt;({files: object, engine: object}\|null)&gt;</code> - is either an object with `files` and `engine` or `null` if guessing failed  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 
-<a name="module_index..runComponentGenerator"></a>
+<a name="module_index--module.exports..runComponentGenerator"></a>
 
-### index~runComponentGenerator(config, args)
+#### module.exports~runComponentGenerator(config, args)
 Runs the component generator
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..runMockGenerator"></a>
+<a name="module_index--module.exports..runMockGenerator"></a>
 
-### index~runMockGenerator(config, args)
+#### module.exports~runMockGenerator(config, args)
 Runs the mock generator
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..initRendering"></a>
+<a name="module_index--module.exports..initRendering"></a>
 
-### index~initRendering(config)
+#### module.exports~initRendering(config)
 Runs the renderer to either start the server or create a build
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 
-<a name="module_index..updateConfigWithGuessedExtensionBasedOnEngine"></a>
+<a name="module_index--module.exports..initApi"></a>
 
-### index~updateConfigWithGuessedExtensionBasedOnEngine(config) ⇒ <code>object</code> \| <code>boolean</code>
+#### module.exports~initApi(config)
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
+
+| Param | Type |
+| --- | --- |
+| config | <code>object</code> | 
+
+<a name="module_index--module.exports..updateConfigWithGuessedExtensionBasedOnEngine"></a>
+
+#### module.exports~updateConfigWithGuessedExtensionBasedOnEngine(config) ⇒ <code>object</code> \| <code>boolean</code>
 Tries to guess the template files extension based on defined engine name.
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>object</code> \| <code>boolean</code> - is either the updated config or false if guessing failed  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 
-<a name="module_index..updateConfigWithGuessedEngineBasedOnExtension"></a>
+<a name="module_index--module.exports..updateConfigWithGuessedEngineBasedOnExtension"></a>
 
-### index~updateConfigWithGuessedEngineBasedOnExtension(config) ⇒ <code>object</code> \| <code>boolean</code>
+#### module.exports~updateConfigWithGuessedEngineBasedOnExtension(config) ⇒ <code>object</code> \| <code>boolean</code>
 Tries to guess the engine name based on defined template files extension.
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>object</code> \| <code>boolean</code> - is either the updated config or false if guessing failed  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 
-<a name="module_index..updateConfigWithGuessedEngineAndExtensionBasedOnFiles"></a>
+<a name="module_index--module.exports..updateConfigWithGuessedEngineAndExtensionBasedOnFiles"></a>
 
-### index~updateConfigWithGuessedEngineAndExtensionBasedOnFiles(config) ⇒ <code>Promise.&lt;(object\|boolean)&gt;</code>
+#### module.exports~updateConfigWithGuessedEngineAndExtensionBasedOnFiles(config) ⇒ <code>Promise.&lt;(object\|boolean)&gt;</code>
 Tries to guess the template files extension and engine name by scanning
 the component folder and looking for possible template files.
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Promise.&lt;(object\|boolean)&gt;</code> - is either the updated config or false if guessing failed  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 
-<a name="module_index..updateConfigForComponentGeneratorIfNecessary"></a>
+<a name="module_index--module.exports..updateConfigForComponentGeneratorIfNecessary"></a>
 
-### index~updateConfigForComponentGeneratorIfNecessary(config, args) ⇒ <code>Promise.&lt;object&gt;</code>
+#### module.exports~updateConfigForComponentGeneratorIfNecessary(config, args) ⇒ <code>Promise.&lt;object&gt;</code>
 Updates the config with smartly guessed template extension if missing
 and tpls are not skipped for generating a component
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Promise.&lt;object&gt;</code> - the updated config  
 
 | Param | Type | Description |
@@ -221,22 +236,16 @@ and tpls are not skipped for generating a component
 | config | <code>object</code> | the user configuration object |
 | args | <code>object</code> | the cli args |
 
-<a name="module_index..updateConfigForRendererIfNecessary"></a>
+<a name="module_index--module.exports..updateConfigForRendererIfNecessary"></a>
 
-### index~updateConfigForRendererIfNecessary(config) ⇒ <code>Promise.&lt;object&gt;</code>
+#### module.exports~updateConfigForRendererIfNecessary(config) ⇒ <code>Promise.&lt;object&gt;</code>
 Updates the config with smartly guessed template extension and/or template engine
 if missing
 
-**Kind**: inner method of [<code>index</code>](#module_index)  
+**Kind**: inner method of [<code>module.exports</code>](#exp_module_index--module.exports)  
 **Returns**: <code>Promise.&lt;object&gt;</code> - the updated config  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | config | <code>object</code> | the user configuration object |
 
-<a name="module_index..Miyagi"></a>
-
-### index~Miyagi()
-Requires the user config and initializes and calls correct modules based on command
-
-**Kind**: inner method of [<code>index</code>](#module_index)  

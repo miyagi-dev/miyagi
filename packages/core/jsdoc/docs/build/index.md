@@ -10,7 +10,7 @@ Module for creating a static build
 
 
 * [build](#module_build)
-    * [~createJsonOutputFile(paths)](#module_build..createJsonOutputFile)
+    * [~createJsonOutputFile(paths, cb)](#module_build..createJsonOutputFile)
     * [~getFilePathsForJsonOutput(component)](#module_build..getFilePathsForJsonOutput) ⇒ <code>Array</code>
     * [~buildUserFavicon(buildFolder, faviconPath)](#module_build..buildUserFavicon) ⇒ <code>Promise</code>
     * [~buildDistDirectory(buildFolder)](#module_build..buildDistDirectory) ⇒ <code>Promise</code>
@@ -22,7 +22,7 @@ Module for creating a static build
 
 <a name="module_build..createJsonOutputFile"></a>
 
-### build~createJsonOutputFile(paths)
+### build~createJsonOutputFile(paths, cb)
 Creates an "output.json" file with the given array as content
 
 **Kind**: inner method of [<code>build</code>](#module_build)  
@@ -30,6 +30,7 @@ Creates an "output.json" file with the given array as content
 | Param | Type | Description |
 | --- | --- | --- |
 | paths | <code>Array</code> | all paths to standalone views of component variations |
+| cb | <code>function</code> |  |
 
 <a name="module_build..getFilePathsForJsonOutput"></a>
 
