@@ -33,7 +33,7 @@ nav:
       - Creating a component: cli-commands/components.md
       - Creating mock data: cli-commands/mocks.md
       - Creating a build: cli-commands/build.md
-      - Validating components: cli-commands/validating-components.md
+      - Linting components: cli-commands/linting-components.md
   - Configuration:
       - Available options: configuration/options.md
       - Via config file: configuration/config-file.md

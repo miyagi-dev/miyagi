@@ -58,7 +58,8 @@ async function validateAllMockData(app) {
     );
 
     if (mockInvalidResults.length === 0 && schemaInvalidResults.length === 0) {
-      return log("success", messages.linter.all.valid);
+      log("success", messages.linter.all.valid);
+      process.exit(0);
     }
 
     if (schemaInvalidResults.length > 0) {
@@ -84,6 +85,8 @@ async function validateAllMockData(app) {
             )
       );
     }
+
+    process.exit(1);
   });
 }
 
