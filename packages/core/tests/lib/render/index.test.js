@@ -5,8 +5,12 @@ const deepMerge = require("deepmerge");
 const config = require("../../../lib/config.json");
 const tests = require("../../../lib/render/tests.json");
 const render = require("../../../lib/render");
+require("../../../lib/validator/mocks");
 
 jest.mock("../../../lib/logger");
+jest.mock("../../../lib/validator/mocks", () => {
+  return () => [true, true, true];
+});
 
 const component = "component1/index.hbs";
 const variation = "variation";
@@ -343,6 +347,18 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           standalone: true,
           theme: { mode: "light" },
+          mockData: `{
+  "global": "global",
+  "component": "component1"
+}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: undefined,
         });
       });
     });
@@ -371,6 +387,18 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           theme: { mode: "light" },
+          mockData: `{
+  "component": "component1",
+  "variation": 1
+}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: "variation1",
         });
       });
     });
@@ -398,6 +426,17 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           theme: { mode: "light" },
+          mockData: `{
+  "component": "component2"
+}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: undefined,
         });
       });
     });
@@ -426,6 +465,15 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           theme: { mode: "light" },
+          mockData: `{}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: "variation1",
         });
       });
     });
@@ -454,6 +502,15 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           theme: { mode: "light" },
+          mockData: `{}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: "component5",
         });
       });
     });
@@ -487,6 +544,17 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           theme: { mode: "light" },
+          mockData: `{
+  "component": "component1"
+}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: "component1",
         });
       });
     });
@@ -515,6 +583,17 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           standalone: true,
           theme: { mode: "light" },
+          mockData: `{
+  "component": "component1"
+}`,
+          mockValidation: {
+            copy: "Data matches schema.",
+            valid: true,
+          },
+          mocks: {
+            type: "json",
+          },
+          variation: undefined,
         });
       });
     });
@@ -542,6 +621,14 @@ describe("lib/render/index", () => {
               variation: "default",
               standaloneUrl: "/component?file=component1&variation=default",
               url: "/component?file=component1&variation=default&embedded=true",
+              mockData: `{
+  "global": "global",
+  "component": "component1"
+}`,
+              mockValidation: {
+                copy: "Data matches schema.",
+                valid: true,
+              },
             },
             {
               file: "component1/index.hbs",
@@ -549,6 +636,15 @@ describe("lib/render/index", () => {
               variation: "variation1",
               standaloneUrl: "/component?file=component1&variation=variation1",
               url: "/component?file=component1&variation=variation1&embedded=true",
+              mockData: `{
+  "global": "global",
+  "component": "component1",
+  "variation": 1
+}`,
+              mockValidation: {
+                copy: "Data matches schema.",
+                valid: true,
+              },
             },
             {
               file: "component1/index.hbs",
@@ -556,6 +652,15 @@ describe("lib/render/index", () => {
               variation: "variation2",
               standaloneUrl: "/component?file=component1&variation=variation2",
               url: "/component?file=component1&variation=variation2&embedded=true",
+              mockData: `{
+  "global": "global",
+  "component": "component1",
+  "variation": 2
+}`,
+              mockValidation: {
+                copy: "Data matches schema.",
+                valid: true,
+              },
             },
           ],
           dev: false,
@@ -616,6 +721,13 @@ describe("lib/render/index", () => {
                 variation: "default",
                 standaloneUrl: "/component?file=component1&variation=default",
                 url: "/component?file=component1&variation=default&embedded=true",
+                mockData: `{
+  "component": "component1"
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
               {
                 file: "component1/index.hbs",
@@ -624,6 +736,14 @@ describe("lib/render/index", () => {
                 standaloneUrl:
                   "/component?file=component1&variation=variation1",
                 url: "/component?file=component1&variation=variation1&embedded=true",
+                mockData: `{
+  "component": "component1",
+  "variation": 1
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
               {
                 file: "component1/index.hbs",
@@ -632,6 +752,14 @@ describe("lib/render/index", () => {
                 standaloneUrl:
                   "/component?file=component1&variation=variation2",
                 url: "/component?file=component1&variation=variation2&embedded=true",
+                mockData: `{
+  "component": "component1",
+  "variation": 2
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             dev: false,
@@ -692,6 +820,13 @@ describe("lib/render/index", () => {
                 standaloneUrl:
                   "/component?file=component3&variation=variation1",
                 url: "/component?file=component3&variation=variation1&embedded=true",
+                mockData: `{
+  "variation": 1
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
               {
                 file: "component3/index.hbs",
@@ -700,6 +835,13 @@ describe("lib/render/index", () => {
                 standaloneUrl:
                   "/component?file=component3&variation=variation2",
                 url: "/component?file=component3&variation=variation2&embedded=true",
+                mockData: `{
+  "variation": 2
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             dev: false,
@@ -759,6 +901,11 @@ describe("lib/render/index", () => {
                 standaloneUrl:
                   "/component?file=component6&variation=variation1",
                 url: "/component?file=component6&variation=variation1&embedded=true",
+                mockData: "{}",
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             dev: false,
@@ -812,6 +959,11 @@ describe("lib/render/index", () => {
                 variation: "foo",
                 standaloneUrl: "/component?file=component7&variation=foo",
                 url: "/component?file=component7&variation=foo&embedded=true",
+                mockData: "{}",
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             dev: false,
@@ -865,6 +1017,13 @@ describe("lib/render/index", () => {
                 variation: "default",
                 standaloneUrl: "/component?file=component9&variation=default",
                 url: "/component?file=component9&variation=default&embedded=true",
+                mockData: `{
+  "some": "data"
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
               {
                 file: "component9/index.hbs",
@@ -873,6 +1032,13 @@ describe("lib/render/index", () => {
                 standaloneUrl:
                   "/component?file=component9&variation=variation1",
                 url: "/component?file=component9&variation=variation1&embedded=true",
+                mockData: `{
+  "some": "data"
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             dev: false,
@@ -950,6 +1116,13 @@ describe("lib/render/index", () => {
                 standaloneUrl: "/component?file=component2&variation=default",
                 url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
+                mockData: `{
+  "component": "component2"
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             schemaError: null,
@@ -998,6 +1171,13 @@ describe("lib/render/index", () => {
                 standaloneUrl: "/component?file=component2&variation=default",
                 url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
+                mockData: `{
+  "component": "component2"
+}`,
+                mockValidation: {
+                  copy: "Data matches schema.",
+                  valid: true,
+                },
               },
             ],
             schemaError: null,
@@ -1035,6 +1215,11 @@ describe("lib/render/index", () => {
               standaloneUrl: "/component?file=component4&variation=default",
               url: "/component?file=component4&variation=default&embedded=true",
               variation: "default",
+              mockData: "{}",
+              mockValidation: {
+                copy: "Data matches schema.",
+                valid: true,
+              },
             },
           ],
           schema: null,

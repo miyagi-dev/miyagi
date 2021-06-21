@@ -1,7 +1,8 @@
 const path = require("path");
+const jsonToYaml = require("json-to-pretty-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
-const validateSchema = require("../../../validator/mocks.js");
+const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData } = require("../../../mocks");
 const log = require("../../../logger.js");
 
@@ -31,7 +32,7 @@ module.exports = async function renderIframeVariation({
   file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
   const componentData = await getVariationData(app, file, decodeURI(variation));
 
-  validateSchema(app, file, [
+  const validatedMocks = validateMocks(app, file, [
     {
       data: componentData,
       name: variation,
@@ -53,6 +54,19 @@ module.exports = async function renderIframeVariation({
   } else {
     standaloneUrl = null;
   }
+
+  const mockValidation = {
+    valid: validatedMocks[0],
+    copy: config.messages.validator.mocks[
+      validatedMocks[0] ? "valid" : "invalid"
+    ],
+  };
+
+  const fileContents = {
+    mocks: {
+      type: app.get("config").files.mocks.extension,
+    },
+  };
 
   return new Promise((resolve, reject) => {
     app.render(
@@ -99,6 +113,13 @@ module.exports = async function renderIframeVariation({
               userProjectName: app.get("config").projectName,
               isBuild: app.get("config").isBuild,
               theme: app.get("config").ui.theme,
+              mockData:
+                app.get("config").files.schema.extension === "yaml"
+                  ? jsonToYaml.stringify(componentData)
+                  : JSON.stringify(componentData, null, 2),
+              variation,
+              mockValidation,
+              mocks: fileContents.mocks,
             },
             (err, html) => {
               if (res.send) {

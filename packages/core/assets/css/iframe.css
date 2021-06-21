@@ -1,8 +1,7 @@
 @import "./iframe/theme.css";
 @import "./iframe/styleguide/index.css";
 
-.MiyagiContent *,
-.MiyagiIframe-newTabLink {
+.MiyagiContent * {
   all: revert;
 }
 
@@ -23,7 +22,6 @@ body {
 }
 
 .MiyagiContent,
-.MiyagiIframe-newTabLink,
 .MiyagiContent .MiyagiComponent-head {
   font-family: var(--Miyagi-fontFamily);
   line-height: 1;
@@ -86,9 +84,24 @@ body {
   margin-left: 0;
 }
 
+.MiyagiComponent-variationHeader {
+  display: flex;
+  position: absolute;
+  right: 40px;
+  top: 13px;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.MiyagiComponent-variationHeader > *:not(:first-child) {
+  margin-left: 12px;
+  padding-left: 12px;
+  border-left: 1px solid;
+}
+
 .MiyagiContent .MiyagiComponent-headMeta > *:not(:first-child) {
-  margin-left: 15px;
-  padding-left: 15px;
+  margin-left: 12px;
+  padding-left: 12px;
   border-left: 1px solid;
 }
 
@@ -140,10 +153,8 @@ body {
 }
 
 .MiyagiContent .MiyagiStatus::before {
-  --size: 0.7em;
-
   display: inline-block;
-  margin: 0 0.25em 0 0;
+  margin: 0 0.5em 0 0;
 }
 
 .MiyagiContent .MiyagiStatus--valid {
@@ -185,7 +196,7 @@ body {
 }
 
 .MiyagiIframe-newTabLink svg {
-  --size: 1.2em;
+  --size: 1em;
 
   height: var(--size);
   margin-right: 0.5em;
@@ -261,11 +272,64 @@ body {
 .MiyagiComponent .MiyagiComponent-headMeta {
   display: flex;
   align-items: center;
-  font-size: 14px;
 }
 
 .MiyagiComponent .MiyagiComponent-mockValidation {
+  appearance: none;
+  border: none;
+  background: none;
+  color: var(--Miyagi-color-Link);
+  cursor: pointer;
   margin: 0;
+  padding: 0;
+  font-size: inherit;
+  font-family: var(--Miyagi-fontFamily);
+  line-height: 1;
+  text-decoration: underline;
+}
+
+.MiyagiComponent .MiyagiComponent-mockData {
+  background: var(--Miyagi-color-OverlayBackground);
+  display: flex;
+  position: fixed;
+  inset: 0;
+  padding: var(--Miyagi-spacing);
+  z-index: 9999999999;
+}
+
+.MiyagiComponent .MiyagiComponent-mockData[hidden] {
+  display: none;
+}
+
+.MiyagiComponent .MiyagiComponent-mockDataInner {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 100%;
+  max-height: calc(100vh - 2 * var(--Miyagi-spacing));
+  max-width: 70ch;
+  position: relative;
+}
+
+.MiyagiComponent .MiyagiComponent-mockDataHeading {
+  margin: 0;
+}
+
+.MiyagiComponent .MiyagiComponent-closeMockData {
+  appearance: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: var(--Miyagi-color-Link);
+  text-decoration: underline;
+  cursor: pointer;
+  line-height: 1;
+  font-family: var(--Miyagi-fontFamily);
+  font-size: 0.875em;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .MiyagiComponent .MiyagiComponent-file {
@@ -301,14 +365,6 @@ body {
   overflow: auto;
   resize: both;
   width: 100%;
-}
-
-.MiyagiWrapper ~ .MiyagiIframe-newTabLink {
-  line-height: 40px;
-  position: absolute;
-  right: 40px;
-  top: 0;
-  font-size: 14px;
 }
 
 .MiyagiIndex {

@@ -19,6 +19,7 @@
   --Miyagi-color-TextTertiary: var(--Miyagi-color-Grey-3);
   --Miyagi-color-Link: var(--Miyagi-color-Grey-1);
   --Miyagi-color-Outline: var(--Miyagi-color-Grey-4);
+  --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
 
   /* specific */
   --Miyagi-color-NewTabLink: var(--Miyagi-color-Link);
@@ -41,4 +42,5 @@
   --Miyagi-color-Negative: #ff305a;
   --Miyagi-color-Warning: #b578b5;
   --Miyagi-color-Positive: #8dd203;
+  --Miyagi-color-OverlayBackground: hsla(0, 0%, 12%, 0.95);
 }

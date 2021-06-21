@@ -246,6 +246,10 @@ async function renderVariations({
                   : getComponentErrorHtml(err),
                 variation,
                 standaloneUrl,
+                mockData:
+                  app.get("config").files.schema.extension === "yaml"
+                    ? jsonToYaml.stringify(entry.data)
+                    : JSON.stringify(entry.data, null, 2),
               };
 
               if (validatedMocks && Array.isArray(validatedMocks)) {

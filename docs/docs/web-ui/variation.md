@@ -1,4 +1,4 @@
-The _variation_ page renders a single variation of a component as well as the validation results (see below). You can open it in a new tab, which renders nothing but the component, which is best for development.
+The _variation_ page renders a single variation of a component, validation status of the mock file as well, the compiled mock data as well as the validation results (see below). You can open it in a new tab, which renders nothing but the component, which is best for development.
 
 ## Validations
 
