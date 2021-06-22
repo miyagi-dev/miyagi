@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/mgrsskls/miyagi/compare/core/v2.4.0...core/v2.4.1) (2021-06-22)
+
+
+### Bug Fixes
+
+* **core:** Fix showing mock data for variants when creating a build ([d73e827](https://github.com/mgrsskls/miyagi/commit/d73e82749bf6baf74b0c86d61c5ebe1486f90007))
+
 ## [2.4.0](https://github.com/mgrsskls/miyagi/compare/core/v2.3.1...core/v2.4.0) (2021-06-21)
 
 
