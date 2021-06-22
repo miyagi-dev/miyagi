@@ -55,12 +55,15 @@ module.exports = async function renderIframeVariation({
     standaloneUrl = null;
   }
 
-  const mockValidation = {
-    valid: validatedMocks[0],
-    copy: config.messages.validator.mocks[
-      validatedMocks[0] ? "valid" : "invalid"
-    ],
-  };
+  const mockValidation =
+    Array.isArray(validatedMocks) && validatedMocks[0]
+      ? {
+          valid: validatedMocks[0],
+          copy: config.messages.validator.mocks[
+            validatedMocks[0] ? "valid" : "invalid"
+          ],
+        }
+      : {};
 
   const fileContents = {
     mocks: {

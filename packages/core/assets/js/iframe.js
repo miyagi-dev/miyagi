@@ -14,9 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const tabs = Array.from(document.querySelectorAll(".MiyagiTabs"));
   const tests = parent.document.querySelector(".Miyagi-tests");
   const styleguide = document.querySelector(".MiyagiStyleguide");
-  const openMockData = Array.from(
-    document.querySelectorAll(".js-openMockData")
-  );
 
   if (tests) {
     Tests(tests);
@@ -44,29 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
   }
 
-  openMockData.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const target = document.getElementById(
-        e.target.closest("button").getAttribute("aria-controls")
-      );
-      const closeButton = target.querySelector(".js-closeMockData");
-
-      target.hidden = false;
-
-      const closeHandler = () => {
-        target.hidden = true;
-        closeButton.removeEventListener("click", closeHandler);
-        document.removeEventListener("keydown", keyboardCloseHandler);
-      };
-      const keyboardCloseHandler = (e) => {
-        if (e.key === "Escape") {
-          closeHandler();
-        }
-      };
-
-      closeButton.addEventListener("click", closeHandler);
-      document.addEventListener("keydown", keyboardCloseHandler);
-      closeButton.focus();
-    });
-  });
+  if (document.querySelector(".js-openMockData")) {
+    import("./_mock-data.js");
+  }
 });

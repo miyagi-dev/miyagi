@@ -24,4 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
       (Styleguide) => new Styleguide.default(styleguide)
     );
   }
+
+  if (document.querySelector(".js-openMockData")) {
+    import("./_mock-data.js");
+  }
 });
