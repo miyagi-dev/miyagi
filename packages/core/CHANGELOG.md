@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.2](https://github.com/mgrsskls/miyagi/compare/core/v2.4.1...core/v2.4.2) (2021-06-22)
+
+
+### Bug Fixes
+
+* **core:** Fix missing "open in new tab" icon in Chrome ([4786bdd](https://github.com/mgrsskls/miyagi/commit/4786bdda6b41ecbe4a4440bf67a26d2e4beb772e))
+
 ### [2.4.1](https://github.com/mgrsskls/miyagi/compare/core/v2.4.0...core/v2.4.1) (2021-06-22)
 
 
