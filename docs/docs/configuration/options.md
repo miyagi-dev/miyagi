@@ -65,7 +65,7 @@ If you use ES6 modules, you can set this to true, so `type="module"` is added to
 ### `folder`
 
 default: `null`<br>
-type: `object`
+type: `string|array|object`
 
 If you need _miyagi_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
 
