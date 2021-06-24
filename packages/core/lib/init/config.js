@@ -77,9 +77,9 @@ function getAssetFilesArray(strOrArrOrObj, manifest, assetType) {
 
       log(
         "warn",
-        appConfig.messages.nodeEnvAndKeysDontMatch
+        appConfig.messages.nodeEnvAndKeysDontMatchCssOrJs
           .replace("{{nodeEnv}}", nodeEnv)
-          .replace("{{assetType}}", assetType)
+          .replace(/{{assetType}}/g, assetType)
       );
     }
   }
@@ -101,6 +101,36 @@ function getAssetFilesArray(strOrArrOrObj, manifest, assetType) {
   }
 
   return files.map(sanitizePath);
+}
+
+/**
+ * @param {string|Array|object} strOrArrOrObj
+ * @returns {string[]} the given param converted to an array of asset file path strings
+ */
+function getAssetFoldersArray(strOrArrOrObj) {
+  let folders = strOrArrOrObj;
+
+  if (typeof folders === "string") {
+    folders = [folders];
+  } else if (objectIsRealObject(folders)) {
+    const nodeEnv = process.env.NODE_ENV;
+
+    if (folders[nodeEnv]) {
+      folders = arrayfy(folders[nodeEnv]);
+    } else {
+      folders = [];
+
+      log(
+        "warn",
+        appConfig.messages.nodeEnvAndKeysDontMatchAssetFolders.replace(
+          "{{nodeEnv}}",
+          nodeEnv
+        )
+      );
+    }
+  }
+
+  return folders.map(sanitizePath);
 }
 
 /**
@@ -148,7 +178,7 @@ module.exports = (userConfig = {}) => {
     }
 
     if (config.assets.folder) {
-      config.assets.folder = arrayfy(config.assets.folder).map(sanitizePath);
+      config.assets.folder = getAssetFoldersArray(config.assets.folder);
     }
 
     if (config.assets.css) {

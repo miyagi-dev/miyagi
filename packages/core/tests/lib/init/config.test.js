@@ -363,6 +363,9 @@ describe("lib/init/config", () => {
             js: {
               foo: ["user/js/index.js"],
             },
+            folder: {
+              foo: ["folder"],
+            },
           },
           files: {
             css: {
@@ -394,13 +397,19 @@ describe("lib/init/config", () => {
         expect(log).toHaveBeenNthCalledWith(
           1,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so miyagi is not able to deliver your css files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in assets.folder in your config file, so miyagi is not able to serve your assets."
         );
 
         expect(log).toHaveBeenNthCalledWith(
           2,
           "warn",
-          "Your NODE_ENV 'test' doesn't match the keys you defined in folders.assets in your config file, so miyagi is not able to deliver your js files."
+          "Your NODE_ENV 'test' doesn't match the keys you defined in assets.css in your config file, so miyagi is not able to serve your css files."
+        );
+
+        expect(log).toHaveBeenNthCalledWith(
+          3,
+          "warn",
+          "Your NODE_ENV 'test' doesn't match the keys you defined in assets.js in your config file, so miyagi is not able to serve your js files."
         );
       });
 

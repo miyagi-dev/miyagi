@@ -65,9 +65,20 @@ If you use ES6 modules, you can set this to true, so `type="module"` is added to
 ### `folder`
 
 default: `null`<br>
-type: `string|array`
+type: `object`
 
 If you need _miyagi_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
+
+Can either be a string, an array of strings or an object with your `NODE_ENV`s as key and a string or array as values:
+
+```json
+{
+  "development": ["svgs", "templates"],
+  "production": ["templates"]
+}
+```
+
+This would serve different assets based on your `NODE_ENV`.
 
 ### `js`
 
