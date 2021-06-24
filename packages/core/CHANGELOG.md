@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.5.0](https://github.com/mgrsskls/miyagi/compare/core/v2.4.2...core/v2.5.0) (2021-06-24)
+
+
+### Features
+
+* **core:** Allow serving different asset.folder based on your NODE_ENV ([32bf92c](https://github.com/mgrsskls/miyagi/commit/32bf92c4f596d62b44d62e4ff64c5b23e6719086))
+
 ### [2.4.2](https://github.com/mgrsskls/miyagi/compare/core/v2.4.1...core/v2.4.2) (2021-06-22)
 
 
