@@ -245,6 +245,7 @@ async function renderVariations({
                   ? result
                   : getComponentErrorHtml(err),
                 variation,
+                normalizedVariation: helpers.normalizeString(variation),
                 standaloneUrl,
                 mockData:
                   app.get("config").files.schema.extension === "yaml"

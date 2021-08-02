@@ -121,6 +121,7 @@ module.exports = async function renderIframeVariation({
                   ? jsonToYaml.stringify(componentData)
                   : JSON.stringify(componentData, null, 2),
               variation,
+              normalizedVariation: helpers.normalizeString(variation),
               mockValidation,
               mocks: fileContents.mocks,
             },

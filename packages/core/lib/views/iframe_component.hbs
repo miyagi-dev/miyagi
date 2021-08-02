@@ -78,11 +78,11 @@
               <a href="{{ this.url }}" class="MiyagiComponent-file">{{this.variation}}</a>
               <div class="MiyagiComponent-headMeta">
                 {{#if mockValidation}}
-                  <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{this.variation}}">
+                  <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{this.normalizedVariation}}">
                     <span class="MiyagiStatus MiyagiStatus--{{#if mockValidation.valid}}valid{{else}}invalid{{/if}}">{{#if mockValidation.valid}}Valid{{else}}Invalid{{/if}} data</span>
                   </button>
                 {{else}}
-                  <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{this.variation}}">
+                  <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{this.normalizedVariation}}">
                     Mock data
                   </button>
                 {{/if}}
@@ -90,7 +90,7 @@
                   Open
                 </a>
               </div>
-              <div class="MiyagiComponent-mockData" hidden id="{{this.variation}}">
+              <div class="MiyagiComponent-mockData" hidden id="{{this.normalizedVariation}}">
                 <div class="MiyagiComponent-mockDataInner">
                   <p class="MiyagiComponent-mockDataHeading"><b>{{this.variation}}</b> mock data</p>
                   <pre class="Miyagi-code language-{{../mocks.type}}"><code>{{this.mockData}}</code></pre>

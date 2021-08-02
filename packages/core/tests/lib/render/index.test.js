@@ -359,6 +359,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: undefined,
+          normalizedVariation: "",
         });
       });
     });
@@ -399,6 +400,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: "variation1",
+          normalizedVariation: "variation1",
         });
       });
     });
@@ -437,6 +439,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: undefined,
+          normalizedVariation: "",
         });
       });
     });
@@ -474,6 +477,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: "variation1",
+          normalizedVariation: "variation1",
         });
       });
     });
@@ -511,6 +515,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: "component5",
+          normalizedVariation: "component5",
         });
       });
     });
@@ -555,6 +560,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: "component1",
+          normalizedVariation: "component1",
         });
       });
     });
@@ -594,6 +600,7 @@ describe("lib/render/index", () => {
             type: "json",
           },
           variation: undefined,
+          normalizedVariation: "",
         });
       });
     });
@@ -619,6 +626,7 @@ describe("lib/render/index", () => {
               file: "component1/index.hbs",
               html: "component1global\n",
               variation: "default",
+              normalizedVariation: "default",
               standaloneUrl: "/component?file=component1&variation=default",
               url: "/component?file=component1&variation=default&embedded=true",
               mockData: `{
@@ -634,6 +642,7 @@ describe("lib/render/index", () => {
               file: "component1/index.hbs",
               html: "component11global\n",
               variation: "variation1",
+              normalizedVariation: "variation1",
               standaloneUrl: "/component?file=component1&variation=variation1",
               url: "/component?file=component1&variation=variation1&embedded=true",
               mockData: `{
@@ -650,6 +659,7 @@ describe("lib/render/index", () => {
               file: "component1/index.hbs",
               html: "component12global\n",
               variation: "variation2",
+              normalizedVariation: "variation2",
               standaloneUrl: "/component?file=component1&variation=variation2",
               url: "/component?file=component1&variation=variation2&embedded=true",
               mockData: `{
@@ -719,6 +729,7 @@ describe("lib/render/index", () => {
                 file: "component1/index.hbs",
                 html: "component1\n",
                 variation: "default",
+                normalizedVariation: "default",
                 standaloneUrl: "/component?file=component1&variation=default",
                 url: "/component?file=component1&variation=default&embedded=true",
                 mockData: `{
@@ -733,6 +744,7 @@ describe("lib/render/index", () => {
                 file: "component1/index.hbs",
                 html: "component11\n",
                 variation: "variation1",
+                normalizedVariation: "variation1",
                 standaloneUrl:
                   "/component?file=component1&variation=variation1",
                 url: "/component?file=component1&variation=variation1&embedded=true",
@@ -749,6 +761,7 @@ describe("lib/render/index", () => {
                 file: "component1/index.hbs",
                 html: "component12\n",
                 variation: "variation2",
+                normalizedVariation: "variation2",
                 standaloneUrl:
                   "/component?file=component1&variation=variation2",
                 url: "/component?file=component1&variation=variation2&embedded=true",
@@ -817,6 +830,7 @@ describe("lib/render/index", () => {
                 file: "component3/index.hbs",
                 html: "component31\n",
                 variation: "variation1",
+                normalizedVariation: "variation1",
                 standaloneUrl:
                   "/component?file=component3&variation=variation1",
                 url: "/component?file=component3&variation=variation1&embedded=true",
@@ -832,6 +846,7 @@ describe("lib/render/index", () => {
                 file: "component3/index.hbs",
                 html: "component32\n",
                 variation: "variation2",
+                normalizedVariation: "variation2",
                 standaloneUrl:
                   "/component?file=component3&variation=variation2",
                 url: "/component?file=component3&variation=variation2&embedded=true",
@@ -898,6 +913,7 @@ describe("lib/render/index", () => {
                 file: "component6/index.hbs",
                 html: `<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found<br><br>${messages.checkShellForFurtherErrors}</p>`,
                 variation: "variation1",
+                normalizedVariation: "variation1",
                 standaloneUrl:
                   "/component?file=component6&variation=variation1",
                 url: "/component?file=component6&variation=variation1&embedded=true",
@@ -957,6 +973,7 @@ describe("lib/render/index", () => {
                 file: "component7/index.hbs",
                 html: "component7\n",
                 variation: "foo",
+                normalizedVariation: "foo",
                 standaloneUrl: "/component?file=component7&variation=foo",
                 url: "/component?file=component7&variation=foo&embedded=true",
                 mockData: "{}",
@@ -1015,6 +1032,7 @@ describe("lib/render/index", () => {
                 file: "component9/index.hbs",
                 html: "component9\n",
                 variation: "default",
+                normalizedVariation: "default",
                 standaloneUrl: "/component?file=component9&variation=default",
                 url: "/component?file=component9&variation=default&embedded=true",
                 mockData: `{
@@ -1029,6 +1047,7 @@ describe("lib/render/index", () => {
                 file: "component9/index.hbs",
                 html: "component9\n",
                 variation: "variation1",
+                normalizedVariation: "variation1",
                 standaloneUrl:
                   "/component?file=component9&variation=variation1",
                 url: "/component?file=component9&variation=variation1&embedded=true",
@@ -1116,6 +1135,7 @@ describe("lib/render/index", () => {
                 standaloneUrl: "/component?file=component2&variation=default",
                 url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
+                normalizedVariation: "default",
                 mockData: `{
   "component": "component2"
 }`,
@@ -1171,6 +1191,7 @@ describe("lib/render/index", () => {
                 standaloneUrl: "/component?file=component2&variation=default",
                 url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
+                normalizedVariation: "default",
                 mockData: `{
   "component": "component2"
 }`,
@@ -1215,6 +1236,7 @@ describe("lib/render/index", () => {
               standaloneUrl: "/component?file=component4&variation=default",
               url: "/component?file=component4&variation=default&embedded=true",
               variation: "default",
+              normalizedVariation: "default",
               mockData: "{}",
               mockValidation: {
                 copy: "Data matches schema.",
