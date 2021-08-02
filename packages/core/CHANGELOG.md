@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.1](https://github.com/mgrsskls/miyagi/compare/core/v2.5.0...core/v2.5.1) (2021-08-02)
+
+
+### Bug Fixes
+
+* **core:** used normalized ID to open mock data modal ([1af0736](https://github.com/mgrsskls/miyagi/commit/1af073641dff32ca4dc6de548b3636a2abd450f0))
+
 ## [2.5.0](https://github.com/mgrsskls/miyagi/compare/core/v2.4.2...core/v2.5.0) (2021-06-24)
 
 
