@@ -23,7 +23,7 @@ module.exports = function getCSS(app) {
               if (err) {
                 resolve({});
                 log(
-                  "error",
+                  "warn",
                   messages.customPropertyFileNotFound.replace(
                     "{{filePath}}",
                     file
