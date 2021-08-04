@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.2](https://github.com/mgrsskls/miyagi/compare/core/v2.5.1...core/v2.5.2) (2021-08-04)
+
+
+### Bug Fixes
+
+* **core:** use "Warning" instead of "Error" is customPropertyFile cannot be found ([e29e86a](https://github.com/mgrsskls/miyagi/commit/e29e86af7dbe6769b748426207cd8bc7594dd36d))
+
 ### [2.5.1](https://github.com/mgrsskls/miyagi/compare/core/v2.5.0...core/v2.5.1) (2021-08-02)
 
 
