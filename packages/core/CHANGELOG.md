@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.5.3](https://github.com/mgrsskls/miyagi/compare/core/v2.5.2...core/v2.5.3) (2021-08-04)
+
+
+### Bug Fixes
+
+* **core:** minimum node version is 14 ([f3c6c60](https://github.com/mgrsskls/miyagi/commit/f3c6c60f322b5aa69af637b3e1e4028835a0c6a4))
+
 ### [2.5.2](https://github.com/mgrsskls/miyagi/compare/core/v2.5.1...core/v2.5.2) (2021-08-04)
 
 
