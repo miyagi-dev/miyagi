@@ -17,10 +17,10 @@
   },
   "dependencies": {
     "deepmerge": "^4.2.2",
-    "php-parser": "^3.0.2",
+    "php-parser": "^3.0.3",
     "twig": "^1.15.4"
   },
   "peerDependencies": {
-    "@miyagi/core": "^2.1.0"
+    "@miyagi/core": "^2.5.3"
   }
 }
