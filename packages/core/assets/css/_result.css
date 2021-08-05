@@ -40,4 +40,5 @@
 
 .MiyagiResult-extract {
   font-family: "Menlo", "Monaco", monospace;
+  word-wrap: break-word;
 }
