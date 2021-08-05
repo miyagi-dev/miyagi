@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/mgrsskls/miyagi/compare/core/v2.5.3...core/v2.6.0) (2021-08-05)
+
+
+### Features
+
+* **core:** make sure validation results wrap properly ([e9efaf0](https://github.com/mgrsskls/miyagi/commit/e9efaf0ada74670ad9591757b0d2dc6d3e1782e2))
+* **core:** render component variation in an iframe to make sure that e.g. MQs behave properly ([edcefc2](https://github.com/mgrsskls/miyagi/commit/edcefc2e244679212c5dbd79981388fb0ab9ba5d))
+
 ### [2.5.3](https://github.com/mgrsskls/miyagi/compare/core/v2.5.2...core/v2.5.3) (2021-08-04)
 
 
