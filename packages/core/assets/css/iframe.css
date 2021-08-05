@@ -360,8 +360,13 @@ body {
   border: 1px solid var(--Miyagi-color-Outline);
   box-sizing: border-box;
   height: calc(100vh - 2 * var(--Miyagi-spacing));
-  overflow: auto;
+  overflow: hidden;
   resize: both;
+  width: 100%;
+}
+
+.MiyagiComponentView-iframe {
+  height: 100%;
   width: 100%;
 }
 
