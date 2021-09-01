@@ -1,12 +1,15 @@
 {
   "name": "demo",
   "devDependencies": {
-    "rollup": "^2.55.1"
+    "rollup": "^2.56.3"
   },
   "dependencies": {
-    "@miyagi/core": "^2.5.3"
+    "@miyagi/core": "^2.6.1"
   },
   "scripts": {
     "build": "rollup src/index.js --file dist/index.js --format iife"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }
