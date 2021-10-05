@@ -25,6 +25,7 @@ function getSourceTree(app) {
   const tree = dirTree(
     path.join(process.cwd(), app.get("config").components.folder),
     {
+      attributes: ["type"],
       extensions: new RegExp(
         `.(${app.get("config").files.css.extension}|${
           app.get("config").files.docs.extension

@@ -34,6 +34,7 @@ describe("lib/state/source-tree", () => {
     getSourceTree(app);
 
     expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
+      attributes: ["type"],
       extensions: new RegExp(".(css|md|js|json|json|extension)$"),
       exclude: [
         new RegExp("node_modules"),
