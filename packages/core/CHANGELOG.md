@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.2](https://github.com/mgrsskls/miyagi/compare/core/v2.6.1...core/v2.6.2) (2021-10-05)
+
+
+### Bug Fixes
+
+* **core:** axe-core causing error in chromium and webkit browsers ([ac59f52](https://github.com/mgrsskls/miyagi/commit/ac59f52ab0fbcd8194735cf4e90ea9020d95b3ec))
+
 ### [2.6.1](https://github.com/mgrsskls/miyagi/compare/core/v2.6.0...core/v2.6.1) (2021-08-09)
 
 ## [2.6.0](https://github.com/mgrsskls/miyagi/compare/core/v2.5.3...core/v2.6.0) (2021-08-05)
