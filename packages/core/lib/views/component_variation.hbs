@@ -11,6 +11,7 @@
     {{/if}}
     {{#if accessibilityValidation}}
       <script src="{{projectName}}/js/axe.min.js" defer></script>
+      <script src="{{projectName}}/js/iframe.axe.js" defer></script>
     {{/if}}
     {{#if standalone}}
       <script src="{{projectName}}/js/iframe{{#if isBuild}}.build{{/if}}.js" {{#if dev}} type="module"

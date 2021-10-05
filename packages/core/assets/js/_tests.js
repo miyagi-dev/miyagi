@@ -1,5 +1,3 @@
-/* globals axe */
-
 const iframe = document.querySelector(".MiyagiComponentView-iframe");
 
 /**
@@ -57,83 +55,78 @@ function a11yTest(container) {
 
   addToggleClickListener(container);
 
-  iframe.addEventListener("load", function () {
-    axe.run(iframe.contentDocument.body.children, function (err, results) {
-      if (err) throw err;
+  window.addEventListener("axe:done", ({ detail }) => {
+    const { err, results } = detail;
 
-      states.forEach((state) => {
-        const resultElement = container.querySelector(
-          `.MiyagiResults--${state} .MiyagiResults-value`
+    if (err) throw err;
+
+    states.forEach((state) => {
+      const resultElement = container.querySelector(
+        `.MiyagiResults--${state} .MiyagiResults-value`
+      );
+      let html = "";
+
+      resultElement.innerText = results[state].length;
+
+      if (state === "violations" || state === "incomplete") {
+        resultElement.classList.toggle(
+          "has-positiveValue",
+          results[state].length
         );
-        let html = "";
+      }
 
-        resultElement.innerText = results[state].length;
+      if (results[state].length) {
+        html += "<ul>";
+        results[state].forEach((result) => {
+          html += '<li class="MiyagiResult">';
+          html += '<dl class="MiyagiResult-data">';
 
-        if (state === "violations" || state === "incomplete") {
-          resultElement.classList.toggle(
-            "has-positiveValue",
-            results[state].length
-          );
-        }
+          if (result.description) {
+            html += getHtmlForResultItem(
+              "Description",
+              escapeHtml(result.description)
+            );
+          }
 
-        if (results[state].length) {
-          html += "<ul>";
-          results[state].forEach((result) => {
-            html += '<li class="MiyagiResult">';
-            html += '<dl class="MiyagiResult-data">';
+          if (result.help) {
+            html += getHtmlForResultItem("Help", escapeHtml(result.help));
+          }
 
-            if (result.description) {
-              html += getHtmlForResultItem(
-                "Description",
-                escapeHtml(result.description)
-              );
+          if (result.helpUrl) {
+            html += getHtmlForResultItem(
+              "Link",
+              `<a href="${result.helpUrl}" target="_blank" rel="noopener">${result.helpUrl}</a>`
+            );
+          }
+
+          if (result.impact) {
+            let impactClass;
+
+            switch (result.impact) {
+              case "serious":
+                impactClass = "MiyagiResults-value--negative";
+                break;
+              case "moderate":
+                impactClass = "MiyagiResults-value--warning";
             }
 
-            if (result.help) {
-              html += getHtmlForResultItem("Help", escapeHtml(result.help));
-            }
+            html += getHtmlForResultItem("Impact", result.impact, impactClass);
+          }
 
-            if (result.helpUrl) {
-              html += getHtmlForResultItem(
-                "Link",
-                `<a href="${result.helpUrl}" target="_blank" rel="noopener">${result.helpUrl}</a>`
-              );
-            }
+          html += "</dl>";
+          html += "</li>";
+        });
+        html += "</ul>";
+      } else {
+        html += '<p><i class="MiyagiResults-empty">Nothing to report.</i></p>';
+      }
 
-            if (result.impact) {
-              let impactClass;
-
-              switch (result.impact) {
-                case "serious":
-                  impactClass = "MiyagiResults-value--negative";
-                  break;
-                case "moderate":
-                  impactClass = "MiyagiResults-value--warning";
-              }
-
-              html += getHtmlForResultItem(
-                "Impact",
-                result.impact,
-                impactClass
-              );
-            }
-
-            html += "</dl>";
-            html += "</li>";
-          });
-          html += "</ul>";
-        } else {
-          html +=
-            '<p><i class="MiyagiResults-empty">Nothing to report.</i></p>';
-        }
-
-        container.querySelector(
-          `.MiyagiResults--${state} .MiyagiResults-details`
-        ).innerHTML = html;
-      });
-
-      container.removeAttribute("hidden");
+      container.querySelector(
+        `.MiyagiResults--${state} .MiyagiResults-details`
+      ).innerHTML = html;
     });
+
+    container.removeAttribute("hidden");
   });
 }
 
