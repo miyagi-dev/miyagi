@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.6.4](https://github.com/mgrsskls/miyagi/compare/core/v2.6.3...core/v2.6.4) (2021-10-05)
+
+
+### Bug Fixes
+
+* **core:** upgraded directory-tree node module ([878cfb9](https://github.com/mgrsskls/miyagi/commit/878cfb9e2d1402bb72483afe0e8a1ef312ab8de2))
+
 ### [2.6.3](https://github.com/mgrsskls/miyagi/compare/core/v2.6.2...core/v2.6.3) (2021-10-05)
 
 ### [2.6.2](https://github.com/mgrsskls/miyagi/compare/core/v2.6.1...core/v2.6.2) (2021-10-05)
