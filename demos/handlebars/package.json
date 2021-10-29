@@ -5,12 +5,12 @@
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
-    "postcss": "^8.3.6",
+    "postcss": "^8.3.11",
     "postcss-import": "^14.0.2",
     "postcss-preset-env": "^6.7.0"
   },
   "dependencies": {
-    "@miyagi/core": "^2.6.1"
+    "@miyagi/core": "^2.6.4"
   },
   "engines": {
     "node": ">=14"
