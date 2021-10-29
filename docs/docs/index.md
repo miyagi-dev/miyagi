@@ -26,3 +26,7 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 ### Web Components
 
 [web-components.demos.miyagi.dev](https://web-components.demos.miyagi.dev) (Code: [https://github.com/mgrsskls/miyagi/tree/master/demo](https://github.com/mgrsskls/miyagi/tree/master/demos/web-components))
+
+## Sponsored by
+
+<a href="https://factorial.io"><img src="https://logo.factorial.io/color.png" width="50" height="70" alt="Factorial"></a>
