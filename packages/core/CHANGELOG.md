@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/mgrsskls/miyagi/compare/core/v2.7.0...core/v2.7.1) (2021-11-03)
+
+
+### Bug Fixes
+
+* **core:** apply textDirection also on component view ([d8a9fdc](https://github.com/mgrsskls/miyagi/commit/d8a9fdc85bdb402f1a0870bb772f71903b1e9a4a))
+
 ## [2.7.0](https://github.com/mgrsskls/miyagi/compare/core/v2.6.4...core/v2.7.0) (2021-11-03)
 
 
