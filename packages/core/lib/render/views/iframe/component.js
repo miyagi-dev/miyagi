@@ -302,6 +302,7 @@ async function renderVariations({
             file.split(path.sep).slice(0, -1).join("/")
           ),
           name,
+          textDirection: app.get("config").components.textDirection,
         },
         (err, html) => {
           if (res.send) {

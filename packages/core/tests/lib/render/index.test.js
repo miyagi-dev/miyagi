@@ -712,6 +712,7 @@ describe("lib/render/index", () => {
           theme: { mode: "light" },
           schemaError: null,
           template: null,
+          textDirection: "ltr",
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
       });
@@ -814,6 +815,7 @@ describe("lib/render/index", () => {
             theme: { mode: "light" },
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -897,6 +899,7 @@ describe("lib/render/index", () => {
             name: "component3",
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -957,6 +960,7 @@ describe("lib/render/index", () => {
             name: "component6",
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1017,6 +1021,7 @@ describe("lib/render/index", () => {
             name: "component7",
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
         });
       });
@@ -1096,6 +1101,7 @@ describe("lib/render/index", () => {
             },
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
         });
       });
@@ -1154,6 +1160,7 @@ describe("lib/render/index", () => {
             ],
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
         });
       });
@@ -1210,6 +1217,7 @@ describe("lib/render/index", () => {
             ],
             schemaError: null,
             template: null,
+            textDirection: "ltr",
           });
         });
       });
@@ -1257,6 +1265,7 @@ describe("lib/render/index", () => {
           name: "component4",
           schemaError: null,
           template: null,
+          textDirection: "ltr",
         });
       });
     });
