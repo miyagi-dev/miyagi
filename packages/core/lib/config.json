@@ -22,6 +22,7 @@
       "outputFile": false
     },
     "components": {
+      "textDirection": "ltr",
       "folder": "src",
       "ignores": [
         "node_modules",

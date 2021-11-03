@@ -146,6 +146,15 @@ _miyagi_ ignores these folders and files when looking for your components.
 
 When setting a value, it is added to the default value and does not overwrite it.
 
+### `textDirection`
+
+default: `"ltr"`<br>
+type: `string`
+
+Used to determine the value of the `dir` attribute on the `<html>` element.
+
+_**Note:** This only applies the text direction of the components, not if miyagi itself_
+
 ## engine
 
 ### instance

@@ -360,6 +360,7 @@ describe("lib/render/index", () => {
           },
           variation: undefined,
           normalizedVariation: "",
+          textDirection: "ltr",
         });
       });
     });
@@ -401,6 +402,7 @@ describe("lib/render/index", () => {
           },
           variation: "variation1",
           normalizedVariation: "variation1",
+          textDirection: "ltr",
         });
       });
     });
@@ -440,6 +442,7 @@ describe("lib/render/index", () => {
           },
           variation: undefined,
           normalizedVariation: "",
+          textDirection: "ltr",
         });
       });
     });
@@ -478,6 +481,7 @@ describe("lib/render/index", () => {
           },
           variation: "variation1",
           normalizedVariation: "variation1",
+          textDirection: "ltr",
         });
       });
     });
@@ -516,6 +520,7 @@ describe("lib/render/index", () => {
           },
           variation: "component5",
           normalizedVariation: "component5",
+          textDirection: "ltr",
         });
       });
     });
@@ -561,6 +566,7 @@ describe("lib/render/index", () => {
           },
           variation: "component1",
           normalizedVariation: "component1",
+          textDirection: "ltr",
         });
       });
     });
@@ -601,6 +607,7 @@ describe("lib/render/index", () => {
           },
           variation: undefined,
           normalizedVariation: "",
+          textDirection: "ltr",
         });
       });
     });
@@ -1617,6 +1624,7 @@ describe("lib/render/index", () => {
           htmlValidation: false,
           accessibilityValidation: false,
           isBuild: undefined,
+          textDirection: "ltr",
         });
       });
     });
@@ -1643,6 +1651,7 @@ describe("lib/render/index", () => {
           htmlValidation: false,
           accessibilityValidation: false,
           isBuild: undefined,
+          textDirection: "ltr",
         });
       });
     });

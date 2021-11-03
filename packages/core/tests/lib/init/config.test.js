@@ -489,6 +489,7 @@ describe("lib/init/config", () => {
             ".miyagi.js",
             ".miyagi.json",
           ],
+          textDirection: "ltr",
         },
         engine: {
           name: null,
