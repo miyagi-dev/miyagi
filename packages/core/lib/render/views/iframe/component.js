@@ -71,7 +71,6 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       ? {
           string: componentSchemaString,
           type: app.get("config").files.schema.extension,
-          selected: true,
           file: path.join(
             app.get("config").components.folder,
             helpers.getShortPathFromFullPath(app, schemaFilePath)
@@ -82,7 +81,6 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       ? {
           string: componentMocksString,
           type: app.get("config").files.mocks.extension,
-          selected: !componentSchema,
           file: path.join(
             app.get("config").components.folder,
             helpers.getShortPathFromFullPath(app, mockFilePath)
@@ -93,7 +91,6 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       ? {
           string: componentTemplate,
           type: "html",
-          selected: !componentSchema,
           file: path.join(
             app.get("config").components.folder,
             helpers.getShortPathFromFullPath(app, templateFilePath)

@@ -20,6 +20,14 @@
   --Miyagi-color-Link: var(--Miyagi-color-Grey-1);
   --Miyagi-color-Outline: var(--Miyagi-color-Grey-4);
   --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
+  --Miyagi-toggle-border: 0 solid var(--Miyagi-color-Link);
+  --Miyagi-toggle-borderWidth: 0.25em 0.25em 0 0;
+  --Miyagi-toggle-fontSize: 0.6rem;
+  --Miyagi-toggle-height: 1em;
+  --Miyagi-toggle-transition: transform 0.15s ease;
+  --Miyagi-toggle-width: 1em;
+  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
+  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
 
   /* specific */
   --Miyagi-color-NewTabLink: var(--Miyagi-color-Link);

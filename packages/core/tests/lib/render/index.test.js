@@ -690,7 +690,6 @@ describe("lib/render/index", () => {
           schema: null,
           mocks: {
             type: "json",
-            selected: true,
             file: `${folder}/mocks.json`,
             string: `{
   "component": "component1",
@@ -794,7 +793,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "component": "component1",
@@ -882,7 +880,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "$variants": [
@@ -949,7 +946,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "$variants": [
@@ -1010,7 +1006,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "$variants": [
@@ -1087,7 +1082,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "some": "data",
@@ -1139,7 +1133,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "component": "component2"
@@ -1197,7 +1190,6 @@ describe("lib/render/index", () => {
             schema: null,
             mocks: {
               type: "json",
-              selected: true,
               file: `${folder}/mocks.json`,
               string: `{
   "component": "component2"

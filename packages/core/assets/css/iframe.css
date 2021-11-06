@@ -204,34 +204,12 @@ body {
   margin-right: 0.5em;
 }
 
-.MiyagiContent .MiyagiTabs-nav {
-  display: flex;
-  list-style: none;
-  margin: 0 0 -1px;
-  padding: 0;
-}
-
-.MiyagiContent .MiyagiTabs-button {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: none;
-  padding: 0 15px;
-  font: inherit;
-  color: inherit;
-  line-height: 2.5;
-  border: 0 solid transparent;
-  border-width: 1px 1px 0 1px;
-}
-
-.MiyagiContent .MiyagiTabs-button[aria-selected="true"],
 .MiyagiContent pre[class*="language-"],
 .MiyagiContent .Miyagi-code,
 .MiyagiContent :not(pre) > code[class*="language-"] {
   background: var(--Miyagi-color-Code-background);
 }
 
-.MiyagiContent .MiyagiTabs-button[aria-selected="true"],
 .MiyagiContent :not(pre) > code[class*="language-"],
 .MiyagiContent pre[class*="language-"] {
   border-color: var(--Miyagi-color-Code-outline);
@@ -248,12 +226,39 @@ body {
   font-size: 0.875em;
 }
 
-.MiyagiContent .MiyagiTabs-tab[hidden] {
+.MiyagiContent .MiyagiTabs-tab summary {
+  cursor: default;
+  list-style-type: none;
+  padding-block: 10px;
+  padding-inline-start: 16px;
+  position: relative;
+}
+
+.MiyagiContent .MiyagiTabs-tab summary::before {
+  border: var(--Miyagi-toggle-border);
+  border-color: currentColor;
+  border-width: var(--Miyagi-toggle-borderWidth);
+  content: "";
+  display: block;
+  font-size: 0.4em;
+  height: var(--Miyagi-toggle-height);
+  left: 0.25rem;
+  position: absolute;
+  top: 50%;
+  transition: var(--Miyagi-toggle-transition);
+  width: var(--Miyagi-toggle-width);
+}
+
+.MiyagiContent .MiyagiTabs-tab summary::-webkit-details-marker {
   display: none;
 }
 
-.MiyagiContent .MiyagiTabs-tab > *:first-child {
-  margin-top: 0;
+.MiyagiContent .MiyagiTabs-tab:not([open]) summary::before {
+  transform: var(--Miyagi-toggle-transition-closed);
+}
+
+.MiyagiContent .MiyagiTabs-tab[open] summary::before {
+  transform: var(--Miyagi-toggle-transition-opened);
 }
 
 .MiyagiComponent:not(:last-child) {

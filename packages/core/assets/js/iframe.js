@@ -11,7 +11,6 @@ if (
 
 document.addEventListener("DOMContentLoaded", function () {
   const links = Array.from(document.querySelectorAll(".MiyagiComponent-file"));
-  const tabs = Array.from(document.querySelectorAll(".MiyagiTabs"));
   const tests = parent.document.querySelector(".Miyagi-tests");
   const styleguide = document.querySelector(".MiyagiStyleguide");
 
@@ -22,12 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (links.length > 0) {
     import("./_iframe-links.js").then((module) => {
       module.default(links);
-    });
-  }
-
-  if (tabs.length > 0) {
-    import("./_tabs.js").then((Tabs) => {
-      tabs.forEach((tab) => new Tabs.default(tab));
     });
   }
 
