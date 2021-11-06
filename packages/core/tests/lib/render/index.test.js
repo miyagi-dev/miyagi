@@ -713,6 +713,7 @@ describe("lib/render/index", () => {
           schemaError: null,
           template: null,
           textDirection: "ltr",
+          renderInIframe: false,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
       });
@@ -816,6 +817,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -900,6 +902,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -961,6 +964,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1022,6 +1026,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
         });
       });
@@ -1102,6 +1107,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
         });
       });
@@ -1161,6 +1167,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
         });
       });
@@ -1218,6 +1225,7 @@ describe("lib/render/index", () => {
             schemaError: null,
             template: null,
             textDirection: "ltr",
+            renderInIframe: false,
           });
         });
       });
@@ -1266,6 +1274,7 @@ describe("lib/render/index", () => {
           schemaError: null,
           template: null,
           textDirection: "ltr",
+          renderInIframe: false,
         });
       });
     });

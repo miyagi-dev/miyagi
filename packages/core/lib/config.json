@@ -31,7 +31,11 @@
         "package-lock.json",
         ".miyagi.js",
         ".miyagi.json"
-      ]
+      ],
+      "renderInIframe": {
+        "default": false,
+        "except": []
+      }
     },
     "engine": {
       "name": null

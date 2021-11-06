@@ -28,6 +28,7 @@
   --Miyagi-color-Headline2-divider: var(--Miyagi-color-Outline);
   --Miyagi-color-Code-background: var(--Miyagi-color-Grey-5);
   --Miyagi-color-Code-outline: var(--Miyagi-color-Outline);
+  --Miyagi-color-Iframe-outline: var(--Miyagi-color-Outline);
   --Miyagi-transition: all 0.15s ease;
   --Miyagi-spacing: 40px;
 }

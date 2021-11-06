@@ -146,6 +146,19 @@ _miyagi_ ignores these folders and files when looking for your components.
 
 When setting a value, it is added to the default value and does not overwrite it.
 
+## `renderInIframe`
+
+default: `{ default: false, except: [] }`<br>
+type: `object`
+
+Determines if variants on the component view should be rendered in an iframe or not. Rendering in iframe makes sense when for example the component depends on media queries or has elements which are positioned fixed.
+If you have small components with a box-shadow for example, you might not want to render them inside an iframe, since the box-shadow would be cut off. Please also note that extensive usage of iframes slows down the page. So if you have a lot of variants, it might be better to not render the variants in iframes.
+
+`except` accepts globs. Its meaning depends on the value of `default`. So, if by default variants are rendered in an iframe, components that match one of the globs from the `except` array, are not rendered in an iframe.
+If `default` is false, these components are rendered in an iframe.
+
+_**Note:** After the `load` and `DOMContentLoaded` events of the iframes have been fired, their height is set to the height of the variant inside the iframe if it is smaller than the window. That way it is basically not noticable that the variant is rendered inside an iframe. In case that the variant is higher than the window, the iframe will have the same height as the window and be scrollable. After the `load` event the height will not be updated anymore when the height of the variant changes. This is necessary to avoid resize loops._
+
 ### `textDirection`
 
 default: `"ltr"`<br>

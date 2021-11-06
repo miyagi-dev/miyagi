@@ -490,6 +490,10 @@ describe("lib/init/config", () => {
             ".miyagi.json",
           ],
           textDirection: "ltr",
+          renderInIframe: {
+            default: false,
+            except: [],
+          },
         },
         engine: {
           name: null,

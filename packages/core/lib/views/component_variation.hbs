@@ -23,6 +23,18 @@
     </style>
     <script>
       {{{theme.js}}}
+
+      function sendHeightToParent() {
+        window.parent.postMessage({
+          id: window.frameElement.parentNode.id,
+          height: document.body.offsetHeight
+        }, "*");
+      }
+
+      if (window.frameElement) {
+        document.addEventListener("DOMContentLoaded", sendHeightToParent);
+        window.addEventListener("load", sendHeightToParent);
+      }
     </script>
   </head>
 

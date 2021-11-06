@@ -1,3 +1,4 @@
+const anymatch = require("anymatch");
 const path = require("path");
 const jsonToYaml = require("json-to-pretty-yaml");
 const config = require("../../../config.json");
@@ -191,6 +192,7 @@ async function renderVariations({
   const variations = [];
   const promises = [];
   const validatedMocks = validateMocks(app, file, context);
+  const baseName = path.dirname(file);
 
   if (templateFilePath) {
     for (let i = 0, len = context.length; i < len; i += 1) {
@@ -214,7 +216,6 @@ async function renderVariations({
                 }
               }
 
-              const baseName = path.dirname(file);
               const variation = context[i].name;
               let standaloneUrl;
 
@@ -279,6 +280,10 @@ async function renderVariations({
         "iframe_component.hbs",
         {
           variations,
+          renderInIframe: getRenderInIframe(
+            baseName,
+            app.get("config").components.renderInIframe
+          ),
           dev: process.env.NODE_ENV === "development",
           prod: process.env.NODE_ENV === "production",
           a11yTestsPreload: ui.validations.accessibility,
@@ -324,4 +329,15 @@ async function renderVariations({
         cb(true);
       }
     });
+}
+
+function getRenderInIframe(
+  baseName,
+  { default: byDefaultRenderInIframe, except }
+) {
+  if (byDefaultRenderInIframe) {
+    return !anymatch(except, baseName);
+  }
+
+  return anymatch(except, baseName);
 }

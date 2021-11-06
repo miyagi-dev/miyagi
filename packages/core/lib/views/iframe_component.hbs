@@ -99,11 +99,40 @@
               </div>
             </div>
           </div>
-          <div class="MiyagiComponent-html" dir="{{../textDirection}}">
-            {{{html}}}
-          </div>
+          {{#if ../renderInIframe}}
+            <div class="MiyagiComponent-iframeWrapper" id="{{this.normalizedVariation}}-iframe">
+              <iframe class="MiyagiComponent-iframe" src="{{this.standaloneUrl}}" frameborder="0" title="{{this.variation}}"></iframe>
+            </div>
+          {{else}}
+            <div class="MiyagiComponent-html" dir="{{../textDirection}}">
+              {{{html}}}
+            </div>
+          {{/if}}
         </div>
       {{/each}}
     </div>
+    {{#if renderInIframe}}
+      <script>
+        const eventMethod = window.addEventListener
+          ? "addEventListener"
+          : "attachEvent";
+        const eventer = window[eventMethod];
+        const messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+        const windowHeight = window.innerHeight;
+
+        eventer(
+          messageEvent,
+          function (e) {
+            const el = document.getElementById(e.data.id);
+
+            if (el && e.data.height < windowHeight) {
+              el.classList.add("has-fixedHeight");
+              el.style.height = `${e.data.height}px`;
+            }
+          },
+          false
+        );
+      </script>
+    {{/if}}
   {{/content}}
 {{/extend}}

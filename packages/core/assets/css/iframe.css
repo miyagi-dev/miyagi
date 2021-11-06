@@ -260,11 +260,27 @@ body {
   margin-bottom: calc(2 * var(--Miyagi-spacing));
 }
 
+.MiyagiComponent .MiyagiComponent-iframeWrapper {
+  height: calc(100vh - 2.5 * var(--Miyagi-spacing));
+  width: 100%;
+}
+
+.MiyagiComponent .MiyagiComponent-iframeWrapper:not(.has-fixedHeight) {
+  outline: 1px solid var(--Miyagi-color-Iframe-outline);
+  resize: both;
+}
+
+.MiyagiComponent .MiyagiComponent-iframe {
+  height: 100%;
+  width: 100%;
+}
+
 .MiyagiComponent .MiyagiComponent-head {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 10px;
+  padding: 0 0 20px;
 }
 
 .MiyagiComponent .MiyagiComponent-headMeta {
@@ -350,10 +366,6 @@ body {
 
 .MiyagiComponent .MiyagiComponent-fileFolders {
   color: var(--Miyagi-color-TextTertiary);
-}
-
-.MiyagiComponent .MiyagiComponent-html {
-  margin: calc(var(--Miyagi-spacing) / 2) 0 0;
 }
 
 .MiyagiComponentView {
