@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/mgrsskls/miyagi/compare/core/v2.7.1...core/v2.8.0) (2021-11-07)
+
+
+### Features
+
+* **core:** automatically apply updated configuration, no need to restart miyagi anymore ([00d5c1b](https://github.com/mgrsskls/miyagi/commit/00d5c1bb2e308f3e89acda9552b4846f47d402c1))
+* **core:** implement option render variants in component view in iframe ([8397445](https://github.com/mgrsskls/miyagi/commit/83974457b0168a8e9210aa3937ecac7297016917))
+* **core:** use details element instead of tabs for rendering file contents in component view ([38e2fc7](https://github.com/mgrsskls/miyagi/commit/38e2fc79ded18e656ee41af382d408937bbd45c2))
+
+
+### Bug Fixes
+
+* **core:** Updated wording "Variations" to "Variants" ([db49c27](https://github.com/mgrsskls/miyagi/commit/db49c27a1329e0c9815c91f6d2d6662d9d738485))
+
 ### [2.7.1](https://github.com/mgrsskls/miyagi/compare/core/v2.7.0...core/v2.7.1) (2021-11-03)
 
 
