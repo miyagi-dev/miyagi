@@ -146,7 +146,7 @@ _miyagi_ ignores these folders and files when looking for your components.
 
 When setting a value, it is added to the default value and does not overwrite it.
 
-## `renderInIframe`
+### `renderInIframe`
 
 default: `{ default: false, except: [] }`<br>
 type: `object`
