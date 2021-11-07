@@ -47,6 +47,7 @@ describe("index", () => {
             components: {
               folder: "src",
             },
+            userFileName: ".miyagi.js",
           });
 
           expect(init).toHaveBeenCalledWith(conf);

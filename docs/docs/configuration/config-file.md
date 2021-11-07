@@ -66,4 +66,4 @@ This is an example for a JSON config file:
 }
 ```
 
-_**NOTE:** Only `engine.name` and `files.templates.extension` are required. All other options are optional._
+_**NOTE:** None of these options is required, miyagi can also run with its default configuration. However, if you start miyagi with a valid configuration file, you can update it and miyagi will automatically apply the new configuration. It is not necessary to restart miyagi._

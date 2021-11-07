@@ -7,16 +7,23 @@ const log = require("./logger.js");
 
 module.exports = function getConfig(args, isBuild, isComponentGenerator) {
   let userFile = {};
+  let userFileName = ".miyagi.js";
 
   try {
-    userFile = require(path.resolve(process.cwd(), ".miyagi"));
-  } catch (err) {
-    log("error", err);
-    log("warn", messages.userConfigUnparseable);
+    userFile = require(path.resolve(process.cwd(), userFileName));
+  } catch (e) {
+    try {
+      userFileName = ".miyagi.json";
+      userFile = require(path.resolve(process.cwd(), userFileName));
+    } catch (err) {
+      userFileName = null;
+      log("warn", messages.userConfigUnparseable);
+    }
   }
 
   let userConfig = args ? deepMerge(userFile, getCliArgs(args)) : userFile;
 
+  userConfig.userFileName = userFileName;
   userConfig.isBuild = isBuild;
   userConfig.isComponentGenerator = isComponentGenerator;
 

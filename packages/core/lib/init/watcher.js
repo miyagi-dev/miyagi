@@ -4,15 +4,22 @@
  * @module initWatcher
  */
 
+const fs = require("fs");
 const path = require("path");
 const chokidar = require("chokidar");
 const socketIo = require("socket.io");
+const getConfig = require("../config");
+const yargs = require("./args.js");
 const setState = require("../state");
 const { readFile } = require("../state/file-contents.js");
 const helpers = require("../helpers.js");
-const setPartials = require("./partials.js");
 const log = require("../logger.js");
 const { messages } = require("../config.json");
+const setEngines = require("./engines.js");
+const setPartials = require("./partials.js");
+const setStatic = require("./static.js");
+const setViewHelpers = require("./view-helpers.js");
+const setViews = require("./views.js");
 
 let triggeredEvents = [];
 let foldersToWatch;
@@ -290,6 +297,14 @@ module.exports = function Watcher(server, app) {
     }
   }
 
+  if (app.get("config").userFileName) {
+    fs.watch(app.get("config").userFileName, async (eventType) => {
+      if (eventType === "change") {
+        configurationFileUpdated(app);
+      }
+    });
+  }
+
   chokidar
     .watch(foldersToWatch, {
       ignoreInitial: true,
@@ -308,3 +323,30 @@ module.exports = function Watcher(server, app) {
       }
     });
 };
+
+async function configurationFileUpdated(app) {
+  log("info", messages.updatingConfiguration);
+  delete require.cache[require.resolve(path.resolve(process.cwd(), ".miyagi"))];
+
+  const config = await helpers.updateConfigForRendererIfNecessary(
+    getConfig(yargs.argv)
+  );
+  if (config) {
+    app.set("config", config);
+    await setEngines(app);
+    await setState(app, {
+      sourceTree: true,
+      menu: true,
+      partials: true,
+      fileContents: true,
+      css: true,
+    });
+    setStatic(app);
+    setViews(app);
+    setViewHelpers(app);
+    await setPartials.registerAll(app);
+
+    log("success", `${messages.updatingConfigurationDone}\n`);
+    ioInstance.emit("fileChanged", true);
+  }
+}
