@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.2](https://github.com/mgrsskls/miyagi/compare/core/v2.8.1...core/v2.8.2) (2021-11-09)
+
+
+### Bug Fixes
+
+* **core:** fix minor visual issue with file content on component view ([121408c](https://github.com/mgrsskls/miyagi/commit/121408c432f27d56d44c6f68b949ea827a662096))
+
 ### [2.8.1](https://github.com/mgrsskls/miyagi/compare/core/v2.8.0...core/v2.8.1) (2021-11-09)
 
 
