@@ -4,9 +4,8 @@ const jsonToYaml = require("json-to-pretty-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
-const { getComponentData } = require("../../../mocks");
+const { getVariationData, getComponentData } = require("../../../mocks");
 const {
-  extendTemplateData,
   getComponentErrorHtml,
   getDataForRenderFunction,
 } = require("../../helpers");
@@ -120,9 +119,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
       templateFilePath: hasTemplate ? templateFilePath : null,
     });
   } else {
-    const componentData = hasTemplate
-      ? await extendTemplateData(app.get("config"), {}, file)
-      : {};
+    const componentData = hasTemplate ? await getVariationData(app, file) : {};
 
     await renderVariations({
       app,
