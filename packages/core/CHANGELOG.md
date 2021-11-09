@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.8.1](https://github.com/mgrsskls/miyagi/compare/core/v2.8.0...core/v2.8.1) (2021-11-09)
+
+
+### Bug Fixes
+
+* **core:** fix missing global data in a variation if not specific mock data is defined ([894376a](https://github.com/mgrsskls/miyagi/commit/894376a2937bf6613fafb81bd46aafaca3f5ef83))
+
 ## [2.8.0](https://github.com/mgrsskls/miyagi/compare/core/v2.7.1...core/v2.8.0) (2021-11-07)
 
 
