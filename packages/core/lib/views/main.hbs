@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="MiyagiTheme--{{theme.mode}}">
+<html lang="en" class="MiyagiTheme--{{theme.mode}}" dir="{{uiTextDirection}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
@@ -9,7 +9,7 @@
       {{/if}}{{#if miyagiProd}}defer{{/if}}></script>
     <link rel="stylesheet" href="{{projectName}}/css/main.css">
     <style>
-      :root {
+      html {
         {{#if theme.navigation}}
           {{#if theme.navigation.colorText}}--Miyagi-color-Text: {{theme.navigation.colorText}};{{/if}}
           {{#if theme.navigation.colorBackground}}--Miyagi-color-Background: {{theme.navigation.colorBackground}};{{/if}}

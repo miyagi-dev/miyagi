@@ -1,4 +1,4 @@
-:root {
+html {
   --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
     "Helvetica", "Arial", sans-serif;
   --Miyagi-color-Negative: #d9173e;
@@ -26,8 +26,6 @@
   --Miyagi-toggle-height: 1em;
   --Miyagi-toggle-transition: transform 0.15s ease;
   --Miyagi-toggle-width: 1em;
-  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
-  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
 
   /* specific */
   --Miyagi-color-NewTabLink: var(--Miyagi-color-Link);
@@ -39,6 +37,16 @@
   --Miyagi-color-Iframe-outline: var(--Miyagi-color-Outline);
   --Miyagi-transition: all 0.15s ease;
   --Miyagi-spacing: 40px;
+}
+
+html[dir="ltr"] {
+  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
+  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
+}
+
+html[dir="rtl"] {
+  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(-135deg);
+  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(-225deg);
 }
 
 .MiyagiTheme--dark {

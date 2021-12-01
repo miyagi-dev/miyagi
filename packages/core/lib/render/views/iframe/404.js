@@ -25,7 +25,8 @@ module.exports = async function renderIframe404({
       accessibilityValidation: false,
       isBuild: app.get("config").isBuild,
       theme: app.get("config").ui.theme,
-      textDirection: app.get("config").components.textDirection,
+      componentTextDirection: app.get("config").components.textDirection,
+      uiTextDirection: app.get("config").ui.textDirection,
     }
   );
 };

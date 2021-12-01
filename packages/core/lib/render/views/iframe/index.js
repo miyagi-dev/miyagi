@@ -190,6 +190,7 @@ module.exports = function renderIframeIndex({ app, res, cb }) {
         spacings: spacings.length > 0 ? spacings : null,
         mediaQueries,
         additionalCssFiles,
+        uiTextDirection: app.get("config").ui.textDirection,
       },
       (err, html) => {
         if (res.send) {

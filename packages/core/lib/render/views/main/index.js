@@ -40,6 +40,7 @@ module.exports = function renderMainIndex({
         : "/",
       buildDate,
       formattedBuildDate,
+      uiTextDirection: app.get("config").ui.textDirection,
     },
     (err, html) => {
       if (res.send) {

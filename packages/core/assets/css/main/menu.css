@@ -1,6 +1,7 @@
 .Menu {
   font-size: 1.4rem;
-  margin: var(--Miyagi-spacing-y) 0 0 1.5rem;
+  margin: var(--Miyagi-spacing-y) 0 0;
+  margin-inline-start: 1.5rem;
 }
 
 [aria-expanded="true"] ~ .Menu-listContainer {
@@ -76,10 +77,17 @@
   font-size: 1.5em;
   height: 1em;
   position: absolute;
-  right: calc(100% - var(--right));
   text-indent: -9999em;
   top: 0;
   width: 1em;
+}
+
+[dir="ltr"] .Menu-toggle {
+  right: calc(100% - var(--inline-end));
+}
+
+[dir="rtl"] .Menu-toggle {
+  left: calc(100% - var(--inline-end));
 }
 
 .Menu-toggle::after {
@@ -89,11 +97,18 @@
   display: block;
   font-size: var(--Miyagi-toggle-fontSize);
   height: var(--Miyagi-toggle-height);
-  left: 50%;
   position: absolute;
   top: 50%;
   transition: var(--Miyagi-toggle-transition);
   width: var(--Miyagi-toggle-width);
+}
+
+[dir="ltr"] .Menu-toggle::after {
+  left: 50%;
+}
+
+[dir="rtl"] .Menu-toggle::after {
+  right: 50%;
 }
 
 .Menu-toggle[aria-expanded="false"]::after {
@@ -108,8 +123,7 @@
   .Menu {
     order: 1;
     flex: 0 0 100%;
-    padding-left: var(--Miyagi-spacing-x);
-    padding-right: var(--Miyagi-spacing-x);
+    padding-inline: var(--Miyagi-spacing-x);
   }
 }
 
@@ -122,11 +136,10 @@
 @media (pointer: coarse) {
   .Menu-list {
     --spacingTop: 1.25rem;
-    --spacingLeft: 1.5rem;
   }
 
   .Menu-listContainer {
-    margin-left: 2rem;
+    margin-inline-start: 2rem;
   }
 
   .Menu-listItem:not(.Menu-listItem--lvl0):not(:last-child) {
@@ -134,26 +147,25 @@
   }
 
   .Menu-toggle {
-    --right: -0.75rem;
+    --inline-end: -0.75rem;
   }
 
   .Menu-toggle--lvl0 {
-    --right: 0.25em !important;
+    --inline-end: 0.25em !important;
   }
 
   .Menu-component--lvl0 {
-    margin-left: 1rem;
+    margin-inline-start: 1rem;
   }
 }
 
 @media (pointer: fine) {
   .Menu-list {
     --spacingTop: 0.5rem;
-    --spacingLeft: 1rem;
   }
 
   .Menu-listContainer {
-    margin-left: 1.5rem;
+    margin-inline-start: 1.5rem;
   }
 
   .Menu-listItem:not(.Menu-listItem--lvl0):not(:last-child) {
@@ -161,6 +173,6 @@
   }
 
   .Menu-toggle {
-    --right: 0rem; /* stylelint-disable-line */
+    --inline-end: 0rem; /* stylelint-disable-line */
   }
 }

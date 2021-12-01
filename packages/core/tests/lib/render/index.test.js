@@ -186,6 +186,7 @@ describe("lib/render/index", () => {
         miyagiProd: true,
         isBuild: undefined,
         basePath: "/",
+        uiTextDirection: "ltr",
       });
     });
   });
@@ -220,6 +221,7 @@ describe("lib/render/index", () => {
           miyagiProd: true,
           isBuild: undefined,
           basePath: "/",
+          uiTextDirection: "ltr",
         });
       });
     });
@@ -250,6 +252,7 @@ describe("lib/render/index", () => {
           miyagiProd: true,
           isBuild: undefined,
           basePath: "/",
+          uiTextDirection: "ltr",
         });
       });
     });
@@ -286,6 +289,7 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           indexPath: "/component?file=all&embedded=true",
           basePath: "/",
+          uiTextDirection: "ltr",
         });
       });
     });
@@ -317,6 +321,7 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           indexPath: "/component?file=all&embedded=true",
           basePath: "/",
+          uiTextDirection: "ltr",
         });
       });
     });
@@ -360,7 +365,8 @@ describe("lib/render/index", () => {
           },
           variation: undefined,
           normalizedVariation: "",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -402,7 +408,8 @@ describe("lib/render/index", () => {
           },
           variation: "variation1",
           normalizedVariation: "variation1",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -442,7 +449,8 @@ describe("lib/render/index", () => {
           },
           variation: undefined,
           normalizedVariation: "",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -481,7 +489,8 @@ describe("lib/render/index", () => {
           },
           variation: "variation1",
           normalizedVariation: "variation1",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -520,7 +529,8 @@ describe("lib/render/index", () => {
           },
           variation: "component5",
           normalizedVariation: "component5",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -566,7 +576,8 @@ describe("lib/render/index", () => {
           },
           variation: "component1",
           normalizedVariation: "component1",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -607,7 +618,8 @@ describe("lib/render/index", () => {
           },
           variation: undefined,
           normalizedVariation: "",
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -711,7 +723,8 @@ describe("lib/render/index", () => {
           theme: { mode: "light" },
           schemaError: null,
           template: null,
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
           renderInIframe: false,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -814,7 +827,8 @@ describe("lib/render/index", () => {
             theme: { mode: "light" },
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -898,7 +912,8 @@ describe("lib/render/index", () => {
             name: "component3",
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -959,7 +974,8 @@ describe("lib/render/index", () => {
             name: "component6",
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -1020,7 +1036,8 @@ describe("lib/render/index", () => {
             name: "component7",
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
         });
@@ -1100,7 +1117,8 @@ describe("lib/render/index", () => {
             },
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
         });
@@ -1159,7 +1177,8 @@ describe("lib/render/index", () => {
             ],
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
         });
@@ -1216,7 +1235,8 @@ describe("lib/render/index", () => {
             ],
             schemaError: null,
             template: null,
-            textDirection: "ltr",
+            uiTextDirection: "ltr",
+            componentTextDirection: "ltr",
             renderInIframe: false,
           });
         });
@@ -1265,7 +1285,8 @@ describe("lib/render/index", () => {
           name: "component4",
           schemaError: null,
           template: null,
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
           renderInIframe: false,
         });
       });
@@ -1300,6 +1321,7 @@ describe("lib/render/index", () => {
             fonts: null,
             mediaQueries: [],
             spacings: null,
+            uiTextDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1380,6 +1402,7 @@ describe("lib/render/index", () => {
             fonts: null,
             mediaQueries: [],
             spacings: null,
+            uiTextDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1412,6 +1435,7 @@ describe("lib/render/index", () => {
             fonts: null,
             mediaQueries: [],
             spacings: null,
+            uiTextDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1491,6 +1515,7 @@ describe("lib/render/index", () => {
             fonts: null,
             mediaQueries: [],
             spacings: null,
+            uiTextDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1523,6 +1548,7 @@ describe("lib/render/index", () => {
             fonts: null,
             mediaQueries: [],
             spacings: null,
+            uiTextDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1602,6 +1628,7 @@ describe("lib/render/index", () => {
             fonts: null,
             mediaQueries: [],
             spacings: null,
+            uiTextDirection: "ltr",
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1634,7 +1661,8 @@ describe("lib/render/index", () => {
           htmlValidation: false,
           accessibilityValidation: false,
           isBuild: undefined,
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -1661,7 +1689,8 @@ describe("lib/render/index", () => {
           htmlValidation: false,
           accessibilityValidation: false,
           isBuild: undefined,
-          textDirection: "ltr",
+          uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });

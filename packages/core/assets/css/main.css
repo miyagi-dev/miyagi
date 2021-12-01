@@ -38,11 +38,11 @@ body {
 
 .Tests {
   grid-area: tests;
-  padding-right: 4rem;
+  padding-inline-end: 4rem;
 }
 
 @media (max-width: 40em) {
-  :root {
+  html {
     --Miyagi-spacing-x: 1rem;
     --Miyagi-spacing-y: 1rem;
   }
@@ -60,7 +60,7 @@ body {
 }
 
 @media (min-width: 40.03125em) {
-  :root {
+  html {
     --Miyagi-spacing-x: 2rem;
     --Miyagi-spacing-y: 4rem;
   }
@@ -82,7 +82,7 @@ body {
 
   .Tests {
     max-height: 50vh;
-    padding-left: 4rem;
+    padding-inline-start: 4rem;
   }
 }
 

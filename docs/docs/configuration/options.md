@@ -306,6 +306,15 @@ type: `boolean`
 
 Defines if an overview of all your components should be rendered on the start page.
 
+### `textDirection`
+
+default: `"ltr"`<br>
+type: `string`
+
+Defines the text direction (`dir` attribute on the `html` tag) of the _miyagi_ UI.
+
+_**NOTE:** This does not set the text direction for the components. If you want to change that as well, please have a look at [`components.textDirection`](#textdirection)._
+
 ### `theme`
 
 default:

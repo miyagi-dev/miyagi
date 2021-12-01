@@ -5,7 +5,7 @@
 .Results-summary {
   cursor: default;
   list-style-type: none;
-  padding: 0 0 0 1.5rem;
+  padding-inline-start: 1.5rem;
   position: relative;
   white-space: nowrap;
 }
@@ -18,11 +18,18 @@
   display: block;
   font-size: var(--Miyagi-toggle-fontSize);
   height: var(--Miyagi-toggle-height);
-  left: 0.25rem;
   position: absolute;
   top: 50%;
   transition: var(--Miyagi-toggle-transition);
   width: var(--Miyagi-toggle-width);
+}
+
+[dir="ltr"] .Results-summary::after {
+  left: 0.25rem;
+}
+
+[dir="rtl"] .Results-summary::after {
+  right: 0.25rem;
 }
 
 .Results-summary::-webkit-details-marker {
@@ -38,7 +45,7 @@
 }
 
 .Results-value:not(:last-child) {
-  padding-right: 1rem;
+  padding-inline-end: 1rem;
 }
 
 .Results-value.has-positiveValue {
@@ -84,7 +91,7 @@
 }
 
 .Results-details {
-  margin: 1rem 0 1rem 0;
+  margin: 1rem 0;
 }
 
 .Results-empty {

@@ -17,7 +17,7 @@
 }
 
 .MiyagiContent .MiyagiColors--all .MiyagiColors-button::before {
-  margin-right: 10px;
+  margin-inline-end: 10px;
   width: var(--size);
 }
 

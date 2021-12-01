@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="MiyagiTheme--{{theme.mode}}">
+<html lang="en" class="MiyagiTheme--{{theme.mode}}" dir="{{uiTextDirection}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
@@ -22,7 +22,7 @@
     <link rel="prefetch" href="{{projectName}}/js/axe.min.js">
     {{/if}}
     <style>
-      :root {
+      html {
         {{#if theme.fontFamily}}--Miyagi-fontFamily: {{ theme.fontFamily }};{{/if}}
         {{#if theme.content.colorBackground}}--Miyagi-colorBackground: {{ theme.content.colorBackground }};{{/if}}
         {{#if theme.content.colorText}}--Miyagi-color: {{ theme.content.colorText }};{{/if}}

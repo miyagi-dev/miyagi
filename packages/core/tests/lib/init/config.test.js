@@ -509,6 +509,7 @@ describe("lib/init/config", () => {
             accessibility: true,
           },
           reload: true,
+          textDirection: "ltr",
           theme: {
             mode: "light",
           },

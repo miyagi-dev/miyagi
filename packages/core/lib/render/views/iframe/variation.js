@@ -124,7 +124,9 @@ module.exports = async function renderIframeVariation({
               normalizedVariation: helpers.normalizeString(variation),
               mockValidation,
               mocks: fileContents.mocks,
-              textDirection: app.get("config").components.textDirection,
+              componentTextDirection:
+                app.get("config").components.textDirection,
+              uiTextDirection: app.get("config").ui.textDirection,
             },
             (err, html) => {
               if (res.send) {

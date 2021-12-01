@@ -83,7 +83,8 @@
       "validations": {
         "html": true,
         "accessibility": true
-      }
+      },
+      "textDirection": "ltr"
     },
     "schema": {}
   },

@@ -10,6 +10,7 @@
 .Nav-projectLogo {
   max-width: 100%;
   min-width: 50%;
+  vertical-align: middle;
 }
 
 .Nav-projectLogo + .Nav-projectName {
@@ -27,13 +28,12 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline: 0;
   }
 
   .Nav-title {
     max-width: 50%;
-    padding-left: var(--Miyagi-spacing-x);
+    padding-inline-start: var(--Miyagi-spacing-x);
   }
 
   .Nav-projectLogo {
@@ -63,11 +63,18 @@
     display: block;
     font-size: 0.75em;
     height: var(--Miyagi-toggle-height);
-    left: 50%;
     position: absolute;
     top: 50%;
     transition: var(--Miyagi-toggle-transition);
     width: var(--Miyagi-toggle-width);
+  }
+
+  [dir="ltr"] .Nav-toggleMobileMenu::after {
+    left: 50%;
+  }
+
+  [dir="rtl"] .Nav-toggleMobileMenu::after {
+    right: 50%;
   }
 
   .Nav-toggleMobileMenu[aria-expanded="false"]::after {

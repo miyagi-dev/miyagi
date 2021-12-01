@@ -36,5 +36,6 @@ module.exports = async function renderMain404({ app, res, file, variation }) {
     basePath: app.get("config").isBuild
       ? app.get("config").build.basePath
       : "/",
+    uiTextDirection: app.get("config").ui.textDirection,
   });
 };
