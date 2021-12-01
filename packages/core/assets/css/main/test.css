@@ -1,16 +1,9 @@
-.MiyagiTest {
+.Test {
   font-size: 1.4rem;
-}
-
-.MiyagiTest:not(:first-child) {
-  margin-top: var(--Miyagi-spacing-y);
-}
-
-.MiyagiTest:last-child {
   margin-bottom: var(--Miyagi-spacing-y);
 }
 
-.MiyagiTest-title {
+.Test-title {
   color: var(--Miyagi-colorHeadlines);
   display: block;
   font-weight: bold;

@@ -54,7 +54,7 @@ describe("lib/menu/elements/directory", () => {
       directory
         .render(app, directoryObject, request)
         .indexOf(
-          '<span class="Miyagi-component Miyagi-component--lvl2">name</span>'
+          '<span class="Menu-component Menu-component--lvl2">name</span>'
         )
     ).toBeGreaterThanOrEqual(0);
   });

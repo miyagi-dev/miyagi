@@ -19,9 +19,7 @@ function escapeHtml(str) {
  * @param {HTMLElement} container - element in which to look for toggle elements
  */
 function addToggleClickListener(container) {
-  const summaries = Array.from(
-    container.querySelectorAll(".MiyagiResults-summary")
-  );
+  const summaries = Array.from(container.querySelectorAll(".Results-summary"));
 
   summaries.forEach((summary) => {
     summary.addEventListener("click", (e) => {
@@ -44,7 +42,7 @@ function addToggleClickListener(container) {
  * @returns {string} - the result item html
  */
 function getHtmlForResultItem(label, result, impactClass = "") {
-  return `<div class="MiyagiResult-wrapper"><dt class="MiyagiResult-attr">${label}</dt> <dd class="MiyagiResult-value ${impactClass}">${result}</dd></div>`;
+  return `<div class="Result-wrapper"><dt class="Result-attr">${label}</dt> <dd class="Result-value ${impactClass}">${result}</dd></div>`;
 }
 
 /**
@@ -62,7 +60,7 @@ function a11yTest(container) {
 
     states.forEach((state) => {
       const resultElement = container.querySelector(
-        `.MiyagiResults--${state} .MiyagiResults-value`
+        `.Results--${state} .Results-value`
       );
       let html = "";
 
@@ -78,8 +76,8 @@ function a11yTest(container) {
       if (results[state].length) {
         html += "<ul>";
         results[state].forEach((result) => {
-          html += '<li class="MiyagiResult">';
-          html += '<dl class="MiyagiResult-data">';
+          html += '<li class="Result">';
+          html += '<dl class="Result-data">';
 
           if (result.description) {
             html += getHtmlForResultItem(
@@ -104,10 +102,10 @@ function a11yTest(container) {
 
             switch (result.impact) {
               case "serious":
-                impactClass = "MiyagiResults-value--negative";
+                impactClass = "Results-value--negative";
                 break;
               case "moderate":
-                impactClass = "MiyagiResults-value--warning";
+                impactClass = "Results-value--warning";
             }
 
             html += getHtmlForResultItem("Impact", result.impact, impactClass);
@@ -118,12 +116,11 @@ function a11yTest(container) {
         });
         html += "</ul>";
       } else {
-        html += '<p><i class="MiyagiResults-empty">Nothing to report.</i></p>';
+        html += '<p><i class="Results-empty">Nothing to report.</i></p>';
       }
 
-      container.querySelector(
-        `.MiyagiResults--${state} .MiyagiResults-details`
-      ).innerHTML = html;
+      container.querySelector(`.Results--${state} .Results-details`).innerHTML =
+        html;
     });
 
     container.removeAttribute("hidden");
@@ -159,7 +156,7 @@ function htmlTest(container) {
                 );
 
                 const resultElement = container.querySelector(
-                  `.MiyagiResults--${state} .MiyagiResults-value`
+                  `.Results--${state} .Results-value`
                 );
                 let html = "";
 
@@ -170,8 +167,8 @@ function htmlTest(container) {
 
                   html += "<ul>";
                   results.forEach((result) => {
-                    html += '<li class="MiyagiResult">';
-                    html += '<dl class="MiyagiResult-data">';
+                    html += '<li class="Result">';
+                    html += '<dl class="Result-data">';
 
                     if (result.message) {
                       html += getHtmlForResultItem("Message", result.message);
@@ -193,7 +190,7 @@ function htmlTest(container) {
 
                       html += getHtmlForResultItem(
                         "Extract",
-                        `<code class="MiyagiResult-extract">${markedExtract.replace(
+                        `<code class="Result-extract">${markedExtract.replace(
                           /\n/g,
                           "↩"
                         )}</code>`
@@ -218,11 +215,11 @@ function htmlTest(container) {
                 } else {
                   resultElement.classList.remove("has-positiveValue");
                   html +=
-                    '<p><i class="MiyagiResults-empty">Nothing to report.</i></p>';
+                    '<p><i class="Results-empty">Nothing to report.</i></p>';
                 }
 
                 container.querySelector(
-                  `.MiyagiResults--${state} .MiyagiResults-details`
+                  `.Results--${state} .Results-details`
                 ).innerHTML = html;
               });
 
@@ -241,8 +238,8 @@ function htmlTest(container) {
 
 export default (tests) => {
   if (document.getElementById("MiyagiComponent")) {
-    const a11yContainer = parent.document.querySelector(".MiyagiTest--a11y");
-    const htmlContainer = parent.document.querySelector(".MiyagiTest--html");
+    const a11yContainer = parent.document.querySelector(".Test--a11y");
+    const htmlContainer = parent.document.querySelector(".Test--html");
 
     if (a11yContainer) {
       if (window.validations.accessibility) {

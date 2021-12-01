@@ -1,16 +1,18 @@
 class Main {
   constructor() {
     this.classes = {
-      list: "Miyagi-list",
-      listContainer: "Miyagi-listContainer",
-      listItem: "Miyagi-listItem",
-      content: "Miyagi-content",
-      iframe: "Miyagi-frame",
-      frameWrapper: "Miyagi-frameWrapper",
-      toggleComponent: "Miyagi-toggle",
-      toggleMenu: "Miyagi-toggleMobileMenu",
-      link: "Miyagi-link",
-      directory: "Miyagi-component",
+      content: "Content",
+      iframe: "Frame",
+      frameWrapper: "FrameWrapper",
+      toggleMenu: "Nav-toggleMobileMenu",
+      menu: {
+        directory: "Menu-component",
+        link: "Menu-link",
+        list: "Menu-list",
+        listContainer: "Menu-listContainer",
+        listItem: "Menu-listItem",
+        toggleComponent: "Menu-toggle",
+      },
     };
 
     this.elements = {
@@ -18,14 +20,16 @@ class Main {
       frameWrapper: document.querySelector(`.${this.classes.frameWrapper}`),
       iframe: document.querySelector(`.${this.classes.iframe}`),
       toggleMenu: document.querySelector(`.${this.classes.toggleMenu}`),
-      links: Array.from(document.querySelectorAll(`.${this.classes.link}`)),
+      links: Array.from(
+        document.querySelectorAll(`.${this.classes.menu.link}`)
+      ),
       directories: Array.from(
         document.querySelectorAll(
-          `.${this.classes.directory}:not(${this.classes.link})`
+          `.${this.classes.menu.directory}:not(${this.classes.menu.link})`
         )
       ),
       componentToggles: Array.from(
-        document.querySelectorAll(`.${this.classes.toggleComponent}`)
+        document.querySelectorAll(`.${this.classes.menu.toggleComponent}`)
       ),
     };
 
@@ -59,7 +63,9 @@ class Main {
   closeOtherOpenedComponents(target) {
     this.elements.componentToggles.forEach((toggle) => {
       if (toggle.getAttribute("aria-expanded") === "true") {
-        if (!toggle.closest(`.${this.classes.listItem}`).contains(target)) {
+        if (
+          !toggle.closest(`.${this.classes.menu.listItem}`).contains(target)
+        ) {
           toggle.setAttribute("aria-expanded", false);
         }
       }
@@ -76,7 +82,7 @@ class Main {
         toggle.setAttribute("aria-expanded", true);
 
         this.openParentComponent(
-          toggle.closest(`.${this.classes.listContainer}`)
+          toggle.closest(`.${this.classes.menu.listContainer}`)
         );
       }
     }
@@ -93,7 +99,7 @@ class Main {
       if (target) {
         const prevEl = target.previousElementSibling;
         var toggle =
-          prevEl && prevEl.classList.contains(this.classes.toggleComponent)
+          prevEl && prevEl.classList.contains(this.classes.menu.toggleComponent)
             ? prevEl
             : null;
       }
@@ -119,7 +125,9 @@ class Main {
   }
 
   openParentComponents(target) {
-    this.openParentComponent(target.closest(`.${this.classes.listContainer}`));
+    this.openParentComponent(
+      target.closest(`.${this.classes.menu.listContainer}`)
+    );
   }
 
   closeToggleMenu() {
@@ -156,7 +164,10 @@ class Main {
   onDirectoryClick(directory) {
     const toggle = directory.previousElementSibling;
 
-    if (toggle && toggle.classList.contains(this.classes.toggleComponent)) {
+    if (
+      toggle &&
+      toggle.classList.contains(this.classes.menu.toggleComponent)
+    ) {
       if (toggle.getAttribute("aria-expanded") === "true") {
         toggle.setAttribute("aria-expanded", false);
       } else {

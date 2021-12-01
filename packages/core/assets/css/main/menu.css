@@ -1,86 +1,77 @@
-.Miyagi-projectLogo {
-  max-width: 100%;
-  min-width: 50%;
-}
-
-.Miyagi-projectLogo + .Miyagi-projectName {
-  display: none;
-}
-
-.Miyagi-menu {
+.Menu {
   font-size: 1.4rem;
   margin: var(--Miyagi-spacing-y) 0 0 1.5rem;
 }
 
-[aria-expanded="true"] ~ .Miyagi-listContainer {
+[aria-expanded="true"] ~ .Menu-listContainer {
   display: block;
 }
 
-[aria-expanded="false"] ~ .Miyagi-listContainer {
+[aria-expanded="false"] ~ .Menu-listContainer {
   display: none;
 }
 
-.Miyagi-listItem {
+.Menu-listItem {
   position: relative;
 }
 
-.Miyagi-listItem--directory.Miyagi-listItem--lvl0 {
+.Menu-listItem--directory.Menu-listItem--lvl0 {
   padding-bottom: 1em;
 }
 
-.Miyagi-list--variations,
-.Miyagi-list--components:not(.Miyagi-list--lvl0) {
+.Menu-list--variations,
+.Menu-list--components:not(.Menu-list--lvl0) {
   padding-top: var(--spacingTop);
 }
 
-.Miyagi-list--variations + .Miyagi-list--components {
+.Menu-list--variations + .Menu-list--components {
   padding-bottom: 0.5rem;
   padding-top: 1rem;
 }
 
-.Miyagi-link,
-.Miyagi-component {
+.Menu-link,
+.Menu-component {
   display: block;
   padding: 0 var(--Miyagi-linkSpacing);
 }
 
-.Miyagi-component:not(.Miyagi-link) {
+.Menu-component:not(.Menu-link) {
   color: var(--Miyagi-color-Link);
   cursor: default;
 }
 
-.Miyagi-component:not(.Miyagi-link):last-child {
+.Menu-component:not(.Menu-link):last-child {
   opacity: 0.6;
 }
 
-.Miyagi-link {
+.Menu-link {
   color: var(--Miyagi-color-Link);
   text-decoration: none;
 }
 
-.Miyagi-link:hover,
-.Miyagi-link:focus {
+.Menu-link:hover,
+.Menu-link:focus {
   text-decoration: underline;
 }
 
-.Miyagi-link--showAll {
+.Menu-link--showAll {
   display: inline-block;
   font-size: 1.4rem;
   font-weight: 500;
 }
 
-.Miyagi-link:not(.has-logo)[aria-current] {
+.Menu-link:not(.has-logo)[aria-current] {
   background: var(--Miyagi-color-Link-active-background, --Miyagi-color-Link);
   border-radius: var(--Miyagi-borderRadius);
   color: var(--Miyagi-color-Link-active);
   display: inline-block;
 }
 
-.Miyagi-component.Miyagi-link {
+.Menu-component.Menu-link {
   font-weight: 600;
 }
 
-.Miyagi-toggle {
+.Menu-toggle {
   display: block;
   font-size: 1.5em;
   height: 1em;
@@ -91,7 +82,7 @@
   width: 1em;
 }
 
-.Miyagi-toggle::after {
+.Menu-toggle::after {
   border: var(--Miyagi-toggle-border);
   border-width: var(--Miyagi-toggle-borderWidth);
   content: "";
@@ -105,62 +96,71 @@
   width: var(--Miyagi-toggle-width);
 }
 
-.Miyagi-toggle[aria-expanded="false"]::after {
+.Menu-toggle[aria-expanded="false"]::after {
   transform: var(--Miyagi-toggle-transition-closed);
 }
 
-.Miyagi-toggle[aria-expanded="true"]::after {
+.Menu-toggle[aria-expanded="true"]::after {
   transform: var(--Miyagi-toggle-transition-opened);
 }
 
 @media (max-width: 40em) {
-  .Miyagi-projectLogo {
-    height: 3rem;
+  .Menu {
+    order: 1;
+    flex: 0 0 100%;
+    padding-left: var(--Miyagi-spacing-x);
+    padding-right: var(--Miyagi-spacing-x);
+  }
+}
+
+@media (min-width: 40.03125em) {
+  .Menu {
+    flex: 1;
   }
 }
 
 @media (pointer: coarse) {
-  .Miyagi-list {
+  .Menu-list {
     --spacingTop: 1.25rem;
     --spacingLeft: 1.5rem;
   }
 
-  .Miyagi-listContainer {
+  .Menu-listContainer {
     margin-left: 2rem;
   }
 
-  .Miyagi-listItem:not(.Miyagi-listItem--lvl0):not(:last-child) {
+  .Menu-listItem:not(.Menu-listItem--lvl0):not(:last-child) {
     padding-bottom: 1rem;
   }
 
-  .Miyagi-toggle {
+  .Menu-toggle {
     --right: -0.75rem;
   }
 
-  .Miyagi-toggle--lvl0 {
+  .Menu-toggle--lvl0 {
     --right: 0.25em !important;
   }
 
-  .Miyagi-component--lvl0 {
+  .Menu-component--lvl0 {
     margin-left: 1rem;
   }
 }
 
 @media (pointer: fine) {
-  .Miyagi-list {
+  .Menu-list {
     --spacingTop: 0.5rem;
     --spacingLeft: 1rem;
   }
 
-  .Miyagi-listContainer {
+  .Menu-listContainer {
     margin-left: 1.5rem;
   }
 
-  .Miyagi-listItem:not(.Miyagi-listItem--lvl0):not(:last-child) {
+  .Menu-listItem:not(.Menu-listItem--lvl0):not(:last-child) {
     padding-bottom: 0.5rem;
   }
 
-  .Miyagi-toggle {
+  .Menu-toggle {
     --right: 0rem; /* stylelint-disable-line */
   }
 }

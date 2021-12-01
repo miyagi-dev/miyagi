@@ -1,36 +1,36 @@
-.MiyagiResult:not(:first-child) {
+.Result:not(:first-child) {
   margin-top: 1.5rem;
 }
 
-.MiyagiResult-data {
+.Result-data {
   border-left: 0.2rem solid #ccc;
   padding: 0 0 0 1rem;
 }
 
-.MiyagiResult-attr,
-.MiyagiResult-value {
+.Result-attr,
+.Result-value {
   display: inline;
 }
 
-.MiyagiResult-attr {
+.Result-attr {
   font-weight: bold;
 }
 
-.MiyagiResult-attr::after {
+.Result-attr::after {
   content: ":";
   display: inline;
 }
 
-.MiyagiResult a {
+.Result a {
   color: currentColor;
   padding: 0 0.35rem;
   position: relative;
   word-break: break-all;
 }
 
-.MiyagiResult a:hover,
-.MiyagiResult a:focus,
-.MiyagiResult a:active {
+.Result a:hover,
+.Result a:focus,
+.Result a:active {
   background: var(--Miyagi-color-Link);
   border-radius: var(--Miyagi-borderRadius);
   box-shadow: 0 0.2rem 0 var(--Miyagi-color-Link);
@@ -38,7 +38,7 @@
   text-decoration: none;
 }
 
-.MiyagiResult-extract {
+.Result-extract {
   font-family: "Menlo", "Monaco", monospace;
   word-wrap: break-word;
 }

@@ -1,0 +1,91 @@
+.Nav {
+  display: flex;
+  background: var(--Miyagi-color-Background);
+  grid-area: nav;
+  overflow-y: auto;
+  padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x)
+    var(--Miyagi-spacing-x);
+}
+
+.Nav-projectLogo {
+  max-width: 100%;
+  min-width: 50%;
+}
+
+.Nav-projectLogo + .Nav-projectName {
+  display: none;
+}
+
+.Nav-buildDate {
+  font-size: 1.2rem;
+  color: var(--Miyagi-color-Link);
+  opacity: 0.75;
+}
+
+@media (max-width: 40em) {
+  .Nav {
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .Nav-title {
+    max-width: 50%;
+    padding-left: var(--Miyagi-spacing-x);
+  }
+
+  .Nav-projectLogo {
+    height: 3rem;
+  }
+
+  .Nav-toggleMobileMenu {
+    --size: 2rem;
+
+    box-sizing: content-box;
+    display: block;
+    height: var(--size);
+    padding: 1rem;
+    position: relative;
+    width: var(--size);
+    order: 1;
+  }
+
+  .Nav-toggleMobileMenu[aria-expanded="false"] + .Menu {
+    display: none;
+  }
+
+  .Nav-toggleMobileMenu::after {
+    border: var(--Miyagi-toggle-border);
+    border-width: var(--Miyagi-toggle-borderWidth);
+    content: "";
+    display: block;
+    font-size: 0.75em;
+    height: var(--Miyagi-toggle-height);
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transition: var(--Miyagi-toggle-transition);
+    width: var(--Miyagi-toggle-width);
+  }
+
+  .Nav-toggleMobileMenu[aria-expanded="false"]::after {
+    transform: var(--Miyagi-toggle-transition-closed);
+  }
+
+  .Nav-toggleMobileMenu[aria-expanded="true"]::after {
+    transform: var(--Miyagi-toggle-transition-opened);
+  }
+}
+
+@media (min-width: 40.03125em) {
+  .Nav {
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  .Nav-toggleMobileMenu {
+    display: none;
+  }
+}

@@ -24,49 +24,49 @@
       {{{theme.css}}}
     </style>
   </head>
-  <body class="Miyagi">
-    <nav class="Miyagi-nav">
-      <h1 class="Miyagi-title">
-        <a class="Miyagi-link Miyagi-link--showAll{{#if theme.logo}} has-logo{{/if}}" href="{{ indexPath }}"
+  <body>
+    <nav class="Nav">
+      <h1 class="Nav-title">
+        <a class="Menu-link Menu-link--showAll{{#if theme.logo}} has-logo{{/if}}" href="{{ indexPath }}"
           target="iframe" {{#if showAll }} aria-current="page" {{/if}}>
           {{#if theme.logo}}
-            <img class="Miyagi-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
+            <img class="Nav-projectLogo" src="{{ theme.logo }}" alt="{{ userProjectName }}">
           {{/if}}
-          <span class="Miyagi-projectName">Overview</span>
+          <span class="Nav-projectName">Overview</span>
         </a>
       </h1>
       {{#if folders}}
-        <button class="Miyagi-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
-        <div class="Miyagi-menu">
+        <button class="Nav-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
+        <div class="Menu">
           {{#menu folders requestedComponent requestedVariation null null }}{{/menu}}
         </div>
       {{/if}}
 
       {{#if buildDate}}
-        <p class="Miyagi-buildDate">Build at: <time datetime="{{buildDate}}">{{formattedBuildDate}}</time></p>
+        <p class="Nav-buildDate">Built at: <time datetime="{{buildDate}}">{{formattedBuildDate}}</time></p>
         <script>
-          const time = document.querySelector(".Miyagi-buildDate time");
+          const time = document.querySelector(".Nav-buildDate time");
           time.textContent = new Date(time.dateTime).toLocaleString();
         </script>
       {{/if}}
     </nav>
 
-    <main class="Miyagi-content">
-      <div class="Miyagi-frameWrapper">
-        <iframe class="Miyagi-frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
+    <main class="Content">
+      <div class="FrameWrapper">
+        <iframe class="Frame" id="iframe" src="{{iframeSrc}}" name="iframe" title="Components"></iframe>
       </div>
     </main>
 
-    <aside class="Miyagi-tests" {{#if hideTests}} hidden{{/if}}>
+    <aside class="Tests" {{#if hideTests}} hidden{{/if}}>
       {{#each tests}}
-        <div class="MiyagiTest MiyagiTest--{{this.alias}}" hidden>
-          <b class="MiyagiTest-title">{{this.title}}</b>
+        <div class="Test Test--{{this.alias}}" hidden>
+          <b class="Test-title">{{this.title}}</b>
           {{#each this.results}}
-            <details class="MiyagiResults MiyagiResults--{{this.alias}}">
-              <summary class="MiyagiResults-summary">
-                {{this.label}}: <span class="MiyagiResults-value MiyagiResults-value--{{this.class}}">0</span>
+            <details class="Results Results--{{this.alias}}">
+              <summary class="Results-summary">
+                {{this.label}}: <span class="Results-value Results-value--{{this.class}}">0</span>
               </summary>
-              <div class="MiyagiResults-details"></div>
+              <div class="Results-details"></div>
             </details>
           {{/each}}
         </div>

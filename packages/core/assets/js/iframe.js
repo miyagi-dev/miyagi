@@ -11,7 +11,7 @@ if (
 
 document.addEventListener("DOMContentLoaded", function () {
   const links = Array.from(document.querySelectorAll(".MiyagiComponent-file"));
-  const tests = parent.document.querySelector(".Miyagi-tests");
+  const tests = parent.document.querySelector(".Tests");
   const styleguide = document.querySelector(".MiyagiStyleguide");
 
   if (tests) {

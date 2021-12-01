@@ -1,8 +1,8 @@
 module.exports = {
-  toggle: "Miyagi-toggle",
-  component: "Miyagi-component",
-  link: "Miyagi-link",
-  list: "Miyagi-list",
-  listContainer: "Miyagi-listContainer",
-  listItem: "Miyagi-listItem",
+  toggle: "Menu-toggle",
+  component: "Menu-component",
+  link: "Menu-link",
+  list: "Menu-list",
+  listContainer: "Menu-listContainer",
+  listItem: "Menu-listItem",
 };

@@ -1,8 +1,8 @@
-.MiyagiResults + .MiyagiResults {
+.Results + .Results {
   margin-top: var(--results-spacing);
 }
 
-.MiyagiResults-summary {
+.Results-summary {
   cursor: default;
   list-style-type: none;
   padding: 0 0 0 1.5rem;
@@ -10,7 +10,7 @@
   white-space: nowrap;
 }
 
-.MiyagiResults-summary::after {
+.Results-summary::after {
   border: var(--Miyagi-toggle-border);
   border-color: currentColor;
   border-width: var(--Miyagi-toggle-borderWidth);
@@ -25,23 +25,23 @@
   width: var(--Miyagi-toggle-width);
 }
 
-.MiyagiResults-summary::-webkit-details-marker {
+.Results-summary::-webkit-details-marker {
   display: none;
 }
 
-.MiyagiResults:not([open]) .MiyagiResults-summary::after {
+.Results:not([open]) .Results-summary::after {
   transform: var(--Miyagi-toggle-transition-closed);
 }
 
-.MiyagiResults[open] .MiyagiResults-summary::after {
+.Results[open] .Results-summary::after {
   transform: var(--Miyagi-toggle-transition-opened);
 }
 
-.MiyagiResults-value:not(:last-child) {
+.Results-value:not(:last-child) {
   padding-right: 1rem;
 }
 
-.MiyagiResults-value.has-positiveValue {
+.Results-value.has-positiveValue {
   border-radius: 0.25em;
   color: #fff;
   display: inline-block;
@@ -51,54 +51,54 @@
   text-align: center;
 }
 
-.MiyagiResults-value--positive {
+.Results-value--positive {
   color: var(--Miyagi-color-Positive);
 }
 
-.MiyagiResults-value--positive.has-positiveValue {
+.Results-value--positive.has-positiveValue {
   background: var(--Miyagi-color-Positive);
 }
 
-.MiyagiResults-value--neutral {
+.Results-value--neutral {
   color: var(--Miyagi-color-Text);
 }
 
-.MiyagiResults-value--neutral.has-positiveValue {
+.Results-value--neutral.has-positiveValue {
   background: var(--Miyagi-color-Text);
 }
 
-.MiyagiResults-value--negative {
+.Results-value--negative {
   color: var(--Miyagi-color-Negative);
 }
 
-.MiyagiResults-value--negative.has-positiveValue {
+.Results-value--negative.has-positiveValue {
   background: var(--Miyagi-color-Negative);
 }
 
-.MiyagiResults-value--warning {
+.Results-value--warning {
   color: var(--Miyagi-color-Warning);
 }
 
-.MiyagiResults-value--warning.has-positiveValue {
+.Results-value--warning.has-positiveValue {
   background: var(--Miyagi-color-Warning);
 }
 
-.MiyagiResults-details {
+.Results-details {
   margin: 1rem 0 1rem 0;
 }
 
-.MiyagiResults-empty {
+.Results-empty {
   font-style: italic;
 }
 
 @media (pointer: coarse) {
-  .MiyagiResults + .MiyagiResults {
+  .Results + .Results {
     --results-spacing: 0.75rem;
   }
 }
 
 @media (pointer: fine) {
-  .MiyagiResults + .MiyagiResults {
+  .Results + .Results {
     --results-spacing: 0.5rem;
   }
 }
