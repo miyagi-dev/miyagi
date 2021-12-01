@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.6...twig-drupal/v0.1.7) (2021-12-01)
+
+
+### Bug Fixes
+
+* **twig-drupal:** fixes remaining args were not passed to twig-drupal-filters ([bf367a0](https://github.com/mgrsskls/miyagi/commit/bf367a0e796bdbf005ab47cbeb08e9830a89848f))
+
 ### [0.1.6](https://github.com/mgrsskls/miyagi/compare/twig-drupal/v0.1.5...twig-drupal/v0.1.6) (2021-06-06)
 
 
