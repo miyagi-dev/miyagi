@@ -63,7 +63,7 @@ module.exports = async function renderIframeVariation({
             validatedMocks[0] ? "valid" : "invalid"
           ],
         }
-      : {};
+      : null;
 
   const fileContents = {
     mocks: {
