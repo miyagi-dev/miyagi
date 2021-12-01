@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.9.0](https://github.com/mgrsskls/miyagi/compare/core/v2.8.2...core/v2.9.0) (2021-12-01)
+
+
+### Features
+
+* **core:** improved catching multiple possible errors and added proper messages to console ([a91b89f](https://github.com/mgrsskls/miyagi/commit/a91b89f26b0f91834db3e58fddebe9f1ec1ca794))
+
+
+### Bug Fixes
+
+* **core:** fix error "invalid mock data" in variation view when no schema has been defined ([893cc1b](https://github.com/mgrsskls/miyagi/commit/893cc1b6885ddc4bb09a50549a1080213dc36482))
+* **core:** fixes an error when mock data only includes default data which is hidden with $hidden: true ([aa7bbf7](https://github.com/mgrsskls/miyagi/commit/aa7bbf72331d4571d27f91fd842432f8b966c18e))
+
 ### [2.8.2](https://github.com/mgrsskls/miyagi/compare/core/v2.8.1...core/v2.8.2) (2021-11-09)
 
 
