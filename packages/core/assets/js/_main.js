@@ -90,11 +90,13 @@ class Main {
           .includes(query.replace(this.paths.container, this.paths.embedded))
       );
 
-      const prevEl = target.previousElementSibling;
-      var toggle =
-        prevEl && prevEl.classList.contains(this.classes.toggleComponent)
-          ? prevEl
-          : null;
+      if (target) {
+        const prevEl = target.previousElementSibling;
+        var toggle =
+          prevEl && prevEl.classList.contains(this.classes.toggleComponent)
+            ? prevEl
+            : null;
+      }
     }
 
     const current = this.elements.links.find((link) =>
@@ -105,7 +107,9 @@ class Main {
       current.removeAttribute("aria-current");
     }
 
-    target.setAttribute("aria-current", "page");
+    if (target) {
+      target.setAttribute("aria-current", "page");
+    }
 
     if (toggle) {
       toggle.setAttribute("aria-expanded", true);
@@ -137,8 +141,10 @@ class Main {
   onPageChanged({ detail: query }) {
     const target = this.setActiveStateInNav(query);
 
-    this.closeOtherOpenedComponents(target);
-    this.openParentComponents(target);
+    if (target) {
+      this.closeOtherOpenedComponents(target);
+      this.openParentComponents(target);
+    }
 
     history.pushState(null, query, this.convertPathToMainPath(query));
   }
@@ -176,8 +182,11 @@ class Main {
     const target = this.setActiveStateInNav(path);
 
     this.updateIframe(path);
-    this.closeOtherOpenedComponents(target);
-    this.openParentComponents(target);
+
+    if (target) {
+      this.closeOtherOpenedComponents(target);
+      this.openParentComponents(target);
+    }
   }
 
   // listeners

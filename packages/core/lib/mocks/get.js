@@ -108,6 +108,10 @@ module.exports = {
     let componentRootData = helpers.removeInternalKeys(componentJson);
     let componentData;
 
+    if ((!variation || variation === "default") && componentJson.$hidden) {
+      return null;
+    }
+
     if (componentVariations && variation) {
       let variationJson = componentVariations.find((vari) => {
         return (

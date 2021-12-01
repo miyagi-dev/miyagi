@@ -106,39 +106,34 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     }
   }
 
+  let context;
+
   if (componentJson.length > 0) {
-    await renderVariations({
-      app,
-      res,
-      file,
-      context: componentJson.filter((entry) => entry !== null),
-      componentDocumentation,
-      fileContents,
-      name: componentName,
-      cb,
-      templateFilePath: hasTemplate ? templateFilePath : null,
-    });
+    context = componentJson.filter((entry) => entry !== null);
   } else {
     const componentData = hasTemplate ? await getVariationData(app, file) : {};
+    context = [];
 
-    await renderVariations({
-      app,
-      res,
-      file,
-      context: [
-        {
-          component: file,
-          data: componentData,
-          name: config.defaultVariationName,
-        },
-      ],
-      componentDocumentation,
-      fileContents,
-      name: componentName,
-      cb,
-      templateFilePath: hasTemplate ? templateFilePath : null,
-    });
+    if (componentData) {
+      context.push({
+        component: file,
+        data: componentData,
+        name: config.defaultVariationName,
+      });
+    }
   }
+
+  await renderVariations({
+    app,
+    res,
+    file,
+    context,
+    componentDocumentation,
+    fileContents,
+    name: componentName,
+    cb,
+    templateFilePath: hasTemplate ? templateFilePath : null,
+  });
 };
 
 /**
@@ -171,6 +166,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
  * @param {string} object.name - component name
  * @param {Function} object.cb - callback function
  * @param {string} object.templateFilePath - the absolute component file path
+ * @returns {Promise}
  */
 async function renderVariations({
   app,
@@ -187,8 +183,12 @@ async function renderVariations({
   const promises = [];
   const validatedMocks = validateMocks(app, file, context);
   const baseName = path.dirname(file);
+  const renderInIframe = getRenderInIframe(
+    baseName,
+    app.get("config").components.renderInIframe
+  );
 
-  if (templateFilePath) {
+  if (templateFilePath && !renderInIframe) {
     for (let i = 0, len = context.length; i < len; i += 1) {
       const entry = context[i];
 
@@ -274,10 +274,7 @@ async function renderVariations({
         "iframe_component.hbs",
         {
           variations,
-          renderInIframe: getRenderInIframe(
-            baseName,
-            app.get("config").components.renderInIframe
-          ),
+          renderInIframe,
           dev: process.env.NODE_ENV === "development",
           prod: process.env.NODE_ENV === "production",
           a11yTestsPreload: ui.validations.accessibility,
