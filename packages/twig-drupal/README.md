@@ -11,6 +11,8 @@ This extension adds support for specific twig and Drupal functionality to [@miya
 
 [More about Drupal attributes](https://www.drupal.org/docs/8/theming-drupal-8/using-attributes-in-templates)
 
+To use Drupal attributes in your mock files, add `$drupal: true` to the object.
+
 ### twig
 
 **NOTE:** If you need to add additional filters, functions or tags, please refer to the [_miyagi_ documentation](https://docs.miyagi.dev/configuration/extending-template-engine/).
