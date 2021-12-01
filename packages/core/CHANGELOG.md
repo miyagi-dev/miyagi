@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.10.0](https://github.com/mgrsskls/miyagi/compare/core/v2.9.0...core/v2.10.0) (2021-12-01)
+
+
+### Features
+
+* **core:** added option components.lang which allows defining the language of your components (used for the html `lang` attribute) ([39d59ab](https://github.com/mgrsskls/miyagi/commit/39d59ab22ebd2f12beab7d555a39be0fb3940005))
+* **core:** added option ui.textDirection which allows right-to-left text direction of the miyagi UI ([3022880](https://github.com/mgrsskls/miyagi/commit/3022880ab2fe2d6f6626871c1122cc52e836a105))
+
 ## [2.9.0](https://github.com/mgrsskls/miyagi/compare/core/v2.8.2...core/v2.9.0) (2021-12-01)
 
 
