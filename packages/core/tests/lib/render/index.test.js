@@ -367,6 +367,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -410,6 +411,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "variation1",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -451,6 +453,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -491,6 +494,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "variation1",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -531,6 +535,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "component5",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -578,6 +583,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "component1",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -620,6 +626,7 @@ describe("lib/render/index", () => {
           normalizedVariation: "",
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -725,6 +732,7 @@ describe("lib/render/index", () => {
           template: null,
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
           renderInIframe: false,
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -829,6 +837,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -914,6 +923,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -976,6 +986,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -1038,6 +1049,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
         });
@@ -1119,6 +1131,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
         });
@@ -1179,6 +1192,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
         });
@@ -1237,6 +1251,7 @@ describe("lib/render/index", () => {
             template: null,
             uiTextDirection: "ltr",
             componentTextDirection: "ltr",
+            componentLanguage: "en",
             renderInIframe: false,
           });
         });
@@ -1287,6 +1302,7 @@ describe("lib/render/index", () => {
           template: null,
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
           renderInIframe: false,
         });
       });
@@ -1663,6 +1679,7 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });
@@ -1691,6 +1708,7 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
+          componentLanguage: "en",
         });
       });
     });

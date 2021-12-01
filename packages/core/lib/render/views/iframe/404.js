@@ -27,6 +27,7 @@ module.exports = async function renderIframe404({
       theme: app.get("config").ui.theme,
       componentTextDirection: app.get("config").components.textDirection,
       uiTextDirection: app.get("config").ui.textDirection,
+      componentLanguage: app.get("config").components.lang,
     }
   );
 };

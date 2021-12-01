@@ -300,6 +300,7 @@ async function renderVariations({
           name,
           componentTextDirection: app.get("config").components.textDirection,
           uiTextDirection: app.get("config").ui.textDirection,
+          componentLanguage: app.get("config").components.lang,
         },
         (err, html) => {
           if (res.send) {

@@ -23,6 +23,7 @@
     },
     "components": {
       "textDirection": "ltr",
+      "lang": "en",
       "folder": "src",
       "ignores": [
         "node_modules",
