@@ -44,13 +44,15 @@ module.exports = {
       const partials = {};
 
       getFilePaths(app, app.get("config").components.folder).then((paths) => {
-        for (const shortPath of paths) {
-          // ignore files that live directly in the srcFolder
-          if (shortPath !== path.basename(shortPath)) {
-            partials[shortPath] = path.join(
-              process.cwd(),
-              `${app.get("config").components.folder}/${shortPath}`
-            );
+        if (paths) {
+          for (const shortPath of paths) {
+            // ignore files that live directly in the srcFolder
+            if (shortPath !== path.basename(shortPath)) {
+              partials[shortPath] = path.join(
+                process.cwd(),
+                `${app.get("config").components.folder}/${shortPath}`
+              );
+            }
           }
         }
 

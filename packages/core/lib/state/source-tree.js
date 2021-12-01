@@ -42,7 +42,13 @@ function getSourceTree(app) {
   );
 
   if (!tree) {
-    log("warn", config.messages.srcFolderNotFound);
+    log(
+      "error",
+      config.messages.srcFolderNotFound.replace(
+        "{{directory}}",
+        app.get("config").components.folder
+      )
+    );
   }
 
   return tree || {};

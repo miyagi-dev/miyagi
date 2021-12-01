@@ -352,7 +352,7 @@ describe("lib/render/index", () => {
   "component": "component1"
 }`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -394,7 +394,7 @@ describe("lib/render/index", () => {
   "variation": 1
 }`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -434,7 +434,7 @@ describe("lib/render/index", () => {
   "component": "component2"
 }`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -473,7 +473,7 @@ describe("lib/render/index", () => {
           theme: { mode: "light" },
           mockData: `{}`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -512,7 +512,7 @@ describe("lib/render/index", () => {
           theme: { mode: "light" },
           mockData: `{}`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -558,7 +558,7 @@ describe("lib/render/index", () => {
   "component": "component1"
 }`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -599,7 +599,7 @@ describe("lib/render/index", () => {
   "component": "component1"
 }`,
           mockValidation: {
-            copy: "Data matches schema.",
+            copy: "Mock data matches schema.",
             valid: true,
           },
           mocks: {
@@ -641,7 +641,7 @@ describe("lib/render/index", () => {
   "component": "component1"
 }`,
               mockValidation: {
-                copy: "Data matches schema.",
+                copy: "Mock data matches schema.",
                 valid: true,
               },
             },
@@ -658,7 +658,7 @@ describe("lib/render/index", () => {
   "variation": 1
 }`,
               mockValidation: {
-                copy: "Data matches schema.",
+                copy: "Mock data matches schema.",
                 valid: true,
               },
             },
@@ -675,7 +675,7 @@ describe("lib/render/index", () => {
   "variation": 2
 }`,
               mockValidation: {
-                copy: "Data matches schema.",
+                copy: "Mock data matches schema.",
                 valid: true,
               },
             },
@@ -744,7 +744,7 @@ describe("lib/render/index", () => {
   "component": "component1"
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -761,7 +761,7 @@ describe("lib/render/index", () => {
   "variation": 1
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -778,7 +778,7 @@ describe("lib/render/index", () => {
   "variation": 2
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -847,7 +847,7 @@ describe("lib/render/index", () => {
   "variation": 1
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -863,7 +863,7 @@ describe("lib/render/index", () => {
   "variation": 2
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -929,7 +929,7 @@ describe("lib/render/index", () => {
                 url: "/component?file=component6&variation=variation1&embedded=true",
                 mockData: "{}",
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -989,7 +989,7 @@ describe("lib/render/index", () => {
                 url: "/component?file=component7&variation=foo&embedded=true",
                 mockData: "{}",
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -1051,7 +1051,7 @@ describe("lib/render/index", () => {
   "some": "data"
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -1067,7 +1067,7 @@ describe("lib/render/index", () => {
   "some": "data"
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -1152,7 +1152,7 @@ describe("lib/render/index", () => {
   "component": "component2"
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -1209,7 +1209,7 @@ describe("lib/render/index", () => {
   "component": "component2"
 }`,
                 mockValidation: {
-                  copy: "Data matches schema.",
+                  copy: "Mock data matches schema.",
                   valid: true,
                 },
               },
@@ -1254,7 +1254,7 @@ describe("lib/render/index", () => {
               normalizedVariation: "default",
               mockData: "{}",
               mockValidation: {
-                copy: "Data matches schema.",
+                copy: "Mock data matches schema.",
                 valid: true,
               },
             },

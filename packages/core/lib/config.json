@@ -160,19 +160,20 @@
     "nodeEnvAndKeysDontMatchAssetFolders": "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in assets.folder in your config file, so miyagi is not able to serve your assets.",
     "noNameSetForVariation": "No name defined for variation {{i}} in {{file}}.",
     "portInUse": "Port {{port}} already in use, trying to find a free port…",
+    "referencedMockFileNotFound": "Couldn't find referenced mock file.",
     "renderingTemplateFailed": "Rendering {{filePath}} failed. Please check that it is linked correctly and that its content is correct {{engine}} syntax.",
     "scanningFiles": "Scanning and analyzing files…",
     "validator": {
       "mocks": {
-        "valid": "Data matches schema.",
-        "invalid": "Data does not match schema file.",
+        "valid": "Mock data matches schema.",
+        "invalid": "Mock data does not match schema file.",
         "noSchemaFound": "No schema file found."
       }
     },
     "serverStarted": "Running miyagi server at http://localhost:{{port}}!",
     "serverStarting": "Starting miyagi server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
-    "srcFolderNotFound": "The provided components folder does not seem to exist.",
+    "srcFolderNotFound": "The provided components directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: 'components.folder', type: String) or as a cli argument (--components.folder=<String>).",
     "templateDoesNotExist": "The template '{{template}}' can't be found.",
     "templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, miyagi assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
     "tryingToGuessEngineAndExtension": "No template engine and template file extension defined. Trying to guess it based on your component files…",

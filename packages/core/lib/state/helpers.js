@@ -5,6 +5,8 @@
  */
 
 const path = require("path");
+const log = require("../logger");
+const { messages } = require("../config.json");
 const { readdir } = require("fs").promises;
 
 /**
@@ -19,6 +21,11 @@ async function getFiles(dir, ignores, check) {
       withFileTypes: true,
     });
   } catch (error) {
+    if (error.code === "ENOENT") {
+      log("error", messages.srcFolderNotFound.replace("{{directory}}", dir));
+    } else {
+      log("error", error.toString());
+    }
     return check(dir);
   }
 

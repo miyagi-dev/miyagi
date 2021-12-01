@@ -511,7 +511,9 @@ async function getAllAvailableTemplateExtensions(
     return null;
   });
 
-  return extensions.filter(function (elem, index, self) {
-    return index === self.indexOf(elem);
-  });
+  return extensions
+    ? extensions.filter(function (elem, index, self) {
+        return index === self.indexOf(elem);
+      })
+    : [];
 }

@@ -221,20 +221,23 @@ async function getFileContents(app) {
     app.get("config").files
   );
 
-  for (const fullPath of paths) {
-    promises.push(
-      new Promise((res) => {
-        readFile(app, fullPath.replace(/\0/g, "")).then((data) => {
-          fileContents[fullPath] = data;
-          res();
-        });
-      })
-    );
+  if (paths) {
+    for (const fullPath of paths) {
+      promises.push(
+        new Promise((res) => {
+          readFile(app, fullPath.replace(/\0/g, "")).then((data) => {
+            fileContents[fullPath] = data;
+            res();
+          });
+        })
+      );
+    }
+    return Promise.all(promises).then(() => {
+      return fileContents;
+    });
   }
 
-  return Promise.all(promises).then(() => {
-    return fileContents;
-  });
+  return {};
 }
 
 module.exports = {

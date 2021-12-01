@@ -324,6 +324,11 @@ async function resolveJson(app, entry) {
       return entry;
     }
 
+    if (entry === undefined) {
+      log("warn", config.messages.referencedMockFileNotFound);
+      return entry;
+    }
+
     if (entry.$ref) {
       const customData = helpers.cloneDeep(entry);
       delete customData.$ref;
