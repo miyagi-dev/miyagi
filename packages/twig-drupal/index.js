@@ -123,13 +123,13 @@ module.exports = {
 
     twigDrupal(engineInstance);
 
-    engineInstance.extendFilter("without", function (value, b) {
+    engineInstance.extendFilter("without", function (value, args) {
       if (!value) return {};
 
       if (typeof value === "string") {
         let str = value;
 
-        b.forEach((a) => {
+        args.forEach((a) => {
           const pattern = `/\\s${a}="[^"]*"/`;
           str = value.replace(new RegExp(pattern), "");
         });
@@ -140,13 +140,13 @@ module.exports = {
       if (value.args && value.args.find((arg) => arg[0] === "$drupal")) {
         const values = { ...value };
         values.args = values.args.filter((arg) => {
-          return !b.includes(arg[0]);
+          return !args.includes(arg[0]);
         });
 
         return DrupalAttribute.prototype.toString.call(values);
       }
 
-      return twigDrupalWithout(value);
+      return twigDrupalWithout(value, args);
     });
 
     engineInstance.extend(function (Twig) {
