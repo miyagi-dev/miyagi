@@ -5,6 +5,7 @@ const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData } = require("../../../mocks");
 const log = require("../../../logger.js");
+const { getThemeMode } = require("../../helpers");
 
 const { getDataForRenderFunction } = require("../../helpers.js");
 
@@ -16,6 +17,7 @@ const { getDataForRenderFunction } = require("../../helpers.js");
  * @param {string} [object.variation] - the variation name
  * @param {boolean} [object.embedded] - defines if the component is rendered inside an iframe or not
  * @param {Function} [object.cb] - callback function
+ * @param {object} object.cookies
  * @returns {Promise} gets resolved when the variation has been rendered
  */
 module.exports = async function renderIframeVariation({
@@ -25,9 +27,11 @@ module.exports = async function renderIframeVariation({
   variation,
   embedded,
   cb,
+  cookies,
 }) {
   file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
   const componentData = await getVariationData(app, file, decodeURI(variation));
+  const themeMode = getThemeMode(app, cookies);
 
   const validatedMocks = validateMocks(app, file, [
     {
@@ -107,7 +111,9 @@ module.exports = async function renderIframeVariation({
               projectName: config.projectName,
               userProjectName: app.get("config").projectName,
               isBuild: app.get("config").isBuild,
-              theme: app.get("config").ui.theme,
+              theme: themeMode
+                ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
+                : app.get("config").ui.theme,
               mockData:
                 app.get("config").files.schema.extension === "yaml"
                   ? jsonToYaml.dump(componentData)

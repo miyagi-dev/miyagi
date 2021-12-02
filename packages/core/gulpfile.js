@@ -19,10 +19,10 @@ const jsFiles = [
   "main.build.js",
 ];
 const cssFiles = [
+  "assets/css/iframe-background.css",
   "assets/css/iframe.css",
   "assets/css/main.css",
-  "assets/css/prism.light.css",
-  "assets/css/prism.dark.css",
+  "assets/css/prism.css",
 ];
 const jsDist = `${buildFolder}js/`;
 const cssDist = `${buildFolder}css/`;

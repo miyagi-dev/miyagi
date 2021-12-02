@@ -8,6 +8,7 @@ const express = require("express");
 const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
 const http = require("http");
+const cookieParser = require("cookie-parser");
 
 const appConfig = require("../config.json");
 const build = require("../build/index.js");
@@ -23,6 +24,7 @@ const setWatcher = require("./watcher.js");
 
 module.exports = async function init(mergedConfig) {
   const app = express();
+  app.use(cookieParser());
   app.set("config", mergedConfig);
   app.set("view cache", false);
   app.set("cache", false);

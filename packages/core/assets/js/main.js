@@ -1,4 +1,5 @@
 import Main from "./_main.js";
+import "./_theme-switcher.js";
 
 class MainDev extends Main {
   constructor() {

@@ -7,7 +7,7 @@
     var(--Miyagi-spacing-x);
 }
 
-.Nav-projectLogo {
+.Nav-projectLogo img {
   max-width: 100%;
   min-width: 50%;
   vertical-align: middle;
@@ -36,7 +36,7 @@
     padding-inline-start: var(--Miyagi-spacing-x);
   }
 
-  .Nav-projectLogo {
+  .Nav-projectLogo img {
     height: 3rem;
   }
 

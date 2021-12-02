@@ -178,7 +178,41 @@ describe("lib/render/index", () => {
         indexPath: "/component?file=all&embedded=true",
         showAll: true,
         hideTests: true,
-        theme: { mode: "light" },
+        theme: {
+          mode: "light",
+          dark: {
+            content: {
+              colorBackground: "var(--Miyagi-color-Background-internal)",
+              colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+              colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+              colorText: "var(--Miyagi-color-Text-internal)",
+            },
+            navigation: {
+              colorBackground: "var(--Miyagi-color-Background-internal)",
+              colorLinks: "var(--Miyagi-color-Link-internal)",
+              colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+              colorLinksActiveBackground:
+                "var(--Miyagi-color-Link-active-background-internal)",
+              colorText: "var(--Miyagi-color-Text-internal)",
+            },
+          },
+          light: {
+            content: {
+              colorBackground: "var(--Miyagi-color-Background-internal)",
+              colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+              colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+              colorText: "var(--Miyagi-color-Text-internal)",
+            },
+            navigation: {
+              colorBackground: "var(--Miyagi-color-Background-internal)",
+              colorLinks: "var(--Miyagi-color-Link-internal)",
+              colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+              colorLinksActiveBackground:
+                "var(--Miyagi-color-Link-active-background-internal)",
+              colorText: "var(--Miyagi-color-Text-internal)",
+            },
+          },
+        },
         tests,
         projectName,
         userProjectName,
@@ -213,7 +247,41 @@ describe("lib/render/index", () => {
           requestedComponent: path.dirname(component),
           requestedVariation: variation,
           hideTests: false,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           tests,
           projectName,
           userProjectName,
@@ -244,7 +312,41 @@ describe("lib/render/index", () => {
           requestedComponent: path.dirname(component),
           requestedVariation: undefined,
           hideTests: false,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           tests,
           projectName,
           userProjectName,
@@ -279,7 +381,41 @@ describe("lib/render/index", () => {
           requestedComponent: null,
           requestedVariation: null,
           hideTests: true,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           projectName,
           userProjectName,
           htmlValidation: false,
@@ -311,7 +447,41 @@ describe("lib/render/index", () => {
           requestedComponent: null,
           requestedVariation: null,
           hideTests: true,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           projectName,
           userProjectName,
           htmlValidation: false,
@@ -352,7 +522,41 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           standalone: true,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{
   "global": "global",
   "component": "component1"
@@ -397,7 +601,41 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{
   "component": "component1",
   "variation": 1
@@ -441,7 +679,41 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{
   "component": "component2"
 }`,
@@ -485,7 +757,41 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{}`,
           mockValidation: {
             copy: "Mock data matches schema.",
@@ -527,7 +833,41 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{}`,
           mockValidation: {
             copy: "Mock data matches schema.",
@@ -574,7 +914,41 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{
   "component": "component1"
 }`,
@@ -618,7 +992,41 @@ describe("lib/render/index", () => {
           userProjectName,
           isBuild: undefined,
           standalone: true,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           mockData: `{
   "component": "component1"
 }`,
@@ -737,7 +1145,41 @@ describe("lib/render/index", () => {
           renderFileTabs: true,
           name: "component1",
           documentation: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           schemaError: null,
           template: null,
           uiTextDirection: "ltr",
@@ -845,7 +1287,41 @@ describe("lib/render/index", () => {
             renderFileTabs: true,
             name: "component1",
             documentation: undefined,
-            theme: { mode: "light" },
+            theme: {
+              mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+            },
             schemaError: null,
             template: null,
             uiTextDirection: "ltr",
@@ -914,7 +1390,41 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
-            theme: { mode: "light" },
+            theme: {
+              mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+            },
             schema: null,
             mocks: {
               type: "json",
@@ -982,7 +1492,41 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
-            theme: { mode: "light" },
+            theme: {
+              mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+            },
             schema: null,
             mocks: {
               type: "json",
@@ -1045,7 +1589,41 @@ describe("lib/render/index", () => {
             userProjectName,
             isBuild: undefined,
             documentation: undefined,
-            theme: { mode: "light" },
+            theme: {
+              mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+            },
             schema: null,
             mocks: {
               type: "json",
@@ -1144,6 +1722,38 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
             },
             schemaError: null,
             template: null,
@@ -1173,7 +1783,41 @@ describe("lib/render/index", () => {
             a11yTestsPreload: true,
             folder,
             documentation: undefined,
-            theme: { mode: "light" },
+            theme: {
+              mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+            },
             dev: false,
             prod: false,
             projectName,
@@ -1233,7 +1877,41 @@ describe("lib/render/index", () => {
             documentation: undefined,
             a11yTestsPreload: true,
             folder,
-            theme: { mode: "light" },
+            theme: {
+              mode: "light",
+              dark: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+              light: {
+                content: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                  colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+                navigation: {
+                  colorBackground: "var(--Miyagi-color-Background-internal)",
+                  colorLinks: "var(--Miyagi-color-Link-internal)",
+                  colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                  colorLinksActiveBackground:
+                    "var(--Miyagi-color-Link-active-background-internal)",
+                  colorText: "var(--Miyagi-color-Text-internal)",
+                },
+              },
+            },
             dev: false,
             prod: false,
             projectName,
@@ -1298,7 +1976,41 @@ describe("lib/render/index", () => {
           projectName,
           userProjectName,
           isBuild: undefined,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           variations: [
             {
               file: "component4/index.hbs",
@@ -1340,7 +2052,41 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           dev: false,
           prod: false,
           a11yTestsPreload: true,
@@ -1367,7 +2113,41 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           dev: false,
           prod: false,
           a11yTestsPreload: true,
@@ -1394,7 +2174,41 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           dev: false,
           prod: false,
           a11yTestsPreload: true,
@@ -1431,7 +2245,41 @@ describe("lib/render/index", () => {
         );
         expect(res.render.mock.calls[0][1]).toEqual({
           error: `${component} not found.`,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           dev: false,
           prod: false,
           projectName,
@@ -1460,7 +2308,41 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           error: `${component} not found.`,
-          theme: { mode: "light" },
+          theme: {
+            mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+          },
           dev: false,
           prod: false,
           projectName,

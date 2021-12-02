@@ -81,7 +81,7 @@
           </div>
           {{#if ../renderInIframe}}
             <div class="MiyagiComponent-iframeWrapper" id="{{this.normalizedVariation}}-iframe">
-              <iframe class="MiyagiComponent-iframe" src="{{this.standaloneUrl}}" frameborder="0" title="{{this.variation}}"></iframe>
+              <iframe class="MiyagiComponent-iframe" src="{{this.standaloneUrl}}" frameborder="0" title="{{this.variation}}" id="iframe"></iframe>
             </div>
           {{else}}
             <div class="MiyagiComponent-html" dir="{{../componentTextDirection}}" lang="{{../componentLanguage}}">

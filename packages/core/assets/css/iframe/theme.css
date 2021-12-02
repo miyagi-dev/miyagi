@@ -1,25 +1,16 @@
 html {
   --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
     "Helvetica", "Arial", sans-serif;
-  --Miyagi-color-Negative: #d9173e;
-  --Miyagi-color-Positive: #690;
-
-  /* light */
-  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
-  --Miyagi-color-BG: hsl(0, 0%, 100%);
 
   /* general */
-  --Miyagi-color-Background: var(--Miyagi-color-BG);
-  --Miyagi-color-Text: var(--Miyagi-color-Grey-1);
+  --Miyagi-color: var(--Miyagi-color-Grey-1);
+  --Miyagi-color-Text-internal: var(--Miyagi-color-Grey-1);
   --Miyagi-color-TextSecondary: var(--Miyagi-color-Grey-2);
   --Miyagi-color-TextTertiary: var(--Miyagi-color-Grey-3);
   --Miyagi-color-Link: var(--Miyagi-color-Grey-1);
+  --Miyagi-colorHeadline1-internal: var(--Miyagi-color-Grey-1);
+  --Miyagi-colorHeadline2-internal: var(--Miyagi-color-Grey-1);
   --Miyagi-color-Outline: var(--Miyagi-color-Grey-4);
-  --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
   --Miyagi-toggle-border: 0 solid var(--Miyagi-color-Link);
   --Miyagi-toggle-borderWidth: 0.25em 0.25em 0 0;
   --Miyagi-toggle-fontSize: 0.6rem;
@@ -29,14 +20,24 @@ html {
 
   /* specific */
   --Miyagi-color-NewTabLink: var(--Miyagi-color-Link);
-  --Miyagi-color-Headline1: var(--Miyagi-color-Grey-1);
-  --Miyagi-color-Headline2: var(--Miyagi-color-Grey-1);
   --Miyagi-color-Headline2-divider: var(--Miyagi-color-Outline);
   --Miyagi-color-Code-background: var(--Miyagi-color-Grey-5);
   --Miyagi-color-Code-outline: var(--Miyagi-color-Outline);
   --Miyagi-color-Iframe-outline: var(--Miyagi-color-Outline);
   --Miyagi-transition: all 0.15s ease;
   --Miyagi-spacing: 40px;
+
+  /* light */
+  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
+  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
+  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
+  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
+  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+  --Miyagi-color-Negative: #d9173e;
+  --Miyagi-color-Positive: #690;
+  --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
+  --Miyagi-color-bg-Tooltip: #f5f5f5;
+  --Miyagi-color-outline-Tooltip: #ddd;
 }
 
 html[dir="ltr"] {
@@ -49,15 +50,45 @@ html[dir="rtl"] {
   --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(-225deg);
 }
 
+@media (prefers-color-scheme: dark) {
+  html {
+    --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
+    --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
+    --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
+    --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
+    --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
+    --Miyagi-color-Negative: #ff305a;
+    --Miyagi-color-Warning: #b578b5;
+    --Miyagi-color-Positive: #8dd203;
+    --Miyagi-color-OverlayBackground: hsla(0, 0%, 12%, 0.95);
+    --Miyagi-color-bg-Tooltip: #333;
+    --Miyagi-color-outline-Tooltip: #444;
+  }
+}
+
+.MiyagiTheme--light {
+  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
+  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
+  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
+  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
+  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+  --Miyagi-color-Negative: #d9173e;
+  --Miyagi-color-Positive: #690;
+  --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
+  --Miyagi-color-bg-Tooltip: #f5f5f5;
+  --Miyagi-color-outline-Tooltip: #ddd;
+}
+
 .MiyagiTheme--dark {
   --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
   --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
   --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
   --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
   --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
-  --Miyagi-color-BG: hsl(0, 0%, 12%);
   --Miyagi-color-Negative: #ff305a;
   --Miyagi-color-Warning: #b578b5;
   --Miyagi-color-Positive: #8dd203;
   --Miyagi-color-OverlayBackground: hsla(0, 0%, 12%, 0.95);
+  --Miyagi-color-bg-Tooltip: #333;
+  --Miyagi-color-outline-Tooltip: #444;
 }

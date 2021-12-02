@@ -1,4 +1,5 @@
 const config = require("../../../config.json");
+const { getThemeMode } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -6,8 +7,16 @@ const config = require("../../../config.json");
  * @param {object} object.res - the express response object
  * @param {string} object.file - the component path
  * @param {string} [object.variation] - the variation name
+ * @param {object} object.cookies
  */
-module.exports = async function renderMain404({ app, res, file, variation }) {
+module.exports = async function renderMain404({
+  app,
+  res,
+  file,
+  variation,
+  cookies,
+}) {
+  const themeMode = getThemeMode(app, cookies);
   let iframeSrc = `/component?file=${file}`;
 
   if (variation) {
@@ -29,7 +38,9 @@ module.exports = async function renderMain404({ app, res, file, variation }) {
     miyagiDev: !!process.env.MIYAGI_DEVELOPMENT,
     miyagiProd: !process.env.MIYAGI_DEVELOPMENT,
     isBuild: app.get("config").isBuild,
-    theme: app.get("config").ui.theme,
+    theme: themeMode
+      ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
+      : app.get("config").ui.theme,
     indexPath: app.get("config").isBuild
       ? "component-all-embedded.html"
       : "/component?file=all&embedded=true",

@@ -1,0 +1,45 @@
+.ThemeSwitcher {
+  margin-top: 2rem;
+}
+
+.ThemeSwitcher-title {
+  float: left;
+  margin-inline-end: 1.6rem;
+}
+
+.ThemeSwitcher-options {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.ThemeSwitcher-option {
+  position: relative;
+}
+
+.ThemeSwitcher input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.01;
+}
+
+.ThemeSwitcher label {
+  display: flex;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.ThemeSwitcher :checked + label {
+  background: var(--Miyagi-color-Link-active-background);
+  border-radius: var(--Miyagi-borderRadius);
+}
+
+.ThemeSwitcher svg {
+  height: 1.6rem;
+  width: 1.6rem;
+  fill: var(--Miyagi-color-Link);
+}
+
+.ThemeSwitcher :checked + label svg {
+  fill: var(--Miyagi-color-Link-active);
+}

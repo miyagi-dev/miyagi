@@ -5,7 +5,7 @@ const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData, getComponentData } = require("../../../mocks");
-const { getDataForRenderFunction } = require("../../helpers");
+const { getDataForRenderFunction, getThemeMode } = require("../../helpers");
 const log = require("../../../logger.js");
 const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
 
@@ -15,8 +15,15 @@ const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
  * @param {object} object.res - the express response object
  * @param {string} object.file - the component path
  * @param {Function} [object.cb] - callback function
+ * @param {object} object.cookies
  */
-module.exports = async function renderIframeComponent({ app, res, file, cb }) {
+module.exports = async function renderIframeComponent({
+  app,
+  res,
+  file,
+  cb,
+  cookies,
+}) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
   const templateFilePath = helpers.getFullPathFromShortPath(app, file);
   const hasTemplate = Object.values(app.get("state").partials).includes(
@@ -86,7 +93,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     template: componentTemplate
       ? {
           string: componentTemplate,
-          type: "html",
+          type: app.get("config").engine.name,
           file: path.join(
             app.get("config").components.folder,
             helpers.getShortPathFromFullPath(app, templateFilePath)
@@ -130,6 +137,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
     name: componentName,
     cb,
     templateFilePath: hasTemplate ? templateFilePath : null,
+    cookies,
   });
 };
 
@@ -163,6 +171,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
  * @param {string} object.name - component name
  * @param {Function} object.cb - callback function
  * @param {string} object.templateFilePath - the absolute component file path
+ * @param {object} object.cookies
  * @returns {Promise}
  */
 async function renderVariations({
@@ -175,6 +184,7 @@ async function renderVariations({
   name,
   cb,
   templateFilePath,
+  cookies,
 }) {
   const variations = [];
   const promises = [];
@@ -185,76 +195,49 @@ async function renderVariations({
     app.get("config").components.renderInIframe
   );
 
-  if (templateFilePath && !renderInIframe) {
+  if (templateFilePath) {
     for (let i = 0, len = context.length; i < len; i += 1) {
       const entry = context[i];
 
-      promises.push(
-        new Promise((resolve, reject) => {
-          app.render(
-            templateFilePath,
-            getDataForRenderFunction(app, entry.data),
-            (err, result) => {
-              if (err) {
-                if (typeof err === "string") {
-                  log("error", err);
-                } else if (err.message) {
-                  log("error", err.message);
-                  err = err.message;
-                }
-
-                if (app.get("config").isBuild) {
-                  reject();
-                }
-              }
-
-              const variation = context[i].name;
-              let standaloneUrl;
-
-              if (app.get("config").isBuild) {
-                standaloneUrl = `component-${helpers.normalizeString(
-                  path.dirname(file)
-                )}-variation-${helpers.normalizeString(variation)}.html`;
-              } else {
-                standaloneUrl = `/component?file=${path.dirname(
-                  file
-                )}&variation=${encodeURIComponent(variation)}`;
-              }
-
-              variations[i] = {
-                url: app.get("config").isBuild
-                  ? `component-${helpers.normalizeString(
-                      baseName
-                    )}-variation-${helpers.normalizeString(
-                      variation
-                    )}-embedded.html`
-                  : `/component?file=${baseName}&variation=${variation}&embedded=true`,
-                file,
-                html: result,
-                error: err,
-                variation,
-                normalizedVariation: helpers.normalizeString(variation),
-                standaloneUrl,
-                mockData:
-                  app.get("config").files.schema.extension === "yaml"
-                    ? jsonToYaml.dump(entry.data)
-                    : JSON.stringify(entry.data, null, 2),
-              };
-
-              if (validatedMocks && Array.isArray(validatedMocks)) {
-                variations[i].mockValidation = {
-                  valid: validatedMocks[i],
-                  copy: config.messages.validator.mocks[
-                    validatedMocks[i] ? "valid" : "invalid"
-                  ],
-                };
-              }
-
-              resolve(result);
-            }
-          );
-        })
+      variations[i] = getData(
+        app,
+        context[i].name,
+        file,
+        baseName,
+        entry,
+        validatedMocks,
+        i
       );
+
+      if (!renderInIframe) {
+        promises.push(
+          new Promise((resolve, reject) => {
+            app.render(
+              templateFilePath,
+              getDataForRenderFunction(app, entry.data),
+              (err, result) => {
+                if (err) {
+                  if (typeof err === "string") {
+                    log("error", err);
+                  } else if (err.message) {
+                    log("error", err.message);
+                    err = err.message;
+                  }
+
+                  if (app.get("config").isBuild) {
+                    reject();
+                  }
+                }
+
+                variations[i].html = result;
+                variations[i].error = err;
+
+                resolve(result);
+              }
+            );
+          })
+        );
+      }
     }
   } else {
     promises.push(Promise.resolve());
@@ -263,6 +246,7 @@ async function renderVariations({
   return Promise.all(promises)
     .then(async () => {
       const { ui } = app.get("config");
+      const themeMode = getThemeMode(app, cookies);
       await res.render(
         "iframe_component.hbs",
         {
@@ -274,7 +258,9 @@ async function renderVariations({
           projectName: config.projectName,
           userProjectName: app.get("config").projectName,
           isBuild: app.get("config").isBuild,
-          theme: app.get("config").ui.theme,
+          theme: themeMode
+            ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
+            : app.get("config").ui.theme,
           documentation: componentDocumentation,
           schema: fileContents.schema,
           schemaError:
@@ -317,6 +303,13 @@ async function renderVariations({
     });
 }
 
+/**
+ * @param {string} baseName
+ * @param {object} object
+ * @param {boolean} object.default
+ * @param {Array} object.except
+ * @returns {boolean}
+ */
 function getRenderInIframe(
   baseName,
   { default: byDefaultRenderInIframe, except }
@@ -326,4 +319,56 @@ function getRenderInIframe(
   }
 
   return anymatch(except, baseName);
+}
+
+/**
+ * @param {object} app
+ * @param {string} variation
+ * @param {string} file
+ * @param {string} baseName
+ * @param {object} entry
+ * @param {Array} validatedMocks
+ * @param {number} i
+ * @returns {object}
+ */
+function getData(app, variation, file, baseName, entry, validatedMocks, i) {
+  let standaloneUrl;
+
+  if (app.get("config").isBuild) {
+    standaloneUrl = `component-${helpers.normalizeString(
+      path.dirname(file)
+    )}-variation-${helpers.normalizeString(variation)}.html`;
+  } else {
+    standaloneUrl = `/component?file=${path.dirname(
+      file
+    )}&variation=${encodeURIComponent(variation)}`;
+  }
+
+  const data = {
+    url: app.get("config").isBuild
+      ? `component-${helpers.normalizeString(
+          baseName
+        )}-variation-${helpers.normalizeString(variation)}-embedded.html`
+      : `/component?file=${baseName}&variation=${variation}&embedded=true`,
+    file,
+
+    variation,
+    normalizedVariation: helpers.normalizeString(variation),
+    standaloneUrl,
+    mockData:
+      app.get("config").files.schema.extension === "yaml"
+        ? jsonToYaml.dump(entry.data)
+        : JSON.stringify(entry.data, null, 2),
+  };
+
+  if (validatedMocks && Array.isArray(validatedMocks)) {
+    data.mockValidation = {
+      valid: validatedMocks[i],
+      copy: config.messages.validator.mocks[
+        validatedMocks[i] ? "valid" : "invalid"
+      ],
+    };
+  }
+
+  return data;
 }
