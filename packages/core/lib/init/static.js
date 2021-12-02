@@ -41,16 +41,19 @@ function registerThemeFavicon(app) {
  * @param {object} app - the express instance
  */
 function registerThemeLogo(app) {
-  if (app.get("config").ui && app.get("config").ui.theme) {
-    const file = app.get("config").ui.theme.logo;
+  const files = [
+    app.get("config").ui.theme.light.logo,
+    app.get("config").ui.theme.dark.logo,
+  ];
 
+  files.forEach((file) => {
     if (file) {
       app.use(
         path.join("/", path.dirname(file)),
         express.static(path.resolve(path.dirname(file)))
       );
     }
-  }
+  });
 }
 
 /**

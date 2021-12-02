@@ -1,4 +1,5 @@
 const config = require("../../../config.json");
+const { getThemeMode } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -6,13 +7,17 @@ const config = require("../../../config.json");
  * @param {object} object.res - the express response object
  * @param {boolean} object.embedded - defines if the component is rendered inside an iframe or not
  * @param {string} object.target - name of the requested component
+ * @param {object} object.cookies
  */
 module.exports = async function renderIframe404({
   app,
   res,
   embedded,
   target,
+  cookies,
 }) {
+  const themeMode = getThemeMode(app, cookies);
+
   await res.render(
     embedded ? "iframe_component_variation.hbs" : "component_variation.hbs",
     {
@@ -24,7 +29,9 @@ module.exports = async function renderIframe404({
       htmlValidation: false,
       accessibilityValidation: false,
       isBuild: app.get("config").isBuild,
-      theme: app.get("config").ui.theme,
+      theme: themeMode
+        ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
+        : app.get("config").ui.theme,
       componentTextDirection: app.get("config").components.textDirection,
       uiTextDirection: app.get("config").ui.textDirection,
       componentLanguage: app.get("config").components.lang,

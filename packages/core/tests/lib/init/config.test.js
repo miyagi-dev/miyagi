@@ -512,6 +512,38 @@ describe("lib/init/config", () => {
           textDirection: "ltr",
           theme: {
             mode: "light",
+            dark: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
+            light: {
+              content: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+                colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+              navigation: {
+                colorBackground: "var(--Miyagi-color-Background-internal)",
+                colorLinks: "var(--Miyagi-color-Link-internal)",
+                colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+                colorLinksActiveBackground:
+                  "var(--Miyagi-color-Link-active-background-internal)",
+                colorText: "var(--Miyagi-color-Text-internal)",
+              },
+            },
           },
         },
         extensions: [],

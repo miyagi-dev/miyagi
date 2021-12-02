@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
+    <meta name="color-scheme" content="dark light">
     <title>{{ projectName }}</title>
     {{{jsFiles}}}
     {{#if dev}}
@@ -10,18 +11,43 @@
     {{/if}}
     <script src="{{projectName}}/js/iframe{{#if isBuild}}.build{{/if}}.js" {{#if dev}} type="module" {{/if}}{{#if prod}}
       defer{{/if}}></script>
-    {{#block "additionalCss"}}{{/block}}
+    {{{cssFiles}}}
+    <link rel="stylesheet" href="{{projectName}}/css/iframe-background.css">
     <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
+    {{#block "additionalCss"}}{{/block}}
     {{#if a11yTestsPreload}}
     <link rel="prefetch" href="{{projectName}}/js/axe.min.js">
     {{/if}}
     <style>
       html {
         {{#if theme.fontFamily}}--Miyagi-fontFamily: {{ theme.fontFamily }};{{/if}}
-        {{#if theme.content.colorBackground}}--Miyagi-colorBackground: {{ theme.content.colorBackground }};{{/if}}
-        {{#if theme.content.colorText}}--Miyagi-color: {{ theme.content.colorText }};{{/if}}
-        {{#if theme.content.colorHeadline1}}--Miyagi-color-Headline1: {{ theme.content.colorHeadline1 }};{{/if}}
-        {{#if theme.content.colorHeadline2}}--Miyagi-color-Headline2: {{ theme.content.colorHeadline2 }};{{/if}}
+        {{#if theme.light.content.colorBackground}}--Miyagi-color-Background: {{ theme.light.content.colorBackground }};{{/if}}
+        {{#if theme.light.content.colorText}}--Miyagi-color-Text: {{ theme.light.content.colorText }};{{/if}}
+        {{#if theme.light.content.colorHeadline1}}--Miyagi-color-Headline1: {{ theme.light.content.colorHeadline1 }};{{/if}}
+        {{#if theme.light.content.colorHeadline2}}--Miyagi-color-Headline2: {{ theme.light.content.colorHeadline2 }};{{/if}}
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html {
+          {{#if theme.dark.content.colorBackground}}--Miyagi-color-Background: {{ theme.dark.content.colorBackground }};{{/if}}
+          {{#if theme.dark.content.colorText}}--Miyagi-color-Text: {{ theme.dark.content.colorText }};{{/if}}
+          {{#if theme.dark.content.colorHeadline1}}--Miyagi-color-Headline1: {{ theme.dark.content.colorHeadline1 }};{{/if}}
+          {{#if theme.dark.content.colorHeadline2}}--Miyagi-color-Headline2: {{ theme.dark.content.colorHeadline2 }};{{/if}}
+        }
+      }
+
+      .MiyagiTheme--light {
+        {{#if theme.light.content.colorBackground}}--Miyagi-color-Background: {{ theme.light.content.colorBackground }};{{/if}}
+        {{#if theme.light.content.colorText}}--Miyagi-color-Text: {{ theme.light.content.colorText }};{{/if}}
+        {{#if theme.light.content.colorHeadline1}}--Miyagi-color-Headline1: {{ theme.light.content.colorHeadline1 }};{{/if}}
+        {{#if theme.light.content.colorHeadline2}}--Miyagi-color-Headline2: {{ theme.light.content.colorHeadline2 }};{{/if}}
+      }
+
+      .MiyagiTheme--dark {
+        {{#if theme.dark.content.colorBackground}}--Miyagi-color-Background: {{ theme.dark.content.colorBackground }};{{/if}}
+        {{#if theme.dark.content.colorText}}--Miyagi-color-Text: {{ theme.dark.content.colorText }};{{/if}}
+        {{#if theme.dark.content.colorHeadline1}}--Miyagi-color-Headline1: {{ theme.dark.content.colorHeadline1 }};{{/if}}
+        {{#if theme.dark.content.colorHeadline2}}--Miyagi-color-Headline2: {{ theme.dark.content.colorHeadline2 }};{{/if}}
       }
     </style>
     <style>

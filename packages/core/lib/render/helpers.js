@@ -83,4 +83,8 @@ module.exports = {
 
     return {};
   },
+
+  getThemeMode(app, cookies = {}) {
+    return cookies[`miyagi_${app.get("config").projectName}_theme`];
+  },
 };

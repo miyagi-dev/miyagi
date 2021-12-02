@@ -1,0 +1,33 @@
+html {
+  --Miyagi-color-Background-dark-internal: hsl(0, 0%, 12%);
+  --Miyagi-color-Background-light-internal: hsl(0, 0%, 100%);
+
+  /* light */
+  --Miyagi-color-Background-internal: var(
+    --Miyagi-color-Background-light-internal
+  );
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --Miyagi-color-Background-internal: var(
+      --Miyagi-color-Background-dark-internal
+    );
+  }
+}
+
+.MiyagiTheme--light {
+  --Miyagi-color-Background-internal: var(
+    --Miyagi-color-Background-light-internal
+  );
+}
+
+.MiyagiTheme--dark {
+  --Miyagi-color-Background-internal: var(
+    --Miyagi-color-Background-dark-internal
+  );
+}
+
+body {
+  background: var(--Miyagi-color-Background);
+}

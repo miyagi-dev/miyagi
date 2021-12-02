@@ -1,3 +1,5 @@
+import "./_theme-switcher.js";
+
 class Main {
   constructor() {
     this.classes = {

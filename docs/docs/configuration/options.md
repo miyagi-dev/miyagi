@@ -322,21 +322,42 @@ default:
 ```json
 {
   "favicon": null, // path to a favicon
-  "logo": null, // path to a logo
-  "mode": "light", // "light" or "dark"
+  "logo": null, // path to a logo — can be used if the same logo should be used for light and dark mode
+  "mode": "light", // "light", "dark" or "auto" (means it uses the OS setting)
   "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-  "navigation": {
-    "colorText": "#707070",
-    "colorBackground": "#f5f5f5",
-    "colorLinks": "#222222",
-    "colorLinksActive": "#ffffff",
-    "colorLinksActiveBackground": "#707070"
+  "light": {
+    // theming for light mode
+    "logo": null, // path to a logo
+    "navigation": {
+      "colorText": "hsl(0, 0%, 12%)",
+      "colorBackground": "hsl(0, 0%, 86%)",
+      "colorLinks": "hsl(0, 0%, 12%)",
+      "colorLinksActive": "hsl(0, 0%, 96%)",
+      "colorLinksActiveBackground": "hsl(0, 0%, 12%)"
+    },
+    "content": {
+      "colorBackground": "hsl(0, 0%, 100%)",
+      "colorText": "hsl(0, 0%, 12%)",
+      "colorHeadline1": "hsl(0, 0%, 12%)",
+      "colorHeadline2": "hsl(0, 0%, 12%)"
+    }
   },
-  "content": {
-    "colorBackground": "#ffffff",
-    "colorHeadline1": "#222222",
-    "colorHeadline2": "#222222",
-    "colorText": "#222222"
+  "dark": {
+    // theming for light mode
+    "logo": null, // path to a logo
+    "navigation": {
+      "colorText": "hsl(0, 0%, 100%)",
+      "colorBackground": "hsl(0, 0%, 16%)",
+      "colorLinks": "hsl(0, 0%, 100%)",
+      "colorLinksActive": "hsl(0, 0%, 16%)",
+      "colorLinksActiveBackground": "hsl(0, 0%, 100%)"
+    },
+    "content": {
+      "colorBackground": "hsl(0, 0%, 16%)",
+      "colorText": "hsl(0, 0%, 100%)",
+      "colorHeadline1": "hsl(0, 0%, 100%)",
+      "colorHeadline2": "hsl(0, 0%, 100%)"
+    }
   },
   "css": "", // string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`,
   "js": "" // string of JS which gets added to components

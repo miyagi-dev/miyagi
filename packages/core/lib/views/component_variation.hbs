@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{componentLanguage}}" dir="{{componentTextDirection}}">
-
+<html class="MiyagiTheme--{{theme.mode}}" lang="{{componentLanguage}}" dir="{{componentTextDirection}}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
@@ -18,6 +17,26 @@
         {{/if}}{{#if prod}} defer{{/if}}></script>
     {{/if}}
     {{{cssFiles}}}
+    <link rel="stylesheet" href="{{projectName}}/css/iframe-background.css">
+    <style>
+      html {
+        {{#if theme.light.content.colorBackground}}--Miyagi-color-Background: {{ theme.light.content.colorBackground }};{{/if}}
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html {
+          {{#if theme.dark.content.colorBackground}}--Miyagi-color-Background: {{ theme.dark.content.colorBackground }};{{/if}}
+        }
+      }
+
+      .MiyagiTheme--light {
+        {{#if theme.light.content.colorBackground}}--Miyagi-color-Background: {{ theme.light.content.colorBackground }};{{/if}}
+      }
+
+      .MiyagiTheme--dark {
+        {{#if theme.dark.content.colorBackground}}--Miyagi-color-Background: {{ theme.dark.content.colorBackground }};{{/if}}
+      }
+    </style>
     <style>
       {{{theme.css}}}
     </style>

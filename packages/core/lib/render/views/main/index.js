@@ -1,5 +1,6 @@
 const tests = require("../../tests.json");
 const config = require("../../../config.json");
+const { getThemeMode } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -8,6 +9,7 @@ const config = require("../../../config.json");
  * @param {string} [object.buildDate] - the build date in machine readable format
  * @param {string} [object.formattedBuildDate] - the build date in human readable format
  * @param {Function} [object.cb] - callback function
+ * @param {object} object.cookies
  */
 module.exports = function renderMainIndex({
   app,
@@ -15,7 +17,10 @@ module.exports = function renderMainIndex({
   buildDate,
   formattedBuildDate,
   cb,
+  cookies,
 }) {
+  const themeMode = getThemeMode(app, cookies);
+
   res.render(
     "main.hbs",
     {
@@ -34,7 +39,9 @@ module.exports = function renderMainIndex({
       miyagiDev: !!process.env.MIYAGI_DEVELOPMENT,
       miyagiProd: !process.env.MIYAGI_DEVELOPMENT,
       isBuild: app.get("config").isBuild,
-      theme: app.get("config").ui.theme,
+      theme: themeMode
+        ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
+        : app.get("config").ui.theme,
       basePath: app.get("config").isBuild
         ? app.get("config").build.basePath
         : "/",

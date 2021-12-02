@@ -58,11 +58,10 @@ module.exports = (app) => {
 
         promises.push(
           new Promise((resolve, reject) => {
-            buildUserAssets(
-              buildFolder,
-              app.get("config").assets,
-              app.get("config").ui.theme.logo
-            )
+            buildUserAssets(buildFolder, app.get("config").assets, [
+              app.get("config").ui.theme.dark.logo,
+              app.get("config").ui.theme.light.logo,
+            ])
               .then(resolve)
               .catch(reject);
           })
@@ -253,10 +252,10 @@ module.exports = (app) => {
      *
      * @param {string} buildFolder - the build folder from the user configuration
      * @param {object} assetsConfig - the assets object from the user configuration
-     * @param {string} logoPath - the logo path from the user configuration
+     * @param {Array} logoPaths - the logo paths from the user configuration
      * @returns {Promise} gets resolved when all assets have been copied
      */
-    async function buildUserAssets(buildFolder, assetsConfig, logoPath) {
+    async function buildUserAssets(buildFolder, assetsConfig, logoPaths) {
       const promises = [];
 
       for (const folder of assetsConfig.folder) {
@@ -274,21 +273,25 @@ module.exports = (app) => {
         );
       }
 
-      if (
-        logoPath &&
-        assetsConfig.folder.filter((entry) => logoPath.startsWith(entry))
-          .length === 0
-      ) {
-        promises.push(
-          new Promise((resolve) =>
-            fs.cp(
-              path.resolve(logoPath),
-              path.join(buildFolder, logoPath),
-              { recursive: true },
-              resolve
-            )
-          )
-        );
+      if (logoPaths) {
+        logoPaths.forEach((logoPath) => {
+          if (
+            logoPath &&
+            assetsConfig.folder.filter((entry) => logoPath.startsWith(entry))
+              .length === 0
+          ) {
+            promises.push(
+              new Promise((resolve) =>
+                fs.cp(
+                  path.resolve(logoPath),
+                  path.join(buildFolder, logoPath),
+                  { recursive: true },
+                  resolve
+                )
+              )
+            );
+          }
+        });
       }
 
       const cssJsFiles = [

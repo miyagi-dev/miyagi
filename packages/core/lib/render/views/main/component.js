@@ -1,6 +1,7 @@
 const tests = require("../../tests.json");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
+const { getThemeMode } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -11,6 +12,7 @@ const helpers = require("../../../helpers.js");
  * @param {string} [object.buildDate] - the build date in machine readable format
  * @param {string} [object.formattedBuildDate] - the build date in human readable format
  * @param {Function} [object.cb] - callback function
+ * @param {object} object.cookies
  */
 module.exports = async function renderMainComponent({
   app,
@@ -20,13 +22,14 @@ module.exports = async function renderMainComponent({
   buildDate,
   formattedBuildDate,
   cb,
+  cookies,
 }) {
   let iframeSrc = app.get("config").isBuild
     ? `component-${helpers.normalizeString(
         file.replace(`.${app.get("config").files.templates.extension}`, "")
       )}.html`
     : `/component?file=${file}`;
-
+  const themeMode = getThemeMode(app, cookies);
   const hideTests =
     !app.get("config").ui.validations.accessibility &&
     !app.get("config").ui.validations.html;
@@ -65,7 +68,9 @@ module.exports = async function renderMainComponent({
       miyagiDev: !!process.env.MIYAGI_DEVELOPMENT,
       miyagiProd: !process.env.MIYAGI_DEVELOPMENT,
       isBuild: app.get("config").isBuild,
-      theme: app.get("config").ui.theme,
+      theme: themeMode
+        ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
+        : app.get("config").ui.theme,
       basePath: app.get("config").isBuild
         ? app.get("config").build.basePath
         : "/",

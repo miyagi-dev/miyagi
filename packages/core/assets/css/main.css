@@ -5,6 +5,7 @@
 @import "./main/test.css";
 @import "./main/results.css";
 @import "./main/result.css";
+@import "./main/theme-switcher.css";
 
 html {
   font-size: 62.5%;

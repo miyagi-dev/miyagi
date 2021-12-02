@@ -226,12 +226,47 @@ module.exports = (userConfig = {}) => {
     }
   }
 
-  if (config.ui) {
-    if (config.ui.theme) {
-      if (config.ui.theme.logo) {
-        config.ui.theme.logo = sanitizePath(config.ui.theme.logo);
-      }
+  if (!config.ui) config.ui = {};
+  if (!config.ui.theme) config.ui.theme = {};
+  if (!config.ui.theme.light) config.ui.theme.light = {};
+  if (!config.ui.theme.dark) config.ui.theme.dark = {};
+
+  if (config.ui.theme.logo) {
+    if (!config.ui.theme.light.logo) {
+      config.ui.theme.light.logo = config.ui.theme.logo;
     }
+
+    if (!config.ui.theme.dark.logo) {
+      config.ui.theme.dark.logo = config.ui.theme.logo;
+    }
+
+    delete config.ui.theme.logo;
+  }
+
+  if (!config.ui.theme.light.logo && config.ui.theme.dark.logo) {
+    config.ui.theme.light.logo = config.ui.theme.dark.logo;
+  } else if (!config.ui.theme.dark.logo && config.ui.theme.light.logo) {
+    config.ui.theme.dark.logo = config.ui.theme.light.logo;
+  }
+
+  if (config.ui.theme.content || config.ui.theme.navigation) {
+    config.ui.theme.light.content = config.ui.theme.content;
+    config.ui.theme.light.navigation = config.ui.theme.navigation;
+
+    log(
+      "warn",
+      "Please note that `config.ui.theme.content` and `config.ui.theme.navigation` are deprecated and are going to be removed in future versions. Please use `config.ui.theme.(light|dark).content` and `config.ui.theme.(light|dark).navigation` instead."
+    );
+
+    delete config.ui.theme.content;
+    delete config.ui.theme.navigation;
+  }
+
+  if (config.ui.theme.light.logo) {
+    config.ui.theme.light.logo = sanitizePath(config.ui.theme.light.logo);
+  }
+  if (config.ui.theme.dark.logo) {
+    config.ui.theme.dark.logo = sanitizePath(config.ui.theme.dark.logo);
   }
 
   const merged = deepMerge(defaultUserConfig, config);
