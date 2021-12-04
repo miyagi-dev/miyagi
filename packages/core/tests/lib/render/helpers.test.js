@@ -31,23 +31,6 @@ describe("lib/render/helpers", () => {
     });
   });
 
-  describe("getComponentErrorHtml()", () => {
-    describe("with passed error", () => {
-      test("it renders the error", () => {
-        expect(helpers.getComponentErrorHtml("error")).toEqual(
-          '<p class="MiyagiError">error</p>'
-        );
-      });
-    });
-    describe("with passed error being null", () => {
-      test("it renders the error", () => {
-        expect(helpers.getComponentErrorHtml(null)).toEqual(
-          '<p class="MiyagiError">Component couldn\'t be rendered.</p>'
-        );
-      });
-    });
-  });
-
   describe("getDataForRenderFunction()", () => {
     test("it sets engine specific keys on the given object", () => {
       const app = express();

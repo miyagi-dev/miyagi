@@ -1,26 +1,18 @@
-const path = require("path");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
-const { resolveVariationData } = require("../../../mocks");
-const {
-  extendTemplateData,
-  getComponentErrorHtml,
-  getDataForRenderFunction,
-  getFallbackData,
-} = require("../../helpers.js");
 const {
   getColors,
   getFonts,
   getSpacings,
   getMediaQueries,
 } = require("../../../styleguide/index.js");
-const log = require("../../../logger.js");
 
 /**
  * @param {object} object - parameter object
  * @param {object} object.app - the express instance
  * @param {object} object.res - the express response object
  * @param {Function} [object.cb] - callback function
+ * @returns {Promise}
  */
 module.exports = function renderIframeIndex({ app, res, cb }) {
   const promises = [];

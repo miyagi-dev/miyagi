@@ -6,7 +6,6 @@
 
 const path = require("path");
 const deepMerge = require("deepmerge");
-const config = require("../config.json");
 const helpers = require("../helpers.js");
 
 module.exports = {
@@ -38,16 +37,6 @@ module.exports = {
     }
 
     return data;
-  },
-
-  /**
-   * @param {string} err - error message
-   * @returns {string} html string including an error message
-   */
-  getComponentErrorHtml(err) {
-    return `<p class="MiyagiError">${
-      err === null ? config.messages.componentCouldNotBeRendered : err
-    }</p>`;
   },
 
   /**

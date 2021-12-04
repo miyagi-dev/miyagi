@@ -13,7 +13,7 @@ afterEach(() => {
 });
 
 describe("lib/state/menu/structure", () => {
-  test.only("returns the updated source structure for the menu", async () => {
+  test("returns the updated source structure for the menu", async () => {
     const app = express();
     app.set(
       "config",
