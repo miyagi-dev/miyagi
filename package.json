@@ -33,7 +33,6 @@
     "core:test": "npm run test --prefix packages/core",
     "core:lint": "npm run lint --prefix packages/core",
     "core:fix": "npm run fix --prefix packages/core",
-    "core:jsdoc": "npm run docs --prefix packages/core",
     "core:build": "npm run build --prefix packages/core",
     "core:release": "npm run release --prefix packages/core",
     "twig-drupal:release": "npm run release --prefix packages/twig-drupal",
