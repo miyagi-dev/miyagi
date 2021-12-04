@@ -18,8 +18,6 @@ All methods accept an object like the following:
 
 ## Usage
 
-### With Node >= 14.8
-
 ```js
 import Miyagi from "@miyagi/core/api";
 
@@ -27,17 +25,5 @@ const { getMockData } = await new Miyagi();
 
 await getMockData({
   …
-});
-```
-
-### With Node < 14.8
-
-```js
-import Miyagi from "@miyagi/core/api";
-
-new Miyagi().then(async ({ getMockData }) => {
-  await getMockData({
-    …
-  });
 });
 ```

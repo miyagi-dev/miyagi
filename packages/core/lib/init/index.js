@@ -48,7 +48,9 @@ module.exports = async function init(mergedConfig) {
     handlebarsLayouts.register(handlebars);
 
     if (app.get("config").isBuild) {
-      return build(app);
+      return build(app)
+        .then(() => process.exit(0))
+        .catch(() => process.exit(1));
     }
 
     const { server, port: actualPort } = await startServer(
