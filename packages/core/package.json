@@ -22,7 +22,7 @@
     "frontend"
   ],
   "engines": {
-    "node": ">=14"
+    "node": ">=16.7.0"
   },
   "files": [
     "api",
@@ -44,7 +44,6 @@
     "deepmerge": "^4.2.2",
     "directory-tree": "^3.0.0",
     "express": "^4.17.1",
-    "fs-extra": "^10.0.0",
     "handlebars": "^4.7.7",
     "handlebars-layouts": "^3.1.4",
     "js-yaml": "^4.1.0",

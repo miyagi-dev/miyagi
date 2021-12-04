@@ -149,7 +149,7 @@ describe("index", () => {
           );
         });
 
-        test("calls lib/init", async () => {
+        test.only("calls lib/init", async () => {
           const init = require("../lib/init");
           jest.mock("../lib/init");
           jest.mock("../lib/logger");
