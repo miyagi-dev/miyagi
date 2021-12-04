@@ -342,6 +342,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1global\n",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
@@ -386,6 +387,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component11\n",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
@@ -429,6 +431,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component2\n",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
@@ -472,6 +475,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component8\n",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
@@ -513,6 +517,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
@@ -557,6 +562,7 @@ describe("lib/render/index", () => {
         );
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: true,
           standaloneUrl: `/component?file=${path.dirname(
@@ -602,6 +608,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           html: "component1\n",
+          error: null,
           htmlValidation: true,
           accessibilityValidation: null,
           standaloneUrl: null,
@@ -651,6 +658,7 @@ describe("lib/render/index", () => {
             {
               file: "component1/index.hbs",
               html: "component1global\n",
+              error: null,
               variation: "default",
               normalizedVariation: "default",
               standaloneUrl: "/component?file=component1&variation=default",
@@ -667,6 +675,7 @@ describe("lib/render/index", () => {
             {
               file: "component1/index.hbs",
               html: "component11global\n",
+              error: null,
               variation: "variation1",
               normalizedVariation: "variation1",
               standaloneUrl: "/component?file=component1&variation=variation1",
@@ -684,6 +693,7 @@ describe("lib/render/index", () => {
             {
               file: "component1/index.hbs",
               html: "component12global\n",
+              error: null,
               variation: "variation2",
               normalizedVariation: "variation2",
               standaloneUrl: "/component?file=component1&variation=variation2",
@@ -757,6 +767,7 @@ describe("lib/render/index", () => {
               {
                 file: "component1/index.hbs",
                 html: "component1\n",
+                error: null,
                 variation: "default",
                 normalizedVariation: "default",
                 standaloneUrl: "/component?file=component1&variation=default",
@@ -772,6 +783,7 @@ describe("lib/render/index", () => {
               {
                 file: "component1/index.hbs",
                 html: "component11\n",
+                error: null,
                 variation: "variation1",
                 normalizedVariation: "variation1",
                 standaloneUrl:
@@ -789,6 +801,7 @@ describe("lib/render/index", () => {
               {
                 file: "component1/index.hbs",
                 html: "component12\n",
+                error: null,
                 variation: "variation2",
                 normalizedVariation: "variation2",
                 standaloneUrl:
@@ -861,6 +874,7 @@ describe("lib/render/index", () => {
               {
                 file: "component3/index.hbs",
                 html: "component31\n",
+                error: null,
                 variation: "variation1",
                 normalizedVariation: "variation1",
                 standaloneUrl:
@@ -877,6 +891,7 @@ describe("lib/render/index", () => {
               {
                 file: "component3/index.hbs",
                 html: "component32\n",
+                error: null,
                 variation: "variation2",
                 normalizedVariation: "variation2",
                 standaloneUrl:
@@ -946,7 +961,7 @@ describe("lib/render/index", () => {
             variations: [
               {
                 file: "component6/index.hbs",
-                html: `<p class="MiyagiError">Error: The partial doesntexist.hbs could not be found<br><br>${messages.checkShellForFurtherErrors}</p>`,
+                error: "The partial doesntexist.hbs could not be found",
                 variation: "variation1",
                 normalizedVariation: "variation1",
                 standaloneUrl:
@@ -1010,6 +1025,7 @@ describe("lib/render/index", () => {
               {
                 file: "component7/index.hbs",
                 html: "component7\n",
+                error: null,
                 variation: "foo",
                 normalizedVariation: "foo",
                 standaloneUrl: "/component?file=component7&variation=foo",
@@ -1072,6 +1088,7 @@ describe("lib/render/index", () => {
               {
                 file: "component9/index.hbs",
                 html: "component9\n",
+                error: null,
                 variation: "default",
                 normalizedVariation: "default",
                 standaloneUrl: "/component?file=component9&variation=default",
@@ -1087,6 +1104,7 @@ describe("lib/render/index", () => {
               {
                 file: "component9/index.hbs",
                 html: "component9\n",
+                error: null,
                 variation: "variation1",
                 normalizedVariation: "variation1",
                 standaloneUrl:
@@ -1175,6 +1193,7 @@ describe("lib/render/index", () => {
               {
                 file: "component2/index.hbs",
                 html: "component2\n",
+                error: null,
                 standaloneUrl: "/component?file=component2&variation=default",
                 url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
@@ -1234,6 +1253,7 @@ describe("lib/render/index", () => {
               {
                 file: "component2/index.hbs",
                 html: "component2\n",
+                error: null,
                 standaloneUrl: "/component?file=component2&variation=default",
                 url: "/component?file=component2&variation=default&embedded=true",
                 variation: "default",
@@ -1283,6 +1303,7 @@ describe("lib/render/index", () => {
             {
               file: "component4/index.hbs",
               html: "component4\n",
+              error: null,
               standaloneUrl: "/component?file=component4&variation=default",
               url: "/component?file=component4&variation=default&embedded=true",
               variation: "default",
@@ -1409,7 +1430,7 @@ describe("lib/render/index", () => {
           "iframe_component_variation.hbs"
         );
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: `<p class="MiyagiError">${component} not found.</p>`,
+          error: `${component} not found.`,
           theme: { mode: "light" },
           dev: false,
           prod: false,
@@ -1438,7 +1459,7 @@ describe("lib/render/index", () => {
 
         expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
-          html: `<p class="MiyagiError">${component} not found.</p>`,
+          error: `${component} not found.`,
           theme: { mode: "light" },
           dev: false,
           prod: false,

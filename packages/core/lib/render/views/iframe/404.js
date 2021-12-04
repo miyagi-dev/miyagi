@@ -16,7 +16,7 @@ module.exports = async function renderIframe404({
   await res.render(
     embedded ? "iframe_component_variation.hbs" : "component_variation.hbs",
     {
-      html: `<p class="MiyagiError">${target} not found.</p>`,
+      error: `${target} not found.`,
       dev: process.env.NODE_ENV === "development",
       prod: process.env.NODE_ENV === "production",
       projectName: config.projectName,
