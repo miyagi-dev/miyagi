@@ -40,6 +40,11 @@
 
   <body>
     {{{html}}}
+    {{#if error}}
+      <div class="MiyagiContent">
+        <p class="MiyagiError">{{error}}</p>
+      </div>
+    {{/if}}
   </body>
 
 </html>

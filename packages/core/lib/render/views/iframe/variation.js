@@ -6,10 +6,7 @@ const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData } = require("../../../mocks");
 const log = require("../../../logger.js");
 
-const {
-  getComponentErrorHtml,
-  getDataForRenderFunction,
-} = require("../../helpers.js");
+const { getDataForRenderFunction } = require("../../helpers.js");
 
 /**
  * @param {object} object - parameter object
@@ -90,13 +87,6 @@ module.exports = async function renderIframeVariation({
         }
 
         const { ui } = app.get("config");
-        const html = error
-          ? getComponentErrorHtml(
-              `${error}<br><br>${config.messages.checkShellForFurtherErrors}`
-            )
-          : typeof result === "string"
-          ? result
-          : getComponentErrorHtml(error);
 
         if (res) {
           await res.render(
@@ -104,10 +94,12 @@ module.exports = async function renderIframeVariation({
               ? "iframe_component_variation.hbs"
               : "component_variation.hbs",
             {
-              html,
-              htmlValidation: ui.validations.html,
-              accessibilityValidation:
-                standaloneUrl && ui.validations.accessibility,
+              html: result,
+              error: typeof result !== "string" ? result : error,
+              htmlValidation: Boolean(ui.validations.html),
+              accessibilityValidation: Boolean(
+                standaloneUrl && ui.validations.accessibility
+              ),
               standalone: !standaloneUrl,
               standaloneUrl,
               dev: process.env.NODE_ENV === "development",
@@ -146,7 +138,7 @@ module.exports = async function renderIframeVariation({
 
           resolve();
         } else {
-          resolve(html);
+          resolve(result);
         }
       }
     );

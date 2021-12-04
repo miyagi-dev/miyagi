@@ -5,10 +5,7 @@ const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData, getComponentData } = require("../../../mocks");
-const {
-  getComponentErrorHtml,
-  getDataForRenderFunction,
-} = require("../../helpers");
+const { getDataForRenderFunction } = require("../../helpers");
 const log = require("../../../logger.js");
 const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
 
@@ -203,6 +200,7 @@ async function renderVariations({
                   log("error", err);
                 } else if (err.message) {
                   log("error", err.message);
+                  err = err.message;
                 }
 
                 if (app.get("config").isBuild) {
@@ -232,13 +230,8 @@ async function renderVariations({
                     )}-embedded.html`
                   : `/component?file=${baseName}&variation=${variation}&embedded=true`,
                 file,
-                html: err
-                  ? getComponentErrorHtml(
-                      `${err}<br><br>${config.messages.checkShellForFurtherErrors}`
-                    )
-                  : typeof result === "string"
-                  ? result
-                  : getComponentErrorHtml(err),
+                html: result,
+                error: err,
                 variation,
                 normalizedVariation: helpers.normalizeString(variation),
                 standaloneUrl,
