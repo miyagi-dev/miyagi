@@ -77,7 +77,6 @@
       "reloadAfterChanges": {
         "componentAssets": false
       },
-      "renderComponentOverview": false,
       "theme": {
         "mode": "light"
       },

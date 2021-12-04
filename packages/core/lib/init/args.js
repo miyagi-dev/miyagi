@@ -44,7 +44,6 @@ module.exports = yargs
   .array("skip")
   .boolean("build.outputFile")
   .boolean("ui.reload")
-  .boolean("ui.renderComponentOverview")
   .boolean("ui.validations.accessibility")
   .boolean("ui.validations.html")
   .demandCommand()

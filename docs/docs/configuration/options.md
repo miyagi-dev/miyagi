@@ -306,13 +306,6 @@ Defines if your component automatically reloads after the css or js file of your
 
 _**NOTE:** This is disabled by default for the case that you have a build process that bundles your components assets. These bundled files could be added to your configuration in the [`assets key`](#assets)._
 
-### `renderComponentOverview`
-
-default: `false`<br>
-type: `boolean`
-
-Defines if an overview of all your components should be rendered on the start page.
-
 ### `textDirection`
 
 default: `"ltr"`<br>

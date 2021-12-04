@@ -10,9 +10,6 @@
     {{/if}}
     <script src="{{projectName}}/js/iframe{{#if isBuild}}.build{{/if}}.js" {{#if dev}} type="module" {{/if}}{{#if prod}}
       defer{{/if}}></script>
-    {{#if renderComponentOverview}}
-    {{{cssFiles}}}
-    {{/if}}
     {{#block "additionalCss"}}{{/block}}
     <link rel="stylesheet" href="{{projectName}}/css/iframe.css">
     {{#if a11yTestsPreload}}

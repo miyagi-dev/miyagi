@@ -101,38 +101,6 @@
           {{/if}}
         </div>
       </div>
-      {{#if renderComponentOverview}}
-        <div class="MiyagiContent">
-          <h2 class="Miyagi-sectionTitle">Overview</h2>
-        </div>
-        {{#if components}}
-          <div class="MiyagiComponents">
-            {{#each components}}
-              <div class="MiyagiComponent">
-                <div class="MiyagiContent">
-                  <a href="{{this.url}}" class="MiyagiComponent-file">
-                    {{#if folders}}
-                      <span class="MiyagiComponent-fileFolders">
-                        {{#each folders}}{{this}} / {{/each}}
-                      </span>
-                    {{/if}}&nbsp;{{this.name}}
-                  </a>
-                </div>
-                <div class="MiyagiComponent-html">
-                  {{{this.html}}}
-                </div>
-              </div>
-            {{/each}}
-          </div>
-        {{else}}
-          <div class="MiyagiContent">
-            <div class="MiyagiDocumentation">
-              <p>No components found. Check out the <a href="https://docs.miyagi.dev" target="_blank"
-                  rel="noopener">documentation</a> if you need help!</p>
-            </div>
-          </div>
-        {{/if}}
-      {{/if}}
     </div>
   {{/content}}
 {{/extend}}

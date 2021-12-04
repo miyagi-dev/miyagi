@@ -504,7 +504,6 @@ describe("lib/init/config", () => {
           reloadAfterChanges: {
             componentAssets: false,
           },
-          renderComponentOverview: false,
           validations: {
             html: true,
             accessibility: true,
