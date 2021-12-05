@@ -1,4 +1,4 @@
-const jsf = require("json-schema-faker");
+const schemaFaker = require("@stoplight/json-schema-sampler");
 const jsonToYaml = require("js-yaml");
 const yamlToJson = require("js-yaml");
 const fs = require("fs");
@@ -78,7 +78,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
    */
   function getContent(fileType, schema) {
     let content;
-    const data = jsf.generate(schema);
+    const data = schemaFaker.sample(schema);
 
     switch (fileType) {
       case "yaml":
