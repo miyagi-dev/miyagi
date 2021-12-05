@@ -38,7 +38,6 @@
     "ajv": "^8.8.2",
     "anymatch": "^3.1.2",
     "axe-core": "^4.3.5",
-    "chokidar": "^3.5.2",
     "consolidate": "^0.16.0",
     "css": "^3.0.0",
     "deepmerge": "^4.2.2",
@@ -50,6 +49,7 @@
     "json-schema-faker": "^0.5.0-rcv.40",
     "json-to-pretty-yaml": "^1.2.2",
     "markdown-it": "^12.2.0",
+    "node-watch": "^0.7.2",
     "picocolors": "^1.0.0",
     "socket.io": "^4.4.0",
     "yargs": "^17.3.0"

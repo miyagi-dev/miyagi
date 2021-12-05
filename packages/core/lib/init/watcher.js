@@ -4,9 +4,10 @@
  * @module initWatcher
  */
 
+const anymatch = require("anymatch");
 const fs = require("fs");
 const path = require("path");
-const chokidar = require("chokidar");
+const watch = require("node-watch");
 const socketIo = require("socket.io");
 const getConfig = require("../config");
 const yargs = require("./args.js");
@@ -76,7 +77,7 @@ async function updateFileContents(app, events) {
     ) {
       const fullPath = path.join(process.cwd(), changedPath);
 
-      if (event === "add" || event === "change") {
+      if (event === "update") {
         promises.push(
           new Promise((resolve) => {
             readFile(app, changedPath).then((result) => {
@@ -85,7 +86,7 @@ async function updateFileContents(app, events) {
             });
           })
         );
-      } else if (event === "unlink") {
+      } else if (event === "remove") {
         promises.push(
           new Promise((resolve) => {
             delete data[fullPath];
@@ -115,8 +116,19 @@ async function handleFileChange() {
     }
   }
 
-  // updated file is a css file
-  if (
+  // removed a directory or file
+  if (triggeredEventsIncludes(triggeredEvents, ["remove"])) {
+    await setState(appInstance, {
+      sourceTree: true,
+      fileContents: await updateFileContents(appInstance, triggeredEvents),
+      menu: true,
+      partials: true,
+    });
+
+    changeFileCallback(true, true);
+
+    // updated file is a css file
+  } else if (
     triggeredEvents.find(({ changedPath }) => {
       return changedPath.endsWith(".css");
     })
@@ -142,24 +154,28 @@ async function handleFileChange() {
     })
   ) {
     changeFileCallback(true, false);
-    // a folder has been added or deleted
-  } else if (
-    triggeredEventsIncludes(triggeredEvents, ["addDir", "unlinkDir"])
-  ) {
-    await setState(appInstance, {
-      sourceTree: true,
-      fileContents: await updateFileContents(appInstance, triggeredEvents),
-      menu: true,
-      partials: true,
-    });
-    changeFileCallback(true, true);
+    // updated file is a template file
   } else if (
     triggeredEvents.filter((event) =>
       helpers.fileIsTemplateFile(appInstance, event.changedPath)
     ).length > 0
   ) {
-    // a template file has been added or removed
-    if (triggeredEventsIncludes(triggeredEvents, ["add", "unlink"])) {
+    if (
+      Object.keys(appInstance.get("state").partials).includes(
+        triggeredEvents[0].changedPath.replace(
+          path.join(appInstance.get("config").components.folder, "/"),
+          ""
+        )
+      )
+    ) {
+      // updated
+      await setState(appInstance, {
+        fileContents: await updateFileContents(appInstance, triggeredEvents),
+      });
+
+      changeFileCallback(true, false);
+    } else {
+      // added
       await setState(appInstance, {
         fileContents: await updateFileContents(appInstance, triggeredEvents),
         sourceTree: true,
@@ -167,20 +183,12 @@ async function handleFileChange() {
         partials: true,
       });
 
-      // a template file has been added
-      if (triggeredEventsIncludes(triggeredEvents, ["add"])) {
-        await setPartials.registerPartial(
-          appInstance,
-          triggeredEvents.find((event) => event.event === "add").changedPath
-        );
-      }
+      await setPartials.registerPartial(
+        appInstance,
+        triggeredEvents.find((event) => event.event === "update").changedPath
+      );
+
       changeFileCallback(true, true);
-      // a template file has been changed
-    } else if (triggeredEventsIncludes(triggeredEvents, ["change"])) {
-      await setState(appInstance, {
-        fileContents: await updateFileContents(appInstance, triggeredEvents),
-      });
-      changeFileCallback(true, false);
     }
     // updated file is a mock file
   } else if (
@@ -188,33 +196,34 @@ async function handleFileChange() {
       helpers.fileIsDataFile(appInstance, changedPath)
     )
   ) {
+    const hasBeenAdded = !Object.keys(
+      appInstance.get("state").fileContents
+    ).includes(path.join(process.cwd(), triggeredEvents[0].changedPath));
+
     await setState(appInstance, {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
-      sourceTree: triggeredEventsIncludes(triggeredEvents, ["add", "unlink"]),
+      sourceTree: hasBeenAdded,
       menu: true,
     });
-    changeFileCallback(
-      true,
-      triggeredEventsIncludes(triggeredEvents, ["add", "unlink", "change"])
-    );
+
+    changeFileCallback(true, true);
     // updated file is a doc file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
       helpers.fileIsDocumentationFile(appInstance, changedPath)
     )
   ) {
-    const addedOrDeleted = triggeredEventsIncludes(triggeredEvents, [
-      "add",
-      "unlink",
-    ]);
+    const hasBeenAdded = !Object.keys(
+      appInstance.get("state").fileContents
+    ).includes(path.join(process.cwd(), triggeredEvents[0].changedPath));
 
     await setState(appInstance, {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
-      sourceTree: addedOrDeleted,
-      menu: addedOrDeleted,
+      sourceTree: hasBeenAdded,
+      menu: hasBeenAdded,
     });
 
-    changeFileCallback(true, addedOrDeleted);
+    changeFileCallback(true, hasBeenAdded);
     // updated file is an info file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
@@ -225,6 +234,7 @@ async function handleFileChange() {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
       menu: true,
     });
+
     changeFileCallback(true, true);
     // updated file is a schema file
   } else if (
@@ -235,6 +245,7 @@ async function handleFileChange() {
     await setState(appInstance, {
       fileContents: await updateFileContents(appInstance, triggeredEvents),
     });
+
     changeFileCallback(true, false);
     // updated file is an asset file
   } else if (
@@ -245,30 +256,16 @@ async function handleFileChange() {
     if (appInstance.get("config").ui.reloadAfterChanges.componentAssets) {
       changeFileCallback(true, false);
     }
-    // updated a file which is watched by an extension like locales
-  } else if (
-    triggeredEvents.some(({ changedPath }) => {
-      return foldersToWatch.some((folder) => {
-        return changedPath.startsWith(folder);
-      });
-    })
-  ) {
-    changeFileCallback(true);
   } else {
-    changeFileCallback();
-  }
-}
+    await setState(appInstance, {
+      sourceTree: true,
+      fileContents: true,
+      menu: true,
+      partials: true,
+    });
 
-/**
- * @param {string[]} srcFolderIgnores - the components.ignores array from the user configuration
- * @returns {RegExp[]} array of regexes with all folders to ignore
- */
-function getIgnoredPathsArr(srcFolderIgnores) {
-  return [
-    // ignore dotfiles
-    /(^|[\/\\])\../ /* eslint-disable-line */,
-    ...srcFolderIgnores.map((dir) => new RegExp(dir)),
-  ];
+    changeFileCallback(true, true);
+  }
 }
 
 module.exports = function Watcher(server, app) {
@@ -276,13 +273,26 @@ module.exports = function Watcher(server, app) {
   ioInstance = socketIo(server);
 
   const { components, assets, extensions } = appInstance.get("config");
-  const ignored = getIgnoredPathsArr(components.ignores);
 
   foldersToWatch = [
     components.folder,
-    ...assets.folder,
-    ...assets.css,
-    ...assets.js,
+    ...assets.folder.map((f) => path.join(app.get("config").assets.root, f)),
+    ...assets.css
+      .filter(
+        (f) =>
+          !f.startsWith("http://") &&
+          !f.startsWith("https://") &&
+          !f.startsWith("://")
+      )
+      .map((f) => path.join(app.get("config").assets.root, f)),
+    ...assets.js
+      .filter(
+        (f) =>
+          !f.startsWith("http://") &&
+          !f.startsWith("https://") &&
+          !f.startsWith("://")
+      )
+      .map((f) => path.join(app.get("config").assets.root, f)),
   ];
 
   for (const extension of extensions) {
@@ -299,29 +309,32 @@ module.exports = function Watcher(server, app) {
 
   if (app.get("config").userFileName) {
     fs.watch(app.get("config").userFileName, async (eventType) => {
-      if (eventType === "change") {
+      if (eventType === "update") {
         configurationFileUpdated(app);
       }
     });
   }
 
-  chokidar
-    .watch(foldersToWatch, {
-      ignoreInitial: true,
-      ignored,
-    })
-    .on("all", (event, changedPath) => {
-      triggeredEvents.push({ event, changedPath });
+  const watcher = watch(foldersToWatch, {
+    recursive: true,
+    filter(f, skip) {
+      if (anymatch(components.ignores, f)) return skip;
+      return true;
+    },
+  });
 
-      if (!timeout) {
-        console.clear();
-        log("info", messages.updatingStarted);
-        timeout = setTimeout(() => {
-          timeout = null;
-          handleFileChange();
-        }, 10);
-      }
-    });
+  watcher.on("change", (event, changedPath) => {
+    triggeredEvents.push({ event, changedPath });
+
+    if (!timeout) {
+      console.clear();
+      log("info", messages.updatingStarted);
+      timeout = setTimeout(() => {
+        timeout = null;
+        handleFileChange();
+      }, 10);
+    }
+  });
 };
 
 async function configurationFileUpdated(app) {
