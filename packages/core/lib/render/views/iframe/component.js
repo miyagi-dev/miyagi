@@ -1,6 +1,6 @@
 const anymatch = require("anymatch");
 const path = require("path");
-const jsonToYaml = require("json-to-pretty-yaml");
+const jsonToYaml = require("js-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
@@ -47,7 +47,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
   let componentSchemaString;
   if (componentSchema) {
     if (app.get("config").files.schema.extension === "yaml") {
-      componentSchemaString = jsonToYaml.stringify(componentSchema);
+      componentSchemaString = jsonToYaml.dump(componentSchema);
     } else {
       componentSchemaString = JSON.stringify(componentSchema, null, 2);
     }
@@ -56,7 +56,7 @@ module.exports = async function renderIframeComponent({ app, res, file, cb }) {
   let componentMocksString;
   if (componentMocks) {
     if (app.get("config").files.mocks.extension === "yaml") {
-      componentMocksString = jsonToYaml.stringify(componentMocks);
+      componentMocksString = jsonToYaml.dump(componentMocks);
     } else {
       componentMocksString = JSON.stringify(componentMocks, null, 2);
     }
@@ -237,7 +237,7 @@ async function renderVariations({
                 standaloneUrl,
                 mockData:
                   app.get("config").files.schema.extension === "yaml"
-                    ? jsonToYaml.stringify(entry.data)
+                    ? jsonToYaml.dump(entry.data)
                     : JSON.stringify(entry.data, null, 2),
               };
 

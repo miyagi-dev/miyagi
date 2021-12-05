@@ -1,5 +1,5 @@
 const jsf = require("json-schema-faker");
-const jsonToYaml = require("json-to-pretty-yaml");
+const jsonToYaml = require("js-yaml");
 const yamlToJson = require("js-yaml");
 const fs = require("fs");
 const log = require("../logger.js");
@@ -82,7 +82,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
 
     switch (fileType) {
       case "yaml":
-        content = jsonToYaml.stringify(data);
+        content = jsonToYaml.dump(data);
         break;
       case "json":
         content = JSON.stringify(
