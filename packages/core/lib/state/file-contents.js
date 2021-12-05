@@ -7,7 +7,7 @@
 const path = require("path");
 const fs = require("fs");
 const yaml = require("js-yaml");
-const Markdown = require("markdown-it");
+const Markdown = require("marked");
 const { promisify } = require("util");
 const config = require("../config.json");
 const helpers = require("../helpers.js");
@@ -158,14 +158,13 @@ async function getParsedJsonFileContent(app, fileName) {
  * @returns {Promise<string>} the markdown of the given file converted into HTML
  */
 async function getConvertedMarkdownFileContent(fileName) {
-  const md = new Markdown({ html: true });
   let result;
 
   try {
     result = await readFileAsync(fileName, "utf8");
 
     try {
-      result = md.render(result);
+      result = Markdown.parse(result);
     } catch (e) {
       result = "";
     }
