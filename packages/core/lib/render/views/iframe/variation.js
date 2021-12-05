@@ -1,5 +1,5 @@
 const path = require("path");
-const jsonToYaml = require("json-to-pretty-yaml");
+const jsonToYaml = require("js-yaml");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
@@ -110,7 +110,7 @@ module.exports = async function renderIframeVariation({
               theme: app.get("config").ui.theme,
               mockData:
                 app.get("config").files.schema.extension === "yaml"
-                  ? jsonToYaml.stringify(componentData)
+                  ? jsonToYaml.dump(componentData)
                   : JSON.stringify(componentData, null, 2),
               variation,
               normalizedVariation: helpers.normalizeString(variation),

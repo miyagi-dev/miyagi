@@ -1,6 +1,6 @@
 const path = require("path");
 const fs = require("fs");
-const jsonToYaml = require("json-to-pretty-yaml");
+const jsonToYaml = require("js-yaml");
 const log = require("../logger.js");
 const helpers = require("../helpers.js");
 const { messages } = require("../config.json");
@@ -91,7 +91,7 @@ module.exports = async function componentGenerator(cliParams, config) {
           };
 
           if (filesConfig.mocks.extension === "yaml") {
-            str = jsonToYaml.stringify(data);
+            str = jsonToYaml.dump(data);
           } else {
             str = `${JSON.stringify(data, null, 2)}\n`;
           }
@@ -104,7 +104,7 @@ module.exports = async function componentGenerator(cliParams, config) {
           };
 
           if (filesConfig.info.extension === "yaml") {
-            str = jsonToYaml.stringify(data);
+            str = jsonToYaml.dump(data);
           } else {
             str = `${JSON.stringify(data, null, 2)}\n`;
           }
@@ -120,7 +120,7 @@ module.exports = async function componentGenerator(cliParams, config) {
           };
 
           if (filesConfig.schema.extension === "yaml") {
-            str = jsonToYaml.stringify(data);
+            str = jsonToYaml.dump(data);
           } else {
             str = `${JSON.stringify(data, null, 2)}\n`;
           }
