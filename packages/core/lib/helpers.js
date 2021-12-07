@@ -22,7 +22,7 @@ module.exports = {
     const o = {};
 
     for (const [key, value] of Object.entries(obj)) {
-      if (!key.startsWith("$")) {
+      if (!key.startsWith("$") || key === "$ref") {
         o[key] = value;
       }
     }

@@ -140,13 +140,22 @@ async function iterateOverJsonData(app, entry) {
       });
     }
 
-    const o = { ...entry };
+    let o = {};
 
     await Promise.all(
-      Object.keys(o).map(async (key) => {
-        o[key] = await resolveJson(app, o[key]);
-        o[key] = await iterateOverJsonData(app, o[key]);
-        return o[key];
+      Object.entries({ ...entry }).map(async ([key, value]) => {
+        if (key === "$ref") {
+          o = { ...o, ...(await getRootOrVariantDataOfReference(app, value)) };
+        } else {
+          const resolvedValue = await iterateOverJsonData(
+            app,
+            await resolveJson(app, value)
+          );
+
+          o[key] = resolvedValue;
+        }
+
+        return true;
       })
     );
 
@@ -351,6 +360,8 @@ async function resolveJson(app, entry) {
  * @returns {object} the resolved data object
  */
 async function getRootOrVariantDataOfReference(app, ref) {
+  // console.log(2);
+  // console.log(ref);
   let [shortVal, variation] = ref.split("#");
   let val;
 
