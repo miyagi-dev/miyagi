@@ -309,7 +309,7 @@ module.exports = function Watcher(server, app) {
 
   if (app.get("config").userFileName) {
     fs.watch(app.get("config").userFileName, async (eventType) => {
-      if (eventType === "update") {
+      if (eventType === "change") {
         configurationFileUpdated(app);
       }
     });
