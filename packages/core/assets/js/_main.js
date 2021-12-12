@@ -1,3 +1,4 @@
+import "./_search.js";
 import "./_theme-switcher.js";
 
 class Main {

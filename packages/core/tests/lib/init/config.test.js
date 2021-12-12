@@ -525,6 +525,10 @@ describe("lib/init/config", () => {
                 colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
                 colorLinksActiveBackground:
                   "var(--Miyagi-color-Link-active-background-internal)",
+                colorSearchBackground:
+                  "var(--Miyagi-color-Search-background-internal)",
+                colorSearchBorder: "var(--Miyagi-color-Search-border-internal)",
+                colorSearchText: "var(--Miyagi-color-Search-text-internal)",
                 colorText: "var(--Miyagi-color-Text-internal)",
               },
             },
@@ -541,6 +545,10 @@ describe("lib/init/config", () => {
                 colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
                 colorLinksActiveBackground:
                   "var(--Miyagi-color-Link-active-background-internal)",
+                colorSearchBackground:
+                  "var(--Miyagi-color-Search-background-internal)",
+                colorSearchBorder: "var(--Miyagi-color-Search-border-internal)",
+                colorSearchText: "var(--Miyagi-color-Search-text-internal)",
                 colorText: "var(--Miyagi-color-Text-internal)",
               },
             },

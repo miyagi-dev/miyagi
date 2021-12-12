@@ -1,5 +1,6 @@
 import "./_socket.js";
 import Tests from "./_tests.js";
+import searchIsTriggered from "./_search-is-triggered.js";
 
 if (
   location.href.indexOf("/component?") >= 0 &&
@@ -36,5 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (document.querySelector(".js-openMockData")) {
     import("./_mock-data.js");
+  }
+});
+
+window.addEventListener("keyup", ({ target, key }) => {
+  if (searchIsTriggered(target, key)) {
+    parent.window.dispatchEvent(new CustomEvent("searchTriggered"));
   }
 });

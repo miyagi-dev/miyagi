@@ -17,6 +17,9 @@
         {{#if theme.light.navigation.colorLinks}}--Miyagi-color-Link: {{theme.light.navigation.colorLinks}};{{/if}}
         {{#if theme.light.navigation.colorLinksActive}}--Miyagi-color-Link-active: {{theme.light.navigation.colorLinksActive}};{{/if}}
         {{#if theme.light.navigation.colorLinksActiveBackground}}--Miyagi-color-Link-active-background: {{theme.light.navigation.colorLinksActiveBackground}};{{/if}}
+        {{#if theme.light.navigation.colorSearchText}}--Miyagi-color-Search-text: {{theme.light.navigation.colorSearchText}};{{/if}}
+        {{#if theme.light.navigation.colorSearchBackground}}--Miyagi-color-Search-background: {{theme.light.navigation.colorSearchBackground}};{{/if}}
+        {{#if theme.light.navigation.colorSearchBorder}}--Miyagi-color-Search-border: {{theme.light.navigation.colorSearchBorder}};{{/if}}
       }
 
       @media (prefers-color-scheme: dark) {
@@ -26,6 +29,9 @@
           {{#if theme.dark.navigation.colorLinks}}--Miyagi-color-Link: {{theme.dark.navigation.colorLinks}};{{/if}}
           {{#if theme.dark.navigation.colorLinksActive}}--Miyagi-color-Link-active: {{theme.dark.navigation.colorLinksActive}};{{/if}}
           {{#if theme.dark.navigation.colorLinksActiveBackground}}--Miyagi-color-Link-active-background: {{theme.dark.navigation.colorLinksActiveBackground}};{{/if}}
+          {{#if theme.dark.navigation.colorSearchText}}--Miyagi-color-Search-text: {{theme.dark.navigation.colorSearchText}};{{/if}}
+          {{#if theme.dark.navigation.colorSearchBackground}}--Miyagi-color-Search-background: {{theme.dark.navigation.colorSearchBackground}};{{/if}}
+          {{#if theme.dark.navigation.colorSearchBorder}}--Miyagi-color-Search-border: {{theme.dark.navigation.colorSearchBorder}};{{/if}}
         }
       }
 
@@ -35,6 +41,9 @@
         {{#if theme.light.navigation.colorLinks}}--Miyagi-color-Link: {{theme.light.navigation.colorLinks}};{{/if}}
         {{#if theme.light.navigation.colorLinksActive}}--Miyagi-color-Link-active: {{theme.light.navigation.colorLinksActive}};{{/if}}
         {{#if theme.light.navigation.colorLinksActiveBackground}}--Miyagi-color-Link-active-background: {{theme.light.navigation.colorLinksActiveBackground}};{{/if}}
+        {{#if theme.light.navigation.colorSearchText}}--Miyagi-color-Search-text: {{theme.light.navigation.colorSearchText}};{{/if}}
+        {{#if theme.light.navigation.colorSearchBackground}}--Miyagi-color-Search-background: {{theme.light.navigation.colorSearchBackground}};{{/if}}
+        {{#if theme.light.navigation.colorSearchBorder}}--Miyagi-color-Search-border: {{theme.light.navigation.colorSearchBorder}};{{/if}}
       }
 
       .theme-dark {
@@ -43,6 +52,9 @@
         {{#if theme.dark.navigation.colorLinks}}--Miyagi-color-Link: {{theme.dark.navigation.colorLinks}};{{/if}}
         {{#if theme.dark.navigation.colorLinksActive}}--Miyagi-color-Link-active: {{theme.dark.navigation.colorLinksActive}};{{/if}}
         {{#if theme.dark.navigation.colorLinksActiveBackground}}--Miyagi-color-Link-active-background: {{theme.dark.navigation.colorLinksActiveBackground}};{{/if}}
+        {{#if theme.dark.navigation.colorSearchText}}--Miyagi-color-Search-text: {{theme.dark.navigation.colorSearchText}};{{/if}}
+        {{#if theme.dark.navigation.colorSearchBackground}}--Miyagi-color-Search-background: {{theme.dark.navigation.colorSearchBackground}};{{/if}}
+        {{#if theme.dark.navigation.colorSearchBorder}}--Miyagi-color-Search-border: {{theme.dark.navigation.colorSearchBorder}};{{/if}}
       }
     </style>
     <style>
@@ -79,6 +91,19 @@
       <div class="Nav-content">
         {{#if folders}}
           <div class="Menu">
+            <form class="Menu-search">
+              <label class="Menu-searchLabel" for="search">
+                <span class="u-hiddenVisually">Search</span>
+                <svg class="Menu-searchIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M13.3 0h1.4c1.2.1 2.4.5 3.5 1a9.6 9.6 0 0 1 5.4 9.6 9.5 9.5 0 0 1-10.4 8.7 9.5 9.5 0 0 1-4.7-1.5l-.2-.2-.1.2-5.3 5.5c-.3.3-.6.6-1 .7h-.4l-.7-.4c-.5-.5-.5-1.2 0-1.8l5.4-5.5.3-.3-1-1.5c-1.6-3-1.8-6-.3-9A9.4 9.4 0 0 1 11.8.3l1.5-.3zm.6 2.5a7.2 7.2 0 0 0 0 14.4 7.2 7.2 0 0 0 0-14.4z" />
+                </svg>
+              </label>
+              <input id="search" class="Menu-searchInput" type="search" name="search" autocomplete="off" placeholder="Search …">
+              <button class="Menu-searchClear" type="button" hidden>
+                <svg class="Menu-searchIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.6 12 2.2 2.3c.4.3.5.7.3 1.1-.2.8-1.2 1-1.8.4l-2-2-.3-.3-1 1L9.7 16c-.5.4-1.2.4-1.6 0a1 1 0 0 1-.2-1.4l.2-.2 2-2 .4-.3-1.1-1-1.2-1.3c-.5-.4-.5-1.1 0-1.6.4-.4 1-.4 1.5 0l2 2.1.3.3 1-1 1-1.3c.6-.7 1.4-.5 1.7-.2.4.4.6 1.1-.1 1.7l-2 2-.1.2h.1z"/><circle cx="11.9" cy="12.1" r="11" stroke-width="2" stroke-miterlimit="10"></svg>
+                <span class="u-hiddenVisually">Clear search query</span>
+              </button>
+            </form>
             {{#menu folders requestedComponent requestedVariation null null }}{{/menu}}
           </div>
         {{/if}}

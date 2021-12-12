@@ -1,5 +1,4 @@
 import Main from "./_main.js";
-import "./_search.js";
 
 class MainDev extends Main {
   constructor() {

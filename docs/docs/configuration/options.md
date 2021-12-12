@@ -333,7 +333,10 @@ default:
       "colorBackground": "hsl(0, 0%, 86%)",
       "colorLinks": "hsl(0, 0%, 12%)",
       "colorLinksActive": "hsl(0, 0%, 96%)",
-      "colorLinksActiveBackground": "hsl(0, 0%, 12%)"
+      "colorLinksActiveBackground": "hsl(0, 0%, 12%)",
+      "colorSearchText": "hsl(0, 0%, 12%)",
+      "colorSearchBackground": "rgba(0, 0, 0, 0.05)",
+      "colorSearchBorder": "rgba(0, 0, 0, 0.25)"
     },
     "content": {
       "colorBackground": "hsl(0, 0%, 100%)",
@@ -350,7 +353,10 @@ default:
       "colorBackground": "hsl(0, 0%, 16%)",
       "colorLinks": "hsl(0, 0%, 100%)",
       "colorLinksActive": "hsl(0, 0%, 16%)",
-      "colorLinksActiveBackground": "hsl(0, 0%, 100%)"
+      "colorLinksActiveBackground": "hsl(0, 0%, 100%)",
+      "colorSearchText": "hsl(0, 0%, 100%)",
+      "colorSearchBackground": "rgba(255, 255, 255, 0.1)",
+      "colorSearchBorder": "rgba(255, 255, 255, 0.25)"
     },
     "content": {
       "colorBackground": "hsl(0, 0%, 16%)",

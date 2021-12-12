@@ -85,7 +85,10 @@
             "colorBackground": "var(--Miyagi-color-Background-internal)",
             "colorLinks": "var(--Miyagi-color-Link-internal)",
             "colorLinksActive": "var(--Miyagi-color-Link-active-internal)",
-            "colorLinksActiveBackground": "var(--Miyagi-color-Link-active-background-internal)"
+            "colorLinksActiveBackground": "var(--Miyagi-color-Link-active-background-internal)",
+            "colorSearchText": "var(--Miyagi-color-Search-text-internal)",
+            "colorSearchBackground": "var(--Miyagi-color-Search-background-internal)",
+            "colorSearchBorder": "var(--Miyagi-color-Search-border-internal)"
           },
           "content": {
             "colorBackground": "var(--Miyagi-color-Background-internal)",
@@ -100,7 +103,10 @@
             "colorBackground": "var(--Miyagi-color-Background-internal)",
             "colorLinks": "var(--Miyagi-color-Link-internal)",
             "colorLinksActive": "var(--Miyagi-color-Link-active-internal)",
-            "colorLinksActiveBackground": "var(--Miyagi-color-Link-active-background-internal)"
+            "colorLinksActiveBackground": "var(--Miyagi-color-Link-active-background-internal)",
+            "colorSearchText": "var(--Miyagi-color-Search-text-internal)",
+            "colorSearchBackground": "var(--Miyagi-color-Search-background-internal)",
+            "colorSearchBorder": "var(--Miyagi-color-Search-border-internal)"
           },
           "content": {
             "colorBackground": "var(--Miyagi-color-Background-internal)",

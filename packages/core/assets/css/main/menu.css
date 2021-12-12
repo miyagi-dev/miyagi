@@ -3,6 +3,64 @@
   margin: var(--Miyagi-spacing-y) 0 0;
 }
 
+.Menu-search {
+  position: relative;
+  margin: 0 0 2rem;
+  margin-inline-start: calc(-1 * 1.5rem);
+  width: calc(100% + 1.5rem);
+}
+
+.Menu-searchLabel,
+.Menu-searchClear {
+  --size: 1.25em;
+
+  position: absolute;
+  inset-inline-end: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--size);
+  height: var(--size);
+}
+
+.Menu-searchIcon {
+  color: var(--Miyagi-color-Text);
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.Menu-searchIcon path {
+  fill: currentColor;
+}
+
+.Menu-searchIcon circle {
+  fill: none;
+  stroke: currentColor;
+}
+
+.Menu-searchInput {
+  border: 1px solid var(--Miyagi-color-Search-border);
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2) inset;
+  color: var(--Miyagi-color-Search-text);
+  background: var(--Miyagi-color-Search-background);
+  padding: 0.35em 2.5em;
+  padding-inline-start: 0.5em;
+  width: 100%;
+}
+
+.Menu-searchClear {
+  border-radius: 50%;
+}
+
+.Menu-searchInput:focus,
+.Menu-searchClear:focus-visible {
+  outline: 3px solid currentColor;
+}
+
+.Menu-searchClear:focus-visible {
+  outline-offset: -1px;
+}
+
 [aria-expanded="true"] ~ .Menu-listContainer {
   display: block;
 }
@@ -34,6 +92,17 @@
   border-radius: var(--Miyagi-borderRadius);
   display: block;
   padding: 0 var(--Miyagi-linkSpacing);
+}
+
+.Menu-listItem.has-no-match .Menu-component,
+.Menu-listItem.is-no-match .Menu-toggle,
+.Menu-listItem.is-no-match .Menu-link:not(.Menu-component) {
+  opacity: 0.3;
+}
+
+.Menu-listItem--directory.has-match > .Menu-toggle,
+.Menu-listItem--directory.is-match * {
+  opacity: 1 !important;
 }
 
 .Menu-component:not(.Menu-link) {
