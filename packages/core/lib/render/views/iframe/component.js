@@ -115,13 +115,17 @@ module.exports = async function renderIframeComponent({
   if (componentJson.length > 0) {
     context = componentJson.filter((entry) => entry !== null);
   } else {
-    const componentData = hasTemplate ? await getVariationData(app, file) : {};
+    const componentData = hasTemplate
+      ? await getVariationData(app, file)
+      : { raw: {}, extended: {} };
+
     context = [];
 
     if (componentData) {
       context.push({
         component: file,
-        data: componentData,
+        data: componentData.extended,
+        rawData: componentData.raw,
         name: config.defaultVariationName,
       });
     }
@@ -357,8 +361,8 @@ function getData(app, variation, file, baseName, entry, validatedMocks, i) {
     standaloneUrl,
     mockData:
       app.get("config").files.schema.extension === "yaml"
-        ? jsonToYaml.dump(entry.data)
-        : JSON.stringify(entry.data, null, 2),
+        ? jsonToYaml.dump(entry.rawData)
+        : JSON.stringify(entry.rawData, null, 2),
   };
 
   if (validatedMocks && Array.isArray(validatedMocks)) {

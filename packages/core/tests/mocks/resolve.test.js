@@ -34,8 +34,16 @@ describe("api/resolve", () => {
       test("", async () => {
         expect(await resolveVariationData(app, null, rootData)).toEqual({
           merged: {
-            root: true,
-            data: "root",
+            merged: {
+              root: true,
+              data: "root",
+            },
+          },
+          resolved: {
+            merged: {
+              root: true,
+              data: "root",
+            },
           },
         });
       });
@@ -45,8 +53,16 @@ describe("api/resolve", () => {
       test("", async () => {
         expect(await resolveVariationData(app, variationData, null)).toEqual({
           merged: {
-            variation: true,
-            data: "variation",
+            merged: {
+              variation: true,
+              data: "variation",
+            },
+          },
+          resolved: {
+            merged: {
+              variation: true,
+              data: "variation",
+            },
           },
         });
       });
@@ -58,9 +74,18 @@ describe("api/resolve", () => {
           await resolveVariationData(app, variationData, rootData)
         ).toEqual({
           merged: {
-            root: true,
-            variation: true,
-            data: "variation",
+            merged: {
+              root: true,
+              variation: true,
+              data: "variation",
+            },
+          },
+          resolved: {
+            merged: {
+              root: true,
+              variation: true,
+              data: "variation",
+            },
           },
         });
       });
@@ -116,14 +141,21 @@ describe("api/resolve", () => {
           },
         })
       ).toEqual({
-        resolve: {
-          resolve: [
-            {
-              resolve: {
-                resolve: "resolve",
+        merged: {
+          resolve: {
+            $ref: "resolve#variation",
+          },
+        },
+        resolved: {
+          resolve: {
+            resolve: [
+              {
+                resolve: {
+                  resolve: "resolve",
+                },
               },
-            },
-          ],
+            ],
+          },
         },
       });
     });
@@ -150,7 +182,8 @@ describe("api/resolve", () => {
             resolve: null,
           })
         ).toEqual({
-          resolve: null,
+          merged: { resolve: null },
+          resolved: { resolve: null },
         });
       });
     });
@@ -178,7 +211,14 @@ describe("api/resolve", () => {
             },
           })
         ).toEqual({
-          resolve: {},
+          merged: {
+            resolve: {
+              $ref: "some/component",
+            },
+          },
+          resolved: {
+            resolve: {},
+          },
         });
         expect(log).toHaveBeenCalledWith(
           "warn",
@@ -219,7 +259,14 @@ describe("api/resolve", () => {
             },
           })
         ).toEqual({
-          resolve: {},
+          merged: {
+            resolve: {
+              $ref: "resolve#variation",
+            },
+          },
+          resolved: {
+            resolve: {},
+          },
         });
       });
     });
@@ -247,8 +294,15 @@ describe("api/resolve", () => {
             },
           })
         ).toEqual({
-          resolve: {
-            $name: "variation",
+          merged: {
+            resolve: {
+              $name: "variation",
+            },
+          },
+          resolved: {
+            resolve: {
+              $name: "variation",
+            },
           },
         });
       });
@@ -275,8 +329,14 @@ describe("api/resolve", () => {
       });
 
       expect(await resolveVariationData(app, { bar: "foo" })).toEqual({
-        foo: "bar",
-        bar: "foo",
+        merged: {
+          foo: "bar",
+          bar: "foo",
+        },
+        resolved: {
+          foo: "bar",
+          bar: "foo",
+        },
       });
     });
   });

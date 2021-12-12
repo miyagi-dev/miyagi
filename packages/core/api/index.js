@@ -12,7 +12,11 @@ module.exports = function Api() {
     init("api").then((app) => {
       const getMockData = async ({ component, variant = "default" }) => {
         const file = getTemplateFilePathFromDirectoryPath(app, component);
-        const variationData = await getVariationData(app, file, variant);
+        const { extended: variationData } = await getVariationData(
+          app,
+          file,
+          variant
+        );
 
         return await resolveVariationData(app, variationData);
       };

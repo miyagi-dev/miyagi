@@ -19,15 +19,17 @@ module.exports =
    * @returns {Promise<object>} the resolved data object
    */
   async function resolveData(app, data, rootData) {
-    if (rootData) {
-      data = mergeRootDataWithVariationData(rootData, data);
-    }
-    data = mergeWithGlobalData(app, data);
-    data = await overwriteJsonLinksWithJsonData(app, data);
-    data = await overwriteTplLinksWithTplContent(app, data);
-    data = await overwriteRenderKey(app, data);
+    let merged = rootData
+      ? mergeRootDataWithVariationData(rootData, data)
+      : data;
+    let resolved;
 
-    return data;
+    merged = mergeWithGlobalData(app, merged);
+    resolved = await overwriteJsonLinksWithJsonData(app, merged);
+    resolved = await overwriteTplLinksWithTplContent(app, resolved);
+    resolved = await overwriteRenderKey(app, resolved);
+
+    return { merged, resolved };
   };
 
 /**
@@ -360,8 +362,6 @@ async function resolveJson(app, entry) {
  * @returns {object} the resolved data object
  */
 async function getRootOrVariantDataOfReference(app, ref) {
-  // console.log(2);
-  // console.log(ref);
   let [shortVal, variation] = ref.split("#");
   let val;
 

@@ -22,9 +22,15 @@ module.exports = {
       let componentData = helpers.removeInternalKeys(componentJson);
       const rootData = cloneDeep(componentData);
       const componentVariations = componentJson.$variants;
+      let data;
 
       if (Object.keys(componentData).length > 0) {
-        componentData = await resolveData(app, componentData);
+        data = await resolveData(app, componentData);
+      } else {
+        data = {
+          merged: componentData,
+          resolved: componentData,
+        };
       }
 
       if (componentVariations) {
@@ -36,35 +42,43 @@ module.exports = {
               new Promise((resolve) => {
                 const variationData = helpers.removeInternalKeys(variationJson);
 
-                resolveData(app, variationData, rootData).then(async (data) => {
-                  data = hasTemplate
-                    ? await extendTemplateData(app.get("config"), data, file)
-                    : {};
+                resolveData(app, variationData, rootData).then(
+                  async ({ merged, resolved }) => {
+                    const extendedData = hasTemplate
+                      ? await extendTemplateData(
+                          app.get("config"),
+                          resolved,
+                          file
+                        )
+                      : {};
 
-                  context[startIndex + index] = {
-                    component: file,
-                    data: data || {},
-                    name: variationJson.$name,
-                  };
-                  resolve();
-                });
+                    context[startIndex + index] = {
+                      component: file,
+                      data: extendedData,
+                      rawData: merged,
+                      name: variationJson.$name,
+                    };
+                    resolve();
+                  }
+                );
               })
             );
           }
         }
 
         return await Promise.all(promises).then(async () => {
-          if (Object.keys(componentData).length > 0) {
-            componentData = await extendTemplateData(
+          if (Object.keys(data.resolved).length > 0) {
+            const extendedComponentData = await extendTemplateData(
               app.get("config"),
-              componentData,
+              data.resolved,
               file
             );
 
             if (!componentJson.$hidden) {
               context.unshift({
                 component: file,
-                data: componentData,
+                data: extendedComponentData,
+                rawData: data.merged,
                 name: componentJson.$name || config.defaultVariationName,
               });
             }
@@ -74,17 +88,18 @@ module.exports = {
         });
       } else {
         if (Object.keys(componentData).length > 0) {
-          componentData = await resolveData(app, componentData);
-          componentData = await extendTemplateData(
+          const { merged, resolved } = await resolveData(app, componentData);
+          const extendedComponentData = await extendTemplateData(
             app.get("config"),
-            componentData,
+            resolved,
             file
           );
 
           if (!componentJson.$hidden) {
             context.unshift({
               component: file,
-              data: componentData,
+              data: extendedComponentData,
+              rawData: merged,
               name: componentJson.$name || config.defaultVariationName,
             });
           }
@@ -108,8 +123,28 @@ module.exports = {
     let componentRootData = helpers.removeInternalKeys(componentJson);
     let componentData;
 
-    if ((!variation || variation === "default") && componentJson.$hidden) {
-      return null;
+    if (componentJson.$hidden) {
+      if (!variation) {
+        return {
+          raw: null,
+          extended: null,
+        };
+      }
+
+      if (variation === "default") {
+        if (componentVariations) {
+          const componentVariationsIncludesDefault = Boolean(
+            componentVariations.find((variant) => variant.$name === "default")
+          );
+
+          if (!componentVariationsIncludesDefault) {
+            return {
+              raw: null,
+              extended: null,
+            };
+          }
+        }
+      }
     }
 
     if (componentVariations && variation) {
@@ -125,7 +160,14 @@ module.exports = {
       }
     }
 
-    componentData = await resolveData(app, componentData, componentRootData);
-    return await extendTemplateData(app.get("config"), componentData, file);
+    const { merged, resolved } = await resolveData(
+      app,
+      componentData,
+      componentRootData
+    );
+    return {
+      raw: merged,
+      extended: await extendTemplateData(app.get("config"), resolved, file),
+    };
   },
 };

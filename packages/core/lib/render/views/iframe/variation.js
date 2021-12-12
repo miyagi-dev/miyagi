@@ -30,7 +30,8 @@ module.exports = async function renderIframeVariation({
   cookies,
 }) {
   file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
-  const componentData = await getVariationData(app, file, decodeURI(variation));
+  const { raw: rawComponentData, extended: componentData } =
+    await getVariationData(app, file, decodeURI(variation));
   const themeMode = getThemeMode(app, cookies);
 
   const validatedMocks = validateMocks(app, file, [
@@ -116,8 +117,8 @@ module.exports = async function renderIframeVariation({
                 : app.get("config").ui.theme,
               mockData:
                 app.get("config").files.schema.extension === "yaml"
-                  ? jsonToYaml.dump(componentData)
-                  : JSON.stringify(componentData, null, 2),
+                  ? jsonToYaml.dump(rawComponentData)
+                  : JSON.stringify(rawComponentData, null, 2),
               variation,
               normalizedVariation: helpers.normalizeString(variation),
               mockValidation,
