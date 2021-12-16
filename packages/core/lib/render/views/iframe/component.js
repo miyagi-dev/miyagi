@@ -251,6 +251,11 @@ async function renderVariations({
     .then(async () => {
       const { ui } = app.get("config");
       const themeMode = getThemeMode(app, cookies);
+      const renderFileTabs = !!(
+        fileContents.schema ||
+        fileContents.mocks ||
+        fileContents.template
+      );
       await res.render(
         "iframe_component.hbs",
         {
@@ -271,11 +276,8 @@ async function renderVariations({
             typeof validatedMocks === "string" ? validatedMocks : null,
           mocks: fileContents.mocks,
           template: fileContents.template,
-          renderFileTabs: !!(
-            fileContents.schema ||
-            fileContents.mocks ||
-            fileContents.template
-          ),
+          renderInformation: renderFileTabs || variations.length > 0,
+          renderFileTabs,
           folder: path.join(
             app.get("config").components.folder,
             file.split(path.sep).slice(0, -1).join("/")

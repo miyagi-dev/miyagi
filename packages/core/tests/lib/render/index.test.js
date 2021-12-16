@@ -102,7 +102,7 @@ fileContents[path9.replace("index.hbs", "mocks.json")] = {
     },
   ],
 };
-const { projectName, messages } = config;
+const { projectName } = config;
 const folders = menu;
 
 let app;
@@ -1142,6 +1142,7 @@ describe("lib/render/index", () => {
   ]
 }`,
           },
+          renderInformation: true,
           renderFileTabs: true,
           name: "component1",
           documentation: undefined,
@@ -1284,6 +1285,7 @@ describe("lib/render/index", () => {
   ]
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component1",
             documentation: undefined,
@@ -1442,6 +1444,7 @@ describe("lib/render/index", () => {
   ]
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component3",
             schemaError: null,
@@ -1539,6 +1542,7 @@ describe("lib/render/index", () => {
   ]
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component6",
             schemaError: null,
@@ -1637,6 +1641,7 @@ describe("lib/render/index", () => {
   ]
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component7",
             schemaError: null,
@@ -1717,6 +1722,7 @@ describe("lib/render/index", () => {
   ]
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component9",
             documentation: undefined,
@@ -1831,6 +1837,7 @@ describe("lib/render/index", () => {
   "component": "component2"
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component2",
             variations: [
@@ -1925,6 +1932,7 @@ describe("lib/render/index", () => {
   "component": "component2"
 }`,
             },
+            renderInformation: true,
             renderFileTabs: true,
             name: "component2",
             variations: [
@@ -2030,6 +2038,7 @@ describe("lib/render/index", () => {
           schema: null,
           mocks: null,
           renderFileTabs: false,
+          renderInformation: true,
           name: "component4",
           schemaError: null,
           template: null,

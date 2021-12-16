@@ -8,13 +8,15 @@
             {{{documentation}}}
           {{/if}}
         </div>
-        <h2 class="Miyagi-sectionTitle">Information</h2>
-        <dl class="MiyagiInformation">
-          <div class="MiyagiInformation-wrapper">
-            <dt class="MiyagiInformation-attr">Folder</dt>
-            <dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
-          </div>
-        </dl>
+        {{#if renderInformation}}
+          <h2 class="Miyagi-sectionTitle">Information</h2>
+          <dl class="MiyagiInformation">
+            <div class="MiyagiInformation-wrapper">
+              <dt class="MiyagiInformation-attr">Folder</dt>
+              <dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
+            </div>
+          </dl>
+        {{/if}}
         {{#if renderFileTabs}}
           <h2 class="Miyagi-sectionTitle">Files</h2>
           <div class="MiyagiTabs">
