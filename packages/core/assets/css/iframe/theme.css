@@ -12,7 +12,7 @@ html {
   --Miyagi-colorHeadline2-internal: var(--Miyagi-color-Grey-1);
   --Miyagi-color-Outline: var(--Miyagi-color-Grey-4);
   --Miyagi-toggle-border: 0 solid var(--Miyagi-color-Link);
-  --Miyagi-toggle-borderWidth: 0.25em 0.25em 0 0;
+  --Miyagi-toggle-borderWidth: 0.25em;
   --Miyagi-toggle-fontSize: 0.6rem;
   --Miyagi-toggle-height: 1em;
   --Miyagi-toggle-transition: transform 0.15s ease;
@@ -41,13 +41,13 @@ html {
 }
 
 html[dir="ltr"] {
-  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
-  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
+  --Miyagi-toggle-transition-closed: translateY(-50%) rotate(45deg);
+  --Miyagi-toggle-transition-opened: translateY(-75%) rotate(135deg);
 }
 
 html[dir="rtl"] {
-  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(-135deg);
-  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(-225deg);
+  --Miyagi-toggle-transition-closed: translateY(-50%) rotate(-45deg);
+  --Miyagi-toggle-transition-opened: translateY(-75%) rotate(-135deg);
 }
 
 @media (prefers-color-scheme: dark) {

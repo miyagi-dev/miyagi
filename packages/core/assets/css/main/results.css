@@ -13,23 +13,17 @@
 .Results-summary::after {
   border: var(--Miyagi-toggle-border);
   border-color: currentColor;
-  border-width: var(--Miyagi-toggle-borderWidth);
+  border-top-width: var(--Miyagi-toggle-borderWidth);
+  border-inline-end-width: var(--Miyagi-toggle-borderWidth);
   content: "";
   display: block;
   font-size: var(--Miyagi-toggle-fontSize);
   height: var(--Miyagi-toggle-height);
   position: absolute;
   top: 50%;
+  inset-inline-start: 0.25rem;
   transition: var(--Miyagi-toggle-transition);
   width: var(--Miyagi-toggle-width);
-}
-
-[dir="ltr"] .Results-summary::after {
-  left: 0.25rem;
-}
-
-[dir="rtl"] .Results-summary::after {
-  right: 0.25rem;
 }
 
 .Results-summary::-webkit-details-marker {

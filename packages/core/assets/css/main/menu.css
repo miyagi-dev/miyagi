@@ -77,38 +77,25 @@
   font-size: 1.5em;
   height: 1em;
   position: absolute;
+  inset-inline-end: calc(100% - var(--inline-end));
   text-indent: -9999em;
   top: 0;
   width: 1em;
 }
 
-[dir="ltr"] .Menu-toggle {
-  right: calc(100% - var(--inline-end));
-}
-
-[dir="rtl"] .Menu-toggle {
-  left: calc(100% - var(--inline-end));
-}
-
 .Menu-toggle::after {
   border: var(--Miyagi-toggle-border);
-  border-width: var(--Miyagi-toggle-borderWidth);
+  border-top-width: var(--Miyagi-toggle-borderWidth);
+  border-inline-end-width: var(--Miyagi-toggle-borderWidth);
   content: "";
   display: block;
   font-size: var(--Miyagi-toggle-fontSize);
   height: var(--Miyagi-toggle-height);
   position: absolute;
   top: 50%;
+  inset-inline-start: 50%;
   transition: var(--Miyagi-toggle-transition);
   width: var(--Miyagi-toggle-width);
-}
-
-[dir="ltr"] .Menu-toggle::after {
-  left: 50%;
-}
-
-[dir="rtl"] .Menu-toggle::after {
-  right: 50%;
 }
 
 .Menu-toggle[aria-expanded="false"]::after {

@@ -87,7 +87,7 @@ body {
 .MiyagiComponent-variationHeader {
   display: flex;
   position: absolute;
-  right: 40px;
+  inset-inline-end: 40px;
   top: 13px;
   font-size: 14px;
   line-height: 1;
@@ -250,23 +250,17 @@ body {
 .MiyagiContent .MiyagiTabs-tab summary::before {
   border: var(--Miyagi-toggle-border);
   border-color: currentColor;
-  border-width: var(--Miyagi-toggle-borderWidth);
+  border-top-width: 0.25em;
+  border-inline-end-width: 0.25em;
   content: "";
   display: block;
   font-size: 0.4em;
   height: var(--Miyagi-toggle-height);
+  inset-inline-start: 0.25rem;
   position: absolute;
   top: 50%;
   transition: var(--Miyagi-toggle-transition);
   width: var(--Miyagi-toggle-width);
-}
-
-[dir="ltr"] .MiyagiContent .MiyagiTabs-tab summary::before {
-  left: 0.25rem;
-}
-
-[dir="rtl"] .MiyagiContent .MiyagiTabs-tab summary::before {
-  right: 0.25rem;
 }
 
 .MiyagiContent .MiyagiTabs-tab summary::-webkit-details-marker {
@@ -368,7 +362,7 @@ body {
   font-size: 0.875em;
   position: absolute;
   top: 0;
-  right: 0;
+  inset-inline-end: 0;
 }
 
 .MiyagiComponent .MiyagiComponent-file {

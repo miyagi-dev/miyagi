@@ -12,6 +12,7 @@ html {
   --Miyagi-borderRadius: 0.25rem;
   --Miyagi-linkSpacing: 0.35rem;
   --Miyagi-toggle-border: 0 solid var(--Miyagi-color-Link);
+  --Miyagi-toggle-borderWidth: 0.25em;
   --Miyagi-toggle-fontSize: 0.6rem;
   --Miyagi-toggle-height: 1em;
   --Miyagi-toggle-transition: transform 0.15s ease;
@@ -32,13 +33,11 @@ html {
 }
 
 html[dir="ltr"] {
-  --Miyagi-toggle-borderWidth: 0.25em 0.25em 0 0;
   --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
   --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
 }
 
 html[dir="rtl"] {
-  --Miyagi-toggle-borderWidth: 0.25em 0 0 0.25em;
   --Miyagi-toggle-transition-closed: translate(50%, -50%) rotate(-45deg);
   --Miyagi-toggle-transition-opened: translate(25%, -75%) rotate(-135deg);
 }

@@ -62,6 +62,7 @@
 .MiyagiContent .MiyagiCustomProp-details {
   position: absolute;
   bottom: calc(100% + 15px);
+  inset-inline-start: 0;
   padding: 15px;
   margin: 0;
   z-index: 1;
@@ -75,14 +76,6 @@
   grid-gap: 0.5rem 1rem;
   line-height: 1.5;
   white-space: nowrap;
-}
-
-[dir="ltr"] .MiyagiContent .MiyagiCustomProp-details {
-  left: 0;
-}
-
-[dir="rtl"] .MiyagiContent .MiyagiCustomProp-details {
-  right: 0;
 }
 
 @keyframes fadeIn {
@@ -107,6 +100,7 @@
   content: "";
   display: block;
   position: absolute;
+  inset-inline-start: 15px;
   width: 0;
   height: 0;
   border: 10px solid transparent;
@@ -120,16 +114,6 @@
 .MiyagiContent .MiyagiCustomProp-details::after {
   border-top-color: var(--Miyagi-color-bg-Tooltip);
   top: calc(100% - 2px);
-}
-
-[dir="ltr"] .MiyagiContent .MiyagiCustomProp-details::before,
-[dir="ltr"] .MiyagiContent .MiyagiCustomProp-details::after {
-  left: 15px;
-}
-
-[dir="rtl"] .MiyagiContent .MiyagiCustomProp-details::before,
-[dir="rtl"] .MiyagiContent .MiyagiCustomProp-details::after {
-  right: 15px;
 }
 
 .MiyagiContent .MiyagiCustomProp-detailsProperty {

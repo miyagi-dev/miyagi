@@ -58,23 +58,17 @@
 
   .Nav-toggleMobileMenu::after {
     border: var(--Miyagi-toggle-border);
-    border-width: var(--Miyagi-toggle-borderWidth);
+    border-top-width: var(--Miyagi-toggle-borderWidth);
+    border-inline-end-width: var(--Miyagi-toggle-borderWidth);
     content: "";
     display: block;
     font-size: 0.75em;
     height: var(--Miyagi-toggle-height);
     position: absolute;
     top: 50%;
+    inset-inline-start: 50%;
     transition: var(--Miyagi-toggle-transition);
     width: var(--Miyagi-toggle-width);
-  }
-
-  [dir="ltr"] .Nav-toggleMobileMenu::after {
-    left: 50%;
-  }
-
-  [dir="rtl"] .Nav-toggleMobileMenu::after {
-    right: 50%;
   }
 
   .Nav-toggleMobileMenu[aria-expanded="false"]::after {
