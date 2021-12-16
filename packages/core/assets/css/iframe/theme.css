@@ -24,8 +24,8 @@ html {
   --Miyagi-color-Code-background: var(--Miyagi-color-Grey-5);
   --Miyagi-color-Code-outline: var(--Miyagi-color-Outline);
   --Miyagi-color-Iframe-outline: var(--Miyagi-color-Outline);
-  --Miyagi-transition: all 0.15s ease;
   --Miyagi-spacing: 40px;
+  --Miyagi-transition: all 0.15s ease;
 
   /* light */
   --Miyagi-color-Grey-1: hsl(0, 0%, 12%);

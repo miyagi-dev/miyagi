@@ -1,7 +1,6 @@
 .Menu {
   font-size: 1.4rem;
   margin: var(--Miyagi-spacing-y) 0 0;
-  margin-inline-start: 1.5rem;
 }
 
 [aria-expanded="true"] ~ .Menu-listContainer {
@@ -32,6 +31,7 @@
 
 .Menu-link,
 .Menu-component {
+  border-radius: var(--Miyagi-borderRadius);
   display: block;
   padding: 0 var(--Miyagi-linkSpacing);
 }
@@ -73,6 +73,7 @@
 }
 
 .Menu-toggle {
+  border-radius: var(--Miyagi-borderRadius);
   display: block;
   font-size: 1.5em;
   height: 1em;
@@ -81,6 +82,25 @@
   text-indent: -9999em;
   top: 0;
   width: 1em;
+}
+
+.Menu-link:focus-visible,
+.Menu-component:focus-visible,
+.Menu-toggle:focus-visible {
+  outline: 3px solid currentColor;
+}
+
+.Menu-toggle:focus-visible {
+  outline-offset: -2px;
+}
+
+.Menu-link:focus-visible,
+.Menu-component:focus-visible {
+  outline-color: var(
+    --Miyagi-color-Link-active-background,
+    --Miyagi-color-Link
+  );
+  outline-offset: 2px;
 }
 
 .Menu-toggle::after {
@@ -108,8 +128,7 @@
 
 @media (max-width: 40em) {
   .Menu {
-    order: 1;
-    flex: 0 0 100%;
+    margin-inline-start: 1rem;
     padding-inline: var(--Miyagi-spacing-x);
   }
 }
@@ -117,6 +136,7 @@
 @media (min-width: 40.03125em) {
   .Menu {
     flex: 1;
+    margin-inline-start: 1.5rem;
   }
 }
 

@@ -33,13 +33,13 @@ html {
 }
 
 html[dir="ltr"] {
-  --Miyagi-toggle-transition-closed: translate(-50%, -50%) rotate(45deg);
-  --Miyagi-toggle-transition-opened: translate(-25%, -75%) rotate(135deg);
+  --Miyagi-toggle-transition-closed: translate(-75%, -50%) rotate(45deg);
+  --Miyagi-toggle-transition-opened: translate(-50%, -75%) rotate(135deg);
 }
 
 html[dir="rtl"] {
-  --Miyagi-toggle-transition-closed: translate(50%, -50%) rotate(-45deg);
-  --Miyagi-toggle-transition-opened: translate(25%, -75%) rotate(-135deg);
+  --Miyagi-toggle-transition-closed: translate(75%, -50%) rotate(-45deg);
+  --Miyagi-toggle-transition-opened: translate(50%, -75%) rotate(-135deg);
 }
 
 @media (prefers-color-scheme: dark) {

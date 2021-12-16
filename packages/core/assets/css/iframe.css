@@ -36,6 +36,14 @@ body {
   text-decoration: underline;
 }
 
+.MiyagiContent a:focus-visible,
+.MiyagiContent summary:focus-visible,
+.MiyagiContent button:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+  border-radius: 0.25em;
+}
+
 .MiyagiContent code[class*="language-"],
 .MiyagiContent pre[class*="language-"] {
   text-shadow: none;
@@ -86,23 +94,12 @@ body {
 
 .MiyagiComponent-variationHeader {
   display: flex;
+  gap: 16px;
   position: absolute;
   inset-inline-end: 40px;
   top: 13px;
   font-size: 14px;
   line-height: 1;
-}
-
-.MiyagiComponent-variationHeader > *:not(:first-child) {
-  margin-inline-start: 12px;
-  padding-inline-start: 12px;
-  border-inline-start: 1px solid;
-}
-
-.MiyagiContent .MiyagiComponent-headMeta > *:not(:first-child) {
-  margin-inline-start: 12px;
-  padding-inline-start: 12px;
-  border-inline-start: 1px solid;
 }
 
 .MiyagiContent .MiyagiDocumentation > *:first-child {
@@ -305,6 +302,7 @@ body {
 .MiyagiComponent .MiyagiComponent-headMeta {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .MiyagiComponent .MiyagiComponent-mockValidation {

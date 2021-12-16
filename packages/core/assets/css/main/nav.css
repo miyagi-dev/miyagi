@@ -28,16 +28,14 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-inline: 0;
-  }
-
-  .Nav-title {
-    max-width: 50%;
-    padding-inline-start: var(--Miyagi-spacing-x);
   }
 
   .Nav-projectLogo img {
     height: 3rem;
+  }
+
+  .Nav-content {
+    flex: 0 0 100%;
   }
 
   .Nav-toggleMobileMenu {
@@ -49,10 +47,9 @@
     padding: 1rem;
     position: relative;
     width: var(--size);
-    order: 1;
   }
 
-  .Nav-toggleMobileMenu[aria-expanded="false"] + .Menu {
+  .Nav-toggleMobileMenu[aria-expanded="false"] + .Nav-content {
     display: none;
   }
 
@@ -88,5 +85,11 @@
 
   .Nav-toggleMobileMenu {
     display: none;
+  }
+
+  .Nav-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
 }

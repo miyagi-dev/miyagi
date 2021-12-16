@@ -1,3 +1,7 @@
+.Results {
+  padding-inline-start: 5px;
+}
+
 .Results + .Results {
   margin-top: var(--results-spacing);
 }
@@ -8,6 +12,12 @@
   padding-inline-start: 1.5rem;
   position: relative;
   white-space: nowrap;
+}
+
+.Results-summary:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 2px;
+  border-radius: var(--Miyagi-borderRadius);
 }
 
 .Results-summary::after {
