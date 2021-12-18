@@ -1,16 +1,16 @@
 {
   "name": "demo",
   "devDependencies": {
-    "cssnano": "^5.0.8",
+    "cssnano": "^5.0.13",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
-    "postcss": "^8.3.11",
+    "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
-    "postcss-preset-env": "^6.7.0"
+    "postcss-preset-env": "^7.0.2"
   },
   "dependencies": {
-    "@miyagi/core": "^2.6.4"
+    "@miyagi/core": "^2.10.0"
   },
   "engines": {
     "node": ">=14"
