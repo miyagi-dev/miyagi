@@ -12,4 +12,4 @@ When creating a new component via `miyagi new <component>`, the schema file is c
 }
 ```
 
-Your mock data will be validated against your schema. The result will be rendered on the [component view](/web-ui/component) and logged in the console (if the validation failed).
+Your mock data will be validated against your schema. The result will be rendered on the [component view](/the-ui/#component) and logged in the console (if the validation failed).

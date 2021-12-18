@@ -1,12 +1,6 @@
 **Installed as a dev dependency:**
 
 ```bash
-node node_modules/@miyagi/core start
-```
-
-or
-
-```bash
 npm run miyagi start
 ```
 
@@ -22,9 +16,9 @@ yarn miyagi start
 miyagi start
 ```
 
-This will serve _miyagi_ at `http://localhost:5000`.
+This will serve _miyagi_ at `http://localhost:5000`. If you already have another _miyagi_ instance or some other application running at port 5000, _miyagi_ will automatically try to find another free port.
 
-**You can change the port with:**
+## Changing the port
 
 ```bash
 PORT=<port> miyagi start

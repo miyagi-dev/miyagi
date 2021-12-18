@@ -1,4 +1,4 @@
-If you use CSS custom properties in your project, which are named based on a certain logic, _miyagi_ can automatically create a living styleguide based on these custom properties.
+If you use CSS custom properties in your project, which are named based on a certain logic, _miyagi_ can automatically create a visual overview of your design tokens based on these custom properties.
 
 To do so, add the following to your configuration:
 
@@ -20,7 +20,7 @@ _miyagi_ scans the CSS files for custom properties, which start with a specific 
 
 ### Colors
 
-Custom properties, that are named `--color-${name}`, are interpreted as colors, which can be used for typography but also as decorational colors.
+Custom properties, that are named `--color-${name}`, are interpreted as colors, which can be used for typography but also as decorative colors.
 You can also name the custom properties like `--color-typo-${name}` or `--color-decoration-${name}`. That way _miyagi_ knows that this color is only supposed to be used for typography or decorations like background, border etc., and will render them accordingly.
 
 #### Examples

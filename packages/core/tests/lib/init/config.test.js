@@ -560,7 +560,9 @@ describe("lib/init/config", () => {
           },
         },
         engine: {
+          instance: null,
           name: null,
+          options: {},
         },
         projectName: "miyagi",
         ui: {
@@ -575,7 +577,14 @@ describe("lib/init/config", () => {
           textDirection: "ltr",
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -596,6 +605,7 @@ describe("lib/init/config", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",

@@ -28,30 +28,42 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Installation: installation.md
-  - CLI commands:
-      - Starting miyagi: cli-commands/start.md
-      - Creating a component: cli-commands/components.md
-      - Creating mock data: cli-commands/mocks.md
-      - Creating a build: cli-commands/build.md
-      - Linting components: cli-commands/linting-components.md
   - Configuration:
+      - Default configuration: configuration/default-configuration.md
       - Available options: configuration/options.md
       - Via config file: configuration/config-file.md
       - Via CLI: configuration/cli.md
-      - Extending template engine: configuration/extending-template-engine.md
-  - Organizing your components: organizing-components.md
-  - Automated styleguide: automated-styleguide.md
+      - Extending a template engine: configuration/extending-a-template-engine.md
+  - CLI commands:
+      - Starting miyagi: cli-commands/starting-miyagi.md
+      - Creating a component: cli-commands/creating-a-component.md
+      - Creating mock data: cli-commands/creating-mock-data.md
+      - Linting mock data: cli-commands/linting-mock-data.md
+      - Creating a build: cli-commands/creating-a-build.md
   - Component files:
+      - Introduction: component-files/introduction.md
       - Assets: component-files/assets.md
       - Documentation: component-files/documentation.md
       - Info: component-files/info.md
       - Mocks: component-files/mocks.md
       - Schema: component-files/schema.md
       - Template: component-files/template.md
-  - Documentation: documentation.md
-  - The web UI:
-      - Overview: web-ui/overview.md
-      - Component: web-ui/component.md
-      - Variation: web-ui/variation.md
+  - The UI: the-ui.md
   - Supported template engines: template-engines.md
   - JavaScript API: javascript-api.md
+  - How-to's:
+      - Adding JS files: how-to/adding-js-files.md
+      - Extending a template engine: how-to/extending-a-template-engine.md
+      - Using dark and light mode: how-to/using-dark-and-light-mode.md
+      - Theming the UI: how-to/theming-the-ui.md
+      - Changing the text direction: how-to/changing-the-text-direction.md
+      - Changing the HTML language attribute: how-to/changing-the-html-language-attribute.md
+      - Configuring the JSON Schema validator: how-to/configuring-the-json-schema-validator.md
+      - Organizing components: how-to/organizing-components.md
+      - Writing mock data: how-to/writing-mock-data.md
+      - Linting mock data: how-to/linting-mock-data.md
+      - Changing miyagi's port: how-to/changing-miyagis-port.md
+      # - Navigating through the UI: how-to/navigation-through-the-ui.md
+      - Adding documentation: how-to/adding-documentation.md
+      - Creating a design token overview: how-to/creating-a-design-token-overview.md
+      - Navigating through miyagi: how-to/navigating-through-miyagi.md

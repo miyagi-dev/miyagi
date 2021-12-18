@@ -16,7 +16,7 @@ module.exports = {
 }
 ```
 
-If you are using the `twig-drupal` or `twig-laravel` extension, you need to pass you need to extend `twig` like this:
+If you are using the `twig-drupal` or `twig-laravel` extension, you need to extend `twig` like this:
 
 ```js
 const twig = require("twig");

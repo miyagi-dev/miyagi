@@ -3,13 +3,13 @@ When linting components, _miyagi_ checks if the JSON schema files are valid and 
 You can either lint all components at once via:
 
 ```bash
-npm/yarn run miyagi lint
+miyagi lint
 ```
 
 or lint only a specific component via:
 
 ```bash
-npm/yarn run miyagi lint path/to/component
+miyagi lint path/to/component
 ```
 
 Please note that when you reference a schema file from another schema file or a mock file from another mock file ([Referencing other mock files](/component-files/mocks/#referencing-other-mock-files)) and the referenced file is invalid, you will get multiple errors reported by _miyagi_ (one for the invalid file and one for the file which includes the invalid file).

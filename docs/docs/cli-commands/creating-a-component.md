@@ -13,7 +13,9 @@ This will create a component folder including the following files:
 
 _**NOTE:** The component will be located based on your current working directoy (so you are able to use autocompletion) and the file names depend on your [`files` settings](/configuration/options#files)._
 
-**--skip:**
+## Params
+
+### --skip
 
 You can skip any of the files like this:
 
@@ -21,7 +23,7 @@ You can skip any of the files like this:
 miyagi new <folderName>/<componentName> --skip=css,js
 ```
 
-**--only:**
+### --only
 
 Alternatively, you can explicitly say which files you need like this:
 

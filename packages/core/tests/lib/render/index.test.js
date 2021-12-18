@@ -184,7 +184,14 @@ describe("lib/render/index", () => {
         hideTests: true,
         theme: {
           mode: "light",
+          logo: null,
+          favicon: null,
+          css: null,
+          js: null,
+          fontFamily:
+            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
           dark: {
+            logo: null,
             content: {
               colorBackground: "var(--Miyagi-color-Background-internal)",
               colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -205,6 +212,7 @@ describe("lib/render/index", () => {
             },
           },
           light: {
+            logo: null,
             content: {
               colorBackground: "var(--Miyagi-color-Background-internal)",
               colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -264,7 +272,14 @@ describe("lib/render/index", () => {
           hideTests: false,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -285,6 +300,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -340,7 +356,14 @@ describe("lib/render/index", () => {
           hideTests: false,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -361,6 +384,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -420,7 +444,14 @@ describe("lib/render/index", () => {
           hideTests: true,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -441,6 +472,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -497,7 +529,14 @@ describe("lib/render/index", () => {
           hideTests: true,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -518,6 +557,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -581,7 +621,14 @@ describe("lib/render/index", () => {
           standalone: true,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -602,6 +649,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -668,7 +716,14 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -689,6 +744,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -754,7 +810,14 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -775,6 +838,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -840,7 +904,14 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -861,6 +932,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -924,7 +996,14 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -945,6 +1024,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1013,7 +1093,14 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1034,6 +1121,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1099,7 +1187,14 @@ describe("lib/render/index", () => {
           standalone: true,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1120,6 +1215,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1261,7 +1357,14 @@ describe("lib/render/index", () => {
           documentation: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1282,6 +1385,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1412,7 +1516,14 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1434,6 +1545,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1525,7 +1637,14 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1547,6 +1666,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1638,7 +1758,14 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1660,6 +1787,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1746,7 +1874,14 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1768,6 +1903,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1889,7 +2025,14 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1911,6 +2054,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1962,7 +2106,14 @@ describe("lib/render/index", () => {
             documentation: undefined,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -1984,6 +2135,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2067,7 +2219,14 @@ describe("lib/render/index", () => {
             folder,
             theme: {
               mode: "light",
+              logo: null,
+              favicon: null,
+              css: null,
+              js: null,
+              fontFamily:
+                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
               dark: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2089,6 +2248,7 @@ describe("lib/render/index", () => {
                 },
               },
               light: {
+                logo: null,
                 content: {
                   colorBackground: "var(--Miyagi-color-Background-internal)",
                   colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2177,7 +2337,14 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2198,6 +2365,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2262,7 +2430,14 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2283,6 +2458,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2331,7 +2507,14 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2352,6 +2535,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2400,7 +2584,14 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][1]).toEqual({
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2421,6 +2612,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2479,7 +2671,14 @@ describe("lib/render/index", () => {
           error: `${component} not found.`,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2500,6 +2699,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2550,7 +2750,14 @@ describe("lib/render/index", () => {
           error: `${component} not found.`,
           theme: {
             mode: "light",
+            logo: null,
+            favicon: null,
+            css: null,
+            js: null,
+            fontFamily:
+              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
             dark: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
@@ -2571,6 +2778,7 @@ describe("lib/render/index", () => {
               },
             },
             light: {
+              logo: null,
               content: {
                 colorBackground: "var(--Miyagi-color-Background-internal)",
                 colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
