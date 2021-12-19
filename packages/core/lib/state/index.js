@@ -8,6 +8,7 @@ const { getPartials } = require("./partials.js");
 const { getFileContents } = require("./file-contents.js");
 const getCSS = require("./css");
 const { getMenu } = require("./menu");
+const getFlatMenu = require("./flat-menu");
 const { getSourceTree } = require("./source-tree.js");
 
 /**
@@ -26,6 +27,7 @@ function setSourceTreeAndMenu(app, methods, state) {
 
     if (methods.menu) {
       state.menu = getMenu(app);
+      state.flatMenu = getFlatMenu(state.menu, app.get("config").isBuild);
       resolve();
     } else {
       resolve();

@@ -1,4 +1,4 @@
-import searchIsTriggered from "./_search-is-triggered.js";
+import { search as searchIsTriggered } from "./_is-triggered.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const SEARCH_INPUT = document.querySelector(".Menu-searchInput");

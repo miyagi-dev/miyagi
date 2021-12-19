@@ -15,6 +15,7 @@ jest.mock("../../../lib/validator/mocks", () => {
 const component = "component1/index.hbs";
 const variation = "variation";
 const menu = "menu";
+const flatMenu = [];
 const userProjectName = "projectName";
 const path1 = path.join(
   process.cwd(),
@@ -116,6 +117,7 @@ beforeEach(() => {
 
   app.set("state", {
     menu,
+    flatMenu,
     partials: {
       "component1/index.hbs": path1,
       "component2/index.hbs": path2,
@@ -174,6 +176,8 @@ describe("lib/render/index", () => {
       expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
       expect(res.render.mock.calls[0][1]).toEqual({
         folders,
+        flatMenu,
+        flatUrlPattern: "/show?file={{component}}",
         iframeSrc: "/component?file=all&embedded=true",
         indexPath: "/component?file=all&embedded=true",
         showAll: true,
@@ -248,6 +252,8 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
+          flatMenu,
+          flatUrlPattern: "/show?file={{component}}",
           iframeSrc: `/component?file=${path.dirname(
             component
           )}&variation=${variation}&embedded=true`,
@@ -323,6 +329,8 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
+          flatMenu,
+          flatUrlPattern: "/show?file={{component}}",
           iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
           indexPath: "/component?file=all&embedded=true",
           requestedComponent: path.dirname(component),
@@ -399,6 +407,8 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
+          flatMenu,
+          flatUrlPattern: "/show?file={{component}}",
           iframeSrc: `/component?file=${path.dirname(
             component
           )}&variation=${variation}&embedded=true`,
@@ -475,6 +485,8 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
+          flatMenu,
+          flatUrlPattern: "/show?file={{component}}",
           iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
           requestedComponent: null,
           requestedVariation: null,

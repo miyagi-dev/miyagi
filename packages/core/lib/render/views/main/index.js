@@ -25,6 +25,10 @@ module.exports = function renderMainIndex({
     "main.hbs",
     {
       folders: app.get("state").menu,
+      flatMenu: app.get("state").flatMenu,
+      flatUrlPattern: app.get("config").isBuild
+        ? "/show-{{component}}.html"
+        : "/show?file={{component}}",
       iframeSrc: app.get("config").isBuild
         ? "component-all-embedded.html"
         : "/component?file=all&embedded=true",

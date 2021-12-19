@@ -55,6 +55,10 @@ module.exports = async function renderMainComponent({
     "main.hbs",
     {
       folders: app.get("state").menu,
+      flatMenu: app.get("state").flatMenu,
+      flatUrlPattern: app.get("config").isBuild
+        ? "/show-{{component}}.html"
+        : "/show?file={{component}}",
       iframeSrc,
       requestedComponent: file,
       requestedVariation: variation,

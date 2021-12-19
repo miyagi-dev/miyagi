@@ -39,6 +39,11 @@ beforeEach(() => {
       }),
     };
   });
+  jest.mock("../../../lib/state/flat-menu.js", () => {
+    return jest.fn(() => {
+      return [];
+    });
+  });
   jest.mock("../../../lib/state/source-tree.js", () => {
     return {
       getSourceTree: jest.fn(() => {
@@ -268,6 +273,7 @@ describe("lib/state/index", () => {
           fileContents: "data",
           sourceTree: "sourceTree",
           menu: "menu",
+          flatMenu: [],
         });
         expect(getMenu).toHaveBeenCalledWith(app);
       });

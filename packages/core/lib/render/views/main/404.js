@@ -27,6 +27,10 @@ module.exports = async function renderMain404({
 
   await res.render("main.hbs", {
     folders: app.get("state").menu,
+    flatMenu: app.get("state").flatMenu,
+    flatUrlPattern: app.get("config").isBuild
+      ? "/show-{{component}}.html"
+      : "/show?file={{component}}",
     iframeSrc,
     requestedComponent: null,
     requestedVariation: null,

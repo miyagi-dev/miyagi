@@ -1,0 +1,31 @@
+.GoTo {
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--Miyagi-color-Background);
+  padding: 0.25em 0.5em 0.5em;
+  width: calc(100% - 20px);
+  max-width: 20em;
+}
+
+.GoTo-label {
+  display: block;
+  font-size: 0.875em;
+}
+
+.GoTo-input {
+  border: 1px solid var(--Miyagi-color-Search-border);
+  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2) inset;
+  color: var(--Miyagi-color-Search-text);
+  background: var(--Miyagi-color-Search-background);
+  padding: 0.35em 0.5em;
+  margin-top: 0.25em;
+  width: 100%;
+}
+
+.GoTo-input:focus {
+  border-color: currentColor;
+  outline: none;
+}

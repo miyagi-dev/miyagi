@@ -142,6 +142,16 @@
           </fieldset>
         </form>
       </div>
+
+      <form class="GoTo u-hiddenVisually" data-url-pattern="{{flatUrlPattern}}" autocomplete="off">
+        <label class="GoTo-label" for="goto-input">Go to…</label>
+        <input class="GoTo-input" type="text" list="goto-list" id="goto-input">
+        <datalist id="goto-list">
+          {{#each flatMenu}}
+            <option value="{{this.value}}">{{this.component}}</option>
+          {{/each}}
+        </datalist>
+      </form>
     </nav>
 
     <main class="Content">
