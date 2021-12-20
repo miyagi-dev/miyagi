@@ -1,4 +1,8 @@
-.ConfigSwitcher {
+.ConfigSwitchers {
+  padding: var(--Miyagi-spacing-x) 0;
+}
+
+.ConfigSwitcher:not(:first-child) {
   margin-top: 2rem;
 }
 
@@ -49,4 +53,12 @@
 
 .ConfigSwitcher :checked + label svg {
   fill: var(--Miyagi-color-Link-active);
+}
+
+@media (min-width: 40.03125em) {
+  .ConfigSwitchers {
+    position: sticky;
+    bottom: 0;
+    background: var(--Miyagi-color-Background);
+  }
 }

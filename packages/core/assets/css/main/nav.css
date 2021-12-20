@@ -3,8 +3,6 @@
   background: var(--Miyagi-color-Background);
   grid-area: nav;
   overflow-y: auto;
-  padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x)
-    var(--Miyagi-spacing-x);
 }
 
 .Nav-projectLogo img {
@@ -28,6 +26,7 @@
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x);
   }
 
   .Nav-projectLogo img {
@@ -81,6 +80,7 @@
   .Nav {
     flex-direction: column;
     height: 100vh;
+    padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x) 0;
   }
 
   .Nav-toggleMobileMenu {

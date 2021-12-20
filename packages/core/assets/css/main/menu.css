@@ -1,11 +1,11 @@
 .Menu {
   font-size: 1.4rem;
-  margin: var(--Miyagi-spacing-y) 0 0;
+  margin: var(--Miyagi-spacing-x) 0 0;
 }
 
 .Menu-search {
-  position: relative;
-  margin: 0 0 2rem;
+  background: var(--Miyagi-color-Background);
+  padding: var(--Miyagi-spacing-x) 0;
   margin-inline-start: calc(-1 * 1.5rem);
   width: calc(100% + 1.5rem);
 }
@@ -200,12 +200,22 @@
     margin-inline-start: 1rem;
     padding-inline: var(--Miyagi-spacing-x);
   }
+
+  .Menu-search {
+    position: relative;
+  }
 }
 
 @media (min-width: 40.03125em) {
   .Menu {
     flex: 1;
     margin-inline-start: 1.5rem;
+  }
+
+  .Menu-search {
+    position: sticky;
+    top: calc(-1 * var(--Miyagi-spacing-y));
+    z-index: 1;
   }
 }
 
