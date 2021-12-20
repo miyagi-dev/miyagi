@@ -1,5 +1,5 @@
 const config = require("../../../config.json");
-const { getThemeMode } = require("../../helpers");
+const { getThemeMode, getComponentTextDirection } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -17,6 +17,7 @@ module.exports = async function renderMain404({
   cookies,
 }) {
   const themeMode = getThemeMode(app, cookies);
+  const componentTextDirection = getComponentTextDirection(app, cookies);
   let iframeSrc = `/component?file=${file}`;
 
   if (variation) {
@@ -45,6 +46,8 @@ module.exports = async function renderMain404({
     theme: themeMode
       ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
       : app.get("config").ui.theme,
+    componentTextDirection:
+      componentTextDirection || app.get("config").components.textDirection,
     indexPath: app.get("config").isBuild
       ? "component-all-embedded.html"
       : "/component?file=all&embedded=true",

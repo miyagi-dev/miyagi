@@ -1,6 +1,7 @@
 import "./_goto.js";
 import "./_search.js";
-import "./_theme-switcher.js";
+import ThemeConfigSwitcher from "./config-switcher/theme.js";
+import TextDirectionConfigSwitcher from "./config-switcher/text-direction.js";
 
 class Main {
   constructor() {
@@ -43,6 +44,11 @@ class Main {
     this.addLinksClickListener();
     this.addPopStateLisener();
     this.addPageChangedListener();
+
+    new ThemeConfigSwitcher(document.querySelector(".js-ThemeSwitcher"));
+    new TextDirectionConfigSwitcher(
+      document.querySelector(".js-TextDirectionSwitcher")
+    );
   }
 
   static toggleExpandedAttribute(toggle) {

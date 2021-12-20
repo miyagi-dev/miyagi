@@ -1,7 +1,7 @@
 const tests = require("../../tests.json");
 const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
-const { getThemeMode } = require("../../helpers");
+const { getThemeMode, getComponentTextDirection } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -30,6 +30,7 @@ module.exports = async function renderMainComponent({
       )}.html`
     : `/component?file=${file}`;
   const themeMode = getThemeMode(app, cookies);
+  const componentTextDirection = getComponentTextDirection(app, cookies);
   const hideTests =
     !app.get("config").ui.validations.accessibility &&
     !app.get("config").ui.validations.html;
@@ -75,6 +76,8 @@ module.exports = async function renderMainComponent({
       theme: themeMode
         ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
         : app.get("config").ui.theme,
+      componentTextDirection:
+        componentTextDirection || app.get("config").components.textDirection,
       basePath: app.get("config").isBuild
         ? app.get("config").build.basePath
         : "/",

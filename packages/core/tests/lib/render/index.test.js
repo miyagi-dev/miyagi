@@ -233,6 +233,7 @@ describe("lib/render/index", () => {
         isBuild: undefined,
         basePath: "/",
         uiTextDirection: "ltr",
+        componentTextDirection: "ltr",
       });
     });
   });
@@ -312,6 +313,7 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           basePath: "/",
           uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -387,6 +389,7 @@ describe("lib/render/index", () => {
           isBuild: undefined,
           basePath: "/",
           uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -468,6 +471,7 @@ describe("lib/render/index", () => {
           indexPath: "/component?file=all&embedded=true",
           basePath: "/",
           uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });
@@ -544,6 +548,7 @@ describe("lib/render/index", () => {
           indexPath: "/component?file=all&embedded=true",
           basePath: "/",
           uiTextDirection: "ltr",
+          componentTextDirection: "ltr",
         });
       });
     });

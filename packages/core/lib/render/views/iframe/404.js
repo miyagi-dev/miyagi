@@ -1,5 +1,5 @@
 const config = require("../../../config.json");
-const { getThemeMode } = require("../../helpers");
+const { getThemeMode, getComponentTextDirection } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -17,6 +17,7 @@ module.exports = async function renderIframe404({
   cookies,
 }) {
   const themeMode = getThemeMode(app, cookies);
+  const componentTextDirection = getComponentTextDirection(app, cookies);
 
   await res.render(
     embedded ? "iframe_component_variation.hbs" : "component_variation.hbs",
@@ -32,7 +33,8 @@ module.exports = async function renderIframe404({
       theme: themeMode
         ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
         : app.get("config").ui.theme,
-      componentTextDirection: app.get("config").components.textDirection,
+      componentTextDirection:
+        componentTextDirection || app.get("config").components.textDirection,
       uiTextDirection: app.get("config").ui.textDirection,
       componentLanguage: app.get("config").components.lang,
     }

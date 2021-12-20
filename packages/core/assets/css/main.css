@@ -5,7 +5,7 @@
 @import "./main/test.css";
 @import "./main/results.css";
 @import "./main/result.css";
-@import "./main/theme-switcher.css";
+@import "./main/config-switcher.css";
 @import "./main/goto.css";
 
 html {

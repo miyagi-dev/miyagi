@@ -87,4 +87,8 @@ module.exports = {
   getThemeMode(app, cookies = {}) {
     return cookies[`miyagi_${app.get("config").projectName}_theme`];
   },
+
+  getComponentTextDirection(app, cookies = {}) {
+    return cookies[`miyagi_${app.get("config").projectName}_text_direction`];
+  },
 };

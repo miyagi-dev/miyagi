@@ -1,6 +1,6 @@
 const tests = require("../../tests.json");
 const config = require("../../../config.json");
-const { getThemeMode } = require("../../helpers");
+const { getThemeMode, getComponentTextDirection } = require("../../helpers");
 
 /**
  * @param {object} object - parameter object
@@ -20,6 +20,7 @@ module.exports = function renderMainIndex({
   cookies,
 }) {
   const themeMode = getThemeMode(app, cookies);
+  const componentTextDirection = getComponentTextDirection(app, cookies);
 
   res.render(
     "main.hbs",
@@ -46,6 +47,8 @@ module.exports = function renderMainIndex({
       theme: themeMode
         ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
         : app.get("config").ui.theme,
+      componentTextDirection:
+        componentTextDirection || app.get("config").components.textDirection,
       basePath: app.get("config").isBuild
         ? app.get("config").build.basePath
         : "/",

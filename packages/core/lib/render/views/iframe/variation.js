@@ -5,7 +5,7 @@ const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData } = require("../../../mocks");
 const log = require("../../../logger.js");
-const { getThemeMode } = require("../../helpers");
+const { getThemeMode, getComponentTextDirection } = require("../../helpers");
 
 const { getDataForRenderFunction } = require("../../helpers.js");
 
@@ -33,6 +33,7 @@ module.exports = async function renderIframeVariation({
   const { raw: rawComponentData, extended: componentData } =
     await getVariationData(app, file, decodeURI(variation));
   const themeMode = getThemeMode(app, cookies);
+  const componentTextDirection = getComponentTextDirection(app, cookies);
 
   const validatedMocks = validateMocks(app, file, [
     {
@@ -124,6 +125,7 @@ module.exports = async function renderIframeVariation({
               mockValidation,
               mocks: fileContents.mocks,
               componentTextDirection:
+                componentTextDirection ||
                 app.get("config").components.textDirection,
               uiTextDirection: app.get("config").ui.textDirection,
               componentLanguage: app.get("config").components.lang,

@@ -5,7 +5,11 @@ const config = require("../../../config.json");
 const helpers = require("../../../helpers.js");
 const validateMocks = require("../../../validator/mocks.js");
 const { getVariationData, getComponentData } = require("../../../mocks");
-const { getDataForRenderFunction, getThemeMode } = require("../../helpers");
+const {
+  getDataForRenderFunction,
+  getThemeMode,
+  getComponentTextDirection,
+} = require("../../helpers");
 const log = require("../../../logger.js");
 const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
 
@@ -251,6 +255,7 @@ async function renderVariations({
     .then(async () => {
       const { ui } = app.get("config");
       const themeMode = getThemeMode(app, cookies);
+      const componentTextDirection = getComponentTextDirection(app, cookies);
       const renderFileTabs = !!(
         fileContents.schema ||
         fileContents.mocks ||
@@ -283,7 +288,9 @@ async function renderVariations({
             file.split(path.sep).slice(0, -1).join("/")
           ),
           name,
-          componentTextDirection: app.get("config").components.textDirection,
+          componentTextDirection:
+            componentTextDirection ||
+            app.get("config").components.textDirection,
           uiTextDirection: app.get("config").ui.textDirection,
           componentLanguage: app.get("config").components.lang,
         },
