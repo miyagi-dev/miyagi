@@ -315,26 +315,36 @@ module.exports = function Watcher(server, app) {
     });
   }
 
-  const watcher = watch(foldersToWatch, {
-    recursive: true,
-    filter(f, skip) {
-      if (anymatch(components.ignores, f)) return skip;
-      return true;
-    },
-  });
+  let watcher;
 
-  watcher.on("change", (event, changedPath) => {
-    triggeredEvents.push({ event, changedPath });
+  try {
+    watcher = watch(foldersToWatch, {
+      recursive: true,
+      filter(f, skip) {
+        if (anymatch(components.ignores, f)) return skip;
+        return true;
+      },
+    });
+  } catch (e) {
+    log("error", e.message);
+  }
 
-    if (!timeout) {
-      console.clear();
-      log("info", messages.updatingStarted);
-      timeout = setTimeout(() => {
-        timeout = null;
-        handleFileChange();
-      }, 10);
-    }
-  });
+  if (watcher) {
+    watcher.on("change", (event, changedPath) => {
+      triggeredEvents.push({ event, changedPath });
+
+      if (!timeout) {
+        console.clear();
+        log("info", messages.updatingStarted);
+        timeout = setTimeout(() => {
+          timeout = null;
+          handleFileChange();
+        }, 10);
+      }
+    });
+  } else {
+    log("error", messages.watchingFilesFailed);
+  }
 };
 
 async function configurationFileUpdated(app) {

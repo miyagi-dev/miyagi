@@ -222,6 +222,7 @@
     "updatingStarted": "A file has been changed, miyagi is updating the state.",
     "userConfigUnparseable": "miyagi wasn't able to find or parse your config file. If you created a .miyagi.js or .miyagi.json, please check if its syntax is correct.",
     "variationNotFound": "Variation \"{{variation}}\" not found in {{fileName}}.",
+    "watchingFilesFailed": "Watching files failed.",
     "wrongFileType": "{{fileName}} does not have the correct file type."
   },
   "engines": [
