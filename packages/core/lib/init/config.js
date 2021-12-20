@@ -153,7 +153,16 @@ module.exports = (userConfig = {}) => {
   }
 
   if (config.assets) {
+    const nodeEnv = process.env.NODE_ENV;
     let manifest;
+
+    if (config.assets.root && objectIsRealObject(config.assets.root)) {
+      if (config.assets.root[nodeEnv]) {
+        config.assets.root = config.assets.root[nodeEnv];
+      } else {
+        config.assets.root = "";
+      }
+    }
 
     if (config.assets.manifest) {
       try {
@@ -208,8 +217,6 @@ module.exports = (userConfig = {}) => {
       config.assets.es6Modules &&
       objectIsRealObject(config.assets.es6Modules)
     ) {
-      const nodeEnv = process.env.NODE_ENV;
-
       if (config.assets.es6Modules[nodeEnv]) {
         config.assets.es6Modules = config.assets.es6Modules[nodeEnv];
       } else {

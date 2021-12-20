@@ -7,9 +7,18 @@ _Settings for assets that miyagi serves (independently from your components)._
 ### `root`
 
 default: `""`<br>
-type: `string`
+type: `string|object`
 
 This settings can be helpful if assets are located in another folder, e.g. `public/assets`, but they should actually be served from `assets/`. In that case you could set this option to `public`.
+
+It is also possible to define this for each `NODE_ENV` via an object like this:
+
+```json
+{
+  "development": "some/folder",
+  "production": ""
+}
+```
 
 ### `css`
 
