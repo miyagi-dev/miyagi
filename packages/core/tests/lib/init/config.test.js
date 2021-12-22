@@ -52,7 +52,15 @@ describe("lib/init/config", () => {
       });
 
       expect(conf.assets.css).toEqual(["user/css/index.css"]);
-      expect(conf.assets.js).toEqual(["user/js/index.js"]);
+      expect(conf.assets.js).toEqual([
+        {
+          src: "user/js/index.js",
+          async: false,
+          defer: false,
+          type: null,
+          position: "head",
+        },
+      ]);
       expect(conf.assets.customProperties.files).toEqual([
         "user/css/custom-props.css",
       ]);
@@ -94,7 +102,15 @@ describe("lib/init/config", () => {
       });
 
       expect(conf.assets.css).toEqual(["user/css/index.css"]);
-      expect(conf.assets.js).toEqual(["user/js/index.js"]);
+      expect(conf.assets.js).toEqual([
+        {
+          src: "user/js/index.js",
+          async: false,
+          defer: false,
+          type: null,
+          position: "head",
+        },
+      ]);
     });
   });
 
@@ -137,7 +153,15 @@ describe("lib/init/config", () => {
       });
 
       expect(conf.assets.css).toEqual(["user/css/index.css"]);
-      expect(conf.assets.js).toEqual(["user/js/index.js"]);
+      expect(conf.assets.js).toEqual([
+        {
+          src: "user/js/index.js",
+          async: false,
+          defer: false,
+          type: null,
+          position: "head",
+        },
+      ]);
     });
 
     test("sanitizes all given paths by the user", () => {
@@ -176,7 +200,15 @@ describe("lib/init/config", () => {
       });
 
       expect(conf.assets.css).toEqual(["user/css/index.css"]);
-      expect(conf.assets.js).toEqual(["user/js/index.js"]);
+      expect(conf.assets.js).toEqual([
+        {
+          src: "user/js/index.js",
+          async: false,
+          defer: false,
+          type: null,
+          position: "head",
+        },
+      ]);
     });
   });
 
@@ -224,7 +256,15 @@ describe("lib/init/config", () => {
         });
 
         expect(conf.assets.css).toEqual(["user/dev/css/index.css"]);
-        expect(conf.assets.js).toEqual(["user/dev/js/index.js"]);
+        expect(conf.assets.js).toEqual([
+          {
+            src: "user/dev/js/index.js",
+            async: false,
+            defer: false,
+            type: null,
+            position: "head",
+          },
+        ]);
       });
 
       test("sanitizes all given paths by the user", () => {
@@ -263,7 +303,15 @@ describe("lib/init/config", () => {
         });
 
         expect(conf.assets.css).toEqual(["user/css/index.css"]);
-        expect(conf.assets.js).toEqual(["user/js/index.js"]);
+        expect(conf.assets.js).toEqual([
+          {
+            src: "user/js/index.js",
+            async: false,
+            defer: false,
+            type: null,
+            position: "head",
+          },
+        ]);
       });
     });
 
@@ -310,7 +358,15 @@ describe("lib/init/config", () => {
         });
 
         expect(conf.assets.css).toEqual(["user/dev/css/index.css"]);
-        expect(conf.assets.js).toEqual(["user/dev/js/index.js"]);
+        expect(conf.assets.js).toEqual([
+          {
+            src: "user/dev/js/index.js",
+            async: false,
+            defer: false,
+            type: null,
+            position: "head",
+          },
+        ]);
       });
 
       test("sanitizes all given paths by the user", () => {
@@ -349,7 +405,15 @@ describe("lib/init/config", () => {
         });
 
         expect(conf.assets.css).toEqual(["user/css/index.css"]);
-        expect(conf.assets.js).toEqual(["user/js/index.js"]);
+        expect(conf.assets.js).toEqual([
+          {
+            src: "user/js/index.js",
+            async: false,
+            defer: false,
+            type: null,
+            position: "head",
+          },
+        ]);
       });
     });
 
@@ -466,7 +530,6 @@ describe("lib/init/config", () => {
         assets: {
           css: [],
           js: [],
-          es6Modules: false,
           folder: [],
           manifest: null,
           customProperties: {

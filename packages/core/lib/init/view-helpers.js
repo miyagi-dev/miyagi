@@ -39,16 +39,18 @@ function getCssFilesHtml(files) {
  * Renders all script tags for given javascript files
  *
  * @param {string[]} files - the paths to JS files
- * @param {boolean} es6Modules - describes if the scripts should be rendered with type="module"
  * @returns {string} the html with script tags
  */
-function getJsFilesHtml(files, es6Modules) {
+function getJsFilesHtml(files) {
   let html = "";
 
   for (let file of files) {
-    html += `<script src="${file}" ${
-      es6Modules ? 'type="module"' : "defer"
-    }></script>`;
+    const typeStr = file.type ? ` type="${file.type}"` : "";
+    const deferStr = file.defer ? `defer` : "";
+    const asyncStr = file.async ? `async` : "";
+    html += `
+    <script src="${file.src}"${typeStr + deferStr + asyncStr}></script>
+    `.trim();
   }
 
   return html;
@@ -60,8 +62,18 @@ module.exports = function initViewHelpers(app) {
   handlebars.registerHelper("menu", getMenuHtml.bind(app));
   handlebars.registerHelper("cssFiles", getCssFilesHtml.call(null, assets.css));
   handlebars.registerHelper(
-    "jsFiles",
-    getJsFilesHtml.call(null, assets.js, assets.es6Modules)
+    "jsFilesHead",
+    getJsFilesHtml.call(
+      null,
+      assets.js.filter((entry) => entry.position === "head")
+    )
+  );
+  handlebars.registerHelper(
+    "jsFilesBody",
+    getJsFilesHtml.call(
+      null,
+      assets.js.filter((entry) => entry.position === "body")
+    )
   );
   handlebars.registerHelper("ifEquals", function (arg1, arg2, options) {
     return arg1 == arg2 ? options.fn(this) : options.inverse(this);

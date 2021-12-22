@@ -65,9 +65,11 @@ function registerUserFiles(app, files) {
 
   if (assets) {
     for (const file of assets[files]) {
+      const asset = files === "js" ? file.src : file;
+
       app.use(
-        path.join("/", path.dirname(file)),
-        express.static(path.join(assets.root, path.dirname(file)))
+        path.join("/", path.dirname(asset)),
+        express.static(path.join(assets.root, path.dirname(asset)))
       );
     }
   }

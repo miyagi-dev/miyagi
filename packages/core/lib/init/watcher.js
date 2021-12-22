@@ -286,6 +286,7 @@ module.exports = function Watcher(server, app) {
       )
       .map((f) => path.join(app.get("config").assets.root, f)),
     ...assets.js
+      .map((file) => file.src)
       .filter(
         (f) =>
           !f.startsWith("http://") &&

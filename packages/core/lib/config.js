@@ -62,11 +62,5 @@ function getCliArgs(args) {
 
   cliArgs.build = buildArgs;
 
-  if (cliArgs.assets) {
-    if (cliArgs.assets.es6Modules) {
-      cliArgs.assets.es6Modules = cliArgs.assets.es6Modules !== "false";
-    }
-  }
-
   return cliArgs;
 }

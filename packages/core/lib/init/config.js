@@ -41,9 +41,7 @@ function sanitizePath(path) {
  * @returns {Array} the given file path in an array or simply the given array
  */
 function arrayfy(strOrArr) {
-  const arr = typeof strOrArr === "string" ? [strOrArr] : strOrArr;
-
-  return arr;
+  return Array.isArray(strOrArr) ? strOrArr : [strOrArr];
 }
 
 /**
@@ -54,15 +52,93 @@ function objectIsRealObject(obj) {
   return Object.prototype.toString.call(obj) === "[object Object]";
 }
 
+function getJsFileObject({
+  src,
+  defer = false,
+  async = false,
+  type = null,
+  position = "head",
+}) {
+  return {
+    src,
+    defer,
+    async,
+    type,
+    position,
+  };
+}
+
 /**
  * @param {string|Array|object} strOrArrOrObj - user assets files, either one file as string, an array of files or an object with strings or array for each NODE_ENV
  * @param {object} manifest - manifest object
  * @param {string} manifest.file - manifest file path
  * @param {object} manifest.content - parsed json content of manifest file
- * @param {("css"|"js")} assetType - the current asset type
  * @returns {string[]} converts the given object to an array of asset file path strings
  */
-function getAssetFilesArray(strOrArrOrObj, manifest, assetType) {
+function getJsFilesArray(strOrArrOrObj, manifest) {
+  let files = strOrArrOrObj;
+
+  if (typeof files === "string") {
+    files = [getJsFileObject({ src: files })];
+  } else if (Array.isArray(files)) {
+    files = files.map((entry) =>
+      typeof entry === "string" ? getJsFileObject({ src: entry }) : entry
+    );
+  } else if (objectIsRealObject(files)) {
+    const nodeEnv = process.env.NODE_ENV;
+
+    if (files[nodeEnv]) {
+      files = arrayfy(files[nodeEnv]).map((entry) =>
+        typeof entry === "string" ? getJsFileObject({ src: entry }) : entry
+      );
+    } else if (files.src) {
+      files = [files];
+    } else {
+      files = [];
+
+      log(
+        "warn",
+        appConfig.messages.nodeEnvAndKeysDontMatchCssOrJs
+          .replace("{{nodeEnv}}", nodeEnv)
+          .replace(/{{assetType}}/g, "js")
+      );
+    }
+  }
+  if (files.length > 0 && manifest) {
+    files = files.map((file) => {
+      const manifestEntry = Object.entries(manifest.content).find(([key]) => {
+        return (
+          path.resolve(path.dirname(manifest.file), sanitizePath(key)) ===
+          path.resolve(sanitizePath(file.src))
+        );
+      });
+
+      if (manifestEntry) {
+        return {
+          ...file,
+          src: path.join(path.dirname(manifest.file), manifestEntry[1]),
+        };
+      } else {
+        return file;
+      }
+    });
+  }
+  return files
+    .filter((file) => typeof file.src === "string")
+    .map((file) => ({
+      ...file,
+      src: sanitizePath(file.src),
+    }));
+}
+
+/**
+ * @param {string|Array|object} strOrArrOrObj - user assets files, either one file as string, an array of files or an object with strings or array for each NODE_ENV
+ * @param {object} manifest - manifest object
+ * @param {string} manifest.file - manifest file path
+ * @param {object} manifest.content - parsed json content of manifest file
+ * @returns {string[]} converts the given object to an array of asset file path strings
+ */
+function getCssFilesArray(strOrArrOrObj, manifest) {
   let files = strOrArrOrObj;
 
   if (typeof files === "string") {
@@ -79,7 +155,7 @@ function getAssetFilesArray(strOrArrOrObj, manifest, assetType) {
         "warn",
         appConfig.messages.nodeEnvAndKeysDontMatchCssOrJs
           .replace("{{nodeEnv}}", nodeEnv)
-          .replace(/{{assetType}}/g, assetType)
+          .replace(/{{assetType}}/g, "css")
       );
     }
   }
@@ -191,15 +267,11 @@ module.exports = (userConfig = {}) => {
     }
 
     if (config.assets.css) {
-      config.assets.css = getAssetFilesArray(
-        config.assets.css,
-        manifest,
-        "css"
-      );
+      config.assets.css = getCssFilesArray(config.assets.css, manifest);
     }
 
     if (config.assets.js) {
-      config.assets.js = getAssetFilesArray(config.assets.js, manifest, "js");
+      config.assets.js = getJsFilesArray(config.assets.js, manifest);
     }
 
     if (!config.assets.customProperties) {
@@ -211,17 +283,6 @@ module.exports = (userConfig = {}) => {
       );
     } else {
       config.assets.customProperties.files = [];
-    }
-
-    if (
-      config.assets.es6Modules &&
-      objectIsRealObject(config.assets.es6Modules)
-    ) {
-      if (config.assets.es6Modules[nodeEnv]) {
-        config.assets.es6Modules = config.assets.es6Modules[nodeEnv];
-      } else {
-        config.assets.es6Modules = false;
-      }
     }
   }
 

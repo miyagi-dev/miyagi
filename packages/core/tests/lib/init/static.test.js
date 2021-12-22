@@ -84,7 +84,7 @@ describe("lib/init/static", () => {
           deepMerge(config.defaultUserConfig, {
             assets: {
               css: ["tests/mock-data/user/css/index.css"],
-              js: ["tests/mock-data/user/js/index.js"],
+              js: [{ src: "tests/mock-data/user/js/index.js" }],
             },
           })
         );
@@ -103,7 +103,7 @@ describe("lib/init/static", () => {
           deepMerge(config.defaultUserConfig, {
             assets: {
               css: ["tests/mock-data/user/css/index.css"],
-              js: ["tests/mock-data/user/js/index.js"],
+              js: [{ src: "tests/mock-data/user/js/index.js" }],
             },
           })
         );

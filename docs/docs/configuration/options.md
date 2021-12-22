@@ -57,20 +57,6 @@ This object is used to generate your automated styleguide.
 
 [More information about automated styleguides](/automated-styleguide).
 
-### `es6Modules`
-
-default: `false`<br>
-type: `boolean|object`
-
-If you use ES6 modules, you can set this to true, so `type="module"` is added to the `script` tags of your included JS files (useful when using unbundled JavaScript). It is also possible to define this for each `NODE_ENV` via an object like this:
-
-```json
-{
-  "development": true,
-  "production": false
-}
-```
-
 ### `folder`
 
 default: `null`<br>
@@ -94,16 +80,25 @@ This would serve different assets based on your `NODE_ENV`.
 default: `null`<br>
 type: `string|array|object`
 
-Can either be a string, an array of strings or an object with your `NODE_ENV`s as key and a string or array as values:
+This would be the most complex way to define this option:
 
 ```json
 {
-  "development": ["src/index.js", "src/module.js"],
-  "production": ["dist/index.js"]
+  "development": [
+    {
+      "src": "src/index.js",
+      "defer": false,
+      "async": false,
+      "type": null,
+      "position": "head"
+    }
+  ],
+  "production": [{ … }]
 }
 ```
 
-This would serve different assets based on your `NODE_ENV`.
+This would serve different assets based on your `NODE_ENV` (`"development"` or `"production"` in this case).
+It can be simplified to by omitting the node envs, not using an array or simply using a string (for the source file).
 
 ### `manifest`
 

@@ -296,8 +296,18 @@ module.exports = (app) => {
 
       const cssJsFiles = [
         ...new Set([
-          ...assetsConfig.css.map((file) => path.join(assetsConfig.root, file)),
-          ...assetsConfig.js.map((file) => path.join(assetsConfig.root, file)),
+          ...assetsConfig.css.map((file) =>
+            path.join(
+              assetsConfig.root,
+              typeof file === "string" ? file : file.src
+            )
+          ),
+          ...assetsConfig.js.map((file) =>
+            path.join(
+              assetsConfig.root,
+              typeof file === "string" ? file : file.src
+            )
+          ),
           ...assetsConfig.customProperties.files.map((file) =>
             path.join(assetsConfig.root, file)
           ),

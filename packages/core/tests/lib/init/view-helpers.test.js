@@ -25,7 +25,10 @@ describe("lib/init/view-helpers", () => {
     deepMerge(config.defaultUserConfig, {
       assets: {
         css: ["index.css"],
-        js: ["index.js"],
+        js: [
+          { src: "index.js", position: "head" },
+          { src: "body.js", position: "body" },
+        ],
       },
     })
   );
@@ -49,32 +52,49 @@ describe("lib/init/view-helpers", () => {
     });
 
     describe("calls handlebars.registerHelper with jsFiles", () => {
-      describe("with es6Modules:true in config", () => {
+      describe("with type=module", () => {
         const tempApp = express();
         tempApp.set("config", {
           assets: {
             css: ["index.css"],
-            js: ["index.js"],
-            es6Modules: true,
+            js: app
+              .get("config")
+              .assets.js.map((entry) => ({ ...entry, type: "module" })),
           },
         });
 
         handlebars.registerHelper = jest.fn();
         viewHelpers(tempApp);
 
-        expect(handlebars.registerHelper.mock.calls[2][0]).toEqual("jsFiles");
+        expect(handlebars.registerHelper.mock.calls[2][0]).toEqual(
+          "jsFilesHead"
+        );
         expect(handlebars.registerHelper.mock.calls[2][1]).toEqual(
           '<script src="index.js" type="module"></script>'
         );
+        expect(handlebars.registerHelper.mock.calls[3][0]).toEqual(
+          "jsFilesBody"
+        );
+        expect(handlebars.registerHelper.mock.calls[3][1]).toEqual(
+          '<script src="body.js" type="module"></script>'
+        );
       });
 
-      describe("with es6Modules:false in config", () => {
+      describe("without type=module", () => {
         handlebars.registerHelper = jest.fn();
         viewHelpers(app);
 
-        expect(handlebars.registerHelper.mock.calls[2][0]).toEqual("jsFiles");
+        expect(handlebars.registerHelper.mock.calls[2][0]).toEqual(
+          "jsFilesHead"
+        );
         expect(handlebars.registerHelper.mock.calls[2][1]).toEqual(
-          '<script src="index.js" defer></script>'
+          '<script src="index.js"></script>'
+        );
+        expect(handlebars.registerHelper.mock.calls[3][0]).toEqual(
+          "jsFilesBody"
+        );
+        expect(handlebars.registerHelper.mock.calls[3][1]).toEqual(
+          '<script src="body.js"></script>'
         );
       });
     });
@@ -86,7 +106,7 @@ describe("lib/init/view-helpers", () => {
       deepMerge(config.defaultUserConfig, {
         assets: {
           css: ["index.css"],
-          js: ["index.js"],
+          js: [{ src: "index.js" }],
         },
       })
     );

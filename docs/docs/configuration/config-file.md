@@ -14,7 +14,6 @@ This is an example for a JSON config file:
       "development": ["src/index.css"],
       "production": ["build/index.css"]
     },
-    "es6Modules": true,
     "jsFiles": {
       "development": ["src/index.js"],
       "production": ["build/index.js"]
