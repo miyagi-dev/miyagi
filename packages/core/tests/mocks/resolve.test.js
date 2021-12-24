@@ -1,10 +1,10 @@
-const deepMerge = require("deepmerge");
-const express = require("express");
-const path = require("path");
+import deepMerge from "deepmerge";
+import express from "express";
+import path from "path";
 
-const config = require("../../lib/config.json");
-const { resolveVariationData } = require("../../lib/mocks");
-const log = require("../../lib/logger.js");
+import config from "../../lib/miyagi-config.js";
+import { resolveVariationData } from "../../lib/mocks";
+import log from "../../lib/logger.js";
 
 jest.mock("../../lib/logger.js");
 

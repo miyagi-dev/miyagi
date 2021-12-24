@@ -1,4 +1,4 @@
-const variationLink = require("../../../../lib/render/menu/variation-link.js");
+import { render as renderVariationLink } from "../../../../lib/render/menu/variation-link.js";
 
 beforeEach(() => {
   jest.resetModules();
@@ -9,7 +9,7 @@ describe("lib/menu/elements/variation-link", () => {
   describe("with current === true", () => {
     test("renders the correct variationLink html", () => {
       expect(
-        variationLink.render(
+        renderVariationLink(
           false,
           { index: 1, shortPath: "foo/bar" },
           { name: "baz" },
@@ -24,7 +24,7 @@ describe("lib/menu/elements/variation-link", () => {
   describe("with current === false", () => {
     test("renders the correct variationLink html", () => {
       expect(
-        variationLink.render(
+        renderVariationLink(
           false,
           { index: 1, shortPath: "foo/bar" },
           { name: "baz" },

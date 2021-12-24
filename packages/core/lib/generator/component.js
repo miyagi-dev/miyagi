@@ -1,9 +1,9 @@
-const path = require("path");
-const fs = require("fs");
-const jsonToYaml = require("js-yaml");
-const log = require("../logger.js");
-const helpers = require("../helpers.js");
-const { messages } = require("../config.json");
+import path from "path";
+import fs from "fs";
+import jsonToYaml from "js-yaml";
+import log from "../logger.js";
+import { getResolvedFileName } from "../helpers.js";
+import { messages } from "../miyagi-config.js";
 
 /**
  * Module for creating component files based on the configuration cli params
@@ -12,7 +12,7 @@ const { messages } = require("../config.json");
  * @param {object} cliParams - the cli params object
  * @param {object} config - the user configuration object
  */
-module.exports = async function componentGenerator(cliParams, config) {
+export default async function componentGenerator(cliParams, config) {
   const commands = cliParams._.slice(1);
 
   if (commands.length === 0) {
@@ -203,18 +203,16 @@ module.exports = async function componentGenerator(cliParams, config) {
    */
   function getFileNames(filesConfig, componentName) {
     return {
-      tpl: `${helpers.getResolvedFileName(
-        filesConfig.templates.name,
-        componentName
-      )}.${filesConfig.templates.extension}`,
+      tpl: `${getResolvedFileName(filesConfig.templates.name, componentName)}.${
+        filesConfig.templates.extension
+      }`,
       mocks: `${filesConfig.mocks.name}.${filesConfig.mocks.extension}`,
       docs: `${filesConfig.docs.name}.${filesConfig.docs.extension}`,
       info: `${filesConfig.info.name}.${filesConfig.info.extension}`,
-      css: `${helpers.getResolvedFileName(
-        filesConfig.css.name,
-        componentName
-      )}.${filesConfig.css.extension}`,
-      js: `${helpers.getResolvedFileName(filesConfig.js.name, componentName)}.${
+      css: `${getResolvedFileName(filesConfig.css.name, componentName)}.${
+        filesConfig.css.extension
+      }`,
+      js: `${getResolvedFileName(filesConfig.js.name, componentName)}.${
         filesConfig.js.extension
       }`,
       schema: `${filesConfig.schema.name}.${filesConfig.schema.extension}`,
@@ -242,4 +240,4 @@ module.exports = async function componentGenerator(cliParams, config) {
       );
     });
   }
-};
+}

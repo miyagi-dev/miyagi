@@ -1,14 +1,17 @@
-module.exports = {
-  getColors(obj, prefix) {
-    return require("./colors.js")(obj, prefix);
-  },
-  getFonts(obj, prefix) {
-    return require("./fonts.js")(obj, prefix);
-  },
-  getSpacings(obj, prefix) {
-    return require("./spacings.js")(obj, prefix);
-  },
-  getMediaQueries(obj) {
-    return require("./media-queries.js")(obj);
-  },
+import Colors from "./colors.js";
+import Fonts from "./fonts.js";
+import Spacings from "./spacings.js";
+import MediaQueries from "./media-queries.js";
+
+export const getColors = function (obj, prefix) {
+  return Colors(obj, prefix);
+};
+export const getFonts = function (obj, prefix) {
+  return Fonts(obj, prefix);
+};
+export const getSpacings = function (obj, prefix) {
+  return Spacings(obj, prefix);
+};
+export const getMediaQueries = function (obj) {
+  return MediaQueries(obj);
 };

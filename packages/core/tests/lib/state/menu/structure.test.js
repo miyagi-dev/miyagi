@@ -1,9 +1,9 @@
-const express = require("express");
-const deepMerge = require("deepmerge");
-const structureJson = require("../../../mock-data/structure.json");
-const dataJson = require("../../../mock-data/data.json");
-const sourceTreeJson = require("../../../mock-data/source-tree.json");
-const config = require("../../../../lib/config.json");
+import express from "express";
+import deepMerge from "deepmerge";
+import structureJson from "../../../mock-data/structure.json";
+import dataJson from "../../../mock-data/data.json";
+import sourceTreeJson from "../../../mock-data/source-tree.json";
+import config from "../../../../lib/miyagi-config.js";
 
 jest.mock("../../../../lib/logger");
 
@@ -35,12 +35,12 @@ describe("lib/state/menu/structure", () => {
 
     process.cwd = () => "/miyagi/tests";
 
-    const structure = require("../../../../lib/state/menu/structure.js");
-    return await expect(structure(app)).toEqual(structureJson);
+    const structure = await import("../../../../lib/state/menu/structure.js");
+    return await expect(structure.default(app)).toEqual(structureJson);
   });
 
   describe("with no result", () => {
-    test("it returns an empty array", () => {
+    test("it returns an empty array", async () => {
       const app = express();
       app.set(
         "config",
@@ -60,8 +60,8 @@ describe("lib/state/menu/structure", () => {
         fileContents: dataJson,
       });
 
-      const structure = require("../../../../lib/state/menu/structure.js");
-      expect(structure(app)).toEqual([]);
+      const structure = await import("../../../../lib/state/menu/structure.js");
+      expect(structure.default(app)).toEqual([]);
     });
   });
 });

@@ -1,9 +1,5 @@
-const express = require("express");
-const path = require("path");
-const handlebars = require("handlebars");
-const helpers = require("../../../lib/helpers.js");
-const log = require("../../../lib/logger.js");
-const partials = require("../../../lib/init/partials.js");
+import express from "express";
+import path from "path";
 
 jest.mock("../../../lib/logger.js");
 jest.mock("handlebars", () => {
@@ -12,6 +8,7 @@ jest.mock("handlebars", () => {
     compile: jest.fn(() => "compiledPartial"),
   };
 });
+jest.mock("../../../lib/__dirname.js", () => `${process.cwd()}/lib`);
 
 afterEach(() => {
   jest.resetModules();
@@ -36,9 +33,12 @@ describe("lib/init/partials", () => {
   describe("registerAll()", () => {
     describe("with valid file", () => {
       test("calls hbs.registerPartial after reading the file", async () => {
+        const handlebars = await import("handlebars");
+        const partials = await import("../../../lib/init/partials.js");
+
         handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerAll(app, true);
+        await partials.default.registerAll(app, true);
 
         expect(handlebars.registerPartial).toHaveBeenCalledWith(
           "foo/index.hbs",
@@ -49,11 +49,15 @@ describe("lib/init/partials", () => {
 
     describe("with invalid file", () => {
       test("doesn't call hbs.registerPartial, but logs an error", async () => {
+        const handlebars = await import("handlebars");
+        const partials = await import("../../../lib/init/partials.js");
+        const log = await import("../../../lib/logger.js");
+
         handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerAll(app, true);
+        await partials.default.registerAll(app, true);
 
-        expect(log).toHaveBeenCalledWith(
+        expect(log.default).toHaveBeenCalledWith(
           "warn",
           "Couldn't find file foo/index2.hbs. Is the 'components.folder' in your configuration set correctly?"
         );
@@ -63,13 +67,29 @@ describe("lib/init/partials", () => {
       });
     });
 
-    test("calls hbs.registerPartial with layout files", async () => {
+    test("calls hbs.registerPartial with layout and partial files", async () => {
+      const handlebars = await import("handlebars");
+      const partials = await import("../../../lib/init/partials.js");
+
       handlebars.compile = jest.fn(() => "compiledPartial");
 
-      await partials.registerAll(app, true);
+      await partials.default.registerAll(app);
 
-      expect(handlebars.registerPartial).toHaveBeenCalledWith(
+      expect(handlebars.registerPartial).toHaveBeenCalledTimes(3);
+
+      expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
+        1,
         "iframe_default",
+        "compiledPartial"
+      );
+      expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
+        2,
+        "iframe_index",
+        "compiledPartial"
+      );
+      expect(handlebars.registerPartial).toHaveBeenNthCalledWith(
+        3,
+        "foo/index.hbs",
         "compiledPartial"
       );
     });
@@ -78,10 +98,17 @@ describe("lib/init/partials", () => {
   describe("registerPartial()", () => {
     describe("with valid file", () => {
       test("calls hbs.registerPartial after reading the file", async () => {
-        helpers.getShortPathFromFullPath = jest.fn(() => "fullName");
+        const handlebars = await import("handlebars");
+        jest.mock("../../../lib/helpers.js", () => {
+          return {
+            getShortPathFromFullPath: jest.fn(() => "fullName"),
+          };
+        });
+
+        const partials = await import("../../../lib/init/partials.js");
         handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerPartial(
+        await partials.default.registerPartial(
           {},
           path.join(
             process.cwd(),
@@ -98,14 +125,23 @@ describe("lib/init/partials", () => {
 
     describe("with invalid file", () => {
       test("doesn't call hbs.registerPartial, but logs an error", async () => {
-        helpers.getShortPathFromFullPath = jest.fn(() => "fullName");
+        const handlebars = await import("handlebars");
+        const log = await import("../../../lib/logger.js");
 
-        await partials.registerPartial(
+        jest.mock("../../../lib/helpers.js", () => {
+          return {
+            getShortPathFromFullPath: jest.fn(() => "fullName"),
+          };
+        });
+
+        const partials = await import("../../../lib/init/partials.js");
+
+        await partials.default.registerPartial(
           app,
           "tests/mock-data/srcFolder/component/doesNotExist.hbs"
         );
 
-        expect(log).toHaveBeenCalledWith(
+        expect(log.default).toHaveBeenCalledWith(
           "warn",
           "Couldn't find file fullName. Is the 'components.folder' in your configuration set correctly?"
         );

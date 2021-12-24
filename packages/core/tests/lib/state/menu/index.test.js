@@ -1,7 +1,7 @@
-const express = require("express");
-const deepMerge = require("deepmerge");
-const menuJson = require("../../../mock-data/menu.json");
-const config = require("../../../../lib/config.json");
+import express from "express";
+import deepMerge from "deepmerge";
+import menuJson from "../../../mock-data/menu.json";
+import config from "../../../../lib/miyagi-config.js";
 
 jest.mock("../../../../lib/state/menu/structure.js", () => {
   return () => {
@@ -40,7 +40,7 @@ describe("state/menu/index", () => {
       fileContents: {},
     });
 
-    const { getMenu } = require("../../../../lib/state/menu");
+    const { getMenu } = await import("../../../../lib/state/menu");
     return await expect(getMenu(app)).toEqual(menuJson);
   });
 });

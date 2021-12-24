@@ -1,10 +1,10 @@
-const deepMerge = require("deepmerge");
-const path = require("path");
-const express = require("express");
-const request = require("supertest");
-const setRouter = require("../../../lib/init/router.js");
-const render = require("../../../lib/render");
-const config = require("../../../lib/config.json");
+import deepMerge from "deepmerge";
+import path from "path";
+import express from "express";
+import request from "supertest";
+import setRouter from "../../../lib/init/router.js";
+import render from "../../../lib/render/index.js";
+import config from "../../../lib/miyagi-config.js";
 
 const component = "components/component/index.hbs";
 

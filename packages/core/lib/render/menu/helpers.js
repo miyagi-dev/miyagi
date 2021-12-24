@@ -4,7 +4,7 @@
  * @module renderMenuHelpers
  */
 
-const path = require("path");
+import path from "path";
 
 /*
  * Private functions
@@ -113,7 +113,7 @@ function directoryHasComponent(directory) {
   return false;
 }
 
-module.exports = {
+export default {
   activeState,
   childrenOfDirectoryContainDirectory,
   componentHasVariations,

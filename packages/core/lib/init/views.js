@@ -4,12 +4,13 @@
  * @module initViews
  */
 
-const path = require("path");
-const config = require("../config.json");
+import path from "path";
+import config from "../miyagi-config.js";
+import __dirname from "../__dirname.js";
 
-module.exports = function initViews(app) {
+export default function initViews(app) {
   app.set("views", [
-    path.join(__dirname, `../../${config.folders.views}`),
+    path.join(__dirname, `../${config.folders.views}`),
     path.resolve(app.get("config").components.folder),
   ]);
-};
+}

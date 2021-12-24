@@ -4,11 +4,11 @@
  * @module initConfig
  */
 
-const deepMerge = require("deepmerge");
-const log = require("../logger.js");
-const appConfig = require("../config.json");
-const fs = require("fs");
-const path = require("path");
+import deepMerge from "deepmerge";
+import log from "../logger.js";
+import appConfig, { messages } from "../miyagi-config.js";
+import fs from "fs";
+import path from "path";
 
 const { defaultUserConfig } = appConfig;
 
@@ -98,7 +98,7 @@ function getJsFilesArray(strOrArrOrObj, manifest) {
 
       log(
         "warn",
-        appConfig.messages.nodeEnvAndKeysDontMatchCssOrJs
+        messages.nodeEnvAndKeysDontMatchCssOrJs
           .replace("{{nodeEnv}}", nodeEnv)
           .replace(/{{assetType}}/g, "js")
       );
@@ -153,7 +153,7 @@ function getCssFilesArray(strOrArrOrObj, manifest) {
 
       log(
         "warn",
-        appConfig.messages.nodeEnvAndKeysDontMatchCssOrJs
+        messages.nodeEnvAndKeysDontMatchCssOrJs
           .replace("{{nodeEnv}}", nodeEnv)
           .replace(/{{assetType}}/g, "css")
       );
@@ -198,7 +198,7 @@ function getAssetFoldersArray(strOrArrOrObj) {
 
       log(
         "warn",
-        appConfig.messages.nodeEnvAndKeysDontMatchAssetFolders.replace(
+        messages.nodeEnvAndKeysDontMatchAssetFolders.replace(
           "{{nodeEnv}}",
           nodeEnv
         )
@@ -213,7 +213,7 @@ function getAssetFoldersArray(strOrArrOrObj) {
  * @param {object} [userConfig] the unmerged user configuration
  * @returns {object} the user configuration merged with the default configuration
  */
-module.exports = (userConfig = {}) => {
+export default (userConfig = {}) => {
   const config = { ...userConfig };
 
   if (config.build) {
@@ -254,7 +254,7 @@ module.exports = (userConfig = {}) => {
       } catch (e) {
         log(
           "warn",
-          appConfig.messages.manifestNotFound.replace(
+          messages.manifestNotFound.replace(
             "{{manifest}}",
             path.join(config.assets.root, config.assets.manifest)
           )

@@ -4,15 +4,15 @@
  * @module render
  */
 
-const renderIframe404 = require("./views/iframe/404");
-const renderIframeComponent = require("./views/iframe/component");
-const renderIframeIndex = require("./views/iframe/index");
-const renderIframeVariation = require("./views/iframe/variation");
-const renderMain404 = require("./views/main/404");
-const renderMainComponent = require("./views/main/component");
-const renderMainIndex = require("./views/main/index");
+import renderIframe404 from "./views/iframe/404.js";
+import renderIframeComponent from "./views/iframe/component.js";
+import renderIframeIndex from "./views/iframe/index.js";
+import renderIframeVariation from "./views/iframe/variation.js";
+import renderMain404 from "./views/main/404.js";
+import renderMainComponent from "./views/main/component.js";
+import renderMainIndex from "./views/main/index.js";
 
-module.exports = {
+export default {
   renderMainIndex,
   renderMainComponent,
   renderMain404,

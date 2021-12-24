@@ -1,8 +1,9 @@
-const { getComponentData, getVariationData } = require("./get");
-const resolveVariationData = require("./resolve");
+import {
+  getComponentData as getComponentDataImport,
+  getVariationData as getVariationDataImport,
+} from "./get.js";
+import resolveVariationDataImport from "./resolve.js";
 
-module.exports = {
-  getComponentData,
-  getVariationData,
-  resolveVariationData,
-};
+export const getComponentData = getComponentDataImport;
+export const getVariationData = getVariationDataImport;
+export const resolveVariationData = resolveVariationDataImport;

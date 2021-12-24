@@ -2,7 +2,12 @@
   "name": "@miyagi/core",
   "version": "2.10.0",
   "description": "miyagi is a component development tool for JavaScript template engines.",
-  "main": "index.js",
+  "type": "module",
+  "main": "./api/cjs/index.js",
+  "exports": {
+    "require": "./api/cjs/index.js",
+    "import": "./api/index.js"
+  },
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
   "license": "MIT",
   "homepage": "https://www.miyagi.dev",
@@ -28,8 +33,8 @@
     "api",
     "bin",
     "dist",
-    "index.js",
-    "lib"
+    "lib",
+    "index.js"
   ],
   "bin": {
     "miyagi": "./bin/miyagi.js"
@@ -75,7 +80,8 @@
     "postcss-preset-env": "^7.0.2",
     "pre-commit": "^1.2.2",
     "prettier": "^2.5.1",
-    "rollup": "^2.61.1",
+    "rollup": "^2.62.0",
+    "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-terser": "^7.0.2",
     "stylelint": "^14.1.0",
     "stylelint-config-prettier": "^9.0.3",
@@ -83,9 +89,10 @@
     "supertest": "^6.1.6"
   },
   "scripts": {
-    "build": "npm run build:assets",
+    "build": "npm run build:assets && npm run build:lib",
     "build:assets": "gulp build",
     "build:docs": "node .jsdoc.js",
+    "build:lib": "factorial build && rollup -c",
     "docs": "npm run build:docs && cd jsdoc && mkdocs serve",
     "test": "jest --colors --detectOpenHandles",
     "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/",
@@ -93,12 +100,19 @@
     "release": "standard-version -t core/v"
   },
   "jest": {
-    "collectCoverage": true,
+    "collectCoverage": false,
     "collectCoverageFrom": [
+      "api/**/*.js",
       "lib/**/*.js",
-      "index.js"
+      "index.js",
+      "!lib/__dirname.js"
     ],
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "transform": {
+      "\\.js$": [
+        "babel-jest"
+      ]
+    }
   },
   "babel": {
     "presets": [

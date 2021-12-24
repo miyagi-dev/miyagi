@@ -4,9 +4,14 @@
  * @module stateMenu
  */
 
-const path = require("path");
-const getSourceStructure = require("./structure.js");
-const helpers = require("../../helpers.js");
+import path from "path";
+import getSourceStructure from "./structure.js";
+import {
+  fileIsTemplateFile,
+  fileIsDocumentationFile,
+  getShortPathFromFullPath,
+  normalizeString,
+} from "../../helpers.js";
 
 /**
  * @param {object} app - the express instance
@@ -18,8 +23,8 @@ function getComponentFiles(app, directory) {
     const baseName = path.basename(child.name);
 
     return (
-      helpers.fileIsTemplateFile(app, baseName) ||
-      helpers.fileIsDocumentationFile(app, baseName)
+      fileIsTemplateFile(app, baseName) ||
+      fileIsDocumentationFile(app, baseName)
     );
   });
 }
@@ -43,16 +48,17 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
  * @returns {object} adapted file tree object
  */
 function getDataForLinkedDirectory(app, directory) {
-  const info = app.get("state").fileContents[
-    path.join(
-      directory.path,
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    )
-  ];
-  const shortPath = helpers.getShortPathFromFullPath(app, directory.path);
-  const normalizedShortPath = helpers.normalizeString(shortPath);
+  const info =
+    app.get("state").fileContents[
+      path.join(
+        directory.path,
+        `${app.get("config").files.info.name}.${
+          app.get("config").files.info.extension
+        }`
+      )
+    ];
+  const shortPath = getShortPathFromFullPath(app, directory.path);
+  const normalizedShortPath = normalizeString(shortPath);
 
   return {
     type: directory.type,
@@ -62,7 +68,7 @@ function getDataForLinkedDirectory(app, directory) {
     normalizedShortPath,
     variations: directory.variations || [],
     index: directory.index,
-    id: helpers.normalizeString(directory.path),
+    id: normalizeString(directory.path),
   };
 }
 
@@ -72,21 +78,22 @@ function getDataForLinkedDirectory(app, directory) {
  * @returns {object} adapted file tree object
  */
 function getDataForDirectory(app, directory) {
-  const info = app.get("state").fileContents[
-    path.join(
-      directory.path,
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    )
-  ];
+  const info =
+    app.get("state").fileContents[
+      path.join(
+        directory.path,
+        `${app.get("config").files.info.name}.${
+          app.get("config").files.info.extension
+        }`
+      )
+    ];
 
   return {
     type: directory.type,
     name: info && info.name ? info.name : directory.name,
     fullPath: directory.path,
     index: directory.index,
-    id: helpers.normalizeString(directory.path),
+    id: normalizeString(directory.path),
   };
 }
 
@@ -119,7 +126,7 @@ function hasChildren(item) {
  * @param {object} app - the express instance
  * @returns {object[]} array with adapted menu items
  */
-function getMenu(app) {
+export const getMenu = function (app) {
   const srcStructure = getSourceStructure(app);
   const arr = [];
 
@@ -154,8 +161,4 @@ function getMenu(app) {
   })(srcStructure, arr);
 
   return arr;
-}
-
-module.exports = {
-  getMenu,
 };

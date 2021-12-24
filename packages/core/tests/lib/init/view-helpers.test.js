@@ -1,11 +1,6 @@
-const deepMerge = require("deepmerge");
-const express = require("express");
-const handlebars = require("handlebars");
-const viewHelpers = require("../../../lib/init/view-helpers.js");
-const menu = require("../../../lib/render/menu");
-const config = require("../../../lib/config.json");
-
-const { registerHelper } = handlebars;
+import deepMerge from "deepmerge";
+import express from "express";
+import config from "../../../lib/miyagi-config.js";
 
 jest.mock("../../../lib/render/menu/index.js", () => {
   return {
@@ -19,24 +14,25 @@ afterEach(() => {
 });
 
 describe("lib/init/view-helpers", () => {
-  const app = express();
-  app.set(
-    "config",
-    deepMerge(config.defaultUserConfig, {
-      assets: {
-        css: ["index.css"],
-        js: [
-          { src: "index.js", position: "head" },
-          { src: "body.js", position: "body" },
-        ],
-      },
-    })
-  );
-
   describe("", () => {
-    test("calls handlebars.registerHelper with menu", () => {
+    test("calls handlebars.registerHelper with menu", async () => {
+      const handlebars = await import("handlebars");
+      const viewHelpers = await import("../../../lib/init/view-helpers.js");
+      const app = express();
+      app.set(
+        "config",
+        deepMerge(config.defaultUserConfig, {
+          assets: {
+            css: ["index.css"],
+            js: [
+              { src: "index.js", position: "head" },
+              { src: "body.js", position: "body" },
+            ],
+          },
+        })
+      );
       handlebars.registerHelper = jest.fn();
-      viewHelpers(app);
+      viewHelpers.default(app);
 
       expect(handlebars.registerHelper.mock.calls[0][0]).toEqual("menu");
       expect(typeof handlebars.registerHelper.mock.calls[0][1]).toEqual(
@@ -44,27 +40,42 @@ describe("lib/init/view-helpers", () => {
       );
     });
 
-    test("calls handlebars.registerHelper with cssFiles", () => {
+    test("calls handlebars.registerHelper with cssFiles", async () => {
+      const handlebars = await import("handlebars");
+      const viewHelpers = await import("../../../lib/init/view-helpers.js");
+      const app = express();
+      app.set("config", {
+        assets: {
+          css: ["index.css"],
+          js: [],
+        },
+      });
+
       handlebars.registerHelper = jest.fn();
-      viewHelpers(app);
+
+      viewHelpers.default(app);
 
       expect(handlebars.registerHelper.mock.calls[1][0]).toEqual("cssFiles");
     });
 
     describe("calls handlebars.registerHelper with jsFiles", () => {
-      describe("with type=module", () => {
-        const tempApp = express();
-        tempApp.set("config", {
+      test("with type=module", async () => {
+        const handlebars = await import("handlebars");
+        const app = express();
+        app.set("config", {
           assets: {
             css: ["index.css"],
-            js: app
-              .get("config")
-              .assets.js.map((entry) => ({ ...entry, type: "module" })),
+            js: [
+              { src: "index.js", type: "module", position: "head" },
+              { src: "body.js", type: "module", position: "body" },
+            ],
           },
         });
 
+        const viewHelpers = await import("../../../lib/init/view-helpers.js");
+
         handlebars.registerHelper = jest.fn();
-        viewHelpers(tempApp);
+        viewHelpers.default(app);
 
         expect(handlebars.registerHelper.mock.calls[2][0]).toEqual(
           "jsFilesHead"
@@ -80,9 +91,27 @@ describe("lib/init/view-helpers", () => {
         );
       });
 
-      describe("without type=module", () => {
+      test("without type=module", async () => {
+        const handlebars = await import("handlebars");
+        const app = express();
+        const viewHelpers = await import("../../../lib/init/view-helpers.js");
+
+        app.set(
+          "config",
+          deepMerge(config.defaultUserConfig, {
+            assets: {
+              css: ["index.css"],
+              js: [
+                { src: "index.js", position: "head" },
+                { src: "body.js", position: "body" },
+              ],
+            },
+          })
+        );
+
         handlebars.registerHelper = jest.fn();
-        viewHelpers(app);
+
+        viewHelpers.default(app);
 
         expect(handlebars.registerHelper.mock.calls[2][0]).toEqual(
           "jsFilesHead"
@@ -101,20 +130,21 @@ describe("lib/init/view-helpers", () => {
   });
 
   describe("menu", () => {
-    app.set(
-      "config",
-      deepMerge(config.defaultUserConfig, {
-        assets: {
-          css: ["index.css"],
-          js: [{ src: "index.js" }],
-        },
-      })
-    );
+    test("returns the result from render/menu/index", async () => {
+      const handlebars = await import("handlebars");
+      const app = express();
+      app.set(
+        "config",
+        deepMerge(config.defaultUserConfig, {
+          assets: {
+            css: ["index.css"],
+            js: [{ src: "index.js" }],
+          },
+        })
+      );
+      const viewHelpers = await import("../../../lib/init/view-helpers.js");
 
-    test("returns the result from render/menu/index", () => {
-      handlebars.registerHelper = registerHelper;
-      menu.render = jest.fn(() => "menuHtml");
-      viewHelpers(app);
+      viewHelpers.default(app);
 
       const template = handlebars.compile("{{#menu}}{{/menu}}");
 

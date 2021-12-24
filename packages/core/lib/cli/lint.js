@@ -1,22 +1,22 @@
-const init = require("./app");
-const getConfig = require("../config");
-const log = require("../logger");
-const { getComponentData } = require("../mocks");
-const {
+import init from "./app.js";
+import getConfig from "../config.js";
+import log from "../logger.js";
+import { getComponentData } from "../mocks/index.js";
+import {
   getDirectoryPathFromFullTemplateFilePath,
   getTemplateFilePathFromDirectoryPath,
-} = require("../helpers");
-const validateMockData = require("../validator/mocks");
-const { messages } = require("../config.json");
+} from "../helpers.js";
+import validateMockData from "../validator/mocks.js";
+import { messages } from "../miyagi-config.js";
 
 /**
  * @param {Array} args
  */
-module.exports = async function lint(args) {
+export default async function lint(args) {
   process.env.NODE_ENV = "development";
 
   const component = args._.slice(1)[0];
-  const config = getConfig(args);
+  const config = await getConfig(args);
   const app = await init(config);
 
   if (component) {
@@ -24,7 +24,7 @@ module.exports = async function lint(args) {
   } else {
     await validateAllMockData(app);
   }
-};
+}
 
 /**
  * @param {object} app

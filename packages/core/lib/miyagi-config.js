@@ -1,0 +1,310 @@
+export default {
+  defaultUserConfig: {
+    assets: {
+      root: "",
+      css: [],
+      customProperties: {
+        files: [],
+        prefixes: {
+          typo: "typo",
+          color: "color",
+          spacing: "spacing",
+        },
+      },
+      folder: [],
+      js: [],
+      manifest: null,
+    },
+    build: {
+      basePath: "/",
+      folder: "build",
+      outputFile: false,
+    },
+    components: {
+      folder: "src",
+      ignores: [
+        "node_modules",
+        ".git",
+        "package.json",
+        "package-lock.json",
+        ".miyagi.js",
+        ".miyagi.json",
+      ],
+      lang: "en",
+      renderInIframe: {
+        default: false,
+        except: [],
+      },
+      textDirection: "ltr",
+    },
+    engine: {
+      instance: null,
+      name: null,
+      options: {},
+    },
+    files: {
+      css: {
+        name: "index",
+        extension: "css",
+      },
+      docs: {
+        name: "README",
+        extension: "md",
+      },
+      info: {
+        name: "info",
+        extension: "json",
+      },
+      js: {
+        name: "index",
+        extension: "js",
+      },
+      mocks: {
+        name: "mocks",
+        extension: "json",
+      },
+      schema: {
+        name: "schema",
+        extension: "json",
+      },
+      templates: {
+        name: "index",
+      },
+    },
+    extensions: [],
+    projectName: "miyagi",
+    ui: {
+      reload: true,
+      reloadAfterChanges: {
+        componentAssets: false,
+      },
+      textDirection: "ltr",
+      theme: {
+        css: null,
+        favicon: null,
+        fontFamily:
+          "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        js: null,
+        logo: null,
+        mode: "light",
+        light: {
+          logo: null,
+          navigation: {
+            colorText: "var(--Miyagi-color-Text-internal)",
+            colorBackground: "var(--Miyagi-color-Background-internal)",
+            colorLinks: "var(--Miyagi-color-Link-internal)",
+            colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+            colorLinksActiveBackground:
+              "var(--Miyagi-color-Link-active-background-internal)",
+            colorSearchText: "var(--Miyagi-color-Search-text-internal)",
+            colorSearchBackground:
+              "var(--Miyagi-color-Search-background-internal)",
+            colorSearchBorder: "var(--Miyagi-color-Search-border-internal)",
+          },
+          content: {
+            colorBackground: "var(--Miyagi-color-Background-internal)",
+            colorText: "var(--Miyagi-color-Text-internal)",
+            colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+            colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+          },
+        },
+        dark: {
+          logo: null,
+          navigation: {
+            colorText: "var(--Miyagi-color-Text-internal)",
+            colorBackground: "var(--Miyagi-color-Background-internal)",
+            colorLinks: "var(--Miyagi-color-Link-internal)",
+            colorLinksActive: "var(--Miyagi-color-Link-active-internal)",
+            colorLinksActiveBackground:
+              "var(--Miyagi-color-Link-active-background-internal)",
+            colorSearchText: "var(--Miyagi-color-Search-text-internal)",
+            colorSearchBackground:
+              "var(--Miyagi-color-Search-background-internal)",
+            colorSearchBorder: "var(--Miyagi-color-Search-border-internal)",
+          },
+          content: {
+            colorBackground: "var(--Miyagi-color-Background-internal)",
+            colorText: "var(--Miyagi-color-Text-internal)",
+            colorHeadline1: "var(--Miyagi-colorHeadline1-internal)",
+            colorHeadline2: "var(--Miyagi-colorHeadline2-internal)",
+          },
+        },
+      },
+      validations: {
+        accessibility: true,
+        html: true,
+      },
+    },
+    schema: {},
+  },
+  projectName: "miyagi",
+  defaultPort: 5000,
+  htmlValidationUrl: "https://validator.w3.org/nu/",
+  folders: {
+    assets: {
+      development: "assets",
+      production: "dist",
+    },
+    views: "lib/views",
+  },
+  defaultVariationName: "default",
+};
+
+export const engines = [
+  {
+    engine: "dust",
+    extension: "dust",
+  },
+  {
+    engine: "ect",
+    extension: "ect",
+  },
+  {
+    engine: "ejs",
+    extension: "ejs",
+  },
+  {
+    engine: "haml",
+    extension: "haml",
+  },
+  {
+    engine: "handlebars",
+    extension: "hbs",
+  },
+  {
+    engine: "mustache",
+    extension: "mustache",
+  },
+  {
+    engine: "nunjucks",
+    extension: "njk",
+  },
+  {
+    engine: "pug",
+    extension: "pug",
+  },
+  {
+    engine: "twig",
+    extension: "twig",
+  },
+  {
+    engine: "twing",
+    extension: "twig",
+  },
+];
+
+export const messages = {
+  buildStarting: "Creating miyagi build…",
+  buildDone: "Build done!",
+  buildFailed: "Build failed!",
+  commandNotFound: "Please run `miyagi --help` for all available commands.",
+  componentCouldNotBeRendered: "Component couldn't be rendered.",
+  customPropertyFileNotFound:
+    "Couldn't find file {{filePath}}. Is the 'assets.customProperties.files' in your configuration set correctly?",
+  dataGenerator: {
+    dataFileExists: "The mock file {{fileName}} exists already.",
+    done: "Done!",
+    noComponentFolderDefined:
+      "Please specify the component folder like this: miyagi data directoryName/componentName",
+    noSchemaFile: "miyagi can't find the schema file {{fileName}}.",
+    schemaFileCantBeParsed: "The schema file {{fileName}} can't be parsed.",
+    starting: "Creating mock file {{fileName}}…",
+  },
+  jsonFileHasInvalidFormat:
+    "It seems like the file {{filePath}} has an invalid format as miyagi was not able to parse it.",
+  checkShellForFurtherErrors:
+    "Please also check the messages printed by miyagi in your shell as there might be more information.",
+  engineAndExtensionGuessedBasedOnFiles:
+    "After scanning your files, miyagi guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
+  engineGuessedBasedOnExtension:
+    "Based on your template files extension, miyagi assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
+  fileNotFound:
+    "Couldn't find file {{filePath}}. Is the 'components.folder' in your configuration set correctly?",
+  fileNotFoundLinkIncorrect:
+    "Couldn't find file {{filePath}}. Please check that it's linked correctly.",
+  generator: {
+    starting: "Creating component…",
+    done: "Done!",
+    noComponentNameDefined:
+      "Please specify a component name like this: miyagi new directoryName/componentName",
+    unknownError: "An unknown error occured when creating {{name}}.",
+    fileAlreadyExists: "The file {{name}} already exists.",
+  },
+  guessingEngineAndExtensionFailed:
+    "miyagi wasn't able to guess your engine and template files extension.",
+  guessingEngineFailed: "miyagi wasn't able to guess your engine.",
+  guessingExtensionFailed:
+    "miyagi wasn't able to guess your template files extension.",
+  htmlValidationFailed:
+    "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
+  linter: {
+    all: {
+      start: "Validating schema files and mock data for all components…",
+      valid: "All schema and mock data is valid!",
+      schema: {
+        invalid: {
+          one: "1 schema file is invalid!",
+          other: "{{amount}} schema files are invalid!",
+        },
+      },
+      mocks: {
+        invalid: {
+          one: "1 mock data is invalid!",
+          other: "{{amount}} mock data are invalid!",
+        },
+      },
+    },
+    component: {
+      start: "Validating schema file and mock data for {{component}}…",
+      valid: "Schema file and mock data is valid!",
+    },
+  },
+  manifestNotFound: "Manifest file {{manifest}} not found or unparseable.",
+  missingEngine:
+    "Please specify your template engine in your config file (key: 'engine.name', type: String) or as a cli argument (--engine.name=<String>)",
+  missingExtension:
+    "Please specify the file extension of your template files in your config file (key: 'files.templates.extension', type: String) or as a cli argument (--files.templates.extension=<extension>).",
+  noDataSetForVariation:
+    'No mock data defined for variation "{{variation}}" in {{file}}.',
+  nodeEnvAndKeysDontMatchCssOrJs:
+    "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in assets.{{assetType}} in your config file, so miyagi is not able to serve your {{assetType}} files.",
+  nodeEnvAndKeysDontMatchAssetFolders:
+    "Your NODE_ENV '{{nodeEnv}}' doesn't match the keys you defined in assets.folder in your config file, so miyagi is not able to serve your assets.",
+  noNameSetForVariation: "No name defined for variation {{i}} in {{file}}.",
+  portInUse: "Port {{port}} already in use, trying to find a free port…",
+  referencedMockFileNotFound: "Couldn't find referenced mock file.",
+  renderingTemplateFailed:
+    "Rendering {{filePath}} failed. Please check that it is linked correctly and that its content is correct {{engine}} syntax.",
+  scanningFiles: "Scanning and analyzing files…",
+  validator: {
+    mocks: {
+      valid: "Mock data matches schema.",
+      invalid: "Mock data does not match schema file.",
+      noSchemaFound: "No schema file found.",
+    },
+  },
+  serverStarted: "Running miyagi server at http://localhost:{{port}}!",
+  serverStarting: "Starting miyagi server in {{node_env}} mode…",
+  settingEngineFailed:
+    "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
+  srcFolderNotFound:
+    "The provided components directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: 'components.folder', type: String) or as a cli argument (--components.folder=<String>).",
+  templateDoesNotExist: "The template '{{template}}' can't be found.",
+  templateExtensionGuessedBasedOnTemplateEngine:
+    "Based on your engine name, miyagi assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
+  tryingToGuessEngineAndExtension:
+    "No template engine and template file extension defined. Trying to guess it based on your component files…",
+  tryingToGuessEngineBasedOnExtension:
+    "No template engine defined. Trying to guess it based on your template files extension…",
+  tryingToGuessExtensionBasedOnEngine:
+    "No template files extension defined. Trying to guess it based on your template engine…",
+  updatingDone: "Updating done!",
+  updatingConfiguration: "Updating configuration…",
+  updatingConfigurationDone: "Reloading browser window!",
+  updatingStarted: "A file has been changed, miyagi is updating the state.",
+  userConfigUnparseable:
+    "miyagi wasn't able to find or parse your config file. If you created a .miyagi.js or .miyagi.json, please check if its syntax is correct.",
+  variationNotFound: 'Variation "{{variation}}" not found in {{fileName}}.',
+  watchingFilesFailed: "Watching files failed.",
+  wrongFileType: "{{fileName}} does not have the correct file type.",
+};

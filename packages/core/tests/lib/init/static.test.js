@@ -1,8 +1,9 @@
-const express = require("express");
-const request = require("supertest");
-const deepMerge = require("deepmerge");
-const config = require("../../../lib/config.json");
-const setStatic = require("../../../lib/init/static.js");
+import express from "express";
+import request from "supertest";
+import deepMerge from "deepmerge";
+import config from "../../../lib/miyagi-config.js";
+import setStatic from "../../../lib/init/static.js";
+jest.mock("../../../lib/__dirname.js", () => `${process.cwd()}/lib`);
 
 let app;
 let server;

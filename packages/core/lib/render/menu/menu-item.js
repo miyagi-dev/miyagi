@@ -4,10 +4,10 @@
  * @module renderMenuMenuitem
  */
 
-const component = require("./component.js");
-const directory = require("./directory.js");
-const listItem = require("./list-item.js");
-const helpers = require("./helpers.js");
+import { render as renderComponent } from "./component.js";
+import { render as renderDirectory } from "./directory.js";
+import { render as renderListItem } from "./list-item.js";
+import helpers from "./helpers.js";
 
 /**
  * Renders a menu item for a directory in the menu
@@ -17,24 +17,20 @@ const helpers = require("./helpers.js");
  * @param {object} app - the express instance
  * @returns {string} the html of the menu item
  */
-function render(dir, request, app) {
-  return listItem.render(
+export const render = function (dir, request, app) {
+  return renderListItem(
     dir.index,
     (() => {
       let html = "";
 
       if (helpers.directoryHasComponent(dir)) {
-        html += component.render(app, dir, request);
+        html += renderComponent(app, dir, request);
       } else {
-        html += directory.render(app, dir, request);
+        html += renderDirectory(app, dir, request);
       }
 
       return html;
     })(),
     "directory"
   );
-}
-
-module.exports = {
-  render,
 };

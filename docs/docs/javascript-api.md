@@ -19,9 +19,9 @@ All methods accept an object like the following:
 ## Usage
 
 ```js
-import Miyagi from "@miyagi/core/api";
+import { Api } from "@miyagi/core";
 
-const { getMockData } = await new Miyagi();
+const { getMockData } = await Api();
 
 await getMockData({
   …

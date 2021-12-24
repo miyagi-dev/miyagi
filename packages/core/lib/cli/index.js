@@ -1,5 +1,3 @@
-const lint = require("./lint");
+import lintImport from "./lint.js";
 
-module.exports = {
-  lint,
-};
+export const lint = lintImport;

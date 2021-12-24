@@ -4,9 +4,13 @@
  * @module stateMenuStructure
  */
 
-const config = require("../../config.json");
-const log = require("../../logger.js");
-const helpers = require("../../helpers.js");
+import config, { messages } from "../../miyagi-config.js";
+import log from "../../logger.js";
+import {
+  getResolvedFileName,
+  getShortPathFromFullPath,
+  removeInternalKeys,
+} from "../../helpers.js";
 
 /**
  * @param {object} app - the express instance
@@ -19,7 +23,7 @@ function getAllValidVariations(app, json, fullPath) {
 
   if (json) {
     const variations = json.$variants;
-    const rootData = helpers.removeInternalKeys(json);
+    const rootData = removeInternalKeys(json);
 
     if (Object.keys(rootData).length > 0 && !json.$hidden) {
       arr.push({
@@ -30,25 +34,25 @@ function getAllValidVariations(app, json, fullPath) {
 
     if (variations) {
       for (const [i, variation] of variations.entries()) {
-        const variationData = helpers.removeInternalKeys(variation);
+        const variationData = removeInternalKeys(variation);
         if (variation.$name && Object.keys(variationData).length > 0) {
           arr.push({
             name: variation.$name,
             data: variationData,
           });
         } else if (fullPath) {
-          const shortPath = helpers.getShortPathFromFullPath(app, fullPath);
+          const shortPath = getShortPathFromFullPath(app, fullPath);
           if (!variation.$name) {
             log(
               "warn",
-              config.messages.noNameSetForVariation
+              messages.noNameSetForVariation
                 .replace("{{i}}", i)
                 .replace("{{file}}", shortPath)
             );
           } else {
             log(
               "warn",
-              config.messages.noDataSetForVariation
+              messages.noDataSetForVariation
                 .replace("{{variation}}", variation.$name)
                 .replace("{{file}}", shortPath)
             );
@@ -90,7 +94,7 @@ function getVariations(app, obj) {
   const tplChild = obj.children.find(
     (o) =>
       o.name ===
-      `${helpers.getResolvedFileName(
+      `${getResolvedFileName(
         app.get("config").files.templates.name,
         obj.name
       )}.${app.get("config").files.templates.extension}`
@@ -148,10 +152,10 @@ function addIndices(obj, index) {
   return o;
 }
 
-module.exports = function setMenuStructure(app) {
+export default function setMenuStructure(app) {
   let result = updateSourceObject(app, app.get("state").sourceTree);
 
   result = addIndices(result, -1);
 
   return result && result.children ? result.children : [];
-};
+}

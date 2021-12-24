@@ -1,9 +1,9 @@
-const deepMerge = require("deepmerge");
-const express = require("express");
-const consolidate = require("consolidate");
-const engines = require("../../../lib/init/engines.js");
-const config = require("../../../lib/config.json");
-const log = require("../../../lib/logger.js");
+import deepMerge from "deepmerge";
+import express from "express";
+import consolidate from "consolidate";
+import engines from "../../../lib/init/engines.js";
+import config from "../../../lib/miyagi-config.js";
+import log from "../../../lib/logger.js";
 
 jest.mock("../../../lib/logger.js");
 

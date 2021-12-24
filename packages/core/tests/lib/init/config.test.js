@@ -1,6 +1,5 @@
-const path = require("path");
-const getMergedConfig = require("../../../lib/init/config.js");
-const log = require("../../../lib/logger.js");
+import getMergedConfig from "../../../lib/init/config.js";
+import log from "../../../lib/logger.js";
 
 jest.mock("../../../lib/logger.js");
 

@@ -1,8 +1,8 @@
-const express = require("express");
-const path = require("path");
-const util = require("util");
+import express from "express";
+import path from "path";
+import util from "util";
 
-const appConfig = require("../../../lib/config.json");
+import appConfig from "../../../lib/miyagi-config.js";
 
 afterEach(() => {
   jest.resetModules();
@@ -71,8 +71,10 @@ describe("lib/state/menu/data", () => {
               return "";
             };
           });
-          const { readFile } = require("../../../lib/state/file-contents.js");
-          const log = require("../../../lib/logger.js");
+          const { readFile } = await import(
+            "../../../lib/state/file-contents.js"
+          );
+          const log = await import("../../../lib/logger.js");
 
           jest.mock("../../../lib/logger");
 
@@ -82,7 +84,7 @@ describe("lib/state/menu/data", () => {
           );
 
           expect(result).toEqual({});
-          expect(log).toHaveBeenCalled();
+          expect(log.default).toHaveBeenCalled();
         });
       });
     });
@@ -94,8 +96,10 @@ describe("lib/state/menu/data", () => {
             throw new Error();
           };
         });
-        const { readFile } = require("../../../lib/state/file-contents.js");
-        const log = require("../../../lib/logger.js");
+        const { readFile } = await import(
+          "../../../lib/state/file-contents.js"
+        );
+        const log = await import("../../../lib/logger.js");
 
         jest.mock("../../../lib/logger");
 
@@ -105,7 +109,7 @@ describe("lib/state/menu/data", () => {
         );
 
         expect(result).toEqual({});
-        expect(log).toHaveBeenCalled();
+        expect(log.default).toHaveBeenCalled();
       });
     });
   });

@@ -4,7 +4,8 @@
  * @module renderMenu
  */
 
-const list = require("./list.js");
+import { render as renderList } from "./list.js";
+import { render as renderMenuItem } from "./menu-item.js";
 
 /**
  * @param {object} app - the express instance
@@ -13,16 +14,16 @@ const list = require("./list.js");
  * @param {number} index - the depth level in the navigation
  * @returns {string} the html of the menu
  */
-function render(app, children, request, index) {
+export const render = function (app, children, request, index) {
   if (children.length) {
-    return list.render(
+    return renderList(
       "components",
       index,
       (() => {
         let html = "";
 
         for (const child of children) {
-          html += require("./menu-item.js").render(child, request, app);
+          html += renderMenuItem(child, request, app);
         }
 
         return html;
@@ -31,8 +32,4 @@ function render(app, children, request, index) {
   }
 
   return "";
-}
-
-module.exports = {
-  render,
 };

@@ -1,12 +1,12 @@
-const deepMerge = require("deepmerge");
-const config = require("../../../lib/config.json");
+import deepMerge from "deepmerge";
+import config from "../../../lib/miyagi-config.js";
 
 beforeEach(() => {
   jest.resetModules();
   jest.resetAllMocks();
 });
 
-describe.skip("lib/state/partials", () => {
+describe("lib/state/partials", () => {
   const app = require("express")();
   app.set(
     "config",

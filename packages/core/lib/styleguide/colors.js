@@ -1,7 +1,7 @@
-const { getCustomProperties } = require("./helpers.js");
-const colorNames = require("./color-names.js");
+import { getCustomProperties } from "./helpers.js";
+import colorNames from "./color-names.js";
 
-module.exports = function getColors(obj, prefix) {
+export default function getColors(obj, prefix) {
   const types = ["typo", "decoration"];
   const uppercasedPrefix = prefix.toUpperCase();
 
@@ -122,4 +122,4 @@ module.exports = function getColors(obj, prefix) {
     );
     return entry;
   });
-};
+}

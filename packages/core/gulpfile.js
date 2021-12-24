@@ -1,13 +1,13 @@
-const babel = require("gulp-babel");
-const cssnano = require("cssnano");
-const del = require("del");
-const gulp = require("gulp");
-const postcss = require("gulp-postcss");
-const postcssImport = require("postcss-import");
-const postcssPresetEnv = require("postcss-preset-env");
-const rollup = require("rollup");
-const { nodeResolve } = require("@rollup/plugin-node-resolve");
-const terser = require("rollup-plugin-terser");
+import babel from "gulp-babel";
+import cssnano from "cssnano";
+import del from "del";
+import gulp from "gulp";
+import postcss from "gulp-postcss";
+import postcssImport from "postcss-import";
+import postcssPresetEnv from "postcss-preset-env";
+import { rollup } from "rollup";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import { terser } from "rollup-plugin-terser";
 
 const buildFolder = "dist/";
 const jsFolder = "assets/js/";
@@ -33,18 +33,16 @@ gulp.task("build:js", (done) => {
   jsFiles.forEach((jsFile) => {
     promises.push(
       new Promise((resolve) => {
-        rollup
-          .rollup({
-            input: `${jsFolder}${jsFile}`,
-            plugins: [nodeResolve(), babel(), terser.terser()],
-          })
-          .then((bundle) => {
-            bundle.write({
-              dir: jsDist,
-              format: "esm",
-            });
-            resolve();
+        rollup({
+          input: `${jsFolder}${jsFile}`,
+          plugins: [nodeResolve(), babel(), terser()],
+        }).then((bundle) => {
+          bundle.write({
+            dir: jsDist,
+            format: "esm",
           });
+          resolve();
+        });
       })
     );
   });

@@ -1,7 +1,7 @@
-const deepMerge = require("deepmerge");
-const dirTree = require("directory-tree");
-const config = require("../../../lib/config.json");
-const { getSourceTree } = require("../../../lib/state/source-tree.js");
+import deepMerge from "deepmerge";
+import dirTree from "directory-tree";
+import config from "../../../lib/miyagi-config.js";
+import { getSourceTree } from "../../../lib/state/source-tree.js";
 
 jest.mock("../../../lib/logger.js");
 jest.mock("directory-tree");

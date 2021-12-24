@@ -4,25 +4,25 @@
  * @module init
  */
 
-const express = require("express");
-const handlebars = require("handlebars");
-const handlebarsLayouts = require("handlebars-layouts");
-const http = require("http");
-const cookieParser = require("cookie-parser");
+import express from "express";
+import handlebars from "handlebars";
+import handlebarsLayouts from "handlebars-layouts";
+import http from "http";
+import cookieParser from "cookie-parser";
 
-const appConfig = require("../config.json");
-const build = require("../build/index.js");
-const log = require("../logger.js");
-const setEngines = require("./engines.js");
-const setPartials = require("./partials.js");
-const setRouter = require("./router.js");
-const setState = require("../state");
-const setStatic = require("./static.js");
-const setViewHelpers = require("./view-helpers.js");
-const setViews = require("./views.js");
-const setWatcher = require("./watcher.js");
+import appConfig, { messages } from "../miyagi-config.js";
+import build from "../build/index.js";
+import log from "../logger.js";
+import setEngines from "./engines.js";
+import setPartials from "./partials.js";
+import setRouter from "./router.js";
+import setState from "../state/index.js";
+import setStatic from "./static.js";
+import setViewHelpers from "./view-helpers.js";
+import setViews from "./views.js";
+import setWatcher from "./watcher.js";
 
-module.exports = async function init(mergedConfig) {
+export default async function init(mergedConfig) {
   const app = express();
   app.use(cookieParser());
   app.set("config", mergedConfig);
@@ -64,14 +64,14 @@ module.exports = async function init(mergedConfig) {
 
     log(
       "success",
-      `${appConfig.messages.serverStarted.replace("{{port}}", actualPort)}\n`
+      `${messages.serverStarted.replace("{{port}}", actualPort)}\n`
     );
 
     return server;
   }
 
   return false;
-};
+}
 
 /**
  * @param {object} app - the express instance
@@ -88,7 +88,7 @@ function startServer(app, port) {
       })
       .on("error", (error) => {
         if (error.code === "EADDRINUSE") {
-          log("error", appConfig.messages.portInUse.replace("{{port}}", port));
+          log("error", messages.portInUse.replace("{{port}}", port));
           server.close(async function () {
             const response = await startServer(app, port + 1);
 

@@ -1,7 +1,8 @@
+import path from "path";
+import deepMerge from "deepmerge";
+import appConfig, { messages } from "../lib/miyagi-config.js";
+
 const nodeEnv = process.env.NODE_ENV;
-const path = require("path");
-const deepMerge = require("deepmerge");
-const appConfig = require("../lib/config.json");
 
 afterEach(() => {
   jest.resetModules();
@@ -10,7 +11,7 @@ afterEach(() => {
 });
 
 const origProcessCwd = process.cwd();
-process.cwd = jest.fn(() => `${origProcessCwd}/tests`);
+process.cwd = () => `${origProcessCwd}/tests`;
 
 describe("index", () => {
   describe("start", () => {
@@ -25,13 +26,21 @@ describe("index", () => {
     describe("with parseable result from .miyagi.js", () => {
       describe("with templates.extension, components.folder and engine.name defined in .miyagi.js", () => {
         test("calls lib/init with parsed config", async () => {
-          const init = require("../lib/init");
-          jest.mock("../lib/logger");
-          jest.mock("../lib/init");
+          jest.doMock("../lib/__dirname.js", () => `${process.cwd()}/lib`);
+          jest.doMock("../lib/logger.js");
+          jest.doMock("../lib/init/index.js", () => {
+            return {
+              __esModule: true,
+              default: jest.fn(),
+            };
+          });
 
           process.argv = ["", "", "start"];
 
-          await require("../index.js");
+          const index = await import("../index.js");
+          const init = await import("../lib/init/index.js");
+
+          await index.default();
 
           const conf = deepMerge(appConfig.defaultUserConfig, {
             isBuild: false,
@@ -50,16 +59,17 @@ describe("index", () => {
             userFileName: ".miyagi.js",
           });
 
-          expect(init).toHaveBeenCalledWith(conf);
+          expect(init.default).toHaveBeenCalledTimes(1);
+          expect(init.default).toHaveBeenCalledWith(conf);
         });
       });
 
       describe("without extension defined in .miyagi.js", () => {
         test("it calls log with the correct error msg", async () => {
-          const log = require("../lib/logger.js");
+          jest.doMock("../lib/__dirname.js", () => `${process.cwd()}/lib`);
 
-          jest.mock("../lib/logger");
-          jest.mock(
+          jest.doMock("../lib/logger");
+          jest.doMock(
             path.resolve(process.cwd(), ".miyagi.js"),
             () => ({
               engine: {
@@ -70,22 +80,26 @@ describe("index", () => {
             { virtual: true }
           );
 
-          await require("../index.js");
+          const log = await import("../lib/logger.js");
+          const index = await import("../index.js");
 
-          expect(log).toHaveBeenNthCalledWith(
+          await index.default();
+
+          expect(log.default).toHaveBeenCalledTimes(3);
+          expect(log.default).toHaveBeenNthCalledWith(
             1,
             "info",
-            appConfig.messages.serverStarting.replace("{{node_env}}", "test")
+            messages.serverStarting.replace("{{node_env}}", "test")
           );
-          expect(log).toHaveBeenNthCalledWith(
+          expect(log.default).toHaveBeenNthCalledWith(
             2,
             "info",
-            appConfig.messages.tryingToGuessExtensionBasedOnEngine
+            messages.tryingToGuessExtensionBasedOnEngine
           );
-          expect(log).toHaveBeenNthCalledWith(
+          expect(log.default).toHaveBeenNthCalledWith(
             3,
             "warn",
-            appConfig.messages.templateExtensionGuessedBasedOnTemplateEngine.replace(
+            messages.templateExtensionGuessedBasedOnTemplateEngine.replace(
               "{{extension}}",
               "hbs"
             )
@@ -93,10 +107,15 @@ describe("index", () => {
         });
 
         test("calls lib/init", async () => {
-          const init = require("../lib/init");
-          jest.mock("../lib/init");
-          jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".miyagi.js"), () => {
+          jest.doMock("../lib/__dirname.js", () => `${process.cwd()}/lib`);
+          jest.doMock("../lib/init/index.js", () => {
+            return {
+              __esModule: true,
+              default: jest.fn(),
+            };
+          });
+          jest.doMock("../lib/logger.js");
+          jest.doMock("./.miyagi.js", () => {
             return {
               engine: {
                 name: "handlebars",
@@ -105,18 +124,20 @@ describe("index", () => {
             };
           });
 
-          await require("../index.js");
+          const index = await import("../index.js");
+          const init = await import("../lib/init/index.js");
 
-          expect(init).toHaveBeenCalled();
+          await index.default();
+
+          expect(init.default).toHaveBeenCalledTimes(1);
         });
       });
 
       describe("without engine defined in .miyagi.js", () => {
         test("it calls log with the correct error msg", async () => {
-          const log = require("../lib/logger.js");
-
-          jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".miyagi.js"), () => {
+          jest.doMock("../lib/init/index.js");
+          jest.doMock("../lib/logger.js");
+          jest.doMock(path.resolve(process.cwd(), ".miyagi.js"), () => {
             return {
               files: {
                 templates: {
@@ -127,33 +148,43 @@ describe("index", () => {
             };
           });
 
-          await require("../index.js");
+          const log = await import("../lib/logger.js");
 
-          expect(log).toHaveBeenNthCalledWith(
+          const index = await import("../index.js");
+
+          await index.default();
+
+          expect(log.default).toHaveBeenCalledTimes(3);
+          expect(log.default).toHaveBeenNthCalledWith(
             1,
             "info",
-            appConfig.messages.serverStarting.replace("{{node_env}}", "test")
+            messages.serverStarting.replace("{{node_env}}", "test")
           );
-          expect(log).toHaveBeenNthCalledWith(
+          expect(log.default).toHaveBeenNthCalledWith(
             2,
             "info",
-            appConfig.messages.tryingToGuessEngineBasedOnExtension
+            messages.tryingToGuessEngineBasedOnExtension
           );
-          expect(log).toHaveBeenNthCalledWith(
+          expect(log.default).toHaveBeenNthCalledWith(
             3,
             "warn",
-            appConfig.messages.engineGuessedBasedOnExtension.replace(
+            messages.engineGuessedBasedOnExtension.replace(
               "{{engine}}",
               "handlebars"
             )
           );
         });
 
-        test.only("calls lib/init", async () => {
-          const init = require("../lib/init");
-          jest.mock("../lib/init");
-          jest.mock("../lib/logger");
-          jest.mock(path.resolve(process.cwd(), ".miyagi.js"), () => {
+        test("calls lib/init", async () => {
+          jest.doMock("../lib/__dirname.js", () => `${process.cwd()}/lib`);
+          jest.doMock("../lib/init/index.js", () => {
+            return {
+              __esModule: true,
+              default: jest.fn(),
+            };
+          });
+          jest.doMock("../lib/logger.js");
+          jest.doMock(path.resolve(process.cwd(), ".miyagi.js"), () => {
             return {
               files: {
                 templates: {
@@ -164,9 +195,12 @@ describe("index", () => {
             };
           });
 
-          await require("../index.js");
+          const index = await import("../index.js");
+          const init = await import("../lib/init/index.js");
 
-          expect(init).toHaveBeenCalled();
+          await index.default();
+
+          expect(init.default).toHaveBeenCalled();
         });
       });
     });

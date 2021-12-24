@@ -4,10 +4,10 @@
  * @module initRouter
  */
 
-const path = require("path");
-const helpers = require("../helpers.js");
-const config = require("../config.json");
-const render = require("../render");
+import path from "path";
+import { getFullPathFromShortPath, getResolvedFileName } from "../helpers.js";
+import config from "../miyagi-config.js";
+import render from "../render/index.js";
 
 /**
  * @param {object} app - the express instance
@@ -16,7 +16,7 @@ const render = require("../render");
  */
 function getDataForComponent(app, component) {
   return app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
+    getFullPathFromShortPath(
       app,
       path.join(
         component,
@@ -45,7 +45,7 @@ function checkIfRequestedComponentIsValid(app, component) {
 
   return (
     files.includes(
-      `${component}/${helpers.getResolvedFileName(
+      `${component}/${getResolvedFileName(
         app.get("config").files.templates.name,
         path.basename(
           component,
@@ -54,7 +54,7 @@ function checkIfRequestedComponentIsValid(app, component) {
       )}.${app.get("config").files.templates.extension}`
     ) ||
     files.includes(
-      `${component}/${helpers.getResolvedFileName(
+      `${component}/${getResolvedFileName(
         app.get("config").files.docs.name,
         path.basename(component, `.${app.get("config").files.docs.extension}`)
       )}.${app.get("config").files.docs.extension}`
@@ -113,7 +113,7 @@ function awaitHandlerFactory(middleware) {
   };
 }
 
-module.exports = function Router(app) {
+export default function Router(app) {
   app.get(
     "/show",
     awaitHandlerFactory(async (req, res) => {
@@ -227,4 +227,4 @@ module.exports = function Router(app) {
       res.redirect("/");
     }
   });
-};
+}

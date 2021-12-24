@@ -1,12 +1,12 @@
-const config = require("../../../config.json");
-const helpers = require("../../../helpers.js");
-const { getThemeMode } = require("../../helpers.js");
-const {
+import config from "../../../miyagi-config.js";
+import { getFullPathFromShortPath } from "../../../helpers.js";
+import { getThemeMode } from "../../helpers.js";
+import {
   getColors,
   getFonts,
   getSpacings,
   getMediaQueries,
-} = require("../../../styleguide/index.js");
+} from "../../../styleguide/index.js";
 
 /**
  * @param {object} object - parameter object
@@ -16,10 +16,10 @@ const {
  * @param {object} object.cookies
  * @returns {Promise}
  */
-module.exports = async function renderIframeIndex({ app, res, cb, cookies }) {
+export default async function renderIframeIndex({ app, res, cb, cookies }) {
   const documentation =
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
+      getFullPathFromShortPath(
         app,
         `README.${app.get("config").files.docs.extension}`
       )
@@ -90,4 +90,4 @@ module.exports = async function renderIframeIndex({ app, res, cb, cookies }) {
       }
     }
   );
-};
+}

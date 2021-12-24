@@ -1,11 +1,11 @@
-const fs = require("fs");
-const css = require("css");
-const deepMerge = require("deepmerge");
-const path = require("path");
-const log = require("../logger");
-const { messages } = require("../config.json");
+import fs from "fs";
+import css from "css";
+import deepMerge from "deepmerge";
+import path from "path";
+import log from "../logger.js";
+import { messages } from "../miyagi-config.js";
 
-module.exports = function getCSS(app) {
+export default function getCSS(app) {
   const { assets } = app.get("config");
 
   if (assets?.customProperties?.files) {
@@ -48,4 +48,4 @@ module.exports = function getCSS(app) {
   }
 
   return Promise.resolve(null);
-};
+}

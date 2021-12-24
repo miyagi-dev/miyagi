@@ -1,17 +1,25 @@
-const anymatch = require("anymatch");
-const path = require("path");
-const jsonToYaml = require("js-yaml");
-const config = require("../../../config.json");
-const helpers = require("../../../helpers.js");
-const validateMocks = require("../../../validator/mocks.js");
-const { getVariationData, getComponentData } = require("../../../mocks");
-const {
+import anymatch from "anymatch";
+import path from "path";
+import jsonToYaml from "js-yaml";
+import config, { messages } from "../../../miyagi-config.js";
+import {
+  getDataPathFromTemplatePath,
+  getDocumentationPathFromTemplatePath,
+  getFullPathFromShortPath,
+  getInfoPathFromTemplatePath,
+  getSchemaPathFromTemplatePath,
+  getShortPathFromFullPath,
+  normalizeString,
+} from "../../../helpers.js";
+import validateMocks from "../../../validator/mocks.js";
+import { getComponentData, getVariationData } from "../../../mocks/index.js";
+import {
   getDataForRenderFunction,
   getThemeMode,
   getComponentTextDirection,
-} = require("../../helpers");
-const log = require("../../../logger.js");
-const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
+} from "../../helpers.js";
+import log from "../../../logger.js";
+import { getTemplateFilePathFromDirectoryPath } from "../../../helpers.js";
 
 /**
  * @param {object} object - parameter object
@@ -21,7 +29,7 @@ const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
  * @param {Function} [object.cb] - callback function
  * @param {object} object.cookies
  */
-module.exports = async function renderIframeComponent({
+export default async function renderIframeComponent({
   app,
   res,
   file,
@@ -29,7 +37,7 @@ module.exports = async function renderIframeComponent({
   cookies,
 }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
-  const templateFilePath = helpers.getFullPathFromShortPath(app, file);
+  const templateFilePath = getFullPathFromShortPath(app, file);
   const hasTemplate = Object.values(app.get("state").partials).includes(
     templateFilePath
   );
@@ -37,21 +45,15 @@ module.exports = async function renderIframeComponent({
   const componentJson = await getComponentData(app, file);
   const componentDocumentation =
     app.get("state").fileContents[
-      helpers.getDocumentationPathFromTemplatePath(app, templateFilePath)
+      getDocumentationPathFromTemplatePath(app, templateFilePath)
     ];
   const componentInfo =
     app.get("state").fileContents[
-      helpers.getInfoPathFromTemplatePath(app, templateFilePath)
+      getInfoPathFromTemplatePath(app, templateFilePath)
     ];
-  const schemaFilePath = helpers.getSchemaPathFromTemplatePath(
-    app,
-    templateFilePath
-  );
+  const schemaFilePath = getSchemaPathFromTemplatePath(app, templateFilePath);
   const componentSchema = app.get("state").fileContents[schemaFilePath];
-  const mockFilePath = helpers.getDataPathFromTemplatePath(
-    app,
-    templateFilePath
-  );
+  const mockFilePath = getDataPathFromTemplatePath(app, templateFilePath);
   const componentMocks = app.get("state").fileContents[mockFilePath];
   const componentTemplate = app.get("state").fileContents[templateFilePath];
 
@@ -80,7 +82,7 @@ module.exports = async function renderIframeComponent({
           type: app.get("config").files.schema.extension,
           file: path.join(
             app.get("config").components.folder,
-            helpers.getShortPathFromFullPath(app, schemaFilePath)
+            getShortPathFromFullPath(app, schemaFilePath)
           ),
         }
       : null,
@@ -90,7 +92,7 @@ module.exports = async function renderIframeComponent({
           type: app.get("config").files.mocks.extension,
           file: path.join(
             app.get("config").components.folder,
-            helpers.getShortPathFromFullPath(app, mockFilePath)
+            getShortPathFromFullPath(app, mockFilePath)
           ),
         }
       : null,
@@ -100,7 +102,7 @@ module.exports = async function renderIframeComponent({
           type: app.get("config").engine.name,
           file: path.join(
             app.get("config").components.folder,
-            helpers.getShortPathFromFullPath(app, templateFilePath)
+            getShortPathFromFullPath(app, templateFilePath)
           ),
         }
       : null,
@@ -147,7 +149,7 @@ module.exports = async function renderIframeComponent({
     templateFilePath: hasTemplate ? templateFilePath : null,
     cookies,
   });
-};
+}
 
 /**
  * @typedef {object} FileContents
@@ -348,9 +350,9 @@ function getData(app, variation, file, baseName, entry, validatedMocks, i) {
   let standaloneUrl;
 
   if (app.get("config").isBuild) {
-    standaloneUrl = `component-${helpers.normalizeString(
+    standaloneUrl = `component-${normalizeString(
       path.dirname(file)
-    )}-variation-${helpers.normalizeString(variation)}.html`;
+    )}-variation-${normalizeString(variation)}.html`;
   } else {
     standaloneUrl = `/component?file=${path.dirname(
       file
@@ -359,14 +361,14 @@ function getData(app, variation, file, baseName, entry, validatedMocks, i) {
 
   const data = {
     url: app.get("config").isBuild
-      ? `component-${helpers.normalizeString(
-          baseName
-        )}-variation-${helpers.normalizeString(variation)}-embedded.html`
+      ? `component-${normalizeString(baseName)}-variation-${normalizeString(
+          variation
+        )}-embedded.html`
       : `/component?file=${baseName}&variation=${variation}&embedded=true`,
     file,
 
     variation,
-    normalizedVariation: helpers.normalizeString(variation),
+    normalizedVariation: normalizeString(variation),
     standaloneUrl,
     mockData:
       app.get("config").files.schema.extension === "yaml"
@@ -377,9 +379,7 @@ function getData(app, variation, file, baseName, entry, validatedMocks, i) {
   if (validatedMocks && Array.isArray(validatedMocks)) {
     data.mockValidation = {
       valid: validatedMocks[i],
-      copy: config.messages.validator.mocks[
-        validatedMocks[i] ? "valid" : "invalid"
-      ],
+      copy: messages.validator.mocks[validatedMocks[i] ? "valid" : "invalid"],
     };
   }
 

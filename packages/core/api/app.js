@@ -4,19 +4,19 @@
  * @module init
  */
 
-const express = require("express");
-const handlebars = require("handlebars");
-const handlebarsLayouts = require("handlebars-layouts");
+import express from "express";
+import handlebars from "handlebars";
+import handlebarsLayouts from "handlebars-layouts";
 
-const setEngines = require("../lib/init/engines.js");
-const setPartials = require("../lib/init/partials.js");
-const setRouter = require("../lib/init/router.js");
-const setState = require("../lib/state");
-const setStatic = require("../lib/init/static.js");
-const setViewHelpers = require("../lib/init/view-helpers.js");
-const setViews = require("../lib/init/views.js");
+import setEngines from "../lib/init/engines.js";
+import setPartials from "../lib/init/partials.js";
+import setRouter from "../lib/init/router.js";
+import setState from "../lib/state/index.js";
+import setStatic from "../lib/init/static.js";
+import setViewHelpers from "../lib/init/view-helpers.js";
+import setViews from "../lib/init/views.js";
 
-module.exports = async function init(mergedConfig) {
+export default async function init(mergedConfig) {
   const app = express();
   app.set("config", mergedConfig);
   app.set("view cache", false);
@@ -42,4 +42,4 @@ module.exports = async function init(mergedConfig) {
   }
 
   return false;
-};
+}

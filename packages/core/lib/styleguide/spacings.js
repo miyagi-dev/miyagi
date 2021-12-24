@@ -1,6 +1,6 @@
-const { getCustomProperties } = require("./helpers.js");
+import { getCustomProperties } from "./helpers.js";
 
-module.exports = function getSpacings(obj, prefix) {
+export default function getSpacings(obj, prefix) {
   const spacings = [];
 
   getCustomProperties(obj, "spacing").forEach(({ property, value, mq }) => {
@@ -27,4 +27,4 @@ module.exports = function getSpacings(obj, prefix) {
   });
 
   return Object.entries(deduped);
-};
+}

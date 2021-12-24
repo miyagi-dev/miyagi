@@ -1,9 +1,9 @@
-const schemaFaker = require("@stoplight/json-schema-sampler");
-const jsonToYaml = require("js-yaml");
-const yamlToJson = require("js-yaml");
-const fs = require("fs");
-const log = require("../logger.js");
-const { messages } = require("../config.json");
+import schemaFaker from "@stoplight/json-schema-sampler";
+import jsonToYaml from "js-yaml";
+import yamlToJson from "js-yaml";
+import fs from "fs";
+import log from "../logger.js";
+import { messages } from "../miyagi-config.js";
 
 /**
  * Module for creating dummy mock data based on JSON schema
@@ -12,7 +12,7 @@ const { messages } = require("../config.json");
  * @param {string} folderPath - the path for the component that should be created
  * @param {object} filesConfig - the files configuration from the user configuration object
  */
-module.exports = async function mockGenerator(folderPath, filesConfig) {
+export default async function mockGenerator(folderPath, filesConfig) {
   if (!folderPath) {
     log("error", messages.dataGenerator.noComponentFolderDefined);
 
@@ -94,7 +94,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
         );
         break;
       case "js":
-        content = `module.exports = ${JSON.stringify(
+        content = `export default ${JSON.stringify(
           {
             data,
           },
@@ -147,4 +147,4 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
       });
     });
   }
-};
+}

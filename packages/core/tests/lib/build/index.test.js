@@ -2,10 +2,11 @@ import deepMerge from "deepmerge";
 import fs from "fs";
 import path from "path";
 import express from "express";
-import config from "../../../lib/config.json";
+import config from "../../../lib/miyagi-config.js";
 import build from "../../../lib/build";
 import render from "../../../lib/render/index";
 
+jest.mock("../../../lib/__dirname.js", () => `${process.cwd()}/lib`);
 jest.mock("../../../lib/logger");
 
 jest.mock("fs", () => ({
@@ -66,7 +67,7 @@ describe("lib/build/index", () => {
       },
       assets: {
         css: ["index.css"],
-        js: ["index.js"],
+        js: [{ src: "index.js" }],
       },
       theme: {
         mode: "light",

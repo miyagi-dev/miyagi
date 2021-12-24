@@ -1,10 +1,10 @@
-const express = require("express");
-const engines = require("consolidate");
-const path = require("path");
-const deepMerge = require("deepmerge");
-const config = require("../../../lib/config.json");
-const tests = require("../../../lib/render/tests.json");
-const render = require("../../../lib/render");
+import express from "express";
+import engines from "consolidate";
+import path from "path";
+import deepMerge from "deepmerge";
+import config from "../../../lib/miyagi-config.js";
+import tests from "../../../lib/render/tests.js";
+import render from "../../../lib/render";
 require("../../../lib/validator/mocks");
 
 jest.mock("../../../lib/logger");

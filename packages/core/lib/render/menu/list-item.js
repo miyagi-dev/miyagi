@@ -4,7 +4,7 @@
  * @module renderMenuListitem
  */
 
-const classes = require("./classes.js");
+import classes from "./classes.js";
 
 /**
  * Renders a list element with given content in the menu
@@ -14,10 +14,6 @@ const classes = require("./classes.js");
  * @param {string} type - can be "directory" or "variation"
  * @returns {string} the html of the list item
  */
-function render(index, content, type) {
+export const render = function (index, content, type) {
   return `<li class="${classes.listItem} ${classes.listItem}--${type} ${classes.listItem}--lvl${index}">${content}</li>`;
-}
-
-module.exports = {
-  render,
 };

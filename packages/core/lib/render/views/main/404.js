@@ -1,5 +1,5 @@
-const config = require("../../../config.json");
-const { getThemeMode, getComponentTextDirection } = require("../../helpers");
+import config from "../../../miyagi-config.js";
+import { getThemeMode, getComponentTextDirection } from "../../helpers.js";
 
 /**
  * @param {object} object - parameter object
@@ -9,7 +9,7 @@ const { getThemeMode, getComponentTextDirection } = require("../../helpers");
  * @param {string} [object.variation] - the variation name
  * @param {object} object.cookies
  */
-module.exports = async function renderMain404({
+export default async function renderMain404({
   app,
   res,
   file,
@@ -56,4 +56,4 @@ module.exports = async function renderMain404({
       : "/",
     uiTextDirection: app.get("config").ui.textDirection,
   });
-};
+}

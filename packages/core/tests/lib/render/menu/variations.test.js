@@ -2,16 +2,10 @@ const helpersSrc = "../../../../lib/render/menu/helpers.js";
 
 /**
  * @param componentName
- * @param mock
+
  */
-function requireComponent(componentName, mock) {
-  const component = require(`../../../../lib/render/menu/${componentName}`);
-
-  if (mock) {
-    component.render = jest.fn(() => `${componentName}Html`);
-  }
-
-  return component;
+async function requireComponent(componentName) {
+  return await import(`../../../../lib/render/menu/${componentName}.js`);
 }
 
 beforeEach(() => {
@@ -30,52 +24,91 @@ describe("lib/menu/elements/variations", () => {
       variations: [variation, variation, variation],
     };
 
-    test("calls listItem.render for each variation", () => {
-      const variations = requireComponent("variations");
-      const listItem = requireComponent("list-item", true);
+    test("calls listItem.render for each variation", async () => {
+      jest.mock("../../../../lib/render/menu/list-item.js", () => {
+        return {
+          render: jest.fn(),
+        };
+      });
+      const variations = await requireComponent("variations");
+      const renderListItem = await requireComponent("list-item");
 
-      variations.render(false, component, { path: "foo", variation: "bar" });
+      variations.render(false, component, {
+        path: "foo",
+        variation: "bar",
+      });
 
-      expect(listItem.render).toHaveBeenCalledTimes(3);
+      expect(renderListItem.render).toHaveBeenCalledTimes(3);
     });
 
-    test("calls listItem.render with the correct params", () => {
-      const variations = requireComponent("variations");
-      const listItem = requireComponent("list-item", true);
-      const variationLink = requireComponent("variation-link", true);
+    test("calls listItem.render with the correct params", async () => {
+      jest.mock("../../../../lib/render/menu/list-item.js", () => {
+        return {
+          render: jest.fn(),
+        };
+      });
+      jest.mock("../../../../lib/render/menu/variation-link.js", () => {
+        return {
+          render: jest.fn(),
+        };
+      });
 
-      variations.render(false, component, { path: "foo", variation: "bar" });
+      const variations = await requireComponent("variations");
+      const renderListItem = await requireComponent("list-item");
+      const renderVariationLink = await requireComponent("variation-link");
 
-      expect(listItem.render).toHaveBeenCalledWith(
+      variations.render(false, component, {
+        path: "foo",
+        variation: "bar",
+      });
+
+      expect(renderListItem.render).toHaveBeenCalledWith(
         component.index,
-        variationLink.render(),
+        renderVariationLink.render(),
         "variation"
       );
     });
 
-    test("adds the listItem html to the return value", () => {
-      const variations = requireComponent("variations");
-      requireComponent("list-item", true);
+    test("adds the listItem html to the return value", async () => {
+      jest.mock("../../../../lib/render/menu/list-item.js", () => {
+        return {
+          render: jest.fn(() => "list-itemHtml"),
+        };
+      });
+
+      const variations = await requireComponent("variations");
 
       expect(
         (
           variations
-            .render(false, component, { path: "foo", variation: "bar" })
+            .render(false, component, {
+              path: "foo",
+              variation: "bar",
+            })
             .match(/list-itemHtml/g) || []
         ).length
       ).toBe(3);
     });
 
     describe("the requested path is the current variation", () => {
-      test("calls variationLink.render with the correct params", () => {
-        const variations = requireComponent("variations");
-        const variationLink = requireComponent("variation-link", true);
-        const helpers = require(helpersSrc);
-        helpers.pathEqualsRequest = jest.fn(() => true);
+      test("calls variationLink.render with the correct params", async () => {
+        jest.mock(helpersSrc, () => {
+          return {
+            pathEqualsRequest: jest.fn(() => true),
+          };
+        });
+        jest.mock("../../../../lib/render/menu/variation-link.js", () => {
+          return {
+            render: jest.fn(),
+          };
+        });
+
+        const variations = await requireComponent("variations");
+        const renderVariationLink = await requireComponent("variation-link");
 
         variations.render(false, component, {});
 
-        expect(variationLink.render).toHaveBeenCalledWith(
+        expect(renderVariationLink.render).toHaveBeenCalledWith(
           false,
           component,
           variation,
@@ -85,16 +118,22 @@ describe("lib/menu/elements/variations", () => {
     });
 
     describe("the requested path is not the current variation", () => {
-      test("calls variationLink.render with the correct params", () => {
-        const variations = requireComponent("variations");
-        const variationLink = requireComponent("variation-link", true);
+      test("calls variationLink.render with the correct params", async () => {
+        jest.mock("../../../../lib/render/menu/variation-link.js", () => {
+          return {
+            render: jest.fn(),
+          };
+        });
+
+        const variations = await requireComponent("variations");
+        const renderVariationLink = await requireComponent("variation-link");
         const helpers = require(helpersSrc);
 
         helpers.pathEqualsRequest = jest.fn(() => false);
 
         variations.render(false, component, {});
 
-        expect(variationLink.render).toHaveBeenCalledWith(
+        expect(renderVariationLink.render).toHaveBeenCalledWith(
           false,
           component,
           variation,
@@ -111,10 +150,10 @@ describe("lib/menu/elements/variations", () => {
       variations: [],
     };
 
-    test("doesn't add the listItem html to the return value", () => {
-      const variations = requireComponent("variations");
+    test("doesn't add the listItem html to the return value", async () => {
+      const variations = await requireComponent("variations");
 
-      requireComponent("list", true);
+      await requireComponent("list", true);
 
       expect(
         variations.render(false, component, {}).indexOf("list-itemHtml")

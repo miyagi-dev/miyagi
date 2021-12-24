@@ -4,10 +4,10 @@
  * @module initEngines
  */
 
-const engines = require("consolidate");
-const config = require("../config.json");
-const log = require("../logger.js");
-const helpers = require("../helpers.js");
+import engines from "consolidate";
+import { messages } from "../miyagi-config.js";
+import log from "../logger.js";
+import { getSingleFileExtension } from "../helpers.js";
 
 /**
  * @param {object} app - the express instance
@@ -45,18 +45,18 @@ async function setUserEngine(app) {
   }
 
   try {
-    app.engine(helpers.getSingleFileExtension(extension), engines[engine.name]);
+    app.engine(getSingleFileExtension(extension), engines[engine.name]);
   } catch (e) {
-    log("error", config.messages.settingEngineFailed);
+    log("error", messages.settingEngineFailed);
     return false;
   }
 
   return true;
 }
 
-module.exports = function initEngines(app) {
+export default function initEngines(app) {
   setMiyagiEngine(app);
   const userEngineSet = setUserEngine(app);
 
   return userEngineSet;
-};
+}

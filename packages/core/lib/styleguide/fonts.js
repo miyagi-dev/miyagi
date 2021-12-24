@@ -1,6 +1,6 @@
-const { getCustomProperties } = require("./helpers.js");
+import { getCustomProperties } from "./helpers.js";
 
-module.exports = function getFonts(obj, prefix) {
+export default function getFonts(obj, prefix) {
   const props = [
     "font-family",
     "font-feature-settings",
@@ -48,4 +48,4 @@ module.exports = function getFonts(obj, prefix) {
   return Object.entries(deduped).sort((a, b) =>
     a[0].toUpperCase() > b[0].toUpperCase() ? 1 : -1
   );
-};
+}

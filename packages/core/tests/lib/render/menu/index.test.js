@@ -1,12 +1,14 @@
-const deepMerge = require("deepmerge");
-const config = require("../../../../lib/config.json");
+import deepMerge from "deepmerge";
+import config from "../../../../lib/miyagi-config.js";
 
 /**
  * @param componentName
  * @param mock
  */
-function requireComponent(componentName, mock) {
-  const component = require(`../../../../lib/render/menu/${componentName}`);
+async function requireComponent(componentName, mock) {
+  let component = await import(
+    `../../../../lib/render/menu/${componentName}.js`
+  );
 
   if (mock) {
     component.render = jest.fn(() => `${componentName}Html`);
@@ -39,9 +41,9 @@ describe("lib/menu/elements/menu", () => {
   );
 
   describe("with children", () => {
-    test("calls menuItem.render for each menuItem", () => {
-      const menu = requireComponent("index");
-      const menuItem = requireComponent("menu-item", true);
+    test("calls menuItem.render for each menuItem", async () => {
+      const menu = await requireComponent("index");
+      const renderMenuItem = await requireComponent("menu-item", true);
 
       menu.render(
         app,
@@ -51,12 +53,12 @@ describe("lib/menu/elements/menu", () => {
         index
       );
 
-      expect(menuItem.render).toHaveBeenCalledTimes(3);
+      expect(renderMenuItem.render).toHaveBeenCalledTimes(3);
     });
 
-    test("calls menuItem.render with the correct params", () => {
-      const menu = requireComponent("index");
-      const menuItem = requireComponent("menu-item", true);
+    test("calls menuItem.render with the correct params", async () => {
+      const menu = await requireComponent("index");
+      const renderMenuItem = await requireComponent("menu-item", true);
 
       menu.render(
         app,
@@ -66,16 +68,16 @@ describe("lib/menu/elements/menu", () => {
         index
       );
 
-      expect(menuItem.render).toHaveBeenCalledWith(
+      expect(renderMenuItem.render).toHaveBeenCalledWith(
         menuItemObject,
         request,
         app
       );
     });
 
-    test("adds the menuItem html to the return value", () => {
-      const menu = requireComponent("index");
-      requireComponent("menu-item", true);
+    test("adds the menuItem html to the return value", async () => {
+      const menu = await requireComponent("index");
+      await requireComponent("menu-item", true);
 
       expect(
         (
@@ -94,8 +96,9 @@ describe("lib/menu/elements/menu", () => {
   });
 
   describe("without children", () => {
-    test("returns an empty string", () => {
-      const menu = requireComponent("index");
+    test("returns an empty string", async () => {
+      const menu = await requireComponent("index");
+
       expect(menu.render(app, [], request, id, index)).toEqual("");
     });
   });

@@ -4,17 +4,17 @@
  * @module stateSourcetree
  */
 
-const dirTree = require("directory-tree");
-const path = require("path");
-const config = require("../config.json");
-const log = require("../logger.js");
-const helpers = require("../helpers.js");
+import dirTree from "directory-tree";
+import path from "path";
+import { messages } from "../miyagi-config.js";
+import log from "../logger.js";
+import { getSingleFileExtension } from "../helpers.js";
 
 /**
  * @param {object} app - the express instance
  * @returns {object} the source tree object
  */
-function getSourceTree(app) {
+export const getSourceTree = function (app) {
   const exclude = [];
 
   const { ignores } = app.get("config").components;
@@ -31,9 +31,7 @@ function getSourceTree(app) {
           app.get("config").files.docs.extension
         }|${app.get("config").files.js.extension}|${
           app.get("config").files.mocks.extension
-        }|${
-          app.get("config").files.schema.extension
-        }|${helpers.getSingleFileExtension(
+        }|${app.get("config").files.schema.extension}|${getSingleFileExtension(
           app.get("config").files.templates.extension
         )})$`
       ),
@@ -44,7 +42,7 @@ function getSourceTree(app) {
   if (!tree) {
     log(
       "error",
-      config.messages.srcFolderNotFound.replace(
+      messages.srcFolderNotFound.replace(
         "{{directory}}",
         app.get("config").components.folder
       )
@@ -52,8 +50,4 @@ function getSourceTree(app) {
   }
 
   return tree || {};
-}
-
-module.exports = {
-  getSourceTree,
 };

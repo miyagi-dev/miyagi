@@ -4,9 +4,9 @@
  * @module renderMenuVariations
  */
 
-const listItem = require("./list-item.js");
-const variationLink = require("./variation-link.js");
-const helpers = require("./helpers.js");
+import { render as renderListItem } from "./list-item.js";
+import { render as renderVariationLink } from "./variation-link.js";
+import helpers from "./helpers.js";
 
 /**
  * Renders the variations of a component in the menu
@@ -16,7 +16,7 @@ const helpers = require("./helpers.js");
  * @param {object} request - the request object
  * @returns {string} the html with list items
  */
-function render(isBuild, component, request) {
+export const render = function (isBuild, component, request) {
   let html = "";
 
   for (const variation of component.variations) {
@@ -26,16 +26,12 @@ function render(isBuild, component, request) {
       request
     );
 
-    html += listItem.render(
+    html += renderListItem(
       component.index,
-      variationLink.render(isBuild, component, variation, current),
+      renderVariationLink(isBuild, component, variation, current),
       "variation"
     );
   }
 
   return html;
-}
-
-module.exports = {
-  render,
 };

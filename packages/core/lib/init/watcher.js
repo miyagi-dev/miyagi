@@ -4,23 +4,32 @@
  * @module initWatcher
  */
 
-const anymatch = require("anymatch");
-const fs = require("fs");
-const path = require("path");
-const watch = require("node-watch");
-const socketIo = require("socket.io");
-const getConfig = require("../config");
-const yargs = require("./args.js");
-const setState = require("../state");
-const { readFile } = require("../state/file-contents.js");
-const helpers = require("../helpers.js");
-const log = require("../logger.js");
-const { messages } = require("../config.json");
-const setEngines = require("./engines.js");
-const setPartials = require("./partials.js");
-const setStatic = require("./static.js");
-const setViewHelpers = require("./view-helpers.js");
-const setViews = require("./views.js");
+import anymatch from "anymatch";
+import fs from "fs";
+import path from "path";
+import watch from "node-watch";
+import { Server } from "socket.io";
+import getConfig from "../config.js";
+import yargs from "./args.js";
+import setState from "../state/index.js";
+import { readFile } from "../state/file-contents.js";
+import {
+  cloneDeep,
+  fileIsTemplateFile,
+  fileIsDataFile,
+  fileIsDocumentationFile,
+  fileIsInfoFile,
+  fileIsSchemaFile,
+  fileIsAssetFile,
+  updateConfigForRendererIfNecessary,
+} from "../helpers.js";
+import log from "../logger.js";
+import { messages } from "../miyagi-config.js";
+import setEngines from "./engines.js";
+import setPartials from "./partials.js";
+import setStatic from "./static.js";
+import setViewHelpers from "./view-helpers.js";
+import setViews from "./views.js";
 
 let triggeredEvents = [];
 let foldersToWatch;
@@ -64,16 +73,16 @@ function triggeredEventsIncludes(triggered, events) {
  * @returns {Promise<object>} the updated state.fileContents object
  */
 async function updateFileContents(app, events) {
-  const data = helpers.cloneDeep(app.get("state").fileContents);
+  const data = cloneDeep(app.get("state").fileContents);
   const promises = [];
 
   for (const { event, changedPath } of events) {
     if (
-      helpers.fileIsTemplateFile(app, changedPath) ||
-      helpers.fileIsDataFile(app, changedPath) ||
-      helpers.fileIsDocumentationFile(app, changedPath) ||
-      helpers.fileIsInfoFile(app, changedPath) ||
-      helpers.fileIsSchemaFile(app, changedPath)
+      fileIsTemplateFile(app, changedPath) ||
+      fileIsDataFile(app, changedPath) ||
+      fileIsDocumentationFile(app, changedPath) ||
+      fileIsInfoFile(app, changedPath) ||
+      fileIsSchemaFile(app, changedPath)
     ) {
       const fullPath = path.join(process.cwd(), changedPath);
 
@@ -157,7 +166,7 @@ async function handleFileChange() {
     // updated file is a template file
   } else if (
     triggeredEvents.filter((event) =>
-      helpers.fileIsTemplateFile(appInstance, event.changedPath)
+      fileIsTemplateFile(appInstance, event.changedPath)
     ).length > 0
   ) {
     if (
@@ -193,7 +202,7 @@ async function handleFileChange() {
     // updated file is a mock file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsDataFile(appInstance, changedPath)
+      fileIsDataFile(appInstance, changedPath)
     )
   ) {
     const hasBeenAdded = !Object.keys(
@@ -210,7 +219,7 @@ async function handleFileChange() {
     // updated file is a doc file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsDocumentationFile(appInstance, changedPath)
+      fileIsDocumentationFile(appInstance, changedPath)
     )
   ) {
     const hasBeenAdded = !Object.keys(
@@ -227,7 +236,7 @@ async function handleFileChange() {
     // updated file is an info file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsInfoFile(appInstance, changedPath)
+      fileIsInfoFile(appInstance, changedPath)
     )
   ) {
     await setState(appInstance, {
@@ -239,7 +248,7 @@ async function handleFileChange() {
     // updated file is a schema file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsSchemaFile(appInstance, changedPath)
+      fileIsSchemaFile(appInstance, changedPath)
     )
   ) {
     await setState(appInstance, {
@@ -250,7 +259,7 @@ async function handleFileChange() {
     // updated file is an asset file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsAssetFile(appInstance, changedPath)
+      fileIsAssetFile(appInstance, changedPath)
     )
   ) {
     if (appInstance.get("config").ui.reloadAfterChanges.componentAssets) {
@@ -268,9 +277,9 @@ async function handleFileChange() {
   }
 }
 
-module.exports = function Watcher(server, app) {
+export default function Watcher(server, app) {
   appInstance = app;
-  ioInstance = socketIo(server);
+  ioInstance = new Server(server);
 
   const { components, assets, extensions } = appInstance.get("config");
 
@@ -346,14 +355,14 @@ module.exports = function Watcher(server, app) {
   } else {
     log("error", messages.watchingFilesFailed);
   }
-};
+}
 
 async function configurationFileUpdated(app) {
   log("info", messages.updatingConfiguration);
   delete require.cache[require.resolve(path.resolve(process.cwd(), ".miyagi"))];
 
-  const config = await helpers.updateConfigForRendererIfNecessary(
-    getConfig(yargs.argv)
+  const config = await updateConfigForRendererIfNecessary(
+    await getConfig(yargs.argv)
   );
   if (config) {
     app.set("config", config);

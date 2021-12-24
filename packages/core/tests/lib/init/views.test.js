@@ -1,8 +1,10 @@
-const express = require("express");
-const path = require("path");
-const deepMerge = require("deepmerge");
-const setViews = require("../../../lib/init/views.js");
-const config = require("../../../lib/config.json");
+import express from "express";
+import path from "path";
+import deepMerge from "deepmerge";
+import setViews from "../../../lib/init/views.js";
+import config from "../../../lib/miyagi-config.js";
+
+jest.mock("../../../lib/__dirname.js", () => `${process.cwd()}/lib`);
 
 beforeEach(() => {
   jest.resetModules();

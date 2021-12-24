@@ -4,9 +4,9 @@
  * @module statePartials
  */
 
-const path = require("path");
-const { getFiles } = require("./helpers.js");
-const helpers = require("../helpers.js");
+import path from "path";
+import { getFiles } from "./helpers.js";
+import { getResolvedFileName, getShortPathFromFullPath } from "../helpers.js";
 
 /**
  * @param {object} app - the express instance
@@ -24,8 +24,8 @@ function getFilePaths(app, dir) {
           if (path.basename(res).endsWith(`.${extension}`)) {
             const basename = path.basename(res, `.${extension}`);
 
-            if (basename === helpers.getResolvedFileName(name, basename)) {
-              return helpers.getShortPathFromFullPath(app, res);
+            if (basename === getResolvedFileName(name, basename)) {
+              return getShortPathFromFullPath(app, res);
             }
 
             return null;
@@ -38,26 +38,24 @@ function getFilePaths(app, dir) {
   });
 }
 
-module.exports = {
-  getPartials: function (app) {
-    return new Promise((resolve) => {
-      const partials = {};
+export const getPartials = function (app) {
+  return new Promise((resolve) => {
+    const partials = {};
 
-      getFilePaths(app, app.get("config").components.folder).then((paths) => {
-        if (paths) {
-          for (const shortPath of paths) {
-            // ignore files that live directly in the srcFolder
-            if (shortPath !== path.basename(shortPath)) {
-              partials[shortPath] = path.join(
-                process.cwd(),
-                `${app.get("config").components.folder}/${shortPath}`
-              );
-            }
+    getFilePaths(app, app.get("config").components.folder).then((paths) => {
+      if (paths) {
+        for (const shortPath of paths) {
+          // ignore files that live directly in the srcFolder
+          if (shortPath !== path.basename(shortPath)) {
+            partials[shortPath] = path.join(
+              process.cwd(),
+              `${app.get("config").components.folder}/${shortPath}`
+            );
           }
         }
+      }
 
-        resolve(partials);
-      });
+      resolve(partials);
     });
-  },
+  });
 };

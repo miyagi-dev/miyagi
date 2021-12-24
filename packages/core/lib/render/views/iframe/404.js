@@ -1,5 +1,5 @@
-const config = require("../../../config.json");
-const { getThemeMode, getComponentTextDirection } = require("../../helpers");
+import config from "../../../miyagi-config.js";
+import { getThemeMode, getComponentTextDirection } from "../../helpers.js";
 
 /**
  * @param {object} object - parameter object
@@ -9,7 +9,7 @@ const { getThemeMode, getComponentTextDirection } = require("../../helpers");
  * @param {string} object.target - name of the requested component
  * @param {object} object.cookies
  */
-module.exports = async function renderIframe404({
+export default async function renderIframe404({
   app,
   res,
   embedded,
@@ -39,4 +39,4 @@ module.exports = async function renderIframe404({
       componentLanguage: app.get("config").components.lang,
     }
   );
-};
+}

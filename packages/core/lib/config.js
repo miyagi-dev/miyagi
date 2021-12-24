@@ -1,27 +1,29 @@
-const path = require("path");
-const deepMerge = require("deepmerge");
+import path from "path";
+import deepMerge from "deepmerge";
 
-const { messages } = require("./config.json");
-const getMergedConfig = require("./init/config.js");
-const log = require("./logger.js");
+import { messages } from "./miyagi-config.js";
+import getMergedConfig from "./init/config.js";
+import log from "./logger.js";
 
-module.exports = function getConfig(args, isBuild, isComponentGenerator) {
+export default async function getConfig(args, isBuild, isComponentGenerator) {
   let userFile = {};
   let userFileName = ".miyagi.js";
 
   try {
-    userFile = require(path.resolve(process.cwd(), userFileName));
+    userFile = await import(path.resolve(process.cwd(), userFileName));
   } catch (e) {
     try {
       userFileName = ".miyagi.json";
-      userFile = require(path.resolve(process.cwd(), userFileName));
+      userFile = await import(path.resolve(process.cwd(), userFileName));
     } catch (err) {
       userFileName = null;
       log("warn", messages.userConfigUnparseable);
     }
   }
 
-  let userConfig = args ? deepMerge(userFile, getCliArgs(args)) : userFile;
+  let userConfig = args
+    ? deepMerge(userFile.default, getCliArgs(args))
+    : userFile.default;
 
   userConfig.userFileName = userFileName;
   userConfig.isBuild = isBuild;
@@ -30,7 +32,7 @@ module.exports = function getConfig(args, isBuild, isComponentGenerator) {
   delete userConfig._;
 
   return getMergedConfig(userConfig);
-};
+}
 
 /**
  * Converts and removes unnecessary cli args

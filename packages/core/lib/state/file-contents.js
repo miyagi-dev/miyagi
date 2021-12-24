@@ -4,15 +4,21 @@
  * @module stateFilecontents
  */
 
-const path = require("path");
-const fs = require("fs");
-const yaml = require("js-yaml");
-const Markdown = require("marked");
-const { promisify } = require("util");
-const config = require("../config.json");
-const helpers = require("../helpers.js");
-const log = require("../logger.js");
-const stateHelpers = require("./helpers.js");
+import path from "path";
+import fs from "fs";
+import yaml from "js-yaml";
+import { marked } from "marked";
+import { promisify } from "util";
+import { messages } from "../miyagi-config.js";
+import {
+  fileIsTemplateFile,
+  fileIsDocumentationFile,
+  fileIsDataFile,
+  getResolvedFileName,
+  getShortPathFromFullPath,
+} from "../helpers.js";
+import log from "../logger.js";
+import { getFiles } from "./helpers.js";
 
 const readFileAsync = promisify(fs.readFile);
 
@@ -47,30 +53,26 @@ function checkIfFileNamesIncludeFile(file, fileNames) {
  * @returns {Promise<string[]>} an array of file paths
  */
 async function getFilePaths(components, files) {
-  return await stateHelpers.getFiles(
-    components.folder,
-    components.ignores,
-    function (res) {
-      if (
-        checkIfFileNamesIncludeFile(res, [
-          `${helpers.getResolvedFileName(
-            files.templates.name,
-            path.basename(res, `.${files.templates.extension}`)
-          )}.${files.templates.extension}`,
-          `${files.docs.name}.${files.docs.extension}`,
-          `${files.mocks.name}.${files.mocks.extension}`,
-          `${files.schema.name}.${files.schema.extension}`,
-          `${files.info.name}.${files.info.extension}`,
-          `data.${files.mocks.extension}`,
-          `README.${files.docs.extension}`,
-        ])
-      ) {
-        return res;
-      } else {
-        return null;
-      }
+  return await getFiles(components.folder, components.ignores, function (res) {
+    if (
+      checkIfFileNamesIncludeFile(res, [
+        `${getResolvedFileName(
+          files.templates.name,
+          path.basename(res, `.${files.templates.extension}`)
+        )}.${files.templates.extension}`,
+        `${files.docs.name}.${files.docs.extension}`,
+        `${files.mocks.name}.${files.mocks.extension}`,
+        `${files.schema.name}.${files.schema.extension}`,
+        `${files.info.name}.${files.info.extension}`,
+        `data.${files.mocks.extension}`,
+        `README.${files.docs.extension}`,
+      ])
+    ) {
+      return res;
+    } else {
+      return null;
     }
-  );
+  });
 }
 
 /**
@@ -102,9 +104,9 @@ function getYamlFileContent(app, fileName) {
     result = {};
     log(
       "warn",
-      config.messages.jsonFileHasInvalidFormat.replace(
+      messages.jsonFileHasInvalidFormat.replace(
         "{{filePath}}",
-        helpers.getShortPathFromFullPath(app, fileName)
+        getShortPathFromFullPath(app, fileName)
       )
     );
   }
@@ -131,9 +133,9 @@ async function getParsedJsonFileContent(app, fileName) {
       result = {};
       log(
         "warn",
-        config.messages.jsonFileHasInvalidFormat.replace(
+        messages.jsonFileHasInvalidFormat.replace(
           "{{filePath}}",
-          helpers.getShortPathFromFullPath(app, fileName)
+          getShortPathFromFullPath(app, fileName)
         )
       );
     }
@@ -141,9 +143,9 @@ async function getParsedJsonFileContent(app, fileName) {
     result = {};
     log(
       "warn",
-      config.messages.jsonFileHasInvalidFormat.replace(
+      messages.jsonFileHasInvalidFormat.replace(
         "{{filePath}}",
-        helpers.getShortPathFromFullPath(app, fileName)
+        getShortPathFromFullPath(app, fileName)
       )
     );
   }
@@ -164,7 +166,7 @@ async function getConvertedMarkdownFileContent(fileName) {
     result = await readFileAsync(fileName, "utf8");
 
     try {
-      result = Markdown.parse(result);
+      result = marked.parse(result);
     } catch (e) {
       result = "";
     }
@@ -183,17 +185,17 @@ async function getConvertedMarkdownFileContent(fileName) {
  * @param {string} fileName - path to a file of any type
  * @returns {Promise<string|object|Array>} content of the given file based on its type
  */
-async function readFile(app, fileName) {
+export const readFile = async function (app, fileName) {
   let result;
 
-  if (helpers.fileIsTemplateFile(app, fileName)) {
+  if (fileIsTemplateFile(app, fileName)) {
     result = fs.readFileSync(fileName, "utf-8");
   } else if (path.extname(fileName) === ".yaml") {
     result = getYamlFileContent(app, fileName);
-  } else if (helpers.fileIsDocumentationFile(app, fileName)) {
+  } else if (fileIsDocumentationFile(app, fileName)) {
     result = getConvertedMarkdownFileContent(fileName);
   } else if (
-    helpers.fileIsDataFile(app, fileName) &&
+    fileIsDataFile(app, fileName) &&
     app.get("config").files.mocks.extension === "js"
   ) {
     result = await getJsFileContent(fileName);
@@ -202,7 +204,7 @@ async function readFile(app, fileName) {
   }
 
   return result;
-}
+};
 
 /**
  * Returns a promise which will be resolved with an object,
@@ -212,7 +214,7 @@ async function readFile(app, fileName) {
  * @param {object} app - the express instance
  * @returns {Promise} gets resolved with the content of all docs, mocks, schema, info files
  */
-async function getFileContents(app) {
+export const getFileContents = async function (app) {
   const fileContents = {};
   const promises = [];
   const paths = await getFilePaths(
@@ -237,9 +239,4 @@ async function getFileContents(app) {
   }
 
   return {};
-}
-
-module.exports = {
-  readFile,
-  getFileContents,
 };

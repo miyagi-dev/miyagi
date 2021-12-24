@@ -1,13 +1,16 @@
-const path = require("path");
-const jsonToYaml = require("js-yaml");
-const config = require("../../../config.json");
-const helpers = require("../../../helpers.js");
-const validateMocks = require("../../../validator/mocks.js");
-const { getVariationData } = require("../../../mocks");
-const log = require("../../../logger.js");
-const { getThemeMode, getComponentTextDirection } = require("../../helpers");
+import path from "path";
+import jsonToYaml from "js-yaml";
+import config, { messages } from "../../../miyagi-config.js";
+import {
+  getTemplateFilePathFromDirectoryPath,
+  normalizeString,
+} from "../../../helpers.js";
+import validateMocks from "../../../validator/mocks.js";
+import { getVariationData } from "../../../mocks/index.js";
+import log from "../../../logger.js";
+import { getThemeMode, getComponentTextDirection } from "../../helpers.js";
 
-const { getDataForRenderFunction } = require("../../helpers.js");
+import { getDataForRenderFunction } from "../../helpers.js";
 
 /**
  * @param {object} object - parameter object
@@ -20,7 +23,7 @@ const { getDataForRenderFunction } = require("../../helpers.js");
  * @param {object} object.cookies
  * @returns {Promise} gets resolved when the variation has been rendered
  */
-module.exports = async function renderIframeVariation({
+export default async function renderIframeVariation({
   app,
   res,
   file,
@@ -29,7 +32,7 @@ module.exports = async function renderIframeVariation({
   cb,
   cookies,
 }) {
-  file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
+  file = getTemplateFilePathFromDirectoryPath(app, file);
   const { raw: rawComponentData, extended: componentData } =
     await getVariationData(app, file, decodeURI(variation));
   const themeMode = getThemeMode(app, cookies);
@@ -46,9 +49,9 @@ module.exports = async function renderIframeVariation({
 
   if (embedded) {
     if (app.get("config").isBuild) {
-      standaloneUrl = `component-${helpers.normalizeString(
+      standaloneUrl = `component-${normalizeString(
         path.dirname(file)
-      )}-variation-${helpers.normalizeString(variation)}.html`;
+      )}-variation-${normalizeString(variation)}.html`;
     } else {
       standaloneUrl = `/component?file=${path.dirname(
         file
@@ -62,7 +65,7 @@ module.exports = async function renderIframeVariation({
     Array.isArray(validatedMocks) && validatedMocks[0]
       ? {
           valid: validatedMocks[0],
-          copy: config.messages.validator.mocks[
+          copy: messages.validator.mocks[
             validatedMocks[0] ? "valid" : "invalid"
           ],
         }
@@ -121,7 +124,7 @@ module.exports = async function renderIframeVariation({
                   ? jsonToYaml.dump(rawComponentData)
                   : JSON.stringify(rawComponentData, null, 2),
               variation,
-              normalizedVariation: helpers.normalizeString(variation),
+              normalizedVariation: normalizeString(variation),
               mockValidation,
               mocks: fileContents.mocks,
               componentTextDirection:
@@ -152,4 +155,4 @@ module.exports = async function renderIframeVariation({
       }
     );
   });
-};
+}

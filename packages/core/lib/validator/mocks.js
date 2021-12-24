@@ -1,9 +1,12 @@
-const AJV = require("ajv").default;
-const deepMerge = require("deepmerge");
-const path = require("path");
-const helpers = require("../helpers.js");
-const log = require("../logger.js");
-const config = require("../config.json");
+import AJV from "ajv";
+import deepMerge from "deepmerge";
+import path from "path";
+import {
+  getFullPathFromShortPath,
+  getSchemaPathFromTemplatePath,
+} from "../helpers.js";
+import log from "../logger.js";
+import { messages } from "../miyagi-config.js";
 
 /**
  * Module for validating mock data against JSON schema
@@ -14,12 +17,12 @@ const config = require("../config.json");
  * @param {Array} dataArray - an array with mock data
  * @returns {null|boolean[]} null if there is no schema or an array with booleans defining the validity of the entries in the data array
  */
-module.exports = function validateMockData(app, filePath, dataArray) {
+export default function validateMockData(app, filePath, dataArray) {
   const componentSchema =
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
+      getFullPathFromShortPath(
         app,
-        helpers.getSchemaPathFromTemplatePath(app, filePath)
+        getSchemaPathFromTemplatePath(app, filePath)
       )
     ];
 
@@ -72,7 +75,7 @@ module.exports = function validateMockData(app, filePath, dataArray) {
           log(
             "error",
             `${path.dirname(filePath)}#${entry.name}: ${
-              config.messages.validator.mocks.invalid
+              messages.validator.mocks.invalid
             }`
           );
         }
@@ -87,11 +90,9 @@ module.exports = function validateMockData(app, filePath, dataArray) {
   if (!app.get("config").isBuild) {
     log(
       "warn",
-      `${path.dirname(filePath)}: ${
-        config.messages.validator.mocks.noSchemaFound
-      }`
+      `${path.dirname(filePath)}: ${messages.validator.mocks.noSchemaFound}`
     );
   }
 
   return null;
-};
+}

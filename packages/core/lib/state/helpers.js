@@ -4,10 +4,10 @@
  * @module stateHelpers
  */
 
-const path = require("path");
-const log = require("../logger");
-const { messages } = require("../config.json");
-const { readdir } = require("fs").promises;
+import path from "path";
+import log from "../logger.js";
+import { messages } from "../miyagi-config.js";
+import { readdir } from "fs/promises";
 
 /**
  * @param {object} dir - the directory in which to look for files
@@ -15,7 +15,7 @@ const { readdir } = require("fs").promises;
  * @param {Function} check - checks if the file should be returned, returns null or the file path
  * @returns {Promise<string[]>} an array with file paths
  */
-async function getFiles(dir, ignores, check) {
+export const getFiles = async function (dir, ignores, check) {
   try {
     var entries = await readdir(path.join(process.cwd(), dir), {
       withFileTypes: true,
@@ -46,7 +46,7 @@ async function getFiles(dir, ignores, check) {
   );
 
   return Array.prototype.concat(...files).filter((file) => file !== null);
-}
+};
 
 /**
  * Checks if a given file is not in one of the ignored folders
@@ -55,7 +55,7 @@ async function getFiles(dir, ignores, check) {
  * @param {Array} ignoredFolders - folders that should be ignored
  * @returns {boolean} returns true if the given file is not inside any of the given ignoredFolders
  */
-function isNotIgnored(file, ignoredFolders) {
+export const isNotIgnored = function (file, ignoredFolders) {
   for (let i = 0; i < ignoredFolders.length; i += 1) {
     if (file.includes(ignoredFolders[i])) {
       return false;
@@ -63,9 +63,4 @@ function isNotIgnored(file, ignoredFolders) {
   }
 
   return true;
-}
-
-module.exports = {
-  getFiles,
-  isNotIgnored,
 };

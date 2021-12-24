@@ -1,36 +1,40 @@
-const fs = require("fs");
-const path = require("path");
-const { promisify } = require("util");
-const deepMerge = require("deepmerge");
-const fileStat = promisify(fs.stat);
-const config = require("../config.json");
-const helpers = require("../helpers.js");
-const log = require("../logger.js");
-const {
+import fs from "fs";
+import path from "path";
+import { promisify } from "util";
+import deepMerge from "deepmerge";
+import { messages } from "../miyagi-config.js";
+import {
+  cloneDeep,
+  getResolvedFileName,
+  getFullPathFromShortPath,
+  normalizeString,
+  removeInternalKeys,
+} from "../helpers.js";
+import log from "../logger.js";
+import {
   extendTemplateData,
   getDataForRenderFunction,
-} = require("../render/helpers");
+} from "../render/helpers.js";
 
-module.exports =
-  /**
-   * @param {object} app - the express instance
-   * @param {object} data - the mock data object that will be passed into the component
-   * @param {object} [rootData] - the root mock data object
-   * @returns {Promise<object>} the resolved data object
-   */
-  async function resolveData(app, data, rootData) {
-    let merged = rootData
-      ? mergeRootDataWithVariationData(rootData, data)
-      : data;
-    let resolved;
+const fileStat = promisify(fs.stat);
 
-    merged = mergeWithGlobalData(app, merged);
-    resolved = await overwriteJsonLinksWithJsonData(app, merged);
-    resolved = await overwriteTplLinksWithTplContent(app, resolved);
-    resolved = await overwriteRenderKey(app, resolved);
+/**
+ * @param {object} app - the express instance
+ * @param {object} data - the mock data object that will be passed into the component
+ * @param {object} [rootData] - the root mock data object
+ * @returns {Promise<object>} the resolved data object
+ */
+export default async function resolveData(app, data, rootData) {
+  let merged = rootData ? mergeRootDataWithVariationData(rootData, data) : data;
+  let resolved;
 
-    return { merged, resolved };
-  };
+  merged = mergeWithGlobalData(app, merged);
+  resolved = await overwriteJsonLinksWithJsonData(app, merged);
+  resolved = await overwriteTplLinksWithTplContent(app, resolved);
+  resolved = await overwriteRenderKey(app, resolved);
+
+  return { merged, resolved };
+}
 
 /**
  * @param {object} app - the express instance
@@ -242,12 +246,12 @@ function resolveTpl(app, entry) {
                   ""
                 ),
                 ""
-              )}/${helpers.getResolvedFileName(
+              )}/${getResolvedFileName(
                 app.get("config").files.templates.name,
                 path.basename(entries.$tpl)
               )}.${app.get("config").files.templates.extension}`;
 
-              fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+              fullFilePath = getFullPathFromShortPath(app, filePath);
             } else {
               filePath = `${entries.$tpl.replace(
                 namespace,
@@ -256,20 +260,20 @@ function resolveTpl(app, entry) {
                   ""
                 ),
                 ""
-              )}/${helpers.getResolvedFileName(
+              )}/${getResolvedFileName(
                 app.get("config").files.templates.name,
                 path.basename(entries.$tpl)
               )}.${app.get("config").files.templates.extension}`.slice(1);
             }
 
-            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+            fullFilePath = getFullPathFromShortPath(app, filePath);
           } else {
-            filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
+            filePath = `${entries.$tpl}/${getResolvedFileName(
               app.get("config").files.templates.name,
               path.basename(entries.$tpl)
             )}.${app.get("config").files.templates.extension}`;
 
-            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+            fullFilePath = getFullPathFromShortPath(app, filePath);
           }
 
           fs.stat(fullFilePath, async function (err) {
@@ -287,7 +291,7 @@ function resolveTpl(app, entry) {
                   if (err)
                     log(
                       "warn",
-                      config.messages.renderingTemplateFailed
+                      messages.renderingTemplateFailed
                         .replace("{{filePath}}", filePath)
                         .replace("{{engine}}", app.get("config").engine.name)
                     );
@@ -296,7 +300,7 @@ function resolveTpl(app, entry) {
                 }
               );
             } else if (err.code === "ENOENT") {
-              const msg = config.messages.templateDoesNotExist.replace(
+              const msg = messages.templateDoesNotExist.replace(
                 "{{template}}",
                 filePath
               );
@@ -336,12 +340,12 @@ async function resolveJson(app, entry) {
     }
 
     if (entry === undefined) {
-      log("warn", config.messages.referencedMockFileNotFound);
+      log("warn", messages.referencedMockFileNotFound);
       return entry;
     }
 
     if (entry.$ref) {
-      const customData = helpers.cloneDeep(entry);
+      const customData = cloneDeep(entry);
       delete customData.$ref;
 
       const resolvedJson = await getRootOrVariantDataOfReference(
@@ -393,42 +397,36 @@ async function getRootOrVariantDataOfReference(app, ref) {
     app.get("config").files.mocks.extension
   }`;
   const jsonFromData =
-    app.get("state").fileContents[helpers.getFullPathFromShortPath(app, val)];
+    app.get("state").fileContents[getFullPathFromShortPath(app, val)];
 
   if (jsonFromData) {
     const embeddedJson = jsonFromData;
     let variantJson = {};
-    const rootJson = helpers.removeInternalKeys(embeddedJson);
+    const rootJson = removeInternalKeys(embeddedJson);
 
     if (variation && embeddedJson.$variants && embeddedJson.$variants.length) {
       const variant = embeddedJson.$variants.find((vari) => {
         if (vari.$name) {
-          return (
-            helpers.normalizeString(vari.$name) ===
-            helpers.normalizeString(variation)
-          );
+          return normalizeString(vari.$name) === normalizeString(variation);
         }
         return false;
       });
 
       if (variant) {
-        variantJson = helpers.removeInternalKeys(variant);
+        variantJson = removeInternalKeys(variant);
       } else {
         log(
           "warn",
-          config.messages.variationNotFound
+          messages.variationNotFound
             .replace("{{variation}}", variation)
             .replace("{{fileName}}", val)
         );
       }
     }
 
-    return deepMerge(helpers.cloneDeep(rootJson), variantJson);
+    return deepMerge(cloneDeep(rootJson), variantJson);
   }
-  log(
-    "warn",
-    config.messages.fileNotFoundLinkIncorrect.replace("{{filePath}}", val)
-  );
+  log("warn", messages.fileNotFoundLinkIncorrect.replace("{{filePath}}", val));
 
   return {};
 }
@@ -509,7 +507,7 @@ function mergeRootDataWithVariationData(rootData, variationData) {
 function mergeWithGlobalData(app, data) {
   return {
     ...app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
+      getFullPathFromShortPath(
         app,
         `data.${app.get("config").files.mocks.extension}`
       )

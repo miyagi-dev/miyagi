@@ -4,12 +4,12 @@
  * @module state
  */
 
-const { getPartials } = require("./partials.js");
-const { getFileContents } = require("./file-contents.js");
-const getCSS = require("./css");
-const { getMenu } = require("./menu");
-const getFlatMenu = require("./flat-menu");
-const { getSourceTree } = require("./source-tree.js");
+import { getPartials } from "./partials.js";
+import { getFileContents } from "./file-contents.js";
+import getCSS from "./css.js";
+import { getMenu } from "./menu/index.js";
+import getFlatMenu from "./flat-menu.js";
+import { getSourceTree } from "./source-tree.js";
 
 /**
  * @param {object} app - the express instance
@@ -35,7 +35,7 @@ function setSourceTreeAndMenu(app, methods, state) {
   });
 }
 
-module.exports = async function setState(app, methods) {
+export default async function setState(app, methods) {
   const promises = [];
   const state = app.get("state") || {};
 
@@ -53,7 +53,6 @@ module.exports = async function setState(app, methods) {
         new Promise((resolve) => {
           getFileContents(app).then((data) => {
             state.fileContents = data;
-
             setSourceTreeAndMenu(app, methods, state).then(resolve);
           });
         })
@@ -93,4 +92,4 @@ module.exports = async function setState(app, methods) {
     app.set("state", state);
     return app.get("state");
   });
-};
+}

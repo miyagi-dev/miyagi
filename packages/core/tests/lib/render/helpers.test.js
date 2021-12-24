@@ -1,8 +1,11 @@
-const express = require("express");
-const path = require("path");
-const deepMerge = require("deepmerge");
-const config = require("../../../lib/config.json");
-const helpers = require("../../../lib/render/helpers.js");
+import express from "express";
+import path from "path";
+import deepMerge from "deepmerge";
+import config from "../../../lib/miyagi-config.js";
+import {
+  getFallbackData,
+  getDataForRenderFunction,
+} from "../../../lib/render/helpers.js";
 
 describe("lib/render/helpers", () => {
   describe("getFallbackData()", () => {
@@ -18,7 +21,7 @@ describe("lib/render/helpers", () => {
           },
         ];
 
-        expect(helpers.getFallbackData(variations)).toEqual({ val: 2 });
+        expect(getFallbackData(variations)).toEqual({ val: 2 });
       });
     });
 
@@ -26,7 +29,7 @@ describe("lib/render/helpers", () => {
       test("returns {}", () => {
         const variations = [{}, {}, {}];
 
-        expect(helpers.getFallbackData(variations)).toEqual({});
+        expect(getFallbackData(variations)).toEqual({});
       });
     });
   });
@@ -49,7 +52,7 @@ describe("lib/render/helpers", () => {
       const fullPath = path.join(process.cwd(), "srcFolder");
 
       expect(
-        helpers.getDataForRenderFunction(app, {
+        getDataForRenderFunction(app, {
           foo: "bar",
         })
       ).toEqual({

@@ -1,4 +1,4 @@
-const list = require("../../../../lib/render/menu/list.js");
+import { render as renderList } from "../../../../lib/render/menu/list.js";
 
 beforeEach(() => {
   jest.resetModules();
@@ -7,7 +7,7 @@ beforeEach(() => {
 
 describe("lib/menu/elements/list", () => {
   test("renders the correct list html", () => {
-    expect(list.render("variations", 1, "content")).toEqual(
+    expect(renderList("variations", 1, "content")).toEqual(
       `<ul class="Menu-list Menu-list--lvl1 Menu-list--variations">content</ul>`
     );
   });

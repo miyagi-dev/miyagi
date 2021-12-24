@@ -2,4 +2,5 @@ demo/build/
 node_modules/
 coverage/
 dist/
+packages/core/api/cjs
 .DS_Store

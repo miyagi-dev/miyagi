@@ -1,7 +1,7 @@
-const tests = require("../../tests.json");
-const config = require("../../../config.json");
-const helpers = require("../../../helpers.js");
-const { getThemeMode, getComponentTextDirection } = require("../../helpers");
+import tests from "../../tests.js";
+import config from "../../../miyagi-config.js";
+import { normalizeString } from "../../../helpers.js";
+import { getThemeMode, getComponentTextDirection } from "../../helpers.js";
 
 /**
  * @param {object} object - parameter object
@@ -14,7 +14,7 @@ const { getThemeMode, getComponentTextDirection } = require("../../helpers");
  * @param {Function} [object.cb] - callback function
  * @param {object} object.cookies
  */
-module.exports = async function renderMainComponent({
+export default async function renderMainComponent({
   app,
   res,
   file,
@@ -25,7 +25,7 @@ module.exports = async function renderMainComponent({
   cookies,
 }) {
   let iframeSrc = app.get("config").isBuild
-    ? `component-${helpers.normalizeString(
+    ? `component-${normalizeString(
         file.replace(`.${app.get("config").files.templates.extension}`, "")
       )}.html`
     : `/component?file=${file}`;
@@ -39,7 +39,7 @@ module.exports = async function renderMainComponent({
     if (app.get("config").isBuild) {
       iframeSrc = iframeSrc.replace(
         ".html",
-        `-variation-${helpers.normalizeString(variation)}.html`
+        `-variation-${normalizeString(variation)}.html`
       );
     } else {
       iframeSrc += `&variation=${variation}`;
@@ -99,4 +99,4 @@ module.exports = async function renderMainComponent({
       }
     }
   );
-};
+}

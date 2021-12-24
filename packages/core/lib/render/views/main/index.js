@@ -1,6 +1,6 @@
-const tests = require("../../tests.json");
-const config = require("../../../config.json");
-const { getThemeMode, getComponentTextDirection } = require("../../helpers");
+import tests from "../../tests.js";
+import config from "../../../miyagi-config.js";
+import { getThemeMode, getComponentTextDirection } from "../../helpers.js";
 
 /**
  * @param {object} object - parameter object
@@ -11,7 +11,7 @@ const { getThemeMode, getComponentTextDirection } = require("../../helpers");
  * @param {Function} [object.cb] - callback function
  * @param {object} object.cookies
  */
-module.exports = function renderMainIndex({
+export default function renderMainIndex({
   app,
   res,
   buildDate,
@@ -70,4 +70,4 @@ module.exports = function renderMainIndex({
       }
     }
   );
-};
+}

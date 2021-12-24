@@ -4,9 +4,9 @@
  * @module renderMenuVariationLink
  */
 
-const classes = require("./classes.js");
-const helpers = require("../../helpers.js");
-const menuHelpers = require("./helpers.js");
+import classes from "./classes.js";
+import { normalizeString } from "../../helpers.js";
+import menuHelpers from "./helpers.js";
 
 /**
  * Renders a variation link of a given component
@@ -17,11 +17,11 @@ const menuHelpers = require("./helpers.js");
  * @param {boolean} isCurrent - defines if this link should be highlighted
  * @returns {string} the html with the variation link
  */
-function render(isBuild, component, variation, isCurrent) {
+export const render = function (isBuild, component, variation, isCurrent) {
   const href = isBuild
-    ? `component-${
-        component.normalizedShortPath
-      }-variation-${helpers.normalizeString(variation.name)}-embedded.html`
+    ? `component-${component.normalizedShortPath}-variation-${normalizeString(
+        variation.name
+      )}-embedded.html`
     : `/component?file=${component.shortPath}&variation=${encodeURI(
         variation.name
       )}&embedded=true`;
@@ -31,8 +31,4 @@ function render(isBuild, component, variation, isCurrent) {
   }--variation" target="iframe" href="${href}"${
     isCurrent ? menuHelpers.activeState : ""
   }>${variation.name}</a>`;
-}
-
-module.exports = {
-  render,
 };

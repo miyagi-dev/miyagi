@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   toggle: "Menu-toggle",
   component: "Menu-component",
   link: "Menu-link",

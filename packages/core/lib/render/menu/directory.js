@@ -4,11 +4,11 @@
  * @module renderMenuDirectory
  */
 
-const toggle = require("./toggle.js");
-const menuHelpers = require("./helpers.js");
-const classes = require("./classes.js");
-const helpers = require("../../helpers.js");
-const menu = require("./index.js");
+import { render as renderToggle } from "./toggle.js";
+import { render as renderMenu } from "./index.js";
+import menuHelpers from "./helpers.js";
+import classes from "./classes.js";
+import { getShortPathFromFullPath } from "../../helpers.js";
 
 /**
  * Renders a directory in the menu
@@ -18,16 +18,16 @@ const menu = require("./index.js");
  * @param {object} request - the request object
  * @returns {string} the directory html
  */
-function render(app, directory, request) {
+export const render = function (app, directory, request) {
   let html = "";
 
   if (menuHelpers.childrenOfDirectoryContainDirectory(directory)) {
     const expanded = menuHelpers.pathIsParentOfOrEqualRequestedPath(
-      helpers.getShortPathFromFullPath(app, directory.fullPath),
+      getShortPathFromFullPath(app, directory.fullPath),
       request.path
     );
 
-    html += toggle.render(
+    html += renderToggle(
       `${directory.id}-components`,
       expanded,
       directory.index
@@ -41,7 +41,7 @@ function render(app, directory, request) {
     html += `<div class="${classes.listContainer}"${
       directory.id ? ` id="${directory.id}-components"` : ""
     }>
-      ${menu.render(
+      ${renderMenu(
         app,
         directory.children,
         request,
@@ -51,8 +51,4 @@ function render(app, directory, request) {
   }
 
   return html;
-}
-
-module.exports = {
-  render,
 };

@@ -4,9 +4,9 @@
  * @module initArgs
  */
 
-const yargs = require("yargs");
+import yargs from "yargs";
 
-module.exports = yargs
+export default yargs(process.argv)
   .command("start", "Starts the miyagi server")
   .command("build", "Creates a static build of all your components", {
     folder: {

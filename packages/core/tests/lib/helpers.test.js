@@ -1,6 +1,13 @@
-const deepMerge = require("deepmerge");
-const config = require("../../lib/config.json");
-const helpers = require("../../lib/helpers.js");
+import deepMerge from "deepmerge";
+import config from "../../lib/miyagi-config.js";
+import express from "express";
+import {
+  fileIsDataFile,
+  fileIsTemplateFile,
+  fileIsDocumentationFile,
+  fileIsSchemaFile,
+  getFullPathFromShortPath,
+} from "../../lib/helpers.js";
 
 beforeEach(() => {
   jest.resetModules();
@@ -8,7 +15,7 @@ beforeEach(() => {
 });
 
 describe("lib/helpers", () => {
-  const app = require("express")();
+  const app = express();
   app.set(
     "config",
     deepMerge(config.defaultUserConfig, {
@@ -24,7 +31,7 @@ describe("lib/helpers", () => {
   describe("fileIsDataFile()", () => {
     test("returns true if file is a data file", () => {
       expect(
-        helpers.fileIsDataFile(
+        fileIsDataFile(
           app,
           `foo/${app.get("config").files.mocks.name}.${
             app.get("config").files.mocks.extension
@@ -35,7 +42,7 @@ describe("lib/helpers", () => {
 
     test("returns true if file is not a data file", () => {
       expect(
-        helpers.fileIsDataFile(
+        fileIsDataFile(
           app,
           `foo/${app.get("config").files.mocks.name}.${
             app.get("config").files.mocks.name
@@ -48,7 +55,7 @@ describe("lib/helpers", () => {
   describe("fileIsTemplateFile()", () => {
     test("returns true if file is a template file", () => {
       expect(
-        helpers.fileIsTemplateFile(
+        fileIsTemplateFile(
           app,
           `foo/${app.get("config").files.templates.name}.${
             app.get("config").files.templates.extension
@@ -59,7 +66,7 @@ describe("lib/helpers", () => {
 
     test("returns true if file is not a template file", () => {
       expect(
-        helpers.fileIsTemplateFile(
+        fileIsTemplateFile(
           app,
           `foo/${app.get("config").files.templates.name}.${
             app.get("config").files.templates.name
@@ -72,7 +79,7 @@ describe("lib/helpers", () => {
   describe("fileIsDocumentationFile()", () => {
     test("returns true if file is a docs file", () => {
       expect(
-        helpers.fileIsDocumentationFile(
+        fileIsDocumentationFile(
           app,
           `foo/${app.get("config").files.docs.name}.${
             app.get("config").files.docs.extension
@@ -83,7 +90,7 @@ describe("lib/helpers", () => {
 
     test("returns true if file is not a docs file", () => {
       expect(
-        helpers.fileIsDocumentationFile(
+        fileIsDocumentationFile(
           app,
           `foo/${app.get("config").files.docs.name}.${
             app.get("config").files.docs.name
@@ -96,7 +103,7 @@ describe("lib/helpers", () => {
   describe("fileIsSchemaFile()", () => {
     test("returns true if file is a schema file", () => {
       expect(
-        helpers.fileIsSchemaFile(
+        fileIsSchemaFile(
           app,
           `foo/${app.get("config").files.schema.name}.${
             app.get("config").files.schema.extension
@@ -107,7 +114,7 @@ describe("lib/helpers", () => {
 
     test("returns true if file is not a schema file", () => {
       expect(
-        helpers.fileIsSchemaFile(
+        fileIsSchemaFile(
           app,
           `foo/${app.get("config").files.schema.name}.${
             app.get("config").files.schema.name
@@ -119,7 +126,7 @@ describe("lib/helpers", () => {
 
   describe("getFullPathFromShortPath()", () => {
     test("prepends process.cwd() and the components.folder to a path", () => {
-      expect(helpers.getFullPathFromShortPath(app, "/foo/bar")).toEqual(
+      expect(getFullPathFromShortPath(app, "/foo/bar")).toEqual(
         `${process.cwd()}/srcFolder/foo/bar`
       );
     });

@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-require("../index.js");
+import Miyagi from "../index.js";
+
+Miyagi();

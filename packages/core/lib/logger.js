@@ -6,9 +6,9 @@
  * @param {string} message
  */
 
-const colors = require("picocolors");
+import colors from "picocolors";
 
-module.exports = function log(type, message) {
+export default function log(type, message) {
   if (process.env.MIYAGI_JS_API) return;
 
   const date = new Date();
@@ -33,4 +33,4 @@ module.exports = function log(type, message) {
   } else {
     console.info(`${colors.gray(dateStr)} ${colors.cyan("Info:")} ${message}`);
   }
-};
+}

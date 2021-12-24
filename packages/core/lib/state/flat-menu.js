@@ -3,7 +3,7 @@
  * @param {boolean} isBuild
  * @returns {Array}
  */
-module.exports = function getFlatMenu(menu, isBuild) {
+export default function getFlatMenu(menu, isBuild) {
   if (!menu) return [];
 
   const flatMenu = [];
@@ -24,4 +24,4 @@ module.exports = function getFlatMenu(menu, isBuild) {
   })(menu);
 
   return flatMenu;
-};
+}
