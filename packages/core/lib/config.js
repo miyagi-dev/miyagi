@@ -4,17 +4,24 @@ import deepMerge from "deepmerge";
 import { messages } from "./miyagi-config.js";
 import getMergedConfig from "./init/config.js";
 import log from "./logger.js";
+import { getJsFileContent } from "./state/file-contents.js";
 
 export default async function getConfig(args, isBuild, isComponentGenerator) {
   let userFile = {};
   let userFileName = ".miyagi.js";
 
   try {
-    userFile = await import(path.resolve(process.cwd(), userFileName));
+    userFile = await getJsFileContent(
+      path.resolve(process.cwd(), userFileName),
+      true
+    );
   } catch (e) {
     try {
       userFileName = ".miyagi.json";
-      userFile = await import(path.resolve(process.cwd(), userFileName));
+      userFile = await getJsFileContent(
+        path.resolve(process.cwd(), userFileName),
+        true
+      );
     } catch (err) {
       userFileName = null;
       log("warn", messages.userConfigUnparseable);

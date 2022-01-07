@@ -359,11 +359,11 @@ export default function Watcher(server, app) {
 
 async function configurationFileUpdated(app) {
   log("info", messages.updatingConfiguration);
-  delete require.cache[require.resolve(path.resolve(process.cwd(), ".miyagi"))];
 
   const config = await updateConfigForRendererIfNecessary(
     await getConfig(yargs.argv)
   );
+
   if (config) {
     app.set("config", config);
     await setEngines(app);

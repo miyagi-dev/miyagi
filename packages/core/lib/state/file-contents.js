@@ -7,6 +7,7 @@
 import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
+import { Worker } from "worker_threads";
 import { marked } from "marked";
 import { promisify } from "util";
 import { messages } from "../miyagi-config.js";
@@ -19,6 +20,7 @@ import {
 } from "../helpers.js";
 import log from "../logger.js";
 import { getFiles } from "./helpers.js";
+import __dirname from "../__dirname.js";
 
 const readFileAsync = promisify(fs.readFile);
 
@@ -76,17 +78,39 @@ async function getFilePaths(components, files) {
 }
 
 /**
- * Calls the export function of a CJS module and returns its return value
+ * Calls the export function of a module and returns its return value
  * or returns the return value directly if it is not a function
  *
  * @param {string} fileName - file path string
+ * @param {boolean} invalidate
  * @returns {Promise<string>} - the default export of the cjs module or - if the default export is a function - its return value
  */
-async function getJsFileContent(fileName) {
-  const file = requireUncached(fileName);
+export const getJsFileContent = async function (fileName, invalidate) {
+  if (invalidate) {
+    return new Promise((resolve) => {
+      const worker = new Worker(
+        path.join(__dirname, "./state/js-file-worker.js"),
+        {
+          workerData: {
+            fileName,
+          },
+        }
+      );
 
-  return typeof file === "function" ? file() : file;
-}
+      worker.once("message", (result) => {
+        resolve(result);
+      });
+      worker.once("error", (result) => {
+        console.log(result);
+        resolve(result);
+      });
+    });
+  } else {
+    const file = await import(fileName);
+
+    return typeof file === "function" ? file() : file;
+  }
+};
 
 /**
  * Returns the content of a YAML file parsed as JSON object
