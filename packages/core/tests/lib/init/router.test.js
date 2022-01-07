@@ -113,31 +113,23 @@ describe("lib/init/router()", () => {
       });
 
       describe("with an invalid variation value", () => {
-        test("calls renderIframe404()", (done) => {
-          render.renderIframe404 = jest.fn((done) => done());
-
+        test("redirects to /component?file=all", (done) => {
           request(app)
             .get("/component")
             .query(`file=${path.dirname(component)}`)
             .query(`variation=invalidVariation`)
-            .expect(() => {
-              return expect(render.renderIframe404).toHaveBeenCalled();
-            })
+            .expect(302)
             .end(done);
         });
       });
     });
 
     describe("with invalid file value", () => {
-      test("calls renderIframe404()", (done) => {
-        render.renderIframe404 = jest.fn((done) => done());
-
+      test("redirects to /component?file=all", (done) => {
         request(app)
           .get("/component")
           .query(`file=invalidComponent`)
-          .expect(() => {
-            return expect(render.renderIframe404).toHaveBeenCalled();
-          })
+          .expect(302)
           .end(done);
       });
     });
@@ -189,45 +181,31 @@ describe("lib/init/router()", () => {
       });
 
       describe("with an invalid variation value", () => {
-        test("calls renderMain404()", (done) => {
-          render.renderMain404 = jest.fn((done) => done());
-
+        test("redirects to index", (done) => {
           request(app)
             .get("/show")
             .query(`file=${path.dirname(component)}`)
             .query(`variation=invalidVariation`)
-            .expect(() => {
-              return expect(render.renderMain404).toHaveBeenCalled();
-            })
+            .expect(302)
             .end(done);
         });
       });
     });
 
     describe("with invalid file value", () => {
-      test("calls renderMain404()", (done) => {
-        render.renderMain404 = jest.fn((done) => done());
-
+      test("redirects to index index", (done) => {
         request(app)
           .get("/show")
           .query(`file=invalidComponent`)
-          .expect(() => {
-            return expect(render.renderMain404).toHaveBeenCalled();
-          })
+          .expect(302)
           .end(done);
       });
     });
   });
 
   describe("GET /somethingInvalid", () => {
-    test("redirects to /", (done) => {
-      render.renderMain404 = jest.fn((done) => done());
-
-      request(app)
-        .get("/somethingInvalid")
-        .expect(302)
-        .expect("Location", "/")
-        .end(done);
+    test("returns 404", (done) => {
+      request(app).get("/somethingInvalid").expect(404).end(done);
     });
   });
 });

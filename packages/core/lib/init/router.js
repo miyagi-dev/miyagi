@@ -34,6 +34,8 @@ function getDataForComponent(app, component) {
  * @returns {boolean} is true if the requested component is stored in state.partials
  */
 function checkIfRequestedComponentIsValid(app, component) {
+  if (!component) return false;
+
   const { fileContents } = app.get("state");
 
   const files = Object.keys(fileContents).map((file) =>
@@ -119,43 +121,35 @@ module.exports = function Router(app) {
     awaitHandlerFactory(async (req, res) => {
       const { file, variation } = req.query;
 
-      if (file === "all") {
-        await render.renderMainIndex({ app, res, cookies: req.cookies });
-      } else if (checkIfRequestedComponentIsValid(app, file)) {
-        if (variation) {
-          if (checkIfRequestedVariationIsValid(app, file, variation)) {
+      if (file) {
+        if (file === "all") {
+          await render.renderMainIndex({ app, res, cookies: req.cookies });
+        } else if (checkIfRequestedComponentIsValid(app, file)) {
+          if (variation) {
+            if (checkIfRequestedVariationIsValid(app, file, variation)) {
+              await render.renderMainComponent({
+                app,
+                res,
+                file,
+                variation,
+                cookies: req.cookies,
+              });
+            } else {
+              res.redirect(302, "/");
+            }
+          } else {
             await render.renderMainComponent({
               app,
               res,
               file,
-              variation,
-              cookies: req.cookies,
-            });
-          } else {
-            await render.renderMain404({
-              app,
-              res,
-              file,
-              variation,
               cookies: req.cookies,
             });
           }
         } else {
-          await render.renderMainComponent({
-            app,
-            res,
-            file,
-            cookies: req.cookies,
-          });
+          res.redirect(302, "/");
         }
       } else {
-        await render.renderMain404({
-          app,
-          res,
-          file,
-          variation,
-          cookies: req.cookies,
-        });
+        res.redirect(302, "/");
       }
     })
   );
@@ -165,44 +159,36 @@ module.exports = function Router(app) {
     awaitHandlerFactory(async (req, res) => {
       const { file, variation, embedded } = req.query;
 
-      if (file === "all") {
-        await render.renderIframeIndex({ app, res, cookies: req.cookies });
-      } else if (checkIfRequestedComponentIsValid(app, file)) {
-        if (variation) {
-          if (checkIfRequestedVariationIsValid(app, file, variation)) {
-            await render.renderIframeVariation({
+      if (file) {
+        if (file === "all") {
+          await render.renderIframeIndex({ app, res, cookies: req.cookies });
+        } else if (checkIfRequestedComponentIsValid(app, file)) {
+          if (variation) {
+            if (checkIfRequestedVariationIsValid(app, file, variation)) {
+              await render.renderIframeVariation({
+                app,
+                res,
+                file,
+                variation,
+                embedded,
+                cookies: req.cookies,
+              });
+            } else {
+              res.redirect(302, "/component?file=all");
+            }
+          } else {
+            await render.renderIframeComponent({
               app,
               res,
               file,
-              variation,
-              embedded,
-              cookies: req.cookies,
-            });
-          } else {
-            await render.renderIframe404({
-              app,
-              res,
-              embedded,
-              target: "Variation",
               cookies: req.cookies,
             });
           }
         } else {
-          await render.renderIframeComponent({
-            app,
-            res,
-            file,
-            cookies: req.cookies,
-          });
+          res.redirect(302, "/component?file=all");
         }
       } else {
-        await render.renderIframe404({
-          app,
-          res,
-          embedded,
-          target: "Component",
-          cookies: req.cookies,
-        });
+        res.redirect(302, "/component?file=all");
       }
     })
   );
@@ -215,16 +201,6 @@ module.exports = function Router(app) {
   );
 
   app.all("*", async (req, res) => {
-    if (req.headers.referer) {
-      await render.renderIframe404({
-        app,
-        res,
-        embedded: true,
-        target: "Page",
-        cookies: req.cookies,
-      });
-    } else {
-      res.redirect("/");
-    }
+    res.sendStatus(404);
   });
 };
