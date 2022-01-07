@@ -261,10 +261,26 @@ async function renderVariations({
         fileContents.mocks ||
         fileContents.template
       );
+      const componentsEntry = app
+        .get("state")
+        .components.find(({ shortPath }) => shortPath === baseName);
+
       await res.render(
         "iframe_component.hbs",
         {
           variations,
+          assets: {
+            css: componentsEntry
+              ? componentsEntry.assets.css
+                ? path.join("/", componentsEntry.assets.css)
+                : false
+              : false,
+            js: componentsEntry
+              ? componentsEntry.assets.js
+                ? path.join("/", componentsEntry.assets.js)
+                : false
+              : false,
+          },
           renderInIframe,
           dev: process.env.NODE_ENV === "development",
           prod: process.env.NODE_ENV === "production",

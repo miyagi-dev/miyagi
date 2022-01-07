@@ -144,6 +144,10 @@ async function handleFileChange() {
       await setState(appInstance, {
         css: true,
       });
+    } else {
+      await setState(appInstance, {
+        menu: true,
+      });
     }
 
     changeFileCallback(true, false);
@@ -153,6 +157,10 @@ async function handleFileChange() {
       return changedPath.endsWith(".js");
     })
   ) {
+    await setState(appInstance, {
+      menu: true,
+    });
+
     changeFileCallback(true, false);
     // updated file is a template file
   } else if (

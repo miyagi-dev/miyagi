@@ -69,6 +69,17 @@ module.exports = (app) => {
 
         promises.push(
           new Promise((resolve, reject) => {
+            buildComponentAssets(
+              app.get("state").components,
+              app.get("config").components.folder
+            )
+              .then(resolve)
+              .catch(reject);
+          })
+        );
+
+        promises.push(
+          new Promise((resolve, reject) => {
             buildIframeIndex(buildFolder, app).then(resolve).catch(reject);
           })
         );
@@ -245,6 +256,31 @@ module.exports = (app) => {
           resolve
         )
       );
+    }
+
+    async function buildComponentAssets(components, componentsFolder) {
+      const promises = [];
+
+      ["css", "js"].forEach((type) => {
+        components.forEach(({ assets }) => {
+          if (assets[type]) {
+            promises.push(
+              new Promise((resolve) => {
+                fs.cp(
+                  path.join(process.cwd(), componentsFolder, assets[type]),
+                  path.join(process.cwd(), buildFolder, assets[type]),
+                  {
+                    recursive: true,
+                  },
+                  resolve
+                );
+              })
+            );
+          }
+        });
+      });
+
+      return Promise.all(promises);
     }
 
     /**

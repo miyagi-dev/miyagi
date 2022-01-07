@@ -74,6 +74,7 @@ describe("lib/build/index", () => {
     })
   );
   app.set("state", {
+    components: [],
     partials: {
       "foo/index.hbs": "/miyagi/tests/srcFolder/foo/index.hbs",
     },

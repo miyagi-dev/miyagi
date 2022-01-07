@@ -53,6 +53,7 @@ nav:
   - JavaScript API: javascript-api.md
   - How-to's:
       - Adding JS files: how-to/adding-js-files.md
+      - Adding custom CSS and JS per component: how-to/adding-custom-css-and-js-per-component.md
       - Extending a template engine: how-to/extending-a-template-engine.md
       - Using dark and light mode: how-to/using-dark-and-light-mode.md
       - Theming the UI: how-to/theming-the-ui.md

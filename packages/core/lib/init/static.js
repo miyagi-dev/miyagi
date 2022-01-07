@@ -117,12 +117,20 @@ function registerAssetFolder(app) {
   );
 }
 
+/**
+ * @param {object} app - the express instance
+ */
+function registerUserComponentAssets(app) {
+  app.use(express.static(app.get("config").components.folder));
+}
+
 module.exports = function initStatic(app) {
   registerThemeFavicon(app);
   registerThemeLogo(app);
   registerUserAssetFolder(app);
   registerUserFiles(app, "css");
   registerUserFiles(app, "js");
+  registerUserComponentAssets(app);
   registerCustomPropertyFiles(app);
   registerNodeModule(app, "socket.io/client-dist");
   registerNodeModule(app, "axe-core");

@@ -8,8 +8,9 @@ const { getPartials } = require("./partials.js");
 const { getFileContents } = require("./file-contents.js");
 const getCSS = require("./css");
 const { getMenu } = require("./menu");
-const getFlatMenu = require("./flat-menu");
+const getComponents = require("./components");
 const { getSourceTree } = require("./source-tree.js");
+const initStatic = require("../init/static");
 
 /**
  * @param {object} app - the express instance
@@ -27,7 +28,7 @@ function setSourceTreeAndMenu(app, methods, state) {
 
     if (methods.menu) {
       state.menu = getMenu(app);
-      state.flatMenu = getFlatMenu(state.menu, app.get("config").isBuild);
+      state.components = getComponents(state.menu, app.get("config").isBuild);
       resolve();
     } else {
       resolve();
@@ -91,6 +92,7 @@ module.exports = async function setState(app, methods) {
 
   return Promise.all(promises).then(() => {
     app.set("state", state);
+    initStatic(app);
     return app.get("state");
   });
 };

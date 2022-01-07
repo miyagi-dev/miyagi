@@ -169,8 +169,8 @@
         <label class="GoTo-label" for="goto-input">Go to…</label>
         <input class="GoTo-input" type="text" list="goto-list" id="goto-input">
         <datalist id="goto-list">
-          {{#each flatMenu}}
-            <option value="{{this.value}}">{{this.component}}</option>
+          {{#each components}}
+            <option value="{{this.value}}">{{this.shortPath}}</option>
           {{/each}}
         </datalist>
       </form>

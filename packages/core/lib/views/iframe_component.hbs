@@ -120,4 +120,14 @@
       </script>
     {{/if}}
   {{/content}}
+  {{#content "componentAssets"}}
+    {{#unless renderInIframe}}
+      {{#if assets.css}}
+      <link href="{{ assets.css }}" rel="stylesheet">
+      {{/if}}
+      {{#if assets.js}}
+        <script src="{{ assets.js }}"></script>
+      {{/if}}
+    {{/unless}}
+  {{/content}}
 {{/extend}}

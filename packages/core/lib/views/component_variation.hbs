@@ -40,6 +40,12 @@
     <style>
       {{{theme.css}}}
     </style>
+    {{#if assets.css}}
+     <link href="{{ assets.css }}" rel="stylesheet">
+    {{/if}}
+    {{#if assets.js}}
+      <script src="{{ assets.js }}"></script>
+    {{/if}}
     <script>
       {{{theme.js}}}
 

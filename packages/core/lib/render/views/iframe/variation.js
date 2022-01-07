@@ -29,6 +29,7 @@ module.exports = async function renderIframeVariation({
   cb,
   cookies,
 }) {
+  const directoryPath = file;
   file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
   const { raw: rawComponentData, extended: componentData } =
     await getVariationData(app, file, decodeURI(variation));
@@ -95,6 +96,10 @@ module.exports = async function renderIframeVariation({
         const { ui } = app.get("config");
 
         if (res) {
+          const componentsEntry = app
+            .get("state")
+            .components.find(({ shortPath }) => shortPath === directoryPath);
+
           await res.render(
             standaloneUrl
               ? "iframe_component_variation.hbs"
@@ -102,6 +107,18 @@ module.exports = async function renderIframeVariation({
             {
               html: result,
               error: typeof result !== "string" ? result : error,
+              assets: {
+                css: componentsEntry
+                  ? componentsEntry.assets.css
+                    ? path.join("/", componentsEntry.assets.css)
+                    : false
+                  : false,
+                js: componentsEntry
+                  ? componentsEntry.assets.js
+                    ? path.join("/", componentsEntry.assets.js)
+                    : false
+                  : false,
+              },
               htmlValidation: Boolean(ui.validations.html),
               accessibilityValidation: Boolean(
                 standaloneUrl && ui.validations.accessibility

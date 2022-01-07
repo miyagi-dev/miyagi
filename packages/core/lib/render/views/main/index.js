@@ -26,7 +26,7 @@ module.exports = function renderMainIndex({
     "main.hbs",
     {
       folders: app.get("state").menu,
-      flatMenu: app.get("state").flatMenu,
+      components: app.get("state").components,
       flatUrlPattern: app.get("config").isBuild
         ? "/show-{{component}}.html"
         : "/show?file={{component}}",

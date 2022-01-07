@@ -15,7 +15,7 @@ jest.mock("../../../lib/validator/mocks", () => {
 const component = "component1/index.hbs";
 const variation = "variation";
 const menu = "menu";
-const flatMenu = [];
+const components = [];
 const userProjectName = "projectName";
 const path1 = path.join(
   process.cwd(),
@@ -117,7 +117,7 @@ beforeEach(() => {
 
   app.set("state", {
     menu,
-    flatMenu,
+    components,
     partials: {
       "component1/index.hbs": path1,
       "component2/index.hbs": path2,
@@ -176,7 +176,7 @@ describe("lib/render/index", () => {
       expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
       expect(res.render.mock.calls[0][1]).toEqual({
         folders,
-        flatMenu,
+        components,
         flatUrlPattern: "/show?file={{component}}",
         iframeSrc: "/component?file=all&embedded=true",
         indexPath: "/component?file=all&embedded=true",
@@ -261,7 +261,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
-          flatMenu,
+          components,
           flatUrlPattern: "/show?file={{component}}",
           iframeSrc: `/component?file=${path.dirname(
             component
@@ -347,7 +347,7 @@ describe("lib/render/index", () => {
         expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
         expect(res.render.mock.calls[0][1]).toEqual({
           folders,
-          flatMenu,
+          components,
           flatUrlPattern: "/show?file={{component}}",
           iframeSrc: `/component?file=${path.dirname(component)}&embedded=true`,
           indexPath: "/component?file=all&embedded=true",
@@ -511,6 +511,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -606,6 +610,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -699,6 +707,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -791,6 +803,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -883,6 +899,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -982,6 +1002,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -1076,6 +1100,10 @@ describe("lib/render/index", () => {
           uiTextDirection: "ltr",
           componentTextDirection: "ltr",
           componentLanguage: "en",
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
@@ -1237,6 +1265,10 @@ describe("lib/render/index", () => {
           componentTextDirection: "ltr",
           componentLanguage: "en",
           renderInIframe: false,
+          assets: {
+            css: false,
+            js: false,
+          },
         });
         expect(typeof res.render.mock.calls[0][2]).toEqual("function");
       });
@@ -1398,6 +1430,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1539,6 +1575,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1655,6 +1695,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
           expect(typeof res.render.mock.calls[0][2]).toEqual("function");
         });
@@ -1772,6 +1816,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
         });
       });
@@ -1907,6 +1955,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
         });
       });
@@ -2022,6 +2074,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
         });
       });
@@ -2135,6 +2191,10 @@ describe("lib/render/index", () => {
             componentTextDirection: "ltr",
             componentLanguage: "en",
             renderInIframe: false,
+            assets: {
+              css: false,
+              js: false,
+            },
           });
         });
       });
@@ -2238,6 +2298,10 @@ describe("lib/render/index", () => {
           componentTextDirection: "ltr",
           componentLanguage: "en",
           renderInIframe: false,
+          assets: {
+            css: false,
+            js: false,
+          },
         });
       });
     });
