@@ -1,6 +1,6 @@
 html {
-  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
-    "Helvetica", "Arial", sans-serif;
+  --Miyagi-fontFamily-internal: -apple-system, "BlinkMacSystemFont", "Segoe UI",
+    "Roboto", "Helvetica", "Arial", sans-serif;
   --Miyagi-fontSize: 1.6rem;
   --Miyagi-lineHeight: 1.5;
   --Miyagi-color-Text-internal: var(--Miyagi-color-Grey-2);

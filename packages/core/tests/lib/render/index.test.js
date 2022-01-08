@@ -188,8 +188,7 @@ describe("lib/render/index", () => {
           favicon: null,
           css: null,
           js: null,
-          fontFamily:
-            "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+          fontFamily: "var(--Miyagi-fontFamily-internal)",
           dark: {
             logo: null,
             content: {
@@ -276,8 +275,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -360,8 +358,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -450,8 +447,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -549,8 +545,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -647,8 +642,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -745,8 +739,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -841,8 +834,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -942,8 +934,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -1040,8 +1031,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -1214,8 +1204,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -1377,8 +1366,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -1502,8 +1490,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -1627,8 +1614,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -1747,8 +1733,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -1902,8 +1887,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -1987,8 +1971,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -2104,8 +2087,7 @@ describe("lib/render/index", () => {
               favicon: null,
               css: null,
               js: null,
-              fontFamily:
-                "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+              fontFamily: "var(--Miyagi-fontFamily-internal)",
               dark: {
                 logo: null,
                 content: {
@@ -2226,8 +2208,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -2323,8 +2304,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -2400,8 +2380,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {
@@ -2477,8 +2456,7 @@ describe("lib/render/index", () => {
             favicon: null,
             css: null,
             js: null,
-            fontFamily:
-              "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            fontFamily: "var(--Miyagi-fontFamily-internal)",
             dark: {
               logo: null,
               content: {

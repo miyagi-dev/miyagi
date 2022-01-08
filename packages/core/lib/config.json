@@ -82,7 +82,7 @@
       "theme": {
         "css": null,
         "favicon": null,
-        "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+        "fontFamily": "var(--Miyagi-fontFamily-internal)",
         "js": null,
         "logo": null,
         "mode": "light",
