@@ -65,7 +65,7 @@ module.exports = function initViewHelpers(app) {
     "jsFilesHead",
     getJsFilesHtml.call(
       null,
-      assets.js.filter((entry) => entry.position === "head")
+      assets.js.filter((entry) => entry.position === "head" || !entry.position)
     )
   );
   handlebars.registerHelper(
