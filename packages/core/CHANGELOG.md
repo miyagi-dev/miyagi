@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.0.3](https://github.com/mgrsskls/miyagi/compare/core/v3.0.2...core/v3.0.3) (2022-01-08)
+
+
+### Bug Fixes
+
+* **core:** Fix missing JS not served when "position" is not defined by user ([33b929f](https://github.com/mgrsskls/miyagi/commit/33b929f4b419e13302ac2849f1d7e35e4a63dd9c))
+
 ### [3.0.2](https://github.com/mgrsskls/miyagi/compare/core/v3.0.1...core/v3.0.2) (2022-01-08)
 
 
