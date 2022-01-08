@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.0.0](https://github.com/mgrsskls/miyagi/compare/core/v2.10.0...core/v3.0.0) (2022-01-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **core:** added more options for adding JS files
+* **core:** removed option ui.renderComponentOverview
+* **core:** removed dependency fs-extra and use node internals instead (required node >= 16.7.0 instead of >= 14)
+
+### Features
+
+* **core:** added "go to" function ([9ab776a](https://github.com/mgrsskls/miyagi/commit/9ab776ad80d260dca8d2abb43afe07141b8a4c63))
+* **core:** added a text direction switcher to the menu ([5665e9f](https://github.com/mgrsskls/miyagi/commit/5665e9fce2121e12fa4fbbe6f196bd4bb4d4d46d))
+* **core:** added more options for adding JS files ([24099c7](https://github.com/mgrsskls/miyagi/commit/24099c73c8a673837763da98421c48718a228fd6))
+* **core:** added search for component menu ([c7a899e](https://github.com/mgrsskls/miyagi/commit/c7a899edf410bd3dbc08d67f5721f969d9cbf872))
+* **core:** allow setting assets.root per NODE_ENV ([ccf2761](https://github.com/mgrsskls/miyagi/commit/ccf2761133b68a9f591537f48faa4adc04d888b3))
+* **core:** allows using $ref in mock data on top level ([60a1e92](https://github.com/mgrsskls/miyagi/commit/60a1e9243e610c4a64a9b04e7c393c1ba6d6424c))
+* **core:** custom miyagi css and js files for components ([8764340](https://github.com/mgrsskls/miyagi/commit/876434043d5de50eb3fd4537f4a29c8ae97d1c47))
+* **core:** for invalid component/variation requests redirect to index, for other invalid requests respond with 404 ([04324b9](https://github.com/mgrsskls/miyagi/commit/04324b988059bd7ac5e9ad57e82f863387fb56ed))
+* **core:** render original instead of resolved mock data in mock data overlays ([76dc59a](https://github.com/mgrsskls/miyagi/commit/76dc59a1b2e420eea4a870105d79d404b72c1726))
+* **core:** some visual improvements ([4f6e0d4](https://github.com/mgrsskls/miyagi/commit/4f6e0d4e4568e42f331d600672e6ec458ac84086))
+* **core:** sticky search and config switchers in menu ([2dfe3f8](https://github.com/mgrsskls/miyagi/commit/2dfe3f864efdb7e64e41d2705f81be2dcfd11d3f))
+* **core:** theme switcher that allows switching between light, dark and auto (os based) mode ([dc69b64](https://github.com/mgrsskls/miyagi/commit/dc69b645f6cb7b4828b181258ddcf16eda3b878d))
+
+
+### Bug Fixes
+
+* **core:** config not updated on the fly when config file changed ([be06cd1](https://github.com/mgrsskls/miyagi/commit/be06cd197ccda6a32477151f4b6fadfa2382ab20))
+* **core:** do not render information in component view if there is nothing but a README ([54abcfd](https://github.com/mgrsskls/miyagi/commit/54abcfd2a0f25f3be31aeb8128091baca072f531))
+* **core:** fix miyagi crashing when the file watcher cant find a watched asset folder ([82e2316](https://github.com/mgrsskls/miyagi/commit/82e2316321e627ffc742e62043103817bfc6a7f1))
+* **core:** fixes a minor security warning ([6afbb10](https://github.com/mgrsskls/miyagi/commit/6afbb109b257a31c85e7df5ded677098c199fb51))
+
+
+* **core:** removed dependency fs-extra and use node internals instead (required node >= 16.7.0 instead of >= 14) ([94b2049](https://github.com/mgrsskls/miyagi/commit/94b20495a8d064ba3d0c1099a317714391e7d724))
+* **core:** removed option ui.renderComponentOverview ([240395a](https://github.com/mgrsskls/miyagi/commit/240395afa1dd6df85658c0eef97f11a5d24e27b2))
+
 ## [2.10.0](https://github.com/mgrsskls/miyagi/compare/core/v2.9.0...core/v2.10.0) (2021-12-01)
 
 
