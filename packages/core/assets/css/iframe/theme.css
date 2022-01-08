@@ -1,6 +1,6 @@
 html {
-  --Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
-    "Helvetica", "Arial", sans-serif;
+  --Miyagi-fontFamily-internal: -apple-system, "BlinkMacSystemFont", "Segoe UI",
+    "Roboto", "Helvetica", "Arial", sans-serif;
 
   /* general */
   --Miyagi-color: var(--Miyagi-color-Grey-1);
