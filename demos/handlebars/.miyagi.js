@@ -12,7 +12,12 @@ module.exports = {
   },
   ui: {
     theme: {
-      logo: "src/logo.svg",
+      light: {
+        logo: "src/logo.svg",
+      },
+      dark: {
+        logo: "src/logo-white.svg",
+      },
     },
     validations: {
       html: false,

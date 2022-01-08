@@ -1,13 +1,21 @@
 module.exports = {
   projectName: "Web Components Demo",
   assets: {
-    js: ["src/index.js"],
-    es6Modules: true,
+    js: {
+      src: "src/index.js",
+      type: "module",
+    },
+
     folder: ["src"],
   },
   ui: {
     theme: {
-      logo: "src/logo.svg",
+      light: {
+        logo: "src/logo.svg",
+      },
+      dark: {
+        logo: "src/logo.svg",
+      },
     },
     validations: {
       html: false,
