@@ -15,6 +15,16 @@ The most basic mock file would look something like this:
 }
 ```
 
+In the UI this would be shown as a variant with the name "default". If you want to change this name, you can add a `$name` property:
+
+```json
+{
+  "$name": "save",
+  "label": "Save",
+  "type": "submit"
+}
+```
+
 ## Variants
 
 You can also add variants, which would be merged with the default data:
@@ -156,7 +166,7 @@ _**NOTE:** Please note, that the returned value should be a JSON object with the
 
 ## Hiding the default variation
 
-If you want to define default mock data, so your variants inherit it, but not render the default variation, you can do that like this:
+If you want to define default mock data, so your variants inherit it, but not render the default variation, you can do that using `$hidden`:
 
 ```json
 {
