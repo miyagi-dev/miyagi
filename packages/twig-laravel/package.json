@@ -1,6 +1,6 @@
 {
   "name": "@miyagi/twig-laravel",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Laravel/twig support for @miyagi/core",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
