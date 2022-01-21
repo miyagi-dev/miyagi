@@ -55,6 +55,86 @@ So, the data of the variation `"reset disabled"` would be:
 
 _**NOTE:** You can also omit the default data if you have variants defined._
 
+### Merging arrays
+
+When you have an array in your default mock data as well as your variant mock data, by default they are merged by concatenation. Example:
+
+```json
+{
+  "array": [1, 2, 3],
+  "$variant": [
+    {
+      "$name": "variant",
+      "array": [4, 5, 6]
+    }
+  ]
+}
+```
+
+becomes
+
+```json
+{
+  "array": [1, 2, 3, 4, 5, 6]
+}
+```
+
+If you want to change this behavior, you can use `$opts` to define a different merging strategy.
+
+#### `overwrite`
+
+`overwrite` simply replaces the first array with the second array:
+
+```json
+{
+  "array": [1, 2, 3],
+  "$variant": [
+    {
+      "$name": "variant",
+      "array": [4, 5, 6],
+      "$opts": {
+        "array": "overwrite"
+      }
+    }
+  ]
+}
+```
+
+becomes
+
+```json
+{
+  "array": [4, 5, 6]
+}
+```
+
+#### `combine`
+
+`combine` is the most complex way to merge two arrays. It does a deep merge of objects at the same index. Other values will be replaced:
+
+```json
+{
+  "array": [1, { "a": 2 }, { "a": null }],
+  "$variants": [
+    {
+      "$name": "variant",
+      "array": [2, { "b": 2 }, { "a": 3 }],
+      "$opts": {
+        "array": "combine"
+      }
+    }
+  ]
+}
+```
+
+becomes
+
+```json
+{
+  "array": [2, { "a": 2, "b": 2 }, { "a": 3 }]
+}
+```
+
 ## Referencing other mock files
 
 Instead of manually defining data, you can also reference other mock files like this:

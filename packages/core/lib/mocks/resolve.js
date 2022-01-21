@@ -11,6 +11,38 @@ const {
   getDataForRenderFunction,
 } = require("../render/helpers");
 
+function getMergeMethod(method) {
+  const methods = {
+    combine: (target, source, options) => {
+      const destination = target.slice();
+
+      source.forEach((item, index) => {
+        if (options.isMergeableObject(item)) {
+          if (typeof destination[index] === "undefined") {
+            destination[index] = options.cloneUnlessOtherwiseSpecified(
+              item,
+              options
+            );
+          } else {
+            destination[index] = deepMerge(target[index], item, options);
+          }
+        } else {
+          destination[index] = options.cloneUnlessOtherwiseSpecified(
+            item,
+            options
+          );
+        }
+      });
+
+      return destination;
+    },
+
+    overwrite: (destinationArray, sourceArray) => sourceArray,
+  };
+
+  return methods[method];
+}
+
 module.exports =
   /**
    * @param {object} app - the express instance
@@ -124,10 +156,10 @@ async function iterateOverJsonData(app, entry) {
       const o = [];
       const promises = [];
 
-      entry.forEach((entry, i) => {
+      entry.forEach((ent, i) => {
         promises.push(
           new Promise((resolve) => {
-            resolveJson(app, entry)
+            resolveJson(app, ent)
               .then((result) => iterateOverJsonData(app, result))
               .then((result) => {
                 o[i] = result;
@@ -498,7 +530,27 @@ function mergeRootDataWithVariationData(rootData, variationData) {
     return rootData;
   }
 
-  return deepMerge(rootData, variationData);
+  const merged = deepMerge(rootData, variationData, {
+    customMerge: (key) => {
+      const options = variationData.$opts;
+
+      if (options) {
+        const option = options[key];
+
+        if (option) {
+          return getMergeMethod(option);
+        }
+      }
+
+      return undefined;
+    },
+  });
+
+  if (merged.$opts) {
+    delete merged.$opts;
+  }
+
+  return merged;
 }
 
 /**
