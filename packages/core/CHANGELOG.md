@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/mgrsskls/miyagi/compare/core/v3.0.4...core/v3.1.0) (2022-01-21)
+
+
+### Features
+
+* **core:** added multiple options to merge arrays in mock data ([ee4956d](https://github.com/mgrsskls/miyagi/commit/ee4956d2ff2a534c8dd53480b9199ab3e42c1bb0))
+
+
+### Bug Fixes
+
+* **core:** fixes missing variant in menu when it does not have any data ([9963b43](https://github.com/mgrsskls/miyagi/commit/9963b4374159a3445ac9cef6a4b88f134b285799))
+
 ### [3.0.4](https://github.com/mgrsskls/miyagi/compare/core/v3.0.3...core/v3.0.4) (2022-01-15)
 
 ### [3.0.3](https://github.com/mgrsskls/miyagi/compare/core/v3.0.2...core/v3.0.3) (2022-01-08)
