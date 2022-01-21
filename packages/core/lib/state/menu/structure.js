@@ -31,28 +31,19 @@ function getAllValidVariations(app, json, fullPath) {
     if (variations) {
       for (const [i, variation] of variations.entries()) {
         const variationData = helpers.removeInternalKeys(variation);
-        if (variation.$name && Object.keys(variationData).length > 0) {
+        if (variation.$name) {
           arr.push({
             name: variation.$name,
             data: variationData,
           });
         } else if (fullPath) {
           const shortPath = helpers.getShortPathFromFullPath(app, fullPath);
-          if (!variation.$name) {
-            log(
-              "warn",
-              config.messages.noNameSetForVariation
-                .replace("{{i}}", i)
-                .replace("{{file}}", shortPath)
-            );
-          } else {
-            log(
-              "warn",
-              config.messages.noDataSetForVariation
-                .replace("{{variation}}", variation.$name)
-                .replace("{{file}}", shortPath)
-            );
-          }
+          log(
+            "warn",
+            config.messages.noNameSetForVariation
+              .replace("{{i}}", i)
+              .replace("{{file}}", shortPath)
+          );
         }
       }
     }
