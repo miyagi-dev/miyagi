@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.2](https://github.com/mgrsskls/miyagi/compare/core/v3.1.1...core/v3.1.2) (2022-02-08)
+
+
+### Bug Fixes
+
+* **core:** Adds missing JS script on component view if position:"body" is used ([0572e31](https://github.com/mgrsskls/miyagi/commit/0572e31790c0084a8a3e9914f31eb54867fa7a03))
+* **core:** do not trigger goto/search when form element is focused ([ead9878](https://github.com/mgrsskls/miyagi/commit/ead98782ae2966e0318656a2f4d92eb955e37e36))
+
 ### [3.1.1](https://github.com/mgrsskls/miyagi/compare/core/v3.1.0...core/v3.1.1) (2022-02-05)
 
 ## [3.1.0](https://github.com/mgrsskls/miyagi/compare/core/v3.0.4...core/v3.1.0) (2022-01-21)
