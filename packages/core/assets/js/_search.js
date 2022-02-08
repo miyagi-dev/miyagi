@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     SEARCH_INPUT.addEventListener("keyup", onInputKeyup);
 
     window.addEventListener("keyup", ({ target, key }) => {
-      if (searchIsTriggered(target, key)) {
+      if (searchIsTriggered([target], key)) {
         SEARCH_INPUT.focus();
       }
     });

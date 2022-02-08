@@ -29,9 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.addEventListener("keyup", ({ target, key }) => {
-  if (searchIsTriggered(target, key)) {
+  if (searchIsTriggered([target], key)) {
     parent.window.dispatchEvent(new CustomEvent("searchTriggered"));
-  } else if (gotoIsTriggered(target, key)) {
+  } else if (gotoIsTriggered([target], key)) {
     parent.window.dispatchEvent(new CustomEvent("gotoTriggered"));
   }
 });

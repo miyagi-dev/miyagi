@@ -1,11 +1,17 @@
-export const search = (target, key) => {
+export const search = (targets, key) => {
   return (
-    !["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName) && key === "f"
-  );
-};
+    targets
+      .map((target) => target.tagName)
+      .every((tagName) => !["INPUT", "SELECT", "TEXTAREA"].includes(tagName)) &&
+    key === "f"
+  )
+}
 
-export const goto = (target, key) => {
+export const goto = (targets, key) => {
   return (
-    !["INPUT", "SELECT", "TEXTAREA"].includes(target.tagName) && key === "g"
-  );
-};
+    targets
+      .map((target) => target.tagName)
+      .every((tagName) => !["INPUT", "SELECT", "TEXTAREA"].includes(tagName)) &&
+    key === "g"
+  )
+}

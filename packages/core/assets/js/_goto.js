@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       window.addEventListener("keyup", ({ target, key }) => {
         const lowerCasedKey = key.toLowerCase();
 
-        if (gotoIsTriggered(target, lowerCasedKey)) {
+        if (gotoIsTriggered([target], lowerCasedKey)) {
           openGoto(GOTO, INPUT);
         } else if (isOpen && lowerCasedKey === "escape") {
           closeGoto(GOTO, INPUT);
