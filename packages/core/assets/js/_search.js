@@ -31,8 +31,11 @@ document.addEventListener("DOMContentLoaded", () => {
     SEARCH_INPUT.addEventListener("input", onInputSearch);
     SEARCH_INPUT.addEventListener("keyup", onInputKeyup);
 
-    window.addEventListener("keyup", ({ target, key }) => {
-      if (searchIsTriggered([target], key)) {
+    window.addEventListener("keyup", (e) => {
+      const { path, originalTarget, target, key } = e;
+      const el = path ? path[0] : originalTarget || target;
+
+      if (searchIsTriggered(el, key)) {
         SEARCH_INPUT.focus();
       }
     });

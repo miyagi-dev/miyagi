@@ -28,10 +28,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-window.addEventListener("keyup", ({ target, key }) => {
-  if (searchIsTriggered([target], key)) {
+document.addEventListener("keyup", (e) => {
+  const { path, originalTarget, target, key } = e;
+  const el = path ? path[0] : originalTarget || target;
+
+  if (searchIsTriggered(el, key)) {
     parent.window.dispatchEvent(new CustomEvent("searchTriggered"));
-  } else if (gotoIsTriggered([target], key)) {
+  } else if (gotoIsTriggered(el, key)) {
     parent.window.dispatchEvent(new CustomEvent("gotoTriggered"));
   }
 });
