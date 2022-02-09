@@ -7,7 +7,7 @@
     "url": "git@github.com:mgrsskls/miyagi.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.0",
+    "@babel/core": "^7.17.2",
     "@babel/preset-env": "^7.16.11",
     "@types/jest": "^27.4.0",
     "codecov": "^3.8.3",
