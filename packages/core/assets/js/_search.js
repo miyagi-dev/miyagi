@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     return {
       node,
       listItem: node.closest(".Menu-listItem"),
-      label: node.textContent.toLowerCase(),
+      label: node.textContent,
+      lowercaseLabel: node.textContent.toLowerCase(),
       matchesQuery: false,
       toggle: node.previousElementSibling || null,
       parentToggles: getParentToggles(node),
@@ -91,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     COMPONENTS.forEach((component) => {
-      component.matchesQuery = component.label.includes(query);
+      component.matchesQuery = component.lowercaseLabel.includes(query);
       component.listItem.classList.toggle("is-match", component.matchesQuery);
       component.listItem.classList.toggle(
         "is-no-match",
