@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.3](https://github.com/mgrsskls/miyagi/compare/core/v3.1.2...core/v3.1.3) (2022-02-09)
+
+
+### Bug Fixes
+
+* **core:** fix JS error in Chrome when pressing keys f or g ([eedbf4d](https://github.com/mgrsskls/miyagi/commit/eedbf4d5802bfb7453985c2340e51a0aeb763d13))
+
 ### [3.1.2](https://github.com/mgrsskls/miyagi/compare/core/v3.1.1...core/v3.1.2) (2022-02-08)
 
 
