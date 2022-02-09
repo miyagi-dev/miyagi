@@ -11,6 +11,6 @@
     "node": ">=16.7"
   },
   "dependencies": {
-    "@miyagi/core": "^3.1.0"
+    "@miyagi/core": "^3.1.3"
   }
 }
