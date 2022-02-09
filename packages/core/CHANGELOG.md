@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.4](https://github.com/mgrsskls/miyagi/compare/core/v3.1.3...core/v3.1.4) (2022-02-09)
+
+
+### Bug Fixes
+
+* **core:** Fixes uppercase menu items were changed to lowercase when using the search ([d134039](https://github.com/mgrsskls/miyagi/commit/d13403973310b72b2afa040bc7144ecfbd40ae7c))
+* **core:** Make sure the body color of the project is used instead of miyagi's body color ([7f94b32](https://github.com/mgrsskls/miyagi/commit/7f94b326d2a2c14fa3031da674dc2df8b89c3800))
+
 ### [3.1.3](https://github.com/mgrsskls/miyagi/compare/core/v3.1.2...core/v3.1.3) (2022-02-09)
 
 
