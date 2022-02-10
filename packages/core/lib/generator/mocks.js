@@ -1,6 +1,5 @@
 const schemaFaker = require("@stoplight/json-schema-sampler");
-const jsonToYaml = require("js-yaml");
-const yamlToJson = require("js-yaml");
+const jsYaml = require("js-yaml");
 const fs = require("fs");
 const log = require("../logger.js");
 const { messages } = require("../config.json");
@@ -82,7 +81,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
 
     switch (fileType) {
       case "yaml":
-        content = jsonToYaml.dump(data);
+        content = jsYaml.dump(data);
         break;
       case "json":
         content = JSON.stringify(
@@ -139,7 +138,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
           reject(err);
         } else {
           if (filesConfig.schema.extension === "yaml") {
-            resolve(yamlToJson.load(result));
+            resolve(jsYaml.load(result));
           } else {
             resolve(JSON.parse(result));
           }

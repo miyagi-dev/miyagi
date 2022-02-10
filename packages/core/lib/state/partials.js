@@ -43,21 +43,23 @@ module.exports = {
     return new Promise((resolve) => {
       const partials = {};
 
-      getFilePaths(app, app.get("config").components.folder).then((paths) => {
-        if (paths) {
-          for (const shortPath of paths) {
-            // ignore files that live directly in the srcFolder
-            if (shortPath !== path.basename(shortPath)) {
-              partials[shortPath] = path.join(
-                process.cwd(),
-                `${app.get("config").components.folder}/${shortPath}`
-              );
+      getFilePaths(app, app.get("config").components.folder)
+        .then((paths) => {
+          if (paths) {
+            for (const shortPath of paths) {
+              // ignore files that live directly in the srcFolder
+              if (shortPath !== path.basename(shortPath)) {
+                partials[shortPath] = path.join(
+                  process.cwd(),
+                  `${app.get("config").components.folder}/${shortPath}`
+                );
+              }
             }
           }
-        }
 
-        resolve(partials);
-      });
+          resolve(partials);
+        })
+        .catch((err) => console.error(err));
     });
   },
 };

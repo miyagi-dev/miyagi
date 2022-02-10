@@ -79,11 +79,16 @@ async function updateFileContents(app, events) {
 
       if (event === "update") {
         promises.push(
-          new Promise((resolve) => {
-            readFile(app, changedPath).then((result) => {
-              data[fullPath] = result;
-              resolve();
-            });
+          new Promise((resolve, reject) => {
+            readFile(app, changedPath)
+              .then((result) => {
+                data[fullPath] = result;
+                resolve();
+              })
+              .catch((err) => {
+                console.error(err);
+                reject();
+              });
           })
         );
       } else if (event === "remove") {
@@ -97,9 +102,11 @@ async function updateFileContents(app, events) {
     }
   }
 
-  return Promise.all(promises).then(() => {
-    return data;
-  });
+  return Promise.all(promises)
+    .then(() => {
+      return data;
+    })
+    .catch((err) => console.error(err));
 }
 
 /**

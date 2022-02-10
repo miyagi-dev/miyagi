@@ -39,56 +39,69 @@ async function validateAllMockData(app) {
 
   components.forEach(async (component) => {
     promises.push(
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         validateComponentMockData({
           app,
           component,
           silent: true,
           exitProcess: false,
-        }).then((result) => resolve(result));
+        })
+          .then((result) => resolve(result))
+          .catch((err) => {
+            console.error(err);
+            reject();
+          });
       })
     );
   });
 
-  Promise.all(promises).then((results) => {
-    const mockInvalidResults = results.filter(
-      (result) => result?.valid === false && result.type === "mocks"
-    );
-    const schemaInvalidResults = results.filter(
-      (result) => result?.valid === false && result.type === "schema"
-    );
-
-    if (mockInvalidResults.length === 0 && schemaInvalidResults.length === 0) {
-      log("success", messages.linter.all.valid);
-      process.exit(0);
-    }
-
-    if (schemaInvalidResults.length > 0) {
-      log(
-        "error",
-        schemaInvalidResults.length === 1
-          ? messages.linter.all.schema.invalid.one
-          : messages.linter.all.schema.invalid.other.replace(
-              "{{amount}}",
-              schemaInvalidResults.length
-            )
+  Promise.all(promises)
+    .then((results) => {
+      const mockInvalidResults = results.filter(
+        (result) => result?.valid === false && result.type === "mocks"
       );
-    }
-
-    if (mockInvalidResults.length > 0) {
-      log(
-        "error",
-        mockInvalidResults.length === 1
-          ? messages.linter.all.mocks.invalid.one
-          : messages.linter.all.mocks.invalid.other.replace(
-              "{{amount}}",
-              mockInvalidResults.length
-            )
+      const schemaInvalidResults = results.filter(
+        (result) => result?.valid === false && result.type === "schema"
       );
-    }
 
-    process.exit(1);
-  });
+      if (
+        mockInvalidResults.length === 0 &&
+        schemaInvalidResults.length === 0
+      ) {
+        log("success", messages.linter.all.valid);
+        process.exit(0);
+      }
+
+      if (schemaInvalidResults.length > 0) {
+        log(
+          "error",
+          schemaInvalidResults.length === 1
+            ? messages.linter.all.schema.invalid.one
+            : messages.linter.all.schema.invalid.other.replace(
+                "{{amount}}",
+                schemaInvalidResults.length
+              )
+        );
+      }
+
+      if (mockInvalidResults.length > 0) {
+        log(
+          "error",
+          mockInvalidResults.length === 1
+            ? messages.linter.all.mocks.invalid.one
+            : messages.linter.all.mocks.invalid.other.replace(
+                "{{amount}}",
+                mockInvalidResults.length
+              )
+        );
+      }
+
+      process.exit(1);
+    })
+    .catch((err) => {
+      console.error(err);
+      process.exit(1);
+    });
 }
 
 /**

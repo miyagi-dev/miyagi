@@ -1,6 +1,5 @@
 const resolveData = require("./resolve");
 const config = require("../config.json");
-const { cloneDeep } = require("../helpers");
 const { extendTemplateData } = require("../render/helpers");
 const helpers = require("../helpers");
 
@@ -20,7 +19,7 @@ module.exports = {
 
     if (componentJson) {
       let componentData = helpers.removeInternalKeys(componentJson);
-      const rootData = cloneDeep(componentData);
+      const rootData = helpers.cloneDeep(componentData);
       const componentVariations = componentJson.$variants;
       let data;
 
@@ -39,11 +38,11 @@ module.exports = {
         for (const [index, variationJson] of componentVariations.entries()) {
           if (variationJson.$name) {
             promises.push(
-              new Promise((resolve) => {
+              new Promise((resolve, reject) => {
                 const variationData = helpers.removeInternalKeys(variationJson);
 
-                resolveData(app, variationData, rootData).then(
-                  async ({ merged, resolved }) => {
+                resolveData(app, variationData, rootData)
+                  .then(async ({ merged, resolved }) => {
                     const extendedData = hasTemplate
                       ? await extendTemplateData(
                           app.get("config"),
@@ -59,33 +58,38 @@ module.exports = {
                       name: variationJson.$name,
                     };
                     resolve();
-                  }
-                );
+                  })
+                  .catch((err) => {
+                    console.error(err);
+                    reject();
+                  });
               })
             );
           }
         }
 
-        return await Promise.all(promises).then(async () => {
-          if (Object.keys(data.resolved).length > 0) {
-            const extendedComponentData = await extendTemplateData(
-              app.get("config"),
-              data.resolved,
-              file
-            );
+        return await Promise.all(promises)
+          .then(async () => {
+            if (Object.keys(data.resolved).length > 0) {
+              const extendedComponentData = await extendTemplateData(
+                app.get("config"),
+                data.resolved,
+                file
+              );
 
-            if (!componentJson.$hidden) {
-              context.unshift({
-                component: file,
-                data: extendedComponentData,
-                rawData: data.merged,
-                name: componentJson.$name || config.defaultVariationName,
-              });
+              if (!componentJson.$hidden) {
+                context.unshift({
+                  component: file,
+                  data: extendedComponentData,
+                  rawData: data.merged,
+                  name: componentJson.$name || config.defaultVariationName,
+                });
+              }
             }
-          }
 
-          return context.filter((entry) => entry !== null);
-        });
+            return context.filter((entry) => entry !== null);
+          })
+          .catch((err) => console.error(err));
       } else {
         if (Object.keys(componentData).length > 0) {
           const { merged, resolved } = await resolveData(app, componentData);

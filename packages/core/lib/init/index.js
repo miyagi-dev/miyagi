@@ -7,6 +7,7 @@
 const express = require("express");
 const handlebars = require("handlebars");
 const handlebarsLayouts = require("handlebars-layouts");
+// deepcode ignore HttpToHttps: local server only
 const http = require("http");
 const cookieParser = require("cookie-parser");
 
@@ -23,6 +24,7 @@ const setViews = require("./views.js");
 const setWatcher = require("./watcher.js");
 
 module.exports = async function init(mergedConfig) {
+  // deepcode ignore UseCsurfForExpress: local server only, deepcode ignore DisablePoweredBy: local server only
   const app = express();
   app.use(cookieParser());
   app.set("config", mergedConfig);
