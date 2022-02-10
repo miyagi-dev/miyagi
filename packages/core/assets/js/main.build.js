@@ -13,13 +13,16 @@ class MainBuild extends Main {
     this.embeddedParam = "-embedded";
   }
 
+  /**
+   * @returns {void}
+   */
   onPopState() {
     let path;
 
     if (document.location.pathname !== "/") {
       path = document.location.pathname
         .replace(this.paths.container, this.paths.embedded)
-        .replace(".html", `${this.embeddedParam}.html`)
+        .replace(/\.html$/, `${this.embeddedParam}.html`)
         .slice(1);
     } else {
       path = `${this.paths.embedded}all-embedded.html`;

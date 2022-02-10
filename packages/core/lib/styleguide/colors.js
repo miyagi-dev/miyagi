@@ -117,9 +117,14 @@ module.exports = function getColors(obj, prefix) {
   });
 
   return deduped.map((entry) => {
-    entry.styles = entry.styles.sort((a, b) =>
-      a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
-    );
+    entry.styles = entry.styles.sort((a, b) => {
+      const aUppercase = a.name.toUpperCase();
+      const bUppercase = b.name.toUpperCase();
+
+      if (aUppercase > bUppercase) return 1;
+      if (aUppercase < bUppercase) return -1;
+      return 0;
+    });
     return entry;
   });
 };

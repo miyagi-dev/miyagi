@@ -9,41 +9,43 @@ module.exports = function Api() {
   process.env.MIYAGI_JS_API = true;
 
   return new Promise((resolve) => {
-    init("api").then((app) => {
-      const getMockData = async ({ component, variant = "default" }) => {
-        const file = getTemplateFilePathFromDirectoryPath(app, component);
-        const { extended: variationData } = await getVariationData(
-          app,
-          file,
-          variant
-        );
+    init("api")
+      .then((app) => {
+        const getMockData = async ({ component, variant = "default" }) => {
+          const file = getTemplateFilePathFromDirectoryPath(app, component);
+          const { extended: variationData } = await getVariationData(
+            app,
+            file,
+            variant
+          );
 
-        return await resolveVariationData(app, variationData);
-      };
+          return await resolveVariationData(app, variationData);
+        };
 
-      const getHtml = async ({ component, variant = "default" }) => {
-        return await renderIframeVariation({
-          app,
-          file: component,
-          variation: variant,
+        const getHtml = async ({ component, variant = "default" }) => {
+          return await renderIframeVariation({
+            app,
+            file: component,
+            variation: variant,
+          });
+        };
+
+        const getNode = async ({ component, variant = "default" }) => {
+          const html = await getHtml({
+            component,
+            variant,
+          });
+
+          return createElementFromHTML(html);
+        };
+
+        resolve({
+          getMockData,
+          getHtml,
+          getNode,
         });
-      };
-
-      const getNode = async ({ component, variant = "default" }) => {
-        const html = await getHtml({
-          component,
-          variant,
-        });
-
-        return createElementFromHTML(html);
-      };
-
-      resolve({
-        getMockData,
-        getHtml,
-        getNode,
-      });
-    });
+      })
+      .catch((err) => console.error(err));
   });
 };
 

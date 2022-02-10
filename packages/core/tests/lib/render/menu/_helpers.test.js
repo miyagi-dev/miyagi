@@ -33,8 +33,7 @@ describe("lib/menu/elements/helpers", () => {
         expect(
           helpers.pathIsParentOfOrEqualRequestedPath(
             "foo/bar/baz/foo",
-            "bar/baz/foo/bar",
-            true
+            "bar/baz/foo/bar"
           )
         ).toBe(false);
       });

@@ -44,7 +44,8 @@ gulp.task("build:js", (done) => {
               format: "esm",
             });
             resolve();
-          });
+          })
+          .catch((err) => console.error(err));
       })
     );
   });

@@ -187,7 +187,7 @@ async function readFile(app, fileName) {
   let result;
 
   if (helpers.fileIsTemplateFile(app, fileName)) {
-    result = fs.readFileSync(fileName, "utf-8");
+    result = fs.readFileSync(fileName, { encoding: "utf8" });
   } else if (path.extname(fileName) === ".yaml") {
     result = getYamlFileContent(app, fileName);
   } else if (helpers.fileIsDocumentationFile(app, fileName)) {
@@ -223,17 +223,24 @@ async function getFileContents(app) {
   if (paths) {
     for (const fullPath of paths) {
       promises.push(
-        new Promise((res) => {
-          readFile(app, fullPath.replace(/\0/g, "")).then((data) => {
-            fileContents[fullPath] = data;
-            res();
-          });
+        new Promise((res, rej) => {
+          readFile(app, fullPath.replace(/\0/g, ""))
+            .then((data) => {
+              fileContents[fullPath] = data;
+              res();
+            })
+            .catch((err) => {
+              console.error(err);
+              rej();
+            });
         })
       );
     }
-    return Promise.all(promises).then(() => {
-      return fileContents;
-    });
+    return Promise.all(promises)
+      .then(() => {
+        return fileContents;
+      })
+      .catch((err) => console.error(err));
   }
 
   return {};

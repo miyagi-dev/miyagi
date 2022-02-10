@@ -7,20 +7,23 @@ import {
 } from "./_is-triggered.js";
 
 if (
-  location.href.indexOf("/component-") >= 0 &&
-  location.href.indexOf("-embedded.html") >= 0 &&
+  window.location.pathname.startsWith("/component-") &&
+  window.location.href.endsWith("-embedded.html") &&
   window.self === window.top
 ) {
-  window.location = location.href.replace("-embedded.html", ".html");
+  window.location = new URL(window.location).replace(
+    /-embedded\.html$/,
+    ".html"
+  );
 }
 
 document.addEventListener("DOMContentLoaded", function () {
   const styleguide = document.querySelector(".MiyagiStyleguide");
 
   if (styleguide) {
-    import("./styleguide/index.js").then(
-      (Styleguide) => new Styleguide.default(styleguide)
-    );
+    import("./styleguide/index.js")
+      .then((Styleguide) => new Styleguide.default(styleguide))
+      .catch((err) => console.error(err));
   }
 
   if (document.querySelector(".js-openMockData")) {

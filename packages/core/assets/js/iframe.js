@@ -6,11 +6,11 @@ import {
 } from "./_is-triggered.js";
 
 if (
-  location.href.indexOf("/component?") >= 0 &&
-  location.href.indexOf("&embedded=true") >= 0 &&
+  window.location.pathname.startsWith("/component?") &&
+  window.location.href.indexOf("&embedded=true") >= 0 &&
   window.self === window.top
 ) {
-  window.location = location.href.replace("&embedded=true", "");
+  window.location = new URL(window.location).replace("&embedded=true", "");
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -23,9 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (links.length > 0) {
-    import("./_iframe-links.js").then((module) => {
-      module.default(links);
-    });
+    import("./_iframe-links.js")
+      .then((module) => {
+        module.default(links);
+      })
+      .catch((err) => console.error(err));
   }
 
   if (document.querySelector(".Miyagi-code")) {
@@ -33,9 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   if (styleguide) {
-    import("./styleguide/index.js").then(
-      (Styleguide) => new Styleguide.default(styleguide)
-    );
+    import("./styleguide/index.js")
+      .then((Styleguide) => new Styleguide.default(styleguide))
+      .catch((err) => console.error(err));
   }
 
   if (document.querySelector(".js-openMockData")) {
