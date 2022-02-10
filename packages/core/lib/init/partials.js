@@ -18,23 +18,24 @@ const config = require("../config.json");
  */
 async function register(shortPath, fullFilePath) {
   return new Promise((resolve) => {
-    fs.readFile(fullFilePath, "utf8", function registerPartialCallback(
-      err,
-      data
-    ) {
-      if (typeof data === "string") {
-        handlebars.registerPartial(
-          shortPath,
-          handlebars.compile(data.toString())
-        );
-      } else {
-        log(
-          "warn",
-          config.messages.fileNotFound.replace("{{filePath}}", shortPath)
-        );
+    fs.readFile(
+      fullFilePath,
+      "utf8",
+      function registerPartialCallback(err, data) {
+        if (typeof data === "string") {
+          handlebars.registerPartial(
+            shortPath,
+            handlebars.compile(data.toString())
+          );
+        } else {
+          log(
+            "warn",
+            config.messages.fileNotFound.replace("{{filePath}}", shortPath)
+          );
+        }
+        resolve();
       }
-      resolve();
-    });
+    );
   });
 }
 
@@ -47,14 +48,19 @@ async function registerLayouts() {
   return Promise.all(
     ["iframe_default", "iframe_index"].map(
       (layout) =>
-        new Promise((resolve) => {
+        new Promise((resolve, reject) => {
           register(
             layout,
             path.join(
               __dirname,
               `../../${config.folders.views}/layouts/${layout}.hbs`
             )
-          ).then(resolve);
+          )
+            .then(resolve)
+            .catch((err) => {
+              console.error(err);
+              reject();
+            });
         })
     )
   );
@@ -70,8 +76,13 @@ async function registerComponents(app) {
   return Promise.all(
     Object.entries(app.get("state").partials).map(
       (entry) =>
-        new Promise((resolve) => {
-          register(entry[0], entry[1]).then(resolve);
+        new Promise((resolve, reject) => {
+          register(entry[0], entry[1])
+            .then(resolve)
+            .catch((err) => {
+              console.error(err);
+              reject();
+            });
         })
     )
   );
@@ -83,10 +94,13 @@ async function registerComponents(app) {
  * @returns {Promise} gets resolved when the template has been registered
  */
 async function registerPartial(app, fullPath) {
-  return new Promise((resolve) => {
-    register(helpers.getShortPathFromFullPath(app, fullPath), fullPath).then(
-      resolve
-    );
+  return new Promise((resolve, reject) => {
+    register(helpers.getShortPathFromFullPath(app, fullPath), fullPath)
+      .then(resolve)
+      .catch((err) => {
+        console.error(err);
+        reject();
+      });
   });
 }
 
@@ -98,14 +112,24 @@ async function registerAll(app) {
   const promises = [];
 
   promises.push(
-    new Promise((resolve) => {
-      registerLayouts().then(resolve);
+    new Promise((resolve, reject) => {
+      registerLayouts()
+        .then(resolve)
+        .catch((err) => {
+          console.error(err);
+          reject();
+        });
     })
   );
 
   promises.push(
-    new Promise((resolve) => {
-      registerComponents(app).then(resolve);
+    new Promise((resolve, reject) => {
+      registerComponents(app)
+        .then(resolve)
+        .catch((err) => {
+          console.error(err);
+          reject();
+        });
     })
   );
 

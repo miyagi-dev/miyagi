@@ -45,7 +45,12 @@ module.exports = function getFonts(obj, prefix) {
     });
   });
 
-  return Object.entries(deduped).sort((a, b) =>
-    a[0].toUpperCase() > b[0].toUpperCase() ? 1 : -1
-  );
+  return Object.entries(deduped).sort((a, b) => {
+    const aUppercase = a[0].toUpperCase();
+    const bUppercase = b[0].toUpperCase();
+
+    if (aUppercase > bUppercase) return 1;
+    if (aUppercase < bUppercase) return -1;
+    return 0;
+  });
 };
