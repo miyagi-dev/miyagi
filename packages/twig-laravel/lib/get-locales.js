@@ -42,7 +42,7 @@ function convertArrayToObject(keys, object) {
   var container = tempObject;
 
   if (keys) {
-    keys.map((k, i, values) => {
+    keys.forEach((k, i, values) => {
       container = container[k] = i == values.length - 1 ? object : {};
     });
 
