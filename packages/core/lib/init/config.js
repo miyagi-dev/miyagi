@@ -244,7 +244,7 @@ module.exports = (userConfig = {}) => {
       try {
         const manifestContent = fs.readFileSync(
           path.resolve(path.join(config.assets.root, config.assets.manifest)),
-          "utf-8"
+          { encoding: "utf8" }
         );
 
         manifest = {

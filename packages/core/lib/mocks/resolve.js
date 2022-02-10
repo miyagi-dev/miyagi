@@ -59,7 +59,7 @@ module.exports =
     merged = mergeWithGlobalData(app, merged);
     resolved = await overwriteJsonLinksWithJsonData(app, merged);
     resolved = await overwriteTplLinksWithTplContent(app, resolved);
-    resolved = await overwriteRenderKey(app, resolved);
+    resolved = overwriteRenderKey(app, resolved);
 
     return { merged, resolved };
   };
@@ -104,20 +104,26 @@ async function iterateOverTplData(app, entry) {
 
       entry.forEach((entry, i) => {
         promises.push(
-          new Promise((resolve) => {
+          new Promise((resolve, reject) => {
             resolveTpl(app, entry)
               .then((result) => iterateOverTplData(app, result))
               .then((result) => {
                 o[i] = result;
                 resolve();
+              })
+              .catch((err) => {
+                console.error(err);
+                reject();
               });
           })
         );
       });
 
-      return Promise.all(promises).then(() => {
-        return o;
-      });
+      return Promise.all(promises)
+        .then(() => {
+          return o;
+        })
+        .catch((err) => console.error(err));
     }
 
     const o = { ...entry };
@@ -158,20 +164,26 @@ async function iterateOverJsonData(app, entry) {
 
       entry.forEach((ent, i) => {
         promises.push(
-          new Promise((resolve) => {
+          new Promise((resolve, reject) => {
             resolveJson(app, ent)
               .then((result) => iterateOverJsonData(app, result))
               .then((result) => {
                 o[i] = result;
                 resolve();
+              })
+              .catch((err) => {
+                console.error(err);
+                reject();
               });
           })
         );
       });
 
-      return Promise.all(promises).then(() => {
-        return o;
-      });
+      return Promise.all(promises)
+        .then(() => {
+          return o;
+        })
+        .catch((err) => console.error(err));
     }
 
     let o = {};
@@ -213,11 +225,16 @@ function resolveTpl(app, entry) {
 
         arr.forEach((o, i) => {
           promises.push(
-            new Promise((resolve) => {
-              resolveTpl(app, o).then((res) => {
-                arr[i] = res;
-                resolve();
-              });
+            new Promise((resolve, reject) => {
+              resolveTpl(app, o)
+                .then((res) => {
+                  arr[i] = res;
+                  resolve();
+                })
+                .catch((err) => {
+                  console.error(err);
+                  reject();
+                });
             })
           );
         });
@@ -242,11 +259,16 @@ function resolveTpl(app, entry) {
       Object.entries(entries).forEach(async ([key, val]) => {
         if (key !== "$tpl") {
           promises.push(
-            new Promise((resolve) => {
-              resolveTpl(app, val).then((result) => {
-                entries[key] = result;
-                resolve();
-              });
+            new Promise((resolve, reject) => {
+              resolveTpl(app, val)
+                .then((result) => {
+                  entries[key] = result;
+                  resolve();
+                })
+                .catch((err) => {
+                  console.error(err);
+                  reject();
+                });
             })
           );
         }
@@ -337,7 +359,7 @@ function resolveTpl(app, entry) {
             }
           });
         } else {
-          entries = await overwriteRenderKey(app, entries);
+          entries = overwriteRenderKey(app, entries);
           resolve1(entries);
         }
       });

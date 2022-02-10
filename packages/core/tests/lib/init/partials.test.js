@@ -38,7 +38,7 @@ describe("lib/init/partials", () => {
       test("calls hbs.registerPartial after reading the file", async () => {
         handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerAll(app, true);
+        await partials.registerAll(app);
 
         expect(handlebars.registerPartial).toHaveBeenCalledWith(
           "foo/index.hbs",
@@ -51,7 +51,7 @@ describe("lib/init/partials", () => {
       test("doesn't call hbs.registerPartial, but logs an error", async () => {
         handlebars.compile = jest.fn(() => "compiledPartial");
 
-        await partials.registerAll(app, true);
+        await partials.registerAll(app);
 
         expect(log).toHaveBeenCalledWith(
           "warn",
@@ -66,7 +66,7 @@ describe("lib/init/partials", () => {
     test("calls hbs.registerPartial with layout files", async () => {
       handlebars.compile = jest.fn(() => "compiledPartial");
 
-      await partials.registerAll(app, true);
+      await partials.registerAll(app);
 
       expect(handlebars.registerPartial).toHaveBeenCalledWith(
         "iframe_default",

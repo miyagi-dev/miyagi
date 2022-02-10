@@ -38,7 +38,7 @@ module.exports = async function renderMainComponent({
   if (variation) {
     if (app.get("config").isBuild) {
       iframeSrc = iframeSrc.replace(
-        ".html",
+        /\.html$/,
         `-variation-${helpers.normalizeString(variation)}.html`
       );
     } else {
@@ -47,7 +47,7 @@ module.exports = async function renderMainComponent({
   }
 
   if (app.get("config").isBuild) {
-    iframeSrc = iframeSrc.replace(".html", "-embedded.html");
+    iframeSrc = iframeSrc.replace(/\.html$/, "-embedded.html");
   } else {
     iframeSrc += "&embedded=true";
   }

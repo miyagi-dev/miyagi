@@ -135,105 +135,120 @@ function htmlTest(container) {
 
   addToggleClickListener(container);
 
-  fetch(iframe.src).then((response) => {
-    if (response.ok) {
-      response.text().then((html) => {
-        const formData = new FormData();
-        formData.append("out", "json");
-        formData.append("content", html);
-        fetch("https://validator.w3.org/nu/", {
-          method: "post",
-          headers: {
-            Accept: "application/json",
-          },
-          body: formData,
-        }).then(function (response) {
-          if (response.ok) {
-            response.json().then((data) => {
-              states.forEach((state) => {
-                const results = data.messages.filter(
-                  (message) => message.type === state
-                );
+  fetch(iframe.src)
+    .then((response) => {
+      if (response.ok) {
+        response
+          .text()
+          .then((html) => {
+            const formData = new FormData();
+            formData.append("out", "json");
+            formData.append("content", html);
+            fetch("https://validator.w3.org/nu/", {
+              method: "post",
+              headers: {
+                Accept: "application/json",
+              },
+              body: formData,
+            })
+              .then(function (response) {
+                if (response.ok) {
+                  response
+                    .json()
+                    .then((data) => {
+                      states.forEach((state) => {
+                        const results = data.messages.filter(
+                          (message) => message.type === state
+                        );
 
-                const resultElement = container.querySelector(
-                  `.Results--${state} .Results-value`
-                );
-                let html = "";
+                        const resultElement = container.querySelector(
+                          `.Results--${state} .Results-value`
+                        );
+                        let html = "";
 
-                resultElement.innerText = results.length;
+                        resultElement.innerText = results.length;
 
-                if (results.length) {
-                  resultElement.classList.add("has-positiveValue");
+                        if (results.length) {
+                          resultElement.classList.add("has-positiveValue");
 
-                  html += "<ul>";
-                  results.forEach((result) => {
-                    html += '<li class="Result">';
-                    html += '<dl class="Result-data">';
+                          html += "<ul>";
+                          results.forEach((result) => {
+                            html += '<li class="Result">';
+                            html += '<dl class="Result-data">';
 
-                    if (result.message) {
-                      html += getHtmlForResultItem("Message", result.message);
-                    }
+                            if (result.message) {
+                              html += getHtmlForResultItem(
+                                "Message",
+                                result.message
+                              );
+                            }
 
-                    if (result.extract) {
-                      const markedExtract = `${escapeHtml(
-                        result.extract.slice(0, result.hiliteStart)
-                      )}<mark>${escapeHtml(
-                        result.extract.slice(
-                          result.hiliteStart,
-                          result.hiliteStart + result.hiliteLength
-                        )
-                      )}</mark>${escapeHtml(
-                        result.extract.slice(
-                          result.hiliteStart + result.hiliteLength
-                        )
-                      )}`;
+                            if (result.extract) {
+                              const markedExtract = `${escapeHtml(
+                                result.extract.slice(0, result.hiliteStart)
+                              )}<mark>${escapeHtml(
+                                result.extract.slice(
+                                  result.hiliteStart,
+                                  result.hiliteStart + result.hiliteLength
+                                )
+                              )}</mark>${escapeHtml(
+                                result.extract.slice(
+                                  result.hiliteStart + result.hiliteLength
+                                )
+                              )}`;
 
-                      html += getHtmlForResultItem(
-                        "Extract",
-                        `<code class="Result-extract">${markedExtract.replace(
-                          /\n/g,
-                          "↩"
-                        )}</code>`
-                      );
-                    }
+                              html += getHtmlForResultItem(
+                                "Extract",
+                                `<code class="Result-extract">${markedExtract.replace(
+                                  /\n/g,
+                                  "↩"
+                                )}</code>`
+                              );
+                            }
 
-                    html += getHtmlForResultItem(
-                      "From",
-                      `Line: ${
-                        result[result.firstLine ? "firstLine" : "lastLine"]
-                      }, Column: ${result.firstColumn}`
-                    );
-                    html += getHtmlForResultItem(
-                      "To",
-                      `Line: ${result.lastLine}, Column: ${result.lastColumn}`
-                    );
+                            html += getHtmlForResultItem(
+                              "From",
+                              `Line: ${
+                                result[
+                                  result.firstLine ? "firstLine" : "lastLine"
+                                ]
+                              }, Column: ${result.firstColumn}`
+                            );
+                            html += getHtmlForResultItem(
+                              "To",
+                              `Line: ${result.lastLine}, Column: ${result.lastColumn}`
+                            );
 
-                    html += "</dl>";
-                    html += "</li>";
-                  });
-                  html += "</ul>";
+                            html += "</dl>";
+                            html += "</li>";
+                          });
+                          html += "</ul>";
+                        } else {
+                          resultElement.classList.remove("has-positiveValue");
+                          html +=
+                            '<p><i class="Results-empty">Nothing to report.</i></p>';
+                        }
+
+                        container.querySelector(
+                          `.Results--${state} .Results-details`
+                        ).innerHTML = html;
+                      });
+
+                      container.removeAttribute("hidden");
+                    })
+                    .catch((err) => console.error(err));
                 } else {
-                  resultElement.classList.remove("has-positiveValue");
-                  html +=
-                    '<p><i class="Results-empty">Nothing to report.</i></p>';
+                  console.warn(
+                    "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting."
+                  );
                 }
-
-                container.querySelector(
-                  `.Results--${state} .Results-details`
-                ).innerHTML = html;
-              });
-
-              container.removeAttribute("hidden");
-            });
-          } else {
-            console.warn(
-              "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting."
-            );
-          }
-        });
-      });
-    }
-  });
+              })
+              .catch((err) => console.error(err));
+          })
+          .catch((err) => console.error(err));
+      }
+    })
+    .catch((err) => console.error(err));
 }
 
 export default (tests) => {

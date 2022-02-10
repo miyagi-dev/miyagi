@@ -45,18 +45,33 @@ module.exports = async function setState(app, methods) {
       state.fileContents = methods.fileContents;
 
       promises.push(
-        new Promise((resolve) => {
-          setSourceTreeAndMenu(app, methods, state).then(resolve);
+        new Promise((resolve, reject) => {
+          setSourceTreeAndMenu(app, methods, state)
+            .then(resolve)
+            .catch((err) => {
+              console.error(err);
+              reject();
+            });
         })
       );
     } else {
       promises.push(
-        new Promise((resolve) => {
-          getFileContents(app).then((data) => {
-            state.fileContents = data;
+        new Promise((resolve, reject) => {
+          getFileContents(app)
+            .then((data) => {
+              state.fileContents = data;
 
-            setSourceTreeAndMenu(app, methods, state).then(resolve);
-          });
+              setSourceTreeAndMenu(app, methods, state)
+                .then(resolve)
+                .catch((err) => {
+                  console.error(err);
+                  reject();
+                });
+            })
+            .catch((err) => {
+              console.error(err);
+              reject();
+            });
         })
       );
     }

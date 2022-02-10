@@ -140,7 +140,7 @@ function toColorObject(c) {
             arr[i] = Math.round(arr[i] * 255);
           }
         }
-        if (isNaN(arr[i])) {
+        if (Number.isNaN(arr[i])) {
           return emptyObject();
         }
         if (parseInt(arr[i]) > 255) {
@@ -171,7 +171,7 @@ function toColorObject(c) {
         if (arr[i].indexOf("%") > -1) {
           arr[i] = arr[i].replace("%", "");
           arr[i] = Number(arr[i]);
-          if (isNaN(arr[i])) {
+          if (Number.isNaN(arr[i])) {
             return emptyObject();
           }
           arr[i] = arr[i] / 100;
@@ -229,7 +229,7 @@ function toColorObject(c) {
       arr[1] = parseInt(c.substr(2, 2), 16);
       arr[2] = parseInt(c.substr(4, 2), 16);
       for (i = 0; i < 3; i++) {
-        if (isNaN(arr[i])) {
+        if (Number.isNaN(arr[i])) {
           return emptyObject();
         }
       }
@@ -649,7 +649,7 @@ function rgbToHsl(r, g, b) {
   if (maxcolor == 2) {
     h = 4 + (rgb[0] - rgb[1]) / (max - min);
   }
-  if (isNaN(h)) {
+  if (Number.isNaN(h)) {
     h = 0;
   }
   h = h * 60;
@@ -666,7 +666,6 @@ function rgbToHsl(r, g, b) {
       s = (max - min) / (2 - max - min);
     }
   }
-  s = s;
   return { h: h, s: s, l: l };
 }
 

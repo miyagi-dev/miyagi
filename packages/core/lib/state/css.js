@@ -18,7 +18,7 @@ module.exports = function getCSS(app) {
         new Promise((resolve) => {
           fs.readFile(
             path.join(assets.root, file),
-            "utf-8",
+            { encoding: "utf8" },
             (err, response) => {
               if (err) {
                 resolve({});

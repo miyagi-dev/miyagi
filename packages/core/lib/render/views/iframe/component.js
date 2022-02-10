@@ -11,7 +11,6 @@ const {
   getComponentTextDirection,
 } = require("../../helpers");
 const log = require("../../../logger.js");
-const { getTemplateFilePathFromDirectoryPath } = require("../../../helpers.js");
 
 /**
  * @param {object} object - parameter object
@@ -29,7 +28,7 @@ module.exports = async function renderIframeComponent({
   cookies,
   noCli,
 }) {
-  file = getTemplateFilePathFromDirectoryPath(app, file);
+  file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
   const templateFilePath = helpers.getFullPathFromShortPath(app, file);
   const hasTemplate = Object.values(app.get("state").partials).includes(
     templateFilePath
