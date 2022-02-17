@@ -7,7 +7,7 @@
     "url": "git@github.com:mgrsskls/miyagi.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.2",
+    "@babel/core": "^7.17.4",
     "@babel/preset-env": "^7.16.11",
     "@types/jest": "^27.4.0",
     "codecov": "^3.8.3",
@@ -25,7 +25,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^2.5.1",
     "standard-version": "^9.3.2",
-    "stylelint": "^14.5.0",
+    "stylelint": "^14.5.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0"
   },
