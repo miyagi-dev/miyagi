@@ -22,7 +22,8 @@
     "frontend"
   ],
   "engines": {
-    "node": ">=16.7.0"
+    "node": ">=16.7.0",
+    "npm": ">=8.3"
   },
   "files": [
     "api",
@@ -44,7 +45,7 @@
     "css": "^3.0.0",
     "deepmerge": "^4.2.2",
     "directory-tree": "^3.2.1",
-    "express": "^4.17.2",
+    "express": "^4.17.3",
     "handlebars": "^4.7.7",
     "handlebars-layouts": "^3.1.4",
     "js-yaml": "^4.1.0",
@@ -63,7 +64,7 @@
     "del": "^6.0.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-jsdoc": "^37.9.1",
+    "eslint-plugin-jsdoc": "^37.9.3",
     "eslint-plugin-prettier": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -72,14 +73,14 @@
     "jsdoc-to-markdown": "^7.1.1",
     "postcss": "^8.4.6",
     "postcss-import": "^14.0.2",
-    "postcss-preset-env": "^7.3.3",
+    "postcss-preset-env": "^7.4.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.5.1",
     "rollup": "^2.67.2",
     "rollup-plugin-terser": "^7.0.2",
     "stylelint": "^14.5.1",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard": "^25.0.0",
     "supertest": "^6.2.2"
   },
   "scripts": {
@@ -122,5 +123,8 @@
     "not baidu < 100",
     "not and_qq < 100",
     "not dead"
-  ]
+  ],
+  "overrides": {
+    "json-pointer": "0.6.2"
+  }
 }
