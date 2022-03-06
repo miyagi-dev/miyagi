@@ -41,6 +41,7 @@ body {
 .Tests {
   grid-area: tests;
   padding-inline-end: 4rem;
+  color: var(--Miyagi-color-ValidationsText);
 }
 
 @media (max-width: 40em) {
