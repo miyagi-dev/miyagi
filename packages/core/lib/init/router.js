@@ -31,7 +31,7 @@ function getDataForComponent(app, component) {
 /**
  * @param {object} app - the express instance
  * @param {string} component - the component directory
- * @returns {boolean} is true if the requested component is stored in state.partials
+ * @returns {boolean} is true if the requested component is stored in state.fileContents
  */
 function checkIfRequestedComponentIsValid(app, component) {
   if (!component) return false;
@@ -44,24 +44,76 @@ function checkIfRequestedComponentIsValid(app, component) {
       ""
     )
   );
+  const templateExtension = app.get("config").files.templates.extension;
 
-  return (
-    files.includes(
-      `${component}/${helpers.getResolvedFileName(
-        app.get("config").files.templates.name,
-        path.basename(
-          component,
-          `.${app.get("config").files.templates.extension}`
-        )
-      )}.${app.get("config").files.templates.extension}`
-    ) ||
-    files.includes(
-      `${component}/${helpers.getResolvedFileName(
-        app.get("config").files.docs.name,
-        path.basename(component, `.${app.get("config").files.docs.extension}`)
-      )}.${app.get("config").files.docs.extension}`
-    )
+  return files.includes(
+    `${component}/${helpers.getResolvedFileName(
+      app.get("config").files.templates.name,
+      path.basename(component, `.${templateExtension}`)
+    )}.${templateExtension}`
   );
+}
+
+/**
+ * @param {object} app - the express instance
+ * @param {string} component - the component directory
+ * @returns {string}
+ */
+function checkIfRequestedFileIsDocFile(app, component) {
+  if (!component) return false;
+
+  const { fileContents } = app.get("state");
+  const docsExtension = app.get("config").files.docs.extension;
+
+  if (component.endsWith(app.get("config").files.docs.extension)) {
+    const var1 = path.join(
+      process.cwd(),
+      app.get("config").components.folder,
+      component
+    );
+
+    if (var1 in fileContents) {
+      return var1;
+    }
+  }
+
+  const var1 = path.join(
+    process.cwd(),
+    app.get("config").components.folder,
+    `${component}/${component}.${docsExtension}`
+  );
+  if (var1 in fileContents) {
+    return var1;
+  }
+
+  const var2 = path.join(
+    process.cwd(),
+    app.get("config").components.folder,
+    `${component}/README.${docsExtension}`
+  );
+  if (var2 in fileContents) {
+    return var2;
+  }
+
+  const var3 = path.join(
+    process.cwd(),
+    app.get("config").components.folder,
+    `${component}/index.${docsExtension}`
+  );
+  if (var3 in fileContents) {
+    return var3;
+  }
+
+  const var4 = path.join(
+    process.cwd(),
+    app.get("config").components.folder,
+    `${component}.md`
+  );
+  if (var4 in fileContents) {
+    return var4;
+  }
+
+  return null;
 }
 
 /**
@@ -122,6 +174,8 @@ module.exports = function Router(app) {
       const { file, variation } = req.query;
 
       if (file) {
+        const docFile = checkIfRequestedFileIsDocFile(app, file);
+
         if (file === "all") {
           await render.renderMainIndex({ app, res, cookies: req.cookies });
         } else if (checkIfRequestedComponentIsValid(app, file)) {
@@ -145,6 +199,16 @@ module.exports = function Router(app) {
               cookies: req.cookies,
             });
           }
+        } else if (docFile) {
+          await render.renderMainDocs({
+            app,
+            res,
+            file: docFile.replace(
+              path.join(process.cwd(), app.get("config").components.folder),
+              ""
+            ),
+            cookies: req.cookies,
+          });
         } else {
           res.redirect(302, "/");
         }
@@ -160,6 +224,8 @@ module.exports = function Router(app) {
       const { file, variation, embedded } = req.query;
 
       if (file) {
+        const docFile = checkIfRequestedFileIsDocFile(app, file);
+
         if (file === "all") {
           await render.renderIframeIndex({ app, res, cookies: req.cookies });
         } else if (checkIfRequestedComponentIsValid(app, file)) {
@@ -184,6 +250,14 @@ module.exports = function Router(app) {
               cookies: req.cookies,
             });
           }
+        } else if (docFile) {
+          await render.renderIframeDocs({
+            app,
+            res,
+            file,
+            fullPath: docFile,
+            cookies: req.cookies,
+          });
         } else {
           res.redirect(302, "/component?file=all");
         }

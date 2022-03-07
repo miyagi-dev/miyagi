@@ -39,14 +39,14 @@ function checkIfFileNamesIncludeFile(file, fileNames) {
 }
 
 /**
- * Returns all component and README files from components.folder
- * except for template files
+ * Returns all component and docs file from components.folder
  *
- * @param {object} components - the components object from the config
- * @param {object} files - the files object from the config
+ * @param {object} app
  * @returns {Promise<string[]>} an array of file paths
  */
-async function getFilePaths(components, files) {
+async function getFilePaths(app) {
+  const { components, files } = app.get("config");
+
   return await stateHelpers.getFiles(
     components.folder,
     components.ignores,
@@ -57,13 +57,12 @@ async function getFilePaths(components, files) {
             files.templates.name,
             path.basename(res, `.${files.templates.extension}`)
           )}.${files.templates.extension}`,
-          `${files.docs.name}.${files.docs.extension}`,
           `${files.mocks.name}.${files.mocks.extension}`,
           `${files.schema.name}.${files.schema.extension}`,
           `${files.info.name}.${files.info.extension}`,
           `data.${files.mocks.extension}`,
-          `README.${files.docs.extension}`,
-        ])
+        ]) ||
+        helpers.fileIsDocumentationFile(app, res)
       ) {
         return res;
       } else {
@@ -215,10 +214,7 @@ async function readFile(app, fileName) {
 async function getFileContents(app) {
   const fileContents = {};
   const promises = [];
-  const paths = await getFilePaths(
-    app.get("config").components,
-    app.get("config").files
-  );
+  const paths = await getFilePaths(app);
 
   if (paths) {
     for (const fullPath of paths) {

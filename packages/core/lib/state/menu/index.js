@@ -17,10 +17,9 @@ function getComponentFiles(app, directory) {
   return directory.children.filter((child) => {
     const baseName = path.basename(child.name);
 
-    return (
-      helpers.fileIsTemplateFile(app, baseName) ||
-      helpers.fileIsDocumentationFile(app, baseName)
-    );
+    if (helpers.fileIsTemplateFile(app, baseName)) return true;
+
+    return helpers.docFileIsIndexFile(app, child.path);
   });
 }
 
@@ -43,14 +42,15 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
  * @returns {object} adapted file tree object
  */
 function getDataForLinkedDirectory(app, directory) {
-  const info = app.get("state").fileContents[
-    path.join(
-      directory.path,
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    )
-  ];
+  const info =
+    app.get("state").fileContents[
+      path.join(
+        directory.path,
+        `${app.get("config").files.info.name}.${
+          app.get("config").files.info.extension
+        }`
+      )
+    ];
   const shortPath = helpers.getShortPathFromFullPath(app, directory.path);
   const normalizedShortPath = helpers.normalizeString(shortPath);
 
@@ -68,18 +68,44 @@ function getDataForLinkedDirectory(app, directory) {
 
 /**
  * @param {object} app - the express instance
+ * @param {object} file
+ * @returns {object}
+ */
+function getDataForDocumentationFile(app, file) {
+  const shortPath = helpers
+    .getShortPathFromFullPath(app, file.path)
+    .replace(`.${app.get("config").files.docs.extension}`, "");
+  const normalizedShortPath = helpers.normalizeString(shortPath);
+
+  return {
+    type: file.type,
+    name: path.basename(
+      file.name,
+      `.${app.get("config").files.docs.extension}`
+    ),
+    fullPath: file.path,
+    shortPath,
+    normalizedShortPath,
+    index: file.index,
+    id: helpers.normalizeString(file.path),
+  };
+}
+
+/**
+ * @param {object} app - the express instance
  * @param {object} directory - file tree object
  * @returns {object} adapted file tree object
  */
 function getDataForDirectory(app, directory) {
-  const info = app.get("state").fileContents[
-    path.join(
-      directory.path,
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    )
-  ];
+  const info =
+    app.get("state").fileContents[
+      path.join(
+        directory.path,
+        `${app.get("config").files.info.name}.${
+          app.get("config").files.info.extension
+        }`
+      )
+    ];
 
   return {
     type: directory.type,
@@ -149,6 +175,19 @@ function getMenu(app) {
           }
         }
         array.push(restructured);
+      } else if (
+        helpers.fileIsDocumentationFile(app, item.path) &&
+        !item.path.endsWith("index.md") &&
+        !item.path.endsWith("README.md") &&
+        path.basename(
+          item.path,
+          `.${app.get("config").files.docs.extension}`
+        ) !==
+          path.dirname(item.path).split("/")[
+            path.dirname(item.path).split("/").length - 1
+          ]
+      ) {
+        array.push(getDataForDocumentationFile(app, item));
       }
     }
   })(srcStructure, arr);

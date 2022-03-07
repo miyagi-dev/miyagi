@@ -3,7 +3,9 @@
     <div class="MiyagiWrapper">
       <div class="MiyagiContent">
         <div class="MiyagiDocumentation">
-          <h1>{{ name }}</h1>
+          {{#if name}}
+            <h1>{{ name }}</h1>
+          {{/if}}
           {{#if documentation}}
             {{{documentation}}}
           {{/if}}

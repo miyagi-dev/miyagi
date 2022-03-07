@@ -59,7 +59,7 @@ module.exports = {
   },
 
   /**
-   * If '<component>' is set as the file name in the config, it returns the given file name, otherwise it returns the value from the config
+   * If "<component>"" is set as the file name in the config, it returns the given file name, otherwise it returns the value from the config
    *
    * @param {string} nameInConfig - The defined name for a file in the config
    * @param {string} fileName - The actual file name
@@ -202,15 +202,7 @@ module.exports = {
    */
   fileIsDocumentationFile: function (app, filePath) {
     return (
-      filePath.replace(`${process.cwd()}/`, "") ===
-        path.join(
-          app.get("config").components.folder,
-          `README.${app.get("config").files.docs.extension}`
-        ) ||
-      path.basename(filePath) ===
-        `${app.get("config").files.docs.name}.${
-          app.get("config").files.docs.extension
-        }`
+      path.extname(filePath) === `.${app.get("config").files.docs.extension}`
     );
   },
 
@@ -433,6 +425,28 @@ module.exports = {
       log("error", messages.missingEngine);
       return false;
     }
+  },
+
+  docFileIsIndexFile(app, fileName) {
+    const baseName = path.basename(fileName);
+    const extname = path.extname(fileName);
+    const docsExtension = app.get("config").files.docs.extension;
+
+    if (extname !== `.${docsExtension}`) return false;
+
+    if (baseName === `${app.get("config").files.docs.name}.${docsExtension}`)
+      return true;
+
+    if (baseName === `index.${docsExtension}`) return true;
+
+    const dirParts = path.dirname(fileName).split(path.sep);
+    if (
+      dirParts[dirParts.length - 1] ===
+      path.basename(fileName, `.${docsExtension}`)
+    )
+      return true;
+
+    return false;
   },
 };
 

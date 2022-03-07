@@ -94,7 +94,7 @@ describe("lib/menu/elements/component", () => {
       requireComponent("variations", true);
       requireComponent("toggle", true);
       helpers.componentHasVariations = jest.fn(() => true);
-      helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
+      helpers.shouldRenderWithToggle = jest.fn(() => false);
 
       expect(
         component.render(app, {}, {}).indexOf("toggleHtml")
@@ -108,7 +108,7 @@ describe("lib/menu/elements/component", () => {
         const toggle = requireComponent("toggle", true);
         requireComponent("variations", true);
         helpers.componentHasVariations = jest.fn(() => true);
-        helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
+        helpers.shouldRenderWithToggle = jest.fn(() => false);
         helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
 
         component.render(app, directory, { path: directory.shortPath });
@@ -128,7 +128,7 @@ describe("lib/menu/elements/component", () => {
         const toggle = requireComponent("toggle", true);
         requireComponent("variations", true);
         helpers.componentHasVariations = jest.fn(() => true);
-        helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
+        helpers.shouldRenderWithToggle = jest.fn(() => false);
         helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
 
         component.render(app, directory, {
@@ -144,14 +144,14 @@ describe("lib/menu/elements/component", () => {
     });
   });
 
-  describe("with childrenOfDirectoryContainDirectory being truthy", () => {
+  describe("with shouldRenderWithToggle being truthy", () => {
     test("adds the toggle html to the return value", () => {
       const helpers = require(helpersSrc);
       const component = requireComponent("component");
       requireComponent("toggle", true);
       requireComponent("variations", true);
       helpers.componentHasVariations = jest.fn(() => false);
-      helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
+      helpers.shouldRenderWithToggle = jest.fn(() => true);
 
       expect(
         component.render(app, {}, {}).indexOf("toggleHtml")
@@ -168,7 +168,7 @@ describe("lib/menu/elements/component", () => {
         const component = requireComponent("component");
         const toggle = requireComponent("toggle", true);
         helpers.componentHasVariations = jest.fn(() => false);
-        helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
+        helpers.shouldRenderWithToggle = jest.fn(() => true);
         helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
 
         component.render(app, directory, request);
@@ -191,7 +191,7 @@ describe("lib/menu/elements/component", () => {
         const component = requireComponent("component");
         const toggle = requireComponent("toggle", true);
         helpers.componentHasVariations = jest.fn(() => false);
-        helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
+        helpers.shouldRenderWithToggle = jest.fn(() => true);
         helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
 
         component.render(app, directory, request);
@@ -205,13 +205,13 @@ describe("lib/menu/elements/component", () => {
     });
   });
 
-  describe("with componentHasVariations and childrenOfDirectoryContainDirectory being falsy", () => {
+  describe("with componentHasVariations and shouldRenderWithToggle being falsy", () => {
     test("doesn't call toggle.render", () => {
       const helpers = require(helpersSrc);
       const component = requireComponent("component");
       const toggle = requireComponent("toggle", true);
       helpers.componentHasVariations = jest.fn(() => false);
-      helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
+      helpers.shouldRenderWithToggle = jest.fn(() => false);
 
       component.render(app, {}, {});
 
@@ -223,7 +223,7 @@ describe("lib/menu/elements/component", () => {
       const component = requireComponent("component");
       requireComponent("toggle", true);
       helpers.componentHasVariations = jest.fn(() => false);
-      helpers.childrenOfDirectoryContainDirectory = jest.fn(() => false);
+      helpers.shouldRenderWithToggle = jest.fn(() => false);
 
       expect(component.render(app, {}, {}).indexOf("toggleHtml")).toBe(-1);
     });
