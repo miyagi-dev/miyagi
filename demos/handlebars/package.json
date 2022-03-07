@@ -1,13 +1,13 @@
 {
   "name": "demo",
   "devDependencies": {
-    "cssnano": "^5.0.17",
+    "cssnano": "^5.1.0",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
-    "postcss": "^8.4.7",
+    "postcss": "^8.4.8",
     "postcss-import": "^14.0.2",
-    "postcss-preset-env": "^7.4.1"
+    "postcss-preset-env": "^7.4.2"
   },
   "engines": {
     "node": ">=16.7"
