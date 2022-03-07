@@ -1,1 +1,1 @@
-Additionally to [documentation files in your components](/component-files/documentation/), you can also put a `README.md` in every other folder. This will link the entry in the navigation to a view which renders this documentation file.
+Additionally to [documentation files in your components](/component-files/documentation/), you can also put markdown files anywhere you want. If you name them either `README.md`, `index.md` or `<directory>.md` (i.e. the file name equals the directory name), this file will be used as the index for the current directory.

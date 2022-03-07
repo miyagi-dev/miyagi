@@ -66,7 +66,7 @@ describe("lib/menu/elements/directory", () => {
         const toggle = requireComponent("toggle", true);
         const helpers = require(helpersSrc);
 
-        helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
+        helpers.shouldRenderWithToggle = jest.fn(() => true);
         helpers.directoryIsNotTopLevel = jest.fn(() => true);
         helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
 
@@ -86,7 +86,7 @@ describe("lib/menu/elements/directory", () => {
         const toggle = requireComponent("toggle", true);
         const helpers = require(helpersSrc);
 
-        helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
+        helpers.shouldRenderWithToggle = jest.fn(() => true);
         helpers.directoryIsNotTopLevel = jest.fn(() => true);
         helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
 
@@ -105,7 +105,7 @@ describe("lib/menu/elements/directory", () => {
       requireComponent("toggle", true);
 
       const helpers = require(helpersSrc);
-      helpers.childrenOfDirectoryContainDirectory = jest.fn(() => true);
+      helpers.shouldRenderWithToggle = jest.fn(() => true);
       helpers.directoryIsNotTopLevel = jest.fn(() => true);
 
       expect(

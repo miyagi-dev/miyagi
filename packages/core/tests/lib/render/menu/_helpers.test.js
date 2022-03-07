@@ -82,28 +82,29 @@ describe("lib/menu/elements/helpers", () => {
     });
   });
 
-  describe("childrenOfDirectoryContainDirectory()", () => {
-    describe("with children containing a directory", () => {
+  describe("shouldRenderWithToggle()", () => {
+    describe("with children containing a directory or docs", () => {
       test("returns true", () => {
         expect(
-          helpers.childrenOfDirectoryContainDirectory({
-            children: [{ type: "directory" }],
-          })
+          helpers.shouldRenderWithToggle(
+            {},
+            {
+              children: [{ type: "directory" }],
+            }
+          )
         ).toBe(true);
       });
     });
 
-    describe("with children not containing a directory", () => {
+    describe("with children not containing a directory or docs", () => {
       test("returns false", () => {
-        expect(helpers.childrenOfDirectoryContainDirectory({})).toBeFalsy();
+        expect(helpers.shouldRenderWithToggle({})).toBeFalsy();
         expect(
-          helpers.childrenOfDirectoryContainDirectory({ children: undefined })
+          helpers.shouldRenderWithToggle({ children: undefined })
         ).toBeFalsy();
+        expect(helpers.shouldRenderWithToggle({ children: [] })).toBe(false);
         expect(
-          helpers.childrenOfDirectoryContainDirectory({ children: [] })
-        ).toBe(false);
-        expect(
-          helpers.childrenOfDirectoryContainDirectory({
+          helpers.shouldRenderWithToggle({
             children: [{ type: "file" }],
           })
         ).toBe(false);

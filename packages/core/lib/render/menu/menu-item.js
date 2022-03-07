@@ -22,7 +22,6 @@ function render(dir, request, app) {
     dir.index,
     (() => {
       let html = "";
-
       if (helpers.directoryHasComponent(dir)) {
         html += component.render(app, dir, request);
       } else {
