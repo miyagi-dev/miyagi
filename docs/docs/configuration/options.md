@@ -233,7 +233,7 @@ default:
 ```json
 {
   "extension": "md",
-  "name": "index"
+  "name": "README"
 }
 ```
 

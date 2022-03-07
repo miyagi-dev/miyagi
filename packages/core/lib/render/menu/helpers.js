@@ -44,14 +44,16 @@ function pathIsParentOfOrEqualRequestedPath(currentPath, requestedPath) {
   if (!requestedPath) return false;
   if (!requestedPath.startsWith(currentPath)) return false;
   if (currentPath === requestedPath) return true;
-
   const requestedPathDirectories = requestedPath.split(path.sep);
   const currentPathDirectories = currentPath.split(path.sep);
 
   if (requestedPathDirectories.length === currentPathDirectories.length)
     return arraysAreEqual(currentPathDirectories, requestedPathDirectories);
 
-  return true;
+  return arraysAreEqual(
+    currentPathDirectories,
+    requestedPathDirectories.slice(0, currentPathDirectories.length)
+  );
 }
 
 /**
@@ -65,15 +67,34 @@ function pathEqualsRequest(componentPath, variation, request) {
 }
 
 /**
+ * @param {object} app
  * @param {object} directory - menu tree object
- * @returns {boolean} is true if the any of the children of the given directory also have children
+ * @returns {boolean}
  */
-function childrenOfDirectoryContainDirectory(directory) {
-  return (
-    directory.children &&
-    typeof directory.children !== "undefined" &&
+function shouldRenderWithToggle(app, directory) {
+  if (
+    !directory ||
+    !directory.children ||
+    typeof directory.children === "undefined"
+  )
+    return false;
+
+  if (
     directory.children.filter((child) => child.type === "directory").length > 0
-  );
+  )
+    return true;
+
+  if (
+    directory.children.filter((child) =>
+      child.fullPath
+        ? path.extname(child.fullPath) ===
+          `.${app.get("config").files.docs.extension}`
+        : false
+    ).length > 0
+  )
+    return true;
+
+  return false;
 }
 
 /**
@@ -115,7 +136,7 @@ function directoryHasComponent(directory) {
 
 module.exports = {
   activeState,
-  childrenOfDirectoryContainDirectory,
+  shouldRenderWithToggle,
   componentHasVariations,
   directoryHasComponent,
   directoryIsNotTopLevel,

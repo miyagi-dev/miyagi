@@ -305,7 +305,7 @@ async function renderVariations({
             app.get("config").components.folder,
             file.split(path.sep).slice(0, -1).join("/")
           ),
-          name,
+          name: componentDocumentation?.includes("<h1>") ? null : name,
           componentTextDirection:
             componentTextDirection ||
             app.get("config").components.textDirection,

@@ -69,22 +69,15 @@
   display: none;
 }
 
+.Menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding-block-start: 0.5em;
+}
+
 .Menu-listItem {
   position: relative;
-}
-
-.Menu-listItem--directory.Menu-listItem--lvl0 {
-  padding-bottom: 1em;
-}
-
-.Menu-list--variations,
-.Menu-list--components:not(.Menu-list--lvl0) {
-  padding-top: var(--spacingTop);
-}
-
-.Menu-list--variations + .Menu-list--components {
-  padding-bottom: 0.5rem;
-  padding-top: 1rem;
 }
 
 .Menu-link,
@@ -220,16 +213,8 @@
 }
 
 @media (pointer: coarse) {
-  .Menu-list {
-    --spacingTop: 1.25rem;
-  }
-
   .Menu-listContainer {
     margin-inline-start: 2rem;
-  }
-
-  .Menu-listItem:not(.Menu-listItem--lvl0):not(:last-child) {
-    padding-bottom: 1rem;
   }
 
   .Menu-toggle {
@@ -246,16 +231,8 @@
 }
 
 @media (pointer: fine) {
-  .Menu-list {
-    --spacingTop: 0.5rem;
-  }
-
   .Menu-listContainer {
     margin-inline-start: 1.5rem;
-  }
-
-  .Menu-listItem:not(.Menu-listItem--lvl0):not(:last-child) {
-    padding-bottom: 0.5rem;
   }
 
   .Menu-toggle {

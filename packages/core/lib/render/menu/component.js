@@ -22,12 +22,10 @@ const menu = require("./index.js");
 function render(app, component, request) {
   const hasVariations = menuHelpers.componentHasVariations(component);
   let html = "";
+
   const current = request.path === component.shortPath && !request.variation;
 
-  if (
-    hasVariations ||
-    menuHelpers.childrenOfDirectoryContainDirectory(component)
-  ) {
+  if (hasVariations || menuHelpers.shouldRenderWithToggle(app, component)) {
     const expanded = menuHelpers.pathIsParentOfOrEqualRequestedPath(
       component.shortPath,
       request.path

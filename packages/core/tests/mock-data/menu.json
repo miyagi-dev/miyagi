@@ -12,6 +12,17 @@
         "fullPath": "/miyagi/tests/src/components/button",
         "shortPath": "components/button",
         "normalizedShortPath": "components-button",
+        "children": [
+          {
+            "fullPath": "/miyagi/tests/src/components/button/docs.md",
+            "id": "-miyagi-tests-src-components-button-docs-md",
+            "index": 1,
+            "name": "docs",
+            "normalizedShortPath": "components-button-docs",
+            "shortPath": "components/button/docs",
+            "type": "file"
+          }
+        ],
         "variations": [
           { "name": "Button", "data": { "label": "Regular button" } },
           {
