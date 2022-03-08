@@ -72,7 +72,6 @@ async function updateFileContents(app, events) {
       helpers.fileIsTemplateFile(app, changedPath) ||
       helpers.fileIsDataFile(app, changedPath) ||
       helpers.fileIsDocumentationFile(changedPath) ||
-      helpers.fileIsInfoFile(app, changedPath) ||
       helpers.fileIsSchemaFile(app, changedPath)
     ) {
       const fullPath = path.join(process.cwd(), changedPath);
@@ -239,18 +238,6 @@ async function handleFileChange() {
     });
 
     changeFileCallback(true, hasBeenAdded);
-    // updated file is an info file
-  } else if (
-    triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsInfoFile(appInstance, changedPath)
-    )
-  ) {
-    await setState(appInstance, {
-      fileContents: await updateFileContents(appInstance, triggeredEvents),
-      menu: true,
-    });
-
-    changeFileCallback(true, true);
     // updated file is a schema file
   } else if (
     triggeredEvents.some(({ changedPath }) =>

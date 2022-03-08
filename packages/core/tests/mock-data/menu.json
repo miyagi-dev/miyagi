@@ -84,7 +84,7 @@
       },
       {
         "type": "directory",
-        "name": "link-list",
+        "name": "link list",
         "fullPath": "/miyagi/tests/src/components/link-list",
         "shortPath": "components/link-list",
         "normalizedShortPath": "components-link-list",

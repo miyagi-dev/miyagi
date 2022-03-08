@@ -42,21 +42,12 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
  * @returns {object} adapted file tree object
  */
 function getDataForLinkedDirectory(app, directory) {
-  const info =
-    app.get("state").fileContents[
-      path.join(
-        directory.path,
-        `${app.get("config").files.info.name}.${
-          app.get("config").files.info.extension
-        }`
-      )
-    ];
   const shortPath = helpers.getShortPathFromFullPath(app, directory.path);
   const normalizedShortPath = helpers.normalizeString(shortPath);
 
   return {
     type: directory.type,
-    name: info && info.name ? info.name : directory.name,
+    name: directory.name.replaceAll("-", " "),
     fullPath: directory.path,
     shortPath,
     normalizedShortPath,
@@ -79,7 +70,10 @@ function getDataForDocumentationFile(app, file) {
 
   return {
     type: file.type,
-    name: path.basename(file.name, ".md"),
+    name: path
+      .basename(file.name, ".md")
+      .replaceAll("-", " ")
+      .replaceAll("_", " "),
     fullPath: file.path,
     shortPath,
     normalizedShortPath,
@@ -89,24 +83,13 @@ function getDataForDocumentationFile(app, file) {
 }
 
 /**
- * @param {object} app - the express instance
  * @param {object} directory - file tree object
  * @returns {object} adapted file tree object
  */
-function getDataForDirectory(app, directory) {
-  const info =
-    app.get("state").fileContents[
-      path.join(
-        directory.path,
-        `${app.get("config").files.info.name}.${
-          app.get("config").files.info.extension
-        }`
-      )
-    ];
-
+function getDataForDirectory(directory) {
   return {
     type: directory.type,
-    name: info && info.name ? info.name : directory.name,
+    name: directory.name.replaceAll("-", " "),
     fullPath: directory.path,
     index: directory.index,
     id: helpers.normalizeString(directory.path),
@@ -124,7 +107,7 @@ function restructureDirectory(app, directory) {
   if (hasComponentFileWithCorrectNameAsChild(app, directory)) {
     item = getDataForLinkedDirectory(app, directory);
   } else {
-    item = getDataForDirectory(app, directory);
+    item = getDataForDirectory(directory);
   }
 
   return item;

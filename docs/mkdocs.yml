@@ -44,7 +44,6 @@ nav:
       - Introduction: component-files/introduction.md
       - Assets: component-files/assets.md
       - Documentation: component-files/documentation.md
-      - Info: component-files/info.md
       - Mocks: component-files/mocks.md
       - Schema: component-files/schema.md
       - Template: component-files/template.md
