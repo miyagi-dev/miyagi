@@ -39,10 +39,7 @@ module.exports = async function renderMainDocs({
   }
 
   const dirname = path.dirname(file);
-  const basename = path.basename(
-    file,
-    `.${app.get("config").files.docs.extension}`
-  );
+  const basename = path.basename(file, ".md");
 
   await res.render(
     "main.hbs",
@@ -53,7 +50,7 @@ module.exports = async function renderMainDocs({
         ? "/show-{{component}}.html"
         : "/show?file={{component}}",
       iframeSrc,
-      requestedComponent: (helpers.docFileIsIndexFile(app, file)
+      requestedComponent: (helpers.docFileIsIndexFile(file)
         ? dirname
         : path.join(dirname, basename)
       ).slice(1),

@@ -37,7 +37,7 @@ module.exports = async function renderIframeComponent({
   const componentJson = await getComponentData(app, file);
   const componentDocumentation =
     app.get("state").fileContents[
-      helpers.getDocumentationPathFromTemplatePath(app, templateFilePath)
+      helpers.getDocumentationPathFromTemplatePath(templateFilePath)
     ];
   const componentInfo =
     app.get("state").fileContents[

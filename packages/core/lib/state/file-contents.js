@@ -62,7 +62,7 @@ async function getFilePaths(app) {
           `${files.info.name}.${files.info.extension}`,
           `data.${files.mocks.extension}`,
         ]) ||
-        helpers.fileIsDocumentationFile(app, res)
+        helpers.fileIsDocumentationFile(res)
       ) {
         return res;
       } else {
@@ -189,7 +189,7 @@ async function readFile(app, fileName) {
     result = fs.readFileSync(fileName, { encoding: "utf8" });
   } else if (path.extname(fileName) === ".yaml") {
     result = getYamlFileContent(app, fileName);
-  } else if (helpers.fileIsDocumentationFile(app, fileName)) {
+  } else if (helpers.fileIsDocumentationFile(fileName)) {
     result = getConvertedMarkdownFileContent(fileName);
   } else if (
     helpers.fileIsDataFile(app, fileName) &&

@@ -47,10 +47,6 @@
         "name": "index",
         "extension": "css"
       },
-      "docs": {
-        "name": "README",
-        "extension": "md"
-      },
       "info": {
         "name": "info",
         "extension": "json"

@@ -19,7 +19,7 @@ function getComponentFiles(app, directory) {
 
     if (helpers.fileIsTemplateFile(app, baseName)) return true;
 
-    return helpers.docFileIsIndexFile(app, child.path);
+    return helpers.docFileIsIndexFile(child.path);
   });
 }
 
@@ -74,15 +74,12 @@ function getDataForLinkedDirectory(app, directory) {
 function getDataForDocumentationFile(app, file) {
   const shortPath = helpers
     .getShortPathFromFullPath(app, file.path)
-    .replace(`.${app.get("config").files.docs.extension}`, "");
+    .replace(".md", "");
   const normalizedShortPath = helpers.normalizeString(shortPath);
 
   return {
     type: file.type,
-    name: path.basename(
-      file.name,
-      `.${app.get("config").files.docs.extension}`
-    ),
+    name: path.basename(file.name, ".md"),
     fullPath: file.path,
     shortPath,
     normalizedShortPath,
@@ -176,13 +173,10 @@ function getMenu(app) {
         }
         array.push(restructured);
       } else if (
-        helpers.fileIsDocumentationFile(app, item.path) &&
+        helpers.fileIsDocumentationFile(item.path) &&
         !item.path.endsWith("index.md") &&
         !item.path.endsWith("README.md") &&
-        path.basename(
-          item.path,
-          `.${app.get("config").files.docs.extension}`
-        ) !==
+        path.basename(item.path, ".md") !==
           path.dirname(item.path).split("/")[
             path.dirname(item.path).split("/").length - 1
           ]

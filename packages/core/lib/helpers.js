@@ -130,17 +130,11 @@ module.exports = {
   /**
    * Accepts a template file path and returns the path to the corresponding documentation file
    *
-   * @param {object} app - the express instance
    * @param {string} filePath - file path to a template file
    * @returns {string} file path to the corresponding doc file
    */
-  getDocumentationPathFromTemplatePath: function (app, filePath) {
-    return filePath.replace(
-      path.basename(filePath),
-      `${app.get("config").files.docs.name}.${
-        app.get("config").files.docs.extension
-      }`
-    );
+  getDocumentationPathFromTemplatePath: function (filePath) {
+    return filePath.replace(path.basename(filePath), "README.md");
   },
 
   /**
@@ -196,14 +190,11 @@ module.exports = {
   /**
    * Accepts a file path and checks if it is a documentation file
    *
-   * @param {object} app - the express instance
    * @param {string} filePath - path to any type of file
    * @returns {boolean} is true if the given file is a doc file
    */
-  fileIsDocumentationFile: function (app, filePath) {
-    return (
-      path.extname(filePath) === `.${app.get("config").files.docs.extension}`
-    );
+  fileIsDocumentationFile: function (filePath) {
+    return path.extname(filePath) === ".md";
   },
 
   /**
@@ -427,23 +418,16 @@ module.exports = {
     }
   },
 
-  docFileIsIndexFile(app, fileName) {
+  docFileIsIndexFile(fileName) {
     const baseName = path.basename(fileName);
     const extname = path.extname(fileName);
-    const docsExtension = app.get("config").files.docs.extension;
 
-    if (extname !== `.${docsExtension}`) return false;
-
-    if (baseName === `${app.get("config").files.docs.name}.${docsExtension}`)
-      return true;
-
-    if (baseName === `index.${docsExtension}`) return true;
+    if (extname !== ".md") return false;
+    if (baseName === "README.md") return true;
+    if (baseName === "index.md") return true;
 
     const dirParts = path.dirname(fileName).split(path.sep);
-    if (
-      dirParts[dirParts.length - 1] ===
-      path.basename(fileName, `.${docsExtension}`)
-    )
+    if (dirParts[dirParts.length - 1] === path.basename(fileName, ".md"))
       return true;
 
     return false;

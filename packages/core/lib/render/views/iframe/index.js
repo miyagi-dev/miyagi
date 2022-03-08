@@ -19,10 +19,7 @@ const {
 module.exports = async function renderIframeIndex({ app, res, cb, cookies }) {
   const documentation =
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
-        app,
-        `README.${app.get("config").files.docs.extension}`
-      )
+      helpers.getFullPathFromShortPath(app, "README.md")
     ];
 
   const { ui } = app.get("config");

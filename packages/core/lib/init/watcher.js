@@ -71,7 +71,7 @@ async function updateFileContents(app, events) {
     if (
       helpers.fileIsTemplateFile(app, changedPath) ||
       helpers.fileIsDataFile(app, changedPath) ||
-      helpers.fileIsDocumentationFile(app, changedPath) ||
+      helpers.fileIsDocumentationFile(changedPath) ||
       helpers.fileIsInfoFile(app, changedPath) ||
       helpers.fileIsSchemaFile(app, changedPath)
     ) {
@@ -225,7 +225,7 @@ async function handleFileChange() {
     // updated file is a doc file
   } else if (
     triggeredEvents.some(({ changedPath }) =>
-      helpers.fileIsDocumentationFile(appInstance, changedPath)
+      helpers.fileIsDocumentationFile(changedPath)
     )
   ) {
     const hasBeenAdded = !Object.keys(

@@ -71,25 +71,11 @@ describe("lib/helpers", () => {
 
   describe("fileIsDocumentationFile()", () => {
     test("returns true if file is a docs file", () => {
-      expect(
-        helpers.fileIsDocumentationFile(
-          app,
-          `foo/${app.get("config").files.docs.name}.${
-            app.get("config").files.docs.extension
-          }`
-        )
-      ).toBe(true);
+      expect(helpers.fileIsDocumentationFile("foo/README.md")).toBe(true);
     });
 
     test("returns true if file is not a docs file", () => {
-      expect(
-        helpers.fileIsDocumentationFile(
-          app,
-          `foo/${app.get("config").files.docs.name}.${
-            app.get("config").files.docs.name
-          }!`
-        )
-      ).toBe(false);
+      expect(helpers.fileIsDocumentationFile("foo/README.md!")).toBe(false);
     });
   });
 
