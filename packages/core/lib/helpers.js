@@ -138,22 +138,6 @@ module.exports = {
   },
 
   /**
-   * Accepts a template file path and returns the path to the corresponding info file
-   *
-   * @param {object} app - the express instance
-   * @param {string} filePath - file path to a template file
-   * @returns {string} file path to the corresponding info file
-   */
-  getInfoPathFromTemplatePath: function (app, filePath) {
-    return filePath.replace(
-      path.basename(filePath),
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    );
-  },
-
-  /**
    * Accepts a template file path and returns the path to the corresponding schema file
    *
    * @param {object} app - the express instance
@@ -195,22 +179,6 @@ module.exports = {
    */
   fileIsDocumentationFile: function (filePath) {
     return path.extname(filePath) === ".md";
-  },
-
-  /**
-   * Accepts a file path and checks if it is an info file
-   *
-   * @param {object} app - the express instance
-   * @param {string} filePath - path to any type of file
-   * @returns {boolean} is true if the given file is a info file
-   */
-  fileIsInfoFile: function (app, filePath) {
-    return (
-      path.basename(filePath) ===
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    );
   },
 
   /**

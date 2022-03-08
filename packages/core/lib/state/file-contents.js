@@ -59,7 +59,6 @@ async function getFilePaths(app) {
           )}.${files.templates.extension}`,
           `${files.mocks.name}.${files.mocks.extension}`,
           `${files.schema.name}.${files.schema.extension}`,
-          `${files.info.name}.${files.info.extension}`,
           `data.${files.mocks.extension}`,
         ]) ||
         helpers.fileIsDocumentationFile(res)
@@ -209,7 +208,7 @@ async function readFile(app, fileName) {
  * and their content.
  *
  * @param {object} app - the express instance
- * @returns {Promise} gets resolved with the content of all docs, mocks, schema, info files
+ * @returns {Promise} gets resolved with the content of all docs, mocks, schema files
  */
 async function getFileContents(app) {
   const fileContents = {};

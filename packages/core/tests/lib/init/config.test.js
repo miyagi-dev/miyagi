@@ -592,10 +592,6 @@ describe("lib/init/config", () => {
             extension: "css",
             name: "index",
           },
-          info: {
-            extension: "json",
-            name: "info",
-          },
           js: {
             extension: "js",
             name: "index",

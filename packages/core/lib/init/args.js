@@ -16,11 +16,11 @@ module.exports = yargs
   })
   .command(
     "new",
-    "Creates a new component folder (including template, mock, documentation, info, css and js files)",
+    "Creates a new component folder (including template, mock, documentation, css and js files)",
     {
       skip: {
         description:
-          "files that will not be created\n(comma separated list of css, docs, info, js, mocks, tpl)",
+          "files that will not be created\n(comma separated list of css, docs, js, mocks, tpl)",
         type: "string",
       },
       only: {

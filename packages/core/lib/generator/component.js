@@ -97,19 +97,6 @@ module.exports = async function componentGenerator(cliParams, config) {
           }
         }
         break;
-      case "info":
-        {
-          const data = {
-            name: "",
-          };
-
-          if (filesConfig.info.extension === "yaml") {
-            str = jsonToYaml.dump(data);
-          } else {
-            str = `${JSON.stringify(data, null, 2)}\n`;
-          }
-        }
-        break;
       case "schema":
         {
           const data = {
@@ -209,7 +196,6 @@ module.exports = async function componentGenerator(cliParams, config) {
       )}.${filesConfig.templates.extension}`,
       mocks: `${filesConfig.mocks.name}.${filesConfig.mocks.extension}`,
       docs: "README.md",
-      info: `${filesConfig.info.name}.${filesConfig.info.extension}`,
       css: `${helpers.getResolvedFileName(
         filesConfig.css.name,
         componentName

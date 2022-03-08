@@ -43,5 +43,3 @@ _miyagi_ assumes that you have a dedicated folder for each of your components li
 ```
 
 You can call the folders whatever you want and you can nest them as deep as you want.
-
-Additionally to [info files in your components](/component-files/info/), you can also put a `info.json` or `info.yaml` in every other folder if you want to change the displayed name in the navigation.

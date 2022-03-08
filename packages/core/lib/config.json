@@ -47,10 +47,6 @@
         "name": "index",
         "extension": "css"
       },
-      "info": {
-        "name": "info",
-        "extension": "json"
-      },
       "js": {
         "name": "index",
         "extension": "js"
