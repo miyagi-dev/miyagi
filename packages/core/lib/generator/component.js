@@ -208,7 +208,7 @@ module.exports = async function componentGenerator(cliParams, config) {
         componentName
       )}.${filesConfig.templates.extension}`,
       mocks: `${filesConfig.mocks.name}.${filesConfig.mocks.extension}`,
-      docs: `${filesConfig.docs.name}.${filesConfig.docs.extension}`,
+      docs: "README.md",
       info: `${filesConfig.info.name}.${filesConfig.info.extension}`,
       css: `${helpers.getResolvedFileName(
         filesConfig.css.name,

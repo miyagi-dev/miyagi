@@ -29,10 +29,6 @@ describe("lib/init/config", () => {
             extension: "css",
             name: "index",
           },
-          docs: {
-            extension: "md",
-            name: "README",
-          },
           js: {
             extension: "js",
             name: "index",
@@ -78,10 +74,6 @@ describe("lib/init/config", () => {
           css: {
             extension: "css",
             name: "index",
-          },
-          docs: {
-            extension: "md",
-            name: "README",
           },
           js: {
             extension: "js",
@@ -130,10 +122,6 @@ describe("lib/init/config", () => {
             extension: "css",
             name: "index",
           },
-          docs: {
-            extension: "md",
-            name: "README",
-          },
           js: {
             extension: "js",
             name: "index",
@@ -176,10 +164,6 @@ describe("lib/init/config", () => {
           css: {
             extension: "css",
             name: "index",
-          },
-          docs: {
-            extension: "md",
-            name: "README",
           },
           js: {
             extension: "js",
@@ -233,10 +217,6 @@ describe("lib/init/config", () => {
               extension: "css",
               name: "index",
             },
-            docs: {
-              extension: "md",
-              name: "README",
-            },
             js: {
               extension: "js",
               name: "index",
@@ -279,10 +259,6 @@ describe("lib/init/config", () => {
             css: {
               extension: "css",
               name: "index",
-            },
-            docs: {
-              extension: "md",
-              name: "README",
             },
             js: {
               extension: "js",
@@ -335,10 +311,6 @@ describe("lib/init/config", () => {
               extension: "css",
               name: "index",
             },
-            docs: {
-              extension: "md",
-              name: "README",
-            },
             js: {
               extension: "js",
               name: "index",
@@ -381,10 +353,6 @@ describe("lib/init/config", () => {
             css: {
               extension: "css",
               name: "index",
-            },
-            docs: {
-              extension: "md",
-              name: "README",
             },
             js: {
               extension: "js",
@@ -435,10 +403,6 @@ describe("lib/init/config", () => {
             css: {
               extension: "css",
               name: "index",
-            },
-            docs: {
-              extension: "md",
-              name: "README",
             },
             js: {
               extension: "js",
@@ -491,10 +455,6 @@ describe("lib/init/config", () => {
             css: {
               extension: "css",
               name: "index",
-            },
-            docs: {
-              extension: "md",
-              name: "README",
             },
             js: {
               extension: "js",
@@ -632,10 +592,6 @@ describe("lib/init/config", () => {
             extension: "css",
             name: "index",
           },
-          docs: {
-            extension: "md",
-            name: "README",
-          },
           info: {
             extension: "json",
             name: "info",
@@ -673,10 +629,6 @@ describe("lib/init/config", () => {
               extension: "css",
               name: "index",
             },
-            docs: {
-              extension: "md",
-              name: "README",
-            },
             js: {
               extension: "js",
               name: "index",
@@ -709,10 +661,6 @@ describe("lib/init/config", () => {
             css: {
               extension: "css",
               name: "index",
-            },
-            docs: {
-              extension: "md",
-              name: "README",
             },
             js: {
               extension: "js",

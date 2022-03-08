@@ -63,9 +63,9 @@ function checkIfRequestedFileIsDocFile(app, component) {
   if (!component) return false;
 
   const { fileContents } = app.get("state");
-  const docsExtension = app.get("config").files.docs.extension;
+  const docsExtension = "md";
 
-  if (component.endsWith(app.get("config").files.docs.extension)) {
+  if (component.endsWith(docsExtension)) {
     const var1 = path.join(
       process.cwd(),
       app.get("config").components.folder,

@@ -20,7 +20,7 @@ module.exports = async function renderIframeDocs({
   cookies,
 }) {
   const componentDocumentation = app.get("state").fileContents[fullPath];
-  const componentName = getHeadlineFromFileName(app, file);
+  const componentName = getHeadlineFromFileName(file);
   const { ui } = app.get("config");
   const themeMode = getThemeMode(app, cookies);
   const componentTextDirection = getComponentTextDirection(app, cookies);
@@ -64,7 +64,7 @@ module.exports = async function renderIframeDocs({
  * @param {string} file
  * @returns {string}
  */
-function getHeadlineFromFileName(app, file) {
+function getHeadlineFromFileName(file) {
   let fileName = file;
 
   if (fileName.startsWith("/")) {
@@ -74,10 +74,7 @@ function getHeadlineFromFileName(app, file) {
   if (file.endsWith("README.md") || file.endsWith("index.md")) {
     fileName = path.dirname(fileName);
   } else {
-    fileName = path.basename(
-      fileName,
-      `.${app.get("config").files.docs.extension}`
-    );
+    fileName = path.basename(fileName, ".md");
   }
 
   return fileName.replaceAll("-", " ");

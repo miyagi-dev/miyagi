@@ -27,11 +27,9 @@ function getSourceTree(app) {
     {
       attributes: ["type"],
       extensions: new RegExp(
-        `.(${app.get("config").files.css.extension}|${
-          app.get("config").files.docs.extension
-        }|${app.get("config").files.js.extension}|${
-          app.get("config").files.mocks.extension
-        }|${
+        `.(${app.get("config").files.css.extension}|md|${
+          app.get("config").files.js.extension
+        }|${app.get("config").files.mocks.extension}|${
           app.get("config").files.schema.extension
         }|${helpers.getSingleFileExtension(
           app.get("config").files.templates.extension

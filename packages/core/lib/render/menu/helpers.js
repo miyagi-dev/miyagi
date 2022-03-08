@@ -86,10 +86,7 @@ function shouldRenderWithToggle(app, directory) {
 
   if (
     directory.children.filter((child) =>
-      child.fullPath
-        ? path.extname(child.fullPath) ===
-          `.${app.get("config").files.docs.extension}`
-        : false
+      child.fullPath ? path.extname(child.fullPath) === ".md" : false
     ).length > 0
   )
     return true;
