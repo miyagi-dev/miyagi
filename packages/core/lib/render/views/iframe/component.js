@@ -39,10 +39,6 @@ module.exports = async function renderIframeComponent({
     app.get("state").fileContents[
       helpers.getDocumentationPathFromTemplatePath(templateFilePath)
     ];
-  const componentInfo =
-    app.get("state").fileContents[
-      helpers.getInfoPathFromTemplatePath(app, templateFilePath)
-    ];
   const schemaFilePath = helpers.getSchemaPathFromTemplatePath(
     app,
     templateFilePath
@@ -108,11 +104,12 @@ module.exports = async function renderIframeComponent({
 
   let componentName = path.basename(path.dirname(file));
 
-  if (componentInfo) {
+  // @TODO
+  /*if (componentInfo) {
     if (componentInfo.name) {
       componentName = componentInfo.name;
     }
-  }
+  }*/
 
   let context;
 

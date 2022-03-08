@@ -226,15 +226,6 @@ default:
 
 _**Note:** You can use `"<component>"` for `name` if the file should have the same name as the component folder._
 
-default:
-
-```json
-{
-  "extension": "json",
-  "name": "info"
-}
-```
-
 ### `js`
 
 default:

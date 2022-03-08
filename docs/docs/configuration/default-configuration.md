@@ -49,10 +49,6 @@ Please refer to the [available options](/configuration/options/) for a full expl
       "name": "index",
       "extension": "css"
     },
-    "info": {
-      "name": "info",
-      "extension": "json"
-    },
     "js": {
       "name": "index",
       "extension": "js"
