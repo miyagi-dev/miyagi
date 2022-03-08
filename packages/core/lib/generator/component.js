@@ -106,7 +106,7 @@ module.exports = async function componentGenerator(cliParams, config) {
             properties: {},
           };
 
-          if (filesConfig.schema.extension === "yaml") {
+          if (["yaml", "yml"].includes(filesConfig.schema.extension)) {
             str = jsonToYaml.dump(data);
           } else {
             str = `${JSON.stringify(data, null, 2)}\n`;

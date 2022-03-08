@@ -137,7 +137,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
         if (err) {
           reject(err);
         } else {
-          if (filesConfig.schema.extension === "yaml") {
+          if (["yaml", "yml"].includes(filesConfig.schema.extension)) {
             resolve(jsYaml.load(result));
           } else {
             resolve(JSON.parse(result));

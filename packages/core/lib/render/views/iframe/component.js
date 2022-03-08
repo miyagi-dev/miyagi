@@ -53,7 +53,7 @@ module.exports = async function renderIframeComponent({
 
   let componentSchemaString;
   if (componentSchema) {
-    if (app.get("config").files.schema.extension === "yaml") {
+    if (["yaml", "yml"].includes(app.get("config").files.schema.extension)) {
       componentSchemaString = jsonToYaml.dump(componentSchema);
     } else {
       componentSchemaString = JSON.stringify(componentSchema, null, 2);
@@ -151,7 +151,7 @@ module.exports = async function renderIframeComponent({
  * @typedef {object} FileContents
  * @property {object} schema - schema object
  * @property {string} schema.string - string with schema
- * @property {("yaml"|"json")} schema.type - the file type of the schema file
+ * @property {("yaml"|"yml"|"json")} schema.type - the file type of the schema file
  * @property {boolean} schema.selected - true if the schema tab should initially be visible
  * @property {string} schema.file - the schema file path
  * @property {object} mocks - mocks object
