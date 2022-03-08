@@ -186,7 +186,7 @@ async function readFile(app, fileName) {
 
   if (helpers.fileIsTemplateFile(app, fileName)) {
     result = fs.readFileSync(fileName, { encoding: "utf8" });
-  } else if (path.extname(fileName) === ".yaml") {
+  } else if ([".yaml", ".yml"].includes(path.extname(fileName))) {
     result = getYamlFileContent(app, fileName);
   } else if (helpers.fileIsDocumentationFile(fileName)) {
     result = getConvertedMarkdownFileContent(fileName);
