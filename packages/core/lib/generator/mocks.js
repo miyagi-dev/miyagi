@@ -84,22 +84,10 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
         content = jsYaml.dump(data);
         break;
       case "json":
-        content = JSON.stringify(
-          {
-            data,
-          },
-          null,
-          2
-        );
+        content = JSON.stringify(data, null, 2);
         break;
       case "js":
-        content = `module.exports = ${JSON.stringify(
-          {
-            data,
-          },
-          null,
-          2
-        )}
+        content = `module.exports = ${JSON.stringify(data, null, 2)}
       `;
         break;
       default:
