@@ -417,7 +417,6 @@ async function resolveJson(app, entry) {
  */
 async function getRootOrVariantDataOfReference(app, ref) {
   let [shortVal, variation] = ref.split("#");
-  let val;
 
   if (shortVal.startsWith("@")) {
     const namespace = shortVal.split("/")[0];
@@ -443,11 +442,21 @@ async function getRootOrVariantDataOfReference(app, ref) {
     }
   }
 
-  val = `${shortVal}/${app.get("config").files.mocks.name}.${
-    app.get("config").files.mocks.extension
-  }`;
+  const { mocks } = app.get("config").files;
+  const mocksBaseName = `${shortVal}/${mocks.name}`;
   const jsonFromData =
-    app.get("state").fileContents[helpers.getFullPathFromShortPath(app, val)];
+    app.get("state").fileContents[
+      helpers.getFullPathFromShortPath(
+        app,
+        `${mocksBaseName}.${mocks.extension[0]}`
+      )
+    ] ||
+    app.get("state").fileContents[
+      helpers.getFullPathFromShortPath(
+        app,
+        `${mocksBaseName}.${mocks.extension[1]}`
+      )
+    ];
 
   if (jsonFromData) {
     const embeddedJson = jsonFromData;
@@ -472,7 +481,7 @@ async function getRootOrVariantDataOfReference(app, ref) {
           "warn",
           config.messages.variationNotFound
             .replace("{{variation}}", variation)
-            .replace("{{fileName}}", val)
+            .replace("{{fileName}}", mocksBaseName)
         );
       }
     }
@@ -481,7 +490,10 @@ async function getRootOrVariantDataOfReference(app, ref) {
   }
   log(
     "warn",
-    config.messages.fileNotFoundLinkIncorrect.replace("{{filePath}}", val)
+    config.messages.fileNotFoundLinkIncorrect.replace(
+      "{{filePath}}",
+      mocksBaseName
+    )
   );
 
   return {};
@@ -581,13 +593,18 @@ function mergeRootDataWithVariationData(rootData, variationData) {
  * @returns {object} the merged data object
  */
 function mergeWithGlobalData(app, data) {
+  const defaultFile = helpers.getFullPathFromShortPath(
+    app,
+    `data.${app.get("config").files.mocks.extension[0]}`
+  );
+  const jsFile = helpers.getFullPathFromShortPath(
+    app,
+    `data.${app.get("config").files.mocks.extension[1]}`
+  );
+
   return {
-    ...app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
-        app,
-        `data.${app.get("config").files.mocks.extension}`
-      )
-    ],
+    ...(app.get("state").fileContents[defaultFile] ||
+      app.get("state").fileContents[jsFile]),
     ...data,
   };
 }

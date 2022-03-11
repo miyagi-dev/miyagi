@@ -116,14 +116,13 @@ module.exports = {
    *
    * @param {object} app - the express instance
    * @param {string} filePath - file path to a template file
+   * @param {string} [fileType]
    * @returns {string} file path to the corresponding mock file
    */
-  getDataPathFromTemplatePath: function (app, filePath) {
+  getDataPathFromTemplatePath: function (app, filePath, fileType) {
     return filePath.replace(
       path.basename(filePath),
-      `${app.get("config").files.mocks.name}.${
-        app.get("config").files.mocks.extension
-      }`
+      `${app.get("config").files.mocks.name}.${fileType}`
     );
   },
 
@@ -161,14 +160,16 @@ module.exports = {
    * @returns {boolean} is true if the given file is a mock file
    */
   fileIsDataFile: function (app, filePath) {
-    return (
-      path.basename(filePath) ===
-        `${app.get("config").files.mocks.name}.${
-          app.get("config").files.mocks.extension
-        }` ||
-      module.exports.getShortPathFromFullPath(app, filePath) ===
-        `data.${app.get("config").files.mocks.extension}`
-    );
+    const extension = path.extname(filePath);
+
+    if (!["js", "json", "yaml", "yml"].includes(extension.slice(1)))
+      return false;
+
+    const basename = path.basename(filePath, extension);
+    if (["data", app.get("config").files.mocks.name].includes(basename))
+      return true;
+
+    return false;
   },
 
   /**

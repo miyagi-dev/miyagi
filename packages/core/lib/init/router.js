@@ -15,17 +15,19 @@ const render = require("../render");
  * @returns {object} the mock data of the given component
  */
 function getDataForComponent(app, component) {
-  return app.get("state").fileContents[
-    helpers.getFullPathFromShortPath(
-      app,
-      path.join(
-        component,
-        `${app.get("config").files.mocks.name}.${
-          app.get("config").files.mocks.extension
-        }`
-      )
-    )
-  ];
+  const { fileContents } = app.get("state");
+  const { name, extension } = app.get("config").files.mocks;
+
+  const defaultPath = helpers.getFullPathFromShortPath(
+    app,
+    path.join(component, `${name}.${extension[0]}`)
+  );
+  const jsPath = helpers.getFullPathFromShortPath(
+    app,
+    path.join(component, `${name}.${extension[1]}`)
+  );
+
+  return fileContents[defaultPath] || fileContents[jsPath];
 }
 
 /**

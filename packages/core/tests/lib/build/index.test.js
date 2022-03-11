@@ -117,9 +117,9 @@ describe("lib/build/index", () => {
       expect(typeof fs.cp.mock.calls[2][3]).toEqual("function");
 
       expect(spyComponentOverview).toHaveBeenCalledTimes(2);
-      expect(spyComponent).toHaveBeenCalledTimes(4);
+      expect(spyComponent).toHaveBeenCalledTimes(2);
       expect(spyComponentVariations).toHaveBeenCalledTimes(2);
-      expect(spyMainWithComponent).toHaveBeenCalledTimes(3);
+      expect(spyMainWithComponent).toHaveBeenCalledTimes(2);
       expect(spyMain).toHaveBeenCalled();
     });
   });

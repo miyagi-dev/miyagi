@@ -597,7 +597,7 @@ describe("lib/init/config", () => {
             name: "index",
           },
           mocks: {
-            extension: "json",
+            extension: ["json", "js"],
             name: "mocks",
           },
           schema: {

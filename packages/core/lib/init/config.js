@@ -341,5 +341,20 @@ module.exports = (userConfig = {}) => {
 
   merged.components.folder = sanitizePath(merged.components.folder);
 
+  // do this later as otherwise the deepMerge would do concatenation which we do not want
+  if (config.files) {
+    if (config.files.mocks) {
+      if (config.files.mocks.extension) {
+        merged.files.mocks.extension = arrayfy(config.files.mocks.extension);
+
+        if (merged.files.mocks.extension.length === 1) {
+          merged.files.mocks.extension.push(
+            defaultUserConfig.files.mocks.extension[1]
+          );
+        }
+      }
+    }
+  }
+
   return merged;
 };

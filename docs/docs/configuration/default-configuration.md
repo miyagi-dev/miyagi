@@ -55,7 +55,7 @@ Please refer to the [available options](/configuration/options/) for a full expl
     },
     "mocks": {
       "name": "mocks",
-      "extension": "json"
+      "extension": ["json", "js"]
     },
     "schema": {
       "name": "schema",

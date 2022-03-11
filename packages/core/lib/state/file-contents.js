@@ -57,9 +57,11 @@ async function getFilePaths(app) {
             files.templates.name,
             path.basename(res, `.${files.templates.extension}`)
           )}.${files.templates.extension}`,
-          `${files.mocks.name}.${files.mocks.extension}`,
+          `${files.mocks.name}.${files.mocks.extension[0]}`,
+          `${files.mocks.name}.${files.mocks.extension[1]}`,
           `${files.schema.name}.${files.schema.extension}`,
-          `data.${files.mocks.extension}`,
+          `data.${files.mocks.extension[0]}`,
+          `data.${files.mocks.extension[1]}`,
         ]) ||
         helpers.fileIsDocumentationFile(res)
       ) {
@@ -79,7 +81,7 @@ async function getFilePaths(app) {
  * @returns {Promise<string>} - the default export of the cjs module or - if the default export is a function - its return value
  */
 async function getJsFileContent(fileName) {
-  const file = requireUncached(fileName);
+  const file = requireUncached(path.resolve(fileName));
 
   return typeof file === "function" ? file() : file;
 }
@@ -192,7 +194,7 @@ async function readFile(app, fileName) {
     result = getConvertedMarkdownFileContent(fileName);
   } else if (
     helpers.fileIsDataFile(app, fileName) &&
-    app.get("config").files.mocks.extension === "js"
+    [".js", ".cjs"].includes(path.extname(fileName))
   ) {
     result = await getJsFileContent(fileName);
   } else {
