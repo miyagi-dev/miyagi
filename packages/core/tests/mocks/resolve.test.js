@@ -222,7 +222,7 @@ describe("api/resolve", () => {
         });
         expect(log).toHaveBeenCalledWith(
           "warn",
-          "Couldn't find file some/component/mocks.json. Please check that it's linked correctly."
+          "Couldn't find referenced mock data 'some/component/mocks'. Please check that it's linked correctly."
         );
       });
     });

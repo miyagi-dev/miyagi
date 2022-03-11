@@ -245,10 +245,16 @@ default:
 
 ```json
 {
-  "extension": "json",
+  "extension": ["json", "js"],
   "name": "mocks"
 }
 ```
+
+This option supports multiple file extension. This can be helpful if you usually have static mock data, but in some cases you want run some method which returns the mock data (see [Asynchronous mock data](/how-to/writing-mock-data/#asynchronous-mock-data)).
+
+The main extension for mock data is always the first one of this array. So, for example, when creating components via `miyagi new` the mock data would be of type `json` (when using the default values).
+
+If you provide a string instead of an array, you can still use `.js` files as well, as this is the fallback for the second extension.
 
 ### `schema`
 

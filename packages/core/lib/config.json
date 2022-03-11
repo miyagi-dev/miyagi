@@ -53,7 +53,7 @@
       },
       "mocks": {
         "name": "mocks",
-        "extension": "json"
+        "extension": ["json", "js"]
       },
       "schema": {
         "name": "schema",
@@ -155,7 +155,7 @@
     "engineAndExtensionGuessedBasedOnFiles": "After scanning your files, miyagi guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
     "engineGuessedBasedOnExtension": "Based on your template files extension, miyagi assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
     "fileNotFound": "Couldn't find file {{filePath}}. Is the 'components.folder' in your configuration set correctly?",
-    "fileNotFoundLinkIncorrect": "Couldn't find file {{filePath}}. Please check that it's linked correctly.",
+    "fileNotFoundLinkIncorrect": "Couldn't find referenced mock data '{{filePath}}'. Please check that it's linked correctly.",
     "generator": {
       "starting": "Creating component…",
       "done": "Done!",

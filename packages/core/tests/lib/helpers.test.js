@@ -27,7 +27,7 @@ describe("lib/helpers", () => {
         helpers.fileIsDataFile(
           app,
           `foo/${app.get("config").files.mocks.name}.${
-            app.get("config").files.mocks.extension
+            app.get("config").files.mocks.extension[0]
           }`
         )
       ).toBe(true);

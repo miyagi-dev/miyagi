@@ -90,7 +90,7 @@ module.exports = async function componentGenerator(cliParams, config) {
             ],
           };
 
-          if (filesConfig.mocks.extension === "yaml") {
+          if (["yaml", "yml"].includes(filesConfig.mocks.extension[0])) {
             str = jsonToYaml.dump(data);
           } else {
             str = `${JSON.stringify(data, null, 2)}\n`;
@@ -194,7 +194,7 @@ module.exports = async function componentGenerator(cliParams, config) {
         filesConfig.templates.name,
         componentName
       )}.${filesConfig.templates.extension}`,
-      mocks: `${filesConfig.mocks.name}.${filesConfig.mocks.extension}`,
+      mocks: `${filesConfig.mocks.name}.${filesConfig.mocks.extension[0]}`,
       docs: "README.md",
       css: `${helpers.getResolvedFileName(
         filesConfig.css.name,

@@ -44,12 +44,29 @@ module.exports = async function renderIframeComponent({
     templateFilePath
   );
   const componentSchema = app.get("state").fileContents[schemaFilePath];
-  const mockFilePath = helpers.getDataPathFromTemplatePath(
-    app,
-    templateFilePath
-  );
-  const componentMocks = app.get("state").fileContents[mockFilePath];
   const componentTemplate = app.get("state").fileContents[templateFilePath];
+
+  let mockFilePath;
+
+  const defaultMockDataPath = helpers.getDataPathFromTemplatePath(
+    app,
+    templateFilePath,
+    app.get("config").files.mocks.extension[0]
+  );
+  const jsMockDataPath = helpers.getDataPathFromTemplatePath(
+    app,
+    templateFilePath,
+    app.get("config").files.mocks.extension[1]
+  );
+  const jsMockData = app.get("state").fileContents[jsMockDataPath];
+
+  if (jsMockData) {
+    mockFilePath = jsMockDataPath;
+  } else {
+    mockFilePath = defaultMockDataPath;
+  }
+
+  const componentMocks = app.get("state").fileContents[mockFilePath];
 
   let componentSchemaString;
   if (componentSchema) {
@@ -62,7 +79,7 @@ module.exports = async function renderIframeComponent({
 
   let componentMocksString;
   if (componentMocks) {
-    if (app.get("config").files.mocks.extension === "yaml") {
+    if (["yaml", "yml"].includes(app.get("config").files.mocks.extension[0])) {
       componentMocksString = jsonToYaml.dump(componentMocks);
     } else {
       componentMocksString = JSON.stringify(componentMocks, null, 2);
@@ -83,7 +100,7 @@ module.exports = async function renderIframeComponent({
     mocks: componentMocks
       ? {
           string: componentMocksString,
-          type: app.get("config").files.mocks.extension,
+          type: app.get("config").files.mocks.extension[0],
           file: path.join(
             app.get("config").components.folder,
             helpers.getShortPathFromFullPath(app, mockFilePath)
@@ -156,7 +173,7 @@ module.exports = async function renderIframeComponent({
  * @property {string} schema.file - the schema file path
  * @property {object} mocks - mocks object
  * @property {string} mocks.string - string with mocks
- * @property {("yaml"|"js"|"json")} mocks.type - the file type of the mocks file
+ * @property {("yaml"|"yml"|"js"|"json")} mocks.type - the file type of the mocks file
  * @property {boolean} mocks.selected - true if the mocks tab should initially be visible
  * @property {string} mocks.file - the mock file path
  * @property {object} template - template object
@@ -383,10 +400,11 @@ function getData(app, variation, file, baseName, entry, validatedMocks, i) {
     variation,
     normalizedVariation: helpers.normalizeString(variation),
     standaloneUrl,
-    mockData:
-      app.get("config").files.schema.extension === "yaml"
-        ? jsonToYaml.dump(entry.rawData)
-        : JSON.stringify(entry.rawData, null, 2),
+    mockData: ["yaml", "yml"].includes(
+      app.get("config").files.mocks.extension[0]
+    )
+      ? jsonToYaml.dump(entry.rawData)
+      : JSON.stringify(entry.rawData, null, 2),
   };
 
   if (validatedMocks && Array.isArray(validatedMocks)) {

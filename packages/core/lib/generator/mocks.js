@@ -23,13 +23,13 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
     messages.dataGenerator.starting.replace("{{fileName}}", folderPath)
   );
 
-  const mockFilePath = `${folderPath}/${filesConfig.mocks.name}.${filesConfig.mocks.extension}`;
+  const mockFilePath = `${folderPath}/${filesConfig.mocks.name}.${filesConfig.mocks.extension[0]}`;
   const schemaFilePath = `${folderPath}/${filesConfig.schema.name}.${filesConfig.schema.extension}`;
 
   readFile(schemaFilePath)
     .then((result) => {
       try {
-        const content = getContent(filesConfig.mocks.extension, result);
+        const content = getContent(filesConfig.mocks.extension[0], result);
 
         readFile(mockFilePath)
           .then((res) => {
@@ -81,6 +81,7 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
 
     switch (fileType) {
       case "yaml":
+      case "yml":
         content = jsYaml.dump(data);
         break;
       case "json":
