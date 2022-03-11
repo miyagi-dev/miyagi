@@ -22,18 +22,17 @@ function getSourceTree(app) {
     exclude.push(new RegExp(ignore));
   }
 
+  const { files } = app.get("config");
   const tree = dirTree(
     path.join(process.cwd(), app.get("config").components.folder),
     {
       attributes: ["type"],
       extensions: new RegExp(
-        `.(${app.get("config").files.css.extension}|md|${
-          app.get("config").files.js.extension
-        }|${app.get("config").files.mocks.extension}|${
-          app.get("config").files.schema.extension
-        }|${helpers.getSingleFileExtension(
-          app.get("config").files.templates.extension
-        )})$`
+        `.(md|${files.css.extension}|${files.js.extension}|${
+          files.mocks.extension[0]
+        }|${files.mocks.extension[1]}|${
+          files.schema.extension
+        }|${helpers.getSingleFileExtension(files.templates.extension)})$`
       ),
       exclude,
     }

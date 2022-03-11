@@ -618,11 +618,20 @@ module.exports = (app) => {
       return new Promise((res, rej) => {
         const promises = [];
         const normalizedFileName = helpers.normalizeString(dir);
+        const templateFilePath = helpers.getFullPathFromShortPath(app, file);
         const data =
           app.get("state").fileContents[
             helpers.getDataPathFromTemplatePath(
               app,
-              helpers.getFullPathFromShortPath(app, file)
+              templateFilePath,
+              app.get("config").files.mocks.extension[0]
+            )
+          ] ||
+          app.get("state").fileContents[
+            helpers.getDataPathFromTemplatePath(
+              app,
+              templateFilePath,
+              app.get("config").files.mocks.extension[1]
             )
           ];
 

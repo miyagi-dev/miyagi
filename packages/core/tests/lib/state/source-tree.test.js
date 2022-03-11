@@ -35,7 +35,7 @@ describe("lib/state/source-tree", () => {
 
     expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
       attributes: ["type"],
-      extensions: new RegExp(".(css|md|js|json|json|extension)$"),
+      extensions: new RegExp(".(md|css|js|json|js|json|extension)$"),
       exclude: [
         new RegExp("node_modules"),
         new RegExp(".git"),

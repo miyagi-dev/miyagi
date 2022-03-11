@@ -132,42 +132,6 @@ async function handleFileChange() {
     });
 
     changeFileCallback(true, true);
-
-    // updated file is a css file
-  } else if (
-    triggeredEvents.find(({ changedPath }) => {
-      return changedPath.endsWith(".css");
-    })
-  ) {
-    // updated file contains custom properties for the styleguide
-    if (
-      triggeredEvents.find(({ changedPath }) => {
-        return appInstance
-          .get("config")
-          .assets.customProperties.files.includes(changedPath);
-      })
-    ) {
-      await setState(appInstance, {
-        css: true,
-      });
-    } else {
-      await setState(appInstance, {
-        menu: true,
-      });
-    }
-
-    changeFileCallback(true, false);
-    // updates file is a js file
-  } else if (
-    triggeredEvents.find(({ changedPath }) => {
-      return changedPath.endsWith(".js");
-    })
-  ) {
-    await setState(appInstance, {
-      menu: true,
-    });
-
-    changeFileCallback(true, false);
     // updated file is a template file
   } else if (
     triggeredEvents.filter((event) =>
@@ -258,6 +222,41 @@ async function handleFileChange() {
     if (appInstance.get("config").ui.reloadAfterChanges.componentAssets) {
       changeFileCallback(true, false);
     }
+    // updated file is a css file
+  } else if (
+    triggeredEvents.find(({ changedPath }) => {
+      return changedPath.endsWith(".css");
+    })
+  ) {
+    // updated file contains custom properties for the styleguide
+    if (
+      triggeredEvents.find(({ changedPath }) => {
+        return appInstance
+          .get("config")
+          .assets.customProperties.files.includes(changedPath);
+      })
+    ) {
+      await setState(appInstance, {
+        css: true,
+      });
+    } else {
+      await setState(appInstance, {
+        menu: true,
+      });
+    }
+
+    changeFileCallback(true, false);
+    // updates file is a js file
+  } else if (
+    triggeredEvents.find(({ changedPath }) => {
+      return changedPath.endsWith(".js");
+    })
+  ) {
+    await setState(appInstance, {
+      menu: true,
+    });
+
+    changeFileCallback(true, false);
   } else {
     await setState(appInstance, {
       sourceTree: true,

@@ -71,7 +71,7 @@ module.exports = async function renderIframeVariation({
 
   const fileContents = {
     mocks: {
-      type: app.get("config").files.mocks.extension,
+      type: app.get("config").files.mocks.extension[0],
     },
   };
 
@@ -133,10 +133,11 @@ module.exports = async function renderIframeVariation({
               theme: themeMode
                 ? Object.assign(app.get("config").ui.theme, { mode: themeMode })
                 : app.get("config").ui.theme,
-              mockData:
-                app.get("config").files.schema.extension === "yaml"
-                  ? jsonToYaml.dump(rawComponentData)
-                  : JSON.stringify(rawComponentData, null, 2),
+              mockData: ["yaml", "yml"].includes(
+                app.get("config").files.mocks.extension[0]
+              )
+                ? jsonToYaml.dump(rawComponentData)
+                : JSON.stringify(rawComponentData, null, 2),
               variation,
               normalizedVariation: helpers.normalizeString(variation),
               mockValidation,

@@ -78,6 +78,7 @@ function getData(app, mockFilePath) {
  * @returns {Array} all variations for the mock file of the given file tree object
  */
 function getVariations(app, obj) {
+  const { mocks } = app.get("config").files;
   const tplChild = obj.children.find(
     (o) =>
       o.name ===
@@ -86,12 +87,11 @@ function getVariations(app, obj) {
         obj.name
       )}.${app.get("config").files.templates.extension}`
   );
-  const jsonChild = obj.children.find(
-    (o) =>
-      o.name ===
-      `${app.get("config").files.mocks.name}.${
-        app.get("config").files.mocks.extension
-      }`
+  const jsonChild = obj.children.find((o) =>
+    [
+      `${mocks.name}.${mocks.extension[0]}`,
+      `${mocks.name}.${mocks.extension[1]}`,
+    ].includes(o.name)
   );
 
   if (tplChild) {

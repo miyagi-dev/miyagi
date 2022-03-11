@@ -8,8 +8,19 @@ module.exports = {
     const templateFilePath = helpers.getFullPathFromShortPath(app, file);
     const componentJson = helpers.cloneDeep(
       app.get("state").fileContents[
-        helpers.getDataPathFromTemplatePath(app, templateFilePath)
-      ]
+        helpers.getDataPathFromTemplatePath(
+          app,
+          templateFilePath,
+          app.get("config").files.mocks.extension[0]
+        )
+      ] ||
+        app.get("state").fileContents[
+          helpers.getDataPathFromTemplatePath(
+            app,
+            templateFilePath,
+            app.get("config").files.mocks.extension[1]
+          )
+        ]
     );
     const hasTemplate = Object.values(app.get("state").partials).includes(
       templateFilePath
@@ -118,8 +129,20 @@ module.exports = {
     const fullFilePath = helpers.getFullPathFromShortPath(app, file);
     const componentJson = helpers.cloneDeep(
       app.get("state").fileContents[
-        helpers.getDataPathFromTemplatePath(app, fullFilePath)
-      ] || {}
+        helpers.getDataPathFromTemplatePath(
+          app,
+          fullFilePath,
+          app.get("config").files.mocks.extension[0]
+        )
+      ] ||
+        app.get("state").fileContents[
+          helpers.getDataPathFromTemplatePath(
+            app,
+            fullFilePath,
+            app.get("config").files.mocks.extension[1]
+          )
+        ] ||
+        {}
     );
     const componentVariations = componentJson.$variants;
     let componentRootData = helpers.removeInternalKeys(componentJson);
