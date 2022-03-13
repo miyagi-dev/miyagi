@@ -339,7 +339,10 @@ module.exports = (userConfig = {}) => {
 
   const merged = deepMerge(defaultUserConfig, config);
 
-  merged.components.folder = sanitizePath(merged.components.folder);
+  merged.components.folder = arrayfy(merged.components.folder);
+  merged.components.folder = merged.components.folder.map((dir) =>
+    sanitizePath(dir)
+  );
 
   // do this later as otherwise the deepMerge would do concatenation which we do not want
   if (config.files) {

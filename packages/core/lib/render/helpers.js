@@ -28,7 +28,7 @@ module.exports = {
 
         if (ext.extendTemplateData) {
           data = await ext.extendTemplateData(
-            path.join(config.components.folder, fullFilePath),
+            fullFilePath,
             config.engine.options,
             data
           );
@@ -45,10 +45,7 @@ module.exports = {
    * @returns {object} the resolved data object
    */
   getDataForRenderFunction(app, data) {
-    const fullPath = path.join(
-      process.cwd(),
-      app.get("config").components.folder
-    );
+    const fullPath = process.cwd();
 
     return {
       ...data,

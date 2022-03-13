@@ -301,7 +301,7 @@ function resolveTpl(app, entry) {
                 path.basename(entries.$tpl)
               )}.${app.get("config").files.templates.extension}`;
 
-              fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+              fullFilePath = helpers.getFullPathFromShortPath(filePath);
             } else {
               filePath = `${entries.$tpl.replace(
                 namespace,
@@ -316,14 +316,14 @@ function resolveTpl(app, entry) {
               )}.${app.get("config").files.templates.extension}`.slice(1);
             }
 
-            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+            fullFilePath = helpers.getFullPathFromShortPath(filePath);
           } else {
             filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
               app.get("config").files.templates.name,
               path.basename(entries.$tpl)
             )}.${app.get("config").files.templates.extension}`;
 
-            fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
+            fullFilePath = helpers.getFullPathFromShortPath(filePath);
           }
 
           fs.stat(fullFilePath, async function (err) {
@@ -446,16 +446,10 @@ async function getRootOrVariantDataOfReference(app, ref) {
   const mocksBaseName = `${shortVal}/${mocks.name}`;
   const jsonFromData =
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
-        app,
-        `${mocksBaseName}.${mocks.extension[0]}`
-      )
+      helpers.getFullPathFromShortPath(`${mocksBaseName}.${mocks.extension[0]}`)
     ] ||
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(
-        app,
-        `${mocksBaseName}.${mocks.extension[1]}`
-      )
+      helpers.getFullPathFromShortPath(`${mocksBaseName}.${mocks.extension[1]}`)
     ];
 
   if (jsonFromData) {
@@ -594,11 +588,9 @@ function mergeRootDataWithVariationData(rootData, variationData) {
  */
 function mergeWithGlobalData(app, data) {
   const defaultFile = helpers.getFullPathFromShortPath(
-    app,
     `data.${app.get("config").files.mocks.extension[0]}`
   );
   const jsFile = helpers.getFullPathFromShortPath(
-    app,
     `data.${app.get("config").files.mocks.extension[1]}`
   );
 

@@ -9,12 +9,11 @@ const log = require("../../logger.js");
 const helpers = require("../../helpers.js");
 
 /**
- * @param {object} app - the express instance
  * @param {object} json - mock data object
  * @param {string} fullPath - the path of the mock file
  * @returns {Array} all valid variation objects
  */
-function getAllValidVariations(app, json, fullPath) {
+function getAllValidVariations(json, fullPath) {
   let arr = [];
 
   if (json) {
@@ -37,7 +36,7 @@ function getAllValidVariations(app, json, fullPath) {
             data: variationData,
           });
         } else if (fullPath) {
-          const shortPath = helpers.getShortPathFromFullPath(app, fullPath);
+          const shortPath = helpers.getShortPathFromFullPath(fullPath);
           log(
             "warn",
             config.messages.noNameSetForVariation
@@ -69,7 +68,7 @@ function getData(app, mockFilePath) {
     result = app.get("state").fileContents[mockFilePath];
   }
 
-  return getAllValidVariations(app, result, mockFilePath);
+  return getAllValidVariations(result, mockFilePath);
 }
 
 /**
@@ -140,9 +139,11 @@ function addIndices(obj, index) {
 }
 
 module.exports = function setMenuStructure(app) {
-  let result = updateSourceObject(app, app.get("state").sourceTree);
+  let result = [];
 
-  result = addIndices(result, -1);
+  app.get("state").sourceTree.forEach((tree) => {
+    result.push(addIndices(updateSourceObject(app, tree), -1));
+  });
 
-  return result && result.children ? result.children : [];
+  return result;
 };

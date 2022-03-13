@@ -121,7 +121,9 @@ function registerAssetFolder(app) {
  * @param {object} app - the express instance
  */
 function registerUserComponentAssets(app) {
-  app.use(express.static(app.get("config").components.folder));
+  app.get("config").components.folder.forEach((folder) => {
+    app.use(express.static(folder));
+  });
 }
 
 module.exports = function initStatic(app) {

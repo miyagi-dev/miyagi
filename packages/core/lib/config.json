@@ -21,7 +21,7 @@
       "outputFile": false
     },
     "components": {
-      "folder": "src",
+      "folder": ["src"],
       "ignores": [
         "node_modules",
         ".git",
@@ -154,7 +154,7 @@
     "checkShellForFurtherErrors": "Please also check the messages printed by miyagi in your shell as there might be more information.",
     "engineAndExtensionGuessedBasedOnFiles": "After scanning your files, miyagi guessed the following settings: engine.name = '{{engine}}', templates.files.extension = '{{extension}}'. If this is not correct, please define at least files.templates.extension in your configuration.",
     "engineGuessedBasedOnExtension": "Based on your template files extension, miyagi assumes that the engine name is '{{engine}}'. If this is not correct, please define it in your configuration via engine.name.",
-    "fileNotFound": "Couldn't find file {{filePath}}. Is the 'components.folder' in your configuration set correctly?",
+    "fileNotFound": "Couldn't find file {{filePath}}. Is 'components.folder' in your configuration set correctly?",
     "fileNotFoundLinkIncorrect": "Couldn't find referenced mock data '{{filePath}}'. Please check that it's linked correctly.",
     "generator": {
       "starting": "Creating component…",
@@ -210,7 +210,7 @@
     "serverStarted": "Running miyagi server at http://localhost:{{port}}!",
     "serverStarting": "Starting miyagi server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
-    "srcFolderNotFound": "The provided components directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: 'components.folder', type: String) or as a cli argument (--components.folder=<String>).",
+    "srcFolderNotFound": "The provided components directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: 'components.folder', type: String|Array) or as a cli argument (--components.folder=<String>).",
     "templateDoesNotExist": "The template '{{template}}' can't be found.",
     "templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, miyagi assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
     "tryingToGuessEngineAndExtension": "No template engine and template file extension defined. Trying to guess it based on your component files…",

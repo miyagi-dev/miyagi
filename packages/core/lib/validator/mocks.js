@@ -18,7 +18,6 @@ module.exports = function validateMockData(app, filePath, dataArray, noCli) {
   const componentSchema =
     app.get("state").fileContents[
       helpers.getFullPathFromShortPath(
-        app,
         helpers.getSchemaPathFromTemplatePath(app, filePath)
       )
     ];

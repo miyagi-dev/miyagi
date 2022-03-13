@@ -5,7 +5,7 @@ const helpers = require("../helpers");
 
 module.exports = {
   getComponentData: async function getComponentData(app, file) {
-    const templateFilePath = helpers.getFullPathFromShortPath(app, file);
+    const templateFilePath = helpers.getFullPathFromShortPath(file);
     const componentJson = helpers.cloneDeep(
       app.get("state").fileContents[
         helpers.getDataPathFromTemplatePath(
@@ -22,6 +22,7 @@ module.exports = {
           )
         ]
     );
+
     const hasTemplate = Object.values(app.get("state").partials).includes(
       templateFilePath
     );
@@ -126,7 +127,7 @@ module.exports = {
   },
 
   getVariationData: async function getVariationData(app, file, variation) {
-    const fullFilePath = helpers.getFullPathFromShortPath(app, file);
+    const fullFilePath = helpers.getFullPathFromShortPath(file);
     const componentJson = helpers.cloneDeep(
       app.get("state").fileContents[
         helpers.getDataPathFromTemplatePath(

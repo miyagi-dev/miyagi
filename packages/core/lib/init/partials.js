@@ -89,13 +89,12 @@ async function registerComponents(app) {
 }
 
 /**
- * @param {object} app - the express instance
  * @param {string} fullPath - absolute template file path
  * @returns {Promise} gets resolved when the template has been registered
  */
-async function registerPartial(app, fullPath) {
+async function registerPartial(fullPath) {
   return new Promise((resolve, reject) => {
-    register(helpers.getShortPathFromFullPath(app, fullPath), fullPath)
+    register(helpers.getShortPathFromFullPath(fullPath), fullPath)
       .then(resolve)
       .catch((err) => {
         console.error(err);

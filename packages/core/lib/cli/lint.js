@@ -34,7 +34,7 @@ async function validateAllMockData(app) {
 
   const promises = [];
   const components = Object.keys(app.get("state").partials).map((partial) =>
-    getDirectoryPathFromFullTemplateFilePath(app, partial)
+    getDirectoryPathFromFullTemplateFilePath(partial)
   );
 
   components.forEach(async (component) => {

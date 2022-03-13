@@ -75,7 +75,6 @@ async function updateFileContents(app, events) {
       helpers.fileIsSchemaFile(app, changedPath)
     ) {
       const fullPath = path.join(process.cwd(), changedPath);
-
       if (event === "update") {
         promises.push(
           new Promise((resolve, reject) => {
@@ -162,7 +161,6 @@ async function handleFileChange() {
       });
 
       await setPartials.registerPartial(
-        appInstance,
         triggeredEvents.find((event) => event.event === "update").changedPath
       );
 
@@ -274,6 +272,7 @@ module.exports = function Watcher(server, app) {
   ioInstance = socketIo(server);
 
   const { components, assets, extensions } = appInstance.get("config");
+  const { fileContents } = appInstance.get("state");
 
   foldersToWatch = [
     components.folder,
@@ -296,6 +295,10 @@ module.exports = function Watcher(server, app) {
       )
       .map((f) => path.join(app.get("config").assets.root, f)),
   ];
+
+  if (fileContents[path.join(process.cwd(), "miyagi.md")]) {
+    foldersToWatch.push("miyagi.md");
+  }
 
   for (const extension of extensions) {
     const ext = Array.isArray(extension) ? extension[0] : extension;
@@ -334,7 +337,6 @@ module.exports = function Watcher(server, app) {
   if (watcher) {
     watcher.on("change", (event, changedPath) => {
       triggeredEvents.push({ event, changedPath });
-
       if (!timeout) {
         console.clear();
         log("info", messages.updatingStarted);

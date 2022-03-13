@@ -10,6 +10,8 @@ const config = require("../config.json");
 module.exports = function initViews(app) {
   app.set("views", [
     path.join(__dirname, `../../${config.folders.views}`),
-    path.resolve(app.get("config").components.folder),
+    ...app
+      .get("config")
+      .components.folder.map((folder) => path.resolve(folder)),
   ]);
 };

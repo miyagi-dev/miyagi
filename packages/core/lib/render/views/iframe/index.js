@@ -19,7 +19,7 @@ const {
 module.exports = async function renderIframeIndex({ app, res, cb, cookies }) {
   const documentation =
     app.get("state").fileContents[
-      helpers.getFullPathFromShortPath(app, "README.md")
+      helpers.getFullPathFromShortPath("miyagi.md")
     ];
 
   const { ui } = app.get("config");

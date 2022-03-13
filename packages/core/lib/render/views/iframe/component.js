@@ -29,12 +29,13 @@ module.exports = async function renderIframeComponent({
   noCli,
 }) {
   file = helpers.getTemplateFilePathFromDirectoryPath(app, file);
-  const templateFilePath = helpers.getFullPathFromShortPath(app, file);
+  const templateFilePath = helpers.getFullPathFromShortPath(file);
   const hasTemplate = Object.values(app.get("state").partials).includes(
     templateFilePath
   );
 
   const componentJson = await getComponentData(app, file);
+
   const componentDocumentation =
     app.get("state").fileContents[
       helpers.getDocumentationPathFromTemplatePath(templateFilePath)
@@ -91,43 +92,26 @@ module.exports = async function renderIframeComponent({
       ? {
           string: componentSchemaString,
           type: app.get("config").files.schema.extension,
-          file: path.join(
-            app.get("config").components.folder,
-            helpers.getShortPathFromFullPath(app, schemaFilePath)
-          ),
+          file: helpers.getShortPathFromFullPath(schemaFilePath),
         }
       : null,
     mocks: componentMocks
       ? {
           string: componentMocksString,
           type: app.get("config").files.mocks.extension[0],
-          file: path.join(
-            app.get("config").components.folder,
-            helpers.getShortPathFromFullPath(app, mockFilePath)
-          ),
+          file: helpers.getShortPathFromFullPath(mockFilePath),
         }
       : null,
     template: componentTemplate
       ? {
           string: componentTemplate,
           type: app.get("config").engine.name,
-          file: path.join(
-            app.get("config").components.folder,
-            helpers.getShortPathFromFullPath(app, templateFilePath)
-          ),
+          file: helpers.getShortPathFromFullPath(templateFilePath),
         }
       : null,
   };
 
   let componentName = path.basename(path.dirname(file));
-
-  // @TODO
-  /*if (componentInfo) {
-    if (componentInfo.name) {
-      componentName = componentInfo.name;
-    }
-  }*/
-
   let context;
 
   if (componentJson.length > 0) {
@@ -315,10 +299,7 @@ async function renderVariations({
           template: fileContents.template,
           renderInformation: renderFileTabs || variations.length > 0,
           renderFileTabs,
-          folder: path.join(
-            app.get("config").components.folder,
-            file.split(path.sep).slice(0, -1).join("/")
-          ),
+          folder: file.split(path.sep).slice(0, -1).join("/"),
           name: componentDocumentation?.includes("<h1>") ? null : name,
           componentTextDirection:
             componentTextDirection ||

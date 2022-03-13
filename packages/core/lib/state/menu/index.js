@@ -37,12 +37,11 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
 }
 
 /**
- * @param {object} app - the express instance
  * @param {object} directory - file tree object
  * @returns {object} adapted file tree object
  */
-function getDataForLinkedDirectory(app, directory) {
-  const shortPath = helpers.getShortPathFromFullPath(app, directory.path);
+function getDataForLinkedDirectory(directory) {
+  const shortPath = helpers.getShortPathFromFullPath(directory.path);
   const normalizedShortPath = helpers.normalizeString(shortPath);
 
   return {
@@ -58,13 +57,12 @@ function getDataForLinkedDirectory(app, directory) {
 }
 
 /**
- * @param {object} app - the express instance
  * @param {object} file
  * @returns {object}
  */
-function getDataForDocumentationFile(app, file) {
+function getDataForDocumentationFile(file) {
   const shortPath = helpers
-    .getShortPathFromFullPath(app, file.path)
+    .getShortPathFromFullPath(file.path)
     .replace(".md", "");
   const normalizedShortPath = helpers.normalizeString(shortPath);
 
@@ -105,7 +103,7 @@ function restructureDirectory(app, directory) {
   let item;
 
   if (hasComponentFileWithCorrectNameAsChild(app, directory)) {
-    item = getDataForLinkedDirectory(app, directory);
+    item = getDataForLinkedDirectory(directory);
   } else {
     item = getDataForDirectory(directory);
   }
@@ -164,7 +162,7 @@ function getMenu(app) {
             path.dirname(item.path).split("/").length - 1
           ]
       ) {
-        array.push(getDataForDocumentationFile(app, item));
+        array.push(getDataForDocumentationFile(item));
       }
     }
   })(srcStructure, arr);

@@ -23,7 +23,7 @@ function render(app, directory, request) {
 
   if (menuHelpers.shouldRenderWithToggle(app, directory)) {
     const expanded = menuHelpers.pathIsParentOfOrEqualRequestedPath(
-      helpers.getShortPathFromFullPath(app, directory.fullPath),
+      helpers.getShortPathFromFullPath(directory.fullPath),
       request.path
     );
 

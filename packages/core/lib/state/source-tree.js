@@ -16,6 +16,7 @@ const helpers = require("../helpers.js");
  */
 function getSourceTree(app) {
   const exclude = [];
+  const trees = [];
 
   const { ignores } = app.get("config").components;
   for (const ignore of ignores) {
@@ -23,9 +24,9 @@ function getSourceTree(app) {
   }
 
   const { files } = app.get("config");
-  const tree = dirTree(
-    path.join(process.cwd(), app.get("config").components.folder),
-    {
+
+  app.get("config").components.folder.forEach((folder) => {
+    const tree = dirTree(path.join(process.cwd(), folder), {
       attributes: ["type"],
       extensions: new RegExp(
         `.(md|${files.css.extension}|${files.js.extension}|${
@@ -35,20 +36,19 @@ function getSourceTree(app) {
         }|${helpers.getSingleFileExtension(files.templates.extension)})$`
       ),
       exclude,
+    });
+
+    if (!tree) {
+      log(
+        "error",
+        config.messages.srcFolderNotFound.replace("{{directory}}", folder)
+      );
+    } else {
+      trees.push(tree);
     }
-  );
+  });
 
-  if (!tree) {
-    log(
-      "error",
-      config.messages.srcFolderNotFound.replace(
-        "{{directory}}",
-        app.get("config").components.folder
-      )
-    );
-  }
-
-  return tree || {};
+  return trees;
 }
 
 module.exports = {

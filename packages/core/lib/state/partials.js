@@ -25,7 +25,7 @@ function getFilePaths(app, dir) {
             const basename = path.basename(res, `.${extension}`);
 
             if (basename === helpers.getResolvedFileName(name, basename)) {
-              return helpers.getShortPathFromFullPath(app, res);
+              return helpers.getShortPathFromFullPath(res);
             }
 
             return null;
@@ -43,23 +43,21 @@ module.exports = {
     return new Promise((resolve) => {
       const partials = {};
 
-      getFilePaths(app, app.get("config").components.folder)
-        .then((paths) => {
-          if (paths) {
-            for (const shortPath of paths) {
-              // ignore files that live directly in the srcFolder
-              if (shortPath !== path.basename(shortPath)) {
-                partials[shortPath] = path.join(
-                  process.cwd(),
-                  `${app.get("config").components.folder}/${shortPath}`
-                );
+      app.get("config").components.folder.forEach((folder) => {
+        getFilePaths(app, folder)
+          .then((paths) => {
+            if (paths) {
+              for (const shortPath of paths) {
+                // ignore files that live directly in the srcFolder
+                if (shortPath !== path.basename(shortPath)) {
+                  partials[shortPath] = path.join(process.cwd(), shortPath);
+                }
               }
             }
-          }
-
-          resolve(partials);
-        })
-        .catch((err) => console.error(err));
+            resolve(partials);
+          })
+          .catch((err) => console.error(err));
+      });
     });
   },
 };

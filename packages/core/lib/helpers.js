@@ -86,29 +86,19 @@ module.exports = {
   /**
    * Accepts a path relative from the config.components.folder and returns the complete path based on the file system
    *
-   * @param {object} app - the express instance
    * @param {string} shortPath - a relative file path based from the components folder
    * @returns {string} absolute file path
    */
-  getFullPathFromShortPath: function (app, shortPath) {
-    return path.join(
-      process.cwd(),
-      `${app.get("config").components.folder}/${shortPath}`
-    );
+  getFullPathFromShortPath: function (shortPath) {
+    return path.join(process.cwd(), shortPath);
   },
 
   /**
-   * Accepts an absolute (file system based) path and returns the short path relative from config.components.folder
-   *
-   * @param {object} app - the express instance
    * @param {string} fullPath - absolute file path
    * @returns {string} relative file path based from the components folder
    */
-  getShortPathFromFullPath: function (app, fullPath) {
-    return fullPath.replace(
-      `${path.join(process.cwd(), app.get("config").components.folder)}/`,
-      ""
-    );
+  getShortPathFromFullPath: function (fullPath) {
+    return fullPath.replace(path.join(process.cwd(), "/"), "");
   },
 
   /**
@@ -260,9 +250,9 @@ module.exports = {
    * @param {string} templateFilePath
    * @returns {string}
    */
-  getDirectoryPathFromFullTemplateFilePath: function (app, templateFilePath) {
+  getDirectoryPathFromFullTemplateFilePath: function (templateFilePath) {
     return path.dirname(
-      module.exports.getShortPathFromFullPath(app, templateFilePath)
+      module.exports.getShortPathFromFullPath(templateFilePath)
     );
   },
 

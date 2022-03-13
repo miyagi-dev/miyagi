@@ -46,31 +46,55 @@ function checkIfFileNamesIncludeFile(file, fileNames) {
  */
 async function getFilePaths(app) {
   const { components, files } = app.get("config");
+  const promises = [];
+  const indexDocPath = path.join(process.cwd(), "miyagi.md");
 
-  return await stateHelpers.getFiles(
-    components.folder,
-    components.ignores,
-    function (res) {
-      if (
-        checkIfFileNamesIncludeFile(res, [
-          `${helpers.getResolvedFileName(
-            files.templates.name,
-            path.basename(res, `.${files.templates.extension}`)
-          )}.${files.templates.extension}`,
-          `${files.mocks.name}.${files.mocks.extension[0]}`,
-          `${files.mocks.name}.${files.mocks.extension[1]}`,
-          `${files.schema.name}.${files.schema.extension}`,
-          `data.${files.mocks.extension[0]}`,
-          `data.${files.mocks.extension[1]}`,
-        ]) ||
-        helpers.fileIsDocumentationFile(res)
-      ) {
-        return res;
-      } else {
-        return null;
-      }
+  if (fs.existsSync(indexDocPath)) {
+    promises.push(indexDocPath);
+  }
+
+  components.folder.forEach((folder) => {
+    promises.push(
+      new Promise((resolve) => {
+        getFilePathsForDirectory(folder, components.ignores, files).then(
+          (results) => resolve(results)
+        );
+      })
+    );
+  });
+
+  return Promise.all(promises).then((result) => {
+    return result.flatMap((entry) => entry);
+  });
+}
+
+/**
+ * @param {string} directory
+ * @param {Array} ignores
+ * @param {Array} files
+ * @returns {Promise<string[]>}
+ */
+async function getFilePathsForDirectory(directory, ignores, files) {
+  return await stateHelpers.getFiles(directory, ignores, function (res) {
+    if (
+      checkIfFileNamesIncludeFile(res, [
+        `${helpers.getResolvedFileName(
+          files.templates.name,
+          path.basename(res, `.${files.templates.extension}`)
+        )}.${files.templates.extension}`,
+        `${files.mocks.name}.${files.mocks.extension[0]}`,
+        `${files.mocks.name}.${files.mocks.extension[1]}`,
+        `${files.schema.name}.${files.schema.extension}`,
+        `data.${files.mocks.extension[0]}`,
+        `data.${files.mocks.extension[1]}`,
+      ]) ||
+      helpers.fileIsDocumentationFile(res)
+    ) {
+      return res;
+    } else {
+      return null;
     }
-  );
+  });
 }
 
 /**
@@ -89,11 +113,10 @@ async function getJsFileContent(fileName) {
 /**
  * Returns the content of a YAML file parsed as JSON object
  *
- * @param {object} app - the express instance
  * @param {string} fileName - path to a yaml file
  * @returns {object} the content of the given file as an object
  */
-function getYamlFileContent(app, fileName) {
+function getYamlFileContent(fileName) {
   let result;
 
   try {
@@ -104,7 +127,7 @@ function getYamlFileContent(app, fileName) {
       "warn",
       config.messages.jsonFileHasInvalidFormat.replace(
         "{{filePath}}",
-        helpers.getShortPathFromFullPath(app, fileName)
+        helpers.getShortPathFromFullPath(fileName)
       )
     );
   }
@@ -115,11 +138,10 @@ function getYamlFileContent(app, fileName) {
 /**
  * Returns the parsed content of a JSON file.
  *
- * @param {object} app - the express instance
  * @param {string} fileName - path to a json file
  * @returns {Promise<object>} the parsed content of the given file
  */
-async function getParsedJsonFileContent(app, fileName) {
+async function getParsedJsonFileContent(fileName) {
   let result;
 
   try {
@@ -133,7 +155,7 @@ async function getParsedJsonFileContent(app, fileName) {
         "warn",
         config.messages.jsonFileHasInvalidFormat.replace(
           "{{filePath}}",
-          helpers.getShortPathFromFullPath(app, fileName)
+          helpers.getShortPathFromFullPath(fileName)
         )
       );
     }
@@ -143,7 +165,7 @@ async function getParsedJsonFileContent(app, fileName) {
       "warn",
       config.messages.jsonFileHasInvalidFormat.replace(
         "{{filePath}}",
-        helpers.getShortPathFromFullPath(app, fileName)
+        helpers.getShortPathFromFullPath(fileName)
       )
     );
   }
@@ -189,7 +211,7 @@ async function readFile(app, fileName) {
   if (helpers.fileIsTemplateFile(app, fileName)) {
     result = fs.readFileSync(fileName, { encoding: "utf8" });
   } else if ([".yaml", ".yml"].includes(path.extname(fileName))) {
-    result = getYamlFileContent(app, fileName);
+    result = getYamlFileContent(fileName);
   } else if (helpers.fileIsDocumentationFile(fileName)) {
     result = getConvertedMarkdownFileContent(fileName);
   } else if (
@@ -198,7 +220,7 @@ async function readFile(app, fileName) {
   ) {
     result = await getJsFileContent(fileName);
   } else {
-    result = getParsedJsonFileContent(app, fileName);
+    result = getParsedJsonFileContent(fileName);
   }
 
   return result;

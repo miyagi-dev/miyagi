@@ -19,11 +19,9 @@ function getDataForComponent(app, component) {
   const { name, extension } = app.get("config").files.mocks;
 
   const defaultPath = helpers.getFullPathFromShortPath(
-    app,
     path.join(component, `${name}.${extension[0]}`)
   );
   const jsPath = helpers.getFullPathFromShortPath(
-    app,
     path.join(component, `${name}.${extension[1]}`)
   );
 
@@ -41,10 +39,7 @@ function checkIfRequestedComponentIsValid(app, component) {
   const { fileContents } = app.get("state");
 
   const files = Object.keys(fileContents).map((file) =>
-    file.replace(
-      path.join(process.cwd(), app.get("config").components.folder, "/"),
-      ""
-    )
+    file.replace(path.join(process.cwd(), "/"), "")
   );
   const templateExtension = app.get("config").files.templates.extension;
 
@@ -68,11 +63,7 @@ function checkIfRequestedFileIsDocFile(app, component) {
   const docsExtension = "md";
 
   if (component.endsWith(docsExtension)) {
-    const var1 = path.join(
-      process.cwd(),
-      app.get("config").components.folder,
-      component
-    );
+    const var1 = path.join(process.cwd(), component);
 
     if (var1 in fileContents) {
       return var1;
@@ -81,36 +72,23 @@ function checkIfRequestedFileIsDocFile(app, component) {
 
   const var1 = path.join(
     process.cwd(),
-    app.get("config").components.folder,
     `${component}/${component}.${docsExtension}`
   );
   if (var1 in fileContents) {
     return var1;
   }
 
-  const var2 = path.join(
-    process.cwd(),
-    app.get("config").components.folder,
-    `${component}/README.${docsExtension}`
-  );
+  const var2 = path.join(process.cwd(), `${component}/README.${docsExtension}`);
   if (var2 in fileContents) {
     return var2;
   }
 
-  const var3 = path.join(
-    process.cwd(),
-    app.get("config").components.folder,
-    `${component}/index.${docsExtension}`
-  );
+  const var3 = path.join(process.cwd(), `${component}/index.${docsExtension}`);
   if (var3 in fileContents) {
     return var3;
   }
 
-  const var4 = path.join(
-    process.cwd(),
-    app.get("config").components.folder,
-    `${component}.md`
-  );
+  const var4 = path.join(process.cwd(), `${component}.md`);
   if (var4 in fileContents) {
     return var4;
   }
@@ -205,10 +183,7 @@ module.exports = function Router(app) {
           await render.renderMainDocs({
             app,
             res,
-            file: docFile.replace(
-              path.join(process.cwd(), app.get("config").components.folder),
-              ""
-            ),
+            file: docFile.replace(process.cwd(), ""),
             cookies: req.cookies,
           });
         } else {

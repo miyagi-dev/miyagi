@@ -97,14 +97,7 @@ module.exports = (app) => {
           .filter((file) => file.endsWith("/README.md"))
           .map((file) =>
             file
-              .replace(
-                path.join(
-                  process.cwd(),
-                  app.get("config").components.folder,
-                  "/"
-                ),
-                ""
-              )
+              .replace(path.join(process.cwd(), "/"), "")
               .replace("/README.md", "")
           )
           .filter((file) => file !== "README.md");
@@ -144,8 +137,8 @@ module.exports = (app) => {
                   }
                   resolve();
                 })
-                .catch(() => {
-                  reject();
+                .catch((err) => {
+                  reject(err);
                 });
             })
           );
@@ -618,11 +611,12 @@ module.exports = (app) => {
       return new Promise((res, rej) => {
         const promises = [];
         const normalizedFileName = helpers.normalizeString(dir);
+        console.log(file);
         const data =
           app.get("state").fileContents[
             helpers.getDataPathFromTemplatePath(
               app,
-              helpers.getFullPathFromShortPath(app, file)
+              helpers.getFullPathFromShortPath(file)
             )
           ];
 
