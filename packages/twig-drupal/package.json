@@ -1,6 +1,6 @@
 {
   "name": "@miyagi/twig-drupal",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Adds twig and Drupal functionality to @miyagi/core",
   "main": "index.js",
   "author": "Michael Großklaus <mail@mgrossklaus.de> (https://www.mgrossklaus.de)",
