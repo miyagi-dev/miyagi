@@ -20,6 +20,6 @@
     "twig-drupal-filters": "^3.1.2"
   },
   "peerDependencies": {
-    "@miyagi/core": "^3.0.3"
+    "@miyagi/core": "^3.1.7"
   }
 }
