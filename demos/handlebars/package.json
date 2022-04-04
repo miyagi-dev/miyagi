@@ -1,7 +1,7 @@
 {
   "name": "demo",
   "devDependencies": {
-    "cssnano": "^5.1.5",
+    "cssnano": "^5.1.7",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-postcss": "^9.0.1",
