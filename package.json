@@ -7,13 +7,13 @@
     "url": "git@github.com:mgrsskls/miyagi.git"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.8",
+    "@babel/core": "^7.17.9",
     "@babel/preset-env": "^7.16.11",
     "@types/jest": "^27.4.1",
     "codecov": "^3.8.3",
     "cssnano": "^5.1.7",
     "del": "^6.0.0",
-    "eslint": "^8.12.0",
+    "eslint": "^8.13.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-jsdoc": "^38.1.6",
     "eslint-plugin-prettier": "^4.0.0",
