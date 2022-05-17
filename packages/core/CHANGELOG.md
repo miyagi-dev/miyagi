@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.8](https://github.com/mgrsskls/miyagi/compare/core/v3.1.7...core/v3.1.8) (2022-05-17)
+
+
+### Bug Fixes
+
+* **core:** fix double linting error message in cli when creating a build ([a040fbb](https://github.com/mgrsskls/miyagi/commit/a040fbbff692b5b11b70088a15bceab009e2695c))
+* **core:** Fix wrong result for "miyagi lint" when component has only default data which is hidden using $hidden: true ([f629c02](https://github.com/mgrsskls/miyagi/commit/f629c02d7a79053bb00aef7c270dd51cfcc3b098))
+
 ### [3.1.7](https://github.com/mgrsskls/miyagi/compare/core/v3.1.6...core/v3.1.7) (2022-03-23)
 
 ### [3.1.6](https://github.com/mgrsskls/miyagi/compare/core/v3.1.5...core/v3.1.6) (2022-03-23)
