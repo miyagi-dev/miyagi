@@ -675,6 +675,7 @@ module.exports = (app) => {
                 app,
                 res: app,
                 file: dir,
+                noCli: embedded,
                 cb: (err, response) => {
                   if (err) {
                     if (typeof err === "string") {

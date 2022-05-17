@@ -27,6 +27,7 @@ module.exports = async function renderIframeComponent({
   file,
   cb,
   cookies,
+  noCli,
 }) {
   file = getTemplateFilePathFromDirectoryPath(app, file);
   const templateFilePath = helpers.getFullPathFromShortPath(app, file);
@@ -146,6 +147,7 @@ module.exports = async function renderIframeComponent({
     cb,
     templateFilePath: hasTemplate ? templateFilePath : null,
     cookies,
+    noCli,
   });
 };
 
@@ -193,10 +195,11 @@ async function renderVariations({
   cb,
   templateFilePath,
   cookies,
+  noCli,
 }) {
   const variations = [];
   const promises = [];
-  const validatedMocks = validateMocks(app, file, context);
+  const validatedMocks = validateMocks(app, file, context, noCli);
   const baseName = path.dirname(file);
   const renderInIframe = getRenderInIframe(
     baseName,

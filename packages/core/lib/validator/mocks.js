@@ -14,7 +14,7 @@ const config = require("../config.json");
  * @param {Array} dataArray - an array with mock data
  * @returns {null|boolean[]} null if there is no schema or an array with booleans defining the validity of the entries in the data array
  */
-module.exports = function validateMockData(app, filePath, dataArray) {
+module.exports = function validateMockData(app, filePath, dataArray, noCli) {
   const componentSchema =
     app.get("state").fileContents[
       helpers.getFullPathFromShortPath(
@@ -60,7 +60,9 @@ module.exports = function validateMockData(app, filePath, dataArray) {
       validate = jsonSchemaValidator.compile(componentSchema);
     } catch (e) {
       const msg = e.toString();
-      log("error", `${path.dirname(filePath)}: ${msg}`);
+      if (!noCli) {
+        log("error", `${path.dirname(filePath)}: ${msg}`);
+      }
       return msg;
     }
 
@@ -68,7 +70,7 @@ module.exports = function validateMockData(app, filePath, dataArray) {
       dataArray.forEach((entry) => {
         const valid = validate(entry.data || {});
 
-        if (!valid) {
+        if (!valid && !noCli) {
           log(
             "error",
             `${path.dirname(filePath)}#${entry.name}: ${
@@ -84,7 +86,7 @@ module.exports = function validateMockData(app, filePath, dataArray) {
     return validity;
   }
 
-  if (!app.get("config").isBuild) {
+  if (!app.get("config").isBuild && !noCli) {
     log(
       "warn",
       `${path.dirname(filePath)}: ${
