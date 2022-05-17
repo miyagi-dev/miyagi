@@ -95,14 +95,12 @@ module.exports = {
             file
           );
 
-          if (!componentJson.$hidden) {
-            context.unshift({
-              component: file,
-              data: extendedComponentData,
-              rawData: merged,
-              name: componentJson.$name || config.defaultVariationName,
-            });
-          }
+          context.unshift({
+            component: file,
+            data: componentJson.$hidden ? {} : extendedComponentData,
+            rawData: componentJson.$hidden ? {} : merged,
+            name: componentJson.$name || config.defaultVariationName,
+          });
         }
 
         return context;
