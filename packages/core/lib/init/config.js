@@ -73,9 +73,10 @@ function getJsFileObject({
  * @param {object} manifest - manifest object
  * @param {string} manifest.file - manifest file path
  * @param {object} manifest.content - parsed json content of manifest file
+ * @param {string} root
  * @returns {string[]} converts the given object to an array of asset file path strings
  */
-function getJsFilesArray(strOrArrOrObj, manifest) {
+function getJsFilesArray(strOrArrOrObj, manifest, root) {
   let files = strOrArrOrObj;
 
   if (typeof files === "string") {
@@ -104,12 +105,13 @@ function getJsFilesArray(strOrArrOrObj, manifest) {
       );
     }
   }
+
   if (files.length > 0 && manifest) {
     files = files.map((file) => {
       const manifestEntry = Object.entries(manifest.content).find(([key]) => {
         return (
-          path.resolve(path.dirname(manifest.file), sanitizePath(key)) ===
-          path.resolve(sanitizePath(file.src))
+          path.resolve(root, path.dirname(manifest.file), sanitizePath(key)) ===
+          path.resolve(root, sanitizePath(file.src))
         );
       });
 
@@ -123,6 +125,7 @@ function getJsFilesArray(strOrArrOrObj, manifest) {
       }
     });
   }
+
   return files
     .filter((file) => typeof file.src === "string")
     .map((file) => ({
@@ -136,9 +139,10 @@ function getJsFilesArray(strOrArrOrObj, manifest) {
  * @param {object} manifest - manifest object
  * @param {string} manifest.file - manifest file path
  * @param {object} manifest.content - parsed json content of manifest file
+ * @param {string} root
  * @returns {string[]} converts the given object to an array of asset file path strings
  */
-function getCssFilesArray(strOrArrOrObj, manifest) {
+function getCssFilesArray(strOrArrOrObj, manifest, root) {
   let files = strOrArrOrObj;
 
   if (typeof files === "string") {
@@ -159,12 +163,13 @@ function getCssFilesArray(strOrArrOrObj, manifest) {
       );
     }
   }
+
   if (files.length > 0 && manifest) {
     files = files.map((file) => {
       const manifestEntry = Object.entries(manifest.content).find(([key]) => {
         return (
-          path.resolve(path.dirname(manifest.file), sanitizePath(key)) ===
-          path.resolve(sanitizePath(file))
+          path.resolve(root, path.dirname(manifest.file), sanitizePath(key)) ===
+          path.resolve(root, sanitizePath(file))
         );
       });
 
@@ -232,12 +237,15 @@ module.exports = (userConfig = {}) => {
     const nodeEnv = process.env.NODE_ENV;
     let manifest;
 
-    if (config.assets.root && objectIsRealObject(config.assets.root)) {
-      if (config.assets.root[nodeEnv]) {
+    if (config.assets.root) {
+      if (
+        objectIsRealObject(config.assets.root) &&
+        config.assets.root[nodeEnv]
+      ) {
         config.assets.root = config.assets.root[nodeEnv];
-      } else {
-        config.assets.root = "";
       }
+    } else {
+      config.assets.root = "";
     }
 
     if (config.assets.manifest) {
@@ -248,7 +256,7 @@ module.exports = (userConfig = {}) => {
         );
 
         manifest = {
-          file: path.join(config.assets.root, config.assets.manifest),
+          file: config.assets.manifest,
           content: JSON.parse(manifestContent),
         };
       } catch (e) {
@@ -256,7 +264,7 @@ module.exports = (userConfig = {}) => {
           "warn",
           appConfig.messages.manifestNotFound.replace(
             "{{manifest}}",
-            path.join(config.assets.root, config.assets.manifest)
+            config.assets.manifest
           )
         );
       }
@@ -267,11 +275,19 @@ module.exports = (userConfig = {}) => {
     }
 
     if (config.assets.css) {
-      config.assets.css = getCssFilesArray(config.assets.css, manifest);
+      config.assets.css = getCssFilesArray(
+        config.assets.css,
+        manifest,
+        config.assets.root
+      );
     }
 
     if (config.assets.js) {
-      config.assets.js = getJsFilesArray(config.assets.js, manifest);
+      config.assets.js = getJsFilesArray(
+        config.assets.js,
+        manifest,
+        config.assets.root
+      );
     }
 
     if (!config.assets.customProperties) {
