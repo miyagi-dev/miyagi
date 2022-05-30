@@ -1,7 +1,7 @@
 {
   "name": "demo",
   "devDependencies": {
-    "rollup": "^2.74.1"
+    "rollup": "^2.75.0"
   },
   "scripts": {
     "start": "miyagi start",
