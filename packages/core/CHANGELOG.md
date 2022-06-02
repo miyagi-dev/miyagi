@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.9](https://github.com/mgrsskls/miyagi/compare/core/v3.1.8...core/v3.1.9) (2022-06-02)
+
+
+### Bug Fixes
+
+* **core:** fixes using manifest not working when no assets.root directory is set ([e6c8b9b](https://github.com/mgrsskls/miyagi/commit/e6c8b9b21a1d8a90a5747c807eb8495e4cbfd0d4))
+
 ### [3.1.8](https://github.com/mgrsskls/miyagi/compare/core/v3.1.7...core/v3.1.8) (2022-05-17)
 
 
