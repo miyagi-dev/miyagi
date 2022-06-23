@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.1.10](https://github.com/mgrsskls/miyagi/compare/core/v3.1.9...core/v3.1.10) (2022-06-23)
+
+
+### Bug Fixes
+
+* **core:** Fixes a JS error in chrome when navigating back after having used the GOTO function ([3d7a998](https://github.com/mgrsskls/miyagi/commit/3d7a998d70074742932786b88486ec0aeb9e8f52))
+
 ### [3.1.9](https://github.com/mgrsskls/miyagi/compare/core/v3.1.8...core/v3.1.9) (2022-06-02)
 
 
