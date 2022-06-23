@@ -24,13 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       window.addEventListener("keyup", (e) => {
         const { path, originalTarget, target, key } = e;
-        const el = path ? path[0] : originalTarget || target;
-        const lowerCasedKey = key.toLowerCase();
 
-        if (gotoIsTriggered(el, lowerCasedKey)) {
-          openGoto(GOTO, INPUT);
-        } else if (isOpen && lowerCasedKey === "escape") {
-          closeGoto(GOTO, INPUT);
+        if (key) {
+          const el = path ? path[0] : originalTarget || target;
+          const lowerCasedKey = key.toLowerCase();
+
+          if (gotoIsTriggered(el, lowerCasedKey)) {
+            openGoto(GOTO, INPUT);
+          } else if (isOpen && lowerCasedKey === "escape") {
+            closeGoto(GOTO, INPUT);
+          }
         }
       });
       window.addEventListener("gotoTriggered", () => openGoto(GOTO, INPUT));
