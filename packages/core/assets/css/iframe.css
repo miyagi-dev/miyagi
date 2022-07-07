@@ -91,6 +91,26 @@ body {
   font-style: italic;
 }
 
+.MiyagiContent .MiyagiDocumentation table {
+  border-spacing: 0;
+}
+
+.MiyagiContent .MiyagiDocumentation th {
+  text-align: left;
+}
+
+.MiyagiContent .MiyagiDocumentation :is(th, td) {
+  padding: 0.25em 0.5em;
+}
+
+.MiyagiContent .MiyagiDocumentation th {
+  border-block-end: 1px solid currentColor;
+}
+
+.MiyagiContent .MiyagiDocumentation tr:not(:last-child) td {
+  border-block-end: 1px solid var(--Miyagi-color-Grey-4);
+}
+
 .MiyagiContent .MiyagiInformation-val {
   margin-inline-start: 0;
 }
