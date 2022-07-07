@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/mgrsskls/miyagi/compare/core/v3.1.10...core/v3.2.0) (2022-07-07)
+
+
+### Features
+
+* **core:** Adds styling for tables in documentation ([2709a9f](https://github.com/mgrsskls/miyagi/commit/2709a9fb6f9660a834df1affa1887534c085ea2c))
+
 ### [3.1.10](https://github.com/mgrsskls/miyagi/compare/core/v3.1.9...core/v3.1.10) (2022-06-23)
 
 
