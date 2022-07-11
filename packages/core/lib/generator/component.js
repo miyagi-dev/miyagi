@@ -153,7 +153,7 @@ module.exports = async function componentGenerator(cliParams, config) {
         promises.push(
           new Promise((resolve) => {
             const fullFilePath = path.join(
-              process.env.INIT_CWD,
+              process.env.INIT_CWD || process.cwd(),
               componentPath,
               file
             );
@@ -230,7 +230,21 @@ module.exports = async function componentGenerator(cliParams, config) {
   function createComponentFolder(folder) {
     return new Promise((resolve, reject) => {
       fs.mkdir(
-        path.join(process.env.INIT_CWD, folder),
+        /*
+         * When using `yarn/npm miyagi new …`, `process.env.INIT_CWD` equals
+         * the current working directory, so also subdirectories of where
+         * the package.json is located. In this case `process.cwd()` always
+         * equals the root directory though.
+         * When using node directly, `process.env.INIT_CWD` is not available,
+         * but `process.cwd()` is always the current working directory, so
+         * also subdirectories.
+         * So, if INIT_CWD is available, we know it is the directory the user
+         * cd'ed into, if it not available, then we use process.cwd(), which
+         * in that case is also the directory the user cd'ed into.
+         * It is important that we let the user create a component from their
+         * current working directory, so they can benefit from autocompletion.
+         */
+        path.join(process.env.INIT_CWD || process.cwd(), folder),
         { recursive: true },
         function createComponentCallback(err) {
           if (err) {
