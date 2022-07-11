@@ -211,7 +211,6 @@
     "validator": {
       "mocks": {
         "valid": "Mock data matches schema.",
-        "invalid": "Mock data does not match schema file.",
         "noSchemaFound": "No schema file found."
       }
     },

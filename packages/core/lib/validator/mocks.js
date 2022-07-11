@@ -73,9 +73,9 @@ module.exports = function validateMockData(app, filePath, dataArray, noCli) {
         if (!valid && !noCli) {
           log(
             "error",
-            `${path.dirname(filePath)}#${entry.name}: ${
-              config.messages.validator.mocks.invalid
-            } ${jsonSchemaValidator.errorsText(validate.errors)}`
+            `${path.dirname(filePath)} — ${entry.name}:\n${
+              jsonSchemaValidator.errorsText(validate.errors)
+            }`
           );
         }
 
