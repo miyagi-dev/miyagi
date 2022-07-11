@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.1](https://github.com/mgrsskls/miyagi/compare/core/v3.3.0...core/v3.3.1) (2022-07-11)
+
+
+### Bug Fixes
+
+* **core:** Fixes "new" component when using node directly instead of npm or yarn ([d3e75b8](https://github.com/mgrsskls/miyagi/commit/d3e75b81dda53145023cc220db7165755a59be11))
+
 ## [3.3.0](https://github.com/mgrsskls/miyagi/compare/core/v3.2.1...core/v3.3.0) (2022-07-11)
 
 
