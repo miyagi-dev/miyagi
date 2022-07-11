@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/mgrsskls/miyagi/compare/core/v3.2.1...core/v3.3.0) (2022-07-11)
+
+
+### Features
+
+* **core:** Verbose error logging for mock data validation ([#181](https://github.com/mgrsskls/miyagi/issues/181)) ([39414a0](https://github.com/mgrsskls/miyagi/commit/39414a05ebbad9aadbca9bf73d970c3a727c2f05))
+
 ### [3.2.1](https://github.com/mgrsskls/miyagi/compare/core/v3.2.0...core/v3.2.1) (2022-07-07)
 
 ## [3.2.0](https://github.com/mgrsskls/miyagi/compare/core/v3.1.10...core/v3.2.0) (2022-07-07)
