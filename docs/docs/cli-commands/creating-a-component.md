@@ -20,7 +20,7 @@ _**NOTE:** The component will be located based on your current working directoy 
 You can skip any of the files like this:
 
 ```bash
-miyagi new <folderName>/<componentName> --skip=css,js
+miyagi new <folderName>/<componentName> --skip css js
 ```
 
 ### --only
@@ -28,5 +28,5 @@ miyagi new <folderName>/<componentName> --skip=css,js
 Alternatively, you can explicitly say which files you need like this:
 
 ```bash
-miyagi new <folderName>/<componentName> --only=tpl,docs
+miyagi new <folderName>/<componentName> --only tpl docs
 ```
