@@ -44,6 +44,7 @@ async function validateAllMockData(app) {
           app,
           component,
           silent: true,
+          exitProcess: false,
         }).then((result) => resolve(result));
       })
     );
@@ -95,9 +96,15 @@ async function validateAllMockData(app) {
  * @param {object} obj.app
  * @param {string} obj.component
  * @param {boolean} [obj.silent]
+ * @param {boolean} [obj.exitProcess]
  * @returns {boolean}
  */
-async function validateComponentMockData({ app, component, silent }) {
+async function validateComponentMockData({
+  app,
+  component,
+  silent,
+  exitProcess = true,
+}) {
   if (!silent) {
     log(
       "info",
@@ -116,26 +123,42 @@ async function validateComponentMockData({ app, component, silent }) {
   );
 
   if (typeof results === "string") {
-    return {
-      valid: false,
-      type: "schema",
-    };
+    if (exitProcess) {
+      process.exit(1);
+    } else {
+      return {
+        valid: false,
+        type: "schema",
+      };
+    }
   } else if (Array.isArray(results)) {
     if (!results.includes(false)) {
       if (!silent) {
         log("success", messages.linter.component.valid);
       }
 
-      return {
-        valid: true,
-      };
+      if (exitProcess) {
+        process.exit(0);
+      } else {
+        return {
+          valid: true,
+        };
+      }
     } else {
-      return {
-        valid: false,
-        type: "mocks",
-      };
+      if (exitProcess) {
+        process.exit(1);
+      } else {
+        return {
+          valid: false,
+          type: "mocks",
+        };
+      }
     }
   } else {
-    return null;
+    if (exitProcess) {
+      process.exit(1);
+    } else {
+      return null;
+    }
   }
 }
