@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.2](https://github.com/mgrsskls/miyagi/compare/core/v3.3.1...core/v3.3.2) (2022-07-13)
+
+
+### Bug Fixes
+
+* **core:** Properly exit the process when linting a single component fails ([eec23b7](https://github.com/mgrsskls/miyagi/commit/eec23b7775df93002750d860ea386fae7628efea))
+
 ### [3.3.1](https://github.com/mgrsskls/miyagi/compare/core/v3.3.0...core/v3.3.1) (2022-07-11)
 
 
