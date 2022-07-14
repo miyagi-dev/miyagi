@@ -20,6 +20,10 @@ It includes the source code for:
 
 [twig-drupal](/packages/twig-drupal) is an extension which adds support for [Drupal attributes](https://www.drupal.org/docs/8/theming-drupal-8/using-attributes-in-templates) and other Drupal and twig functions and filters. For a full list of supported features, please refer to its [README](/packages/twig-drupal/README.md).
 
+## VS Code extension
+
+Fynn Becker ([@mvsde](https://twitter.com/mvsde), [fynn.be](https://fynn.be)) created a VS Code extension for _miyagi_, that can be found here: [https://marketplace.visualstudio.com/items?itemName=fynn.miyagi](https://marketplace.visualstudio.com/items?itemName=fynn.miyagi)
+
 ## Sponsored by
 
 <a href="https://factorial.io"><img src="https://logo.factorial.io/color.png" width="40" height="56" alt="Factorial"></a>

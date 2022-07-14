@@ -68,3 +68,4 @@ nav:
       - Adding documentation: how-to/adding-documentation.md
       - Creating a design token overview: how-to/creating-a-design-token-overview.md
       - Navigating through miyagi: how-to/navigating-through-miyagi.md
+  - VS Code extension: vs-code-extension.md
