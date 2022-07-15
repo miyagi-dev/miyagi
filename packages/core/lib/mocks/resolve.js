@@ -55,9 +55,8 @@ module.exports =
       ? mergeRootDataWithVariationData(rootData, data)
       : data;
     let resolved;
-
     merged = mergeWithGlobalData(app, merged);
-    resolved = await overwriteJsonLinksWithJsonData(app, merged);
+    resolved = await overwriteJsonLinksWithJsonData(app, { ...merged });
     resolved = await overwriteTplLinksWithTplContent(app, resolved);
     resolved = overwriteRenderKey(app, resolved);
 
@@ -186,7 +185,7 @@ async function iterateOverJsonData(app, entry) {
         .catch((err) => console.error(err));
     }
 
-    let o = {};
+    let o = entry;
 
     await Promise.all(
       Object.entries({ ...entry }).map(async ([key, value]) => {
@@ -486,7 +485,10 @@ async function getRootOrVariantDataOfReference(app, ref) {
       }
     }
 
-    return deepMerge(helpers.cloneDeep(rootJson), variantJson);
+    return mergeRootDataWithVariationData(
+      helpers.cloneDeep(rootJson),
+      variantJson
+    );
   }
   log(
     "warn",
