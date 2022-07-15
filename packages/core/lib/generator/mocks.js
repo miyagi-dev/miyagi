@@ -26,113 +26,123 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
   const mockFilePath = `${folderPath}/${filesConfig.mocks.name}.${filesConfig.mocks.extension[0]}`;
   const schemaFilePath = `${folderPath}/${filesConfig.schema.name}.${filesConfig.schema.extension}`;
 
-  readFile(schemaFilePath)
-    .then((result) => {
-      try {
-        const content = getContent(filesConfig.mocks.extension[0], result);
+  return new Promise((resolve, reject) => {
+    readFile(schemaFilePath, filesConfig)
+      .then((result) => {
+        try {
+          const content = getContent(filesConfig.mocks.extension[0], result);
 
-        readFile(mockFilePath)
-          .then((res) => {
-            if (res === "") {
-              createFile(content, mockFilePath);
-            } else {
-              log(
-                "error",
-                messages.dataGenerator.dataFileExists.replace(
-                  "{{fileName}}",
-                  mockFilePath
-                )
-              );
-            }
-          })
-          .catch(() => {
-            createFile(content, mockFilePath);
-          });
-      } catch (e) {
+          readFile(mockFilePath, filesConfig)
+            .then((res) => {
+              if (res === "") {
+                createFile(content, mockFilePath).then(resolve).catch(reject);
+              } else {
+                log(
+                  "error",
+                  messages.dataGenerator.dataFileExists.replace(
+                    "{{fileName}}",
+                    mockFilePath
+                  )
+                );
+                reject();
+              }
+            })
+            .catch(() => {
+              createFile(content, mockFilePath).then(resolve).catch(reject);
+            });
+        } catch (e) {
+          log(
+            "error",
+            messages.dataGenerator.schemaFileCantBeParsed.replace(
+              "{{fileName}}",
+              schemaFilePath
+            )
+          );
+          reject();
+        }
+      })
+      .catch(() => {
         log(
           "error",
-          messages.dataGenerator.schemaFileCantBeParsed.replace(
+          messages.dataGenerator.noSchemaFile.replace(
             "{{fileName}}",
             schemaFilePath
           )
         );
-      }
-    })
-    .catch(() => {
-      log(
-        "error",
-        messages.dataGenerator.noSchemaFile.replace(
-          "{{fileName}}",
-          schemaFilePath
-        )
-      );
-    });
+        reject();
+      });
+  });
+};
 
-  /**
-   * Returns the dummy mock data in the correct format
-   *
-   * @param {string} fileType - the file type of the mock data that should be created
-   * @param {object} schema - the JSON schema object
-   * @returns {string} the dummy mock data
-   */
-  function getContent(fileType, schema) {
-    let content;
-    const data = schemaFaker.sample(schema);
+/**
+ * Returns the dummy mock data in the correct format
+ *
+ * @param {string} fileType - the file type of the mock data that should be created
+ * @param {object} schema - the JSON schema object
+ * @returns {string} the dummy mock data
+ */
+function getContent(fileType, schema) {
+  let content;
+  const data = schemaFaker.sample(schema);
 
-    switch (fileType) {
-      case "yaml":
-      case "yml":
-        content = jsYaml.dump(data);
-        break;
-      case "json":
-        content = JSON.stringify(data, null, 2);
-        break;
-      case "js":
-        content = `module.exports = ${JSON.stringify(data, null, 2)}
+  switch (fileType) {
+    case "yaml":
+    case "yml":
+      content = jsYaml.dump(data);
+      break;
+    case "json":
+      content = JSON.stringify(data, null, 2);
+      break;
+    case "js":
+      content = `module.exports = ${JSON.stringify(data, null, 2)}
       `;
-        break;
-      default:
-        content = "";
-    }
-
-    return content;
+      break;
+    default:
+      content = "";
   }
 
-  /**
-   * Creates the mock file with the dummy mock data
-   *
-   * @param {string} content - the content for the mock file
-   * @param {string} mockFilePath - the path to the mock file
-   */
-  function createFile(content, mockFilePath) {
+  return content;
+}
+
+/**
+ * Creates the mock file with the dummy mock data
+ *
+ * @param {string} content - the content for the mock file
+ * @param {string} mockFilePath - the path to the mock file
+ */
+function createFile(content, mockFilePath) {
+  return new Promise((resolve, reject) => {
     fs.writeFile(mockFilePath, content, (err) => {
       if (err) {
         log("error", err);
+        reject();
       } else {
         log("success", messages.generator.done);
+        resolve();
       }
     });
-  }
+  });
+}
 
-  /**
-   * Reads the content of a given file
-   *
-   * @param {string} filePath - path to a file that should be read
-   * @returns {Promise} gets resolved when the file has been read
-   */
-  function readFile(filePath) {
-    return new Promise((resolve, reject) => {
-      fs.readFile(filePath, "utf8", (err, result) => {
-        if (err) {
-          reject(err);
+/**
+ * Reads the content of a given file
+ *
+ * @param {string} filePath - path to a file that should be read
+ * @param {object} filesConfig
+ * @returns {Promise} gets resolved when the file has been read
+ */
+function readFile(filePath, filesConfig) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, "utf8", (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        if (["yaml", "yml"].includes(filesConfig.schema.extension)) {
+          resolve(jsYaml.load(result));
         } else {
-          if (["yaml", "yml"].includes(filesConfig.schema.extension)) {
-            resolve(jsYaml.load(result));
-          } else {
-            resolve(JSON.parse(result));
-          }
+          resolve(JSON.parse(result));
         }
-      });
+      }
     });
-  }
-};
+  });
+}
