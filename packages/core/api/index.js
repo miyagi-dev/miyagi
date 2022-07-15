@@ -1,3 +1,4 @@
+const { JSDOM } = require("jsdom");
 const init = require("../lib");
 const { getVariationData, resolveVariationData } = require("../lib/mocks");
 const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
@@ -50,6 +51,7 @@ module.exports = function Api() {
 };
 
 function createElementFromHTML(html) {
+  const { document } = new JSDOM().window;
   const div = document.createElement("div");
 
   div.innerHTML = html.trim();

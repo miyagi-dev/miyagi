@@ -49,6 +49,7 @@
     "handlebars": "^4.7.7",
     "handlebars-layouts": "^3.1.4",
     "js-yaml": "^4.1.0",
+    "jsdom": "^20.0.0",
     "marked": "^4.0.17",
     "node-watch": "^0.7.3",
     "picocolors": "^1.0.0",
