@@ -155,12 +155,23 @@ module.exports = async function Miyagi(cmd) {
 
     return await initApi(config);
   } else {
-    const args = yargs.argv;
-    const isServer = argsIncludeServer(args);
-    const isBuild = argsIncludeBuild(args);
-    const isComponentGenerator = argsIncludeComponentGenerator(args);
-    const isMockGenerator = argsIncludeMockGenerator(args);
-    const isLinter = argsIncludeLint(args);
+    let args;
+    let isServer;
+    let isBuild;
+    let isComponentGenerator;
+    let isMockGenerator;
+    let isLinter;
+
+    if (cmd) {
+      isBuild = cmd === "build";
+    } else {
+      args = yargs.argv;
+      isServer = argsIncludeServer(args);
+      isBuild = argsIncludeBuild(args);
+      isComponentGenerator = argsIncludeComponentGenerator(args);
+      isMockGenerator = argsIncludeMockGenerator(args);
+      isLinter = argsIncludeLint(args);
+    }
 
     if (isLinter) {
       lint(args);

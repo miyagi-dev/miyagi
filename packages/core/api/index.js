@@ -3,49 +3,56 @@ const init = require("../lib");
 const { getVariationData, resolveVariationData } = require("../lib/mocks");
 const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
 const { getTemplateFilePathFromDirectoryPath } = require("../lib/helpers");
+const build = require("../lib/build");
 
 module.exports = function Api() {
   process.env.MIYAGI_JS_API = true;
 
-  return new Promise((resolve) => {
-    init("api")
-      .then((app) => {
-        const getMockData = async ({ component, variant = "default" }) => {
-          const file = getTemplateFilePathFromDirectoryPath(app, component);
-          const { extended: variationData } = await getVariationData(
-            app,
-            file,
-            variant
-          );
+  const getMockData = async ({ component, variant = "default" }) => {
+    const app = await init("api");
+    const file = getTemplateFilePathFromDirectoryPath(app, component);
+    const { extended: variationData } = await getVariationData(
+      app,
+      file,
+      variant
+    );
 
-          return await resolveVariationData(app, variationData);
-        };
+    const result = await resolveVariationData(app, variationData);
 
-        const getHtml = async ({ component, variant = "default" }) => {
-          return await renderIframeVariation({
-            app,
-            file: component,
-            variation: variant,
-          });
-        };
+    return result.resolved;
+  };
 
-        const getNode = async ({ component, variant = "default" }) => {
-          const html = await getHtml({
-            component,
-            variant,
-          });
+  const getHtml = async ({ component, variant = "default" }) => {
+    const app = await init("api");
 
-          return createElementFromHTML(html);
-        };
+    return await renderIframeVariation({
+      app,
+      file: component,
+      variation: variant,
+    });
+  };
 
-        resolve({
-          getMockData,
-          getHtml,
-          getNode,
-        });
-      })
-      .catch((err) => console.error(err));
-  });
+  const getNode = async ({ component, variant = "default" }) => {
+    const html = await getHtml({
+      component,
+      variant,
+    });
+
+    return createElementFromHTML(html);
+  };
+
+  const createBuild = async () => {
+    const app = await init("build");
+
+    return build(app);
+  };
+
+  return {
+    getMockData,
+    getHtml,
+    getNode,
+    createBuild,
+  };
 };
 
 function createElementFromHTML(html) {

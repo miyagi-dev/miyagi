@@ -6,8 +6,9 @@ This can be helpful if you want to you use your mock data or rendered variants e
 - `getMockData` returns the resolved mock data as a plain JSON object.
 - `getHtml` returns the rendered variant as a string of HTML.
 - `getNode` returns the rendered variant as a DOM node. Please note that it will return your component wrapped in a `div` if your component returns more than one top level node.
+- `createBuild` simply triggers a build, same as the CLI command.
 
-All methods accept an object like the following:
+`getMockData`, `getHtml` and `getNode` accept an object like the following:
 
 ```json
 {

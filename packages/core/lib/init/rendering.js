@@ -10,6 +10,6 @@ module.exports = async function initRendering(config) {
   config = await updateConfigForRendererIfNecessary(config);
 
   if (config) {
-    init(config);
+    return init(config);
   }
 };
