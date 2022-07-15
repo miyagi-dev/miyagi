@@ -2,9 +2,7 @@ const { JSDOM } = require("jsdom");
 const init = require("../lib");
 const { getVariationData, resolveVariationData } = require("../lib/mocks");
 const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
-const {
-  getTemplateFilePathFromDirectoryPath,
-} = require("../lib/render/helpers");
+const { getTemplateFilePathFromDirectoryPath } = require("../lib/helpers");
 
 module.exports = function Api() {
   process.env.MIYAGI_JS_API = true;
