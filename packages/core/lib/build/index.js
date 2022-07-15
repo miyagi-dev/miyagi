@@ -23,7 +23,7 @@ module.exports = (app) => {
       .padStart(
         2,
         "0"
-      )}-${utcDate.getDate()} ${utcDate.getHours()}:${utcDate.getMinutes()}:${utcDate.getSeconds()}Z`;
+      )}-${utcDate.getDate()}T${utcDate.getHours()}:${utcDate.getMinutes()}:${utcDate.getSeconds()}Z`;
     const formattedBuildDate = `${utcDate.getFullYear()}/${(
       utcDate.getMonth() + 1
     )
