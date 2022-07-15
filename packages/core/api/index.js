@@ -4,6 +4,7 @@ const { getVariationData, resolveVariationData } = require("../lib/mocks");
 const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
 const { getTemplateFilePathFromDirectoryPath } = require("../lib/helpers");
 const build = require("../lib/build");
+const mocks = require("../lib/generator/mocks");
 
 module.exports = function Api() {
   process.env.MIYAGI_JS_API = true;
@@ -47,11 +48,18 @@ module.exports = function Api() {
     return build(app);
   };
 
+  const createMockData = async ({ component }) => {
+    const app = await init("api");
+
+    return mocks(component, app.get("config").files);
+  };
+
   return {
     getMockData,
     getHtml,
     getNode,
     createBuild,
+    createMockData,
   };
 };
 

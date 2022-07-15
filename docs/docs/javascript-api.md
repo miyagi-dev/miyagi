@@ -6,14 +6,23 @@ This can be helpful if you want to you use your mock data or rendered variants e
 - `getMockData` returns the resolved mock data as a plain JSON object.
 - `getHtml` returns the rendered variant as a string of HTML.
 - `getNode` returns the rendered variant as a DOM node. Please note that it will return your component wrapped in a `div` if your component returns more than one top level node.
+- `createMockData` creates a mock data file based on the components schema file, same as the CLI command.
 - `createBuild` simply triggers a build, same as the CLI command.
 
-`getMockData`, `getHtml` and `getNode` accept an object like the following:
+`getMockData`, `getHtml` and `getNode` accept an object like:
 
 ```json
 {
   "component": "path/to/component/folder",
   "variant": "default" // could be omitted, since "default" is the default
+}
+```
+
+`createMockData` accepts an object like:
+
+```json
+{
+  "component": "path/to/component/folder"
 }
 ```
 
