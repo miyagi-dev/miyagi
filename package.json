@@ -4,7 +4,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:mgrsskls/miyagi.git"
+    "url": "git@github.com:miyagi-dev/miyagi.git"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",
@@ -35,8 +35,6 @@
     "core:fix": "npm run fix --prefix packages/core",
     "core:build": "npm run build --prefix packages/core",
     "core:release": "npm run release --prefix packages/core",
-    "twig-drupal:release": "npm run release --prefix packages/twig-drupal",
-    "twig-laravel:release": "npm run release --prefix packages/twig-laravel",
     "docs": "cd docs/ && mkdocs serve"
   },
   "stylelint": {

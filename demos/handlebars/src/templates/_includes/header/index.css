@@ -1,8 +1,0 @@
-.Header-title {
-  background: linear-gradient(var(--color-Primary), var(--color-Primary));
-  background-position: 1rem bottom;
-  background-repeat: no-repeat;
-  background-size: 100% 0.25em;
-  display: inline-block;
-  font: var(--typo-H1);
-}
