@@ -28,14 +28,14 @@ html {
   --Miyagi-transition: all 0.15s ease;
 
   /* light */
-  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+  --Miyagi-color-Grey-1: hsl(0deg 0% 12%);
+  --Miyagi-color-Grey-2: hsl(0deg 0% 36%);
+  --Miyagi-color-Grey-3: hsl(0deg 0% 56%);
+  --Miyagi-color-Grey-4: hsl(0deg 0% 86%);
+  --Miyagi-color-Grey-5: hsl(0deg 0% 96%);
   --Miyagi-color-Negative: #d9173e;
   --Miyagi-color-Positive: #690;
-  --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
+  --Miyagi-color-OverlayBackground: rgb(255 255 255 / 95%);
   --Miyagi-color-bg-Tooltip: #f5f5f5;
   --Miyagi-color-outline-Tooltip: #ddd;
 }
@@ -52,43 +52,43 @@ html[dir="rtl"] {
 
 @media (prefers-color-scheme: dark) {
   html {
-    --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
-    --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
-    --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
-    --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
-    --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
+    --Miyagi-color-Grey-1: hsl(0deg 0% 100%);
+    --Miyagi-color-Grey-2: hsl(0deg 0% 80%);
+    --Miyagi-color-Grey-3: hsl(0deg 0% 60%);
+    --Miyagi-color-Grey-4: hsl(0deg 0% 26%);
+    --Miyagi-color-Grey-5: hsl(0deg 0% 16%);
     --Miyagi-color-Negative: #ff305a;
     --Miyagi-color-Warning: #b578b5;
     --Miyagi-color-Positive: #8dd203;
-    --Miyagi-color-OverlayBackground: hsla(0, 0%, 12%, 0.95);
+    --Miyagi-color-OverlayBackground: hsl(0deg 0% 12% / 95%);
     --Miyagi-color-bg-Tooltip: #333;
     --Miyagi-color-outline-Tooltip: #444;
   }
 }
 
 .MiyagiTheme--light {
-  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+  --Miyagi-color-Grey-1: hsl(0deg 0% 12%);
+  --Miyagi-color-Grey-2: hsl(0deg 0% 36%);
+  --Miyagi-color-Grey-3: hsl(0deg 0% 56%);
+  --Miyagi-color-Grey-4: hsl(0deg 0% 86%);
+  --Miyagi-color-Grey-5: hsl(0deg 0% 96%);
   --Miyagi-color-Negative: #d9173e;
   --Miyagi-color-Positive: #690;
-  --Miyagi-color-OverlayBackground: rgba(255, 255, 255, 0.95);
+  --Miyagi-color-OverlayBackground: rgb(255 255 255 / 95%);
   --Miyagi-color-bg-Tooltip: #f5f5f5;
   --Miyagi-color-outline-Tooltip: #ddd;
 }
 
 .MiyagiTheme--dark {
-  --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
+  --Miyagi-color-Grey-1: hsl(0deg 0% 100%);
+  --Miyagi-color-Grey-2: hsl(0deg 0% 80%);
+  --Miyagi-color-Grey-3: hsl(0deg 0% 60%);
+  --Miyagi-color-Grey-4: hsl(0deg 0% 26%);
+  --Miyagi-color-Grey-5: hsl(0deg 0% 16%);
   --Miyagi-color-Negative: #ff305a;
   --Miyagi-color-Warning: #b578b5;
   --Miyagi-color-Positive: #8dd203;
-  --Miyagi-color-OverlayBackground: hsla(0, 0%, 12%, 0.95);
+  --Miyagi-color-OverlayBackground: hsl(0deg 0% 12% / 95%);
   --Miyagi-color-bg-Tooltip: #333;
   --Miyagi-color-outline-Tooltip: #444;
 }

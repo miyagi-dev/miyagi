@@ -1,6 +1,9 @@
 import Main from "./_main.js";
 
 class MainDev extends Main {
+  /**
+   *
+   */
   constructor() {
     super();
 
@@ -13,6 +16,9 @@ class MainDev extends Main {
     this.indexPath = `/${this.paths.embedded}file=all${this.embeddedParam}`;
   }
 
+  /**
+   *
+   */
   onPopState() {
     let path;
 

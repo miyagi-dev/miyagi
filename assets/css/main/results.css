@@ -15,14 +15,14 @@
 }
 
 .Results-summary:focus-visible {
-  outline: 3px solid currentColor;
+  outline: 3px solid currentcolor;
   outline-offset: 2px;
   border-radius: var(--Miyagi-borderRadius);
 }
 
 .Results-summary::after {
   border: var(--Miyagi-toggle-border);
-  border-color: currentColor;
+  border-color: currentcolor;
   border-top-width: var(--Miyagi-toggle-borderWidth);
   border-inline-end-width: var(--Miyagi-toggle-borderWidth);
   content: "";

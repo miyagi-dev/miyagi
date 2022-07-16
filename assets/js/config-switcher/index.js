@@ -3,6 +3,10 @@
  */
 
 class ConfigSwitcher {
+  /**
+   *
+   * @param form
+   */
   constructor(form) {
     this.form = form;
     this.inputs = Array.from(this.form.querySelectorAll('[type="radio"]'));

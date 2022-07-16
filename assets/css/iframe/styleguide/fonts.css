@@ -33,5 +33,5 @@
 .MiyagiContent .MiyagiFonts-details > li:not(:last-child) {
   margin-inline-end: 0.5em;
   padding-inline-end: 0.5em;
-  border-inline-end: 1px solid currentColor;
+  border-inline-end: 1px solid currentcolor;
 }

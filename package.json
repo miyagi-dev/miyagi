@@ -120,6 +120,14 @@
     "extends": [
       "stylelint-config-standard",
       "stylelint-config-prettier"
-    ]
+    ],
+    "rules": {
+      "custom-property-pattern": null,
+      "declaration-block-no-redundant-longhand-properties": null,
+      "keyframes-name-pattern": null,
+      "no-descending-specificity": null,
+      "number-max-precision": 5,
+      "selector-class-pattern": null
+    }
   }
 }

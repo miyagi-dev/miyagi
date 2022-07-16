@@ -20,16 +20,16 @@ html {
   --Miyagi-spacing: var(--Miyagi-spacing-y);
 
   /* light */
-  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+  --Miyagi-color-Grey-1: hsl(0deg 0% 12%);
+  --Miyagi-color-Grey-2: hsl(0deg 0% 36%);
+  --Miyagi-color-Grey-3: hsl(0deg 0% 56%);
+  --Miyagi-color-Grey-4: hsl(0deg 0% 86%);
+  --Miyagi-color-Grey-5: hsl(0deg 0% 96%);
   --Miyagi-color-Background-internal: var(--Miyagi-color-Grey-5);
   --Miyagi-color-Background2: #fff;
   --Miyagi-color-Search-text-internal: var(--Miyagi-color-Link);
-  --Miyagi-color-Search-background-internal: rgba(0, 0, 0, 0.05);
-  --Miyagi-color-Search-border-internal: rgba(0, 0, 0, 0.25);
+  --Miyagi-color-Search-background-internal: rgb(0 0 0 / 5%);
+  --Miyagi-color-Search-border-internal: rgb(0 0 0 / 25%);
   --Miyagi-color-Negative: #d9173e;
   --Miyagi-color-Warning: purple;
   --Miyagi-color-Positive: #690;
@@ -47,16 +47,16 @@ html[dir="rtl"] {
 
 @media (prefers-color-scheme: dark) {
   html {
-    --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
-    --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
-    --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
-    --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
-    --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
-    --Miyagi-color-Background-internal: hsl(0, 0%, 10%);
-    --Miyagi-color-Background2: hsl(0, 0%, 12%);
+    --Miyagi-color-Grey-1: hsl(0deg 0% 100%);
+    --Miyagi-color-Grey-2: hsl(0deg 0% 80%);
+    --Miyagi-color-Grey-3: hsl(0deg 0% 60%);
+    --Miyagi-color-Grey-4: hsl(0deg 0% 26%);
+    --Miyagi-color-Grey-5: hsl(0deg 0% 16%);
+    --Miyagi-color-Background-internal: hsl(0deg 0% 10%);
+    --Miyagi-color-Background2: hsl(0deg 0% 12%);
     --Miyagi-color-Search-text-internal: var(--Miyagi-color-Link);
-    --Miyagi-color-Search-background-internal: rgba(255, 255, 255, 0.1);
-    --Miyagi-color-Search-border-internal: rgba(255, 255, 255, 0.25);
+    --Miyagi-color-Search-background-internal: rgb(255 255 255 / 10%);
+    --Miyagi-color-Search-border-internal: rgb(255 255 255 / 25%);
     --Miyagi-color-Negative: #ff305a;
     --Miyagi-color-Warning: #b578b5;
     --Miyagi-color-Positive: #8dd203;
@@ -65,32 +65,32 @@ html[dir="rtl"] {
 
 .theme-light {
   /* light */
-  --Miyagi-color-Grey-1: hsl(0, 0%, 12%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 36%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 56%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 86%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 96%);
+  --Miyagi-color-Grey-1: hsl(0deg 0% 12%);
+  --Miyagi-color-Grey-2: hsl(0deg 0% 36%);
+  --Miyagi-color-Grey-3: hsl(0deg 0% 56%);
+  --Miyagi-color-Grey-4: hsl(0deg 0% 86%);
+  --Miyagi-color-Grey-5: hsl(0deg 0% 96%);
   --Miyagi-color-Background-internal: var(--Miyagi-color-Grey-5);
   --Miyagi-color-Background2: #fff;
   --Miyagi-color-Search-text-internal: var(--Miyagi-color-Link);
-  --Miyagi-color-Search-background-internal: rgba(0, 0, 0, 0.05);
-  --Miyagi-color-Search-border-internal: rgba(0, 0, 0, 0.25);
+  --Miyagi-color-Search-background-internal: rgb(0 0 0 / 5%);
+  --Miyagi-color-Search-border-internal: rgb(0 0 0 / 25%);
   --Miyagi-color-Negative: #d9173e;
   --Miyagi-color-Warning: purple;
   --Miyagi-color-Positive: #690;
 }
 
 .theme-dark {
-  --Miyagi-color-Grey-1: hsl(0, 0%, 100%);
-  --Miyagi-color-Grey-2: hsl(0, 0%, 80%);
-  --Miyagi-color-Grey-3: hsl(0, 0%, 60%);
-  --Miyagi-color-Grey-4: hsl(0, 0%, 26%);
-  --Miyagi-color-Grey-5: hsl(0, 0%, 16%);
-  --Miyagi-color-Background-internal: hsl(0, 0%, 10%);
-  --Miyagi-color-Background2: hsl(0, 0%, 12%);
+  --Miyagi-color-Grey-1: hsl(0deg 0% 100%);
+  --Miyagi-color-Grey-2: hsl(0deg 0% 80%);
+  --Miyagi-color-Grey-3: hsl(0deg 0% 60%);
+  --Miyagi-color-Grey-4: hsl(0deg 0% 26%);
+  --Miyagi-color-Grey-5: hsl(0deg 0% 16%);
+  --Miyagi-color-Background-internal: hsl(0deg 0% 10%);
+  --Miyagi-color-Background2: hsl(0deg 0% 12%);
   --Miyagi-color-Search-text-internal: var(--Miyagi-color-Link);
-  --Miyagi-color-Search-background-internal: rgba(255, 255, 255, 0.1);
-  --Miyagi-color-Search-border-internal: rgba(255, 255, 255, 0.25);
+  --Miyagi-color-Search-background-internal: rgb(255 255 255 / 10%);
+  --Miyagi-color-Search-border-internal: rgb(255 255 255 / 25%);
   --Miyagi-color-Negative: #ff305a;
   --Miyagi-color-Warning: #b578b5;
   --Miyagi-color-Positive: #8dd203;

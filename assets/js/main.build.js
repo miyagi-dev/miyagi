@@ -1,6 +1,9 @@
 import Main from "./_main.js";
 
 class MainBuild extends Main {
+  /**
+   *
+   */
   constructor() {
     super();
 
