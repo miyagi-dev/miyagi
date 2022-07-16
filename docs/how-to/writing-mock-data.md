@@ -10,8 +10,8 @@ The most basic mock file would look something like this:
 
 ```json
 {
-  "label": "Save",
-  "type": "submit"
+	"label": "Save",
+	"type": "submit"
 }
 ```
 
@@ -19,9 +19,9 @@ In the UI this would be shown as a variant with the name "default". If you want 
 
 ```json
 {
-  "$name": "save",
-  "label": "Save",
-  "type": "submit"
+	"$name": "save",
+	"label": "Save",
+	"type": "submit"
 }
 ```
 
@@ -31,15 +31,15 @@ You can also add variants, which would be merged with the default data:
 
 ```json
 {
-  "label": "Save",
-  "type": "submit",
-  "$variants": [
-    {
-      "$name": "reset disabled",
-      "label": "Disabled",
-      "disabled": true
-    }
-  ]
+	"label": "Save",
+	"type": "submit",
+	"$variants": [
+		{
+			"$name": "reset disabled",
+			"label": "Disabled",
+			"disabled": true
+		}
+	]
 }
 ```
 
@@ -47,9 +47,9 @@ So, the data of the variation `"reset disabled"` would be:
 
 ```json
 {
-  "label": "Disabled",
-  "type": "submit",
-  "disabled": true
+	"label": "Disabled",
+	"type": "submit",
+	"disabled": true
 }
 ```
 
@@ -61,13 +61,13 @@ When you have an array in your default mock data as well as your variant mock da
 
 ```json
 {
-  "array": [1, 2, 3],
-  "$variant": [
-    {
-      "$name": "variant",
-      "array": [4, 5, 6]
-    }
-  ]
+	"array": [1, 2, 3],
+	"$variant": [
+		{
+			"$name": "variant",
+			"array": [4, 5, 6]
+		}
+	]
 }
 ```
 
@@ -75,7 +75,7 @@ becomes
 
 ```json
 {
-  "array": [1, 2, 3, 4, 5, 6]
+	"array": [1, 2, 3, 4, 5, 6]
 }
 ```
 
@@ -87,16 +87,16 @@ If you want to change this behavior, you can use `$opts` to define a different m
 
 ```json
 {
-  "array": [1, 2, 3],
-  "$variant": [
-    {
-      "$name": "variant",
-      "array": [4, 5, 6],
-      "$opts": {
-        "array": "overwrite"
-      }
-    }
-  ]
+	"array": [1, 2, 3],
+	"$variant": [
+		{
+			"$name": "variant",
+			"array": [4, 5, 6],
+			"$opts": {
+				"array": "overwrite"
+			}
+		}
+	]
 }
 ```
 
@@ -104,7 +104,7 @@ becomes
 
 ```json
 {
-  "array": [4, 5, 6]
+	"array": [4, 5, 6]
 }
 ```
 
@@ -114,16 +114,16 @@ becomes
 
 ```json
 {
-  "array": [1, { "a": 2 }, { "a": null }],
-  "$variants": [
-    {
-      "$name": "variant",
-      "array": [2, { "b": 2 }, { "a": 3 }],
-      "$opts": {
-        "array": "combine"
-      }
-    }
-  ]
+	"array": [1, { "a": 2 }, { "a": null }],
+	"$variants": [
+		{
+			"$name": "variant",
+			"array": [2, { "b": 2 }, { "a": 3 }],
+			"$opts": {
+				"array": "combine"
+			}
+		}
+	]
 }
 ```
 
@@ -131,7 +131,7 @@ becomes
 
 ```json
 {
-  "array": [2, { "a": 2, "b": 2 }, { "a": 3 }]
+	"array": [2, { "a": 2, "b": 2 }, { "a": 3 }]
 }
 ```
 
@@ -141,7 +141,7 @@ Instead of manually defining data, you can also reference other mock files like 
 
 ```json
 {
-  "$ref": "some/other/component"
+	"$ref": "some/other/component"
 }
 ```
 
@@ -169,8 +169,8 @@ would result in
 
 ```json
 {
-  "oneVar": "someOtherValue",
-  "anotherVar": "anotherValue"
+	"oneVar": "someOtherValue",
+	"anotherVar": "anotherValue"
 }
 ```
 
@@ -180,7 +180,7 @@ If you need to reference a variation from another mock file, you can do so by us
 
 ```json
 {
-  "$ref": "some/other/component#variation-name"
+	"$ref": "some/other/component#variation-name"
 }
 ```
 
@@ -192,10 +192,10 @@ By referencing a template file using `$tpl`, the object would be converted into 
 
 ```json
 {
-  "oneVar": {
-    "$tpl": "some/other/component",
-    "$ref": "some/other/component"
-  }
+	"oneVar": {
+		"$tpl": "some/other/component",
+		"$ref": "some/other/component"
+	}
 }
 ```
 
@@ -203,7 +203,7 @@ would result in
 
 ```json
 {
-  "oneVar": "<someHtml></someHtml>"
+	"oneVar": "<someHtml></someHtml>"
 }
 ```
 
@@ -215,16 +215,16 @@ If you want to use multiple components for one HTML string, you can do that by u
 
 ```json
 {
-  "html": {
-    "$render": [
-      {
-        "$tpl": "some/component"
-      },
-      {
-        "$tpl": "another/component"
-      }
-    ]
-  }
+	"html": {
+		"$render": [
+			{
+				"$tpl": "some/component"
+			},
+			{
+				"$tpl": "another/component"
+			}
+		]
+	}
 }
 ```
 
@@ -236,9 +236,9 @@ If you want to fetch mock data from an API or do any other asynchronous operatio
 
 ```js
 module.exports = async function returnMockData() {
-  const data = await fetchData();
+	const data = await fetchData();
 
-  return data;
+	return data;
 };
 ```
 

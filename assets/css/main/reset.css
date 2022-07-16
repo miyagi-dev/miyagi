@@ -1,7 +1,7 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/
@@ -90,39 +90,39 @@ time,
 mark,
 audio,
 video {
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
+	border: 0;
+	font: inherit;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
 }
 
 body {
-  line-height: 1;
+	line-height: 1;
 }
 
 ol,
 ul {
-  list-style: none;
+	list-style: none;
 }
 
 blockquote,
 q {
-  quotes: none;
+	quotes: none;
 }
 
 blockquote::before,
 blockquote::after,
 q::before,
 q::after {
-  content: "";
-  content: none;
+	content: "";
+	content: none;
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 /* custom */
@@ -130,60 +130,60 @@ table {
 input,
 button,
 textarea {
-  background: none;
-  border: none;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  padding: 0;
+	background: none;
+	border: none;
+	color: inherit;
+	font: inherit;
+	margin: 0;
+	padding: 0;
 }
 
 button,
 [type="button"],
 [type="submit"],
 [type="reset"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  white-space: normal;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	white-space: normal;
 }
 
 a {
-  color: inherit;
+	color: inherit;
 }
 
 ::-webkit-input-placeholder {
-  color: inherit;
-  opacity: 0.618;
+	color: inherit;
+	opacity: 0.618;
 }
 
 ::-moz-placeholder {
-  color: inherit;
-  opacity: 0.618;
+	color: inherit;
+	opacity: 0.618;
 }
 
 :-ms-input-placeholder {
-  color: inherit;
-  opacity: 0.618;
+	color: inherit;
+	opacity: 0.618;
 }
 
 ::placeholder {
-  color: inherit;
-  opacity: 0.618;
+	color: inherit;
+	opacity: 0.618;
 }
 
 input[type="search"] {
-  -webkit-appearance: textfield;
+	-webkit-appearance: textfield;
 }
 
 input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
-  -webkit-appearance: none;
+	-webkit-appearance: none;
 }
 
 textarea {
-  display: block;
-  resize: vertical;
+	display: block;
+	resize: vertical;
 }
 
 /* Removes touch input lag from tappable things */
@@ -193,25 +193,25 @@ input,
 textarea,
 select,
 label {
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
 }
 
 button::-moz-focus-inner,
 input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
+	border: 0;
+	padding: 0;
 }
 
 /* https://mobile.twitter.com/LeaVerou/status/1045768279753666562 */
 :focus:not(:focus-visible) {
-  outline: none;
+	outline: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::after,
-  *::before {
-    scroll-behavior: auto !important;
-  }
+	*,
+	*::after,
+	*::before {
+		scroll-behavior: auto !important;
+	}
 }

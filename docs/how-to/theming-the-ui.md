@@ -39,10 +39,10 @@ const fs = require("fs");
 const css = fs.readFileSync("my/custom/styles.css", "utf8");
 
 module.exports = {
-  ui: {
-    theme: {
-      css,
-    },
-  },
+	ui: {
+		theme: {
+			css,
+		},
+	},
 };
 ```

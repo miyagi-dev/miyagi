@@ -6,9 +6,9 @@ When creating a new component via `miyagi new <component>`, the schema file is c
 
 ```json
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "required": [],
-  "properties": {}
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"required": [],
+	"properties": {}
 }
 ```
 

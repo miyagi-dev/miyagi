@@ -9,109 +9,109 @@
 @import "./main/goto.css";
 
 html {
-  font-size: 62.5%;
-  height: 100%;
+	font-size: 62.5%;
+	height: 100%;
 }
 
 body {
-  background: var(--Miyagi-color-Background2);
-  color: var(--Miyagi-color-Text);
-  display: grid;
-  font-family: var(--Miyagi-fontFamily);
-  font-size: var(--Miyagi-fontSize);
-  line-height: var(--Miyagi-lineHeight);
-  min-height: 100%;
+	background: var(--Miyagi-color-Background2);
+	color: var(--Miyagi-color-Text);
+	display: grid;
+	font-family: var(--Miyagi-fontFamily);
+	font-size: var(--Miyagi-fontSize);
+	line-height: var(--Miyagi-lineHeight);
+	min-height: 100%;
 }
 
 .Content {
-  grid-area: iframe;
+	grid-area: iframe;
 }
 
 .FrameWrapper {
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 }
 
 .Frame {
-  display: block;
-  height: 100%;
-  width: 100%;
+	display: block;
+	height: 100%;
+	width: 100%;
 }
 
 .Tests {
-  grid-area: tests;
-  padding-inline-end: 4rem;
-  color: var(--Miyagi-color-ValidationsText);
+	grid-area: tests;
+	padding-inline-end: 4rem;
+	color: var(--Miyagi-color-ValidationsText);
 }
 
 @media (max-width: 40em) {
-  html {
-    --Miyagi-spacing-x: 1rem;
-    --Miyagi-spacing-y: 1rem;
-  }
+	html {
+		--Miyagi-spacing-x: 1rem;
+		--Miyagi-spacing-y: 1rem;
+	}
 
-  body {
-    grid-template:
-      "nav"
-      "iframe" 1fr
-      "tests";
-  }
+	body {
+		grid-template:
+			"nav"
+			"iframe" 1fr
+			"tests";
+	}
 
-  .Tests {
-    padding: 4rem;
-    padding-block-start: 0;
-  }
+	.Tests {
+		padding: 4rem;
+		padding-block-start: 0;
+	}
 }
 
 @media (min-width: 40.03125em) {
-  html {
-    --Miyagi-spacing-x: 2rem;
-    --Miyagi-spacing-y: 4rem;
-  }
+	html {
+		--Miyagi-spacing-x: 2rem;
+		--Miyagi-spacing-y: 4rem;
+	}
 
-  .Tests {
-    -webkit-overflow-scrolling: touch;
-    overflow-y: auto;
-  }
+	.Tests {
+		-webkit-overflow-scrolling: touch;
+		overflow-y: auto;
+	}
 }
 
 @media (min-width: 40.03125em) and (max-width: 64em) {
-  body {
-    grid-template-areas:
-      "nav iframe"
-      "nav tests";
-    grid-template-columns: 25rem 1fr;
-    grid-template-rows: 1fr auto;
-  }
+	body {
+		grid-template-areas:
+			"nav iframe"
+			"nav tests";
+		grid-template-columns: 25rem 1fr;
+		grid-template-rows: 1fr auto;
+	}
 
-  .Tests {
-    max-height: 50vh;
-    padding-inline-start: 4rem;
-  }
+	.Tests {
+		max-height: 50vh;
+		padding-inline-start: 4rem;
+	}
 }
 
 @media (min-width: 64.03125em) {
-  body {
-    grid-template-areas: "nav iframe tests";
-    grid-template-columns: 25rem 1fr auto;
-  }
+	body {
+		grid-template-areas: "nav iframe tests";
+		grid-template-columns: 25rem 1fr auto;
+	}
 
-  .Tests {
-    max-height: 100vh;
-    min-width: 30rem;
-    padding-top: 4rem;
-    width: 20vw;
-  }
+	.Tests {
+		max-height: 100vh;
+		min-width: 30rem;
+		padding-top: 4rem;
+		width: 20vw;
+	}
 }
 
 .u-hiddenVisually {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
-  padding: 0;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
 }

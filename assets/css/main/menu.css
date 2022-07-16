@@ -1,242 +1,242 @@
 .Menu {
-  font-size: 1.4rem;
-  margin: var(--Miyagi-spacing-x) 0 0;
+	font-size: 1.4rem;
+	margin: var(--Miyagi-spacing-x) 0 0;
 }
 
 .Menu-search {
-  background: var(--Miyagi-color-Background);
-  padding: var(--Miyagi-spacing-x) 0;
-  margin-inline-start: calc(-1 * 1.5rem);
-  width: calc(100% + 1.5rem);
+	background: var(--Miyagi-color-Background);
+	padding: var(--Miyagi-spacing-x) 0;
+	margin-inline-start: calc(-1 * 1.5rem);
+	width: calc(100% + 1.5rem);
 }
 
 .Menu-searchLabel,
 .Menu-searchClear {
-  --size: 1.25em;
+	--size: 1.25em;
 
-  position: absolute;
-  inset-inline-end: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: var(--size);
-  height: var(--size);
+	position: absolute;
+	inset-inline-end: 1rem;
+	top: 50%;
+	transform: translateY(-50%);
+	width: var(--size);
+	height: var(--size);
 }
 
 .Menu-searchIcon {
-  color: var(--Miyagi-color-Text);
-  display: block;
-  width: 100%;
-  height: 100%;
+	color: var(--Miyagi-color-Text);
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 .Menu-searchIcon path {
-  fill: currentcolor;
+	fill: currentcolor;
 }
 
 .Menu-searchIcon circle {
-  fill: none;
-  stroke: currentcolor;
+	fill: none;
+	stroke: currentcolor;
 }
 
 .Menu-searchInput {
-  border: 1px solid var(--Miyagi-color-Search-border);
-  box-shadow: 0.1em 0.1em 0.3em rgba(0 0 0 20%) inset;
-  color: var(--Miyagi-color-Search-text);
-  background: var(--Miyagi-color-Search-background);
-  padding: 0.35em 0.5em;
-  padding-inline-end: 2.5em;
-  width: 100%;
+	border: 1px solid var(--Miyagi-color-Search-border);
+	box-shadow: 0.1em 0.1em 0.3em rgba(0 0 0 20%) inset;
+	color: var(--Miyagi-color-Search-text);
+	background: var(--Miyagi-color-Search-background);
+	padding: 0.35em 0.5em;
+	padding-inline-end: 2.5em;
+	width: 100%;
 }
 
 .Menu-searchClear {
-  border-radius: 50%;
+	border-radius: 50%;
 }
 
 .Menu-searchInput:focus,
 .Menu-searchClear:focus-visible {
-  outline: 3px solid currentcolor;
+	outline: 3px solid currentcolor;
 }
 
 .Menu-searchClear:focus-visible {
-  outline-offset: -1px;
+	outline-offset: -1px;
 }
 
 [aria-expanded="true"] ~ .Menu-listContainer {
-  display: block;
+	display: block;
 }
 
 [aria-expanded="false"] ~ .Menu-listContainer {
-  display: none;
+	display: none;
 }
 
 .Menu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  padding-block-start: 0.5em;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+	padding-block-start: 0.5em;
 }
 
 .Menu-listItem {
-  position: relative;
+	position: relative;
 }
 
 .Menu-link,
 .Menu-component {
-  border-radius: var(--Miyagi-borderRadius);
-  display: block;
-  padding: 0 var(--Miyagi-linkSpacing);
-  text-transform: capitalize;
+	border-radius: var(--Miyagi-borderRadius);
+	display: block;
+	padding: 0 var(--Miyagi-linkSpacing);
+	text-transform: capitalize;
 }
 
 .Menu-listItem.has-no-match .Menu-component,
 .Menu-listItem.is-no-match .Menu-toggle,
 .Menu-listItem.is-no-match .Menu-link:not(.Menu-component) {
-  opacity: 0.3;
+	opacity: 0.3;
 }
 
 .Menu-listItem--directory.has-match > .Menu-toggle,
 .Menu-listItem--directory.is-match * {
-  opacity: 1 !important;
+	opacity: 1 !important;
 }
 
 .Menu-component:not(.Menu-link) {
-  color: var(--Miyagi-color-Link);
-  cursor: default;
+	color: var(--Miyagi-color-Link);
+	cursor: default;
 }
 
 .Menu-component:not(.Menu-link):last-child {
-  opacity: 0.6;
+	opacity: 0.6;
 }
 
 .Menu-link {
-  color: var(--Miyagi-color-Link);
-  text-decoration: none;
+	color: var(--Miyagi-color-Link);
+	text-decoration: none;
 }
 
 .Menu-link:hover,
 .Menu-link:focus {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 .Menu-link--showAll {
-  display: inline-block;
-  font-size: 1.4rem;
-  font-weight: 500;
+	display: inline-block;
+	font-size: 1.4rem;
+	font-weight: 500;
 }
 
 .Menu-link:not(.has-logo)[aria-current] {
-  background: var(--Miyagi-color-Link-active-background, --Miyagi-color-Link);
-  border-radius: var(--Miyagi-borderRadius);
-  color: var(--Miyagi-color-Link-active);
-  display: inline-block;
+	background: var(--Miyagi-color-Link-active-background, --Miyagi-color-Link);
+	border-radius: var(--Miyagi-borderRadius);
+	color: var(--Miyagi-color-Link-active);
+	display: inline-block;
 }
 
 .Menu-component.Menu-link {
-  font-weight: 600;
+	font-weight: 600;
 }
 
 .Menu-toggle {
-  border-radius: var(--Miyagi-borderRadius);
-  display: block;
-  font-size: 1.5em;
-  height: 1em;
-  position: absolute;
-  inset-inline-end: calc(100% - var(--inline-end));
-  text-indent: -9999em;
-  top: 0;
-  width: 1em;
+	border-radius: var(--Miyagi-borderRadius);
+	display: block;
+	font-size: 1.5em;
+	height: 1em;
+	position: absolute;
+	inset-inline-end: calc(100% - var(--inline-end));
+	text-indent: -9999em;
+	top: 0;
+	width: 1em;
 }
 
 .Menu-link:focus-visible,
 .Menu-component:focus-visible,
 .Menu-toggle:focus-visible {
-  outline: 3px solid currentcolor;
+	outline: 3px solid currentcolor;
 }
 
 .Menu-toggle:focus-visible {
-  outline-offset: -2px;
+	outline-offset: -2px;
 }
 
 .Menu-link:focus-visible,
 .Menu-component:focus-visible {
-  outline-color: var(
-    --Miyagi-color-Link-active-background,
-    --Miyagi-color-Link
-  );
-  outline-offset: 2px;
+	outline-color: var(
+		--Miyagi-color-Link-active-background,
+		--Miyagi-color-Link
+	);
+	outline-offset: 2px;
 }
 
 .Menu-toggle::after {
-  border: var(--Miyagi-toggle-border);
-  border-top-width: var(--Miyagi-toggle-borderWidth);
-  border-inline-end-width: var(--Miyagi-toggle-borderWidth);
-  content: "";
-  display: block;
-  font-size: var(--Miyagi-toggle-fontSize);
-  height: var(--Miyagi-toggle-height);
-  position: absolute;
-  top: 50%;
-  inset-inline-start: 50%;
-  transition: var(--Miyagi-toggle-transition);
-  width: var(--Miyagi-toggle-width);
+	border: var(--Miyagi-toggle-border);
+	border-top-width: var(--Miyagi-toggle-borderWidth);
+	border-inline-end-width: var(--Miyagi-toggle-borderWidth);
+	content: "";
+	display: block;
+	font-size: var(--Miyagi-toggle-fontSize);
+	height: var(--Miyagi-toggle-height);
+	position: absolute;
+	top: 50%;
+	inset-inline-start: 50%;
+	transition: var(--Miyagi-toggle-transition);
+	width: var(--Miyagi-toggle-width);
 }
 
 .Menu-toggle[aria-expanded="false"]::after {
-  transform: var(--Miyagi-toggle-transition-closed);
+	transform: var(--Miyagi-toggle-transition-closed);
 }
 
 .Menu-toggle[aria-expanded="true"]::after {
-  transform: var(--Miyagi-toggle-transition-opened);
+	transform: var(--Miyagi-toggle-transition-opened);
 }
 
 @media (max-width: 40em) {
-  .Menu {
-    margin-inline-start: 1rem;
-    padding-inline: var(--Miyagi-spacing-x);
-  }
+	.Menu {
+		margin-inline-start: 1rem;
+		padding-inline: var(--Miyagi-spacing-x);
+	}
 
-  .Menu-search {
-    position: relative;
-  }
+	.Menu-search {
+		position: relative;
+	}
 }
 
 @media (min-width: 40.03125em) {
-  .Menu {
-    flex: 1;
-    margin-inline-start: 1.5rem;
-  }
+	.Menu {
+		flex: 1;
+		margin-inline-start: 1.5rem;
+	}
 
-  .Menu-search {
-    position: sticky;
-    top: calc(-1 * var(--Miyagi-spacing-y));
-    z-index: 1;
-  }
+	.Menu-search {
+		position: sticky;
+		top: calc(-1 * var(--Miyagi-spacing-y));
+		z-index: 1;
+	}
 }
 
 @media (pointer: coarse) {
-  .Menu-listContainer {
-    margin-inline-start: 2rem;
-  }
+	.Menu-listContainer {
+		margin-inline-start: 2rem;
+	}
 
-  .Menu-toggle {
-    --inline-end: -0.75rem;
-  }
+	.Menu-toggle {
+		--inline-end: -0.75rem;
+	}
 
-  .Menu-toggle--lvl0 {
-    --inline-end: 0.25em !important;
-  }
+	.Menu-toggle--lvl0 {
+		--inline-end: 0.25em !important;
+	}
 
-  .Menu-component--lvl0 {
-    margin-inline-start: 1rem;
-  }
+	.Menu-component--lvl0 {
+		margin-inline-start: 1rem;
+	}
 }
 
 @media (pointer: fine) {
-  .Menu-listContainer {
-    margin-inline-start: 1.5rem;
-  }
+	.Menu-listContainer {
+		margin-inline-start: 1.5rem;
+	}
 
-  .Menu-toggle {
-    --inline-end: 0rem; /* stylelint-disable-line */
-  }
+	.Menu-toggle {
+		--inline-end: 0rem; /* stylelint-disable-line */
+	}
 }
