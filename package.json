@@ -15,7 +15,7 @@
     "del": "^6.1.1",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jsdoc": "^38.1.6",
+    "eslint-plugin-jsdoc": "^39.3.3",
     "eslint-plugin-prettier": "^4.2.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
