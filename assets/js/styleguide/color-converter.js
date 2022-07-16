@@ -1,4 +1,9 @@
 /* w3color.js ver.1.18 by w3schools.com (Do not remove this line)*/
+/**
+ *
+ * @param color
+ * @param elmnt
+ */
 function w3color(color, elmnt) {
   if (!(this instanceof w3color)) {
     return new w3color(color, elmnt);
@@ -93,10 +98,12 @@ w3color.prototype = {
     this.valid = color.valid;
   },
 };
+/**
+ *
+ * @param c
+ */
 function toColorObject(c) {
-  var x,
-    y,
-    typ,
+  var typ,
     arr = [],
     arrlength,
     i,
@@ -109,8 +116,6 @@ function toColorObject(c) {
     colornames = [],
     colorhexs = [];
   c = w3trim(c.toLowerCase());
-  x = c.substr(0, 1).toUpperCase();
-  y = c.substr(1);
   a = 1;
   if (c.substr(0, 3) == "rgb" || c.substr(0, 3) == "hsl") {
     typ = c.substr(0, 3);
@@ -242,6 +247,13 @@ function toColorObject(c) {
   }
   return colorObject(rgb, a, hue, sat);
 }
+/**
+ *
+ * @param rgb
+ * @param a
+ * @param h
+ * @param s
+ */
 function colorObject(rgb, a, h, s) {
   var hsl, color, hue, sat;
   if (!rgb) {
@@ -266,6 +278,9 @@ function colorObject(rgb, a, h, s) {
   color = roundDecimals(color);
   return color;
 }
+/**
+ *
+ */
 function emptyObject() {
   return {
     red: 0,
@@ -278,6 +293,10 @@ function emptyObject() {
     valid: false,
   };
 }
+/**
+ *
+ * @param x
+ */
 function getColorArr(x) {
   if (x == "names") {
     return [
@@ -584,6 +603,10 @@ function getColorArr(x) {
     ];
   }
 }
+/**
+ *
+ * @param c
+ */
 function roundDecimals(c) {
   c.red = Number(c.red.toFixed(0));
   c.green = Number(c.green.toFixed(0));
@@ -594,6 +617,12 @@ function roundDecimals(c) {
   c.opacity = Number(c.opacity.toFixed(2));
   return c;
 }
+/**
+ *
+ * @param hue
+ * @param sat
+ * @param light
+ */
 function hslToRgb(hue, sat, light) {
   var t1, t2, r, g, b;
   hue = hue / 60;
@@ -608,6 +637,12 @@ function hslToRgb(hue, sat, light) {
   b = hueToRgb(t1, t2, hue - 2) * 255;
   return { r: r, g: g, b: b };
 }
+/**
+ *
+ * @param t1
+ * @param t2
+ * @param hue
+ */
 function hueToRgb(t1, t2, hue) {
   if (hue < 0) hue += 6;
   if (hue >= 6) hue -= 6;
@@ -616,6 +651,12 @@ function hueToRgb(t1, t2, hue) {
   else if (hue < 4) return (t2 - t1) * (4 - hue) + t1;
   else return t1;
 }
+/**
+ *
+ * @param r
+ * @param g
+ * @param b
+ */
 function rgbToHsl(r, g, b) {
   var min,
     max,
@@ -669,6 +710,10 @@ function rgbToHsl(r, g, b) {
   return { h: h, s: s, l: l };
 }
 
+/**
+ *
+ * @param n
+ */
 function toHex(n) {
   var hex = n.toString(16);
   while (hex.length < 2) {
@@ -677,10 +722,18 @@ function toHex(n) {
   return hex;
 }
 
+/**
+ *
+ * @param x
+ */
 function w3trim(x) {
   return x.replace(/^\s+|\s+$/g, "");
 }
 
+/**
+ *
+ * @param x
+ */
 function isHex(x) {
   return "0123456789ABCDEFabcdef".indexOf(x) > -1;
 }

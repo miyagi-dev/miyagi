@@ -22,7 +22,7 @@
 }
 
 .Result a {
-  color: currentColor;
+  color: currentcolor;
   padding: 0 0.35rem;
   position: relative;
   word-break: break-all;
@@ -39,6 +39,6 @@
 }
 
 .Result-extract {
-  font-family: "Menlo", "Monaco", monospace;
+  font-family: Menlo, Monaco, monospace;
   word-wrap: break-word;
 }

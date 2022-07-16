@@ -1,5 +1,5 @@
 .GoTo {
-  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 2rem rgb(0 0 0 / 50%);
   position: fixed;
   top: 50%;
   left: 50%;
@@ -17,7 +17,7 @@
 
 .GoTo-input {
   border: 1px solid var(--Miyagi-color-Search-border);
-  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0.1em 0.1em 0.3em rgb(0 0 0 / 20%) inset;
   color: var(--Miyagi-color-Search-text);
   background: var(--Miyagi-color-Search-background);
   padding: 0.35em 0.5em;
@@ -26,6 +26,6 @@
 }
 
 .GoTo-input:focus {
-  border-color: currentColor;
+  border-color: currentcolor;
   outline: none;
 }

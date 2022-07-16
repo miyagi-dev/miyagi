@@ -1,6 +1,10 @@
 import ColorConverter from "./color-converter.js";
 
 class Styleguide {
+  /**
+   *
+   * @param element
+   */
   constructor(element) {
     this.element = element;
     this.items = Array.from(this.element.querySelectorAll(".MiyagiCustomProp"));
@@ -64,12 +68,18 @@ class Styleguide {
     });
   }
 
+  /**
+   *
+   */
   renderValues() {
     this.renderColorValues();
     this.renderFontValues();
     this.renderSpacingValues();
   }
 
+  /**
+   *
+   */
   renderColorValues() {
     this.colors.forEach((item) => {
       const color = getComputedStyle(item).getPropertyValue("--color").trim();
@@ -88,6 +98,9 @@ class Styleguide {
     });
   }
 
+  /**
+   *
+   */
   renderFontValues() {
     this.fonts.forEach((font) => {
       Array.from(font.querySelectorAll("[data-value]")).forEach((item) => {
@@ -98,6 +111,9 @@ class Styleguide {
     });
   }
 
+  /**
+   *
+   */
   renderSpacingValues() {
     this.spacings.forEach((font) => {
       Array.from(font.querySelectorAll("[data-value]")).forEach((item) => {

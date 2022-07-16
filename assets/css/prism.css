@@ -38,12 +38,12 @@
 .MiyagiTheme--dark .Miyagi-code {
   --color: white;
   --text-shadow: black;
-  --background: hsl(30, 20%, 25%);
-  --color-comment: hsl(30, 20%, 50%);
-  --color-property: hsl(350, 40%, 70%);
-  --color-selector: hsl(75, 70%, 60%);
-  --color-operator: hsl(40, 90%, 60%);
-  --color-atrule: hsl(350, 40%, 70%);
+  --background: hsl(30deg 20% 25%);
+  --color-comment: hsl(30deg 20% 50%);
+  --color-property: hsl(350deg 40% 70%);
+  --color-selector: hsl(75deg 70% 60%);
+  --color-operator: hsl(40deg 90% 60%);
+  --color-atrule: hsl(350deg 40% 70%);
   --color-regex: #e90;
   --color-deleted: red;
 }
@@ -52,12 +52,12 @@
   .Miyagi-code {
     --color: white;
     --text-shadow: black;
-    --background: hsl(30, 20%, 25%);
-    --color-comment: hsl(30, 20%, 50%);
-    --color-property: hsl(350, 40%, 70%);
-    --color-selector: hsl(75, 70%, 60%);
-    --color-operator: hsl(40, 90%, 60%);
-    --color-atrule: hsl(350, 40%, 70%);
+    --background: hsl(30deg 20% 25%);
+    --color-comment: hsl(30deg 20% 50%);
+    --color-property: hsl(350deg 40% 70%);
+    --color-selector: hsl(75deg 70% 60%);
+    --color-operator: hsl(40deg 90% 60%);
+    --color-atrule: hsl(350deg 40% 70%);
     --color-regex: #e90;
     --color-deleted: red;
   }
@@ -162,6 +162,7 @@ pre[class*="language-"] {
 .token.bold {
   font-weight: bold;
 }
+
 .token.italic {
   font-style: italic;
 }
