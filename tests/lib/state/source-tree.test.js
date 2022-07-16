@@ -7,54 +7,54 @@ jest.mock("../../../lib/logger.js");
 jest.mock("directory-tree");
 
 beforeEach(() => {
-  jest.resetModules();
-  jest.resetAllMocks();
+	jest.resetModules();
+	jest.resetAllMocks();
 });
 
 describe("lib/state/source-tree", () => {
-  const app = require("express")();
-  app.set(
-    "config",
-    deepMerge(config.defaultUserConfig, {
-      components: {
-        ignores: ["/ignoredFolder"],
-        folder: "userFolder",
-      },
-      files: {
-        templates: {
-          extension: "extension",
-        },
-      },
-    })
-  );
+	const app = require("express")();
+	app.set(
+		"config",
+		deepMerge(config.defaultUserConfig, {
+			components: {
+				ignores: ["/ignoredFolder"],
+				folder: "userFolder",
+			},
+			files: {
+				templates: {
+					extension: "extension",
+				},
+			},
+		})
+	);
 
-  test("getSourceTree() calls dirTree()", () => {
-    dirTree.mockImplementationOnce(() => {});
+	test("getSourceTree() calls dirTree()", () => {
+		dirTree.mockImplementationOnce(() => {});
 
-    getSourceTree(app);
+		getSourceTree(app);
 
-    expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
-      attributes: ["type"],
-      extensions: new RegExp(".(md|css|js|json|js|json|extension)$"),
-      exclude: [
-        new RegExp("node_modules"),
-        new RegExp(".git"),
-        new RegExp("package.json"),
-        new RegExp("package-lock.json"),
-        new RegExp(".miyagi.js"),
-        new RegExp(".miyagi.json"),
-        new RegExp("/ignoredFolder"),
-      ],
-    });
-  });
+		expect(dirTree).toHaveBeenCalledWith(`${process.cwd()}/userFolder`, {
+			attributes: ["type"],
+			extensions: new RegExp(".(md|css|js|json|js|json|extension)$"),
+			exclude: [
+				new RegExp("node_modules"),
+				new RegExp(".git"),
+				new RegExp("package.json"),
+				new RegExp("package-lock.json"),
+				new RegExp(".miyagi.js"),
+				new RegExp(".miyagi.json"),
+				new RegExp("/ignoredFolder"),
+			],
+		});
+	});
 
-  test("getSourceTree() returns an object with the sourceTree", () => {
-    const result = {
-      foo: "bar",
-    };
+	test("getSourceTree() returns an object with the sourceTree", () => {
+		const result = {
+			foo: "bar",
+		};
 
-    dirTree.mockImplementationOnce(() => result);
+		dirTree.mockImplementationOnce(() => result);
 
-    expect(getSourceTree(app)).toEqual(result);
-  });
+		expect(getSourceTree(app)).toEqual(result);
+	});
 });

@@ -7,77 +7,77 @@ const build = require("../lib/build");
 const mocks = require("../lib/generator/mocks");
 
 module.exports = function Api() {
-  process.env.MIYAGI_JS_API = true;
+	process.env.MIYAGI_JS_API = true;
 
-  const getMockData = async ({ component, variant = "default" }) => {
-    const app = await init("api");
-    const file = getTemplateFilePathFromDirectoryPath(app, component);
-    const { extended: variationData } = await getVariationData(
-      app,
-      file,
-      variant
-    );
+	const getMockData = async ({ component, variant = "default" }) => {
+		const app = await init("api");
+		const file = getTemplateFilePathFromDirectoryPath(app, component);
+		const { extended: variationData } = await getVariationData(
+			app,
+			file,
+			variant
+		);
 
-    const result = await resolveVariationData(app, variationData);
+		const result = await resolveVariationData(app, variationData);
 
-    return result.resolved;
-  };
+		return result.resolved;
+	};
 
-  const getHtml = async ({ component, variant = "default" }) => {
-    const app = await init("api");
+	const getHtml = async ({ component, variant = "default" }) => {
+		const app = await init("api");
 
-    return await renderIframeVariation({
-      app,
-      file: component,
-      variation: variant,
-    });
-  };
+		return await renderIframeVariation({
+			app,
+			file: component,
+			variation: variant,
+		});
+	};
 
-  const getNode = async ({ component, variant = "default" }) => {
-    const html = await getHtml({
-      component,
-      variant,
-    });
+	const getNode = async ({ component, variant = "default" }) => {
+		const html = await getHtml({
+			component,
+			variant,
+		});
 
-    return createElementFromHTML(html);
-  };
+		return createElementFromHTML(html);
+	};
 
-  const createBuild = async () => {
-    const app = await init("build");
+	const createBuild = async () => {
+		const app = await init("build");
 
-    return build(app);
-  };
+		return build(app);
+	};
 
-  const createMocks = async ({ component }) => {
-    const app = await init("api");
+	const createMocks = async ({ component }) => {
+		const app = await init("api");
 
-    return mocks(component, app.get("config").files);
-  };
+		return mocks(component, app.get("config").files);
+	};
 
-  return {
-    getMockData,
-    getHtml,
-    getNode,
-    createBuild,
-    createMocks,
-  };
+	return {
+		getMockData,
+		getHtml,
+		getNode,
+		createBuild,
+		createMocks,
+	};
 };
 
 function createElementFromHTML(html) {
-  const { document } = new JSDOM().window;
-  const div = document.createElement("div");
+	const { document } = new JSDOM().window;
+	const div = document.createElement("div");
 
-  div.innerHTML = html.trim();
+	div.innerHTML = html.trim();
 
-  if (div.childNodes.length > 1) {
-    const container = document.createElement("div");
+	if (div.childNodes.length > 1) {
+		const container = document.createElement("div");
 
-    div.childNodes.forEach((node) => {
-      container.appendChild(node);
-    });
+		div.childNodes.forEach((node) => {
+			container.appendChild(node);
+		});
 
-    return container;
-  }
+		return container;
+	}
 
-  return div.firstChild;
+	return div.firstChild;
 }

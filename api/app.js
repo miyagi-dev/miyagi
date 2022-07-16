@@ -17,29 +17,29 @@ const setViewHelpers = require("../lib/init/view-helpers.js");
 const setViews = require("../lib/init/views.js");
 
 module.exports = async function init(mergedConfig) {
-  const app = express();
-  app.set("config", mergedConfig);
-  app.set("view cache", false);
-  app.set("cache", false);
+	const app = express();
+	app.set("config", mergedConfig);
+	app.set("view cache", false);
+	app.set("cache", false);
 
-  if (await setEngines(app)) {
-    await setState(app, {
-      sourceTree: true,
-      menu: true,
-      partials: true,
-      fileContents: true,
-      css: true,
-    });
+	if (await setEngines(app)) {
+		await setState(app, {
+			sourceTree: true,
+			menu: true,
+			partials: true,
+			fileContents: true,
+			css: true,
+		});
 
-    setStatic(app);
-    setRouter(app);
-    setViews(app);
-    setViewHelpers(app);
-    await setPartials.registerAll(app);
-    handlebarsLayouts.register(handlebars);
+		setStatic(app);
+		setRouter(app);
+		setViews(app);
+		setViewHelpers(app);
+		await setPartials.registerAll(app);
+		handlebarsLayouts.register(handlebars);
 
-    return app;
-  }
+		return app;
+	}
 
-  return false;
+	return false;
 };

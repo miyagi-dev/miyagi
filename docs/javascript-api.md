@@ -13,8 +13,8 @@ This can be helpful if you want to you use your mock data or rendered variants e
 
 ```json
 {
-  "component": "path/to/component/folder",
-  "variant": "default" // could be omitted, since "default" is the default
+	"component": "path/to/component/folder",
+	"variant": "default" // could be omitted, since "default" is the default
 }
 ```
 
@@ -22,7 +22,7 @@ This can be helpful if you want to you use your mock data or rendered variants e
 
 ```json
 {
-  "component": "path/to/component/folder"
+	"component": "path/to/component/folder"
 }
 ```
 
