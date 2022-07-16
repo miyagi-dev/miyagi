@@ -15,7 +15,7 @@
 .MiyagiContent .MiyagiSpacings-button::before {
   height: var(--spacing);
   width: var(--spacing);
-  background: currentColor;
+  background: currentcolor;
   content: "";
   display: block;
 }

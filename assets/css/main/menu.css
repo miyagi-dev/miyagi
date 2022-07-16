@@ -30,17 +30,17 @@
 }
 
 .Menu-searchIcon path {
-  fill: currentColor;
+  fill: currentcolor;
 }
 
 .Menu-searchIcon circle {
   fill: none;
-  stroke: currentColor;
+  stroke: currentcolor;
 }
 
 .Menu-searchInput {
   border: 1px solid var(--Miyagi-color-Search-border);
-  box-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.2) inset;
+  box-shadow: 0.1em 0.1em 0.3em rgba(0 0 0 20%) inset;
   color: var(--Miyagi-color-Search-text);
   background: var(--Miyagi-color-Search-background);
   padding: 0.35em 0.5em;
@@ -54,7 +54,7 @@
 
 .Menu-searchInput:focus,
 .Menu-searchClear:focus-visible {
-  outline: 3px solid currentColor;
+  outline: 3px solid currentcolor;
 }
 
 .Menu-searchClear:focus-visible {
@@ -150,7 +150,7 @@
 .Menu-link:focus-visible,
 .Menu-component:focus-visible,
 .Menu-toggle:focus-visible {
-  outline: 3px solid currentColor;
+  outline: 3px solid currentcolor;
 }
 
 .Menu-toggle:focus-visible {

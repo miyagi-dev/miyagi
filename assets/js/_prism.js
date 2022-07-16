@@ -163,6 +163,10 @@ var _self =
           var i = e.parentElement;
           i && "pre" === i.nodeName.toLowerCase() && M.util.setLanguage(i, r);
           var l = { element: e, language: r, grammar: a, code: e.textContent };
+          /**
+           *
+           * @param e
+           */
           function o(e) {
             (l.highlightedCode = e),
               M.hooks.run("before-insert", l),
@@ -303,12 +307,26 @@ var _self =
         },
         Token: W,
       };
+    /**
+     *
+     * @param e
+     * @param n
+     * @param t
+     * @param r
+     */
     function W(e, n, t, r) {
       (this.type = e),
         (this.content = n),
         (this.alias = t),
         (this.length = 0 | (r || "").length);
     }
+    /**
+     *
+     * @param e
+     * @param n
+     * @param t
+     * @param r
+     */
     function z(e, n, t, r) {
       e.lastIndex = n;
       var a = e.exec(t);
@@ -318,16 +336,31 @@ var _self =
       }
       return a;
     }
+    /**
+     *
+     */
     function i() {
       var e = { value: null, prev: null, next: null },
         n = { value: null, prev: e, next: null };
       (e.next = n), (this.head = e), (this.tail = n), (this.length = 0);
     }
+    /**
+     *
+     * @param e
+     * @param n
+     * @param t
+     */
     function I(e, n, t) {
       var r = n.next,
         a = { value: t, prev: n, next: r };
       return (n.next = a), (r.prev = a), e.length++, a;
     }
+    /**
+     *
+     * @param e
+     * @param n
+     * @param t
+     */
     function q(e, n, t) {
       for (var r = n.next, a = 0; a < t && r !== e.tail; a++) r = r.next;
       ((n.next = r).prev = n), (e.length -= a);
@@ -401,6 +434,9 @@ var _self =
         M
       );
     var r = M.util.currentScript();
+    /**
+     *
+     */
     function a() {
       M.manual || M.highlightAll();
     }
@@ -694,6 +730,11 @@ Prism.languages.clike = {
     )),
   (Prism.languages.js = Prism.languages.javascript);
 !(function (h) {
+  /**
+   *
+   * @param e
+   * @param n
+   */
   function v(e, n) {
     return "___" + e.toUpperCase() + n + "___";
   }
@@ -1011,6 +1052,11 @@ Prism.languages.twig = {
         }
       ),
     d = "\"(?:[^\"\\\\\r\n]|\\\\.)*\"|'(?:[^'\\\\\r\n]|\\\\.)*'";
+  /**
+   *
+   * @param e
+   * @param n
+   */
   function o(e, n) {
     n = (n || "").replace(/m/g, "") + "m";
     var r =

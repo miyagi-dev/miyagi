@@ -67,7 +67,7 @@
   margin: 0;
   z-index: 1;
   background: var(--Miyagi-color-bg-Tooltip);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
   outline: 1px solid var(--Miyagi-color-outline-Tooltip);
   box-sizing: border-box;
   font-size: 14px;
@@ -83,6 +83,7 @@
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

@@ -4,6 +4,9 @@ import ThemeConfigSwitcher from "./config-switcher/theme.js";
 import TextDirectionConfigSwitcher from "./config-switcher/text-direction.js";
 
 class Main {
+  /**
+   *
+   */
   constructor() {
     this.classes = {
       content: "Content",
@@ -51,6 +54,10 @@ class Main {
     );
   }
 
+  /**
+   *
+   * @param toggle
+   */
   static toggleExpandedAttribute(toggle) {
     toggle.setAttribute(
       "aria-expanded",
@@ -58,18 +65,30 @@ class Main {
     );
   }
 
+  /**
+   *
+   * @param src
+   */
   updateIframe(src) {
     this.elements.iframe.remove();
     this.elements.iframe.src = src;
     this.elements.frameWrapper.appendChild(this.elements.iframe);
   }
 
+  /**
+   *
+   * @param path
+   */
   convertPathToMainPath(path) {
     return path
       .replace(this.paths.embedded, this.paths.container)
       .replace(this.embeddedParam, "");
   }
 
+  /**
+   *
+   * @param target
+   */
   closeOtherOpenedComponents(target) {
     this.elements.componentToggles.forEach((toggle) => {
       if (toggle.getAttribute("aria-expanded") === "true") {
@@ -82,6 +101,10 @@ class Main {
     });
   }
 
+  /**
+   *
+   * @param listContainer
+   */
   openParentComponent(listContainer) {
     if (listContainer) {
       const toggle = this.elements.componentToggles.find(
@@ -98,6 +121,10 @@ class Main {
     }
   }
 
+  /**
+   *
+   * @param query
+   */
   setActiveStateInNav(query) {
     {
       var target = this.elements.links.find((link) =>
@@ -134,18 +161,29 @@ class Main {
     return target;
   }
 
+  /**
+   *
+   * @param target
+   */
   openParentComponents(target) {
     this.openParentComponent(
       target.closest(`.${this.classes.menu.listContainer}`)
     );
   }
 
+  /**
+   *
+   */
   closeToggleMenu() {
     if (window.innerWidth <= 512) {
       this.elements.toggleMenu.setAttribute("aria-expanded", false);
     }
   }
 
+  /**
+   *
+   * @param src
+   */
   updateUrl(src) {
     if (src === this.indexPath) {
       history.pushState(null, src, document.querySelector("base").href);
@@ -156,6 +194,11 @@ class Main {
 
   // events
 
+  /**
+   *
+   * @param root0
+   * @param root0.detail
+   */
   onPageChanged({ detail: query }) {
     const target = this.setActiveStateInNav(query);
 
@@ -167,10 +210,18 @@ class Main {
     history.pushState(null, query, this.convertPathToMainPath(query));
   }
 
+  /**
+   *
+   * @param toggle
+   */
   onToggleMenuClick(toggle) {
     Main.toggleExpandedAttribute(toggle);
   }
 
+  /**
+   *
+   * @param directory
+   */
   onDirectoryClick(directory) {
     const toggle = directory.previousElementSibling;
 
@@ -186,10 +237,18 @@ class Main {
     }
   }
 
+  /**
+   *
+   * @param toggle
+   */
   onComponentToggleClick(toggle) {
     Main.toggleExpandedAttribute(toggle);
   }
 
+  /**
+   *
+   * @param link
+   */
   onLinkClick(link) {
     const src = link.closest("a").getAttribute("href");
 
@@ -199,6 +258,10 @@ class Main {
     this.updateUrl(src);
   }
 
+  /**
+   *
+   * @param path
+   */
   onPopState(path) {
     const target = this.setActiveStateInNav(path);
 
@@ -212,6 +275,9 @@ class Main {
 
   // listeners
 
+  /**
+   *
+   */
   addToggleMenuClickListener() {
     if (this.elements.toggleMenu) {
       this.elements.toggleMenu.addEventListener("click", (e) => {
@@ -230,6 +296,9 @@ class Main {
     }
   }
 
+  /**
+   *
+   */
   addDirectoriesClickListener() {
     this.elements.directories.forEach((directory) => {
       directory.addEventListener("click", (e) => {
@@ -240,6 +309,9 @@ class Main {
     });
   }
 
+  /**
+   *
+   */
   addComponentTogglesClickListener() {
     this.elements.componentToggles.forEach((toggle) => {
       toggle.addEventListener("click", (e) => {
@@ -258,6 +330,9 @@ class Main {
     });
   }
 
+  /**
+   *
+   */
   addLinksClickListener() {
     this.elements.links.forEach((link) => {
       link.addEventListener("click", (e) => {
@@ -277,10 +352,16 @@ class Main {
     });
   }
 
+  /**
+   *
+   */
   addPopStateLisener() {
     window.addEventListener("popstate", this.onPopState.bind(this));
   }
 
+  /**
+   *
+   */
   addPageChangedListener() {
     window.addEventListener("pageChanged", this.onPageChanged.bind(this));
   }
