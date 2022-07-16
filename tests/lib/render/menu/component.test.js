@@ -4,10 +4,10 @@ const directoryId = 2;
 const directoryShortPath = "foo/bar";
 const directoryName = "bar";
 const directory = {
-  shortPath: directoryShortPath,
-  name: directoryName,
-  index: directoryIndex,
-  id: directoryId,
+	shortPath: directoryShortPath,
+	name: directoryName,
+	index: directoryIndex,
+	id: directoryId,
 };
 
 /**
@@ -15,217 +15,217 @@ const directory = {
  * @param mock
  */
 function requireComponent(componentName, mock) {
-  const component = require(`../../../../lib/render/menu/${componentName}`);
+	const component = require(`../../../../lib/render/menu/${componentName}`);
 
-  if (mock) {
-    component.render = jest.fn(() => `${componentName}Html`);
-  }
+	if (mock) {
+		component.render = jest.fn(() => `${componentName}Html`);
+	}
 
-  return component;
+	return component;
 }
 
 beforeEach(() => {
-  jest.resetModules();
-  jest.resetAllMocks();
+	jest.resetModules();
+	jest.resetAllMocks();
 });
 
 const app = {
-  get() {
-    return {
-      isBuild: false,
-    };
-  },
+	get() {
+		return {
+			isBuild: false,
+		};
+	},
 };
 
 describe("lib/menu/elements/component", () => {
-  describe("with current directory === requested directory", () => {
-    const requestPath = "foo/bar";
-    const request = {
-      path: requestPath,
-    };
+	describe("with current directory === requested directory", () => {
+		const requestPath = "foo/bar";
+		const request = {
+			path: requestPath,
+		};
 
-    describe("without requested variation", () => {
-      test("renders the link with active state", () => {
-        const helpers = require(helpersSrc);
-        const component = requireComponent("component");
-        helpers.activeState = "activeState";
+		describe("without requested variation", () => {
+			test("renders the link with active state", () => {
+				const helpers = require(helpersSrc);
+				const component = requireComponent("component");
+				helpers.activeState = "activeState";
 
-        expect(
-          component.render(app, directory, request).indexOf("activeState")
-        ).toBeGreaterThanOrEqual(0);
-      });
-    });
+				expect(
+					component.render(app, directory, request).indexOf("activeState")
+				).toBeGreaterThanOrEqual(0);
+			});
+		});
 
-    describe("with requested variation", () => {
-      test("renders the link without active state", () => {
-        const component = requireComponent("component");
+		describe("with requested variation", () => {
+			test("renders the link without active state", () => {
+				const component = requireComponent("component");
 
-        expect(
-          component
-            .render(
-              app,
-              directory,
-              Object.assign(request, { variation: "variation" })
-            )
-            .indexOf("activeState")
-        ).toBeGreaterThanOrEqual(-1);
-      });
-    });
-  });
+				expect(
+					component
+						.render(
+							app,
+							directory,
+							Object.assign(request, { variation: "variation" })
+						)
+						.indexOf("activeState")
+				).toBeGreaterThanOrEqual(-1);
+			});
+		});
+	});
 
-  describe("with current directory !== requested directory", () => {
-    const request = {
-      path: "foo/baz",
-    };
+	describe("with current directory !== requested directory", () => {
+		const request = {
+			path: "foo/baz",
+		};
 
-    test("renders the link without active state", () => {
-      const component = requireComponent("component");
+		test("renders the link without active state", () => {
+			const component = requireComponent("component");
 
-      expect(
-        component.render(app, directory, request).indexOf("activeState")
-      ).toBeGreaterThanOrEqual(-1);
-    });
-  });
+			expect(
+				component.render(app, directory, request).indexOf("activeState")
+			).toBeGreaterThanOrEqual(-1);
+		});
+	});
 
-  describe("with componentHasVariations being truthy", () => {
-    test("adds the toggle html to the return value", () => {
-      const helpers = require(helpersSrc);
-      const component = requireComponent("component");
-      requireComponent("variations", true);
-      requireComponent("toggle", true);
-      helpers.componentHasVariations = jest.fn(() => true);
-      helpers.shouldRenderWithToggle = jest.fn(() => false);
+	describe("with componentHasVariations being truthy", () => {
+		test("adds the toggle html to the return value", () => {
+			const helpers = require(helpersSrc);
+			const component = requireComponent("component");
+			requireComponent("variations", true);
+			requireComponent("toggle", true);
+			helpers.componentHasVariations = jest.fn(() => true);
+			helpers.shouldRenderWithToggle = jest.fn(() => false);
 
-      expect(
-        component.render(app, {}, {}).indexOf("toggleHtml")
-      ).toBeGreaterThanOrEqual(0);
-    });
+			expect(
+				component.render(app, {}, {}).indexOf("toggleHtml")
+			).toBeGreaterThanOrEqual(0);
+		});
 
-    describe("requested component is the current component", () => {
-      test("calls toggle.render with the correct params", () => {
-        const helpers = require(helpersSrc);
-        const component = requireComponent("component");
-        const toggle = requireComponent("toggle", true);
-        requireComponent("variations", true);
-        helpers.componentHasVariations = jest.fn(() => true);
-        helpers.shouldRenderWithToggle = jest.fn(() => false);
-        helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
+		describe("requested component is the current component", () => {
+			test("calls toggle.render with the correct params", () => {
+				const helpers = require(helpersSrc);
+				const component = requireComponent("component");
+				const toggle = requireComponent("toggle", true);
+				requireComponent("variations", true);
+				helpers.componentHasVariations = jest.fn(() => true);
+				helpers.shouldRenderWithToggle = jest.fn(() => false);
+				helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
 
-        component.render(app, directory, { path: directory.shortPath });
+				component.render(app, directory, { path: directory.shortPath });
 
-        expect(toggle.render).toHaveBeenCalledWith(
-          `${directoryId}-variations`,
-          true,
-          directoryIndex
-        );
-      });
-    });
+				expect(toggle.render).toHaveBeenCalledWith(
+					`${directoryId}-variations`,
+					true,
+					directoryIndex
+				);
+			});
+		});
 
-    describe("requested component is not the current component", () => {
-      test("calls toggle.render with the correct params", () => {
-        const helpers = require(helpersSrc);
-        const component = requireComponent("component");
-        const toggle = requireComponent("toggle", true);
-        requireComponent("variations", true);
-        helpers.componentHasVariations = jest.fn(() => true);
-        helpers.shouldRenderWithToggle = jest.fn(() => false);
-        helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
+		describe("requested component is not the current component", () => {
+			test("calls toggle.render with the correct params", () => {
+				const helpers = require(helpersSrc);
+				const component = requireComponent("component");
+				const toggle = requireComponent("toggle", true);
+				requireComponent("variations", true);
+				helpers.componentHasVariations = jest.fn(() => true);
+				helpers.shouldRenderWithToggle = jest.fn(() => false);
+				helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
 
-        component.render(app, directory, {
-          path: directory.shortPath + "different-directory",
-        });
+				component.render(app, directory, {
+					path: directory.shortPath + "different-directory",
+				});
 
-        expect(toggle.render).toHaveBeenCalledWith(
-          `${directoryId}-variations`,
-          false,
-          directoryIndex
-        );
-      });
-    });
-  });
+				expect(toggle.render).toHaveBeenCalledWith(
+					`${directoryId}-variations`,
+					false,
+					directoryIndex
+				);
+			});
+		});
+	});
 
-  describe("with shouldRenderWithToggle being truthy", () => {
-    test("adds the toggle html to the return value", () => {
-      const helpers = require(helpersSrc);
-      const component = requireComponent("component");
-      requireComponent("toggle", true);
-      requireComponent("variations", true);
-      helpers.componentHasVariations = jest.fn(() => false);
-      helpers.shouldRenderWithToggle = jest.fn(() => true);
+	describe("with shouldRenderWithToggle being truthy", () => {
+		test("adds the toggle html to the return value", () => {
+			const helpers = require(helpersSrc);
+			const component = requireComponent("component");
+			requireComponent("toggle", true);
+			requireComponent("variations", true);
+			helpers.componentHasVariations = jest.fn(() => false);
+			helpers.shouldRenderWithToggle = jest.fn(() => true);
 
-      expect(
-        component.render(app, {}, {}).indexOf("toggleHtml")
-      ).toBeGreaterThanOrEqual(0);
-    });
+			expect(
+				component.render(app, {}, {}).indexOf("toggleHtml")
+			).toBeGreaterThanOrEqual(0);
+		});
 
-    describe("request directory is parent of current directory", () => {
-      const request = {
-        path: directoryShortPath,
-      };
+		describe("request directory is parent of current directory", () => {
+			const request = {
+				path: directoryShortPath,
+			};
 
-      test("calls toggle.render with the correct params", () => {
-        const helpers = require(helpersSrc);
-        const component = requireComponent("component");
-        const toggle = requireComponent("toggle", true);
-        helpers.componentHasVariations = jest.fn(() => false);
-        helpers.shouldRenderWithToggle = jest.fn(() => true);
-        helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
+			test("calls toggle.render with the correct params", () => {
+				const helpers = require(helpersSrc);
+				const component = requireComponent("component");
+				const toggle = requireComponent("toggle", true);
+				helpers.componentHasVariations = jest.fn(() => false);
+				helpers.shouldRenderWithToggle = jest.fn(() => true);
+				helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => true);
 
-        component.render(app, directory, request);
+				component.render(app, directory, request);
 
-        expect(toggle.render).toHaveBeenCalledWith(
-          `${directoryId}-variations`,
-          true,
-          directoryIndex
-        );
-      });
-    });
+				expect(toggle.render).toHaveBeenCalledWith(
+					`${directoryId}-variations`,
+					true,
+					directoryIndex
+				);
+			});
+		});
 
-    describe("request directory is not parent of current directory", () => {
-      const request = {
-        path: "foo/baz",
-      };
+		describe("request directory is not parent of current directory", () => {
+			const request = {
+				path: "foo/baz",
+			};
 
-      test("calls toggle.render with the correct params", () => {
-        const helpers = require(helpersSrc);
-        const component = requireComponent("component");
-        const toggle = requireComponent("toggle", true);
-        helpers.componentHasVariations = jest.fn(() => false);
-        helpers.shouldRenderWithToggle = jest.fn(() => true);
-        helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
+			test("calls toggle.render with the correct params", () => {
+				const helpers = require(helpersSrc);
+				const component = requireComponent("component");
+				const toggle = requireComponent("toggle", true);
+				helpers.componentHasVariations = jest.fn(() => false);
+				helpers.shouldRenderWithToggle = jest.fn(() => true);
+				helpers.pathIsParentOfOrEqualRequestedPath = jest.fn(() => false);
 
-        component.render(app, directory, request);
+				component.render(app, directory, request);
 
-        expect(toggle.render).toHaveBeenCalledWith(
-          `${directoryId}-variations`,
-          false,
-          directoryIndex
-        );
-      });
-    });
-  });
+				expect(toggle.render).toHaveBeenCalledWith(
+					`${directoryId}-variations`,
+					false,
+					directoryIndex
+				);
+			});
+		});
+	});
 
-  describe("with componentHasVariations and shouldRenderWithToggle being falsy", () => {
-    test("doesn't call toggle.render", () => {
-      const helpers = require(helpersSrc);
-      const component = requireComponent("component");
-      const toggle = requireComponent("toggle", true);
-      helpers.componentHasVariations = jest.fn(() => false);
-      helpers.shouldRenderWithToggle = jest.fn(() => false);
+	describe("with componentHasVariations and shouldRenderWithToggle being falsy", () => {
+		test("doesn't call toggle.render", () => {
+			const helpers = require(helpersSrc);
+			const component = requireComponent("component");
+			const toggle = requireComponent("toggle", true);
+			helpers.componentHasVariations = jest.fn(() => false);
+			helpers.shouldRenderWithToggle = jest.fn(() => false);
 
-      component.render(app, {}, {});
+			component.render(app, {}, {});
 
-      expect(toggle.render).not.toHaveBeenCalled();
-    });
+			expect(toggle.render).not.toHaveBeenCalled();
+		});
 
-    test("doesn't add the toggle html to the return value", () => {
-      const helpers = require(helpersSrc);
-      const component = requireComponent("component");
-      requireComponent("toggle", true);
-      helpers.componentHasVariations = jest.fn(() => false);
-      helpers.shouldRenderWithToggle = jest.fn(() => false);
+		test("doesn't add the toggle html to the return value", () => {
+			const helpers = require(helpersSrc);
+			const component = requireComponent("component");
+			requireComponent("toggle", true);
+			helpers.componentHasVariations = jest.fn(() => false);
+			helpers.shouldRenderWithToggle = jest.fn(() => false);
 
-      expect(component.render(app, {}, {}).indexOf("toggleHtml")).toBe(-1);
-    });
-  });
+			expect(component.render(app, {}, {}).indexOf("toggleHtml")).toBe(-1);
+		});
+	});
 });

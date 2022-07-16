@@ -15,8 +15,8 @@ It is also possible to define this for each `NODE_ENV` via an object like this:
 
 ```json
 {
-  "development": "some/folder",
-  "production": ""
+	"development": "some/folder",
+	"production": ""
 }
 ```
 
@@ -29,8 +29,8 @@ Can either be a string, an array of strings or an object with your `NODE_ENV`s a
 
 ```json
 {
-  "development": ["src/reset.css", "src/theme.css"],
-  "production": ["dist/index.css"]
+	"development": ["src/reset.css", "src/theme.css"],
+	"production": ["dist/index.css"]
 }
 ```
 
@@ -42,12 +42,12 @@ default:
 
 ```json
 {
-  "files": [],
-  "prefixes": {
-    "color": "color",
-    "typo": "typo",
-    "spacing": "spacing"
-  }
+	"files": [],
+	"prefixes": {
+		"color": "color",
+		"typo": "typo",
+		"spacing": "spacing"
+	}
 }
 ```
 
@@ -68,8 +68,8 @@ Can either be a string, an array of strings or an object with your `NODE_ENV`s a
 
 ```json
 {
-  "development": ["svgs", "templates"],
-  "production": ["templates"]
+	"development": ["svgs", "templates"],
+	"production": ["templates"]
 }
 ```
 
@@ -219,8 +219,8 @@ default:
 
 ```json
 {
-  "extension": "css",
-  "name": "index"
+	"extension": "css",
+	"name": "index"
 }
 ```
 
@@ -232,8 +232,8 @@ default:
 
 ```json
 {
-  "extension": "js",
-  "name": "index"
+	"extension": "js",
+	"name": "index"
 }
 ```
 
@@ -245,8 +245,8 @@ default:
 
 ```json
 {
-  "extension": ["json", "js"],
-  "name": "mocks"
+	"extension": ["json", "js"],
+	"name": "mocks"
 }
 ```
 
@@ -262,8 +262,8 @@ default:
 
 ```json
 {
-  "extension": "json",
-  "name": "schema"
+	"extension": "json",
+	"name": "schema"
 }
 ```
 
@@ -273,8 +273,8 @@ default:
 
 ```json
 {
-  "name": "index",
-  "extension": null
+	"name": "index",
+	"extension": null
 }
 ```
 
@@ -327,52 +327,52 @@ default:
 
 ```json
 {
-  "favicon": null, // path to a favicon
-  "logo": null, // path to a logo — can be used if the same logo should be used for light and dark mode
-  "mode": "light", // "light", "dark" or "auto" (means it uses the OS setting)
-  "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-  "light": {
-    // theming for light mode
-    "logo": null, // path to a logo
-    "navigation": {
-      "colorText": "hsl(0, 0%, 12%)",
-      "colorBackground": "hsl(0, 0%, 86%)",
-      "colorLinks": "hsl(0, 0%, 12%)",
-      "colorLinksActive": "hsl(0, 0%, 96%)",
-      "colorLinksActiveBackground": "hsl(0, 0%, 12%)",
-      "colorSearchText": "hsl(0, 0%, 12%)",
-      "colorSearchBackground": "rgba(0, 0, 0, 0.05)",
-      "colorSearchBorder": "rgba(0, 0, 0, 0.25)"
-    },
-    "content": {
-      "colorBackground": "hsl(0, 0%, 100%)",
-      "colorText": "hsl(0, 0%, 12%)",
-      "colorHeadline1": "hsl(0, 0%, 12%)",
-      "colorHeadline2": "hsl(0, 0%, 12%)"
-    }
-  },
-  "dark": {
-    // theming for light mode
-    "logo": null, // path to a logo
-    "navigation": {
-      "colorText": "hsl(0, 0%, 100%)",
-      "colorBackground": "hsl(0, 0%, 16%)",
-      "colorLinks": "hsl(0, 0%, 100%)",
-      "colorLinksActive": "hsl(0, 0%, 16%)",
-      "colorLinksActiveBackground": "hsl(0, 0%, 100%)",
-      "colorSearchText": "hsl(0, 0%, 100%)",
-      "colorSearchBackground": "rgba(255, 255, 255, 0.1)",
-      "colorSearchBorder": "rgba(255, 255, 255, 0.25)"
-    },
-    "content": {
-      "colorBackground": "hsl(0, 0%, 16%)",
-      "colorText": "hsl(0, 0%, 100%)",
-      "colorHeadline1": "hsl(0, 0%, 100%)",
-      "colorHeadline2": "hsl(0, 0%, 100%)"
-    }
-  },
-  "css": null, // string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`,
-  "js": null // string of JS which gets added to components
+	"favicon": null, // path to a favicon
+	"logo": null, // path to a logo — can be used if the same logo should be used for light and dark mode
+	"mode": "light", // "light", "dark" or "auto" (means it uses the OS setting)
+	"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+	"light": {
+		// theming for light mode
+		"logo": null, // path to a logo
+		"navigation": {
+			"colorText": "hsl(0, 0%, 12%)",
+			"colorBackground": "hsl(0, 0%, 86%)",
+			"colorLinks": "hsl(0, 0%, 12%)",
+			"colorLinksActive": "hsl(0, 0%, 96%)",
+			"colorLinksActiveBackground": "hsl(0, 0%, 12%)",
+			"colorSearchText": "hsl(0, 0%, 12%)",
+			"colorSearchBackground": "rgba(0, 0, 0, 0.05)",
+			"colorSearchBorder": "rgba(0, 0, 0, 0.25)"
+		},
+		"content": {
+			"colorBackground": "hsl(0, 0%, 100%)",
+			"colorText": "hsl(0, 0%, 12%)",
+			"colorHeadline1": "hsl(0, 0%, 12%)",
+			"colorHeadline2": "hsl(0, 0%, 12%)"
+		}
+	},
+	"dark": {
+		// theming for light mode
+		"logo": null, // path to a logo
+		"navigation": {
+			"colorText": "hsl(0, 0%, 100%)",
+			"colorBackground": "hsl(0, 0%, 16%)",
+			"colorLinks": "hsl(0, 0%, 100%)",
+			"colorLinksActive": "hsl(0, 0%, 16%)",
+			"colorLinksActiveBackground": "hsl(0, 0%, 100%)",
+			"colorSearchText": "hsl(0, 0%, 100%)",
+			"colorSearchBackground": "rgba(255, 255, 255, 0.1)",
+			"colorSearchBorder": "rgba(255, 255, 255, 0.25)"
+		},
+		"content": {
+			"colorBackground": "hsl(0, 0%, 16%)",
+			"colorText": "hsl(0, 0%, 100%)",
+			"colorHeadline1": "hsl(0, 0%, 100%)",
+			"colorHeadline2": "hsl(0, 0%, 100%)"
+		}
+	},
+	"css": null, // string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`,
+	"js": null // string of JS which gets added to components
 }
 ```
 

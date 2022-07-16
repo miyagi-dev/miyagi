@@ -1,64 +1,64 @@
 .ConfigSwitchers {
-  padding: var(--Miyagi-spacing-x) 0;
+	padding: var(--Miyagi-spacing-x) 0;
 }
 
 .ConfigSwitcher:not(:first-child) {
-  margin-top: 2rem;
+	margin-top: 2rem;
 }
 
 .ConfigSwitcher-title {
-  float: inline-start;
-  font-size: 0.875em;
-  line-height: 2.4rem;
-  width: 12.5ch;
+	float: inline-start;
+	font-size: 0.875em;
+	line-height: 2.4rem;
+	width: 12.5ch;
 }
 
 .ConfigSwitcher-options {
-  display: flex;
-  gap: 0.8rem;
+	display: flex;
+	gap: 0.8rem;
 }
 
 .ConfigSwitcher-option {
-  position: relative;
+	position: relative;
 }
 
 .ConfigSwitcher input {
-  position: absolute;
-  top: 0;
-  inset-inline-start: 0;
-  opacity: 0.01;
+	position: absolute;
+	top: 0;
+	inset-inline-start: 0;
+	opacity: 0.01;
 }
 
 .ConfigSwitcher label {
-  display: flex;
-  padding: 0.4rem;
-  cursor: pointer;
+	display: flex;
+	padding: 0.4rem;
+	cursor: pointer;
 }
 
 .ConfigSwitcher :checked + label {
-  background: var(--Miyagi-color-Link-active-background);
-  border-radius: var(--Miyagi-borderRadius);
+	background: var(--Miyagi-color-Link-active-background);
+	border-radius: var(--Miyagi-borderRadius);
 }
 
 .ConfigSwitcher input:focus-visible + label {
-  outline: 3px solid currentcolor;
-  outline-offset: 2px;
+	outline: 3px solid currentcolor;
+	outline-offset: 2px;
 }
 
 .ConfigSwitcher svg {
-  height: 1.6rem;
-  width: 1.6rem;
-  fill: var(--Miyagi-color-Link);
+	height: 1.6rem;
+	width: 1.6rem;
+	fill: var(--Miyagi-color-Link);
 }
 
 .ConfigSwitcher :checked + label svg {
-  fill: var(--Miyagi-color-Link-active);
+	fill: var(--Miyagi-color-Link-active);
 }
 
 @media (min-width: 40.03125em) {
-  .ConfigSwitchers {
-    position: sticky;
-    bottom: 0;
-    background: var(--Miyagi-color-Background);
-  }
+	.ConfigSwitchers {
+		position: sticky;
+		bottom: 0;
+		background: var(--Miyagi-color-Background);
+	}
 }

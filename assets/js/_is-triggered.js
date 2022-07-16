@@ -1,9 +1,9 @@
 export const search = (target, key) => {
-  return !checkIfTriggeredElementWasFormElement(target.tagName) && key === "f";
+	return !checkIfTriggeredElementWasFormElement(target.tagName) && key === "f";
 };
 
 export const goto = (target, key) => {
-  return !checkIfTriggeredElementWasFormElement(target.tagName) && key === "g";
+	return !checkIfTriggeredElementWasFormElement(target.tagName) && key === "g";
 };
 
 /**
@@ -11,5 +11,5 @@ export const goto = (target, key) => {
  * @returns {boolean}
  */
 function checkIfTriggeredElementWasFormElement(tagName) {
-  return ["INPUT", "SELECT", "TEXTAREA"].includes(tagName);
+	return ["INPUT", "SELECT", "TEXTAREA"].includes(tagName);
 }

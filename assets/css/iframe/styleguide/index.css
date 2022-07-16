@@ -3,124 +3,124 @@
 @import "./spacings.css";
 
 .MiyagiContent .MiyagiStyleguide {
-  margin-top: 3em;
+	margin-top: 3em;
 }
 
 .MiyagiContent .MiyagiCustomPropsGroup {
-  list-style: none;
-  margin: 3em 0;
-  padding: 0;
+	list-style: none;
+	margin: 3em 0;
+	padding: 0;
 }
 
 .MiyagiContent .MiyagiCustomProp {
-  position: relative;
-  border: 1px solid transparent;
+	position: relative;
+	border: 1px solid transparent;
 }
 
 .MiyagiContent .MiyagiCustomProp[aria-selected="true"] {
-  position: relative;
+	position: relative;
 }
 
 .MiyagiContent .MiyagiCustomProp-prop,
 .MiyagiContent .MiyagiCustomProp-value {
-  color: #767676;
-  display: block;
-  margin: 10px 0 0;
+	color: #767676;
+	display: block;
+	margin: 10px 0 0;
 }
 
 .MiyagiContent .MiyagiCustomProp-prop {
-  word-break: break-all;
+	word-break: break-all;
 }
 
 .MiyagiContent .MiyagiCustomProp-value {
-  display: none;
+	display: none;
 }
 
 .MiyagiContent .MiyagiCustomProp-button {
-  background: none;
-  border: none;
-  appearance: none;
-  font: inherit;
-  width: 100%;
-  padding: 0;
-  text-align: start;
+	background: none;
+	border: none;
+	appearance: none;
+	font: inherit;
+	width: 100%;
+	padding: 0;
+	text-align: start;
 }
 
 .MiyagiContent .MiyagiCustomProp-button:focus {
-  outline: none;
+	outline: none;
 }
 
 .MiyagiContent
-  .MiyagiCustomProp-button:not([aria-expanded="true"]):hover
-  .MiyagiCustomProp-prop,
+	.MiyagiCustomProp-button:not([aria-expanded="true"]):hover
+	.MiyagiCustomProp-prop,
 .MiyagiContent
-  .MiyagiCustomProp-button:not([aria-expanded="true"]):focus
-  .MiyagiCustomProp-prop {
-  text-decoration: underline;
+	.MiyagiCustomProp-button:not([aria-expanded="true"]):focus
+	.MiyagiCustomProp-prop {
+	text-decoration: underline;
 }
 
 .MiyagiContent .MiyagiCustomProp-details {
-  position: absolute;
-  bottom: calc(100% + 15px);
-  inset-inline-start: 0;
-  padding: 15px;
-  margin: 0;
-  z-index: 1;
-  background: var(--Miyagi-color-bg-Tooltip);
-  box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-  outline: 1px solid var(--Miyagi-color-outline-Tooltip);
-  box-sizing: border-box;
-  font-size: 14px;
-  display: none;
-  grid-template-columns: fit-content(50%) 1fr;
-  grid-gap: 0.5rem 1rem;
-  line-height: 1.5;
-  white-space: nowrap;
+	position: absolute;
+	bottom: calc(100% + 15px);
+	inset-inline-start: 0;
+	padding: 15px;
+	margin: 0;
+	z-index: 1;
+	background: var(--Miyagi-color-bg-Tooltip);
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	outline: 1px solid var(--Miyagi-color-outline-Tooltip);
+	box-sizing: border-box;
+	font-size: 14px;
+	display: none;
+	grid-template-columns: fit-content(50%) 1fr;
+	grid-gap: 0.5rem 1rem;
+	line-height: 1.5;
+	white-space: nowrap;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .MiyagiContent .MiyagiCustomProp-details:not([hidden]),
 .MiyagiContent .MiyagiCustomProp-button:hover + .MiyagiCustomProp-details {
-  display: grid;
-  animation: fadeIn 0.15s ease;
+	display: grid;
+	animation: fadeIn 0.15s ease;
 }
 
 .MiyagiContent .MiyagiCustomProp-details::before,
 .MiyagiContent .MiyagiCustomProp-details::after {
-  content: "";
-  display: block;
-  position: absolute;
-  inset-inline-start: 15px;
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
+	content: "";
+	display: block;
+	position: absolute;
+	inset-inline-start: 15px;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
 }
 
 .MiyagiContent .MiyagiCustomProp-details::before {
-  border-top-color: var(--Miyagi-color-outline-Tooltip);
-  top: 100%;
+	border-top-color: var(--Miyagi-color-outline-Tooltip);
+	top: 100%;
 }
 
 .MiyagiContent .MiyagiCustomProp-details::after {
-  border-top-color: var(--Miyagi-color-bg-Tooltip);
-  top: calc(100% - 2px);
+	border-top-color: var(--Miyagi-color-bg-Tooltip);
+	top: calc(100% - 2px);
 }
 
 .MiyagiContent .MiyagiCustomProp-detailsProperty {
-  font-weight: 600;
+	font-weight: 600;
 }
 
 .MiyagiContent .MiyagiCustomProp-detailsValue {
-  margin: 0;
+	margin: 0;
 }

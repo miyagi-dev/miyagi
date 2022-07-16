@@ -1,10 +1,10 @@
 .Test {
-  font-size: 1.4rem;
-  margin-bottom: var(--Miyagi-spacing-y);
+	font-size: 1.4rem;
+	margin-bottom: var(--Miyagi-spacing-y);
 }
 
 .Test-title {
-  display: block;
-  font-weight: bold;
-  margin: 0 0 0.5rem;
+	display: block;
+	font-weight: bold;
+	margin: 0 0 0.5rem;
 }
