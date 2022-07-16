@@ -23,7 +23,7 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 
 ## Requirements
 
-- node `>=16.7.0`
+- node `>=16.10.0`
 
 ## Demos
 
