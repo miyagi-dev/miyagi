@@ -86,12 +86,9 @@ describe("lib/menu/elements/helpers", () => {
     describe("with children containing a directory or docs", () => {
       test("returns true", () => {
         expect(
-          helpers.shouldRenderWithToggle(
-            {},
-            {
-              children: [{ type: "directory" }],
-            }
-          )
+          helpers.shouldRenderWithToggle({
+            children: [{ type: "directory" }],
+          })
         ).toBe(true);
       });
     });
