@@ -10,7 +10,7 @@ const { nodeResolve } = require("@rollup/plugin-node-resolve");
 const terser = require("rollup-plugin-terser");
 
 const buildFolder = "dist/";
-const jsFolder = "assets/js/";
+const jsFolder = "frontend/assets/js/";
 const jsFiles = [
 	"iframe.js",
 	"iframe.build.js",
@@ -19,10 +19,10 @@ const jsFiles = [
 	"main.build.js",
 ];
 const cssFiles = [
-	"assets/css/iframe-background.css",
-	"assets/css/iframe.css",
-	"assets/css/main.css",
-	"assets/css/prism.css",
+	"frontend/assets/css/iframe-background.css",
+	"frontend/assets/css/iframe.css",
+	"frontend/assets/css/main.css",
+	"frontend/assets/css/prism.css",
 ];
 const jsDist = `${buildFolder}js/`;
 const cssDist = `${buildFolder}css/`;

@@ -129,10 +129,9 @@
 	"htmlValidationUrl": "https://validator.w3.org/nu/",
 	"folders": {
 		"assets": {
-			"development": "assets",
+			"development": "frontend/assets",
 			"production": "dist"
-		},
-		"views": "lib/views"
+		}
 	},
 	"defaultVariationName": "default",
 	"messages": {
