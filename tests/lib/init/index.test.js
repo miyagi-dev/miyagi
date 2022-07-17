@@ -1,13 +1,9 @@
-const handlebars = require("handlebars");
-const handlebarsLayouts = require("handlebars-layouts");
 const appConfig = require("../../../lib/config.json");
 const log = require("../../../lib/logger.js");
 const setEngines = require("../../../lib/init/engines.js");
-const setPartials = require("../../../lib/init/partials.js");
 const setRouter = require("../../../lib/init/router.js");
 const setState = require("../../../lib/state");
 const setStatic = require("../../../lib/init/static.js");
-const setViewHelpers = require("../../../lib/init/view-helpers.js");
 const setViews = require("../../../lib/init/views.js");
 const init = require("../../../lib/init");
 require("../../../lib/init/watcher.js");
@@ -17,15 +13,11 @@ appConfig.defaultPort += 1;
 jest.mock("../../../lib/logger.js");
 jest.mock("../../../lib/init/config.js");
 jest.mock("../../../lib/init/engines.js");
-jest.mock("../../../lib/init/partials.js");
 jest.mock("../../../lib/init/router.js");
 jest.mock("../../../lib/init/static.js");
-jest.mock("../../../lib/init/view-helpers.js");
 jest.mock("../../../lib/init/views.js");
 jest.mock("../../../lib/init/watcher.js");
 jest.mock("../../../lib/state");
-jest.mock("handlebars");
-jest.mock("handlebars-layouts");
 
 /**
  *
@@ -60,9 +52,6 @@ describe("lib/init", () => {
 			expect(setStatic).toHaveBeenCalled();
 			expect(setRouter).toHaveBeenCalled();
 			expect(setViews).toHaveBeenCalled();
-			expect(setViewHelpers).toHaveBeenCalled();
-			expect(setPartials.registerAll).toHaveBeenCalled();
-			expect(handlebarsLayouts.register).toHaveBeenCalledWith(handlebars);
 			server.close();
 		});
 
@@ -101,9 +90,6 @@ describe("lib/init", () => {
 			expect(setStatic).not.toHaveBeenCalled();
 			expect(setRouter).not.toHaveBeenCalled();
 			expect(setViews).not.toHaveBeenCalled();
-			expect(setViewHelpers).not.toHaveBeenCalled();
-			expect(setPartials.registerAll).not.toHaveBeenCalled();
-			expect(handlebarsLayouts.register).not.toHaveBeenCalled();
 			expect(log).not.toHaveBeenCalled();
 		});
 	});

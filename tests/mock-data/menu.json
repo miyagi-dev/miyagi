@@ -24,22 +24,37 @@
 					}
 				],
 				"variations": [
-					{ "name": "Button", "data": { "label": "Regular button" } },
+					{
+						"name": "Button",
+						"data": { "label": "Regular button" },
+						"normalizedName": "button",
+						"normalizedParentShortPath": "components-button",
+						"parentShortPath": "components/button"
+					},
 					{
 						"name": "external link",
 						"data": {
 							"label": "External link",
 							"url": "https://mgrossklaus.de",
 							"external": true
-						}
+						},
+						"normalizedName": "external-link",
+						"normalizedParentShortPath": "components-button",
+						"parentShortPath": "components/button"
 					},
 					{
 						"name": "secondary",
-						"data": { "label": "Secondary button", "modifiers": ["secondary"] }
+						"data": { "label": "Secondary button", "modifiers": ["secondary"] },
+						"normalizedName": "secondary",
+						"normalizedParentShortPath": "components-button",
+						"parentShortPath": "components/button"
 					},
 					{
 						"name": "disabled",
-						"data": { "label": "Disabled button", "disabled": true }
+						"data": { "label": "Disabled button", "disabled": true },
+						"normalizedName": "disabled",
+						"normalizedParentShortPath": "components-button",
+						"parentShortPath": "components/button"
 					},
 					{
 						"name": "disabled/secondary",
@@ -47,7 +62,10 @@
 							"label": "Disabled secondary button",
 							"disabled": true,
 							"modifiers": ["secondary"]
-						}
+						},
+						"normalizedName": "disabled-secondary",
+						"normalizedParentShortPath": "components-button",
+						"parentShortPath": "components/button"
 					}
 				],
 				"index": 1,
@@ -60,9 +78,27 @@
 				"shortPath": "components/headline",
 				"normalizedShortPath": "components-headline",
 				"variations": [
-					{ "name": "2", "data": { "type": "2", "copy": "Headline 2" } },
-					{ "name": "3", "data": { "type": "3", "copy": "Headline 3" } },
-					{ "name": "4", "data": { "type": "4", "copy": "Headline 4" } }
+					{
+						"name": "2",
+						"data": { "type": "2", "copy": "Headline 2" },
+						"normalizedName": "2",
+						"normalizedParentShortPath": "components-headline",
+						"parentShortPath": "components/headline"
+					},
+					{
+						"name": "3",
+						"data": { "type": "3", "copy": "Headline 3" },
+						"normalizedName": "3",
+						"normalizedParentShortPath": "components-headline",
+						"parentShortPath": "components/headline"
+					},
+					{
+						"name": "4",
+						"data": { "type": "4", "copy": "Headline 4" },
+						"normalizedName": "4",
+						"normalizedParentShortPath": "components-headline",
+						"parentShortPath": "components/headline"
+					}
 				],
 				"index": 1,
 				"id": "-miyagi-tests-src-components-headline"
@@ -76,7 +112,10 @@
 				"variations": [
 					{
 						"name": "Link",
-						"data": { "label": "GitHub", "url": "https://github.com/mgrsskls" }
+						"data": { "label": "GitHub", "url": "https://github.com/mgrsskls" },
+						"normalizedName": "link",
+						"normalizedParentShortPath": "components-link",
+						"parentShortPath": "components/link"
 					}
 				],
 				"index": 1,
@@ -91,6 +130,9 @@
 				"variations": [
 					{
 						"name": "Link list",
+						"normalizedName": "link-list",
+						"normalizedParentShortPath": "components-link-list",
+						"parentShortPath": "components/link-list",
 						"data": {
 							"title": "Developed by…",
 							"headlineType": "3",
@@ -126,6 +168,9 @@
 				"variations": [
 					{
 						"name": "RTE element",
+						"normalizedName": "rte-element",
+						"normalizedParentShortPath": "components-rte",
+						"parentShortPath": "components/rte",
 						"data": {
 							"html": "<h2>Introduction</h2><p><em>miyagi</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>miyagi</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
 						}
@@ -156,7 +201,15 @@
 						"fullPath": "/miyagi/tests/src/templates/_includes/footer",
 						"shortPath": "templates/_includes/footer",
 						"normalizedShortPath": "templates--includes-footer",
-						"variations": [{ "name": "default", "data": {} }],
+						"variations": [
+							{
+								"name": "default",
+								"data": {},
+								"normalizedName": "default",
+								"normalizedParentShortPath": "templates--includes-footer",
+								"parentShortPath": "templates/_includes/footer"
+							}
+						],
 						"index": 2,
 						"id": "-miyagi-tests-src-templates--includes-footer"
 					},
@@ -166,7 +219,15 @@
 						"fullPath": "/miyagi/tests/src/templates/_includes/header",
 						"shortPath": "templates/_includes/header",
 						"normalizedShortPath": "templates--includes-header",
-						"variations": [{ "name": "default", "data": {} }],
+						"variations": [
+							{
+								"name": "default",
+								"data": {},
+								"normalizedName": "default",
+								"normalizedParentShortPath": "templates--includes-header",
+								"parentShortPath": "templates/_includes/header"
+							}
+						],
 						"index": 2,
 						"id": "-miyagi-tests-src-templates--includes-header"
 					}
@@ -181,6 +242,9 @@
 				"variations": [
 					{
 						"name": "Homepage",
+						"normalizedName": "homepage",
+						"normalizedParentShortPath": "templates-homepage",
+						"parentShortPath": "templates/homepage",
 						"data": {
 							"content": { "$ref": "components/rte" },
 							"cta": {

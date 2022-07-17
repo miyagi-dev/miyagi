@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html class="MiyagiTheme--{{ theme.mode }}" lang="{{ componentLanguage }}" dir="{{ componentTextDirection }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,width=device-width">
+    <title>Component</title>
+		{% for file in jsFilesHead %}
+			{% set type_str = file.type ? " type=" ~ file.type ~ '"' : "" %}
+			{% set defer_str = file.defer ? "defer" : "" %}
+			{% set async_str = file.async ? "async" : "" %}
+			<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
+		{% endfor %}
+    {% if dev %}
+      <script src="{{ projectName }}/js/socket.io.min.js" defer></script>
+    {% endif %}
+    {% if accessibilityValidation %}
+      <script src="{{ projectName }}/js/axe.min.js" defer></script>
+      <script src="{{ projectName }}/js/iframe.axe.js" defer></script>
+    {% endif %}
+    {% if standalone %}
+      <script src="{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if dev %} type="module"
+        {% endif %}{% if prod %} defer{% endif %}></script>
+    {% endif %}
+		{% for file in cssFiles %}
+			<link rel="stylesheet" href="{{ file }}">
+		{% endfor %}
+    <link rel="stylesheet" href="{{ projectName }}/css/iframe-background.css">
+    <style>
+      html {
+        {% if theme.light.content.colorBackground %}--Miyagi-color-Background: {{ theme.light.content.colorBackground }};{% endif %}
+      }
+
+      @media (prefers-color-scheme: dark) {
+        html {
+          {% if theme.dark.content.colorBackground %}--Miyagi-color-Background: {{ theme.dark.content.colorBackground }};{% endif %}
+        }
+      }
+
+      .MiyagiTheme--light {
+        {% if theme.light.content.colorBackground %}--Miyagi-color-Background: {{ theme.light.content.colorBackground }};{% endif %}
+      }
+
+      .MiyagiTheme--dark {
+        {% if theme.dark.content.colorBackground %}--Miyagi-color-Background: {{ theme.dark.content.colorBackground }};{% endif %}
+      }
+    </style>
+    <style>
+      {{ theme.css }}
+    </style>
+    {% if assets.css %}
+     <link href="{{ assets.css }}" rel="stylesheet">
+    {% endif %}
+    {% if assets.js %}
+      <script src="{{ assets.js }}"></script>
+    {% endif %}
+    <script>
+      {{ theme.js }}
+
+      function sendHeightToParent() {
+        window.parent.postMessage({
+          id: window.frameElement.parentNode.id,
+          height: document.body.offsetHeight
+        }, "*");
+      }
+
+      if (window.frameElement) {
+        document.addEventListener("DOMContentLoaded", sendHeightToParent);
+        window.addEventListener("load", sendHeightToParent);
+      }
+    </script>
+  </head>
+
+  <body>
+    {{ html }}
+    {% if error %}
+      <div class="MiyagiContent">
+        <p class="MiyagiError">{{ error }}</p>
+      </div>
+    {% endif %}
+    {% for file in jsFilesBody %}
+			{% set type_str = file.type ? " type=" ~ file.type ~ '"' : "" %}
+			{% set defer_str = file.defer ? "defer" : "" %}
+			{% set async_str = file.async ? "async" : "" %}
+			<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
+		{% endfor %}
+  </body>
+
+</html>
