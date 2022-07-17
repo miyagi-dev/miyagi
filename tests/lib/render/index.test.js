@@ -244,7 +244,7 @@ describe("lib/render/index", () => {
 				buildDate: undefined,
 				formattedBuildDate: undefined,
 				namespaces: {
-					miyagi: path.join(process.cwd(), "lib/views"),
+					miyagi: path.join(process.cwd(), "frontend/views"),
 				},
 			});
 		});
@@ -336,7 +336,7 @@ describe("lib/render/index", () => {
 					buildDate: undefined,
 					formattedBuildDate: undefined,
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -424,7 +424,7 @@ describe("lib/render/index", () => {
 					buildDate: undefined,
 					formattedBuildDate: undefined,
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -530,7 +530,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -634,7 +634,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -736,7 +736,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -837,7 +837,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -938,7 +938,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -1046,7 +1046,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -1149,7 +1149,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -1319,7 +1319,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -1489,7 +1489,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 					expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -1639,7 +1639,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 					expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -1764,7 +1764,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 					expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -1890,7 +1890,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 				});
@@ -2034,7 +2034,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 				});
@@ -2158,7 +2158,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 				});
@@ -2280,7 +2280,7 @@ describe("lib/render/index", () => {
 						jsFilesBody: [],
 						jsFilesHead: [],
 						namespaces: {
-							miyagi: path.join(process.cwd(), "lib/views"),
+							miyagi: path.join(process.cwd(), "frontend/views"),
 						},
 					});
 				});
@@ -2392,7 +2392,7 @@ describe("lib/render/index", () => {
 					jsFilesBody: [],
 					jsFilesHead: [],
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 			});
@@ -2473,7 +2473,7 @@ describe("lib/render/index", () => {
 					spacings: null,
 					uiTextDirection: "ltr",
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -2552,7 +2552,7 @@ describe("lib/render/index", () => {
 					spacings: null,
 					uiTextDirection: "ltr",
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
@@ -2631,7 +2631,7 @@ describe("lib/render/index", () => {
 					spacings: null,
 					uiTextDirection: "ltr",
 					namespaces: {
-						miyagi: path.join(process.cwd(), "lib/views"),
+						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");

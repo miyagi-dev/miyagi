@@ -23,9 +23,10 @@ describe("lib/init/views", () => {
 	setViews(app);
 
 	test("adds the internal views folder to the app instance", () => {
-		expect(app.get("views")).toContain(
-			path.join(__dirname, "../../../lib/views")
-		);
+		expect(app.get("views")).toEqual([
+			path.join(__dirname, "../../../frontend/views"),
+			path.join(__dirname, "../../../src"),
+		]);
 	});
 
 	test("adds the user components.folder to the app instance", () => {

@@ -1,4 +1,4 @@
-require("../../../assets/js/iframe.js");
+require("../../../../frontend/assets/js/iframe.js");
 
 describe("assets/js/iframe.js", () => {
 	describe("is embedded", () => {
