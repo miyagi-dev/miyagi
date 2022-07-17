@@ -12,6 +12,7 @@
 				"fullPath": "/miyagi/tests/src/components/button",
 				"shortPath": "components/button",
 				"normalizedShortPath": "components-button",
+				"url": "/component?file=components/button&embedded=true",
 				"children": [
 					{
 						"fullPath": "/miyagi/tests/src/components/button/docs.md",
@@ -20,6 +21,7 @@
 						"name": "docs",
 						"normalizedShortPath": "components-button-docs",
 						"shortPath": "components/button/docs",
+						"url": "/component?file=components/button/docs&embedded=true",
 						"type": "file"
 					}
 				],
@@ -28,8 +30,8 @@
 						"name": "Button",
 						"data": { "label": "Regular button" },
 						"normalizedName": "button",
-						"normalizedParentShortPath": "components-button",
-						"parentShortPath": "components/button"
+						"parentShortPath": "components/button",
+						"url": "/component?file=components/button&variation=Button&embedded=true"
 					},
 					{
 						"name": "external link",
@@ -39,22 +41,22 @@
 							"external": true
 						},
 						"normalizedName": "external-link",
-						"normalizedParentShortPath": "components-button",
-						"parentShortPath": "components/button"
+						"parentShortPath": "components/button",
+						"url": "/component?file=components/button&variation=external%20link&embedded=true"
 					},
 					{
 						"name": "secondary",
 						"data": { "label": "Secondary button", "modifiers": ["secondary"] },
 						"normalizedName": "secondary",
-						"normalizedParentShortPath": "components-button",
-						"parentShortPath": "components/button"
+						"parentShortPath": "components/button",
+						"url": "/component?file=components/button&variation=secondary&embedded=true"
 					},
 					{
 						"name": "disabled",
 						"data": { "label": "Disabled button", "disabled": true },
 						"normalizedName": "disabled",
-						"normalizedParentShortPath": "components-button",
-						"parentShortPath": "components/button"
+						"parentShortPath": "components/button",
+						"url": "/component?file=components/button&variation=disabled&embedded=true"
 					},
 					{
 						"name": "disabled/secondary",
@@ -64,8 +66,8 @@
 							"modifiers": ["secondary"]
 						},
 						"normalizedName": "disabled-secondary",
-						"normalizedParentShortPath": "components-button",
-						"parentShortPath": "components/button"
+						"parentShortPath": "components/button",
+						"url": "/component?file=components/button&variation=disabled%2Fsecondary&embedded=true"
 					}
 				],
 				"index": 1,
@@ -77,27 +79,28 @@
 				"fullPath": "/miyagi/tests/src/components/headline",
 				"shortPath": "components/headline",
 				"normalizedShortPath": "components-headline",
+				"url": "/component?file=components/headline&embedded=true",
 				"variations": [
 					{
 						"name": "2",
 						"data": { "type": "2", "copy": "Headline 2" },
 						"normalizedName": "2",
-						"normalizedParentShortPath": "components-headline",
-						"parentShortPath": "components/headline"
+						"parentShortPath": "components/headline",
+						"url": "/component?file=components/headline&variation=2&embedded=true"
 					},
 					{
 						"name": "3",
 						"data": { "type": "3", "copy": "Headline 3" },
 						"normalizedName": "3",
-						"normalizedParentShortPath": "components-headline",
-						"parentShortPath": "components/headline"
+						"parentShortPath": "components/headline",
+						"url": "/component?file=components/headline&variation=3&embedded=true"
 					},
 					{
 						"name": "4",
 						"data": { "type": "4", "copy": "Headline 4" },
 						"normalizedName": "4",
-						"normalizedParentShortPath": "components-headline",
-						"parentShortPath": "components/headline"
+						"parentShortPath": "components/headline",
+						"url": "/component?file=components/headline&variation=4&embedded=true"
 					}
 				],
 				"index": 1,
@@ -109,13 +112,14 @@
 				"fullPath": "/miyagi/tests/src/components/link",
 				"shortPath": "components/link",
 				"normalizedShortPath": "components-link",
+				"url": "/component?file=components/link&embedded=true",
 				"variations": [
 					{
 						"name": "Link",
 						"data": { "label": "GitHub", "url": "https://github.com/mgrsskls" },
 						"normalizedName": "link",
-						"normalizedParentShortPath": "components-link",
-						"parentShortPath": "components/link"
+						"parentShortPath": "components/link",
+						"url": "/component?file=components/link&variation=Link&embedded=true"
 					}
 				],
 				"index": 1,
@@ -127,12 +131,13 @@
 				"fullPath": "/miyagi/tests/src/components/link-list",
 				"shortPath": "components/link-list",
 				"normalizedShortPath": "components-link-list",
+				"url": "/component?file=components/link-list&embedded=true",
 				"variations": [
 					{
 						"name": "Link list",
 						"normalizedName": "link-list",
-						"normalizedParentShortPath": "components-link-list",
 						"parentShortPath": "components/link-list",
+						"url": "/component?file=components/link-list&variation=Link%20list&embedded=true",
 						"data": {
 							"title": "Developed by…",
 							"headlineType": "3",
@@ -165,12 +170,13 @@
 				"fullPath": "/miyagi/tests/src/components/rte",
 				"shortPath": "components/rte",
 				"normalizedShortPath": "components-rte",
+				"url": "/component?file=components/rte&embedded=true",
 				"variations": [
 					{
 						"name": "RTE element",
 						"normalizedName": "rte-element",
-						"normalizedParentShortPath": "components-rte",
 						"parentShortPath": "components/rte",
+						"url": "/component?file=components/rte&variation=RTE%20element&embedded=true",
 						"data": {
 							"html": "<h2>Introduction</h2><p><em>miyagi</em> lists and validates all the components of your project. For maximum convenience, you can define json test data which can be reused from other components. This allows you to work independently from a backend. <em>miyagi</em> uses <a href=\"https://github.com/tj/consolidate.js\" target=\"_blank\" rel=\"noopener\">consolidate.js</a> internally, hence it automatically supports a lot of rendering engines.</p><h3>Benefits</h3><ul><li>Make sure all possible variations of your components work</li><li>Get your components immediately validated for html and accessibility violations</li><li>Improve your code components by developing them encapsulated</li><li>No need for a backend that provides data</li><li>Show stakeholders the state of your development early</li><li>No need for additional files or folders in your project (except for the config file)</li></ul><h3>Data reusage</h3><h4>Variation inheritance</h4><p>You can define variations for each of your components. These variations inherit data from the components base definition (if defined), which can then easily be overwritten or extended.</p><h4>Data inclusion</h4><p>If you have a component that includes another component, you can easily include the data (or one of its variations) of the latter into the data of including component. That way, it is enough to define data for a specific component once.</p>"
 						}
@@ -201,13 +207,14 @@
 						"fullPath": "/miyagi/tests/src/templates/_includes/footer",
 						"shortPath": "templates/_includes/footer",
 						"normalizedShortPath": "templates--includes-footer",
+						"url": "/component?file=templates/_includes/footer&embedded=true",
 						"variations": [
 							{
 								"name": "default",
 								"data": {},
 								"normalizedName": "default",
-								"normalizedParentShortPath": "templates--includes-footer",
-								"parentShortPath": "templates/_includes/footer"
+								"parentShortPath": "templates/_includes/footer",
+								"url": "/component?file=templates/_includes/footer&variation=default&embedded=true"
 							}
 						],
 						"index": 2,
@@ -219,13 +226,14 @@
 						"fullPath": "/miyagi/tests/src/templates/_includes/header",
 						"shortPath": "templates/_includes/header",
 						"normalizedShortPath": "templates--includes-header",
+						"url": "/component?file=templates/_includes/header&embedded=true",
 						"variations": [
 							{
 								"name": "default",
 								"data": {},
 								"normalizedName": "default",
-								"normalizedParentShortPath": "templates--includes-header",
-								"parentShortPath": "templates/_includes/header"
+								"parentShortPath": "templates/_includes/header",
+								"url": "/component?file=templates/_includes/header&variation=default&embedded=true"
 							}
 						],
 						"index": 2,
@@ -239,12 +247,13 @@
 				"fullPath": "/miyagi/tests/src/templates/homepage",
 				"shortPath": "templates/homepage",
 				"normalizedShortPath": "templates-homepage",
+				"url": "/component?file=templates/homepage&embedded=true",
 				"variations": [
 					{
 						"name": "Homepage",
 						"normalizedName": "homepage",
-						"normalizedParentShortPath": "templates-homepage",
 						"parentShortPath": "templates/homepage",
+						"url": "/component?file=templates/homepage&variation=Homepage&embedded=true",
 						"data": {
 							"content": { "$ref": "components/rte" },
 							"cta": {

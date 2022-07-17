@@ -87,8 +87,8 @@
 	"scripts": {
 		"build": "gulp build",
 		"test": "jest --colors --detectOpenHandles",
-		"lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/",
-		"fix": "eslint lib/ --fix && eslint assets/js/ --fix",
+		"lint": "stylelint frontend/assets/css/ && eslint lib/ && eslint frontend/assets/js/",
+		"fix": "eslint lib/ --fix && eslint frontend/assets/js/ --fix",
 		"release": "standard-version",
 		"docs": "mkdocs serve"
 	},
@@ -128,5 +128,9 @@
 			"number-max-precision": 5,
 			"selector-class-pattern": null
 		}
-	}
+	},
+	"pre-commit": [
+		"lint",
+		"test"
+	]
 }
