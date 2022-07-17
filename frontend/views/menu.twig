@@ -16,10 +16,9 @@
 			{% endif %}
 
 			{% if item.shortPath %}
-				{% set url = isBuild ? "component-" ~ item.normalizedShortPath ~ "-embedded.html" : "/component?file=" ~ item.shortPath ~ "&embedded=true" %}
 				<a
 					class="Menu-component Menu-component--lvl{{ level }} Menu-link Menu-link--lvl{{ level }}"
-					href="{{ url }}"
+					href="{{ item.url }}"
 					{% if is_active_component(item, requestedComponent, requestedVariation) %}
 						aria-current="page"
 					{% endif %}
@@ -27,10 +26,9 @@
 					{{ item.name }}
 				</a>
 			{% elseif not item.type %}
-				{% set url = isBuild ? "component-" ~ item.normalizedParentShortPath ~ "-variation-" ~ item.normalizedName ~ "-embedded.html" : "/component?file=" ~ item.parentShortPath ~ "&variation=" ~ item.name|url_encode ~ "&embedded=true" %}
 				<a
 					class="Menu-link Menu-link--lvl{{ level }} Menu-link--variation"
-					href="{{ url }}"
+					href="{{ item.url }}"
 					{% if is_active_variant(item, requestedComponent, requestedVariation) %}
 						aria-current="page"
 					{% endif %}
