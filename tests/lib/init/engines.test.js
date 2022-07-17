@@ -8,7 +8,7 @@ const log = require("../../../lib/logger.js");
 jest.mock("../../../lib/logger.js");
 
 describe("lib/init/engines", () => {
-	test("it sets the handlebars engine for the hbs extension", () => {
+	test("it sets the twig engine for the twig extension", () => {
 		const app = express();
 		app.set("extensions", []);
 		app.set(
@@ -28,7 +28,7 @@ describe("lib/init/engines", () => {
 
 		engines(app);
 
-		expect(spy).toHaveBeenCalledWith("hbs", consolidate.handlebars);
+		expect(spy).toHaveBeenCalledWith("twig", consolidate.twig);
 	});
 
 	test("it sets the user engine for the user extension", () => {

@@ -168,12 +168,12 @@ afterEach(() => {
 
 describe("lib/render/index", () => {
 	describe("renderMainIndex", () => {
-		test("renders main.hbs", async () => {
+		test("renders main.twig", async () => {
 			res.render = jest.fn();
 
 			await render.renderMainIndex({ app, res });
 
-			expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
+			expect(res.render.mock.calls[0][0]).toEqual("main.twig");
 			expect(res.render.mock.calls[0][1]).toEqual({
 				folders,
 				components,
@@ -241,6 +241,11 @@ describe("lib/render/index", () => {
 				basePath: "/",
 				uiTextDirection: "ltr",
 				componentTextDirection: "ltr",
+				buildDate: undefined,
+				formattedBuildDate: undefined,
+				namespaces: {
+					miyagi: path.join(process.cwd(), "lib/views"),
+				},
 			});
 		});
 	});
@@ -257,7 +262,7 @@ describe("lib/render/index", () => {
 					variation,
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("main.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					folders,
 					components,
@@ -328,6 +333,11 @@ describe("lib/render/index", () => {
 					basePath: "/",
 					uiTextDirection: "ltr",
 					componentTextDirection: "ltr",
+					buildDate: undefined,
+					formattedBuildDate: undefined,
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -342,7 +352,7 @@ describe("lib/render/index", () => {
 					file: path.dirname(component),
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("main.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("main.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					folders,
 					components,
@@ -411,6 +421,11 @@ describe("lib/render/index", () => {
 					basePath: "/",
 					uiTextDirection: "ltr",
 					componentTextDirection: "ltr",
+					buildDate: undefined,
+					formattedBuildDate: undefined,
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -428,7 +443,7 @@ describe("lib/render/index", () => {
 					file: path.dirname(component),
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("component_variation.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1global\n",
 					error: null,
@@ -511,6 +526,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -526,7 +547,7 @@ describe("lib/render/index", () => {
 					variation: "variation1",
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("component_variation.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component11\n",
 					error: null,
@@ -609,6 +630,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -623,7 +650,7 @@ describe("lib/render/index", () => {
 					file: "component2",
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("component_variation.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component2\n",
 					error: null,
@@ -705,6 +732,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -720,7 +753,7 @@ describe("lib/render/index", () => {
 					variation: "variation1",
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("component_variation.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component8\n",
 					error: null,
@@ -800,6 +833,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -815,7 +854,7 @@ describe("lib/render/index", () => {
 					variation: "component5",
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("component_variation.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "",
 					error: null,
@@ -895,12 +934,18 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
 
 		describe("embedded=true", () => {
-			test("renders iframe_component_variation.hbs", async () => {
+			test("renders iframe_component_variation.twig", async () => {
 				res.render = jest.fn();
 
 				await render.renderIframeVariation({
@@ -912,7 +957,7 @@ describe("lib/render/index", () => {
 				});
 
 				expect(res.render.mock.calls[0][0]).toEqual(
-					"iframe_component_variation.hbs"
+					"iframe_component_variation.twig"
 				);
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1\n",
@@ -997,6 +1042,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -1012,7 +1063,7 @@ describe("lib/render/index", () => {
 					embedded: false,
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("component_variation.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("component_variation.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1\n",
 					error: null,
@@ -1094,6 +1145,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -1101,7 +1158,7 @@ describe("lib/render/index", () => {
 
 	describe("renderIframeComponent", () => {
 		describe("with global data", () => {
-			test("renders iframe_component.hbs with the global data merged into the variations data", async () => {
+			test("renders iframe_component.twig with the global data merged into the variations data", async () => {
 				addGlobalData();
 				res.render = jest.fn();
 				const folder = "tests/mock-data/srcFolder/component1";
@@ -1112,7 +1169,7 @@ describe("lib/render/index", () => {
 					file: "component1",
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					variations: [
 						{
@@ -1258,6 +1315,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 			});
@@ -1265,7 +1328,7 @@ describe("lib/render/index", () => {
 
 		describe("component has variations", () => {
 			describe("with data key", () => {
-				test("renders iframe_component.hbs", async () => {
+				test("renders iframe_component.twig", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component1";
 
@@ -1275,7 +1338,7 @@ describe("lib/render/index", () => {
 						file: path.dirname(component),
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						variations: [
 							{
@@ -1422,13 +1485,19 @@ describe("lib/render/index", () => {
 							css: false,
 							js: false,
 						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
+						},
 					});
 					expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 				});
 			});
 
 			describe("without data key", () => {
-				test("renders iframe_component.hbs", async () => {
+				test("renders iframe_component.twig", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component3";
 
@@ -1438,7 +1507,7 @@ describe("lib/render/index", () => {
 						file: "component3",
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						variations: [
 							{
@@ -1566,13 +1635,19 @@ describe("lib/render/index", () => {
 							css: false,
 							js: false,
 						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
+						},
 					});
 					expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 				});
 			});
 
 			describe("variation throws an error", () => {
-				test("renders iframe_component.hbs", async () => {
+				test("renders iframe_component.twig", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component6";
 
@@ -1582,7 +1657,7 @@ describe("lib/render/index", () => {
 						file: "component6",
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						variations: [
 							{
@@ -1685,13 +1760,19 @@ describe("lib/render/index", () => {
 							css: false,
 							js: false,
 						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
+						},
 					});
 					expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 				});
 			});
 
 			describe("variation doesn't have a name", () => {
-				test("renders iframe_component.hbs without that variation", async () => {
+				test("renders iframe_component.twig without that variation", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component7";
 
@@ -1701,7 +1782,7 @@ describe("lib/render/index", () => {
 						file: "component7",
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						variations: [
 							{
@@ -1805,12 +1886,18 @@ describe("lib/render/index", () => {
 							css: false,
 							js: false,
 						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
+						},
 					});
 				});
 			});
 
 			describe("component has data, but variation doesn't have data", () => {
-				test("renders iframe_component.hbs", async () => {
+				test("renders iframe_component.twig", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component9";
 
@@ -1820,7 +1907,7 @@ describe("lib/render/index", () => {
 						file: "component9",
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						variations: [
 							{
@@ -1943,6 +2030,12 @@ describe("lib/render/index", () => {
 							css: false,
 							js: false,
 						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
+						},
 					});
 				});
 			});
@@ -1950,7 +2043,7 @@ describe("lib/render/index", () => {
 
 		describe("component doesn't have variations", () => {
 			describe("embedded=true", () => {
-				test("renders iframe_component.hbs", async () => {
+				test("renders iframe_component.twig", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component2";
 
@@ -1960,7 +2053,7 @@ describe("lib/render/index", () => {
 						file: "component2",
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						a11yTestsPreload: true,
 						folder,
@@ -2060,13 +2153,19 @@ describe("lib/render/index", () => {
 						assets: {
 							css: false,
 							js: false,
+						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
 						},
 					});
 				});
 			});
 
 			describe("embedded=false", () => {
-				test("renders iframe_component.hbs", async () => {
+				test("renders iframe_component.twig", async () => {
 					res.render = jest.fn();
 					const folder = "tests/mock-data/srcFolder/component2";
 
@@ -2076,7 +2175,7 @@ describe("lib/render/index", () => {
 						file: "component2",
 					});
 
-					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						documentation: undefined,
 						a11yTestsPreload: true,
@@ -2176,6 +2275,12 @@ describe("lib/render/index", () => {
 						assets: {
 							css: false,
 							js: false,
+						},
+						cssFiles: [],
+						jsFilesBody: [],
+						jsFilesHead: [],
+						namespaces: {
+							miyagi: path.join(process.cwd(), "lib/views"),
 						},
 					});
 				});
@@ -2183,7 +2288,7 @@ describe("lib/render/index", () => {
 		});
 
 		describe("component doesn't have json data", () => {
-			test("renders iframe_component.hbs", async () => {
+			test("renders iframe_component.twig", async () => {
 				res.render = jest.fn();
 
 				await render.renderIframeComponent({
@@ -2192,7 +2297,7 @@ describe("lib/render/index", () => {
 					file: "component4",
 				});
 
-				expect(res.render.mock.calls[0][0]).toEqual("iframe_component.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					a11yTestsPreload: true,
 					folder: "tests/mock-data/srcFolder/component4",
@@ -2283,6 +2388,12 @@ describe("lib/render/index", () => {
 						css: false,
 						js: false,
 					},
+					cssFiles: [],
+					jsFilesBody: [],
+					jsFilesHead: [],
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 			});
 		});
@@ -2290,13 +2401,13 @@ describe("lib/render/index", () => {
 
 	describe("renderIframeIndex", () => {
 		describe("with global data", () => {
-			test("renders iframe_index.hbs with the global data merged with the components data", async () => {
+			test("renders iframe_index.twig with the global data merged with the components data", async () => {
 				addGlobalData();
 				res.render = jest.fn();
 
 				await render.renderIframeIndex({ app, res });
 
-				expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("iframe_index.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					theme: {
 						mode: "light",
@@ -2361,18 +2472,21 @@ describe("lib/render/index", () => {
 					mediaQueries: [],
 					spacings: null,
 					uiTextDirection: "ltr",
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 			});
 		});
 
 		describe("embedded=true", () => {
-			test("renders iframe_index.hbs", async () => {
+			test("renders iframe_index.twig", async () => {
 				res.render = jest.fn();
 
 				await render.renderIframeIndex({ app, res });
 
-				expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("iframe_index.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					theme: {
 						mode: "light",
@@ -2437,18 +2551,21 @@ describe("lib/render/index", () => {
 					mediaQueries: [],
 					spacings: null,
 					uiTextDirection: "ltr",
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 			});
 		});
 
 		describe("embedded=false", () => {
-			test("renders iframe_index.hbs", async () => {
+			test("renders iframe_index.twig", async () => {
 				res.render = jest.fn();
 
 				await render.renderIframeIndex({ app, res });
 
-				expect(res.render.mock.calls[0][0]).toEqual("iframe_index.hbs");
+				expect(res.render.mock.calls[0][0]).toEqual("iframe_index.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
 					theme: {
 						mode: "light",
@@ -2513,6 +2630,9 @@ describe("lib/render/index", () => {
 					mediaQueries: [],
 					spacings: null,
 					uiTextDirection: "ltr",
+					namespaces: {
+						miyagi: path.join(process.cwd(), "lib/views"),
+					},
 				});
 				expect(typeof res.render.mock.calls[0][2]).toEqual("function");
 			});
