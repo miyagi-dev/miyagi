@@ -5,15 +5,11 @@
  */
 
 const express = require("express");
-const handlebars = require("handlebars");
-const handlebarsLayouts = require("handlebars-layouts");
 
 const setEngines = require("../lib/init/engines.js");
-const setPartials = require("../lib/init/partials.js");
 const setRouter = require("../lib/init/router.js");
 const setState = require("../lib/state");
 const setStatic = require("../lib/init/static.js");
-const setViewHelpers = require("../lib/init/view-helpers.js");
 const setViews = require("../lib/init/views.js");
 
 module.exports = async function init(mergedConfig) {
@@ -34,9 +30,6 @@ module.exports = async function init(mergedConfig) {
 		setStatic(app);
 		setRouter(app);
 		setViews(app);
-		setViewHelpers(app);
-		await setPartials.registerAll(app);
-		handlebarsLayouts.register(handlebars);
 
 		return app;
 	}
