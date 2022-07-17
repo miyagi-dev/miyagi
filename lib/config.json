@@ -131,8 +131,7 @@
 		"assets": {
 			"development": "assets",
 			"production": "dist"
-		},
-		"views": "lib/views"
+		}
 	},
 	"defaultVariationName": "default",
 	"messages": {
