@@ -61,11 +61,11 @@ When you have an array in your default mock data as well as your variant mock da
 
 ```json
 {
-	"array": [1, 2, 3],
+	"items": [1, 2, 3],
 	"$variant": [
 		{
 			"$name": "variant",
-			"array": [4, 5, 6]
+			"items": [4, 5, 6]
 		}
 	]
 }
@@ -75,7 +75,7 @@ becomes
 
 ```json
 {
-	"array": [1, 2, 3, 4, 5, 6]
+	"items": [1, 2, 3, 4, 5, 6]
 }
 ```
 
@@ -87,13 +87,13 @@ If you want to change this behavior, you can use `$opts` to define a different m
 
 ```json
 {
-	"array": [1, 2, 3],
+	"item": [1, 2, 3],
 	"$variant": [
 		{
 			"$name": "variant",
-			"array": [4, 5, 6],
+			"item": [4, 5, 6],
 			"$opts": {
-				"array": "overwrite"
+				"item": "overwrite"
 			}
 		}
 	]
@@ -104,7 +104,7 @@ becomes
 
 ```json
 {
-	"array": [4, 5, 6]
+	"item": [4, 5, 6]
 }
 ```
 
@@ -114,13 +114,13 @@ becomes
 
 ```json
 {
-	"array": [1, { "a": 2 }, { "a": null }],
+	"item": [1, { "a": 2 }, { "a": null }],
 	"$variants": [
 		{
 			"$name": "variant",
-			"array": [2, { "b": 2 }, { "a": 3 }],
+			"item": [2, { "b": 2 }, { "a": 3 }],
 			"$opts": {
-				"array": "combine"
+				"item": "combine"
 			}
 		}
 	]
@@ -131,7 +131,7 @@ becomes
 
 ```json
 {
-	"array": [2, { "a": 2, "b": 2 }, { "a": 3 }]
+	"item": [2, { "a": 2, "b": 2 }, { "a": 3 }]
 }
 ```
 
