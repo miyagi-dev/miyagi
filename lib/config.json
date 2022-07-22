@@ -144,7 +144,7 @@
 		"dataGenerator": {
 			"dataFileExists": "The mock file {{fileName}} exists already.",
 			"done": "Done!",
-			"noComponentFolderDefined": "Please specify the component folder like this: miyagi data directoryName/componentName",
+			"noComponentFolderDefined": "No directory has been defined.",
 			"noSchemaFile": "miyagi can't find the schema file {{fileName}}.",
 			"schemaFileCantBeParsed": "The schema file {{fileName}} can't be parsed.",
 			"starting": "Creating mock file {{fileName}}…"
