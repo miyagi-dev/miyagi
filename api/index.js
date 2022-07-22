@@ -2,11 +2,19 @@ const path = require("path");
 const { JSDOM } = require("jsdom");
 const init = require("../lib");
 const config = require("../lib/config.json");
-const { getVariationData, resolveVariationData } = require("../lib/mocks");
+const {
+	getComponentData,
+	getVariationData,
+	resolveVariationData,
+} = require("../lib/mocks");
 const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
-const { getTemplateFilePathFromDirectoryPath } = require("../lib/helpers");
+const {
+	getDirectoryPathFromFullTemplateFilePath,
+	getTemplateFilePathFromDirectoryPath,
+} = require("../lib/helpers");
 const build = require("../lib/build");
 const generateMockData = require("../lib/generator/mocks");
+const validateMockData = require("../lib/validator/mocks");
 
 module.exports = function Api() {
 	process.env.MIYAGI_JS_API = true;
@@ -123,6 +131,59 @@ module.exports = function Api() {
 					message,
 				};
 			}
+		},
+
+		lintComponents: async () => {
+			const app = await init("api");
+			const components = Object.keys(app.get("state").partials).map((partial) =>
+				getDirectoryPathFromFullTemplateFilePath(app, partial)
+			);
+			const promises = [];
+			const results = [];
+
+			components.forEach(async (component) => {
+				results.push({
+					component,
+				});
+
+				promises.push(
+					new Promise((resolve) => {
+						const templateFilePath = getTemplateFilePathFromDirectoryPath(
+							app,
+							component
+						);
+
+						getComponentData(app, templateFilePath).then((data) => {
+							const validation = validateMockData(
+								app,
+								templateFilePath,
+								data,
+								true
+							);
+
+							results.find((result) => result.component === component).errors =
+								validation;
+
+							resolve();
+						});
+					})
+				);
+			});
+
+			return await Promise.all(promises).then(() =>
+				results.filter((result) => result.errors?.length > 0)
+			);
+		},
+
+		lintComponent: async ({ component }) => {
+			const app = await init("api");
+			const templateFilePath = getTemplateFilePathFromDirectoryPath(
+				app,
+				component
+			);
+			const data = await getComponentData(app, templateFilePath);
+
+			return validateMockData(app, templateFilePath, data, true);
 		},
 	};
 };
