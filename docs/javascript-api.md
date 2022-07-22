@@ -107,6 +107,55 @@ Promise<{
 }>
 ```
 
+### `lintComponent`
+
+Validates the schema and mock data for a single component.
+
+#### Options
+
+```json
+{
+	"component": String // Required — Path to component directory.
+}
+```
+
+#### Response
+
+Array like
+
+```json
+Promise<[{
+	"type": String, // Any of "mocks", "schema"
+	"data": [{
+		"message": String
+	}]
+}]>
+```
+
+### `lintComponents`
+
+Validates the schema and mock data for all components.
+
+#### Options
+
+_None_
+
+#### Response
+
+Array like
+
+```json
+Promise<[{
+	"component": String, // Path to component directory.
+	"errors": [{
+		"type": String, // Any of "mocks", "schema"
+		"data": [{
+			"message": String
+		}]
+	}]
+}]>
+```
+
 ## Usage
 
 ```js
