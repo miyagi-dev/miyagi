@@ -90,13 +90,14 @@ module.exports = function Api() {
 		},
 
 		createBuild: async () => {
-			global.app = await init("build");
+			global.app = await init("api", { isBuild: true });
 
 			try {
-				await build();
+				const result = await build();
 
 				return {
 					success: true,
+					message: result,
 				};
 			} catch (message) {
 				return {
