@@ -21,9 +21,9 @@ module.exports = function Api() {
 
 	return {
 		getMockData: async ({ component, variant = "default" }) => {
-			const app = await init("api");
-			const file = getTemplateFilePathFromDirectoryPath(app, component);
-			const data = await getVariationData(app, file, variant);
+			global.app = await init("api");
+			const file = getTemplateFilePathFromDirectoryPath(component);
+			const data = await getVariationData(file, variant);
 
 			if (!data) {
 				return {
@@ -32,7 +32,7 @@ module.exports = function Api() {
 				};
 			}
 
-			const result = await resolveVariationData(app, data.extended);
+			const result = await resolveVariationData(data.extended);
 
 			if (!result || !result.resolved) {
 				return {
@@ -45,11 +45,10 @@ module.exports = function Api() {
 		},
 
 		getHtml: async ({ component, variant = "default" }) => {
-			const app = await init("api");
+			global.app = await init("api");
 
 			try {
 				const result = await renderIframeVariation({
-					app,
 					file: component,
 					variation: variant,
 				});
@@ -90,10 +89,10 @@ module.exports = function Api() {
 		},
 
 		createBuild: async () => {
-			const app = await init("build");
+			global.app = await init("build");
 
 			try {
-				await build(app);
+				await build();
 
 				return {
 					success: true,
@@ -107,8 +106,6 @@ module.exports = function Api() {
 		},
 
 		createMockData: async ({ component }) => {
-			const app = await init("api");
-
 			if (!component) {
 				return {
 					success: false,
@@ -118,8 +115,8 @@ module.exports = function Api() {
 
 			try {
 				await generateMockData(
-					path.join(app.get("config").components.folder, component),
-					app.get("config").files
+					path.join(global.config.components.folder, component),
+					global.config.files
 				);
 
 				return {
@@ -134,9 +131,9 @@ module.exports = function Api() {
 		},
 
 		lintComponents: async () => {
-			const app = await init("api");
-			const components = Object.keys(app.get("state").partials).map((partial) =>
-				getDirectoryPathFromFullTemplateFilePath(app, partial)
+			global.app = await init("api");
+			const components = Object.keys(global.state.partials).map((partial) =>
+				getDirectoryPathFromFullTemplateFilePath(partial)
 			);
 			const promises = [];
 			const results = [];
@@ -148,18 +145,11 @@ module.exports = function Api() {
 
 				promises.push(
 					new Promise((resolve) => {
-						const templateFilePath = getTemplateFilePathFromDirectoryPath(
-							app,
-							component
-						);
+						const templateFilePath =
+							getTemplateFilePathFromDirectoryPath(component);
 
-						getComponentData(app, templateFilePath).then((data) => {
-							const validation = validateMockData(
-								app,
-								templateFilePath,
-								data,
-								true
-							);
+						getComponentData(templateFilePath).then((data) => {
+							const validation = validateMockData(templateFilePath, data, true);
 
 							results.find((result) => result.component === component).errors =
 								validation;
@@ -176,14 +166,11 @@ module.exports = function Api() {
 		},
 
 		lintComponent: async ({ component }) => {
-			const app = await init("api");
-			const templateFilePath = getTemplateFilePathFromDirectoryPath(
-				app,
-				component
-			);
-			const data = await getComponentData(app, templateFilePath);
+			global.app = await init("api");
+			const templateFilePath = getTemplateFilePathFromDirectoryPath(component);
+			const data = await getComponentData(templateFilePath);
 
-			return validateMockData(app, templateFilePath, data, true);
+			return validateMockData(templateFilePath, data, true);
 		},
 	};
 };
