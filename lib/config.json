@@ -44,22 +44,27 @@
 		},
 		"files": {
 			"css": {
+				"abbr": "css",
 				"name": "index",
 				"extension": "css"
 			},
 			"js": {
+				"abbr": "js",
 				"name": "index",
 				"extension": "js"
 			},
 			"mocks": {
+				"abbr": "mocks",
 				"name": "mocks",
 				"extension": ["json", "js"]
 			},
 			"schema": {
+				"abbr": "schema",
 				"name": "schema",
 				"extension": "json"
 			},
 			"templates": {
+				"abbr": "tpl",
 				"name": "index"
 			}
 		},
@@ -159,8 +164,10 @@
 			"starting": "Creating component…",
 			"done": "Done!",
 			"noComponentNameDefined": "Please specify a component name like this: miyagi new directoryName/componentName",
-			"unknownError": "An unknown error occured when creating {{name}}.",
-			"fileAlreadyExists": "The file {{name}} already exists."
+			"fileAlreadyExists": "The file {{name}} already exists.",
+			"component": {
+				"done": "Finished creating component {{component}}."
+			}
 		},
 		"guessingEngineAndExtensionFailed": "miyagi wasn't able to guess your engine and template files extension.",
 		"guessingEngineFailed": "miyagi wasn't able to guess your engine.",

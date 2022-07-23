@@ -107,6 +107,30 @@ Promise<{
 }>
 ```
 
+### `createComponent`
+
+Creates component files for a given path.
+
+#### Options
+
+```json
+{
+	"component": String, // Required — Path to component directory.
+	"fileTypes": Array // Required — Values can be any of "tpl", "css", js", "mocks", "schema", "docs"
+}
+```
+
+#### Response
+
+Array like
+
+```json
+Promise<{
+	"success": Boolean,
+	"message": String // Error or success message
+}>
+```
+
 ### `lintComponent`
 
 Validates the schema and mock data for a single component.

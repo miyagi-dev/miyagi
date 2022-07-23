@@ -14,6 +14,7 @@ const {
 } = require("../lib/helpers");
 const build = require("../lib/build");
 const generateMockData = require("../lib/generator/mocks");
+const generateComponent = require("../lib/generator/component");
 const validateMockData = require("../lib/validator/mocks");
 
 module.exports = function Api() {
@@ -121,6 +122,24 @@ module.exports = function Api() {
 
 				return {
 					success: true,
+				};
+			} catch (message) {
+				return {
+					success: false,
+					message,
+				};
+			}
+		},
+
+		createComponent: async ({ component, fileTypes }) => {
+			global.app = await init("api");
+
+			try {
+				const result = await generateComponent({ component, fileTypes });
+
+				return {
+					success: true,
+					message: result,
 				};
 			} catch (message) {
 				return {
