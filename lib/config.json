@@ -142,7 +142,6 @@
 	"messages": {
 		"buildStarting": "Creating miyagi build…",
 		"buildDone": "Build done!",
-		"buildFailed": "Build failed!",
 		"commandNotFound": "Please run `miyagi --help` for all available commands.",
 		"componentCouldNotBeRendered": "Component couldn't be rendered.",
 		"customPropertyFileNotFound": "Couldn't find file {{filePath}}. Is the 'assets.customProperties.files' in your configuration set correctly?",
