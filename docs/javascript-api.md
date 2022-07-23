@@ -6,7 +6,7 @@ Returns the resolved mock data as a plain JSON object.
 
 #### Options
 
-```json
+```
 {
 	"component": String, // Required — Path to the component directory, relative from config.components.folder.
 	"variant": String // Optional — Variant name. If omitted, the default variant is used.
@@ -15,7 +15,7 @@ Returns the resolved mock data as a plain JSON object.
 
 #### Response
 
-```json
+```
 Promise<{
 	"success": Boolean,
 	"data": Object|Array, // The resolved mock data
@@ -29,7 +29,7 @@ Returns the rendered variant as a string of HTML.
 
 #### Options
 
-```json
+```
 {
 	"component": String, // Required — Path to the component directory, relative from config.components.folder.
 	"variant": String // Optional — Variant name. If omitted, the default variant is used.
@@ -38,7 +38,7 @@ Returns the rendered variant as a string of HTML.
 
 #### Response
 
-```json
+```
 Promise<{
 	"success": Boolean,
 	"data": String, // The HTML string
@@ -52,7 +52,7 @@ Returns the rendered variant as a DOM node. Please note that it will return your
 
 #### Options
 
-```json
+```
 {
 	"component": String, // Required — Path to the component directory, relative from config.components.folder.
 	"variant": String // Optional — Variant name. If omitted, the default variant is used.
@@ -61,7 +61,7 @@ Returns the rendered variant as a DOM node. Please note that it will return your
 
 #### Response
 
-```json
+```
 Promise<{
 	"success": Boolean,
 	"data": HTMLElement,
@@ -75,7 +75,7 @@ Creates a mock data file based on the components schema file, same as the CLI co
 
 #### Options
 
-```json
+```
 {
 	"component": String // Required — Path to the component directory, relative from config.components.folder.
 }
@@ -83,7 +83,7 @@ Creates a mock data file based on the components schema file, same as the CLI co
 
 #### Response
 
-```json
+```
 Promise<{
 	"success": Boolean,
 	"message": String // Error message in case that the mock data could not be created
@@ -100,7 +100,7 @@ _None_
 
 #### Response
 
-```json
+```
 Promise<{
 	"success": Boolean,
 	"message": String // Error message in case that the build could not be created
@@ -113,7 +113,7 @@ Creates component files for a given path.
 
 #### Options
 
-```json
+```
 {
 	"component": String, // Required — Path to component directory.
 	"fileTypes": Array // Required — Values can be any of "tpl", "css", js", "mocks", "schema", "docs"
@@ -122,9 +122,7 @@ Creates component files for a given path.
 
 #### Response
 
-Array like
-
-```json
+```
 Promise<{
 	"success": Boolean,
 	"message": String // Error or success message
@@ -137,7 +135,7 @@ Validates the schema and mock data for a single component.
 
 #### Options
 
-```json
+```
 {
 	"component": String // Required — Path to component directory.
 }
@@ -145,9 +143,7 @@ Validates the schema and mock data for a single component.
 
 #### Response
 
-Array like
-
-```json
+```
 Promise<[{
 	"type": String, // Any of "mocks", "schema"
 	"data": [{
@@ -166,9 +162,7 @@ _None_
 
 #### Response
 
-Array like
-
-```json
+```
 Promise<[{
 	"component": String, // Path to component directory.
 	"errors": [{
