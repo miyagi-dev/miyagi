@@ -20,6 +20,9 @@
 			"folder": "build",
 			"outputFile": false
 		},
+		"docs": {
+			"folder": "docs"
+		},
 		"components": {
 			"folder": "src",
 			"ignores": [
@@ -215,7 +218,7 @@
 		"serverStarted": "Running miyagi server at http://localhost:{{port}}!",
 		"serverStarting": "Starting miyagi server in {{node_env}} mode…",
 		"settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
-		"srcFolderNotFound": "The provided components directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: 'components.folder', type: String) or as a cli argument (--components.folder=<String>).",
+		"srcFolderNotFound": "The specified {{type}} directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: '{{config}}', type: String) or as a cli argument (--{{config}}=<String>). If you do not have any {{type}}, you can also set the value to null.",
 		"templateDoesNotExist": "The template '{{template}}' can't be found.",
 		"templateExtensionGuessedBasedOnTemplateEngine": "Based on your engine name, miyagi assumes that the file extension for your template files is '{{extension}}'. If this is not correct, please define it in your configuration via files.templates.extension.",
 		"tryingToGuessEngineAndExtension": "No template engine and template file extension defined. Trying to guess it based on your component files…",

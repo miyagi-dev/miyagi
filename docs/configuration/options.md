@@ -181,6 +181,15 @@ Used to determine the value of the `dir` attribute on the `<html>` element.
 
 _**Note:** This only applies the text direction of the components, not if miyagi itself_
 
+## docs
+
+### folder
+
+default: `"docs"`<br>
+type: `string|null`
+
+The folder where your documentation lives.
+
 ## engine
 
 ### instance
