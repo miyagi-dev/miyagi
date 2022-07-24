@@ -6,8 +6,7 @@
     <meta name="color-scheme" content="dark light">
     <title>{{ userProjectName }}</title>
     <base href="{{ basePath }}" />
-    <script src="{{ projectName }}/js/main{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %}type="module"
-      {% endif %}{% if miyagiProd %}defer{% endif %}></script>
+    <script src="{{ projectName }}/js/main{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %}type="module"{% else %}defer{% endif %}></script>
     <link rel="stylesheet" href="{{ projectName }}/css/main.css">
     <style>
       html {

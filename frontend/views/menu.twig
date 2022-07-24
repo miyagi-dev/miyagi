@@ -15,7 +15,23 @@
 				></button>
 			{% endif %}
 
-			{% if item.shortPath %}
+			{% if item.section == "docs" %}
+				{% if item.isLink %}
+					<a
+						class="Menu-component Menu-component--lvl{{ level }} Menu-link Menu-link--lvl{{ level }}"
+						href="{{ item.route.default }}"
+						{% if is_active_component(item, requestedComponent, requestedVariation) %}
+							aria-current="page"
+						{% endif %}
+					>
+						{{ item.name }}
+					</a>
+				{% else %}
+					<span class="Menu-component Menu-component--lvl{{ level }}">
+						{{ item.name }}
+					</span>
+				{% endif %}
+			{% elseif item.shortPath and not item.topLevel %}
 				<a
 					class="Menu-component Menu-component--lvl{{ level }} Menu-link Menu-link--lvl{{ level }}"
 					href="{{ item.url }}"

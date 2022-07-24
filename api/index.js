@@ -8,10 +8,6 @@ const {
 	resolveVariationData,
 } = require("../lib/mocks");
 const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
-const {
-	getDirectoryPathFromFullTemplateFilePath,
-	getTemplateFilePathFromDirectoryPath,
-} = require("../lib/helpers");
 const build = require("../lib/build");
 const generateMockData = require("../lib/generator/mocks");
 const generateComponent = require("../lib/generator/component");
@@ -23,8 +19,7 @@ module.exports = function Api() {
 	return {
 		getMockData: async ({ component, variant = "default" }) => {
 			global.app = await init("api");
-			const file = getTemplateFilePathFromDirectoryPath(component);
-			const data = await getVariationData(file, variant);
+			const data = await getVariationData(component, variant);
 
 			if (!data) {
 				return {
@@ -152,45 +147,50 @@ module.exports = function Api() {
 
 		lintComponents: async () => {
 			global.app = await init("api");
-			const components = Object.keys(global.state.partials).map((partial) =>
-				getDirectoryPathFromFullTemplateFilePath(partial)
-			);
 			const promises = [];
-			const results = [];
 
-			components.forEach(async (component) => {
-				results.push({
-					component,
-				});
+			global.state.routes.forEach((route) => {
+				if (route.paths.tpl) {
+					promises.push(
+						new Promise((resolve) => {
+							getComponentData(route).then((data) => {
+								if (data) {
+									const validation = validateMockData(route, data, true);
 
-				promises.push(
-					new Promise((resolve) => {
-						const templateFilePath =
-							getTemplateFilePathFromDirectoryPath(component);
-
-						getComponentData(templateFilePath).then((data) => {
-							const validation = validateMockData(templateFilePath, data, true);
-
-							results.find((result) => result.component === component).errors =
-								validation;
-
-							resolve();
-						});
-					})
-				);
+									resolve({
+										component: route.alias,
+										errors: validation,
+									});
+								} else {
+									resolve();
+								}
+							});
+						})
+					);
+				}
 			});
 
-			return await Promise.all(promises).then(() =>
-				results.filter((result) => result.errors?.length > 0)
-			);
+			return await Promise.all(promises).then((res) => {
+				return res.filter((result) => result?.errors?.length > 0);
+			});
 		},
 
 		lintComponent: async ({ component }) => {
 			global.app = await init("api");
-			const templateFilePath = getTemplateFilePathFromDirectoryPath(component);
-			const data = await getComponentData(templateFilePath);
 
-			return validateMockData(templateFilePath, data, true);
+			const componentObject = global.state.routes.find(({ route }) => {
+				return (
+					route ===
+					path.join(
+						"components",
+						path.relative(global.config.components.folder, component)
+					)
+				);
+			});
+
+			const data = await getComponentData(componentObject);
+
+			return validateMockData(componentObject, data, true);
 		},
 	};
 };
