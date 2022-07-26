@@ -1,5 +1,5 @@
-demo/build/
 node_modules/
 coverage/
 dist/
+vendor/
 .DS_Store

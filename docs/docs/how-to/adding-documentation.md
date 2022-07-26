@@ -1,1 +1,0 @@
-Additionally to [documentation files in your components](/component-files/documentation/), you can also put a `README.md` in every other folder. This will link the entry in the navigation to a view which renders this documentation file.

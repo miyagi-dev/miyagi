@@ -1,0 +1,39 @@
+{% extends "@miyagi/layouts/iframe_index.twig" %}
+  {% block content %}
+    <div class="MiyagiWrapper">
+      <div id="MiyagiComponent" class="MiyagiComponentView">
+        <iframe src="{{ standaloneUrl }}" frameborder="0" class="MiyagiComponentView-iframe" title="Variation" id="iframe"></iframe>
+      </div>
+    </div>
+    <script>
+      window.validations = {
+        html: {{ htmlValidation }},
+        accessibility: {{ accessibilityValidation }},
+      }
+    </script>
+    <div class="MiyagiContent MiyagiComponent">
+      <div class="MiyagiComponent-variationHeader">
+        {% if mockValidation %}
+          <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
+            <span class="MiyagiStatus MiyagiStatus--{% if mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
+          </button>
+        {% else %}
+          <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
+            Mock data
+          </button>
+        {% endif %}
+        {% if standaloneUrl %}
+        <a class="MiyagiIframe-newTabLink" href="{{ standaloneUrl }}" target="_blank" rel="noopener">
+          Open
+        </a>
+        {% endif %}
+      </div>
+      <div class="MiyagiComponent-mockData" hidden id="{{ normalizedVariation }}">
+        <div class="MiyagiComponent-mockDataInner">
+          <p class="MiyagiComponent-mockDataHeading"><b>{{ variation }}</b> mock data</p>
+          <pre class="Miyagi-code language-{{ mocks.type }}"><code>{{ mockData }}</code></pre>
+          <button class="MiyagiComponent-closeMockData js-closeMockData">Close</button>
+        </div>
+      </div>
+    </div>
+  {% endblock %}

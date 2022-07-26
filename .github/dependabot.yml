@@ -10,8 +10,3 @@ updates:
     schedule:
       interval: "weekly"
     target-branch: "4.0.0"
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/packages/core" # Location of package manifests
-    schedule:
-      interval: "weekly"
-    target-branch: "4.0.0"
