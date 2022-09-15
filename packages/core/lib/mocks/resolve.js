@@ -474,7 +474,11 @@ function overwriteRenderKey(app, data) {
   let o;
 
   if (data) {
-    o = { ...data };
+    if (Array.isArray(data)) {
+      o = [ ...data ];
+    } else {
+      o = { ...data };
+    }
     const entries = Object.entries(o);
     for (const [key, val] of entries) {
       if (key === "$render") {
