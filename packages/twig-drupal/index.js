@@ -222,7 +222,7 @@ module.exports = {
 
     const o = {};
     Object.entries(data).forEach(async ([attr, entries]) => {
-      if (entries) {
+      if (!(entries === null || entries === undefined)) {
         if (entries["$drupal"]) {
           o[attr] = new DrupalAttribute(Object.entries(entries));
         } else if (
