@@ -92,7 +92,7 @@
     "test": "jest --colors --detectOpenHandles",
     "lint": "stylelint assets/css/ && eslint lib/ && eslint assets/js/",
     "fix": "eslint lib/ --fix && eslint assets/js/ --fix",
-    "release": "standard-version"
+    "release": "standard-version -t core/v"
   },
   "jest": {
     "collectCoverage": true,
