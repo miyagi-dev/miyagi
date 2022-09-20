@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.3](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.2...core/v3.3.3) (2022-09-20)
+
+
+### Bug Fixes
+
+* **core:** check data type if overwriting multi-dimensional arrays ([1578ab4](https://github.com/miyagi-dev/miyagi/commit/1578ab4dde22e619dc559c66b04f0c89f087c4c4))
+
 ### [3.3.2](https://github.com/mgrsskls/miyagi/compare/core/v3.3.1...core/v3.3.2) (2022-07-13)
 
 
