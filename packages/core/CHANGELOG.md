@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.5](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.4...core/v3.3.5) (2022-09-22)
+
 ### [3.3.4](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.3...core/v3.3.4) (2022-09-22)
 
 
