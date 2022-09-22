@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.4](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.3...core/v3.3.4) (2022-09-22)
+
+
+### Bug Fixes
+
+* **core:** Fixes missing space before defer attribute ([8d6bea7](https://github.com/miyagi-dev/miyagi/commit/8d6bea7abc671d043e11a0334db129c579d43a71))
+
 ### [3.3.3](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.2...core/v3.3.3) (2022-09-20)
 
 
