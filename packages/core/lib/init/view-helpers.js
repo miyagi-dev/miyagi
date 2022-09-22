@@ -46,8 +46,8 @@ function getJsFilesHtml(files) {
 
   for (let file of files) {
     const typeStr = file.type ? ` type="${file.type}"` : "";
-    const deferStr = file.defer ? `defer` : "";
-    const asyncStr = file.async ? `async` : "";
+    const deferStr = file.defer ? ` defer` : "";
+    const asyncStr = file.async ? ` async` : "";
     html += `
     <script src="${file.src}"${typeStr + deferStr + asyncStr}></script>
     `.trim();
