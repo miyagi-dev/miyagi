@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.6](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.5...core/v3.3.6) (2022-10-08)
+
+
+### Bug Fixes
+
+* **core:** Fixes $opts can also be set for root data ([f812758](https://github.com/miyagi-dev/miyagi/commit/f8127587b4641faf2481afe00af657fdc4f2d28f))
+* **core:** Fixes default ignore values create overly broad exclude patterns ([#216](https://github.com/miyagi-dev/miyagi/issues/216)) ([ce6cec2](https://github.com/miyagi-dev/miyagi/commit/ce6cec2d677632ff276ddffd01c22c1d52ee5acd))
+
 ### [3.3.5](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.4...core/v3.3.5) (2022-09-22)
 
 ### [3.3.4](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.3...core/v3.3.4) (2022-09-22)
