@@ -475,7 +475,7 @@ function overwriteRenderKey(app, data) {
 
   if (data) {
     if (Array.isArray(data)) {
-      o = [ ...data ];
+      o = [...data];
     } else {
       o = { ...data };
     }
@@ -536,7 +536,7 @@ function mergeRootDataWithVariationData(rootData, variationData) {
 
   const merged = deepMerge(rootData, variationData, {
     customMerge: (key) => {
-      const options = variationData.$opts;
+      const options = variationData.$opts || rootData.$opts;
 
       if (options) {
         const option = options[key];
