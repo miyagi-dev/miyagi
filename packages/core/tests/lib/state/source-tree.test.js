@@ -38,11 +38,11 @@ describe("lib/state/source-tree", () => {
       extensions: new RegExp(".(css|md|js|json|json|extension)$"),
       exclude: [
         new RegExp("node_modules"),
-        new RegExp(".git"),
-        new RegExp("package.json"),
-        new RegExp("package-lock.json"),
-        new RegExp(".miyagi.js"),
-        new RegExp(".miyagi.json"),
+        new RegExp("\\.git"),
+        new RegExp("package\\.json"),
+        new RegExp("package-lock\\.json"),
+        new RegExp("\\.miyagi\\.js"),
+        new RegExp("\\.miyagi\\.json"),
         new RegExp("/ignoredFolder"),
       ],
     });

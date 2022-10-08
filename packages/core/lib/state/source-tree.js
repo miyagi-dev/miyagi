@@ -19,7 +19,7 @@ function getSourceTree(app) {
 
   const { ignores } = app.get("config").components;
   for (const ignore of ignores) {
-    exclude.push(new RegExp(ignore));
+    exclude.push(new RegExp(ignore.replaceAll(/\./g, "\\.")));
   }
 
   const tree = dirTree(
