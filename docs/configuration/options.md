@@ -1,5 +1,3 @@
-_miyagi_ works without setting any configuration by analyzing your files and guessing the correct template engine and template files extension. If this does not work or you want to customize it further, _miyagi_ offers many configuration options.
-
 ## `assets`
 
 _Settings for assets that miyagi serves (independently from your components)._
