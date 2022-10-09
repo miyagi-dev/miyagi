@@ -55,8 +55,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param toggle
+	 * @param {HTMLButtonElement} toggle
 	 */
 	static toggleExpandedAttribute(toggle) {
 		toggle.setAttribute(
@@ -66,8 +65,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param src
+	 * @param {string} src
 	 */
 	updateIframe(src) {
 		this.elements.iframe.remove();
@@ -76,8 +74,8 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param path
+	 * @param {string} path
+	 * @returns {string}
 	 */
 	convertPathToMainPath(path) {
 		return path
@@ -86,8 +84,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param target
+	 * @param {HTMLElement} target
 	 */
 	closeOtherOpenedComponents(target) {
 		this.elements.componentToggles.forEach((toggle) => {
@@ -102,8 +99,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param listContainer
+	 * @param {HTMLElement} listContainer
 	 */
 	openParentComponent(listContainer) {
 		if (listContainer) {
@@ -122,8 +118,8 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param query
+	 * @param {string} query
+	 * @returns {HTMLElement}
 	 */
 	setActiveStateInNav(query) {
 		{
@@ -162,8 +158,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param target
+	 * @param {HTMLElement} target
 	 */
 	openParentComponents(target) {
 		this.openParentComponent(
@@ -181,8 +176,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param src
+	 * @param {string} src
 	 */
 	updateUrl(src) {
 		if (src === this.indexPath) {
@@ -196,8 +190,8 @@ class Main {
 
 	/**
 	 *
-	 * @param root0
-	 * @param root0.detail
+	 * @param {Event} root0
+	 * @param {object} root0.detail
 	 */
 	onPageChanged({ detail: query }) {
 		const target = this.setActiveStateInNav(query);
@@ -211,16 +205,14 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param toggle
+	 * @param {HTMLButtonElement} toggle
 	 */
 	onToggleMenuClick(toggle) {
 		Main.toggleExpandedAttribute(toggle);
 	}
 
 	/**
-	 *
-	 * @param directory
+	 * @param {HTMLElement} directory
 	 */
 	onDirectoryClick(directory) {
 		const toggle = directory.previousElementSibling;
@@ -238,16 +230,14 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param toggle
+	 * @param {HTMLButtonElement} toggle
 	 */
 	onComponentToggleClick(toggle) {
 		Main.toggleExpandedAttribute(toggle);
 	}
 
 	/**
-	 *
-	 * @param link
+	 * @param {HTMLElement} link
 	 */
 	onLinkClick(link) {
 		const src = link.closest("a").getAttribute("href");
@@ -259,8 +249,7 @@ class Main {
 	}
 
 	/**
-	 *
-	 * @param path
+	 * @param {string} path
 	 */
 	onPopState(path) {
 		const target = this.setActiveStateInNav(path);
@@ -276,7 +265,7 @@ class Main {
 	// listeners
 
 	/**
-	 *
+	 * @returns {void}
 	 */
 	addToggleMenuClickListener() {
 		if (this.elements.toggleMenu) {
@@ -297,7 +286,7 @@ class Main {
 	}
 
 	/**
-	 *
+	 * @returns {void}
 	 */
 	addDirectoriesClickListener() {
 		this.elements.directories.forEach((directory) => {
@@ -310,7 +299,7 @@ class Main {
 	}
 
 	/**
-	 *
+	 * @returns {void}
 	 */
 	addComponentTogglesClickListener() {
 		this.elements.componentToggles.forEach((toggle) => {
@@ -331,7 +320,7 @@ class Main {
 	}
 
 	/**
-	 *
+	 * @returns {void}
 	 */
 	addLinksClickListener() {
 		this.elements.links.forEach((link) => {
@@ -353,14 +342,14 @@ class Main {
 	}
 
 	/**
-	 *
+	 * @returns {void}
 	 */
 	addPopStateLisener() {
 		window.addEventListener("popstate", this.onPopState.bind(this));
 	}
 
 	/**
-	 *
+	 * @returns {void}
 	 */
 	addPageChangedListener() {
 		window.addEventListener("pageChanged", this.onPageChanged.bind(this));

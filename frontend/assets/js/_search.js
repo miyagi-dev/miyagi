@@ -68,10 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 
 	/**
-	 *
-	 * @param root0
-	 * @param root0.target
-	 * @param root0.key
+	 * @param {object} root0
+	 * @param {HTMLInputElement} root0.target
+	 * @param {string} root0.key
 	 */
 	function onInputKeyup({ target, key }) {
 		if (key.toLowerCase() === "escape") {
