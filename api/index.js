@@ -1,7 +1,7 @@
 const path = require("path");
 const { JSDOM } = require("jsdom");
 const init = require("../lib");
-const config = require("../lib/config.json");
+const { t } = require("../lib/i18n");
 const {
 	getComponentData,
 	getVariationData,
@@ -106,7 +106,7 @@ module.exports = function Api() {
 			if (!component) {
 				return {
 					success: false,
-					message: config.messages.dataGenerator.noComponentFolderDefined,
+					message: t("dataGenerator.noComponentFolderDefined"),
 				};
 			}
 
