@@ -2,8 +2,7 @@ import ColorConverter from "./color-converter.js";
 
 class Styleguide {
 	/**
-	 *
-	 * @param element
+	 * @param {HTMLElement} element
 	 */
 	constructor(element) {
 		this.element = element;

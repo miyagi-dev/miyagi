@@ -4,8 +4,7 @@
 
 class ConfigSwitcher {
 	/**
-	 *
-	 * @param form
+	 * @param {HTMLElement} form
 	 */
 	constructor(form) {
 		this.form = form;
