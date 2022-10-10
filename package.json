@@ -55,7 +55,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.19.3",
 		"@babel/preset-env": "^7.19.3",
-		"@rollup/plugin-node-resolve": "^14.1.0",
+		"@rollup/plugin-node-resolve": "^15.0.0",
 		"@types/jest": "^29.1.2",
 		"babel-jest": "^29.1.2",
 		"codecov": "^3.8.3",
