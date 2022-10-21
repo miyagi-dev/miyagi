@@ -179,7 +179,12 @@ async function iterateOverJsonData(app, entry) {
     await Promise.all(
       Object.entries({ ...entry }).map(async ([key, value]) => {
         if (key === "$ref") {
-          o = { ...o, ...(await getRootOrVariantDataOfReference(app, value)) };
+          let resolvedValue = await getRootOrVariantDataOfReference(app, value);
+          resolvedValue = await iterateOverJsonData(
+            app,
+            await resolveJson(app, resolvedValue)
+          );
+          o = { ...o, ...resolvedValue };
         } else {
           const resolvedValue = await iterateOverJsonData(
             app,
