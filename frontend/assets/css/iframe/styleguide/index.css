@@ -1,6 +1,6 @@
-@import "./colors.css";
-@import "./fonts.css";
-@import "./spacings.css";
+@import url("./colors.css");
+@import url("./fonts.css");
+@import url("./spacings.css");
 
 .MiyagiContent .MiyagiStyleguide {
 	margin-top: 3em;
