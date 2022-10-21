@@ -1,12 +1,12 @@
-@import "./main/tokens.css";
-@import "./main/reset.css";
-@import "./main/menu.css";
-@import "./main/nav.css";
-@import "./main/test.css";
-@import "./main/results.css";
-@import "./main/result.css";
-@import "./main/config-switcher.css";
-@import "./main/goto.css";
+@import url("./main/tokens.css");
+@import url("./main/reset.css");
+@import url("./main/menu.css");
+@import url("./main/nav.css");
+@import url("./main/test.css");
+@import url("./main/results.css");
+@import url("./main/result.css");
+@import url("./main/config-switcher.css");
+@import url("./main/goto.css");
 
 html {
 	font-size: 62.5%;

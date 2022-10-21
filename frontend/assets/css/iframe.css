@@ -1,5 +1,5 @@
-@import "./iframe/theme.css";
-@import "./iframe/styleguide/index.css";
+@import url("./iframe/theme.css");
+@import url("./iframe/styleguide/index.css");
 
 .MiyagiContent * {
 	all: revert;
