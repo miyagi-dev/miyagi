@@ -1,0 +1,24 @@
+.GoTo {
+	box-shadow: 0 0 1rem rgb(0 0 0 / 50%);
+	position: fixed;
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--Miyagi-color-Background);
+	padding: 0.25em 0.5em 0.5em;
+	inline-size: calc(100% - 1rem);
+	max-inline-size: 20em;
+}
+
+.GoTo-label {
+	display: block;
+}
+
+.GoTo-input {
+	outline: var(--divider);
+	box-shadow: 0.1em 0.1em 0.3em rgb(0 0 0 / 20%) inset;
+	background: var(--Miyagi-color-Background);
+	padding: 0.35em 0.5em;
+	margin-block-start: 0.25em;
+	inline-size: 100%;
+}

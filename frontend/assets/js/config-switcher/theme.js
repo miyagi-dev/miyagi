@@ -8,7 +8,7 @@ class ThemeConfigSwitcher extends ConfigSwitcher {
 	constructor(form) {
 		super(form);
 
-		this.logoWrapper = document.querySelector(".Nav-projectLogo");
+		this.logoWrapper = document.querySelector(".Title-logo");
 		if (this.logoWrapper) {
 			this.logoImage = this.logoWrapper.querySelector("img");
 		}

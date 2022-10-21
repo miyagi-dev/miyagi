@@ -1,6 +1,6 @@
 .Test {
-	font-size: 1.4rem;
-	margin-bottom: var(--Miyagi-spacing-y);
+	font-size: 0.875em;
+	margin-block-end: var(--Miyagi-spacing-y);
 }
 
 .Test-title {

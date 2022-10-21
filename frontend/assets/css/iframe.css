@@ -1,4 +1,6 @@
-@import url("./iframe/theme.css");
+@import url("./tokens.css");
+@import url("./iframe/tokens.css");
+@import url("./iframe/prism.css");
 @import url("./iframe/styleguide/index.css");
 
 .MiyagiContent * {
@@ -98,7 +100,7 @@ body {
 
 .MiyagiContent .MiyagiDocumentation th {
 	text-align: left;
-	border-block-end: 1px solid currentcolor;
+	border-block-end: 0.0625rem solid currentcolor;
 }
 
 .MiyagiContent .MiyagiDocumentation :is(th, td) {
@@ -106,7 +108,7 @@ body {
 }
 
 .MiyagiContent .MiyagiDocumentation tr:not(:last-child) td {
-	border-block-end: 1px solid var(--Miyagi-color-Grey-4);
+	border-block-end: 0.0625rem solid var(--Miyagi-color-Outline);
 }
 
 .MiyagiContent .MiyagiInformation-val {
@@ -141,10 +143,10 @@ body {
 }
 
 .MiyagiContent .Miyagi-sectionTitle::after {
-	background: var(--Miyagi-color-Headline2-divider);
+	background: var(--Miyagi-color-Outline);
 	content: "";
 	flex: 1;
-	height: 1px;
+	height: 0.0625rem;
 	margin-inline-start: 20px;
 }
 
@@ -206,11 +208,9 @@ body {
 }
 
 .MiyagiIframe-newTabLink {
-	color: var(--Miyagi-color-NewTabLink);
 	align-items: center;
 	display: flex;
 	font-weight: normal;
-	text-decoration: underline;
 }
 
 .MiyagiIframe-newTabLink::before {
@@ -243,12 +243,12 @@ body {
 
 .MiyagiContent :not(pre) > code[class*="language-"],
 .MiyagiContent pre[class*="language-"] {
-	border-color: var(--Miyagi-color-Code-outline);
+	border-color: var(--Miyagi-color-Outline);
 }
 
 .MiyagiContent .Miyagi-code,
 .MiyagiContent :not(pre) > code[class*="language-"] {
-	border: 1px solid var(--Miyagi-color-Code-outline);
+	border: 0.0625rem solid var(--Miyagi-color-Outline);
 	padding: calc(var(--Miyagi-spacing) / 2);
 }
 
@@ -303,7 +303,7 @@ body {
 }
 
 .MiyagiComponent .MiyagiComponent-iframeWrapper:not(.has-fixedHeight) {
-	outline: 1px solid var(--Miyagi-color-Iframe-outline);
+	outline: 0.0625rem solid var(--Miyagi-color-Outline);
 	resize: both;
 }
 
@@ -407,7 +407,7 @@ body {
 }
 
 .MiyagiComponentView {
-	border: 1px solid var(--Miyagi-color-Outline);
+	border: 0.0625rem solid var(--Miyagi-color-Outline);
 	box-sizing: border-box;
 	height: calc(100vh - 2 * var(--Miyagi-spacing));
 	overflow: hidden;
@@ -435,7 +435,7 @@ body {
 .MiyagiIndex-item:not(:last-child)::after {
 	content: "";
 	display: block;
-	width: 1px;
+	width: 0.0625rem;
 	height: 1em;
 	background: currentcolor;
 	margin: 0 0.5em;

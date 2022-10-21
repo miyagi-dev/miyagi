@@ -14,26 +14,28 @@ class Main {
 			frameWrapper: "FrameWrapper",
 			toggleMenu: "Nav-toggleMobileMenu",
 			menu: {
-				directory: "Menu-component",
-				link: "Menu-link",
-				list: "Menu-list",
-				listContainer: "Menu-listContainer",
-				listItem: "Menu-listItem",
-				toggleComponent: "Menu-toggle",
+				rootLink: "Title-link",
+				list: "Nav-list",
+				children: "Nav-children",
+				link: "Nav-item--link",
+				variant: "Nav-variant",
+				listItem: "Nav-entry",
+				toggleComponent: "Nav-toggle",
 			},
 		};
 
 		this.elements = {
+			rootLink: document.querySelector(`.${this.classes.menu.rootLink}`),
 			content: document.querySelector(`.${this.classes.content}`),
 			frameWrapper: document.querySelector(`.${this.classes.frameWrapper}`),
 			iframe: document.querySelector(`.${this.classes.iframe}`),
 			toggleMenu: document.querySelector(`.${this.classes.toggleMenu}`),
-			links: Array.from(
-				document.querySelectorAll(`.${this.classes.menu.link}`)
+			children: Array.from(
+				document.querySelectorAll(`.${this.classes.menu.children}`)
 			),
-			directories: Array.from(
+			links: Array.from(
 				document.querySelectorAll(
-					`.${this.classes.menu.directory}:not(${this.classes.menu.link})`
+					`.${this.classes.menu.link}, .${this.classes.menu.variant}`
 				)
 			),
 			componentToggles: Array.from(
@@ -42,7 +44,6 @@ class Main {
 		};
 
 		this.addToggleMenuClickListener();
-		this.addDirectoriesClickListener();
 		this.addComponentTogglesClickListener();
 		this.addLinksClickListener();
 		this.addPopStateLisener();
@@ -58,10 +59,11 @@ class Main {
 	 * @param {HTMLButtonElement} toggle
 	 */
 	static toggleExpandedAttribute(toggle) {
-		toggle.setAttribute(
-			"aria-expanded",
-			toggle.getAttribute("aria-expanded") === "true" ? false : true
-		);
+		const open =
+			toggle.getAttribute("aria-expanded") === "false" ? true : false;
+		toggle.setAttribute("aria-expanded", open ? "true" : "false");
+		document.getElementById(toggle.getAttribute("aria-controls")).hidden =
+			!open;
 	}
 
 	/**
@@ -151,7 +153,10 @@ class Main {
 		}
 
 		if (toggle) {
-			toggle.setAttribute("aria-expanded", true);
+			toggle.setAttribute("aria-expanded", "true");
+			document.getElementById(
+				toggle.getAttribute("aria-controls")
+			).hidden = false;
 		}
 
 		return target;
@@ -212,28 +217,36 @@ class Main {
 	}
 
 	/**
-	 * @param {HTMLElement} directory
-	 */
-	onDirectoryClick(directory) {
-		const toggle = directory.previousElementSibling;
-
-		if (
-			toggle &&
-			toggle.classList.contains(this.classes.menu.toggleComponent)
-		) {
-			if (toggle.getAttribute("aria-expanded") === "true") {
-				toggle.setAttribute("aria-expanded", false);
-			} else {
-				toggle.setAttribute("aria-expanded", true);
-			}
-		}
-	}
-
-	/**
 	 * @param {HTMLButtonElement} toggle
 	 */
 	onComponentToggleClick(toggle) {
 		Main.toggleExpandedAttribute(toggle);
+	}
+
+	/**
+	 * @param {HTMLElement} link
+	 */
+	onRootLinkClick(link) {
+		const anchor = link.closest("a");
+		const src = anchor.getAttribute("href");
+
+		anchor.setAttribute("aria-current", "page");
+
+		this.elements.componentToggles.forEach((toggle) => {
+			toggle.setAttribute("aria-expanded", "false");
+		});
+
+		this.elements.links.forEach((link) => {
+			link.removeAttribute("aria-current");
+		});
+
+		this.elements.children.forEach((list) => {
+			list.hidden = true;
+		});
+
+		this.updateIframe(src);
+		this.closeToggleMenu();
+		this.updateUrl(src);
 	}
 
 	/**
@@ -288,19 +301,6 @@ class Main {
 	/**
 	 * @returns {void}
 	 */
-	addDirectoriesClickListener() {
-		this.elements.directories.forEach((directory) => {
-			directory.addEventListener("click", (e) => {
-				e.preventDefault();
-
-				this.onDirectoryClick(e.target);
-			});
-		});
-	}
-
-	/**
-	 * @returns {void}
-	 */
 	addComponentTogglesClickListener() {
 		this.elements.componentToggles.forEach((toggle) => {
 			toggle.addEventListener("click", (e) => {
@@ -323,6 +323,13 @@ class Main {
 	 * @returns {void}
 	 */
 	addLinksClickListener() {
+		this.elements.rootLink.addEventListener("click", (e) => {
+			if (!e.metaKey) {
+				e.preventDefault();
+				this.onRootLinkClick(e.target);
+			}
+		});
+
 		this.elements.links.forEach((link) => {
 			link.addEventListener("click", (e) => {
 				if (!e.metaKey) {

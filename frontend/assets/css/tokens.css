@@ -1,0 +1,23 @@
+html {
+	--Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+		"Helvetica", "Arial", sans-serif;
+	--Miyagi-fontSize: 1rem;
+	--Miyagi-lineHeight: 1.5;
+	--Miyagi-toggle-border: 0 solid var(--Miyagi-color-Icon);
+	--Miyagi-toggle-borderWidth: 0.25em;
+	--Miyagi-toggle-fontSize: 0.5em;
+	--Miyagi-toggle-height: 1em;
+	--Miyagi-toggle-transition: transform 0.15s ease;
+	--Miyagi-toggle-width: 1em;
+	--Miyagi-spacing: var(--Miyagi-spacing-y);
+}
+
+html[dir="ltr"] {
+	--Miyagi-toggle-transition-closed: translate(-75%, -50%) rotate(45deg);
+	--Miyagi-toggle-transition-opened: translate(-50%, -75%) rotate(135deg);
+}
+
+html[dir="rtl"] {
+	--Miyagi-toggle-transition-closed: translate(75%, -50%) rotate(-45deg);
+	--Miyagi-toggle-transition-opened: translate(50%, -75%) rotate(-135deg);
+}

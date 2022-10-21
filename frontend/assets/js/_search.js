@@ -1,28 +1,27 @@
 import { search as searchIsTriggered } from "./_is-triggered.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const SEARCH_INPUT = document.querySelector(".Menu-searchInput");
-	const SEARCH_LABEL = document.querySelector(".Menu-searchLabel");
-	const SEARCH_CLEAR = document.querySelector(".Menu-searchClear");
+	const SEARCH_INPUT = document.querySelector(".Search-input");
+	const SEARCH_CLEAR = document.querySelector(".Search-clear");
 
-	const COMPONENTS = Array.from(
-		document.querySelectorAll(".Menu-component")
-	).map((node) => {
-		return {
-			node,
-			listItem: node.closest(".Menu-listItem"),
-			label: node.textContent,
-			lowercaseLabel: node.textContent.toLowerCase(),
-			matchesQuery: false,
-			toggle: node.previousElementSibling || null,
-			parentToggles: getParentToggles(node),
-			initiallyOpened: node.previousElementSibling
-				? node.previousElementSibling.getAttribute("aria-expanded") === "true"
-					? true
-					: false
-				: false,
-		};
-	});
+	const COMPONENTS = Array.from(document.querySelectorAll(".Nav-item")).map(
+		(node) => {
+			return {
+				node,
+				listItem: node.closest(".Nav-entry"),
+				label: node.textContent,
+				lowercaseLabel: node.textContent.toLowerCase(),
+				matchesQuery: false,
+				toggle: node.previousElementSibling || null,
+				parentToggles: getParentToggles(node),
+				initiallyOpened: node.previousElementSibling
+					? node.previousElementSibling.getAttribute("aria-expanded") === "true"
+						? true
+						: false
+					: false,
+			};
+		}
+	);
 
 	if (SEARCH_INPUT) {
 		if (SEARCH_CLEAR) {
@@ -84,11 +83,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	 * @param {string} query
 	 */
 	function updateMenu(query) {
-		SEARCH_LABEL.classList.add("u-hiddenVisually");
 		SEARCH_CLEAR.hidden = false;
 
 		COMPONENTS.forEach((component) => {
 			if (component.toggle) {
+				document.getElementById(
+					component.toggle.getAttribute("aria-controls")
+				).hidden = true;
 				component.toggle.setAttribute("aria-expanded", "false");
 			}
 			component.parentToggles.forEach((toggle) => {
@@ -112,6 +113,9 @@ document.addEventListener("DOMContentLoaded", () => {
 				component.parentToggles.forEach((toggle) => {
 					toggle.parentNode.classList.add("has-match");
 					toggle.parentNode.classList.remove("has-no-match");
+					document.getElementById(
+						toggle.getAttribute("aria-controls")
+					).hidden = false;
 					toggle.setAttribute("aria-expanded", "true");
 				});
 			} else {
@@ -130,7 +134,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	 * @returns {void}
 	 */
 	function resetMenu() {
-		SEARCH_LABEL.classList.remove("u-hiddenVisually");
 		SEARCH_CLEAR.hidden = true;
 
 		COMPONENTS.forEach((component) => {
@@ -141,6 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			component.matchesQuery = false;
 
 			if (component.toggle) {
+				document.getElementById(
+					component.toggle.getAttribute("aria-controls")
+				).hidden = !component.initiallyOpened;
 				component.toggle.setAttribute(
 					"aria-expanded",
 					component.initiallyOpened ? "true" : "false"
@@ -168,20 +174,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		const parentToggles = [];
 		let element = node;
 
-		while (
-			element.closest(".Menu-listItem").parentNode.closest(".Menu-listItem")
-		) {
+		while (element.closest(".Nav-entry").parentNode.closest(".Nav-entry")) {
 			const toggle = element
-				.closest(".Menu-listItem")
-				.parentNode.closest(".Menu-listItem")
-				.querySelector(".Menu-toggle");
+				.closest(".Nav-entry")
+				.parentNode.closest(".Nav-entry")
+				.querySelector(".Nav-toggle");
 
 			if (toggle) {
 				parentToggles.push(toggle);
 			}
-			element = element
-				.closest(".Menu-listItem")
-				.parentNode.closest(".Menu-listItem");
+			element = element.closest(".Nav-entry").parentNode.closest(".Nav-entry");
 		}
 
 		return parentToggles;

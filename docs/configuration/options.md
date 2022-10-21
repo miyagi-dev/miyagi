@@ -337,7 +337,6 @@ default:
 	"favicon": null, // path to a favicon
 	"logo": null, // path to a logo — can be used if the same logo should be used for light and dark mode
 	"mode": "light", // "light", "dark" or "auto" (means it uses the OS setting)
-	"fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
 	"light": {
 		// theming for light mode
 		"logo": null, // path to a logo
@@ -346,9 +345,6 @@ default:
 			"colorBackground": "hsl(0, 0%, 86%)",
 			"colorLinks": "hsl(0, 0%, 12%)",
 			"colorLinksActive": "hsl(0, 0%, 96%)",
-			"colorLinksActiveBackground": "hsl(0, 0%, 12%)",
-			"colorSearchText": "hsl(0, 0%, 12%)",
-			"colorSearchBackground": "rgba(0, 0, 0, 0.05)",
 			"colorSearchBorder": "rgba(0, 0, 0, 0.25)"
 		},
 		"content": {
@@ -366,9 +362,6 @@ default:
 			"colorBackground": "hsl(0, 0%, 16%)",
 			"colorLinks": "hsl(0, 0%, 100%)",
 			"colorLinksActive": "hsl(0, 0%, 16%)",
-			"colorLinksActiveBackground": "hsl(0, 0%, 100%)",
-			"colorSearchText": "hsl(0, 0%, 100%)",
-			"colorSearchBackground": "rgba(255, 255, 255, 0.1)",
 			"colorSearchBorder": "rgba(255, 255, 255, 0.25)"
 		},
 		"content": {
@@ -378,7 +371,7 @@ default:
 			"colorHeadline2": "hsl(0, 0%, 100%)"
 		}
 	},
-	"css": null, // string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts defined in `fontFamily`,
+	"css": null, // string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts,
 	"js": null // string of JS which gets added to components
 }
 ```
