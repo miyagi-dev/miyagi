@@ -1,0 +1,102 @@
+html {
+	/* general */
+	--Miyagi-color-Link: var(--Miyagi-color-Text);
+	--Miyagi-colorHeadline1: var(--Miyagi-color-Text);
+	--Miyagi-colorHeadline2: var(--Miyagi-color-Text);
+	--Miyagi-spacing: 2.5rem;
+	--Miyagi-transition: all 0.15s ease;
+
+	/* light */
+	--Miyagi-color-Background--light: #fff;
+	--Miyagi-color-Text--light: hsl(0deg 0% 12%);
+	--Miyagi-color-TextSecondary--light: hsl(0deg 0% 36%);
+	--Miyagi-color-TextTertiary--light: hsl(0deg 0% 56%);
+	--Miyagi-color-Outline--light: hsl(0deg 0% 86%);
+	--Miyagi-color-Code-background--light: hsl(0deg 0% 96%);
+	--Miyagi-color-Negative--light: #d9173e;
+	--Miyagi-color-Warning--light: #b578b5;
+	--Miyagi-color-Positive--light: #690;
+	--Miyagi-color-OverlayBackground--light: rgb(255 255 255 / 95%);
+	--Miyagi-color-bg-Tooltip--light: #f5f5f5;
+	--Miyagi-color-outline-Tooltip--light: #ddd;
+
+	/* dark */
+	--Miyagi-color-Background--dark: hsl(0deg 0% 12%);
+	--Miyagi-color-Text--dark: hsl(0deg 0% 100%);
+	--Miyagi-color-TextSecondary--dark: hsl(0deg 0% 80%);
+	--Miyagi-color-TextTertiary--dark: hsl(0deg 0% 60%);
+	--Miyagi-color-Outline--dark: hsl(0deg 0% 26%);
+	--Miyagi-color-Code-background--dark: hsl(0deg 0% 16%);
+	--Miyagi-color-Negative--dark: #ff305a;
+	--Miyagi-color-Warning--dark: #b578b5;
+	--Miyagi-color-Positive--dark: #8dd203;
+	--Miyagi-color-OverlayBackground--dark: hsl(0deg 0% 12% / 95%);
+	--Miyagi-color-bg-Tooltip--dark: #333;
+	--Miyagi-color-outline-Tooltip--dark: #444;
+
+	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
+	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
+	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--light);
+	--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--light);
+	--Miyagi-color-Outline: var(--Miyagi-color-Outline--light);
+	--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--light);
+	--Miyagi-color-Negative: var(--Miyagi-color-Negative--light);
+	--Miyagi-color-Warning: var(--Miyagi-color-Warning--light);
+	--Miyagi-color-Positive: var(--Miyagi-color-Positive--light);
+	--Miyagi-color-OverlayBackground: var(
+		--Miyagi-color-OverlayBackground--light
+	);
+	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--light);
+	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--light);
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		--Miyagi-color-Background: var(--Miyagi-color-Background--dark);
+		--Miyagi-color-Text: var(--Miyagi-color-Text--dark);
+		--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--dark);
+		--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--dark);
+		--Miyagi-color-Outline: var(--Miyagi-color-Outline--dark);
+		--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--dark);
+		--Miyagi-color-Negative: var(--Miyagi-color-Negative--dark);
+		--Miyagi-color-Warning: var(--Miyagi-color-Warning--dark);
+		--Miyagi-color-Positive: var(--Miyagi-color-Positive--dark);
+		--Miyagi-color-OverlayBackground: var(
+			--Miyagi-color-OverlayBackground--dark
+		);
+		--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--dark);
+		--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--dark);
+	}
+}
+
+.MiyagiTheme--light {
+	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
+	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
+	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--light);
+	--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--light);
+	--Miyagi-color-Outline: var(--Miyagi-color-Outline--light);
+	--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--light);
+	--Miyagi-color-Negative: var(--Miyagi-color-Negative--light);
+	--Miyagi-color-Warning: var(--Miyagi-color-Warning--light);
+	--Miyagi-color-Positive: var(--Miyagi-color-Positive--light);
+	--Miyagi-color-OverlayBackground: var(
+		--Miyagi-color-OverlayBackground--light
+	);
+	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--light);
+	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--light);
+}
+
+.MiyagiTheme--dark {
+	--Miyagi-color-Background: var(--Miyagi-color-Background--dark);
+	--Miyagi-color-Text: var(--Miyagi-color-Text--dark);
+	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--dark);
+	--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--dark);
+	--Miyagi-color-Outline: var(--Miyagi-color-Outline--dark);
+	--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--dark);
+	--Miyagi-color-Negative: var(--Miyagi-color-Negative--dark);
+	--Miyagi-color-Warning: var(--Miyagi-color-Warning--dark);
+	--Miyagi-color-Positive: var(--Miyagi-color-Positive--dark);
+	--Miyagi-color-OverlayBackground: var(--Miyagi-color-OverlayBackground--dark);
+	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--dark);
+	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--dark);
+}

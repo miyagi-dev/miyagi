@@ -22,7 +22,6 @@ const cssFiles = [
 	"frontend/assets/css/iframe-background.css",
 	"frontend/assets/css/iframe.css",
 	"frontend/assets/css/main.css",
-	"frontend/assets/css/prism.css",
 ];
 const jsDist = `${buildFolder}js/`;
 const cssDist = `${buildFolder}css/`;

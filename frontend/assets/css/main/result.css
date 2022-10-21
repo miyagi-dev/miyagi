@@ -1,5 +1,5 @@
 .Result:not(:first-child) {
-	margin-top: 1.5rem;
+	margin-block-start: 1.5rem;
 }
 
 .Result-data {
@@ -32,9 +32,8 @@
 .Result a:focus,
 .Result a:active {
 	background: var(--Miyagi-color-Link);
-	border-radius: var(--Miyagi-borderRadius);
 	box-shadow: 0 0.2rem 0 var(--Miyagi-color-Link);
-	color: var(--Miyagi-color-Link-active);
+	color: var(--Miyagi-color-Link-active, var(--Miyagi-color-Link));
 	text-decoration: none;
 }
 

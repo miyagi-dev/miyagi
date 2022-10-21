@@ -1,20 +1,17 @@
+@import url("./tokens.css");
 @import url("./main/tokens.css");
 @import url("./main/reset.css");
 @import url("./main/menu.css");
-@import url("./main/nav.css");
 @import url("./main/test.css");
 @import url("./main/results.css");
 @import url("./main/result.css");
-@import url("./main/config-switcher.css");
-@import url("./main/goto.css");
 
 html {
-	font-size: 62.5%;
 	height: 100%;
 }
 
 body {
-	background: var(--Miyagi-color-Background2);
+	background: var(--Miyagi-color-Background);
 	color: var(--Miyagi-color-Text);
 	display: grid;
 	font-family: var(--Miyagi-fontFamily);
@@ -40,11 +37,11 @@ body {
 
 .Tests {
 	grid-area: tests;
-	padding-inline-end: 4rem;
-	color: var(--Miyagi-color-ValidationsText);
+	padding-inline-end: 2.5rem;
+	color: var(--Miyagi-color-ValidationsText, var(--Miyagi-color-Text));
 }
 
-@media (max-width: 40em) {
+@media (max-width: 40rem) {
 	html {
 		--Miyagi-spacing-x: 1rem;
 		--Miyagi-spacing-y: 1rem;
@@ -58,12 +55,12 @@ body {
 	}
 
 	.Tests {
-		padding: 4rem;
+		padding: 2.5rem;
 		padding-block-start: 0;
 	}
 }
 
-@media (min-width: 40.03125em) {
+@media (min-width: 40.03125rem) {
 	html {
 		--Miyagi-spacing-x: 2rem;
 		--Miyagi-spacing-y: 4rem;
@@ -75,31 +72,31 @@ body {
 	}
 }
 
-@media (min-width: 40.03125em) and (max-width: 64em) {
+@media (min-width: 40.03125rem) and (max-width: 64rem) {
 	body {
 		grid-template-areas:
 			"nav iframe"
 			"nav tests";
-		grid-template-columns: 25rem 1fr;
+		grid-template-columns: 16rem 1fr;
 		grid-template-rows: 1fr auto;
 	}
 
 	.Tests {
 		max-height: 50vh;
-		padding-inline-start: 4rem;
+		padding-inline-start: 2.5rem;
 	}
 }
 
-@media (min-width: 64.03125em) {
+@media (min-width: 64.03125rem) {
 	body {
 		grid-template-areas: "nav iframe tests";
-		grid-template-columns: 25rem 1fr auto;
+		grid-template-columns: 16rem 1fr auto;
 	}
 
 	.Tests {
 		max-height: 100vh;
-		min-width: 30rem;
-		padding-top: 4rem;
+		min-width: 18.75rem;
+		padding-top: 2.5rem;
 		width: 20vw;
 	}
 }

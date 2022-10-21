@@ -1,0 +1,35 @@
+/** @define Title; */
+
+.Title {
+	display: flex;
+	justify-content: center;
+	margin-block: 1.5rem;
+	margin-inline-start: calc(var(--spacing) + var(--bar-size));
+	margin-inline-end: var(--spacing);
+}
+
+.Title-link {
+	display: inline-block;
+	font-size: 0.875em;
+	font-weight: 500;
+}
+
+.Title-link:focus-visible {
+	outline-offset: var(--outline-offset);
+}
+
+.Title-logo img {
+	max-inline-size: 100%;
+	min-inline-size: 50%;
+	vertical-align: middle;
+}
+
+.Title-logo + .Title-name {
+	display: none;
+}
+
+@media (max-width: 40rem) {
+	.Title-logo img {
+		block-size: 2rem;
+	}
+}

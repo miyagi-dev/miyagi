@@ -1,9 +1,9 @@
 .Results {
-	padding-inline-start: 5px;
+	padding-inline-start: 0.3125rem;
 }
 
 .Results + .Results {
-	margin-top: var(--results-spacing);
+	margin-block-start: var(--results-spacing);
 }
 
 .Results-summary {
@@ -15,9 +15,8 @@
 }
 
 .Results-summary:focus-visible {
-	outline: 3px solid currentcolor;
-	outline-offset: 2px;
-	border-radius: var(--Miyagi-borderRadius);
+	outline: 0.1875em solid currentcolor;
+	outline-offset: 0.125em;
 }
 
 .Results-summary::after {
@@ -28,12 +27,12 @@
 	content: "";
 	display: block;
 	font-size: var(--Miyagi-toggle-fontSize);
-	height: var(--Miyagi-toggle-height);
+	block-size: var(--Miyagi-toggle-height);
 	position: absolute;
-	top: 50%;
+	inset-block-start: 50%;
 	inset-inline-start: 0.25rem;
 	transition: var(--Miyagi-toggle-transition);
-	width: var(--Miyagi-toggle-width);
+	inline-size: var(--Miyagi-toggle-width);
 }
 
 .Results-summary::-webkit-details-marker {
@@ -57,7 +56,7 @@
 	color: #fff;
 	display: inline-block;
 	line-height: 1.2;
-	min-width: 1.2em;
+	min-inline-size: 1.2em;
 	padding: 0 0.5rem;
 	text-align: center;
 }

@@ -1,0 +1,43 @@
+/** @define ConfigSwitcher; */
+
+.ConfigSwitcher-options {
+	display: flex;
+	gap: 0.5rem;
+	margin-block-start: 0.25rem;
+}
+
+.ConfigSwitcher-option {
+	position: relative;
+}
+
+.ConfigSwitcher input {
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	opacity: 0.01;
+}
+
+.ConfigSwitcher label {
+	display: flex;
+	padding: 0.25em;
+	cursor: pointer;
+}
+
+.ConfigSwitcher :checked + label {
+	outline: 0.0625em solid currentcolor;
+}
+
+.ConfigSwitcher input:focus-visible + label {
+	outline: var(--outline);
+	outline-offset: var(--outline-offset);
+}
+
+.ConfigSwitcher svg {
+	block-size: 1em;
+	inline-size: 1em;
+	fill: var(--Miyagi-color-Link);
+}
+
+.ConfigSwitcher :checked + label svg {
+	fill: var(--Miyagi-color-Link-active, var(--Miyagi-color-Link));
+}

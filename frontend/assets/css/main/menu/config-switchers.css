@@ -1,0 +1,58 @@
+@import url("./config-switcher.css");
+
+.ConfigSwitchers {
+	display: flex;
+	align-items: flex-end;
+	position: sticky;
+	inset-block-end: 0;
+	inset-inline: 0;
+	background: var(--bar-background);
+	border-block-start: var(--divider);
+}
+
+.ConfigSwitchers-toggle {
+	--size: var(--bar-size);
+
+	align-items: center;
+	color: var(--Miyagi-color-Icon);
+	justify-content: center;
+	display: flex;
+	inline-size: var(--size);
+	block-size: var(--size);
+	flex-shrink: 0;
+}
+
+.ConfigSwitchers-toggle:focus-visible {
+	outline-offset: calc(-1 * var(--outline-offset));
+}
+
+.ConfigSwitchers-toggle svg {
+	fill: currentcolor;
+	block-size: 50%;
+	inline-size: 50%;
+}
+
+.ConfigSwitchers-toggle[aria-expanded="false"] .ConfigSwitchers-toggleClose {
+	display: none;
+}
+
+.ConfigSwitchers-toggle[aria-expanded="true"] .ConfigSwitchers-toggleOpen {
+	display: none;
+}
+
+.ConfigSwitchers-container {
+	padding: var(--spacing);
+	flex: 1;
+}
+
+.ConfigSwitchers-container > * + * {
+	margin-block-start: var(--spacing);
+}
+
+.ConfigSwitchers-toggle[aria-expanded="false"] + .ConfigSwitchers-container {
+	display: none;
+}
+
+.ConfigSwitchers-toggle[aria-expanded="true"] + .ConfigSwitchers-container {
+	display: block;
+}

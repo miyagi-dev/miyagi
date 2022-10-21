@@ -1,0 +1,9 @@
+<form class="GoTo u-hiddenVisually" data-url-pattern="{{ flatUrlPattern }}" autocomplete="off">
+	<label class="GoTo-label" for="goto-input">Go to…</label>
+	<input class="GoTo-input" type="text" list="goto-list" id="goto-input">
+	<datalist id="goto-list">
+		{% for component in components %}
+			<option value="{{ component.value }}">{{ component.shortPath }}</option>
+		{% endfor %}
+	</datalist>
+</form>

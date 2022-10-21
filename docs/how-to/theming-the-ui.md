@@ -4,7 +4,6 @@ The following options are applied to both color modes, `"light"` and `"dark"`:
 
 - `css`: string — custom CSS (not a file) you want to be added to _miyagi_
 - `favicon`: string — the path to your favicon file
-- `fontFamily`: string — the name of your custom font (you might need to at the font-face declaration via `config.ui.theme.css`)
 - `js`: string — custom JavaScript (not a file) you want to be added to _miyagi_
 - `mode`: string — any of `"light"`, `"dark"` or `"auto"`
 
@@ -15,9 +14,6 @@ The following options can be applied to both `config.ui.theme.light` and `config
 - `navigation.colorBackground`: string
 - `navigation.colorLinks`: string
 - `navigation.colorLinksActive`: string
-- `navigation.colorLinksActiveBackground`: string
-- `navigation.colorSearchText`: string
-- `navigation.colorSearchBackground`: string
 - `navigation.colorSearchBorder`: string
 - `content.colorBackground`: string
 - `content.colorText`: string

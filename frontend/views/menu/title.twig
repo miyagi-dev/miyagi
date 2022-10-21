@@ -1,0 +1,24 @@
+<h1 class="Title">
+	<a class="Title-link {% if theme.light.logo %} has-logo{% endif %}" href="{{ indexPath }}"
+		target="iframe" {% if showAll %} aria-current="page" {% endif %}>
+		{% if theme.light.logo %}
+			<picture class="Title-logo">
+				{% if theme.mode == "auto" %}
+					<source srcset="{{ theme.dark.logo }}" media="(prefers-color-scheme: dark)">
+					<source srcset="{{ theme.light.logo }}" media="(prefers-color-scheme: light)">
+				{% endif %}
+				<img
+					src="
+						{% if theme.mode == "dark" %}{{ theme.dark.logo }}{% endif %}
+						{% if theme.mode == "light" %}{{ theme.light.logo }}{% endif %}
+						{% if theme.mode == "auto" %}{{ theme.light.logo }}{% endif %}
+					"
+					data-light="{{ theme.light.logo }}"
+					data-dark="{{ theme.dark.logo }}"
+					alt="{{ userProjectName }}"
+				>
+			</picture>
+		{% endif %}
+		<span class="Title-name">Overview</span>
+	</a>
+</h1>

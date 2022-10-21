@@ -1,0 +1,100 @@
+/** @define Nav; */
+
+.Nav-entry--directory {
+	border-block-start: var(--divider);
+}
+
+.Nav-entry--lvl0:last-child {
+	border-block-end: var(--divider);
+}
+
+.Nav-wrapper {
+	position: relative;
+}
+
+.Nav-toggle {
+	display: block;
+	position: absolute;
+	inset-block: 0;
+	inset-inline-start: 0;
+	inline-size: var(--bar-size);
+}
+
+.Nav-toggle::after {
+	border: var(--Miyagi-toggle-border);
+	border-block-start-width: var(--Miyagi-toggle-borderWidth);
+	border-inline-end-width: var(--Miyagi-toggle-borderWidth);
+	content: "";
+	display: block;
+	font-size: var(--Miyagi-toggle-fontSize);
+	block-size: var(--Miyagi-toggle-height);
+	position: absolute;
+	inset-block-start: 50%;
+	inset-inline-start: 50%;
+	transition: var(--Miyagi-toggle-transition);
+	inline-size: var(--Miyagi-toggle-width);
+}
+
+.Nav-toggle[aria-expanded="false"]::after {
+	transform: var(--Miyagi-toggle-transition-closed);
+}
+
+.Nav-toggle[aria-expanded="true"]::after {
+	transform: var(--Miyagi-toggle-transition-opened);
+	border-color: var(--Miyagi-color-Text);
+}
+
+.Nav-item,
+.Nav-variant {
+	display: block;
+	padding-block: var(--spacing);
+	padding-inline: calc(var(--level, 1) * 1em + var(--spacing)) var(--spacing);
+	margin-inline-start: var(--bar-size);
+}
+
+:where(.Nav-item, .Nav-variant):not(:has(mark)),
+:where(.Nav-item, .Nav-variant) mark {
+	text-transform: capitalize;
+}
+
+:where(.Nav-item, .Nav-variant)[aria-current="page"] {
+	background: var(--Miyagi-color-Link-active-background);
+	color: var(--Miyagi-color-Link-active, var(--Miyagi-color-Link));
+}
+
+.Nav-entry.has-no-match .Nav-item,
+.Nav-entry.is-no-match .Nav-toggle,
+.Nav-entry.is-no-match .Nav-variation {
+	opacity: 0.3;
+}
+
+.Nav-entry--directory.has-match > .Nav-toggle,
+.Nav-entry--directory.is-match * {
+	opacity: 1 !important;
+}
+
+.Nav-item--directory {
+	color: var(--Miyagi-color-Link);
+	cursor: default;
+	opacity: 0.75;
+}
+
+.Nav-item--link {
+	font-weight: 600;
+}
+
+.Nav-item--link,
+.Nav-variant {
+	color: var(--Miyagi-color-Link);
+	text-decoration: none;
+}
+
+.Nav-item--link:where(:hover, :focus),
+.Nav-variant:where(:hover, :focus) {
+	text-decoration: underline;
+}
+
+.Nav-toggle:focus-visible,
+.Nav-item:focus-visible {
+	outline-offset: calc(-1 * var(--outline-offset));
+}

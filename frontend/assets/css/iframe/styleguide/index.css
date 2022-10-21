@@ -14,7 +14,7 @@
 
 .MiyagiContent .MiyagiCustomProp {
 	position: relative;
-	border: 1px solid transparent;
+	border: 0.0625rem solid transparent;
 }
 
 .MiyagiContent .MiyagiCustomProp[aria-selected="true"] {
@@ -68,7 +68,7 @@
 	z-index: 1;
 	background: var(--Miyagi-color-bg-Tooltip);
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-	outline: 1px solid var(--Miyagi-color-outline-Tooltip);
+	outline: 0.0625rem solid var(--Miyagi-color-outline-Tooltip);
 	box-sizing: border-box;
 	font-size: 14px;
 	display: none;
