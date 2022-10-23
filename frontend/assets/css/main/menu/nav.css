@@ -62,10 +62,8 @@
 	color: var(--Miyagi-color-Link-active, var(--Miyagi-color-Link));
 }
 
-.Nav-entry.has-no-match .Nav-item,
-.Nav-entry.is-no-match .Nav-toggle,
-.Nav-entry.is-no-match .Nav-variation {
-	opacity: 0.3;
+.is-no-match:not(:has(.is-match)) {
+	display: none;
 }
 
 .Nav-entry--directory.has-match > .Nav-toggle,
