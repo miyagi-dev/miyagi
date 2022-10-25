@@ -318,7 +318,7 @@ function resolveTpl(app, entry) {
               );
 
               await app.render(
-                filePath,
+                fullFilePath,
                 getDataForRenderFunction(app, data),
                 (err, html) => {
                   if (err)
