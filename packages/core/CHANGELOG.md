@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.9](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.8...core/v3.3.9) (2022-10-25)
+
+
+### Bug Fixes
+
+* Fixes error when value for $tpl in mock data begins with / ([88ea3d7](https://github.com/miyagi-dev/miyagi/commit/88ea3d79d603ebafe09e370df765d1b48fd2a26a))
+
 ### [3.3.8](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.7...core/v3.3.8) (2022-10-21)
 
 ### [3.3.7](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.6...core/v3.3.7) (2022-10-21)
