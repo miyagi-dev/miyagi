@@ -460,7 +460,7 @@ async function getRootOrVariantDataOfReference(app, ref) {
       }
     }
 
-    return deepMerge(helpers.cloneDeep(rootJson), variantJson);
+    return mergeRootDataWithVariationData(helpers.cloneDeep(rootJson), variantJson);
   }
   log(
     "warn",
