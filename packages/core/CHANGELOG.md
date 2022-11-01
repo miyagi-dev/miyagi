@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.10](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.9...core/v3.3.10) (2022-11-01)
+
+
+### Bug Fixes
+
+* **core:** respect opts when merging ref data ([77d8ff0](https://github.com/miyagi-dev/miyagi/commit/77d8ff03f0552e53c554a909af30610cebe2b4a5))
+
 ### [3.3.9](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.8...core/v3.3.9) (2022-10-25)
 
 
