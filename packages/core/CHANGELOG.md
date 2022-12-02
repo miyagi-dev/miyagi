@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.10...core/v3.4.0) (2022-12-02)
+
+
+### Features
+
+* **core:** Allow different assets.customProperties files per env ([b809a34](https://github.com/miyagi-dev/miyagi/commit/b809a3471b4d8d56facdf8a70051c78c2286f223))
+
 ### [3.3.10](https://github.com/miyagi-dev/miyagi/compare/core/v3.3.9...core/v3.3.10) (2022-11-01)
 
 
