@@ -294,9 +294,15 @@ module.exports = (userConfig = {}) => {
       config.assets.customProperties = {};
     }
     if (config.assets.customProperties.files) {
-      config.assets.customProperties.files = arrayfy(
-        config.assets.customProperties.files
-      );
+      if (config.assets.customProperties.files[process.env.NODE_ENV]) {
+        config.assets.customProperties.files = arrayfy(
+          config.assets.customProperties.files[process.env.NODE_ENV]
+        );
+      } else {
+        config.assets.customProperties.files = arrayfy(
+          config.assets.customProperties.files
+        );
+      }
     } else {
       config.assets.customProperties.files = [];
     }
