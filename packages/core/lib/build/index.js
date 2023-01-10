@@ -359,7 +359,7 @@ module.exports = (app) => {
             new Promise((resolve) =>
               fs.cp(
                 file,
-                path.join(buildFolder, file),
+                path.join(buildFolder, path.relative(assetsConfig.root, file)),
                 { recursive: true },
                 resolve
               )

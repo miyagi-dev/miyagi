@@ -174,7 +174,13 @@ function getCssFilesArray(strOrArrOrObj, manifest, root) {
       });
 
       if (manifestEntry) {
-        return path.join(path.dirname(manifest.file), manifestEntry[1]);
+        return path.relative(
+          root,
+          path.join(
+            path.dirname(path.join(root, manifest.file)),
+            manifestEntry[1]
+          )
+        );
       } else {
         return file;
       }
