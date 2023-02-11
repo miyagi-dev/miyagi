@@ -3,7 +3,7 @@ const { getCustomProperties } = require("./helpers.js");
 module.exports = function getSpacings(obj, prefix) {
   const spacings = [];
 
-  getCustomProperties(obj, "spacing").forEach(({ property, value, mq }) => {
+  getCustomProperties(obj, prefix).forEach(({ property, value, mq }) => {
     // filter out negative spacings
     if (property.startsWith(`--${prefix}-`) && !value.startsWith("-")) {
       spacings.push({

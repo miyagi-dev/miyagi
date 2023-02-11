@@ -5,7 +5,7 @@ module.exports = function getColors(obj, prefix) {
   const types = ["typo", "decoration"];
   const uppercasedPrefix = prefix.toUpperCase();
 
-  const colors = getCustomProperties(obj, "color")
+  const colors = getCustomProperties(obj, prefix)
     .filter(({ property, value }) => {
       const lowerCasedValue = value.toLowerCase();
       return (
