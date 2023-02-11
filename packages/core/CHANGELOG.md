@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.4](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.3...core/v3.4.4) (2023-02-11)
+
+
+### Bug Fixes
+
+* Changing prefixes for styleguide not working ([dfca950](https://github.com/miyagi-dev/miyagi/commit/dfca950587a7aea5e35143ef664810b7ec510c91))
+
 ### [3.4.3](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.2...core/v3.4.3) (2023-01-10)
 
 ### [3.4.2](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.0...core/v3.4.2) (2023-01-10)
