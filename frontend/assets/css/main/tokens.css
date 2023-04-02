@@ -7,8 +7,8 @@ html {
 	--Miyagi-color-Negative--light: #d9173e;
 	--Miyagi-color-Warning--light: purple;
 	--Miyagi-color-Positive--light: #690;
-	--Miyagi-color-Divider--light: rgba(0, 0, 0, 10%);
-	--Miyagi-color-Bar--light: rgba(0, 0, 0, 5%);
+	--Miyagi-color-Divider--light: rgb(0 0 0 / 10%);
+	--Miyagi-color-Bar--light: rgb(0 0 0 / 5%);
 	--Miyagi-color-Link-active-background--light: #fff;
 
 	/* dark */
@@ -19,10 +19,11 @@ html {
 	--Miyagi-color-Negative--dark: #ff305a;
 	--Miyagi-color-Warning--dark: #b578b5;
 	--Miyagi-color-Positive--dark: #8dd203;
-	--Miyagi-color-Divider--dark: rgba(255, 255, 255, 5%);
-	--Miyagi-color-Bar--dark: rgba(0, 0, 0, 15%);
+	--Miyagi-color-Divider--dark: rgb(255 255 255 / 5%);
+	--Miyagi-color-Bar--dark: rgb(0 0 0 / 15%);
 	--Miyagi-color-Link-active-background--dark: hsl(0deg 0% 12%);
 
+	/* misc */
 	--Miyagi-color-Link: var(--Miyagi-color-Link--light);
 	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
 	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);

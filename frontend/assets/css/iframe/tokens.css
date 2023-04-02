@@ -34,6 +34,7 @@ html {
 	--Miyagi-color-bg-Tooltip--dark: #333;
 	--Miyagi-color-outline-Tooltip--dark: #444;
 
+	/* misc */
 	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
 	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
 	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--light);
