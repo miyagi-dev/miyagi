@@ -48,8 +48,8 @@
 		"jsdom": "^21.1.1",
 		"marked": "^4.3.0",
 		"node-watch": "^0.7.3",
-		"socket.io": "^4.6.1",
 		"twig": "^1.16.0",
+		"ws": "^8.13.0",
 		"yargs": "^17.7.1"
 	},
 	"devDependencies": {

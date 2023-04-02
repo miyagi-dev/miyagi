@@ -11,9 +11,6 @@
 			{% set async_str = file.async ? "async" : "" %}
 			<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
 		{% endfor %}
-    {% if dev %}
-    <script src="{{ projectName }}/js/socket.io.min.js" defer></script>
-    {% endif %}
     {% if accessibilityValidation %}
     <script src="{{ projectName }}/js/axe.min.js" defer></script>
     <script src="{{ projectName }}/js/iframe.axe.js" defer></script>
