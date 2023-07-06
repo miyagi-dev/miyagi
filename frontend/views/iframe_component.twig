@@ -127,6 +127,11 @@
 				{% set async_str = file.async ? "async" : "" %}
 				<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
 			{% endfor %}
+			{% if theme.js %}
+        <script>
+          {{{theme.js}}}
+        </script>
+      {% endif %}
     {% endif %}
   {% endblock %}
 	{% block componentAssets %}
@@ -136,6 +141,11 @@
       {% endif %}
       {% if assets.js %}
         <script src="{{ assets.js }}"></script>
+      {% endif %}
+			{% if theme.css %}
+        <style>
+          {{{theme.css}}}
+        </style>
       {% endif %}
     {% endif %}
   {% endblock %}
