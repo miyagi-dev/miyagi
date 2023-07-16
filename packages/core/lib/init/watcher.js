@@ -69,11 +69,13 @@ async function updateFileContents(app, events) {
 
   for (const { event, changedPath } of events) {
     if (
-      helpers.fileIsTemplateFile(app, changedPath) ||
-      helpers.fileIsDataFile(app, changedPath) ||
-      helpers.fileIsDocumentationFile(app, changedPath) ||
-      helpers.fileIsInfoFile(app, changedPath) ||
-      helpers.fileIsSchemaFile(app, changedPath)
+      fs.existsSync(changedPath) &&
+      fs.lstatSync(changedPath).isFile() &&
+      (helpers.fileIsTemplateFile(app, changedPath) ||
+        helpers.fileIsDataFile(app, changedPath) ||
+        helpers.fileIsDocumentationFile(app, changedPath) ||
+        helpers.fileIsInfoFile(app, changedPath) ||
+        helpers.fileIsSchemaFile(app, changedPath))
     ) {
       const fullPath = path.join(process.cwd(), changedPath);
 
@@ -116,8 +118,25 @@ async function handleFileChange() {
     }
   }
 
+  // a directory has been changed
+  if (
+    triggeredEvents.some(
+      ({ changedPath }) =>
+        fs.existsSync(changedPath) && fs.lstatSync(changedPath).isDirectory()
+    )
+  ) {
+    await setState(appInstance, {
+      sourceTree: true,
+      fileContents: true,
+      menu: true,
+      partials: true,
+    });
+
+    changeFileCallback(true, true);
+  }
+
   // removed a directory or file
-  if (triggeredEventsIncludes(triggeredEvents, ["remove"])) {
+  else if (triggeredEventsIncludes(triggeredEvents, ["remove"])) {
     await setState(appInstance, {
       sourceTree: true,
       fileContents: await updateFileContents(appInstance, triggeredEvents),

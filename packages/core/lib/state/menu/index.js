@@ -11,16 +11,28 @@ const helpers = require("../../helpers.js");
 /**
  * @param {object} app - the express instance
  * @param {object} directory - file tree object
- * @returns {object} file tree object of the component file in the given directory
+ * @returns {Array} file tree object of the component file in the given directory
  */
 function getComponentFiles(app, directory) {
   return directory.children.filter((child) => {
-    const baseName = path.basename(child.name);
+    const baseName =
+      app.get("config").files.templates.name === "<component>"
+        ? path.parse(child.name).name
+        : app.get("config").files.templates.name;
 
-    return (
-      helpers.fileIsTemplateFile(app, baseName) ||
-      helpers.fileIsDocumentationFile(app, baseName)
-    );
+    if (helpers.fileIsDocumentationFile(app, child.name)) return true;
+
+    if (helpers.fileIsTemplateFile(app, child.name)) {
+      if (
+        app.get("config").files.templates.name === "<component>" &&
+        directory.name === baseName
+      )
+        return true;
+
+      if (app.get("config").files.templates.name === baseName) return true;
+    }
+
+    return false;
   });
 }
 
@@ -43,14 +55,15 @@ function hasComponentFileWithCorrectNameAsChild(app, directory) {
  * @returns {object} adapted file tree object
  */
 function getDataForLinkedDirectory(app, directory) {
-  const info = app.get("state").fileContents[
-    path.join(
-      directory.path,
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    )
-  ];
+  const info =
+    app.get("state").fileContents[
+      path.join(
+        directory.path,
+        `${app.get("config").files.info.name}.${
+          app.get("config").files.info.extension
+        }`
+      )
+    ];
   const shortPath = helpers.getShortPathFromFullPath(app, directory.path);
   const normalizedShortPath = helpers.normalizeString(shortPath);
 
@@ -72,14 +85,15 @@ function getDataForLinkedDirectory(app, directory) {
  * @returns {object} adapted file tree object
  */
 function getDataForDirectory(app, directory) {
-  const info = app.get("state").fileContents[
-    path.join(
-      directory.path,
-      `${app.get("config").files.info.name}.${
-        app.get("config").files.info.extension
-      }`
-    )
-  ];
+  const info =
+    app.get("state").fileContents[
+      path.join(
+        directory.path,
+        `${app.get("config").files.info.name}.${
+          app.get("config").files.info.extension
+        }`
+      )
+    ];
 
   return {
     type: directory.type,
