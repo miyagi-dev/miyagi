@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.5](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.4...core/v3.4.5) (2023-07-17)
+
+
+### Bug Fixes
+
+* Fixes axe reporting issue by miyagi ([b792323](https://github.com/miyagi-dev/miyagi/commit/b792323b1ff763d811c073b84e64048cbe153d4a))
+* Folders ingested as files by watcher [#292](https://github.com/miyagi-dev/miyagi/issues/292) ([ac6b5c3](https://github.com/miyagi-dev/miyagi/commit/ac6b5c39df8f46c92b2cf61ce63bbe8cb39d4fdc))
+* Render theme css and js also on component overview ([46f4428](https://github.com/miyagi-dev/miyagi/commit/46f442835e7bf9e3b59c3acbf8de0e47e81aa47d))
+
 ### [3.4.4](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.3...core/v3.4.4) (2023-02-11)
 
 
