@@ -47,19 +47,25 @@ function checkIfRequestedComponentIsValid(app, component) {
 
   return (
     files.includes(
-      `${component}/${helpers.getResolvedFileName(
-        app.get("config").files.templates.name,
-        path.basename(
-          component,
-          `.${app.get("config").files.templates.extension}`
-        )
-      )}.${app.get("config").files.templates.extension}`
+      path.join(
+        component,
+        `${helpers.getResolvedFileName(
+          app.get("config").files.templates.name,
+          path.basename(
+            component,
+            `.${app.get("config").files.templates.extension}`
+          )
+        )}.${app.get("config").files.templates.extension}`
+      )
     ) ||
     files.includes(
-      `${component}/${helpers.getResolvedFileName(
-        app.get("config").files.docs.name,
-        path.basename(component, `.${app.get("config").files.docs.extension}`)
-      )}.${app.get("config").files.docs.extension}`
+      path.join(
+        component,
+        `${helpers.getResolvedFileName(
+          app.get("config").files.docs.name,
+          path.basename(component, `.${app.get("config").files.docs.extension}`)
+        )}.${app.get("config").files.docs.extension}`
+      )
     )
   );
 }

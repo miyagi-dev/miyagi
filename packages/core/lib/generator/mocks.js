@@ -1,6 +1,7 @@
 const schemaFaker = require("@stoplight/json-schema-sampler");
 const jsonToYaml = require("js-yaml");
 const yamlToJson = require("js-yaml");
+const path = require("path");
 const fs = require("fs");
 const log = require("../logger.js");
 const { messages } = require("../config.json");
@@ -24,8 +25,14 @@ module.exports = async function mockGenerator(folderPath, filesConfig) {
     messages.dataGenerator.starting.replace("{{fileName}}", folderPath)
   );
 
-  const mockFilePath = `${folderPath}/${filesConfig.mocks.name}.${filesConfig.mocks.extension}`;
-  const schemaFilePath = `${folderPath}/${filesConfig.schema.name}.${filesConfig.schema.extension}`;
+  const mockFilePath = path.join(
+    folderPath,
+    `${filesConfig.mocks.name}.${filesConfig.mocks.extension}`
+  );
+  const schemaFilePath = path.join(
+    folderPath,
+    `${filesConfig.schema.name}.${filesConfig.schema.extension}`
+  );
 
   readFile(schemaFilePath)
     .then((result) => {

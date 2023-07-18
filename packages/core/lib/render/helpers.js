@@ -18,9 +18,10 @@ module.exports = {
   async extendTemplateData(config, data, filePath) {
     let fullFilePath = filePath.endsWith(config.files.templates.extension)
       ? filePath
-      : `${filePath}/${path.basename(filePath)}.${
-          config.files.templates.extension
-        }`;
+      : path.join(
+          filePath,
+          `${path.basename(filePath)}.${config.files.templates.extension}`
+        );
 
     for (const extension of config.extensions) {
       if (extension) {

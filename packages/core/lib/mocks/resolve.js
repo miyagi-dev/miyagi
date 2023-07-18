@@ -272,39 +272,48 @@ function resolveTpl(app, entry) {
             const stat = await fileStat(path.resolve(resolvedNamespace));
 
             if (stat.isSymbolicLink()) {
-              filePath = `${entries.$tpl.replace(
-                namespace,
-                resolvedNamespace.replace(
-                  path.join(app.get("config").components.folder, "/"),
+              filePath = path.join(
+                entries.$tpl.replace(
+                  namespace,
+                  resolvedNamespace.replace(
+                    path.join(app.get("config").components.folder, "/"),
+                    ""
+                  ),
                   ""
                 ),
-                ""
-              )}/${helpers.getResolvedFileName(
-                app.get("config").files.templates.name,
-                path.basename(entries.$tpl)
-              )}.${app.get("config").files.templates.extension}`;
+                `${helpers.getResolvedFileName(
+                  app.get("config").files.templates.name,
+                  path.basename(entries.$tpl)
+                )}.${app.get("config").files.templates.extension}`
+              );
 
               fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
             } else {
-              filePath = `${entries.$tpl.replace(
-                namespace,
-                resolvedNamespace.replace(
-                  app.get("config").components.folder,
+              filePath = path.join(
+                entries.$tpl.replace(
+                  namespace,
+                  resolvedNamespace.replace(
+                    app.get("config").components.folder,
+                    ""
+                  ),
                   ""
                 ),
-                ""
-              )}/${helpers.getResolvedFileName(
-                app.get("config").files.templates.name,
-                path.basename(entries.$tpl)
-              )}.${app.get("config").files.templates.extension}`.slice(1);
+                `${helpers.getResolvedFileName(
+                  app.get("config").files.templates.name,
+                  path.basename(entries.$tpl)
+                )}.${app.get("config").files.templates.extension}`
+              );
             }
 
             fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
           } else {
-            filePath = `${entries.$tpl}/${helpers.getResolvedFileName(
-              app.get("config").files.templates.name,
-              path.basename(entries.$tpl)
-            )}.${app.get("config").files.templates.extension}`;
+            filePath = path.join(
+              entries.$tpl,
+              `${helpers.getResolvedFileName(
+                app.get("config").files.templates.name,
+                path.basename(entries.$tpl)
+              )}.${app.get("config").files.templates.extension}`
+            );
 
             fullFilePath = helpers.getFullPathFromShortPath(app, filePath);
           }
@@ -426,9 +435,12 @@ async function getRootOrVariantDataOfReference(app, ref) {
     }
   }
 
-  val = `${shortVal}/${app.get("config").files.mocks.name}.${
-    app.get("config").files.mocks.extension
-  }`;
+  val = path.join(
+    shortVal,
+    `${app.get("config").files.mocks.name}.${
+      app.get("config").files.mocks.extension
+    }`
+  );
   const jsonFromData =
     app.get("state").fileContents[helpers.getFullPathFromShortPath(app, val)];
 
@@ -460,7 +472,10 @@ async function getRootOrVariantDataOfReference(app, ref) {
       }
     }
 
-    return mergeRootDataWithVariationData(helpers.cloneDeep(rootJson), variantJson);
+    return mergeRootDataWithVariationData(
+      helpers.cloneDeep(rootJson),
+      variantJson
+    );
   }
   log(
     "warn",

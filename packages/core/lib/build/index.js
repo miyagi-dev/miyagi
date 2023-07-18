@@ -144,8 +144,8 @@ module.exports = (app) => {
                   }
                   resolve();
                 })
-                .catch(() => {
-                  reject();
+                .catch((err) => {
+                  reject(err);
                 });
             })
           );
@@ -164,7 +164,7 @@ module.exports = (app) => {
             }
           })
           .catch((err) => {
-            console.log(err);
+            console.error(err);
             log("error", appConfig.messages.buildFailed);
             reject();
           });

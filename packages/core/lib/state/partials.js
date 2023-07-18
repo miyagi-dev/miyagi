@@ -50,7 +50,8 @@ module.exports = {
             if (shortPath !== path.basename(shortPath)) {
               partials[shortPath] = path.join(
                 process.cwd(),
-                `${app.get("config").components.folder}/${shortPath}`
+                app.get("config").components.folder,
+                shortPath
               );
             }
           }

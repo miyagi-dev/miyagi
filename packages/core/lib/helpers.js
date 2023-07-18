@@ -91,9 +91,12 @@ module.exports = {
    * @returns {string} absolute file path
    */
   getFullPathFromShortPath: function (app, shortPath) {
+    if (!shortPath) return null;
+
     return path.join(
       process.cwd(),
-      `${app.get("config").components.folder}/${shortPath}`
+      app.get("config").components.folder,
+      shortPath
     );
   },
 
@@ -106,7 +109,7 @@ module.exports = {
    */
   getShortPathFromFullPath: function (app, fullPath) {
     return fullPath.replace(
-      `${path.join(process.cwd(), app.get("config").components.folder)}/`,
+      path.join(process.cwd(), app.get("config").components.folder, "/"),
       ""
     );
   },
@@ -119,6 +122,8 @@ module.exports = {
    * @returns {string} file path to the corresponding mock file
    */
   getDataPathFromTemplatePath: function (app, filePath) {
+    if (!filePath) return null;
+
     return filePath.replace(
       path.basename(filePath),
       `${app.get("config").files.mocks.name}.${

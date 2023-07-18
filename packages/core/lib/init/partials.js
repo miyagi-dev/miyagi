@@ -18,23 +18,24 @@ const config = require("../config.json");
  */
 async function register(shortPath, fullFilePath) {
   return new Promise((resolve) => {
-    fs.readFile(fullFilePath, "utf8", function registerPartialCallback(
-      err,
-      data
-    ) {
-      if (typeof data === "string") {
-        handlebars.registerPartial(
-          shortPath,
-          handlebars.compile(data.toString())
-        );
-      } else {
-        log(
-          "warn",
-          config.messages.fileNotFound.replace("{{filePath}}", shortPath)
-        );
+    fs.readFile(
+      fullFilePath,
+      "utf8",
+      function registerPartialCallback(err, data) {
+        if (typeof data === "string") {
+          handlebars.registerPartial(
+            shortPath,
+            handlebars.compile(data.toString())
+          );
+        } else {
+          log(
+            "warn",
+            config.messages.fileNotFound.replace("{{filePath}}", shortPath)
+          );
+        }
+        resolve();
       }
-      resolve();
-    });
+    );
   });
 }
 
