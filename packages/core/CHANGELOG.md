@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.6](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.5...core/v3.4.6) (2023-07-18)
+
+
+### Bug Fixes
+
+* Fixes some components being disabled in the sidebar ([e8ab880](https://github.com/miyagi-dev/miyagi/commit/e8ab880e989b091d743f8a07f1979059b78e8db2))
+
 ### [3.4.5](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.4...core/v3.4.5) (2023-07-17)
 
 
