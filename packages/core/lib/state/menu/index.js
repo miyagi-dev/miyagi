@@ -17,7 +17,10 @@ function getComponentFiles(app, directory) {
   return directory.children.filter((child) => {
     const baseName =
       app.get("config").files.templates.name === "<component>"
-        ? path.parse(child.name).name
+        ? child.name.replace(
+            `.${app.get("config").files.templates.extension}`,
+            ""
+          )
         : app.get("config").files.templates.name;
 
     if (helpers.fileIsDocumentationFile(app, child.name)) return true;
