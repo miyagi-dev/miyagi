@@ -22,7 +22,9 @@ class MainBuild extends Main {
 	onPopState() {
 		let path;
 
-		if (document.location.pathname !== "/") {
+		if (document.location.pathname.startsWith("/design-tokens")) {
+			path = document.location.pathname.replace("/", "/iframe-");
+		} else if (document.location.pathname !== "/") {
 			path = document.location.pathname
 				.replace(this.paths.container, this.paths.embedded)
 				.replace(/\.html$/, `${this.embeddedParam}.html`)

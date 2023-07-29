@@ -17,7 +17,17 @@
 						></button>
 					{% endif %}
 
-					{% if item.section == "docs" %}
+					{% if item.section == "design-tokens" %}
+						<a
+							class="Nav-item Nav-item--link"
+							href="{{ item.url }}"
+							{% if is_active_component(item, requestedComponent, requestedVariation) %}
+								aria-current="page"
+							{% endif %}
+						>
+							{{ item.name }}
+						</a>
+					{% elseif item.section == "docs" %}
 						{% if item.isLink %}
 							<a
 								class="Nav-item Nav-item--link"

@@ -125,10 +125,12 @@ class Main {
 	 */
 	setActiveStateInNav(query) {
 		{
-			var target = this.elements.links.find((link) =>
-				link
-					.getAttribute("href")
-					.includes(query.replace(this.paths.container, this.paths.embedded))
+			var target = this.elements.links.find(
+				(link) =>
+					query.includes(link.getAttribute("href")) ||
+					link
+						.getAttribute("href")
+						.includes(query.replace(this.paths.container, this.paths.embedded))
 			);
 
 			if (target) {
@@ -184,7 +186,11 @@ class Main {
 	 * @param {string} src
 	 */
 	updateUrl(src) {
-		if (src === this.indexPath) {
+		if (src.startsWith("iframe-")) {
+			history.pushState(null, src, src.replace("iframe-", ""));
+		} else if (src.startsWith("/iframe")) {
+			history.pushState(null, src, src.replace("/iframe", ""));
+		} else if (src === this.indexPath) {
 			history.pushState(null, src, document.querySelector("base").href);
 		} else {
 			history.pushState(null, src, this.convertPathToMainPath(src));

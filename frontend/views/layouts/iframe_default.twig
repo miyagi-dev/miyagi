@@ -9,22 +9,22 @@
 			{% set type_str = file.type ? " type=" ~ file.type ~ '"' : "" %}
 			{% set defer_str = file.defer ? "defer" : "" %}
 			{% set async_str = file.async ? "async" : "" %}
-			<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
+			<script src="/{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
 		{% endfor %}
     {% if accessibilityValidation %}
-    <script src="{{ projectName }}/js/axe.min.js" defer></script>
-    <script src="{{ projectName }}/js/iframe.axe.js" defer></script>
+    <script src="/{{ projectName }}/js/axe.min.js" defer></script>
+    <script src="/{{ projectName }}/js/iframe.axe.js" defer></script>
     {% endif %}
-    <script src="{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if dev %} type="module" {% endif %}{% if prod %}
+    <script src="/{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %} type="module" {% endif %}{% if prod %}
       defer{% endif %}></script>
     {% for file in cssFiles %}
 			<link rel="stylesheet" href="{{ file }}">
 		{% endfor %}
-    <link rel="stylesheet" href="{{ projectName }}/css/iframe-background.css">
-    <link rel="stylesheet" href="{{ projectName }}/css/iframe.css">
+    <link rel="stylesheet" href="/{{ projectName }}/css/iframe-background.css">
+    <link rel="stylesheet" href="/{{ projectName }}/css/iframe.css">
     {% block additionalCss %}{% endblock %}
     {% if a11yTestsPreload %}
-    <link rel="prefetch" href="{{ projectName }}/js/axe.min.js">
+    <link rel="prefetch" href="/{{ projectName }}/js/axe.min.js">
     {% endif %}
     <style>
 			html {

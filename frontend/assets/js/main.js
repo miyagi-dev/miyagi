@@ -22,16 +22,18 @@ class MainDev extends Main {
 	onPopState() {
 		let path;
 
-		if (document.location.search !== "") {
+		if (document.location.pathname.startsWith("/design-tokens")) {
+			path = `/iframe${document.location.pathname}`;
+		} else if (document.location.search !== "") {
 			path = `${document.location.href.replace(
 				this.paths.container,
 				this.paths.embedded
 			)}${this.embeddedParam}`;
+			path = path.replace(document.location.origin, "");
 		} else {
 			path = this.indexPath;
+			path = path.replace(document.location.origin, "");
 		}
-
-		path = path.replace(document.location.origin, "");
 
 		super.onPopState(path);
 	}
