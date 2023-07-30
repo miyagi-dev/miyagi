@@ -45,21 +45,5 @@
         <iframe class="Frame" id="iframe" src="{{ iframeSrc }}" name="iframe" title="Components"></iframe>
       </div>
     </main>
-
-    <aside class="Tests" {% if hideTests %} hidden{% endif %}>
-      {% for test in tests %}
-        <div class="Test Test--{{ test.alias }}" hidden>
-          <b class="Test-title">{{ test.title }}</b>
-          {% for result in test.results %}
-            <details class="Results Results--{{ result.alias }}">
-              <summary class="Results-summary">
-                {{ result.label }}: <span class="Results-value Results-value--{{ result.class }}">0</span>
-              </summary>
-              <div class="Results-details"></div>
-            </details>
-          {% endfor %}
-        </div>
-      {% endfor %}
-    </aside>
   </body>
 </html>

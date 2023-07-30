@@ -85,10 +85,6 @@ Please refer to the [available options](/configuration/options/) for a full expl
 			"dark": {
 				"logo": null
 			}
-		},
-		"validations": {
-			"accessibility": true,
-			"html": true
 		}
 	},
 	"schema": {}

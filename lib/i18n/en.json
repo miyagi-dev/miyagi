@@ -30,7 +30,6 @@
 	"guessingEngineAndExtensionFailed": "miyagi wasn't able to guess your engine and template files extension.",
 	"guessingEngineFailed": "miyagi wasn't able to guess your engine.",
 	"guessingExtensionFailed": "miyagi wasn't able to guess your template files extension.",
-	"htmlValidationFailed": "HTML validation failed. Most likely something went wrong with https://validator.w3.org/nu/. Maybe you also ran into rate limiting.",
 	"linter": {
 		"all": {
 			"start": "Validating schema files and mock data for all components…",

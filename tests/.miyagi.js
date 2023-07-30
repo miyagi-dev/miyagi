@@ -14,10 +14,4 @@ module.exports = {
 		folder: "src",
 	},
 	projectName: "miyagi",
-	ui: {
-		validations: {
-			html: true,
-			accessibility: true,
-		},
-	},
 };

@@ -1,5 +1,4 @@
 import "./_socket.js";
-import Tests from "./_tests.js";
 import {
 	goto as gotoIsTriggered,
 	search as searchIsTriggered,
@@ -15,12 +14,7 @@ if (
 
 document.addEventListener("DOMContentLoaded", function () {
 	const links = Array.from(document.querySelectorAll(".MiyagiComponent-file"));
-	const tests = parent.document.querySelector(".Tests");
 	const styleguide = document.querySelector(".MiyagiStyleguide");
-
-	if (tests) {
-		Tests(tests);
-	}
 
 	if (links.length > 0) {
 		import("./_iframe-links.js")

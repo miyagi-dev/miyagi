@@ -35,12 +35,6 @@ body {
 	width: 100%;
 }
 
-.Tests {
-	grid-area: tests;
-	padding-inline-end: 2.5rem;
-	color: var(--Miyagi-color-ValidationsText, var(--Miyagi-color-Text));
-}
-
 @media (max-width: 40rem) {
 	html {
 		--Miyagi-spacing-x: 1rem;
@@ -50,13 +44,7 @@ body {
 	body {
 		grid-template:
 			"nav"
-			"iframe" 1fr
-			"tests";
-	}
-
-	.Tests {
-		padding: 2.5rem;
-		padding-block-start: 0;
+			"iframe" 1fr;
 	}
 }
 
@@ -65,39 +53,12 @@ body {
 		--Miyagi-spacing-x: 2rem;
 		--Miyagi-spacing-y: 4rem;
 	}
-
-	.Tests {
-		-webkit-overflow-scrolling: touch;
-		overflow-y: auto;
-	}
 }
 
-@media (min-width: 40.03125rem) and (max-width: 64rem) {
+@media (min-width: 40.03125rem) {
 	body {
-		grid-template-areas:
-			"nav iframe"
-			"nav tests";
+		grid-template-areas: "nav iframe";
 		grid-template-columns: 16rem 1fr;
-		grid-template-rows: 1fr auto;
-	}
-
-	.Tests {
-		max-height: 50vh;
-		padding-inline-start: 2.5rem;
-	}
-}
-
-@media (min-width: 64.03125rem) {
-	body {
-		grid-template-areas: "nav iframe tests";
-		grid-template-columns: 16rem 1fr auto;
-	}
-
-	.Tests {
-		max-height: 100vh;
-		min-width: 18.75rem;
-		padding-top: 2.5rem;
-		width: 20vw;
 	}
 }
 

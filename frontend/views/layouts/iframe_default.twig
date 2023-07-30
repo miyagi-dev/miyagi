@@ -11,10 +11,6 @@
 			{% set async_str = file.async ? "async" : "" %}
 			<script src="/{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
 		{% endfor %}
-    {% if accessibilityValidation %}
-    <script src="/{{ projectName }}/js/axe.min.js" defer></script>
-    <script src="/{{ projectName }}/js/iframe.axe.js" defer></script>
-    {% endif %}
     <script src="/{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %} type="module" {% endif %}{% if prod %}
       defer{% endif %}></script>
     {% for file in cssFiles %}
@@ -23,9 +19,6 @@
     <link rel="stylesheet" href="/{{ projectName }}/css/iframe-background.css">
     <link rel="stylesheet" href="/{{ projectName }}/css/iframe.css">
     {% block additionalCss %}{% endblock %}
-    {% if a11yTestsPreload %}
-    <link rel="prefetch" href="/{{ projectName }}/js/axe.min.js">
-    {% endif %}
     <style>
 			html {
 				{% for prop, value in theme.customProperties %}

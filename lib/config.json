@@ -92,17 +92,12 @@
 				"dark": {
 					"logo": null
 				}
-			},
-			"validations": {
-				"accessibility": true,
-				"html": true
 			}
 		},
 		"schema": {}
 	},
 	"projectName": "miyagi",
 	"defaultPort": 5000,
-	"htmlValidationUrl": "https://validator.w3.org/nu/",
 	"folders": {
 		"assets": {
 			"development": "frontend/assets",

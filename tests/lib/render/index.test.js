@@ -3,7 +3,6 @@ const engines = require("consolidate");
 const path = require("path");
 const deepMerge = require("deepmerge");
 const config = require("../../../lib/config.json");
-const tests = require("../../../lib/render/tests.json");
 const render = require("../../../lib/render");
 require("../../../lib/validator/mocks");
 
@@ -143,12 +142,6 @@ beforeEach(() => {
 				folder: "tests/mock-data/srcFolder",
 			},
 			projectName: userProjectName,
-			ui: {
-				validations: {
-					accessibility: true,
-					html: true,
-				},
-			},
 		})
 	);
 
@@ -181,7 +174,6 @@ describe("lib/render/index", () => {
 				iframeSrc: "/component?file=all&embedded=true",
 				indexPath: "/component?file=all&embedded=true",
 				showAll: true,
-				hideTests: true,
 				theme: {
 					mode: "light",
 					logo: null,
@@ -232,7 +224,6 @@ describe("lib/render/index", () => {
 						},
 					},
 				},
-				tests,
 				projectName,
 				userProjectName,
 				miyagiDev: false,
@@ -273,7 +264,6 @@ describe("lib/render/index", () => {
 					indexPath: "/component?file=all&embedded=true",
 					requestedComponent: path.dirname(component),
 					requestedVariation: variation,
-					hideTests: false,
 					theme: {
 						mode: "light",
 						logo: null,
@@ -324,7 +314,6 @@ describe("lib/render/index", () => {
 							},
 						},
 					},
-					tests,
 					projectName,
 					userProjectName,
 					miyagiDev: false,
@@ -361,7 +350,6 @@ describe("lib/render/index", () => {
 					indexPath: "/component?file=all&embedded=true",
 					requestedComponent: path.dirname(component),
 					requestedVariation: undefined,
-					hideTests: false,
 					theme: {
 						mode: "light",
 						logo: null,
@@ -412,7 +400,6 @@ describe("lib/render/index", () => {
 							},
 						},
 					},
-					tests,
 					projectName,
 					userProjectName,
 					miyagiDev: false,
@@ -447,8 +434,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1global\n",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: false,
 					standaloneUrl: null,
 					dev: false,
 					prod: false,
@@ -551,8 +536,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component11\n",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: false,
 					standaloneUrl: null,
 					standalone: true,
 					dev: false,
@@ -654,8 +637,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component2\n",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: false,
 					standaloneUrl: null,
 					standalone: true,
 					dev: false,
@@ -757,8 +738,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component8\n",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: false,
 					standaloneUrl: null,
 					standalone: true,
 					dev: false,
@@ -858,8 +837,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: false,
 					standaloneUrl: null,
 					standalone: true,
 					dev: false,
@@ -962,8 +939,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1\n",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: true,
 					standaloneUrl: `/component?file=${path.dirname(
 						component
 					)}&variation=component1`,
@@ -1067,8 +1042,6 @@ describe("lib/render/index", () => {
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1\n",
 					error: null,
-					htmlValidation: true,
-					accessibilityValidation: false,
 					standaloneUrl: null,
 					dev: false,
 					prod: false,
@@ -1228,7 +1201,6 @@ describe("lib/render/index", () => {
 					],
 					dev: false,
 					prod: false,
-					a11yTestsPreload: true,
 					folder,
 					projectName,
 					userProjectName,
@@ -1396,7 +1368,6 @@ describe("lib/render/index", () => {
 						],
 						dev: false,
 						prod: false,
-						a11yTestsPreload: true,
 						folder,
 						projectName,
 						userProjectName,
@@ -1547,7 +1518,6 @@ describe("lib/render/index", () => {
 						],
 						dev: false,
 						prod: false,
-						a11yTestsPreload: true,
 						folder,
 						projectName,
 						userProjectName,
@@ -1677,7 +1647,6 @@ describe("lib/render/index", () => {
 						],
 						dev: false,
 						prod: false,
-						a11yTestsPreload: true,
 						folder,
 						projectName,
 						userProjectName,
@@ -1802,7 +1771,6 @@ describe("lib/render/index", () => {
 						],
 						dev: false,
 						prod: false,
-						a11yTestsPreload: true,
 						folder,
 						projectName,
 						userProjectName,
@@ -1946,7 +1914,6 @@ describe("lib/render/index", () => {
 						],
 						dev: false,
 						prod: false,
-						a11yTestsPreload: true,
 						folder,
 						projectName,
 						userProjectName,
@@ -2055,7 +2022,6 @@ describe("lib/render/index", () => {
 
 					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
-						a11yTestsPreload: true,
 						folder,
 						documentation: undefined,
 						theme: {
@@ -2178,7 +2144,6 @@ describe("lib/render/index", () => {
 					expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 					expect(res.render.mock.calls[0][1]).toEqual({
 						documentation: undefined,
-						a11yTestsPreload: true,
 						folder,
 						theme: {
 							mode: "light",
@@ -2299,7 +2264,6 @@ describe("lib/render/index", () => {
 
 				expect(res.render.mock.calls[0][0]).toEqual("iframe_component.twig");
 				expect(res.render.mock.calls[0][1]).toEqual({
-					a11yTestsPreload: true,
 					folder: "tests/mock-data/srcFolder/component4",
 					documentation: undefined,
 					dev: false,
@@ -2461,7 +2425,6 @@ describe("lib/render/index", () => {
 					},
 					dev: false,
 					prod: false,
-					a11yTestsPreload: true,
 					projectName,
 					userProjectName,
 					isBuild: undefined,
@@ -2540,7 +2503,6 @@ describe("lib/render/index", () => {
 					},
 					dev: false,
 					prod: false,
-					a11yTestsPreload: true,
 					projectName,
 					userProjectName,
 					isBuild: undefined,
@@ -2619,7 +2581,6 @@ describe("lib/render/index", () => {
 					},
 					dev: false,
 					prod: false,
-					a11yTestsPreload: true,
 					projectName,
 					userProjectName,
 					isBuild: undefined,

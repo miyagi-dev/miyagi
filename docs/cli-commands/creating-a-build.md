@@ -7,7 +7,6 @@ This will create a static build in the folder that is defined in [`build.folder`
 _**NOTE:**_
 
 - _miyagi automatically uses `NODE_ENV=production` to create the build, hence uses the [assets you defined for `production`](/configuration/options#assets) (if you did)._
-- _[Validations](/the-ui/#validations) are turned off for builds._
 
 ## Params
 

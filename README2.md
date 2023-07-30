@@ -11,7 +11,6 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 - No overhead in your project: _miyagi_ only needs one configuration file.
 - Works with any directory structure (as long as you have one folder per component).
 - Helps you developing your components encapsulated.
-- Validates your components for HTML and accessibility violations.
 - Mock data (static or dynamic) allows developing independently from a backend.
 - Validates your mock data against your JSON schema files.
 - Documentation of your components using markdown.

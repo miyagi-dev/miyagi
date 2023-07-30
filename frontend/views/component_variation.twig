@@ -10,12 +10,8 @@
 			{% set async_str = file.async ? "async" : "" %}
 			<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
 		{% endfor %}
-    <script src="{{ projectName }}/js/axe.min.js" defer></script>
-    {% if accessibilityValidation %}
-      <script src="{{ projectName }}/js/iframe.axe.js" defer></script>
-    {% endif %}
     {% if standalone %}
-      <script src="{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if dev %} type="module"
+      <script src="{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %} type="module"
         {% endif %}{% if prod %} defer{% endif %}></script>
     {% endif %}
 		{% for file in cssFiles %}

@@ -376,20 +376,6 @@ default:
 }
 ```
 
-### `validations`
-
-[Read more about validations](/the-ui/#validations) in the Web UI section.
-
-#### `accessibility`
-
-default: `true`<br>
-type: `boolean`
-
-#### `html`
-
-default: `true`<br>
-type: `boolean`
-
 ## `schema`
 
 default: `{}`<br>

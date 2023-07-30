@@ -39,25 +39,6 @@ describe("lib/init/static", () => {
 			});
 		});
 
-		describe("GET /js/axe.min.js", () => {
-			test("returns 200", (done) => {
-				app.set(
-					"config",
-					deepMerge(config.defaultUserConfig, {
-						assets: {
-							css: [],
-							js: [],
-						},
-					})
-				);
-
-				setStatic(app);
-				request(app)
-					.get(`/${config.projectName}/js/axe.min.js`)
-					.expect(200, done);
-			});
-		});
-
 		describe("GET other requests", () => {
 			test("return 404", (done) => {
 				app.set(

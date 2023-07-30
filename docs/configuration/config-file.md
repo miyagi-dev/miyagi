@@ -56,10 +56,6 @@ This is an example for a JSON config file:
         "colorHeadlines": "#255e8a",
         "colorText": "#234"
       }
-    },
-    "validations": {
-      "html": false,
-      "accessibility": false
     }
   }
 }

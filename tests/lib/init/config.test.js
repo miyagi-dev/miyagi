@@ -529,10 +529,6 @@ describe("lib/init/config", () => {
 					reloadAfterChanges: {
 						componentAssets: false,
 					},
-					validations: {
-						html: true,
-						accessibility: true,
-					},
 					reload: true,
 					textDirection: "ltr",
 					theme: {
