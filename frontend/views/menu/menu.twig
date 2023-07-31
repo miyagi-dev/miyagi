@@ -14,14 +14,6 @@
 			</div>
 		{% endif %}
 
-		{% if buildDate %}
-			<p class="Menu-buildDate">Built at: <time datetime="{{ buildDate }}">{{ formattedBuildDate }}</time></p>
-			<script>
-				const time = document.querySelector(".Menu-buildDate time");
-				time.textContent = new Date(time.dateTime).toLocaleString();
-			</script>
-		{% endif %}
-
 		{% include "@miyagi/menu/config-switchers.twig" %}
 	</div>
 

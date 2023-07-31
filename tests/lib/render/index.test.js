@@ -232,8 +232,6 @@ describe("lib/render/index", () => {
 				basePath: "/",
 				uiTextDirection: "ltr",
 				componentTextDirection: "ltr",
-				buildDate: undefined,
-				formattedBuildDate: undefined,
 				namespaces: {
 					miyagi: path.join(process.cwd(), "frontend/views"),
 				},
@@ -322,8 +320,6 @@ describe("lib/render/index", () => {
 					basePath: "/",
 					uiTextDirection: "ltr",
 					componentTextDirection: "ltr",
-					buildDate: undefined,
-					formattedBuildDate: undefined,
 					namespaces: {
 						miyagi: path.join(process.cwd(), "frontend/views"),
 					},
@@ -408,8 +404,6 @@ describe("lib/render/index", () => {
 					basePath: "/",
 					uiTextDirection: "ltr",
 					componentTextDirection: "ltr",
-					buildDate: undefined,
-					formattedBuildDate: undefined,
 					namespaces: {
 						miyagi: path.join(process.cwd(), "frontend/views"),
 					},

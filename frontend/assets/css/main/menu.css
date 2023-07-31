@@ -29,12 +29,6 @@
 	outline: var(--outline);
 }
 
-.Menu-buildDate {
-	font-size: 0.875em;
-	color: var(--Miyagi-color-Link);
-	opacity: 0.75;
-}
-
 @media (max-width: 40rem) {
 	.Menu {
 		align-items: center;
