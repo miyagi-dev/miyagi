@@ -330,7 +330,7 @@ class Main {
 	 */
 	addLinksClickListener() {
 		this.elements.rootLink.addEventListener("click", (e) => {
-			if (!e.metaKey) {
+			if (!e.metaKey && !e.ctrlKey) {
 				e.preventDefault();
 				this.onRootLinkClick(e.target);
 			}
@@ -338,7 +338,7 @@ class Main {
 
 		this.elements.links.forEach((link) => {
 			link.addEventListener("click", (e) => {
-				if (!e.metaKey) {
+				if (!e.metaKey && !e.ctrlKey) {
 					e.preventDefault();
 					this.onLinkClick(e.target);
 				}
