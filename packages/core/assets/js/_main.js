@@ -261,7 +261,7 @@ class Main {
   addLinksClickListener() {
     this.elements.links.forEach((link) => {
       link.addEventListener("click", (e) => {
-        if (!e.metaKey) {
+        if (!e.metaKey && !e.ctrlKey) {
           e.preventDefault();
           this.onLinkClick(e.target);
         }
