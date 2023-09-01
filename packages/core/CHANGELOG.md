@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.7](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.6...core/v3.4.7) (2023-09-01)
+
+
+### Bug Fixes
+
+* Allow Ctrl+Click on variants for opening in new tab ([b3f9784](https://github.com/miyagi-dev/miyagi/commit/b3f9784d96b27186d3c3ee7cbeb9d32046d177d9))
+
 ### [3.4.6](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.5...core/v3.4.6) (2023-07-18)
 
 
