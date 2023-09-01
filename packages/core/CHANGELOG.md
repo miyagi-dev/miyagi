@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.8](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.7...core/v3.4.8) (2023-09-01)
+
+
+### Bug Fixes
+
+* Fixes month in cli messages off by one month [#296](https://github.com/miyagi-dev/miyagi/issues/296) ([e73d0ad](https://github.com/miyagi-dev/miyagi/commit/e73d0adcb75a6eae15a542b1b6713ad4a9b755f0))
+
 ### [3.4.7](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.6...core/v3.4.7) (2023-09-01)
 
 
