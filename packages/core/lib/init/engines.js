@@ -22,7 +22,7 @@ function setMiyagiEngine(app) {
  */
 async function setUserEngine(app) {
   const { extension } = app.get("config").files.templates;
-  const { engine, extensions } = app.get("config");
+  const { engine, extensions, isBuild } = app.get("config");
 
   if (engine.instance) {
     engines.requires[engine.name] = engine.instance;
@@ -34,7 +34,7 @@ async function setUserEngine(app) {
       Array.isArray(extension) && extension[1] ? extension[1] : { locales: {} };
 
     if (ext.extendEngine) {
-      engines.requires[engine.name] = await ext.extendEngine(opts);
+      engines.requires[engine.name] = await ext.extendEngine(opts, isBuild);
     }
 
     if (!engines.requires[engine.name]) {

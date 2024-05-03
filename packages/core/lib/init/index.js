@@ -26,8 +26,8 @@ module.exports = async function init(mergedConfig) {
   const app = express();
   app.use(cookieParser());
   app.set("config", mergedConfig);
-  app.set("view cache", false);
-  app.set("cache", false);
+  app.set("view cache", app.get("config").isBuild);
+  app.set("cache", app.get("config").isBuild);
 
   if (await setEngines(app)) {
     const port = process.env.PORT || appConfig.defaultPort;

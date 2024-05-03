@@ -39,7 +39,7 @@ module.exports = (app) => {
     app.set("config", config);
 
     fs.rm(path.resolve(buildFolder), { recursive: true }, () => {
-      fs.mkdir(path.resolve(buildFolder), { recursive: true }, () => {
+      fs.mkdir(path.resolve(buildFolder), { recursive: true }, async () => {
         const promises = [];
 
         promises.push(
@@ -126,29 +126,20 @@ module.exports = (app) => {
 
         const paths = [];
         for (const { file, dir } of files) {
-          promises.push(
-            new Promise((resolve, reject) => {
-              buildComponent({
-                file,
-                dir,
-                buildFolder,
-                app,
-                buildDate,
-                formattedBuildDate,
-              })
-                .then((component) => {
-                  if (component) {
-                    for (const path of getFilePathsForJsonOutput(component)) {
-                      paths.push(path);
-                    }
-                  }
-                  resolve();
-                })
-                .catch(() => {
-                  reject();
-                });
-            })
-          );
+          const component = await buildComponent({
+            file,
+            dir,
+            buildFolder,
+            app,
+            buildDate,
+            formattedBuildDate,
+          });
+
+          if (component) {
+            for (const path of getFilePathsForJsonOutput(component)) {
+              paths.push(path);
+            }
+          }
         }
 
         Promise.all(promises)
