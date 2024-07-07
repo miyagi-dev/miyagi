@@ -1,6 +1,6 @@
 const deepMerge = require("deepmerge");
 const express = require("express");
-const consolidate = require("consolidate");
+const consolidate = require("@ladjs/consolidate");
 const engines = require("../../../lib/init/engines.js");
 const config = require("../../../lib/config.json");
 const log = require("../../../lib/logger.js");
@@ -22,7 +22,7 @@ describe("lib/init/engines", () => {
 						extension: "twig",
 					},
 				},
-			})
+			}),
 		);
 		const spy = jest.spyOn(app, "engine");
 
@@ -45,7 +45,7 @@ describe("lib/init/engines", () => {
 						extension: "twig",
 					},
 				},
-			})
+			}),
 		);
 		const spy = jest.spyOn(app, "engine");
 
@@ -68,7 +68,7 @@ describe("lib/init/engines", () => {
 						extension: "twig",
 					},
 				},
-			})
+			}),
 		);
 
 		test("it sets the user engine for the user extension", () => {
@@ -76,7 +76,7 @@ describe("lib/init/engines", () => {
 
 			expect(log).toHaveBeenCalledWith(
 				"error",
-				"Setting the template engine failed. Are you sure the engine defined in your config file is correct?"
+				"Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
 			);
 		});
 	});
@@ -97,7 +97,7 @@ describe("lib/init/engines", () => {
 							extension: "ejs",
 						},
 					},
-				})
+				}),
 			);
 			const spy = jest.spyOn(app, "render");
 			const func = () => {};

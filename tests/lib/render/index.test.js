@@ -1,5 +1,5 @@
 const express = require("express");
-const engines = require("consolidate");
+const engines = require("@ladjs/consolidate");
 const path = require("path");
 const deepMerge = require("deepmerge");
 const config = require("../../../lib/config.json");
@@ -18,35 +18,35 @@ const components = [];
 const userProjectName = "projectName";
 const path1 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component1/index.hbs"
+	"/tests/mock-data/srcFolder/component1/index.hbs",
 );
 const path2 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component2/index.hbs"
+	"/tests/mock-data/srcFolder/component2/index.hbs",
 );
 const path3 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component3/index.hbs"
+	"/tests/mock-data/srcFolder/component3/index.hbs",
 );
 const path4 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component4/index.hbs"
+	"/tests/mock-data/srcFolder/component4/index.hbs",
 );
 const path6 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component6/index.hbs"
+	"/tests/mock-data/srcFolder/component6/index.hbs",
 );
 const path7 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component7/index.hbs"
+	"/tests/mock-data/srcFolder/component7/index.hbs",
 );
 const path8 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component8/index.hbs"
+	"/tests/mock-data/srcFolder/component8/index.hbs",
 );
 const path9 = path.join(
 	process.cwd(),
-	"/tests/mock-data/srcFolder/component9/index.hbs"
+	"/tests/mock-data/srcFolder/component9/index.hbs",
 );
 const fileContents = {};
 
@@ -142,7 +142,7 @@ beforeEach(() => {
 				folder: "tests/mock-data/srcFolder",
 			},
 			projectName: userProjectName,
-		})
+		}),
 	);
 
 	res = {
@@ -257,7 +257,7 @@ describe("lib/render/index", () => {
 					components,
 					flatUrlPattern: "/show?file={{component}}",
 					iframeSrc: `/component?file=${path.dirname(
-						component
+						component,
 					)}&variation=${variation}&embedded=true`,
 					indexPath: "/component?file=all&embedded=true",
 					requestedComponent: path.dirname(component),
@@ -928,13 +928,13 @@ describe("lib/render/index", () => {
 				});
 
 				expect(res.render.mock.calls[0][0]).toEqual(
-					"iframe_component_variation.twig"
+					"iframe_component_variation.twig",
 				);
 				expect(res.render.mock.calls[0][1]).toEqual({
 					html: "component1\n",
 					error: null,
 					standaloneUrl: `/component?file=${path.dirname(
-						component
+						component,
 					)}&variation=component1`,
 					standalone: false,
 					dev: false,
