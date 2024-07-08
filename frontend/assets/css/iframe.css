@@ -9,6 +9,15 @@
 
 html {
 	height: 100%;
+	color-scheme: light dark;
+}
+
+.theme-light {
+	color-scheme: light;
+}
+
+.theme-dark {
+	color-scheme: dark;
 }
 
 body {
