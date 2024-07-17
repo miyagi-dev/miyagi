@@ -11,7 +11,7 @@
 				<div class="MiyagiStyleguide" data-media-queries='{{ mediaQueries }}'>
 					<h1>Colors</h1>
 					{% for color in colors %}
-						{% if color.styles.length %}
+						{% if color.styles is not empty %}
 							<ul class="MiyagiCustomPropsGroup MiyagiColors MiyagiColors--{{ color.type }}">
 								{% for style in color.styles %}
 									{% if style.customProp %}

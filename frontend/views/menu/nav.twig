@@ -1,38 +1,63 @@
 <nav class="Nav">
-	{% macro list(items, index, type) %}
-	{% set level = index + 1 %}
+	{% macro list(items, index, requestedComponent, requestedVariation, type) %}
+		{% set level = index + 1 %}
 
-	<ul class="Nav-list" style="--level: {{ level }}">
+		<ul class="Nav-list" style="--level: {{ level }}">
 
-		{% for item in items %}
-			{% set has_children = (item.variations and item.variations|length > 0) or (item.children and item.children|length > 0) %}
-			<li class="Nav-entry Nav-entry--{{ item.type }} Nav-entry--lvl{{ level }}">
-				<div class="Nav-wrapper">
-					{% if has_children %}
-						<button
-							class="Nav-toggle"
-							aria-controls="{{ item.id }}"
-							aria-expanded="{{ is_expanded(item, requestedComponent, requestedVariation) }}"
-							aria-label="Toggle submenu"
-						></button>
-					{% endif %}
+			{% for item in items %}
+				{% set has_children = (item.variations and item.variations|length > 0) or (item.children and item.children|length > 0) %}
+				<li class="Nav-entry Nav-entry--{{ item.type }} Nav-entry--lvl{{ level }}">
+					<div class="Nav-wrapper">
+						{% if has_children %}
+							<button
+								class="Nav-toggle"
+								aria-controls="{{ item.id }}"
+								aria-expanded="{{ is_expanded(item, requestedComponent) ? "true" : "false" }}"
+								aria-label="Toggle submenu"
+							></button>
+						{% endif %}
 
-					{% if item.section == "design-tokens" %}
-						<a
-							class="Nav-item Nav-item--link"
-							href="{{ item.url }}"
-							{% if is_active_component(item, requestedComponent, requestedVariation) %}
-								aria-current="page"
-							{% endif %}
-						>
-							{{ item.name }}
-						</a>
-					{% elseif item.section == "docs" %}
-						{% if item.isLink %}
+						{% if item.section == "design-tokens" %}
 							<a
 								class="Nav-item Nav-item--link"
-								href="{{ item.route.default }}"
+								href="{{ item.url }}"
 								{% if is_active_component(item, requestedComponent, requestedVariation) %}
+									aria-current="page"
+								{% endif %}
+							>
+								{{ item.name }}
+							</a>
+						{% elseif item.section == "docs" %}
+							{% if item.isLink %}
+								<a
+									class="Nav-item Nav-item--link"
+									href="{{ item.route.default }}"
+									{% if is_active_component(item, requestedComponent, requestedVariation) %}
+										aria-current="page"
+									{% endif %}
+								>
+									{{ item.name }}
+								</a>
+							{% else %}
+								<span class="Nav-item Nav-item--directory">
+									{{ item.name }}
+								</span>
+							{% endif %}
+						{% elseif item.shortPath and not item.topLevel %}
+							<a
+								class="Nav-item Nav-item--link"
+								href="{{ item.url }}"
+								{% if is_active_component(item, requestedComponent, requestedVariation) %}
+									aria-current="page"
+								{% endif %}
+							>
+								{{ item.name }}
+							</a>
+						{% elseif not item.type %}
+							<a
+								class="Nav-variant"
+								href="{{ item.url }}"
+								{% if is_active_variant(item, requestedComponent, requestedVariation) %}
 									aria-current="page"
 								{% endif %}
 							>
@@ -43,54 +68,28 @@
 								{{ item.name }}
 							</span>
 						{% endif %}
-					{% elseif item.shortPath and not item.topLevel %}
-						<a
-							class="Nav-item Nav-item--link"
-							href="{{ item.url }}"
-							{% if is_active_component(item, requestedComponent, requestedVariation) %}
-								aria-current="page"
-							{% endif %}
-						>
-							{{ item.name }}
-						</a>
-					{% elseif not item.type %}
-						<a
-							class="Nav-variant"
-							href="{{ item.url }}"
-							{% if is_active_variant(item, requestedComponent, requestedVariation) %}
-								aria-current="page"
-							{% endif %}
-						>
-							{{ item.name }}
-						</a>
-					{% else %}
-						<span class="Nav-item Nav-item--directory">
-							{{ item.name }}
-						</span>
-					{% endif %}
-				</div>
-
-				{% if has_children %}
-					<div
-						class="Nav-children"
-						id="{{ item.id }}"
-						{% if not is_expanded(item, requestedComponent, requestedVariation) %}hidden{% endif %}
-					>
-						{% if item.variations and item.variations|length > 0 %}
-							{{ self.list(item.variations, level, "variations") }}
-						{% endif %}
-						{% if item.children and item.children|length > 0 %}
-							{{ self.list(item.children, level, "components") }}
-						{% endif %}
 					</div>
-				{% endif %}
 
-			</li>
-		{% endfor %}
+					{% if has_children %}
+						<div
+							class="Nav-children"
+							id="{{ item.id }}"
+							{% if not is_expanded(item, requestedComponent) %}hidden{% endif %}
+						>
+							{% if item.variations and item.variations|length > 0 %}
+								{{ _self.list(item.variations, level, requestedComponent, requestedVariation, "variations") }}
+							{% endif %}
+							{% if item.children and item.children|length > 0 %}
+								{{ _self.list(item.children, level, requestedComponent, requestedVariation, "components") }}
+							{% endif %}
+						</div>
+					{% endif %}
 
-	</ul>
+				</li>
+			{% endfor %}
+
+		</ul>
 	{% endmacro %}
 
-	{% import _self as self %}
-	{{ self.list(folders, -1, "components") }}
+	{{ _self.list(folders, -1, requestedComponent, requestedVariation, "components") }}
 </nav>
