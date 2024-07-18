@@ -26,10 +26,15 @@
 	outline-offset: calc(-1 * var(--outline-offset));
 }
 
-.ConfigSwitchers-toggle svg {
+:is(.ConfigSwitchers-toggleOpen, .ConfigSwitchers-toggleClose) {
 	fill: currentcolor;
 	block-size: 50%;
 	inline-size: 50%;
+}
+
+.ConfigSwitchers-toggleClose {
+	block-size: 75%;
+	inline-size: 75%;
 }
 
 .ConfigSwitchers-toggle[aria-expanded="false"] .ConfigSwitchers-toggleClose {
