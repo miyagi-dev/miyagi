@@ -1,18 +1,18 @@
-const path = require("path");
-const init = require("../lib");
-const { t } = require("../lib/i18n");
-const {
+import path from "path";
+import init from "../lib/index.js";
+import { t } from "../lib/i18n/index.js";
+import {
 	getComponentData,
 	getVariationData,
 	resolveVariationData,
-} = require("../lib/mocks");
-const renderIframeVariation = require("../lib/render/views/iframe/variation.js");
-const build = require("../lib/build");
-const generateMockData = require("../lib/generator/mocks");
-const generateComponent = require("../lib/generator/component");
-const validateMockData = require("../lib/validator/mocks");
+} from "../lib/mocks/index.js";
+import renderIframeVariation from "../lib/render/views/iframe/variation.js";
+import build from "../lib/build/index.js";
+import generateMockData from "../lib/generator/mocks.js";
+import generateComponent from "../lib/generator/component.js";
+import validateMockData from "../lib/validator/mocks.js";
 
-module.exports = function Api() {
+export default function Api() {
 	process.env.MIYAGI_JS_API = true;
 
 	return {
@@ -190,4 +190,4 @@ module.exports = function Api() {
 			return validateMockData(componentObject, data, true);
 		},
 	};
-};
+}

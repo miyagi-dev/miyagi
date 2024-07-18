@@ -15,8 +15,8 @@
 	font-size: var(--font-size);
 	font-stretch: var(--font-stretch);
 	font-style: var(--font-style);
-	font-variant-caps: var(--font-variant-caps);
 	font-variant: var(--font-variant);
+	font-variant-caps: var(--font-variant-caps);
 	font-weight: var(--font-weight);
 	letter-spacing: var(--letter-spacing);
 	line-height: var(--line-height);
