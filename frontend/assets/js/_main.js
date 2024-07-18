@@ -31,15 +31,15 @@ class Main {
 			iframe: document.querySelector(`.${this.classes.iframe}`),
 			toggleMenu: document.querySelector(`.${this.classes.toggleMenu}`),
 			children: Array.from(
-				document.querySelectorAll(`.${this.classes.menu.children}`)
+				document.querySelectorAll(`.${this.classes.menu.children}`),
 			),
 			links: Array.from(
 				document.querySelectorAll(
-					`.${this.classes.menu.link}, .${this.classes.menu.variant}`
-				)
+					`.${this.classes.menu.link}, .${this.classes.menu.variant}`,
+				),
 			),
 			componentToggles: Array.from(
-				document.querySelectorAll(`.${this.classes.menu.toggleComponent}`)
+				document.querySelectorAll(`.${this.classes.menu.toggleComponent}`),
 			),
 		};
 
@@ -51,7 +51,7 @@ class Main {
 
 		new ThemeConfigSwitcher(document.querySelector(".js-ThemeSwitcher"));
 		new TextDirectionConfigSwitcher(
-			document.querySelector(".js-TextDirectionSwitcher")
+			document.querySelector(".js-TextDirectionSwitcher"),
 		);
 	}
 
@@ -106,14 +106,14 @@ class Main {
 	openParentComponent(listContainer) {
 		if (listContainer) {
 			const toggle = this.elements.componentToggles.find(
-				(toggle) => toggle.getAttribute("aria-controls") === listContainer.id
+				(toggle) => toggle.getAttribute("aria-controls") === listContainer.id,
 			);
 
 			if (toggle) {
 				toggle.setAttribute("aria-expanded", true);
 
 				this.openParentComponent(
-					toggle.closest(`.${this.classes.menu.listContainer}`)
+					toggle.closest(`.${this.classes.menu.listContainer}`),
 				);
 			}
 		}
@@ -130,7 +130,7 @@ class Main {
 					query.includes(link.getAttribute("href")) ||
 					link
 						.getAttribute("href")
-						.includes(query.replace(this.paths.container, this.paths.embedded))
+						.includes(query.replace(this.paths.container, this.paths.embedded)),
 			);
 
 			if (target) {
@@ -143,7 +143,7 @@ class Main {
 		}
 
 		const current = this.elements.links.find((link) =>
-			link.getAttribute("aria-current")
+			link.getAttribute("aria-current"),
 		);
 
 		if (current) {
@@ -156,9 +156,8 @@ class Main {
 
 		if (toggle) {
 			toggle.setAttribute("aria-expanded", "true");
-			document.getElementById(
-				toggle.getAttribute("aria-controls")
-			).hidden = false;
+			document.getElementById(toggle.getAttribute("aria-controls")).hidden =
+				false;
 		}
 
 		return target;
@@ -169,7 +168,7 @@ class Main {
 	 */
 	openParentComponents(target) {
 		this.openParentComponent(
-			target.closest(`.${this.classes.menu.listContainer}`)
+			target.closest(`.${this.classes.menu.listContainer}`),
 		);
 	}
 

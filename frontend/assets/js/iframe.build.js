@@ -12,7 +12,7 @@ if (
 ) {
 	window.location = new URL(window.location).replace(
 		/-embedded\.html$/,
-		".html"
+		".html",
 	);
 }
 

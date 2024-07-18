@@ -29,7 +29,7 @@ class ThemeConfigSwitcher extends ConfigSwitcher {
 
 			this.iframes.forEach((frame) => {
 				frame.document.documentElement.classList.remove(
-					`MiyagiTheme--${option}`
+					`MiyagiTheme--${option}`,
 				);
 			});
 		});

@@ -277,7 +277,7 @@
 
 	.MiyagiContent .MiyagiTabs-tab summary::before {
 		border: var(--Miyagi-toggle-border);
-		border-color: currentColor;
+		border-color: currentcolor;
 		border-top-width: 0.25em;
 		border-inline-end-width: 0.25em;
 		content: "";

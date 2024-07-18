@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		if (INPUT && DATA_LIST) {
 			const VALUES = Array.from(DATA_LIST.querySelectorAll("option")).map(
-				(el) => el.value
+				(el) => el.value,
 			);
 
 			INPUT.addEventListener("input", ({ target }) => {

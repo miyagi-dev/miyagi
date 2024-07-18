@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						: false
 					: false,
 			};
-		}
+		},
 	);
 
 	if (SEARCH_INPUT) {
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		COMPONENTS.forEach((component) => {
 			if (component.toggle) {
 				document.getElementById(
-					component.toggle.getAttribute("aria-controls")
+					component.toggle.getAttribute("aria-controls"),
 				).hidden = true;
 				component.toggle.setAttribute("aria-expanded", "false");
 			}
@@ -102,20 +102,19 @@ document.addEventListener("DOMContentLoaded", () => {
 			component.listItem.classList.toggle("is-match", component.matchesQuery);
 			component.listItem.classList.toggle(
 				"is-no-match",
-				!component.matchesQuery
+				!component.matchesQuery,
 			);
 
 			if (component.matchesQuery) {
 				component.node.innerHTML = component.label.replace(
 					new RegExp(query, "g"),
-					`<mark>${query}</mark>`
+					`<mark>${query}</mark>`,
 				);
 				component.parentToggles.forEach((toggle) => {
 					toggle.parentNode.classList.add("has-match");
 					toggle.parentNode.classList.remove("has-no-match");
-					document.getElementById(
-						toggle.getAttribute("aria-controls")
-					).hidden = false;
+					document.getElementById(toggle.getAttribute("aria-controls")).hidden =
+						false;
 					toggle.setAttribute("aria-expanded", "true");
 				});
 			} else {
@@ -145,11 +144,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 			if (component.toggle) {
 				document.getElementById(
-					component.toggle.getAttribute("aria-controls")
+					component.toggle.getAttribute("aria-controls"),
 				).hidden = !component.initiallyOpened;
 				component.toggle.setAttribute(
 					"aria-expanded",
-					component.initiallyOpened ? "true" : "false"
+					component.initiallyOpened ? "true" : "false",
 				);
 			}
 		});
@@ -161,8 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
 					"is-match",
 					"is-no-match",
 					"has-match",
-					"has-no-match"
-				)
+					"has-no-match",
+				),
 			);
 	}
 

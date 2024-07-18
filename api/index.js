@@ -113,7 +113,7 @@ module.exports = function Api() {
 			try {
 				await generateMockData(
 					path.join(global.config.components.folder, component),
-					global.config.files
+					global.config.files,
 				);
 
 				return {
@@ -165,7 +165,7 @@ module.exports = function Api() {
 									resolve();
 								}
 							});
-						})
+						}),
 					);
 				}
 			});
@@ -183,7 +183,7 @@ module.exports = function Api() {
 					route ===
 					path.join(
 						"components",
-						path.relative(global.config.components.folder, component)
+						path.relative(global.config.components.folder, component),
 					)
 				);
 			});

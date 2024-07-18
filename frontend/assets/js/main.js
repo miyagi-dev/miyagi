@@ -27,7 +27,7 @@ class MainDev extends Main {
 		} else if (document.location.search !== "") {
 			path = `${document.location.href.replace(
 				this.paths.container,
-				this.paths.embedded
+				this.paths.embedded,
 			)}${this.embeddedParam}`;
 			path = path.replace(document.location.origin, "");
 		} else {

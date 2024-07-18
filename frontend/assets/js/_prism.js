@@ -4,9 +4,9 @@ var _self =
 		"undefined" != typeof window
 			? window
 			: "undefined" != typeof WorkerGlobalScope &&
-			  self instanceof WorkerGlobalScope
-			? self
-			: {},
+				  self instanceof WorkerGlobalScope
+				? self
+				: {},
 	Prism = (function (u) {
 		var t = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i,
 			n = 0,
@@ -20,11 +20,11 @@ var _self =
 						return n instanceof W
 							? new W(n.type, e(n.content), n.alias)
 							: Array.isArray(n)
-							? n.map(e)
-							: n
-									.replace(/&/g, "&amp;")
-									.replace(/</g, "&lt;")
-									.replace(/\u00a0/g, " ");
+								? n.map(e)
+								: n
+										.replace(/&/g, "&amp;")
+										.replace(/</g, "&lt;")
+										.replace(/\u00a0/g, " ");
 					},
 					type: function (e) {
 						return Object.prototype.toString.call(e).slice(8, -1);
@@ -48,11 +48,11 @@ var _self =
 									r[n]
 										? r[n]
 										: ((a = []),
-										  (r[n] = a),
-										  e.forEach(function (e, n) {
+											(r[n] = a),
+											e.forEach(function (e, n) {
 												a[n] = t(e, r);
-										  }),
-										  a)
+											}),
+											a)
 								);
 							default:
 								return e;
@@ -150,7 +150,7 @@ var _self =
 					};
 					M.hooks.run("before-highlightall", r),
 						(r.elements = Array.prototype.slice.apply(
-							r.container.querySelectorAll(r.selector)
+							r.container.querySelectorAll(r.selector),
 						)),
 						M.hooks.run("before-all-elements-highlight", r);
 					for (var a, i = 0; (a = r.elements[i++]); )
@@ -195,7 +195,7 @@ var _self =
 										language: l.language,
 										code: l.code,
 										immediateClose: !0,
-									})
+									}),
 								);
 						} else o(M.highlight(l.code, l.grammar, l.language));
 					else o(M.util.encode(l.code));
@@ -429,7 +429,7 @@ var _self =
 								u.postMessage(M.highlight(r, M.languages[t], t)),
 									a && u.close();
 							},
-							!1
+							!1,
 						)),
 				M
 			);
@@ -450,8 +450,8 @@ var _self =
 			"loading" === l || ("interactive" === l && r && r.defer)
 				? document.addEventListener("DOMContentLoaded", a)
 				: window.requestAnimationFrame
-				? window.requestAnimationFrame(a)
-				: window.setTimeout(a, 16);
+					? window.requestAnimationFrame(a)
+					: window.setTimeout(a, 16);
 		}
 		return M;
 	})(_self);
@@ -534,9 +534,9 @@ var _self =
 						/__/g,
 						function () {
 							return a;
-						}
+						},
 					),
-					"i"
+					"i",
 				),
 				lookbehind: !0,
 				greedy: !0,
@@ -552,7 +552,7 @@ var _self =
 					"(^|[\"'\\s])(?:" +
 						a +
 						")\\s*=\\s*(?:\"[^\"]*\"|'[^']*'|[^\\s'\">=]+(?=[\\s>]))",
-					"i"
+					"i",
 				),
 				lookbehind: !0,
 				inside: {
@@ -624,7 +624,7 @@ Prism.languages.clike = {
 		/#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
 	number: {
 		pattern: RegExp(
-			"(^|[^\\w$])(?:NaN|Infinity|0[bB][01]+(?:_[01]+)*n?|0[oO][0-7]+(?:_[0-7]+)*n?|0[xX][\\dA-Fa-f]+(?:_[\\dA-Fa-f]+)*n?|\\d+(?:_\\d+)*n|(?:\\d+(?:_\\d+)*(?:\\.(?:\\d+(?:_\\d+)*)?)?|\\.\\d+(?:_\\d+)*)(?:[Ee][+-]?\\d+(?:_\\d+)*)?)(?![\\w$])"
+			"(^|[^\\w$])(?:NaN|Infinity|0[bB][01]+(?:_[01]+)*n?|0[oO][0-7]+(?:_[0-7]+)*n?|0[xX][\\dA-Fa-f]+(?:_[\\dA-Fa-f]+)*n?|\\d+(?:_\\d+)*n|(?:\\d+(?:_\\d+)*(?:\\.(?:\\d+(?:_\\d+)*)?)?|\\.\\d+(?:_\\d+)*)(?:[Ee][+-]?\\d+(?:_\\d+)*)?)(?![\\w$])",
 		),
 		lookbehind: !0,
 	},
@@ -726,7 +726,7 @@ Prism.languages.clike = {
 		(Prism.languages.markup.tag.addInlined("script", "javascript"),
 		Prism.languages.markup.tag.addAttribute(
 			"on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)",
-			"javascript"
+			"javascript",
 		)),
 	(Prism.languages.js = Prism.languages.javascript);
 !(function (h) {
@@ -778,7 +778,7 @@ Prism.languages.clike = {
 											k,
 											h.tokenize(o, p.grammar),
 											"language-" + k,
-											o
+											o,
 										),
 										s = c.substring(u + i.length),
 										f = [];
@@ -821,7 +821,7 @@ Prism.languages.clike = {
 			e.languages["markup-templating"].buildPlaceholders(
 				a,
 				"handlebars",
-				/\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/g
+				/\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/g,
 			);
 		}),
 		e.hooks.add("after-tokenize", function (a) {
@@ -986,9 +986,9 @@ Prism.languages.clike = {
 							"<filter_name>",
 							function () {
 								return r.filter;
-							}
+							},
 						),
-						"m"
+						"m",
 					),
 					lookbehind: !0,
 					inside: {
@@ -1049,7 +1049,7 @@ Prism.languages.twig = {
 				/<PLAIN>/g,
 				function () {
 					return "[^\\s\\x00-\\x08\\x0e-\\x1f,[\\]{}\\x7f-\\x84\\x86-\\x9f\\ud800-\\udfff\\ufffe\\uffff]";
-				}
+				},
 			),
 		d = "\"(?:[^\"\\\\\r\n]|\\\\.)*\"|'(?:[^'\\\\\r\n]|\\\\.)*'";
 	/**
@@ -1076,8 +1076,8 @@ Prism.languages.twig = {
 					/<<prop>>/g,
 					function () {
 						return t;
-					}
-				)
+					},
+				),
 			),
 			lookbehind: !0,
 			alias: "string",
@@ -1091,7 +1091,7 @@ Prism.languages.twig = {
 					})
 					.replace(/<<key>>/g, function () {
 						return "(?:" + a + "|" + d + ")";
-					})
+					}),
 			),
 			lookbehind: !0,
 			greedy: !0,
@@ -1100,7 +1100,7 @@ Prism.languages.twig = {
 		directive: { pattern: /(^[ \t]*)%.+/m, lookbehind: !0, alias: "important" },
 		datetime: {
 			pattern: o(
-				"\\d{4}-\\d\\d?-\\d\\d?(?:[tT]|[ \t]+)\\d\\d?:\\d{2}:\\d{2}(?:\\.\\d*)?(?:[ \t]*(?:Z|[-+]\\d\\d?(?::\\d{2})?))?|\\d{4}-\\d{2}-\\d{2}|\\d\\d?:\\d{2}(?::\\d{2}(?:\\.\\d*)?)?"
+				"\\d{4}-\\d\\d?-\\d\\d?(?:[tT]|[ \t]+)\\d\\d?:\\d{2}:\\d{2}(?:\\.\\d*)?(?:[ \t]*(?:Z|[-+]\\d\\d?(?::\\d{2})?))?|\\d{4}-\\d{2}-\\d{2}|\\d\\d?:\\d{2}(?::\\d{2}(?:\\.\\d*)?)?",
 			),
 			lookbehind: !0,
 			alias: "number",
@@ -1115,7 +1115,7 @@ Prism.languages.twig = {
 		number: {
 			pattern: o(
 				"[+-]?(?:0x[\\da-f]+|0o[0-7]+|(?:\\d+(?:\\.\\d*)?|\\.\\d+)(?:e[+-]?\\d+)?|\\.inf|\\.nan)",
-				"i"
+				"i",
 			),
 			lookbehind: !0,
 		},

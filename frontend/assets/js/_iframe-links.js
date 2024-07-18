@@ -11,7 +11,7 @@ export default (links) => {
 				parent.window.dispatchEvent(
 					new CustomEvent("pageChanged", {
 						detail: encodeURI(el.getAttribute("href")),
-					})
+					}),
 				);
 			});
 		});

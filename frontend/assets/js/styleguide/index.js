@@ -8,17 +8,17 @@ class Styleguide {
 		this.element = element;
 		this.items = Array.from(this.element.querySelectorAll(".MiyagiCustomProp"));
 		this.colors = Array.from(
-			this.element.querySelectorAll(".MiyagiColors-item")
+			this.element.querySelectorAll(".MiyagiColors-item"),
 		);
 		this.fonts = Array.from(this.element.querySelectorAll(".MiyagiFonts-item"));
 		this.spacings = Array.from(
-			this.element.querySelectorAll(".MiyagiSpacings-item")
+			this.element.querySelectorAll(".MiyagiSpacings-item"),
 		);
 		this.buttons = Array.from(
-			this.element.querySelectorAll(".MiyagiCustomProp-button")
+			this.element.querySelectorAll(".MiyagiCustomProp-button"),
 		);
 		this.details = Array.from(
-			this.element.querySelectorAll(".MiyagiCustomProp-details")
+			this.element.querySelectorAll(".MiyagiCustomProp-details"),
 		);
 
 		this.renderValues();
