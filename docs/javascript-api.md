@@ -112,7 +112,7 @@ Creates component files for a given path.
 ```
 {
 	"component": String, // Required — Path to component directory.
-	"fileTypes": Array // Required — Values can be any of "tpl", "css", js", "mocks", "schema", "docs"
+	"fileTypes": Array // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
 }
 ```
 

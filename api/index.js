@@ -18,7 +18,17 @@ module.exports = function Api() {
 	return {
 		getMockData: async ({ component, variant = "default" }) => {
 			global.app = await init("api");
-			const data = await getVariationData(component, variant);
+			const data = await getVariationData(
+				global.state.routes.find(
+					(route) =>
+						route.paths.dir.short ===
+						path.join(
+							path.basename(global.config.components.folder),
+							component,
+						),
+				),
+				variant,
+			);
 
 			if (!data) {
 				return {
@@ -94,6 +104,8 @@ module.exports = function Api() {
 			}
 
 			try {
+				global.app = await init("api");
+
 				await generateMockData(
 					path.join(global.config.components.folder, component),
 					global.config.files,
@@ -110,11 +122,17 @@ module.exports = function Api() {
 			}
 		},
 
-		createComponent: async ({ component, fileTypes }) => {
+		createComponent: async ({ component, fileTypes = [] }) => {
 			global.app = await init("api");
 
 			try {
-				const result = await generateComponent({ component, fileTypes });
+				const result = await generateComponent({
+					component,
+					fileTypes:
+						fileTypes.length === 0
+							? ["css", "docs", "js", "mocks", "schema", "tpl"]
+							: fileTypes,
+				});
 
 				return {
 					success: true,
@@ -161,15 +179,11 @@ module.exports = function Api() {
 		lintComponent: async ({ component }) => {
 			global.app = await init("api");
 
-			const componentObject = global.state.routes.find(({ route }) => {
-				return (
-					route ===
-					path.join(
-						"components",
-						path.relative(global.config.components.folder, component),
-					)
-				);
-			});
+			const componentObject = global.state.routes.find(
+				(route) =>
+					route.paths.dir.short ===
+					path.join(path.basename(global.config.components.folder), component),
+			);
 
 			const data = await getComponentData(componentObject);
 
