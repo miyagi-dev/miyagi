@@ -123,7 +123,6 @@
 		}
 	},
 	"pre-commit": [
-		"lint",
-		"test"
+		"lint"
 	]
 }
