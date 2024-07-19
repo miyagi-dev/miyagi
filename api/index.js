@@ -45,7 +45,14 @@ module.exports = function Api() {
 
 			try {
 				const result = await renderIframeVariation({
-					file: component,
+					component: global.state.routes.find(
+						(route) =>
+							route.paths.dir.short ===
+							path.join(
+								path.basename(global.config.components.folder),
+								component,
+							),
+					),
 					variation: variant,
 				});
 
