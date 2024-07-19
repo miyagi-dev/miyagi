@@ -40,6 +40,7 @@ nav:
       - Creating mock data: cli-commands/creating-mock-data.md
       - Linting mock data: cli-commands/linting-mock-data.md
       - Creating a build: cli-commands/creating-a-build.md
+      - Verbose mode: cli-commands/verbose-mode.md
   - Component files:
       - Introduction: component-files/introduction.md
       - Assets: component-files/assets.md
