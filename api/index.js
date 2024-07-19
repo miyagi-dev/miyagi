@@ -1,5 +1,4 @@
 const path = require("path");
-const { JSDOM } = require("jsdom");
 const init = require("../lib");
 const { t } = require("../lib/i18n");
 const {
@@ -60,29 +59,6 @@ module.exports = function Api() {
 					success: true,
 					data: result,
 				};
-			} catch (message) {
-				return {
-					success: false,
-					message,
-				};
-			}
-		},
-
-		getNode: async ({ component, variant = "default" }) => {
-			try {
-				const result = await Api().getHtml({
-					component,
-					variant,
-				});
-
-				if (result && result.success) {
-					return {
-						success: true,
-						data: createElementFromHTML(result.data),
-					};
-				} else {
-					return result;
-				}
 			} catch (message) {
 				return {
 					success: false,
@@ -201,20 +177,3 @@ module.exports = function Api() {
 		},
 	};
 };
-
-/**
- * @param {string} html
- * @returns {HTMLElement}
- */
-function createElementFromHTML(html) {
-	const { document } = new JSDOM().window;
-	const div = document.createElement("div");
-
-	div.innerHTML = html.trim();
-
-	if (div.childElementCount > 1) {
-		return div;
-	}
-
-	return div.firstElementChild;
-}

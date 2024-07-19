@@ -46,10 +46,6 @@ Promise<{
 }>
 ```
 
-### `getNode`
-
-Returns the rendered variant as a DOM node. Please note that it will return your component wrapped in a `div` if your component returns more than one top level node.
-
 #### Options
 
 ```
