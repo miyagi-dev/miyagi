@@ -16,7 +16,7 @@
 
 ## Requirements
 
-- node `>=16.10.0`
+- node `>=20`
 
 ## VS Code extension
 
