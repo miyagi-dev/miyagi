@@ -1,6 +1,6 @@
 import path from "node:path";
+import { rmSync } from "node:fs";
 import cssnano from "cssnano";
-import del from "del";
 import gulp from "gulp";
 import postcss from "gulp-postcss";
 import postcssImport from "postcss-import";
@@ -41,7 +41,7 @@ gulp.task("build:js", (done) => {
 		);
 	});
 
-	return Promise.all(done());
+	return Promise.all(promises).then(() => done());
 });
 
 gulp.task("build:css", () =>
@@ -51,8 +51,9 @@ gulp.task("build:css", () =>
 		.pipe(gulp.dest(cssDist)),
 );
 
-gulp.task("clean", () => {
-	return del([`${buildFolder}**/*`]);
+gulp.task("clean", (done) => {
+	rmSync(buildFolder, { recursive: true, force: true });
+	return Promise.resolve();
 });
 
 gulp.task(
