@@ -1,0 +1,9 @@
+{
+	"label": "Button label",
+	"$variants": [
+		{
+			"$name": "variant",
+			"label": "Button label variant"
+		}
+	]
+}
