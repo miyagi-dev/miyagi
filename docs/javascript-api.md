@@ -112,9 +112,12 @@ Creates component files for a given path.
 ```
 {
 	"component": String, // Required — Path to component directory.
-	"fileTypes": Array // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
+	"only": Array // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
+	"skip": Array // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
 }
 ```
+
+Please note that only either `only` or `skip` should be passed. If both are passed, `only` is used and `skip` is ignored.
 
 #### Response
 
@@ -140,12 +143,16 @@ Validates the schema and mock data for a single component.
 #### Response
 
 ```
-Promise<[{
-	"type": String, // Any of "mocks", "schema"
+Promise<{
+	"success": Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
 	"data": [{
-		"message": String
-	}]
-}]>
+		"type": String, // Any of "mocks", "schema"
+		"data": [{
+			"message": String
+		}]
+	}],
+	"message": String // Error message in case success was false
+}>
 ```
 
 ### `lintComponents`
@@ -159,23 +166,25 @@ _None_
 #### Response
 
 ```
-Promise<[{
-	"component": String, // Path to component directory.
-	"errors": [{
-		"type": String, // Any of "mocks", "schema"
-		"data": [{
-			"message": String
+Promise<{
+	"success": Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
+	"data": [{
+		"component": String, // Path to component directory.
+		"errors": [{
+			"type": String, // Any of "mocks", "schema"
+			"data": [{
+				"message": String
+			}]
 		}]
-	}]
-}]>
+	}],
+	"message": String // Error message in case success was false
+}>
 ```
 
 ## Usage
 
 ```js
-import Miyagi from "@miyagi/core/api";
-
-const { getMockData } = await new Miyagi();
+import { getMockData } from "@miyagi/core/api";
 
 await getMockData({ … });
 ```
