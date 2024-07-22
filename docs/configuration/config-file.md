@@ -1,6 +1,6 @@
 **`.miyagi.json`** or **`.miyagi.js`**
 
-The config file can either be a JSON file or JS file with a CommonJS module, if you want to [extend your template engine](/configuration/extending-template-engine).
+The config file can either be a JSON file or JS file with an ES module, if you want to [extend your template engine](/configuration/extending-template-engine).
 
 This is an example for a JSON config file:
 

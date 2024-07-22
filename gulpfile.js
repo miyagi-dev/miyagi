@@ -1,13 +1,12 @@
-const babel = require("gulp-babel");
-const cssnano = require("cssnano");
-const del = require("del");
-const gulp = require("gulp");
-const postcss = require("gulp-postcss");
-const postcssImport = require("postcss-import");
-const postcssPresetEnv = require("postcss-preset-env");
-const rollup = require("rollup");
-const { nodeResolve } = require("@rollup/plugin-node-resolve");
-const terser = require("@rollup/plugin-terser");
+import path from "node:path";
+import cssnano from "cssnano";
+import del from "del";
+import gulp from "gulp";
+import postcss from "gulp-postcss";
+import postcssImport from "postcss-import";
+import { rollup } from "rollup";
+import { nodeResolve } from "@rollup/plugin-node-resolve";
+import terser from "@rollup/plugin-terser";
 
 const buildFolder = "dist/";
 const jsFolder = "frontend/assets/js/";
@@ -17,8 +16,8 @@ const cssFiles = [
 	"frontend/assets/css/iframe.css",
 	"frontend/assets/css/main.css",
 ];
-const jsDist = `${buildFolder}js/`;
-const cssDist = `${buildFolder}css/`;
+const jsDist = path.join(buildFolder, "js");
+const cssDist = path.join(buildFolder, "css");
 
 gulp.task("build:js", (done) => {
 	const promises = [];
@@ -26,11 +25,10 @@ gulp.task("build:js", (done) => {
 	jsFiles.forEach((jsFile) => {
 		promises.push(
 			new Promise((resolve) => {
-				rollup
-					.rollup({
-						input: `${jsFolder}${jsFile}`,
-						plugins: [nodeResolve(), babel(), terser()],
-					})
+				rollup({
+					input: path.join(jsFolder, jsFile),
+					plugins: [nodeResolve(), terser()],
+				})
 					.then((bundle) => {
 						bundle.write({
 							dir: jsDist,
@@ -39,7 +37,7 @@ gulp.task("build:js", (done) => {
 						resolve();
 					})
 					.catch((err) => console.error(err));
-			})
+			}),
 		);
 	});
 
@@ -49,20 +47,8 @@ gulp.task("build:js", (done) => {
 gulp.task("build:css", () =>
 	gulp
 		.src(cssFiles)
-		.pipe(
-			postcss([
-				postcssImport,
-				postcssPresetEnv({
-					features: {
-						"logical-properties-and-values": false,
-					},
-					browsers:
-						"last 2 Chrome versions, last 2 Firefox versions, last 2 Safari versions, last 2 ios versions, last 2 ChromeAndroid versions, last 2 Edge versions",
-				}),
-				cssnano,
-			])
-		)
-		.pipe(gulp.dest(cssDist))
+		.pipe(postcss([postcssImport, cssnano]))
+		.pipe(gulp.dest(cssDist)),
 );
 
 gulp.task("clean", () => {
@@ -71,5 +57,5 @@ gulp.task("clean", () => {
 
 gulp.task(
 	"build",
-	gulp.series("clean", gulp.parallel("build:js", "build:css"))
+	gulp.series("clean", gulp.parallel("build:js", "build:css")),
 );

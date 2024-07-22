@@ -7,7 +7,7 @@ export default [
 	{
 		files: ["api/**", "bin/**", "lib/**", "index.js"],
 		languageOptions: {
-			sourceType: "commonjs",
+			sourceType: "module",
 			globals: {
 				...globals.node,
 				global: true,

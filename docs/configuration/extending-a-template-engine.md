@@ -7,7 +7,7 @@ const twig = require("twig");
 
 twig.extendFunction("customFunction", function customFunction() { ... });
 
-module.exports = {
+export default {
   ...
   engine: {
     instance: twig.twig,
@@ -21,7 +21,7 @@ If you are using the `twig-drupal` or `twig-laravel` extension, you need to exte
 ```js
 const twig = require("twig");
 
-module.exports = {
+export default {
   ...
   engine: {
     instance: twig.twig,

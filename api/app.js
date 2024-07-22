@@ -4,15 +4,15 @@
  * @module init
  */
 
-const express = require("express");
+import express from "express";
 
-const setEngines = require("../lib/init/engines.js");
-const setRouter = require("../lib/init/router.js");
-const setState = require("../lib/state");
-const setStatic = require("../lib/init/static.js");
-const setViews = require("../lib/init/views.js");
+import setEngines from "../lib/init/engines.js";
+import setRouter from "../lib/init/router.js";
+import setState from "../lib/state/index.js";
+import setStatic from "../lib/init/static.js";
+import setViews from "../lib/init/views.js";
 
-module.exports = async function init(mergedConfig) {
+export default async function init(mergedConfig) {
 	global.app = express();
 	global.config = mergedConfig;
 	global.app.set("view cache", false);
@@ -35,4 +35,4 @@ module.exports = async function init(mergedConfig) {
 	}
 
 	return false;
-};
+}

@@ -1,7 +1,3 @@
-"use strict";
+import Miyagi from "./lib/index.js";
 
-const Miyagi = require("./lib");
-
-module.exports = (async () => {
-	return await Miyagi();
-})();
+export default await Miyagi();
