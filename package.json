@@ -45,7 +45,7 @@
 		"js-yaml": "^4.1.0",
 		"marked": "^13.0.2",
 		"node-watch": "^0.7.4",
-		"twing": "^6.1.0",
+		"twing": "^7.1.0-beta.2",
 		"ws": "^8.18.0",
 		"yargs": "^17.7.2"
 	},
@@ -91,7 +91,7 @@
 		"json-pointer": ">=0.6.2",
 		"minimist": "^1.2.6",
 		"globals": "^15.8.0",
-		"twing": "^6.1.0"
+		"twing": "^7.1.0-beta.2"
 	},
 	"stylelint": {
 		"extends": [
