@@ -25,17 +25,13 @@
 						{% if schema %}
 							<details class="MiyagiTabs-tab">
 								<summary>Schema</summary>
-								<pre class="Miyagi-code language-{{ schema.type }}"><span class="token comment">// {{ schema.file }}</span>
-
-<code>{{ schema.string }}</code></pre>
+								<div id="json-tree-resolved-schema" data-jsontree-js='{ data: {{ schema }} }'></div>
 							</details>
 						{% endif %}
 						{% if mocks %}
 							<details class="MiyagiTabs-tab">
 								<summary>Mocks</summary>
-								<pre class="Miyagi-code language-{{ mocks.type }}"><span class="token comment">// {{ mocks.file }}</span>
-
-<code>{{ mocks.string }}</code></pre>
+								<div id="json-tree-resolved-mocks" data-jsontree-js='{ data: {{ mocks }} }'></div>
 							</details>
 						{% endif %}
 						{% if template %}
@@ -74,13 +70,24 @@
 									Open
 								</a>
 							</div>
-							<div class="MiyagiComponent-mockData" hidden id="{{ variation.normalizedVariation }}">
+							<dialog class="MiyagiComponent-mockData" id="{{ variation.normalizedVariation }}">
 								<div class="MiyagiComponent-mockDataInner">
 									<p class="MiyagiComponent-mockDataHeading"><b>{{ variation.variation }}</b> mock data</p>
-									<pre class="Miyagi-code language-{{ mocks.type }}"><code>{{ variation.mockData }}</code></pre>
-									<button class="MiyagiComponent-closeMockData js-closeMockData">Close</button>
+									<accordion-tabs breakpoint="24rem">
+										<details>
+											<summary>Raw</summary>
+											<div id="json-tree-{{ loop.index }}" data-jsontree-js='{ data: {{ variation.mockData }} }'></div>
+										</details>
+										<details>
+											<summary>Resolved</summary>
+											<div id="json-tree-resolved-{{ loop.index }}" data-jsontree-js='{ data: {{ variation.mockDataResolved }} }'></div>
+										</details>
+									</accordion-tabs>
+									<form method="dialog">
+										<button class="MiyagiComponent-closeMockData">Close</button>
+									</form>
 								</div>
-							</div>
+							</dialog>
 						</div>
 					</div>
 					{% if renderInIframe %}
@@ -98,6 +105,7 @@
 				</div>
 			{% endfor %}
 		</div>
+		<script src="{{ projectName }}/js/jsontree.js"></script>
 		{% if renderInIframe %}
 			<script>
 				const eventMethod = window.addEventListener
