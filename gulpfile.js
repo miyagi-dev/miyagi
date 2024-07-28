@@ -10,7 +10,13 @@ import terser from "@rollup/plugin-terser";
 
 const buildFolder = "dist/";
 const jsFolder = "frontend/assets/js/";
-const jsFiles = ["iframe.js", "iframe.build.js", "main.js", "main.build.js"];
+const jsFiles = [
+	"iframe.js",
+	"iframe.build.js",
+	"main.js",
+	"main.build.js",
+	"jsontree.js",
+];
 const cssFiles = [
 	"frontend/assets/css/iframe-background.css",
 	"frontend/assets/css/iframe.css",
