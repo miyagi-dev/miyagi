@@ -19,6 +19,7 @@ html {
 	--Miyagi-color-OverlayBackground--light: rgb(255 255 255 / 95%);
 	--Miyagi-color-bg-Tooltip--light: #f5f5f5;
 	--Miyagi-color-outline-Tooltip--light: #ddd;
+	--Miyagi-color-Icon--light: hsl(0deg 0% 56%);
 
 	/* dark */
 	--Miyagi-color-Background--dark: hsl(0deg 0% 12%);
@@ -33,6 +34,7 @@ html {
 	--Miyagi-color-OverlayBackground--dark: hsl(0deg 0% 12% / 95%);
 	--Miyagi-color-bg-Tooltip--dark: #333;
 	--Miyagi-color-outline-Tooltip--dark: #444;
+	--Miyagi-color-Icon--dark: hsl(0deg 0% 60%);
 
 	/* misc */
 	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
@@ -49,6 +51,7 @@ html {
 	);
 	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--light);
 	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--light);
+	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -67,6 +70,7 @@ html {
 		);
 		--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--dark);
 		--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--dark);
+		--Miyagi-color-Icon: var(--Miyagi-color-Icon--dark);
 	}
 }
 
@@ -85,6 +89,7 @@ html {
 	);
 	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--light);
 	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--light);
+	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);
 }
 
 .MiyagiTheme--dark {
@@ -100,4 +105,5 @@ html {
 	--Miyagi-color-OverlayBackground: var(--Miyagi-color-OverlayBackground--dark);
 	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--dark);
 	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--dark);
+	--Miyagi-color-Icon: var(--Miyagi-color-Icon--dark);
 }

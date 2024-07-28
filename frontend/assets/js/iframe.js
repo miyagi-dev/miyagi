@@ -1,3 +1,4 @@
+import "./_accordion-tabs.js";
 import "./_socket.js";
 import {
 	goto as gotoIsTriggered,
