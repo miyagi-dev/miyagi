@@ -1,7 +1,9 @@
 @import url("./tokens.css") layer(miyagi);
-@import url("./iframe/prism.css") layer(miyagi);
 @import url("./iframe/tokens.css") layer(miyagi);
-@import url("./iframe/styleguide/index.css");
+@import url("./iframe/prism.css") layer(miyagi);
+@import url("./iframe/accordion-tabs.css") layer(miyagi);
+@import url("./iframe/jsontree.js.css") layer(miyagi);
+@import url("./iframe/styleguide/index.css") layer(miyagi);
 
 @layer miyagi {
 	.MiyagiContent * {
@@ -351,30 +353,21 @@
 	}
 
 	.MiyagiComponent .MiyagiComponent-mockData {
-		background: var(--Miyagi-color-OverlayBackground);
-		display: flex;
-		position: fixed;
-		inset: 0;
+		border: none;
 		padding: var(--Miyagi-spacing);
-		z-index: 9999999999;
+		width: 100%;
+		height: calc(100vh - 2 * var(--Miyagi-spacing));
+		max-width: 70ch;
+		box-sizing: border-box;
+		overscroll-behavior: contain;
 	}
 
-	.MiyagiComponent .MiyagiComponent-mockData[hidden] {
+	.MiyagiComponent .MiyagiComponent-mockData:not([open]) {
 		display: none;
 	}
 
-	.MiyagiComponent .MiyagiComponent-mockDataInner {
-		display: flex;
-		flex-direction: column;
-		margin: auto;
-		width: 100%;
-		max-height: calc(100vh - 2 * var(--Miyagi-spacing));
-		max-width: 70ch;
-		position: relative;
-	}
-
 	.MiyagiComponent .MiyagiComponent-mockDataHeading {
-		margin: 0;
+		margin-block: 0 1em;
 	}
 
 	.MiyagiComponent .MiyagiComponent-closeMockData {
@@ -390,8 +383,8 @@
 		font-family: var(--Miyagi-fontFamily);
 		font-size: 0.875em;
 		position: absolute;
-		top: 0;
-		inset-inline-end: 0;
+		inset-block-start: 1rem;
+		inset-inline-end: 1rem;
 	}
 
 	.MiyagiComponent .MiyagiComponent-file {

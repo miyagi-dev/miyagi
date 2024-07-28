@@ -1,3 +1,4 @@
+import "./_accordion-tabs.js";
 import "./_prism.js";
 import "./_iframe-links.js";
 import {
