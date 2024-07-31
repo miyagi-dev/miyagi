@@ -15,7 +15,7 @@ _miyagi_ is a component development tool for JavaScript templating engines.
 - Validates your mock data against your JSON schema files.
 - Documentation of your components using markdown.
 - You can customize the layout, so it fits the design of your project.
-- Supports lots of template engines by using [consolidate.js](https://github.com/tj/consolidate.js) internally.
+- Use any kind of templating engine by providing your own render function.
 - Allows creating a static build.
 - Lets you create components and mock data via CLI.
 - Automatically created design tokens overview based on CSS custom properties.

@@ -190,11 +190,33 @@ The folder where your documentation lives.
 
 ## engine
 
-### instance
+### render
 
 default `null`<br>
+type: `Function`
+required: true
 
-See [Extending template engine](/configuration/extending-template-engine)
+The render function for your templates. The function will be called with an object containing the following key/value pairs:
+
+- `name`: type `string` — the template path
+- `context`: type `object` — the data being passed to the template
+- `cb`: type `Function` — callback functions that expects an error as the first, and the HTML response as a second argument.
+
+#### Example
+
+```js
+{
+	engine: {
+		async render({ name, context, cb }) {
+			try {
+				return cb(null, await twing.render(name, context));
+			} catch (err) {
+				return cb(err.toString());
+			}
+		}
+	}
+}
+```
 
 ### name
 
@@ -210,6 +232,16 @@ default: `null`<br>
 type: `object`
 
 These options are passed to the rendering function of your template engine. You can use that for setting a custom namespace e.g..
+
+## `extensions`
+
+default: `[]`<br>
+type: `array`
+
+## `projectName`
+
+default: `"miyagi"`<br>
+type: `string`
 
 ## `files`
 
@@ -287,15 +319,22 @@ default:
 
 _**Note:** You can use `"<component>"` for `name` if the file should have the same name as the component folder._
 
-## `extensions`
+## `namespaces`
 
-default: `[]`<br>
-type: `array`
+Namespaces are often used in templating engines. While you need to add these to your templating engine directly, you can use the same namespaces also in your mock files to reference template or other mock files.
 
-## `projectName`
+default: `{}`<br>
+type: `object`
 
-default: `"miyagi"`<br>
-type: `string`
+Example:
+
+```json
+{
+	"@templates": "/path/to/your/templates"
+}
+```
+
+You can then use `$tpl: "@templates/some-template"` or `$ref: "@templates/some-mocks"` in your mock data.
 
 ## `ui`
 
