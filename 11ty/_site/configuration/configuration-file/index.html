@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Configuration file</title>
+		<link rel="stylesheet" href="/css/pico.conditional.min.css">
+		<link rel="stylesheet" href="/css/prism-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+		<link rel="stylesheet" href="/css/prism-dark.css" media="(prefers-color-scheme: dark)">
+		<link rel="stylesheet" href="/css/base.css">
+  </head>
+  <body>
+		<details class="nav-mobile">
+			<summary>
+				<span>
+					<span>Navigation></span>
+				</span>
+				<svg aria-label="miyagi" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 787.99 159.5" width="98.5" height="20"><path fill="currentColor" d="M153.09 2.43l-67.6 83.06L17.9 2.43H0v154.65h171V2.43zm-1.76 135.65H19.66V33.8l65.83 80.63 65.84-80.63v104.28zm55-135.65v154.65h19.66V2.43zm215.39 0h-79.09l-12.15 19h55.67l-49.7 76.21-62.12-95.21h-23l75.56 114.87v39.78h19.66V117.3L421.72 2.43zM482.47.66l-86.14 156.42h172.3L482.47.66zm-52.8 137.42l52.8-97.87 53 97.87zm212.08-63.86l44 60.75a58.31 58.31 0 01-54.57-2.65 58.64 58.64 0 01-21.2-22.09 61.67 61.67 0 01-7.74-30.48 61 61 0 017.85-30.49 59.24 59.24 0 0121.43-22.09 58.7 58.7 0 0154-3 69.15 69.15 0 0120.51 14.27l13.92-12.36a80.75 80.75 0 00-26.07-19.12 75.25 75.25 0 00-32-7q-23.19 0-41.2 11.6a80 80 0 00-27.83 30 80 80 0 00-9.83 38.11 81.4 81.4 0 009.61 38.1 78.8 78.8 0 0027.39 30.05q17.77 11.6 41 11.6a70.76 70.76 0 0038.44-10.83 76.71 76.71 0 0027.06-29 82.68 82.68 0 009.81-39.84v-5.53zm58.54 51l-23.86-32.88h40.65a40.23 40.23 0 01-4.64 17.12 55.1 55.1 0 01-12.11 15.79zM768.33 2.43v154.64h19.66V2.43h-19.66z"/></svg>
+			</summary>
+			<nav>
+				
+				<ul>
+						<li>
+							<a href="/installation/"> Installation</a><ul>
+								</ul>
+						</li>
+						<li>
+							<a href="/configuration/"> Configuration</a><ul>
+										<li>
+											<a href="/configuration/cli/"> CLI</a>
+										</li>
+										<li>
+											<a href="/configuration/configuration-file/" aria-current="page"> Configuration file</a>
+										</li>
+										<li>
+											<a href="/configuration/default-configuration/"> Default configuration</a>
+										</li>
+										<li>
+											<a href="/configuration/options/"> Options</a>
+										</li>
+								</ul>
+						</li>
+						<li>
+							<a href="/cli-commands/"> CLI commands</a><ul>
+										<li>
+											<a href="/cli-commands/starting-miyagi/"> Starting miyagi</a>
+										</li>
+										<li>
+											<a href="/cli-commands/creating-a-component/"> Creating a component</a>
+										</li>
+										<li>
+											<a href="/cli-commands/creating-mock-data/"> Creating mock data</a>
+										</li>
+										<li>
+											<a href="/cli-commands/linting-mock-data/"> Linting mock data</a>
+										</li>
+										<li>
+											<a href="/cli-commands/creating-a-build/"> Creating a build</a>
+										</li>
+										<li>
+											<a href="/cli-commands/using-verbose-mode/"> Using verbose mode</a>
+										</li>
+								</ul>
+						</li>
+						<li>
+							<a href="/the-ui/"> The UI</a><ul>
+										<li>
+											<a href="/the-ui/presentation-vs-dev-mode/"> Presentation vs Development mode</a>
+										</li>
+								</ul>
+						</li>
+						<li>
+							<a href="/vs-code-extension/"> VS Code extension</a><ul>
+								</ul>
+						</li>
+						<li>
+							<a href="/javascript-api/"> JavaScript API</a><ul>
+								</ul>
+						</li>
+						<li>
+							<a href="/"> miyagi</a>
+						</li>
+						<li>
+							<a href="/component-files/"> Component files</a><ul>
+										<li>
+											<a href="/component-files/assets/"> Assets</a>
+										</li>
+										<li>
+											<a href="/component-files/documentation/"> Documentation</a>
+										</li>
+										<li>
+											<a href="/component-files/introduction/">introduction</a>
+										</li>
+										<li>
+											<a href="/component-files/schema/"> Schema</a>
+										</li>
+										<li>
+											<a href="/component-files/mocks/"> Mocks</a>
+										</li>
+										<li>
+											<a href="/component-files/template/"> Template</a>
+										</li>
+								</ul>
+						</li>
+						<li>
+							<a href="/how-to/"> How-to</a><ul>
+										<li>
+											<a href="/how-to/adding-custom-css-and-js-per-component/"> Adding custom CSS and JS per component</a>
+										</li>
+										<li>
+											<a href="/how-to/changing-miyagis-port/"> Changing miyagi's port</a>
+										</li>
+										<li>
+											<a href="/how-to/changing-the-html-language-attribute/"> Changing the HTML language attribute</a>
+										</li>
+										<li>
+											<a href="/how-to/changing-the-text-direction/"> Changing the text direction</a>
+										</li>
+										<li>
+											<a href="/how-to/configuring-the-json-schema-validator/"> Configuring the JSON Schema validator</a>
+										</li>
+										<li>
+											<a href="/how-to/creating-a-design-token-overview/"> Creating a design token overview</a>
+										</li>
+										<li>
+											<a href="/how-to/linting-mock-data/"> Linting mock data</a>
+										</li>
+										<li>
+											<a href="/how-to/navigating-through-miyagi/"> Navigating through miyagi</a>
+										</li>
+										<li>
+											<a href="/how-to/organizing-components/"> Organizing components</a>
+										</li>
+										<li>
+											<a href="/how-to/using-dark-and-light-mode/"> Using dark and light mode</a>
+										</li>
+										<li>
+											<a href="/how-to/adding-documentation/"> Adding documentation</a>
+										</li>
+										<li>
+											<a href="/how-to/adding-js-files/"> Adding JS files</a>
+										</li>
+										<li>
+											<a href="/how-to/theming-the-ui/"> Theming the UI</a>
+										</li>
+										<li>
+											<a href="/how-to/writing-mock-data/"> Writing mock data</a>
+										</li>
+								</ul>
+						</li>
+				</ul>
+				<small>v3.3.2 &middot; <a class="github-link" href="https://github.com/miyagi-dev">github.com/miyagi-dev</a></small>
+			</nav>
+		</details>
+		<nav class="nav-desktop">
+			<a href="/" style="color: var(--color-copy);" aria-label="miyagi">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 787.99 159.5" width="157.6" height="32"><path fill="currentColor" d="M153.09 2.43l-67.6 83.06L17.9 2.43H0v154.65h171V2.43zm-1.76 135.65H19.66V33.8l65.83 80.63 65.84-80.63v104.28zm55-135.65v154.65h19.66V2.43zm215.39 0h-79.09l-12.15 19h55.67l-49.7 76.21-62.12-95.21h-23l75.56 114.87v39.78h19.66V117.3L421.72 2.43zM482.47.66l-86.14 156.42h172.3L482.47.66zm-52.8 137.42l52.8-97.87 53 97.87zm212.08-63.86l44 60.75a58.31 58.31 0 01-54.57-2.65 58.64 58.64 0 01-21.2-22.09 61.67 61.67 0 01-7.74-30.48 61 61 0 017.85-30.49 59.24 59.24 0 0121.43-22.09 58.7 58.7 0 0154-3 69.15 69.15 0 0120.51 14.27l13.92-12.36a80.75 80.75 0 00-26.07-19.12 75.25 75.25 0 00-32-7q-23.19 0-41.2 11.6a80 80 0 00-27.83 30 80 80 0 00-9.83 38.11 81.4 81.4 0 009.61 38.1 78.8 78.8 0 0027.39 30.05q17.77 11.6 41 11.6a70.76 70.76 0 0038.44-10.83 76.71 76.71 0 0027.06-29 82.68 82.68 0 009.81-39.84v-5.53zm58.54 51l-23.86-32.88h40.65a40.23 40.23 0 01-4.64 17.12 55.1 55.1 0 01-12.11 15.79zM768.33 2.43v154.64h19.66V2.43h-19.66z"/></svg>
+			</a>
+			
+			<ul>
+					<li>
+						<a href="/installation/"> Installation</a><ul>
+							</ul>
+					</li>
+					<li>
+						<a href="/configuration/"> Configuration</a><ul>
+									<li>
+										<a href="/configuration/cli/"> CLI</a>
+									</li>
+									<li>
+										<a href="/configuration/configuration-file/" aria-current="page"> Configuration file</a>
+									</li>
+									<li>
+										<a href="/configuration/default-configuration/"> Default configuration</a>
+									</li>
+									<li>
+										<a href="/configuration/options/"> Options</a>
+									</li>
+							</ul>
+					</li>
+					<li>
+						<a href="/cli-commands/"> CLI commands</a><ul>
+									<li>
+										<a href="/cli-commands/starting-miyagi/"> Starting miyagi</a>
+									</li>
+									<li>
+										<a href="/cli-commands/creating-a-component/"> Creating a component</a>
+									</li>
+									<li>
+										<a href="/cli-commands/creating-mock-data/"> Creating mock data</a>
+									</li>
+									<li>
+										<a href="/cli-commands/linting-mock-data/"> Linting mock data</a>
+									</li>
+									<li>
+										<a href="/cli-commands/creating-a-build/"> Creating a build</a>
+									</li>
+									<li>
+										<a href="/cli-commands/using-verbose-mode/"> Using verbose mode</a>
+									</li>
+							</ul>
+					</li>
+					<li>
+						<a href="/the-ui/"> The UI</a><ul>
+									<li>
+										<a href="/the-ui/presentation-vs-dev-mode/"> Presentation vs Development mode</a>
+									</li>
+							</ul>
+					</li>
+					<li>
+						<a href="/vs-code-extension/"> VS Code extension</a><ul>
+							</ul>
+					</li>
+					<li>
+						<a href="/javascript-api/"> JavaScript API</a><ul>
+							</ul>
+					</li>
+					<li>
+						<a href="/"> miyagi</a>
+					</li>
+					<li>
+						<a href="/component-files/"> Component files</a><ul>
+									<li>
+										<a href="/component-files/assets/"> Assets</a>
+									</li>
+									<li>
+										<a href="/component-files/documentation/"> Documentation</a>
+									</li>
+									<li>
+										<a href="/component-files/introduction/">introduction</a>
+									</li>
+									<li>
+										<a href="/component-files/schema/"> Schema</a>
+									</li>
+									<li>
+										<a href="/component-files/mocks/"> Mocks</a>
+									</li>
+									<li>
+										<a href="/component-files/template/"> Template</a>
+									</li>
+							</ul>
+					</li>
+					<li>
+						<a href="/how-to/"> How-to</a><ul>
+									<li>
+										<a href="/how-to/adding-custom-css-and-js-per-component/"> Adding custom CSS and JS per component</a>
+									</li>
+									<li>
+										<a href="/how-to/changing-miyagis-port/"> Changing miyagi's port</a>
+									</li>
+									<li>
+										<a href="/how-to/changing-the-html-language-attribute/"> Changing the HTML language attribute</a>
+									</li>
+									<li>
+										<a href="/how-to/changing-the-text-direction/"> Changing the text direction</a>
+									</li>
+									<li>
+										<a href="/how-to/configuring-the-json-schema-validator/"> Configuring the JSON Schema validator</a>
+									</li>
+									<li>
+										<a href="/how-to/creating-a-design-token-overview/"> Creating a design token overview</a>
+									</li>
+									<li>
+										<a href="/how-to/linting-mock-data/"> Linting mock data</a>
+									</li>
+									<li>
+										<a href="/how-to/navigating-through-miyagi/"> Navigating through miyagi</a>
+									</li>
+									<li>
+										<a href="/how-to/organizing-components/"> Organizing components</a>
+									</li>
+									<li>
+										<a href="/how-to/using-dark-and-light-mode/"> Using dark and light mode</a>
+									</li>
+									<li>
+										<a href="/how-to/adding-documentation/"> Adding documentation</a>
+									</li>
+									<li>
+										<a href="/how-to/adding-js-files/"> Adding JS files</a>
+									</li>
+									<li>
+										<a href="/how-to/theming-the-ui/"> Theming the UI</a>
+									</li>
+									<li>
+										<a href="/how-to/writing-mock-data/"> Writing mock data</a>
+									</li>
+							</ul>
+					</li>
+			</ul>
+			<small>v3.3.2 &middot; <a class="github-link" href="https://github.com/miyagi-dev">github.com/miyagi-dev</a></small>
+		</nav>
+		<main class="container">
+    	<h1>Configuration file</h1>
+<p><strong><code>.miyagi.{js|mjs}</code></strong></p>
+<p>The config file needs to be a JS file with an ES module default export for the configuration:</p>
+<p>Example:</p>
+<pre class="language-javascript"><code class="language-javascript"><span class="token comment">// .miyagi.js</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+	<span class="token literal-property property">assets</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">folder</span><span class="token operator">:</span> <span class="token string">"assets/"</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">css</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token literal-property property">development</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"src/index.css"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token literal-property property">production</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"build/index.css"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">jsFiles</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token literal-property property">development</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"src/index.js"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token literal-property property">production</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"build/index.js"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">build</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">folder</span><span class="token operator">:</span> <span class="token string">"dist/"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">components</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">folder</span><span class="token operator">:</span> <span class="token string">"source/"</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">ignores</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"tests"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">engine</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"twig"</span><span class="token punctuation">,</span>
+		<span class="token keyword">async</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> name<span class="token punctuation">,</span> context<span class="token punctuation">,</span> cb <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">try</span> <span class="token punctuation">{</span>
+				<span class="token function">cb</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> Twig<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> context<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token function">cb</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">files</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">templates</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token literal-property property">extension</span><span class="token operator">:</span> <span class="token string">"twig"</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">projectName</span><span class="token operator">:</span> <span class="token string">"miyagi"</span><span class="token punctuation">,</span>
+	<span class="token literal-property property">ui</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">reload</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token literal-property property">favicon</span><span class="token operator">:</span> <span class="token string">"src/favicon.ico"</span><span class="token punctuation">,</span>
+			<span class="token literal-property property">logo</span><span class="token operator">:</span> <span class="token string">"src/logo.svg"</span><span class="token punctuation">,</span>
+			<span class="token literal-property property">navigation</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token literal-property property">colorBackground</span><span class="token operator">:</span> <span class="token string">"#eee"</span><span class="token punctuation">,</span>
+				<span class="token literal-property property">colorLinks</span><span class="token operator">:</span> <span class="token string">"#255e8a"</span><span class="token punctuation">,</span>
+				<span class="token literal-property property">colorLinksActive</span><span class="token operator">:</span> <span class="token string">"#fff"</span><span class="token punctuation">,</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token literal-property property">content</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token literal-property property">colorHeadlines</span><span class="token operator">:</span> <span class="token string">"#255e8a"</span><span class="token punctuation">,</span>
+				<span class="token literal-property property">colorText</span><span class="token operator">:</span> <span class="token string">"#234"</span><span class="token punctuation">,</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+
+		</main>
+  </body>
+</html>

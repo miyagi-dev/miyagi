@@ -1,0 +1,262 @@
+<h2><code>assets</code></h2>
+<p><em>Settings for assets that miyagi serves (independently from your components).</em></p>
+<h3><code>root</code></h3>
+<p>default: <code>&quot;&quot;</code><br>
+type: <code>string|object</code></p>
+<p>This setting can be helpful if assets are located in another folder, e.g. <code>public/assets</code>, but they should actually be served from <code>assets/</code>. In that case you could set this option to <code>public</code>.</p>
+<p>It is also possible to define this for each <code>NODE_ENV</code> via an object like this:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"development"</span><span class="token operator">:</span> <span class="token string">"some/folder"</span><span class="token punctuation">,</span>
+	<span class="token property">"production"</span><span class="token operator">:</span> <span class="token string">""</span>
+<span class="token punctuation">}</span></code></pre>
+<h3><code>css</code></h3>
+<p>default: <code>null</code><br>
+type: <code>object</code></p>
+<p>Can either be a string, an array of strings or an object with your <code>NODE_ENV</code>s as key and a string or array as values:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"development"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"src/reset.css"</span><span class="token punctuation">,</span> <span class="token string">"src/theme.css"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"production"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"dist/index.css"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This would serve different assets based on your <code>NODE_ENV</code>.</p>
+<h3><code>customProperties</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"prefixes"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"color"</span><span class="token operator">:</span> <span class="token string">"color"</span><span class="token punctuation">,</span>
+		<span class="token property">"typo"</span><span class="token operator">:</span> <span class="token string">"typo"</span><span class="token punctuation">,</span>
+		<span class="token property">"spacing"</span><span class="token operator">:</span> <span class="token string">"spacing"</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>type: <code>object</code></p>
+<p>This object is used to generate your automated styleguide.</p>
+<p><a href="/automated-styleguide">More information about automated styleguides</a>.</p>
+<h3><code>folder</code></h3>
+<p>default: <code>null</code><br>
+type: <code>string|array|object</code></p>
+<p>If you need <em>miyagi</em> to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.</p>
+<p>Can either be a string, an array of strings or an object with your <code>NODE_ENV</code>s as key and a string or array as values:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"development"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"svgs"</span><span class="token punctuation">,</span> <span class="token string">"templates"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"production"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"templates"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This would serve different assets based on your <code>NODE_ENV</code>.</p>
+<h3><code>js</code></h3>
+<p>default: <code>null</code><br>
+type: <code>string|array|object</code></p>
+<p>This would be the most complex way to define this option:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"development"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">"src"</span><span class="token operator">:</span> <span class="token string">"src/index.js"</span><span class="token punctuation">,</span>
+      <span class="token property">"defer"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      <span class="token property">"async"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      <span class="token property">"type"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+      <span class="token property">"position"</span><span class="token operator">:</span> <span class="token string">"head"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">"production"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> … <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This would serve different assets based on your <code>NODE_ENV</code> (<code>&quot;development&quot;</code> or <code>&quot;production&quot;</code> in this case).
+It can be simplified to by omitting the node envs, not using an array or simply using a string (for the source file).</p>
+<p>Please also refer to How to: <a href="/how-to/adding-js-files/">Adding JS files</a>.</p>
+<h3><code>manifest</code></h3>
+<p>default: <code>null</code><br>
+type: <code>string</code></p>
+<p>If you create CSS and JS files with hashes and have therefore a manifest file, you can set this here and then use the same keys of the manifest file for your CSS and JS files in <code>assets.css</code> and <code>assets.js</code>. <em>miyagi</em> will then resolve these.</p>
+<h2><code>build</code></h2>
+<p><em>Settings for creating a static build.</em></p>
+<h3><code>basePath</code></h3>
+<p>default: <code>/</code><br>
+type: <code>string</code></p>
+<p>If you deploy your build into a subfolder instead of the root folder, set this option to the path of the subfolder.</p>
+<h3><code>folder</code></h3>
+<p>default: <code>&quot;build/&quot;</code><br>
+type: <code>string</code></p>
+<p>The folder where your build files will be saved. Use <code>--folder</code> when using as a cli argument.</p>
+<h3><code>outputFile</code></h3>
+<p>default: <code>false</code><br>
+type: <code>boolean</code></p>
+<p>Defines if an <code>output.json</code> file (containing all paths to the standalone views of a component) should be created.</p>
+<h2><code>components</code></h2>
+<h3><code>folder</code></h3>
+<p>default: <code>&quot;src&quot;</code><br>
+type: <code>string</code></p>
+<p>The folder where your components live.</p>
+<h3><code>ignores</code></h3>
+<p>default: <code>[&quot;node_modules&quot;, &quot;.git&quot;, &quot;package.json&quot;, &quot;package-lock.json&quot;, &quot;.miyagi.js&quot;]</code><br>
+type: <code>array</code></p>
+<p><em>miyagi</em> ignores these folders and files when looking for your components.</p>
+<p>When setting a value, it is added to the default value and does not overwrite it.</p>
+<h3><code>lang</code></h3>
+<p>default: <code>&quot;en&quot;</code><br>
+type: <code>string</code></p>
+<p>Used to determine the language of components. This will set the value for the <code>lang</code> attribute.</p>
+<h3><code>renderInIframe</code></h3>
+<p>default: <code>{ default: false, except: [] }</code><br>
+type: <code>object</code></p>
+<p>Determines if variants on the component view should be rendered in an iframe or not. Rendering in iframe makes sense when for example the component depends on media queries or has elements which are positioned fixed.
+If you have small components with a box-shadow for example, you might not want to render them inside an iframe, since the box-shadow would be cut off. Please also note that extensive usage of iframes slows down the page. So if you have a lot of variants, it might be better to not render the variants in iframes.</p>
+<p><code>except</code> accepts globs. Its meaning depends on the value of <code>default</code>. So, if by default variants are rendered in an iframe, components that match one of the globs from the <code>except</code> array, are not rendered in an iframe.
+If <code>default</code> is false, these components are rendered in an iframe.</p>
+<p><em><strong>Note:</strong> After the <code>load</code> and <code>DOMContentLoaded</code> events of the iframes have been fired, their height is set to the height of the variant inside the iframe if it is smaller than the window. That way it is basically not noticable that the variant is rendered inside an iframe. In case that the variant is higher than the window, the iframe will have the same height as the window and be scrollable. After the <code>load</code> event the height will not be updated anymore when the height of the variant changes. This is necessary to avoid resize loops.</em></p>
+<h3><code>textDirection</code></h3>
+<p>default: <code>&quot;ltr&quot;</code><br>
+type: <code>string</code></p>
+<p>Used to determine the value of the <code>dir</code> attribute on the <code>&lt;html&gt;</code> element.</p>
+<p><em><strong>Note:</strong> This only applies the text direction of the components, not if miyagi itself</em></p>
+<h2>docs</h2>
+<h3>folder</h3>
+<p>default: <code>&quot;docs&quot;</code><br>
+type: <code>string|null</code></p>
+<p>The folder where your documentation lives.</p>
+<h2>engine</h2>
+<h3>render</h3>
+<p>default <code>null</code><br>
+type: <code>Function</code>
+required: true</p>
+<p>The render function for your templates. The function will be called with an object containing the following key/value pairs:</p>
+<ul>
+<li><code>name</code>: type <code>string</code> — the template path</li>
+<li><code>context</code>: type <code>object</code> — the data being passed to the template</li>
+<li><code>cb</code>: type <code>Function</code> — callback functions that expects an error as the first, and the HTML response as a second argument.</li>
+</ul>
+<h4>Example</h4>
+<pre class="language-js"><code class="language-js"><span class="token punctuation">{</span>
+	<span class="token literal-property property">engine</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token keyword">async</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> name<span class="token punctuation">,</span> context<span class="token punctuation">,</span> cb <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			<span class="token keyword">try</span> <span class="token punctuation">{</span>
+				<span class="token keyword">return</span> <span class="token function">cb</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">await</span> twing<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> context<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+				<span class="token keyword">return</span> <span class="token function">cb</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h3>options</h3>
+<p>default: <code>null</code><br>
+type: <code>object</code></p>
+<p>These options are passed to the rendering function of your template engine.</p>
+<h2><code>extensions</code></h2>
+<p>default: <code>[]</code><br>
+type: <code>array</code></p>
+<h2><code>projectName</code></h2>
+<p>default: <code>&quot;miyagi&quot;</code><br>
+type: <code>string</code></p>
+<h2><code>files</code></h2>
+<p><em>This is the configuration for your actual component files.</em></p>
+<p>Each entry accepts an object with the following keys:</p>
+<ul>
+<li><code>extension</code>: the file extension in your components folder (type: <code>string</code>)</li>
+<li><code>name</code>: the name of the file in your components folder (type: <code>string</code>)</li>
+</ul>
+<h3><code>css</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"extension"</span><span class="token operator">:</span> <span class="token string">"css"</span><span class="token punctuation">,</span>
+	<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em><strong>Note:</strong> You can use <code>&quot;&lt;component&gt;&quot;</code> for <code>name</code> if the file should have the same name as the component folder.</em></p>
+<h3><code>js</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"extension"</span><span class="token operator">:</span> <span class="token string">"js"</span><span class="token punctuation">,</span>
+	<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"index"</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em><strong>Note:</strong> You can use <code>&quot;&lt;component&gt;&quot;</code> for <code>name</code> if the file should have the same name as the component folder.</em></p>
+<h3><code>mocks</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"extension"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"json"</span><span class="token punctuation">,</span> <span class="token string">"js"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"mocks"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>This option supports multiple file extension. This can be helpful if you usually have static mock data, but in some cases you want run some method which returns the mock data (see <a href="/how-to/writing-mock-data/#asynchronous-mock-data">Asynchronous mock data</a>).</p>
+<p>The main extension for mock data is always the first one of this array. So, for example, when creating components via <code>miyagi new</code> the mock data would be of type <code>json</code> (when using the default values).</p>
+<p>If you provide a string instead of an array, you can still use <code>.js</code> files as well, as this is the fallback for the second extension.</p>
+<h3><code>schema</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"extension"</span><span class="token operator">:</span> <span class="token string">"json"</span><span class="token punctuation">,</span>
+	<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"schema"</span>
+<span class="token punctuation">}</span></code></pre>
+<h3><code>templates</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"index"</span><span class="token punctuation">,</span>
+	<span class="token property">"extension"</span><span class="token operator">:</span> <span class="token null keyword">null</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em><strong>Note:</strong> You can use <code>&quot;&lt;component&gt;&quot;</code> for <code>name</code> if the file should have the same name as the component folder.</em></p>
+<h2><code>namespaces</code></h2>
+<p>Namespaces are often used in templating engines. While you need to add these to your templating engine directly, you can use the same namespaces also in your mock files to reference template or other mock files.</p>
+<p>default: <code>{}</code><br>
+type: <code>object</code></p>
+<p>Example:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"@templates"</span><span class="token operator">:</span> <span class="token string">"/path/to/your/templates"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>You can then use <code>$tpl: &quot;@templates/some-template&quot;</code> or <code>$ref: &quot;@templates/some-mocks&quot;</code> in your mock data.</p>
+<h2><code>ui</code></h2>
+<p><em>Settings for the <a href="/the-ui">web UI</a>.</em></p>
+<h3><code>reload</code></h3>
+<p>default: <code>true</code><br>
+type: <code>boolean</code></p>
+<p>Defines if your component automatically reloads after saving.</p>
+<h3><code>reloadAfterChanges</code></h3>
+<h4><code>componentAssets</code></h4>
+<p>default: <code>false</code><br>
+type: <code>boolean</code></p>
+<p>Defines if your component automatically reloads after the css or js file of your component has been updated.</p>
+<p><em><strong>NOTE:</strong> This is disabled by default for the case that you have a build process that bundles your components assets. These bundled files could be added to your configuration in the <a href="#assets"><code>assets key</code></a>.</em></p>
+<h3><code>textDirection</code></h3>
+<p>default: <code>&quot;ltr&quot;</code><br>
+type: <code>string</code></p>
+<p>Defines the text direction (<code>dir</code> attribute on the <code>html</code> tag) of the <em>miyagi</em> UI.</p>
+<p><em><strong>NOTE:</strong> This does not set the text direction for the components. If you want to change that as well, please have a look at <a href="#textdirection"><code>components.textDirection</code></a>.</em></p>
+<h3><code>theme</code></h3>
+<p>default:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"favicon"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// path to a favicon</span>
+	<span class="token property">"logo"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// path to a logo — can be used if the same logo should be used for light and dark mode</span>
+	<span class="token property">"mode"</span><span class="token operator">:</span> <span class="token string">"light"</span><span class="token punctuation">,</span> <span class="token comment">// "light", "dark" or "auto" (means it uses the OS setting)</span>
+	<span class="token property">"light"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token comment">// theming for light mode</span>
+		<span class="token property">"logo"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// path to a logo</span>
+		<span class="token property">"navigation"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"colorText"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 12%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorBackground"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 86%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorLinks"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 12%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorLinksActive"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 96%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorSearchBorder"</span><span class="token operator">:</span> <span class="token string">"rgba(0, 0, 0, 0.25)"</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token property">"content"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"colorBackground"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 100%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorText"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 12%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorHeadline1"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 12%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorHeadline2"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 12%)"</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">"dark"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token comment">// theming for light mode</span>
+		<span class="token property">"logo"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// path to a logo</span>
+		<span class="token property">"navigation"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"colorText"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 100%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorBackground"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 16%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorLinks"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 100%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorLinksActive"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 16%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorSearchBorder"</span><span class="token operator">:</span> <span class="token string">"rgba(255, 255, 255, 0.25)"</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		<span class="token property">"content"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			<span class="token property">"colorBackground"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 16%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorText"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 100%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorHeadline1"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 100%)"</span><span class="token punctuation">,</span>
+			<span class="token property">"colorHeadline2"</span><span class="token operator">:</span> <span class="token string">"hsl(0, 0%, 100%)"</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token property">"css"</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span> <span class="token comment">// string of CSS which gets added to miyagi and components. can be used to changed the styling of miyagi or e.g. add custom fonts,</span>
+	<span class="token property">"js"</span><span class="token operator">:</span> <span class="token null keyword">null</span> <span class="token comment">// string of JS which gets added to components</span>
+<span class="token punctuation">}</span></code></pre>
+<h2><code>schema</code></h2>
+<p>default: <code>{}</code><br>
+type: <code>object</code></p>
+<p>This object gets passed to the instance of the <a href="https://github.com/ajv-validator/ajv/">schema validator AJV</a>. <a href="https://github.com/ajv-validator/ajv/#options">See all available options</a>.
+You can use this to define custom formats e.g..</p>

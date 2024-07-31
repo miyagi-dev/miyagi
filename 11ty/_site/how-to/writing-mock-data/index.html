@@ -1,0 +1,163 @@
+<p><em>miyagi</em> tries to make using mock data as convenient as possible. Therefore you can create multiple <a href="#variants">variants</a> in one file, <a href="#referencing-other-mock-files">reference other mock files</a>, <a href="#referencing-template-files">reference template files</a> and <a href="#joining-templates">join those</a>. It is even possible to use ES modules if you want to <a href="#asynchronous-mock-data">asynchronously create mock data</a>.</p>
+<p><em><strong>NOTE:</strong> Please do not use keys that start with <code>$</code> as miyagi uses these for specific functionality (more about that below).</em></p>
+<p><em><strong>NOTE:</strong> The concept of inheriting mock data works best with template engines which allow you to pass data objects into an include. Please check the section <a href="/template-engines">supported template engines</a> for limitations with certain template engines.</em></p>
+<h2>Default data</h2>
+<p>The most basic mock file would look something like this:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"Save"</span><span class="token punctuation">,</span>
+	<span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"submit"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>In the UI this would be shown as a variant with the name &quot;default&quot;. If you want to change this name, you can add a <code>$name</code> property:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"$name"</span><span class="token operator">:</span> <span class="token string">"save"</span><span class="token punctuation">,</span>
+	<span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"Save"</span><span class="token punctuation">,</span>
+	<span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"submit"</span>
+<span class="token punctuation">}</span></code></pre>
+<h2>Variants</h2>
+<p>You can also add variants, which would be merged with the default data:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"Save"</span><span class="token punctuation">,</span>
+	<span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"submit"</span><span class="token punctuation">,</span>
+	<span class="token property">"$variants"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">"$name"</span><span class="token operator">:</span> <span class="token string">"reset disabled"</span><span class="token punctuation">,</span>
+			<span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"Disabled"</span><span class="token punctuation">,</span>
+			<span class="token property">"disabled"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>So, the data of the variation <code>&quot;reset disabled&quot;</code> would be:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"label"</span><span class="token operator">:</span> <span class="token string">"Disabled"</span><span class="token punctuation">,</span>
+	<span class="token property">"type"</span><span class="token operator">:</span> <span class="token string">"submit"</span><span class="token punctuation">,</span>
+	<span class="token property">"disabled"</span><span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em><strong>NOTE:</strong> You can also omit the default data if you have variants defined.</em></p>
+<h3>Merging arrays</h3>
+<p>When you have an array in your default mock data as well as your variant mock data, by default they are merged by concatenation. Example:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"items"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"$variant"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">"$name"</span><span class="token operator">:</span> <span class="token string">"variant"</span><span class="token punctuation">,</span>
+			<span class="token property">"items"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>becomes</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"items"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>If you want to change this behavior, you can use <code>$opts</code> to define a different merging strategy.</p>
+<h4><code>overwrite</code></h4>
+<p><code>overwrite</code> simply replaces the first array with the second array:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"$variant"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">"$name"</span><span class="token operator">:</span> <span class="token string">"variant"</span><span class="token punctuation">,</span>
+			<span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token property">"$opts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token property">"item"</span><span class="token operator">:</span> <span class="token string">"overwrite"</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>becomes</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<h4><code>combine</code></h4>
+<p><code>combine</code> is the most complex way to merge two arrays. It does a deep merge of objects at the same index. Other values will be replaced:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"a"</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"a"</span><span class="token operator">:</span> <span class="token null keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+	<span class="token property">"$variants"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+		<span class="token punctuation">{</span>
+			<span class="token property">"$name"</span><span class="token operator">:</span> <span class="token string">"variant"</span><span class="token punctuation">,</span>
+			<span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"b"</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"a"</span><span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+			<span class="token property">"$opts"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+				<span class="token property">"item"</span><span class="token operator">:</span> <span class="token string">"combine"</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<p>becomes</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"item"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"a"</span><span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token property">"b"</span><span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token property">"a"</span><span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<h2>Referencing other mock files</h2>
+<p>Instead of manually defining data, you can also reference other mock files like this:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"$ref"</span><span class="token operator">:</span> <span class="token string">"some/other/component"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>It is not necessary to explicitely reference <code>&quot;some/other/component/mocks.json&quot;.</code> Instead, pointing to the component folder is enough.</p>
+<p>When referencing other mock files, you can also overwrite its values:</p>
+<pre class="language-json"><code class="language-json"><span class="token comment">// some/other/component/mocks.json</span>
+
+<span class="token punctuation">{</span>
+  <span class="token property">"oneVar"</span><span class="token operator">:</span> <span class="token string">"oneValue"</span><span class="token punctuation">,</span>
+  <span class="token property">"anotherVar"</span><span class="token operator">:</span> <span class="token string">"anotherValue"</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// The referencing mock file:</span>
+
+<span class="token punctuation">{</span>
+  <span class="token property">"$ref"</span><span class="token operator">:</span> <span class="token string">"some/other/component"</span><span class="token punctuation">,</span>
+  <span class="token property">"oneVar"</span><span class="token operator">:</span> <span class="token string">"someOtherValue"</span>
+<span class="token punctuation">}</span></code></pre>
+<p>would result in</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"oneVar"</span><span class="token operator">:</span> <span class="token string">"someOtherValue"</span><span class="token punctuation">,</span>
+	<span class="token property">"anotherVar"</span><span class="token operator">:</span> <span class="token string">"anotherValue"</span>
+<span class="token punctuation">}</span></code></pre>
+<h3>Referencing a variation</h3>
+<p>If you need to reference a variation from another mock file, you can do so by using <code>#</code>:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"$ref"</span><span class="token operator">:</span> <span class="token string">"some/other/component#variation-name"</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em><strong>NOTE:</strong> You need to use the normalized variation name, so instead of using <code>&quot;#Variation name&quot;</code>, use <code>&quot;#variation-name&quot;.</code></em></p>
+<h2>Referencing template files</h2>
+<p>By referencing a template file using <code>$tpl</code>, the object would be converted into a HTML string:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"oneVar"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"$tpl"</span><span class="token operator">:</span> <span class="token string">"some/other/component"</span><span class="token punctuation">,</span>
+		<span class="token property">"$ref"</span><span class="token operator">:</span> <span class="token string">"some/other/component"</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>would result in</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"oneVar"</span><span class="token operator">:</span> <span class="token string">"&lt;someHtml>&lt;/someHtml>"</span>
+<span class="token punctuation">}</span></code></pre>
+<p><code>&quot;&lt;someHtml&gt;&lt;/someHtml&gt;&quot;</code> would be the result of rendering the template file in <code>&quot;some/other/component&quot;</code> using the data of the mock file in <code>&quot;some/other/component&quot;</code>.</p>
+<h3>Joining templates</h3>
+<p>If you want to use multiple components for one HTML string, you can do that by using <code>$render</code>:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+	<span class="token property">"html"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token property">"$render"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">"$tpl"</span><span class="token operator">:</span> <span class="token string">"some/component"</span>
+			<span class="token punctuation">}</span><span class="token punctuation">,</span>
+			<span class="token punctuation">{</span>
+				<span class="token property">"$tpl"</span><span class="token operator">:</span> <span class="token string">"another/component"</span>
+			<span class="token punctuation">}</span>
+		<span class="token punctuation">]</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<p>In this case <code>html</code> would be the joined result of rendering <code>&quot;some/component&quot;</code> and <code>&quot;another/component&quot;</code>.</p>
+<h2>Asynchronous mock data</h2>
+<p>If you want to fetch mock data from an API or do any other asynchronous operations, you can <a href="/configuration/options/#mocks">change the type of your mock files</a> to <code>js</code> and use ES modules:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">returnMockData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span> data<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre>
+<p><em><strong>NOTE:</strong> Please note, that the returned value should be a JSON object with the same format as described above.</em></p>
+<h2>Hiding the default variation</h2>
+<p>If you want to define default mock data, so your variants inherit it, but not render the default variation, you can do that using <code>$hidden</code>:</p>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
+  <span class="token property">"$hidden"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">"someKey"</span><span class="token operator">:</span> <span class="token string">"someData"</span><span class="token punctuation">,</span>
+  <span class="token property">"$variants"</span><span class="token operator">:</span> <span class="token punctuation">[</span>...<span class="token punctuation">]</span>
+<span class="token punctuation">}</span></code></pre>
+<h2>Global mock data</h2>
+<p>You can define global mocks by creating a <code>data.json</code> (<code>data.js</code> or <code>data.yaml</code>) in your <a href="/configuration/options#components"><code>components.folder</code></a>. This mock data will be merged into your components mock data. The components mock data has higher priority, hence overwrites keys with the same name.</p>

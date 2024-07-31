@@ -1,0 +1,35 @@
+{% extends "@miyagi/layouts/iframe_default.twig.miyagi" %}
+{% block additionalCss %}
+	{% for file in additionalCssFiles %}
+	<link rel="stylesheet" href="/{{ file }}">
+	{% endfor %}
+{% endblock %}
+{% block body %}
+	{% if spacings %}
+		<div class="MiyagiWrapper">
+			<div class="MiyagiContent">
+				<div class="MiyagiStyleguide" data-media-queries='{{ mediaQueries }}'>
+					<h1>Spacings</h1>
+					<ul class="MiyagiCustomPropsGroup MiyagiSpacings">
+						{% for spacing in spacings %}
+							{% if spacing[1].customProp %}
+								<li class="MiyagiCustomProp MiyagiSpacings-item" style="--spacing: var({{ spacing[1].customProp }});">
+									<button class="MiyagiSpacings-button MiyagiCustomProp-button"
+										aria-controls="styleguide-spacings-{{ spacing[0] }}" aria-expanded="false">
+										<span class="MiyagiSpacings-prop MiyagiCustomProp-prop">{{ spacing[0] }}</span>
+									</button>
+									<dl class="MiyagiCustomProp-details" id="styleguide-spacings-{{ spacing[0] }}" hidden>
+										<dt class="MiyagiCustomProp-detailsProperty">Name</dt>
+										<dd class="MiyagiCustomProp-detailsValue">{{ spacing[1].customProp }}</dd>
+										<dt class="MiyagiCustomProp-detailsProperty">Size</dt>
+										<dd class="MiyagiCustomProp-detailsValue" data-value="{{ spacing[1].customProp }}"></dd>
+									</dl>
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}

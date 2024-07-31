@@ -1,0 +1,8 @@
+<p>All <a href="/configuration/options">available options</a> — except for <code>engine.render()</code> can be set via command line.</p>
+<ul>
+<li>You can use dot notation for the keys. That way you can also set complex values like objects for <a href="/configuration/options#assets">assets</a>).</li>
+<li>You can set an array as value by separating the values with a space.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre class="language-bash"><code class="language-bash">miyagi start <span class="token parameter variable">--files.template.extension</span> twig <span class="token parameter variable">--assets.css.development</span> css/index.css css/forms.css</code></pre>
+<p><em><strong>Note:</strong> If an option is passed as a CLI argument and defined in your <code>.miyagi.js</code>, the CLI argument is used.</em></p>

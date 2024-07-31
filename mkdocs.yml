@@ -33,7 +33,6 @@ nav:
       - Available options: configuration/options.md
       - Via config file: configuration/config-file.md
       - Via CLI: configuration/cli.md
-      - Extending a template engine: configuration/extending-a-template-engine.md
   - CLI commands:
       - Starting miyagi: cli-commands/starting-miyagi.md
       - Creating a component: cli-commands/creating-a-component.md
@@ -54,7 +53,6 @@ nav:
   - How-to's:
       - Adding JS files: how-to/adding-js-files.md
       - Adding custom CSS and JS per component: how-to/adding-custom-css-and-js-per-component.md
-      - Extending a template engine: how-to/extending-a-template-engine.md
       - Using dark and light mode: how-to/using-dark-and-light-mode.md
       - Theming the UI: how-to/theming-the-ui.md
       - Changing the text direction: how-to/changing-the-text-direction.md

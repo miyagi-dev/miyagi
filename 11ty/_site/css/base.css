@@ -1,0 +1,178 @@
+html {
+	--hs: 220deg 24%;
+	--color-copy: light-dark(hsl(208deg 40% 20%), hsl(208deg 40% 80%));
+	--color-code: light-dark(hsl(var(--hs) 95%), hsl(var(--hs) 15%));
+	--color-divider: light-dark(hsl(var(--hs) 75%), hsl(var(--hs) 25%));
+	--color-bg: light-dark(#fff, hsl(var(--hs) 10%));
+	--gap: clamp(2rem, 5vi, 5rem);
+	--pico-font-size: 100% !important;
+
+	color-scheme: light;
+	background: var(--color-bg);
+}
+
+body {
+	display: grid;
+	gap: var(--gap);
+	color: var(--color-copy);
+	max-inline-size: 72em;
+	margin-inline: auto;
+	font-size: 1.125rem;
+}
+
+pre {
+	background: var(--color-code);
+	border: 0.0625rem solid transparent;
+}
+
+:not(pre) > code {
+	background: var(--color-code);
+	font-size-adjust: 0.45;
+	padding: 0.2em;
+}
+
+h1 {
+	margin-block-start: 0;
+}
+
+a {
+	color: light-dark(hsl(312deg 35% 25%), hsl(312deg 35% 75%));
+}
+
+[aria-current="page"] {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+nav {
+	font-size: 1rem;
+}
+
+nav a {
+	text-decoration: none;
+}
+
+nav a:hover {
+	text-decoration: underline;
+}
+
+nav svg {
+	margin-block-start: 0.75em;
+}
+
+nav ul {
+	list-style: "";
+	padding-inline-start: 0;
+}
+
+nav > ul {
+	border-block-end: 0.0625em solid var(--color-divider);
+	padding-block-end: 2em;
+	margin-block-end: 2em;
+}
+
+nav > ul > li > a {
+	font-weight: 500;
+}
+
+nav ul ul {
+	padding-inline-start: 1.5em;
+	font-size: 0.875em;
+}
+
+nav li {
+	margin-block-start: 0.5em;
+}
+
+main {
+	overflow-x: hidden;
+}
+
+@media (width <= 64em) {
+	.nav-desktop {
+		display: none;
+	}
+
+	.nav-mobile {
+		position: sticky;
+		inset-block-start: 0;
+		background: var(--color-bg);
+		padding-inline: 1rem;
+		max-block-size: 100dvb;
+		overflow-y: auto;
+		overscroll-behavior: contain;
+	}
+
+	.nav-mobile summary {
+		list-style: none;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		position: sticky;
+		inset-block-start: 0;
+		background: var(--color-bg);
+		padding-block: 1rem;
+	}
+
+	.nav-mobile summary::-webkit-details-marker {
+		display: none;
+	}
+
+	.nav-mobile summary > span {
+		display: block;
+		inline-size: 1.25em;
+		height: 1em;
+		background: linear-gradient(
+			to bottom,
+			var(--color-copy) 17.5%,
+			transparent 17.5%,
+			transparent 42.5%,
+			var(--color-copy) 42.5%,
+			var(--color-copy) 57.5%,
+			transparent 57.5%,
+			transparent 82.5%,
+			var(--color-copy) 82.5%
+		);
+	}
+
+	.nav-mobile summary span span {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		border: 0;
+		padding: 0;
+		clip-path: inset(100%);
+		clip: rect(0 0 0 0);
+		overflow: hidden;
+	}
+
+	.nav-mobile nav {
+		padding-block-end: 1rem;
+	}
+}
+
+.github-link {
+	font-weight: 600;
+}
+
+@media (width > 64em) {
+	body {
+		grid-template-columns: 14rem 1fr;
+		padding: var(--gap);
+	}
+
+	.nav-mobile {
+		display: none;
+	}
+
+	.nav-desktop > ul {
+		margin-block-start: 2rem;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color-scheme: dark;
+	}
+}

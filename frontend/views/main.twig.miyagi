@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}" class="theme-{{ theme.mode }}" dir="{{ uiTextDirection }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,width=device-width">
+    <meta name="color-scheme" content="dark light">
+    <title>{{ userProjectName }}</title>
+    <base href="{{ basePath }}" />
+    <script src="{{ projectName }}/js/main{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %}type="module"{% else %}defer{% endif %}></script>
+    <link rel="stylesheet" href="{{ projectName }}/css/main.css">
+    <style>
+      {{ theme.css }}
+			html {
+				{% for prop, value in theme.customProperties %}
+					{{ prop }}: {{ value }};
+				{% endfor %}
+				{% for prop, value in theme.light.customProperties %}
+					{{ prop }}: {{ value }};
+				{% endfor %}
+			}
+			.theme-light {
+				{% for prop, value in theme.light.customProperties %}
+					{{ prop }}: {{ value }};
+				{% endfor %}
+			}
+			@media (prefers-color-scheme: dark) {
+				html {
+					{% for prop, value in theme.dark.customProperties %}
+						{{ prop }}: {{ value }};
+					{% endfor %}
+				}
+			}
+			.theme-dark {
+				{% for prop, value in theme.dark.customProperties %}
+					{{ prop }}: {{ value }};
+				{% endfor %}
+			}
+    </style>
+  </head>
+  <body>
+    {% include "@miyagi/menu/menu.twig.miyagi" %}
+
+    <main class="Content">
+      <div class="FrameWrapper">
+        <iframe class="Frame" id="iframe" src="{{ iframeSrc }}" name="iframe" title="Components"></iframe>
+      </div>
+    </main>
+  </body>
+</html>

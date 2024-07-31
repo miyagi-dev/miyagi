@@ -1,0 +1,67 @@
+<p>If you use CSS custom properties in your project, which are named based on a certain logic, <em>miyagi</em> can automatically create a visual overview of your design tokens based on these custom properties.</p>
+<p>To do so, add the following to your configuration:</p>
+<pre class="language-json"><code class="language-json"><span class="token property">"assets"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"customProperties"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"files"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"file/with/custom/properties.css"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h2>Naming of custom properties</h2>
+<p><em>miyagi</em> scans the CSS files for custom properties, which start with a specific prefix. By default these prefixes are:</p>
+<ul>
+<li><code>color</code></li>
+<li><code>typo</code></li>
+<li><code>spacing</code></li>
+</ul>
+<h3>Colors</h3>
+<p>Custom properties, that are named <code>--color-${name}</code>, are interpreted as colors, which can be used for typography but also as decorative colors.
+You can also name the custom properties like <code>--color-typo-${name}</code> or <code>--color-decoration-${name}</code>. That way <em>miyagi</em> knows that this color is only supposed to be used for typography or decorations like background, border etc., and will render them accordingly.</p>
+<h4>Examples</h4>
+<ul>
+<li><code>--color-Primary</code></li>
+<li><code>--color-decoration-Gold</code></li>
+<li><code>--color-typo-Headline</code></li>
+</ul>
+<h3>Typography</h3>
+<p>As typography consists of multiple CSS properties (as opposed to colors and spacings), <em>miyagi</em> looks for custom properties, that start with <code>--typo-${name}</code> and end with any of the following:</p>
+<ul>
+<li><code>-font-family</code></li>
+<li><code>-font-feature-settings</code></li>
+<li><code>-font-kerning</code></li>
+<li><code>-font-size-adjust</code></li>
+<li><code>-font-size</code></li>
+<li><code>-font-stretch</code></li>
+<li><code>-font-style</code></li>
+<li><code>-font-variant-caps</code></li>
+<li><code>-font-variant</code></li>
+<li><code>-font-weight</code></li>
+<li><code>-letter-spacing</code></li>
+<li><code>-line-height</code></li>
+<li><code>-text-shadow</code></li>
+<li><code>-text-transform</code></li>
+</ul>
+<p><em>miyagi</em> will then use all these custom properties to render an exemplary text node.</p>
+<h4>Examples</h4>
+<ul>
+<li><code>--typo-Headline-font-family</code></li>
+<li><code>--typo-Headline-font-size</code></li>
+<li><code>--typo-Headline-line-height</code></li>
+</ul>
+<h3>Spacings</h3>
+<p>Custom properties for spacings need to be simply called <code>--spacing-${name}</code>.</p>
+<h4>Examples</h4>
+<ul>
+<li><code>--spacing-12</code></li>
+<li><code>--spacing-24</code></li>
+<li><code>--spacing-32</code></li>
+</ul>
+<h3>Customization</h3>
+<p>You can customize the prefixes in your configuration like this:</p>
+<pre class="language-json"><code class="language-json"><span class="token property">"assets"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token property">"customProperties"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"prefixes"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"color"</span><span class="token operator">:</span> <span class="token string">"color"</span><span class="token punctuation">,</span>
+      <span class="token property">"typo"</span><span class="token operator">:</span> <span class="token string">"typo"</span><span class="token punctuation">,</span>
+      <span class="token property">"spacing"</span><span class="token operator">:</span> <span class="token string">"spacing"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>

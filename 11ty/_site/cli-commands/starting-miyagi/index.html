@@ -1,0 +1,10 @@
+<p><strong>Installed as a dev dependency:</strong></p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> run miyagi start</code></pre>
+<p>or</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">yarn</span> miyagi start</code></pre>
+<p><strong>Installed globally:</strong></p>
+<pre class="language-bash"><code class="language-bash">miyagi start</code></pre>
+<p>This will serve <em>miyagi</em> at <code>http://localhost:5000</code>. If you already have another <em>miyagi</em> instance or some other application running at port 5000, <em>miyagi</em> will automatically try to find another free port.</p>
+<h2>Changing the port</h2>
+<pre class="language-bash"><code class="language-bash"><span class="token assign-left variable">PORT</span><span class="token operator">=</span><span class="token operator">&lt;</span>port<span class="token operator">></span> miyagi start</code></pre>
+<p><em><strong>NOTE:</strong> Setting the <code>NODE_ENV</code> is optional (default is <code>development</code>), but it allows you to serve different assets based on your <a href="/configuration/options#assets">configuration</a>.</em></p>

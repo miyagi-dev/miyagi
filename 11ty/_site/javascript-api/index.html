@@ -1,0 +1,125 @@
+<h2>Methods</h2>
+<h3><code>getMockData</code></h3>
+<p>Returns the resolved mock data as a plain JSON object.</p>
+<h4>Options</h4>
+<pre><code>{
+	&quot;component&quot;: String, // Required — Path to the component directory, relative from config.components.folder.
+	&quot;variant&quot;: String // Optional — Variant name. If omitted, the default variant is used.
+}
+</code></pre>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean,
+	&quot;data&quot;: Object|Array, // The resolved mock data
+	&quot;message&quot;: String // Error message in case that no mock data could be returned
+}&gt;
+</code></pre>
+<h3><code>getHtml</code></h3>
+<p>Returns the rendered variant as a string of HTML.</p>
+<h4>Options</h4>
+<pre><code>{
+	&quot;component&quot;: String, // Required — Path to the component directory, relative from config.components.folder.
+	&quot;variant&quot;: String // Optional — Variant name. If omitted, the default variant is used.
+}
+</code></pre>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean,
+	&quot;data&quot;: String, // The HTML string
+	&quot;message&quot;: String // Error message in case that no HTML could be returned
+}&gt;
+</code></pre>
+<h4>Options</h4>
+<pre><code>{
+	&quot;component&quot;: String, // Required — Path to the component directory, relative from config.components.folder.
+	&quot;variant&quot;: String // Optional — Variant name. If omitted, the default variant is used.
+}
+</code></pre>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean,
+	&quot;data&quot;: HTMLElement,
+	&quot;message&quot;: String // Error message in case that no node could be returned
+}&gt;
+</code></pre>
+<h3><code>createMockData</code></h3>
+<p>Creates a mock data file based on the components schema file, same as the CLI command.</p>
+<h4>Options</h4>
+<pre><code>{
+	&quot;component&quot;: String // Required — Path to the component directory, relative from config.components.folder.
+}
+</code></pre>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean,
+	&quot;message&quot;: String // Error message in case that the mock data could not be created
+}&gt;
+</code></pre>
+<h3><code>createBuild</code></h3>
+<p>Simply triggers a build, same as the CLI command.</p>
+<h4>Options</h4>
+<p><em>None</em></p>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean,
+	&quot;message&quot;: String // Error message in case that the build could not be created
+}&gt;
+</code></pre>
+<h3><code>createComponent</code></h3>
+<p>Creates component files for a given path.</p>
+<h4>Options</h4>
+<pre><code>{
+	&quot;component&quot;: String, // Required — Path to component directory.
+	&quot;only&quot;: Array // Optional — Values can be any of &quot;tpl&quot;, &quot;css&quot;, js&quot;, &quot;mocks&quot;, &quot;schema&quot;, &quot;docs&quot;. If omitted, all files are created.
+	&quot;skip&quot;: Array // Optional — Values can be any of &quot;tpl&quot;, &quot;css&quot;, js&quot;, &quot;mocks&quot;, &quot;schema&quot;, &quot;docs&quot;. If omitted, all files are created.
+}
+</code></pre>
+<p>Please note that only either <code>only</code> or <code>skip</code> should be passed. If both are passed, <code>only</code> is used and <code>skip</code> is ignored.</p>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean,
+	&quot;message&quot;: String // Error or success message
+}&gt;
+</code></pre>
+<h3><code>lintComponent</code></h3>
+<p>Validates the schema and mock data for a single component.</p>
+<h4>Options</h4>
+<pre><code>{
+	&quot;component&quot;: String // Required — Path to component directory.
+}
+</code></pre>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
+	&quot;data&quot;: [{
+		&quot;type&quot;: String, // Any of &quot;mocks&quot;, &quot;schema&quot;
+		&quot;data&quot;: [{
+			&quot;message&quot;: String
+		}]
+	}],
+	&quot;message&quot;: String // Error message in case success was false
+}&gt;
+</code></pre>
+<h3><code>lintComponents</code></h3>
+<p>Validates the schema and mock data for all components.</p>
+<h4>Options</h4>
+<p><em>None</em></p>
+<h4>Response</h4>
+<pre><code>Promise&lt;{
+	&quot;success&quot;: Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
+	&quot;data&quot;: [{
+		&quot;component&quot;: String, // Path to component directory.
+		&quot;errors&quot;: [{
+			&quot;type&quot;: String, // Any of &quot;mocks&quot;, &quot;schema&quot;
+			&quot;data&quot;: [{
+				&quot;message&quot;: String
+			}]
+		}]
+	}],
+	&quot;message&quot;: String // Error message in case success was false
+}&gt;
+</code></pre>
+<h2>Usage</h2>
+<pre class="language-js"><code class="language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> getMockData <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@miyagi/core/api"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> <span class="token function">getMockData</span><span class="token punctuation">(</span><span class="token punctuation">{</span> … <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>

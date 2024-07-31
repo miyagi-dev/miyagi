@@ -1,0 +1,36 @@
+<p>You can customize the color scheme as well as fonts and the logo to match your current project. This can be done via <code>config.ui.theme</code>.</p>
+<p>The following options are applied to both color modes, <code>&quot;light&quot;</code> and <code>&quot;dark&quot;</code>:</p>
+<ul>
+<li><code>css</code>: string — custom CSS (not a file) you want to be added to <em>miyagi</em></li>
+<li><code>favicon</code>: string — the path to your favicon file</li>
+<li><code>js</code>: string — custom JavaScript (not a file) you want to be added to <em>miyagi</em></li>
+<li><code>mode</code>: string — any of <code>&quot;light&quot;</code>, <code>&quot;dark&quot;</code> or <code>&quot;auto&quot;</code></li>
+</ul>
+<p>The following options can be applied to both <code>config.ui.theme.light</code> and <code>config.ui.theme.dark</code>:</p>
+<ul>
+<li><code>logo</code>: string — the path to your logo file</li>
+<li><code>navigation.colorText</code>: string</li>
+<li><code>navigation.colorBackground</code>: string</li>
+<li><code>navigation.colorLinks</code>: string</li>
+<li><code>navigation.colorLinksActive</code>: string</li>
+<li><code>navigation.colorSearchBorder</code>: string</li>
+<li><code>content.colorBackground</code>: string</li>
+<li><code>content.colorText</code>: string</li>
+<li><code>content.colorHeadline1</code>: string</li>
+<li><code>content.colorHeadline2</code>: string</li>
+</ul>
+<p>All color options expect any kind of valid CSS color.</p>
+<p>Note that you can apply these options also directly to <code>config.ui.theme</code> instead of <code>config.ui.theme.(light|dark)</code>. This might make sense for the logo for example, if you can use the same one for light and dark mode.</p>
+<p>Please also refer to the <a href="/configuration/options/#theme">configuration options</a>.</p>
+<h2>Using external CSS and JS files</h2>
+<p>If you want to use actual CSS and JS files to theme miyagi, you can do that by reading those files with <code>fs</code> and then use that result in the config:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> fs <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"fs"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> css <span class="token operator">=</span> fs<span class="token punctuation">.</span><span class="token function">readFileSync</span><span class="token punctuation">(</span><span class="token string">"my/custom/styles.css"</span><span class="token punctuation">,</span> <span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token literal-property property">ui</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+		<span class="token literal-property property">theme</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+			css<span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>

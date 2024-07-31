@@ -1,0 +1,7 @@
+<p>If you need to add custom CSS or JavaScript to a component to customize in the context of <em>miyagi</em>, you can add files inside the component folder for that:</p>
+<ul>
+<li><code>&lt;component&gt;.miyagi.css</code></li>
+<li><code>&lt;component&gt;.miyagi.js</code></li>
+</ul>
+<p><code>&lt;component&gt;</code> needs to be replaced with the component name.</p>
+<p>Please note that on the component view, which renders all variations, these files are included only once (if <code>config.components.renderInIframe</code> is set to <code>false</code>). That means if you want to manipulate the components in some way, you might want to use <code>document.querySelectorAll</code> instead of <code>document.querySelector</code> to make sure it affects all variants.</p>
