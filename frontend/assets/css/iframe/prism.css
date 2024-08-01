@@ -5,62 +5,18 @@
  * @author Lea Verou
  */
 
-.MiyagiTheme--light .Miyagi-code {
-	--color: black;
-	--text-shadow: white;
-	--background: #f5f2f0;
-	--color-comment: slategray;
-	--color-property: #905;
-	--color-selector: #690;
-	--color-operator: #9a6e3a;
-	--color-atrule: #07a;
+.Miyagi-code {
+	--color: light-dark(black, white);
+	--text-shadow: light-dark(white, black);
+	--background: light-dark(#f5f2f0, hsl(30deg 20% 25%));
+	--color-comment: light-dark(slategray, hsl(30deg 20% 50%));
+	--color-property: light-dark(#905, hsl(350deg 40% 70%));
+	--color-selector: light-dark(#690, hsl(75deg 70% 60%));
+	--color-operator: light-dark(#9a6e3a, hsl(40deg 90% 60%));
+	--color-atrule: light-dark(#07a, hsl(350deg 40% 70%));
 	--color-function: #dd4a68;
 	--color-regex: #e90;
 	--color-deleted: red;
-}
-
-@media (prefers-color-scheme: light) {
-	.Miyagi-code {
-		--color: black;
-		--text-shadow: white;
-		--background: #f5f2f0;
-		--color-comment: slategray;
-		--color-property: #905;
-		--color-selector: #690;
-		--color-operator: #9a6e3a;
-		--color-atrule: #07a;
-		--color-function: #dd4a68;
-		--color-regex: #e90;
-		--color-deleted: red;
-	}
-}
-
-.MiyagiTheme--dark .Miyagi-code {
-	--color: white;
-	--text-shadow: black;
-	--background: hsl(30deg 20% 25%);
-	--color-comment: hsl(30deg 20% 50%);
-	--color-property: hsl(350deg 40% 70%);
-	--color-selector: hsl(75deg 70% 60%);
-	--color-operator: hsl(40deg 90% 60%);
-	--color-atrule: hsl(350deg 40% 70%);
-	--color-regex: #e90;
-	--color-deleted: red;
-}
-
-@media (prefers-color-scheme: dark) {
-	.Miyagi-code {
-		--color: white;
-		--text-shadow: black;
-		--background: hsl(30deg 20% 25%);
-		--color-comment: hsl(30deg 20% 50%);
-		--color-property: hsl(350deg 40% 70%);
-		--color-selector: hsl(75deg 70% 60%);
-		--color-operator: hsl(40deg 90% 60%);
-		--color-atrule: hsl(350deg 40% 70%);
-		--color-regex: #e90;
-		--color-deleted: red;
-	}
 }
 
 code[class*="language-"],

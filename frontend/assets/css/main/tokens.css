@@ -24,63 +24,60 @@ html {
 	--Miyagi-color-Link-active-background--dark: hsl(0deg 0% 12%);
 
 	/* misc */
-	--Miyagi-color-Link: var(--Miyagi-color-Link--light);
-	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
-	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);
-	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
-	--Miyagi-color-Negative: var(--Miyagi-color-Negative--light);
-	--Miyagi-color-Warning: var(--Miyagi-color-Warning--light);
-	--Miyagi-color-Positive: var(--Miyagi-color-Positive--light);
-	--Miyagi-color-Divider: var(--Miyagi-color-Divider--light);
-	--Miyagi-color-Bar: var(--Miyagi-color-Bar--light);
-	--Miyagi-color-Link-active-background: var(
-		--Miyagi-color-Link-active-background--light
+	--Miyagi-color-Link: light-dark(
+		var(--Miyagi-color-Link--light),
+		var(--Miyagi-color-Link--dark)
 	);
+	--Miyagi-color-Text: light-dark(
+		var(--Miyagi-color-Text--light),
+		var(--Miyagi-color-Text--dark)
+	);
+	--Miyagi-color-Icon: light-dark(
+		var(--Miyagi-color-Icon--light),
+		var(--Miyagi-color-Icon--dark)
+	);
+	--Miyagi-color-Background: light-dark(
+		var(--Miyagi-color-Background--light),
+		var(--Miyagi-color-Background--dark)
+	);
+	--Miyagi-color-Negative: light-dark(
+		var(--Miyagi-color-Negative--light),
+		var(--Miyagi-color-Negative--dark)
+	);
+	--Miyagi-color-Warning: light-dark(
+		var(--Miyagi-color-Warning--light),
+		var(--Miyagi-color-Warning--dark)
+	);
+	--Miyagi-color-Positive: light-dark(
+		var(--Miyagi-color-Positive--light),
+		var(--Miyagi-color-Positive--dark)
+	);
+	--Miyagi-color-Divider: light-dark(
+		var(--Miyagi-color-Divider--light),
+		var(--Miyagi-color-Divider--dark)
+	);
+	--Miyagi-color-Bar: light-dark(
+		var(--Miyagi-color-Bar--light),
+		var(--Miyagi-color-Bar--dark)
+	);
+	--Miyagi-color-Link-active-background: light-dark(
+		var(--Miyagi-color-Link-active-background--light),
+		var(--Miyagi-color-Link-active-background--dark)
+	);
+
+	color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
 	html {
-		--Miyagi-color-Link: var(--Miyagi-color-Link--dark);
-		--Miyagi-color-Text: var(--Miyagi-color-Text--dark);
-		--Miyagi-color-Icon: var(--Miyagi-color-Icon--dark);
-		--Miyagi-color-Background: var(--Miyagi-color-Background--dark);
-		--Miyagi-color-Negative: var(--Miyagi-color-Negative--dark);
-		--Miyagi-color-Warning: var(--Miyagi-color-Warning--dark);
-		--Miyagi-color-Positive: var(--Miyagi-color-Positive--dark);
-		--Miyagi-color-Divider: var(--Miyagi-color-Divider--dark);
-		--Miyagi-color-Bar: var(--Miyagi-color-Bar--dark);
-		--Miyagi-color-Link-active-background: var(
-			--Miyagi-color-Link-active-background--dark
-		);
+		color-scheme: dark;
 	}
 }
 
 .theme-light {
-	--Miyagi-color-Link: var(--Miyagi-color-Link--light);
-	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
-	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);
-	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
-	--Miyagi-color-Negative: var(--Miyagi-color-Negative--light);
-	--Miyagi-color-Warning: var(--Miyagi-color-Warning--light);
-	--Miyagi-color-Positive: var(--Miyagi-color-Positive--light);
-	--Miyagi-color-Divider: var(--Miyagi-color-Divider--light);
-	--Miyagi-color-Bar: var(--Miyagi-color-Bar--light);
-	--Miyagi-color-Link-active-background: var(
-		--Miyagi-color-Link-active-background--light
-	);
+	color-scheme: light;
 }
 
 .theme-dark {
-	--Miyagi-color-Link: var(--Miyagi-color-Link--dark);
-	--Miyagi-color-Text: var(--Miyagi-color-Text--dark);
-	--Miyagi-color-Icon: var(--Miyagi-color-Icon--dark);
-	--Miyagi-color-Background: var(--Miyagi-color-Background--dark);
-	--Miyagi-color-Negative: var(--Miyagi-color-Negative--dark);
-	--Miyagi-color-Warning: var(--Miyagi-color-Warning--dark);
-	--Miyagi-color-Positive: var(--Miyagi-color-Positive--dark);
-	--Miyagi-color-Divider: var(--Miyagi-color-Divider--dark);
-	--Miyagi-color-Bar: var(--Miyagi-color-Bar--dark);
-	--Miyagi-color-Link-active-background: var(
-		--Miyagi-color-Link-active-background--dark
-	);
+	color-scheme: dark;
 }
