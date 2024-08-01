@@ -31,31 +31,10 @@
 		content: "";
 		inline-size: 1em;
 		block-size: 0.5625em;
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E");
-	}
-
-	.theme-light accordion-tabs summary::after {
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E");
-	}
-
-	html:has([name="theme"][value="light"]:checked)
-		accordion-tabs
-		summary::after {
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E");
-	}
-
-	.theme-dark accordion-tabs summary::after {
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E");
-	}
-
-	html:has([name="theme"][value="dark"]:checked) accordion-tabs summary::after {
-		background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E");
-	}
-
-	@media (prefers-color-scheme: dark) {
-		accordion-tabs summary::after {
-			background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E");
-		}
+		background-image: light-dark(
+			url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E"),
+			url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E")
+		);
 	}
 
 	accordion-tabs details p {
