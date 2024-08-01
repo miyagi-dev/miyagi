@@ -1,3 +1,5 @@
+# Default configuration
+
 Please refer to the [available options](/configuration/options/) for a full explanation and possible values.
 
 ```js

@@ -1,3 +1,5 @@
+# Linting mock data
+
 When linting components, _miyagi_ checks if the JSON schema files are valid and if the mock data fits to the JSON schema file.
 
 You can either lint all components at once via:

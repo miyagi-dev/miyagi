@@ -1,3 +1,5 @@
+# Options
+
 ## `assets`
 
 _Settings for assets that miyagi serves (independently from your components)._

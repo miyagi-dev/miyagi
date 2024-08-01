@@ -1,3 +1,5 @@
+# Using dark and light mode
+
 _miyagi_ comes with a light and a dark mode. By default the light mode is activated.
 
 ## Changing via configuration

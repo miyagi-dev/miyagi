@@ -1,3 +1,5 @@
+# CLI
+
 All [available options](/configuration/options) — except for `engine.render()` can be set via command line.
 
 - You can use dot notation for the keys. That way you can also set complex values like objects for [assets](/configuration/options#assets)).
