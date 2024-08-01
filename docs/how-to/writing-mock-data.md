@@ -1,3 +1,5 @@
+# Writing mock data
+
 _miyagi_ tries to make using mock data as convenient as possible. Therefore you can create multiple [variants](#variants) in one file, [reference other mock files](#referencing-other-mock-files), [reference template files](#referencing-template-files) and [join those](#joining-templates). It is even possible to use ES modules if you want to [asynchronously create mock data](#asynchronous-mock-data).
 
 _**NOTE:** Please do not use keys that start with `$` as miyagi uses these for specific functionality (more about that below)._

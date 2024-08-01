@@ -1,3 +1,5 @@
+# Adding documentation
+
 _miyagi_ supports multiple ways of documentation:
 
 1. You can create [documentation files in your components](/component-files/documentation/) to document their behavior.

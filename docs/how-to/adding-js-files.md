@@ -1,3 +1,5 @@
+# Adding JS files
+
 Since there are different ways to include JavaScript files in HTML, the configuration can be a bit more complex.
 
 The **simplest way** is to add one file:

@@ -1,3 +1,5 @@
+# Theming the UI
+
 You can customize the color scheme as well as fonts and the logo to match your current project. This can be done via `config.ui.theme`.
 
 The following options are applied to both color modes, `"light"` and `"dark"`:
