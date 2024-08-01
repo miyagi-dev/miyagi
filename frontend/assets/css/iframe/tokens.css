@@ -37,73 +37,70 @@ html {
 	--Miyagi-color-Icon--dark: hsl(0deg 0% 60%);
 
 	/* misc */
-	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
-	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
-	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--light);
-	--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--light);
-	--Miyagi-color-Outline: var(--Miyagi-color-Outline--light);
-	--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--light);
-	--Miyagi-color-Negative: var(--Miyagi-color-Negative--light);
-	--Miyagi-color-Warning: var(--Miyagi-color-Warning--light);
-	--Miyagi-color-Positive: var(--Miyagi-color-Positive--light);
-	--Miyagi-color-OverlayBackground: var(
-		--Miyagi-color-OverlayBackground--light
+	--Miyagi-color-Background: light-dark(
+		var(--Miyagi-color-Background--light),
+		var(--Miyagi-color-Background--dark)
 	);
-	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--light);
-	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--light);
-	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);
+	--Miyagi-color-Text: light-dark(
+		var(--Miyagi-color-Text--light),
+		var(--Miyagi-color-Text--dark)
+	);
+	--Miyagi-color-TextSecondary: light-dark(
+		var(--Miyagi-color-TextSecondary--light),
+		var(--Miyagi-color-TextSecondary--dark)
+	);
+	--Miyagi-color-TextTertiary: light-dark(
+		var(--Miyagi-color-TextTertiary--light),
+		var(--Miyagi-color-TextTertiary--dark)
+	);
+	--Miyagi-color-Outline: light-dark(
+		var(--Miyagi-color-Outline--light),
+		var(--Miyagi-color-Outline--dark)
+	);
+	--Miyagi-color-Code-background: light-dark(
+		var(--Miyagi-color-Code-background--light),
+		var(--Miyagi-color-Code-background--dark)
+	);
+	--Miyagi-color-Negative: light-dark(
+		var(--Miyagi-color-Negative--light),
+		var(--Miyagi-color-Negative--dark)
+	);
+	--Miyagi-color-Warning: light-dark(
+		var(--Miyagi-color-Warning--light),
+		var(--Miyagi-color-Warning--dark)
+	);
+	--Miyagi-color-Positive: light-dark(
+		var(--Miyagi-color-Positive--light),
+		var(--Miyagi-color-Positive--dark)
+	);
+	--Miyagi-color-OverlayBackground: light-dark(
+		var(--Miyagi-color-OverlayBackground--light),
+		var(--Miyagi-color-OverlayBackground--dark)
+	);
+	--Miyagi-color-bg-Tooltip: light-dark(
+		var(--Miyagi-color-bg-Tooltip--light),
+		var(--Miyagi-color-bg-Tooltip--dark)
+	);
+	--Miyagi-color-outline-Tooltip: light-dark(
+		var(--Miyagi-color-outline-Tooltip--light),
+		var(--Miyagi-color-outline-Tooltip--dark)
+	);
+	--Miyagi-color-Icon: light-dark(
+		var(--Miyagi-color-Icon--light),
+		var(--Miyagi-color-Icon--dark)
+	);
 }
 
 @media (prefers-color-scheme: dark) {
 	html {
-		--Miyagi-color-Background: var(--Miyagi-color-Background--dark);
-		--Miyagi-color-Text: var(--Miyagi-color-Text--dark);
-		--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--dark);
-		--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--dark);
-		--Miyagi-color-Outline: var(--Miyagi-color-Outline--dark);
-		--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--dark);
-		--Miyagi-color-Negative: var(--Miyagi-color-Negative--dark);
-		--Miyagi-color-Warning: var(--Miyagi-color-Warning--dark);
-		--Miyagi-color-Positive: var(--Miyagi-color-Positive--dark);
-		--Miyagi-color-OverlayBackground: var(
-			--Miyagi-color-OverlayBackground--dark
-		);
-		--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--dark);
-		--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--dark);
-		--Miyagi-color-Icon: var(--Miyagi-color-Icon--dark);
+		color-scheme: dark;
 	}
 }
 
 .MiyagiTheme--light {
-	--Miyagi-color-Background: var(--Miyagi-color-Background--light);
-	--Miyagi-color-Text: var(--Miyagi-color-Text--light);
-	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--light);
-	--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--light);
-	--Miyagi-color-Outline: var(--Miyagi-color-Outline--light);
-	--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--light);
-	--Miyagi-color-Negative: var(--Miyagi-color-Negative--light);
-	--Miyagi-color-Warning: var(--Miyagi-color-Warning--light);
-	--Miyagi-color-Positive: var(--Miyagi-color-Positive--light);
-	--Miyagi-color-OverlayBackground: var(
-		--Miyagi-color-OverlayBackground--light
-	);
-	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--light);
-	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--light);
-	--Miyagi-color-Icon: var(--Miyagi-color-Icon--light);
+	color-scheme: light;
 }
 
 .MiyagiTheme--dark {
-	--Miyagi-color-Background: var(--Miyagi-color-Background--dark);
-	--Miyagi-color-Text: var(--Miyagi-color-Text--dark);
-	--Miyagi-color-TextSecondary: var(--Miyagi-color-TextSecondary--dark);
-	--Miyagi-color-TextTertiary: var(--Miyagi-color-TextTertiary--dark);
-	--Miyagi-color-Outline: var(--Miyagi-color-Outline--dark);
-	--Miyagi-color-Code-background: var(--Miyagi-color-Code-background--dark);
-	--Miyagi-color-Negative: var(--Miyagi-color-Negative--dark);
-	--Miyagi-color-Warning: var(--Miyagi-color-Warning--dark);
-	--Miyagi-color-Positive: var(--Miyagi-color-Positive--dark);
-	--Miyagi-color-OverlayBackground: var(--Miyagi-color-OverlayBackground--dark);
-	--Miyagi-color-bg-Tooltip: var(--Miyagi-color-bg-Tooltip--dark);
-	--Miyagi-color-outline-Tooltip: var(--Miyagi-color-outline-Tooltip--dark);
-	--Miyagi-color-Icon: var(--Miyagi-color-Icon--dark);
+	color-scheme: dark;
 }
