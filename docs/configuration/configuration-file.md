@@ -1,3 +1,5 @@
+# Configuration file
+
 **`.miyagi.{js|mjs}`**
 
 The config file needs to be a JS file with an ES module default export for the configuration:

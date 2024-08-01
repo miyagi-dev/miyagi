@@ -1,3 +1,5 @@
+# Creating a design token overview
+
 If you use CSS custom properties in your project, which are named based on a certain logic, _miyagi_ can automatically create a visual overview of your design tokens based on these custom properties.
 
 To do so, add the following to your configuration:

@@ -1,3 +1,5 @@
+# Assets
+
 **File:** `index.css` and `index.js`
 
 If the files should have the same name as the component folder, you can [define that in the config](/configuration/options#files).

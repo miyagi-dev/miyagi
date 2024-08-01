@@ -1,3 +1,5 @@
+# Creating mock data
+
 ```bash
 miyagi mocks path/to/your/component
 ```
