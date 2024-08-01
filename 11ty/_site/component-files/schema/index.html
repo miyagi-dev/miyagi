@@ -1,9 +1,0 @@
-<p><strong>File:</strong> <code>schema.json</code> or <code>schema.yaml</code></p>
-<p>You can use this file to define a <a href="http://json-schema.org/">JSON schema</a> for your component.</p>
-<p>When creating a new component via <code>miyagi new &lt;component&gt;</code>, the schema file is created with this content:</p>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span>
-	<span class="token property">"$schema"</span><span class="token operator">:</span> <span class="token string">"http://json-schema.org/draft-07/schema"</span><span class="token punctuation">,</span>
-	<span class="token property">"required"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-	<span class="token property">"properties"</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>Your mock data will be validated against your schema. The result will be rendered on the <a href="/the-ui/#component">component view</a> and logged in the console (if the validation failed).</p>

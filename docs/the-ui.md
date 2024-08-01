@@ -1,3 +1,5 @@
+# The UI
+
 ## Start
 
 To render some markdown based introduction or documentation on the start page, you can put a markdown file `README.md` in your [`components folder`](/configuration/options#components). Its content is rendered at the very top directly below the [`project name`](/configuration/options#projectname).

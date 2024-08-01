@@ -1,0 +1,13 @@
+{
+	"type": "module",
+	"scripts": {
+		"dev": "eleventy --serve"
+	},
+	"dependencies": {
+		"@11ty/eleventy": "^v3.0.0-beta.1",
+		"@11ty/eleventy-navigation": "^0.3.5",
+		"@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+		"markdown-it": "^14.1.0",
+		"markdown-it-anchor": "^9.0.1"
+	}
+}

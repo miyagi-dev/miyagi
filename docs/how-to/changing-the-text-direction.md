@@ -1,3 +1,5 @@
+# Changing the text direction
+
 By default, both the _miyagi_ UI and the components are rendered with a text direction from left to right.
 
 You can set both individually via the configuration options `ui.textDirection` and `components.textDirection`.

@@ -1,3 +1,5 @@
+# JavaScript API
+
 ## Methods
 
 ### `getMockData`

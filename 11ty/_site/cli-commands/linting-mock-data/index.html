@@ -1,7 +1,0 @@
-<p>When linting components, <em>miyagi</em> checks if the JSON schema files are valid and if the mock data fits to the JSON schema file.</p>
-<p>You can either lint all components at once via:</p>
-<pre class="language-bash"><code class="language-bash">miyagi lint</code></pre>
-<p>or lint only a specific component via:</p>
-<pre class="language-bash"><code class="language-bash">miyagi lint path/to/component</code></pre>
-<p>Please note that when you reference a schema file from another schema file or a mock file from another mock file (<a href="/component-files/mocks/#referencing-other-mock-files">Referencing other mock files</a>) and the referenced file is invalid, you will get multiple errors reported by <em>miyagi</em> (one for the invalid file and one for the file which includes the invalid file).</p>
-<p>If you lint all components, the process will properly be exited with error code 1. This can be helpful if you want to include the linting in your CI e.g..</p>

@@ -1,3 +1,5 @@
+# Organizing components
+
 _miyagi_ assumes that you have a dedicated folder for each of your components like this:
 
 ```

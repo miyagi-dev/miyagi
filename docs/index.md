@@ -1,3 +1,8 @@
+---
+eleventyNavigation:
+  hide: true
+---
+
 # miyagi
 
 _miyagi_ is a component development tool for JavaScript templating engines.
