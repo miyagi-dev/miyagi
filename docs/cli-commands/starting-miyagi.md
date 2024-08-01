@@ -1,3 +1,10 @@
+---
+eleventyNavigation:
+  order: -1
+---
+
+# Starting miyagi
+
 **Installed as a dev dependency:**
 
 ```bash

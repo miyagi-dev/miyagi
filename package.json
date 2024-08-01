@@ -72,8 +72,7 @@
 		"test": "vitest run",
 		"lint": "stylelint frontend/assets/css/ && eslint lib/ && eslint frontend/assets/js/",
 		"fix": "eslint lib/ --fix && eslint frontend/assets/js/ --fix",
-		"release": "standard-version",
-		"docs": "mkdocs serve"
+		"release": "standard-version"
 	},
 	"browserslist": [
 		"last 2 versions",

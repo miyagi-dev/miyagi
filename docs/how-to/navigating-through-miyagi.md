@@ -1,3 +1,5 @@
+# Navigating through miyagi
+
 ## Search
 
 The search can be triggered by pressing <kbd>f</kbd>.

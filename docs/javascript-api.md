@@ -1,3 +1,10 @@
+---
+eleventyNavigation:
+  order: -1
+---
+
+# JavaScript API
+
 ## Methods
 
 ### `getMockData`

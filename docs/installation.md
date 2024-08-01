@@ -1,3 +1,10 @@
+---
+eleventyNavigation:
+  order: -3
+---
+
+# Installation
+
 **_miyagi_ can be installed from [npm](https://www.npmjs.com/package/@miyagi/core):**
 
 ```bash

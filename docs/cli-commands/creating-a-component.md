@@ -1,3 +1,5 @@
+# Creating a component
+
 ```bash
 miyagi new <folderName>/<componentName>`
 ```

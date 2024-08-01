@@ -1,3 +1,9 @@
+---
+title: Home
+eleventyNavigation:
+  order: -4
+---
+
 # miyagi
 
 _miyagi_ is a component development tool for JavaScript templating engines.
