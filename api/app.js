@@ -18,21 +18,18 @@ export default async function init(mergedConfig) {
 	global.app.set("view cache", false);
 	global.app.set("cache", false);
 
-	if (await setEngines()) {
-		await setState({
-			sourceTree: true,
-			menu: true,
-			partials: true,
-			fileContents: true,
-			css: true,
-		});
+	await setEngines();
+	await setState({
+		sourceTree: true,
+		menu: true,
+		partials: true,
+		fileContents: true,
+		css: true,
+	});
 
-		setStatic();
-		setRouter();
-		setViews();
+	setStatic();
+	setRouter();
+	setViews();
 
-		return global.app;
-	}
-
-	return false;
+	return global.app;
 }

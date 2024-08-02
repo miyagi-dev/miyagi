@@ -1,4 +1,4 @@
-{% extends "@miyagi/layouts/iframe_default.twig" %}
+{% extends "@miyagi/layouts/iframe_default.twig.miyagi" %}
 	{% block body %}
 		<div class="MiyagiWrapper">
 			<div class="MiyagiContent">
