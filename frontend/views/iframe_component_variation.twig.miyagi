@@ -7,15 +7,17 @@
     </div>
     <div class="MiyagiContent MiyagiComponent">
       <div class="MiyagiComponent-variationHeader">
-        {% if mockValidation %}
-          <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
-            <span class="MiyagiStatus MiyagiStatus--{% if mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
-          </button>
-        {% else %}
-          <button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
-            Mock data
-          </button>
-        {% endif %}
+				<div class="MiyagiDeveloperInformation">
+					{% if mockValidation %}
+						<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
+							<span class="MiyagiStatus MiyagiStatus--{% if mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
+						</button>
+					{% else %}
+						<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
+							Mock data
+						</button>
+					{% endif %}
+				</div>
         <a class="MiyagiIframe-newTabLink" href="{{ standaloneUrl }}" target="_blank" rel="noopener">
           Open
         </a>

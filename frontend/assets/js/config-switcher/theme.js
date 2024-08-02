@@ -12,34 +12,58 @@ class ThemeConfigSwitcher extends ConfigSwitcher {
 		if (this.logoWrapper) {
 			this.logoImage = this.logoWrapper.querySelector("img");
 		}
+
+		if (window.frames.iframe) {
+			if (this.cookieValue) {
+				this.render(this.cookieValue);
+			}
+
+			window.frames.iframe.addEventListener("load", () => {
+				if (this.cookieValue) {
+					this.renderTheme(this.cookieValue);
+				}
+			});
+		}
+	}
+
+	onThemeChange({ target }) {
+		super.onThemeChange({ target });
+
+		this.render(target.value);
 	}
 
 	/**
 	 * @param {string} value
 	 */
 	renderTheme(value) {
-		super.renderTheme(value);
-
 		this.options.forEach((option) => {
-			document.documentElement.classList.remove(`${this.name}-${option}`);
-
-			if (this.iframe) {
-				this.iframe.classList.remove(`MiyagiTheme--${option}`);
+			if (window.frames.iframe.document.documentElement) {
+				window.frames.iframe.document.documentElement.classList.remove(
+					`MiyagiTheme--${option}`,
+				);
 			}
 
-			this.iframes.forEach((frame) => {
+			Array.from(window.frames.iframe.frames).forEach((frame) => {
 				frame.document.documentElement.classList.remove(
 					`MiyagiTheme--${option}`,
 				);
 			});
 		});
 
-		document.documentElement.classList.add(`${this.name}-${value}`);
-
-		this.iframe.classList.add(`MiyagiTheme--${value}`);
-		this.iframes.forEach((frame) => {
+		window.frames.iframe.document.documentElement.classList.add(
+			`MiyagiTheme--${value}`,
+		);
+		Array.from(window.frames.iframe.frames).forEach((frame) => {
 			frame.document.documentElement.classList.add(`MiyagiTheme--${value}`);
 		});
+	}
+
+	render(value) {
+		this.options.forEach((option) => {
+			document.documentElement.classList.remove(`${this.name}-${option}`);
+		});
+
+		document.documentElement.classList.add(`${this.name}-${value}`);
 
 		if (this.logoWrapper) {
 			if (value === "auto") {
