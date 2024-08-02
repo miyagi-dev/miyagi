@@ -8,14 +8,19 @@ class ConfigSwitcher {
 	 */
 	constructor(form) {
 		this.form = form;
-		this.inputs = Array.from(this.form.querySelectorAll('[type="radio"]'));
+		this.inputs = Array.from(
+			this.form.querySelectorAll('[type="radio"], [type="checkbox"]'),
+		);
 		this.options = this.inputs.map((el) => el.value);
 		this.name = this.inputs[0].name;
-		this.normalizedTitle = document.title;
+		this.cookieName = `miyagi_${document.title.replaceAll(" ", "-")}_${this.name}`;
+		this.cookieValue = this.#getCookie(this.cookieName);
 
 		this.inputs.forEach((input) => {
 			input.addEventListener("change", this.onThemeChange.bind(this));
 		});
+
+		this.renderSwitcher();
 	}
 
 	/**
@@ -33,16 +38,25 @@ class ConfigSwitcher {
 	 * @param {string} value
 	 */
 	saveTheme(value) {
-		document.cookie = `miyagi_${document.title}_${this.name}=${value};`;
+		document.cookie = `${this.cookieName}=${value};`;
 	}
 
 	/**
 	 * @param {Theme} value
 	 */
-	renderTheme(value) {
-		this.form.querySelector(`[value="${value}"]`).checked = true;
-		this.iframe = window.frames.iframe.document.documentElement;
-		this.iframes = Array.from(window.frames.iframe.frames);
+	renderSwitcher() {
+		const input = this.form.querySelector(`[value="${this.cookieValue}"]`);
+
+		if (input) {
+			input.checked = true;
+		}
+	}
+
+	#getCookie(name) {
+		return document.cookie.split("; ").reduce((r, v) => {
+			const parts = v.split("=");
+			return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+		}, "");
 	}
 }
 

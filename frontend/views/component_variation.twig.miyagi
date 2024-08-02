@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="MiyagiTheme--{{ theme.mode }}" lang="{{ componentLanguage }}" dir="{{ componentTextDirection }}">
+<html class="MiyagiTheme--{{ userUiConfig.theme }}" lang="{{ componentLanguage }}" dir="{{ userUiConfig.componentTextDirection }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
