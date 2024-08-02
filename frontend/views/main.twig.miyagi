@@ -38,7 +38,7 @@
     </style>
   </head>
   <body>
-    {% include "@miyagi/menu/menu.twig" %}
+    {% include "@miyagi/menu/menu.twig.miyagi" %}
 
     <main class="Content">
       <div class="FrameWrapper">

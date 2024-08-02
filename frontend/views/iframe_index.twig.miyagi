@@ -1,4 +1,4 @@
-{% extends "@miyagi/layouts/iframe_index.twig" %}
+{% extends "@miyagi/layouts/iframe_index.twig.miyagi" %}
 	{% block additionalCss %}
     {% for file in additionalCssFiles %}
     <link rel="stylesheet" href="{{ file }}">
