@@ -3,15 +3,15 @@
 		target="iframe" {% if showAll %} aria-current="page" {% endif %}>
 		{% if theme.light.logo %}
 			<picture class="Title-logo">
-				{% if theme.mode == "auto" %}
+				{% if userUiConfig.theme == "auto" %}
 					<source srcset="{{ theme.dark.logo }}" media="(prefers-color-scheme: dark)">
 					<source srcset="{{ theme.light.logo }}" media="(prefers-color-scheme: light)">
 				{% endif %}
 				<img
 					src="
-						{% if theme.mode == "dark" %}{{ theme.dark.logo }}{% endif %}
-						{% if theme.mode == "light" %}{{ theme.light.logo }}{% endif %}
-						{% if theme.mode == "auto" %}{{ theme.light.logo }}{% endif %}
+						{% if userUiConfig.theme == "dark" %}{{ theme.dark.logo }}{% endif %}
+						{% if userUiConfig.theme == "light" %}{{ theme.light.logo }}{% endif %}
+						{% if userUiConfig.theme == "auto" %}{{ theme.light.logo }}{% endif %}
 					"
 					data-light="{{ theme.light.logo }}"
 					data-dark="{{ theme.dark.logo }}"
