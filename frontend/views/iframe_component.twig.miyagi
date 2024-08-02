@@ -10,43 +10,45 @@
 						{{ documentation }}
 					{% endif %}
 				</div>
-				{% if renderInformation %}
-					<h2 class="Miyagi-sectionTitle">Information</h2>
-					<dl class="MiyagiInformation">
-						<div class="MiyagiInformation-wrapper">
-							<dt class="MiyagiInformation-attr">Folder</dt>
-							<dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
-						</div>
-					</dl>
-				{% endif %}
-				{% if renderFileTabs %}
-					<h2 class="Miyagi-sectionTitle">Files</h2>
-					<div class="MiyagiTabs">
-						{% if schema %}
-							<details class="MiyagiTabs-tab">
-								<summary>Schema</summary>
-								<div id="json-tree-resolved-schema" data-jsontree-js='{ data: {{ schema }} }'></div>
-							</details>
-						{% endif %}
-						{% if mocks %}
-							<details class="MiyagiTabs-tab">
-								<summary>Mocks</summary>
-								<div id="json-tree-resolved-mocks" data-jsontree-js='{ data: {{ mocks }} }'></div>
-							</details>
-						{% endif %}
-						{% if template %}
-							<details class="MiyagiTabs-tab">
-								<summary>Template</summary>
-								<pre class="Miyagi-code language-{{ template.type }}"><span class="token comment">// {{ template.file }}</span>
+				<div class="MiyagiDeveloperInformation">
+					{% if renderInformation %}
+						<h2 class="Miyagi-sectionTitle">Information</h2>
+						<dl class="MiyagiInformation">
+							<div class="MiyagiInformation-wrapper">
+								<dt class="MiyagiInformation-attr">Folder</dt>
+								<dd class="MiyagiInformation-val"><code>{{ folder }}</code></dd>
+							</div>
+						</dl>
+					{% endif %}
+					{% if renderFileTabs %}
+						<h2 class="Miyagi-sectionTitle">Files</h2>
+						<div class="MiyagiTabs">
+							{% if schema %}
+								<details class="MiyagiTabs-tab">
+									<summary>Schema</summary>
+									<div id="json-tree-resolved-schema" data-jsontree-js='{ data: {{ schema }} }'></div>
+								</details>
+							{% endif %}
+							{% if mocks %}
+								<details class="MiyagiTabs-tab">
+									<summary>Mocks</summary>
+									<div id="json-tree-resolved-mocks" data-jsontree-js='{ data: {{ mocks }} }'></div>
+								</details>
+							{% endif %}
+							{% if template %}
+								<details class="MiyagiTabs-tab">
+									<summary>Template</summary>
+									<pre class="Miyagi-code language-{{ template.type }}"><span class="token comment">// {{ template.file }}</span>
 
 <code>{{ template.string|escape }}</code></pre>
-							</details>
+								</details>
+							{% endif %}
+						</div>
+						{% if schemaError %}
+							<p class="MiyagiErrorMessage">{{ schemaError }}</p>
 						{% endif %}
-					</div>
-					{% if schemaError %}
-						<p class="MiyagiErrorMessage">{{ schemaError }}</p>
 					{% endif %}
-				{% endif %}
+				</div>
 				{% if variations %}
 					<h2 class="Miyagi-sectionTitle">Variants</h2>
 				{% endif %}
@@ -57,15 +59,17 @@
 						<div class="MiyagiComponent-head">
 							<a href="{{ variation.url }}" class="MiyagiComponent-file">{{ variation.variation }}</a>
 							<div class="MiyagiComponent-headMeta">
-								{% if variation.mockValidation %}
-									<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ variation.normalizedVariation }}">
-										<span class="MiyagiStatus MiyagiStatus--{% if variation.mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if variation.mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
-									</button>
-								{% else %}
-									<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ variation.normalizedVariation }}">
-										Mock data
-									</button>
-								{% endif %}
+								<div class="MiyagiDeveloperInformation">
+									{% if variation.mockValidation %}
+										<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ variation.normalizedVariation }}">
+											<span class="MiyagiStatus MiyagiStatus--{% if variation.mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if variation.mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
+										</button>
+									{% else %}
+										<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ variation.normalizedVariation }}">
+											Mock data
+										</button>
+									{% endif %}
+								</div>
 								<a class="MiyagiIframe-newTabLink" href="{{ variation.standaloneUrl }}" target="_blank" rel="noopener">
 									Open
 								</a>
@@ -95,7 +99,7 @@
 							<iframe class="MiyagiComponent-iframe" src="{{ variation.standaloneUrl }}" frameborder="0" title="{{ variation.variation }}" id="iframe"></iframe>
 						</div>
 					{% else %}
-						<div class="MiyagiComponent-html" dir="{{ componentTextDirection }}" lang="{{ componentLanguage }}">
+						<div class="MiyagiComponent-html" dir="{{ userUiConfig.componentTextDirection }}" lang="{{ componentLanguage }}">
 							{{ variation.html }}
 							{% if error %}
 								<p class="MiyagiError">{{ variation.error }}</p>

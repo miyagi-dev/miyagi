@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}" class="theme-{{ theme.mode }}" dir="{{ uiTextDirection }}">
+<html lang="{{ lang }}" class="theme-{{ userUiConfig.theme }}" dir="{{ uiTextDirection }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
     <meta name="color-scheme" content="dark light">
     <title>{{ userProjectName }}</title>
     <base href="{{ basePath }}" />
-    <script src="{{ projectName }}/js/main{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %}type="module"{% else %}defer{% endif %}></script>
+    <script src="{{ projectName }}/js/main{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %}type="module"{% endif %}></script>
     <link rel="stylesheet" href="{{ projectName }}/css/main.css">
     <style>
       {{ theme.css }}

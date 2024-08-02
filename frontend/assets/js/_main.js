@@ -2,6 +2,7 @@ import "./_goto.js";
 import "./_search.js";
 import ThemeConfigSwitcher from "./config-switcher/theme.js";
 import TextDirectionConfigSwitcher from "./config-switcher/text-direction.js";
+import DevelopmentModeConfigSwitcher from "./config-switcher/development-mode.js";
 
 class Main {
 	/**
@@ -52,6 +53,9 @@ class Main {
 		new ThemeConfigSwitcher(document.querySelector(".js-ThemeSwitcher"));
 		new TextDirectionConfigSwitcher(
 			document.querySelector(".js-TextDirectionSwitcher"),
+		);
+		new DevelopmentModeConfigSwitcher(
+			document.querySelector(".js-DevelopmentModeSwitcher"),
 		);
 	}
 

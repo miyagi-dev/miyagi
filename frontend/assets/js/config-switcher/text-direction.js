@@ -7,15 +7,23 @@ class TextDirectionConfigSwitcher extends ConfigSwitcher {
 	 */
 	constructor(form) {
 		super(form);
+
+		if (this.iframe) {
+			this.iframe.addEventListener("load", () => {
+				this.iframeHtml = this.iframe.document.documentElement;
+
+				if (this.cookieValue) {
+					this.renderTheme(this.cookieValue);
+				}
+			});
+		}
 	}
 
 	/**
 	 * @param {string} value
 	 */
 	renderTheme(value) {
-		super.renderTheme(value);
-
-		this.iframe
+		this.iframeHtml
 			.querySelectorAll(".MiyagiComponent-html")
 			.forEach((el) => el.setAttribute("dir", value));
 
