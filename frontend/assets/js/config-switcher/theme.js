@@ -12,19 +12,35 @@ class ThemeConfigSwitcher extends ConfigSwitcher {
 		if (this.logoWrapper) {
 			this.logoImage = this.logoWrapper.querySelector("img");
 		}
+
+		if (this.iframe) {
+			if (this.cookieValue) {
+				this.render(this.cookieValue);
+			}
+
+			this.iframe.addEventListener("load", () => {
+				this.iframeHtml = this.iframe.document.documentElement;
+
+				if (this.cookieValue) {
+					this.renderTheme(this.cookieValue);
+				}
+			});
+		}
+	}
+
+	onThemeChange({ target }) {
+		super.onThemeChange({ target });
+
+		this.render(target.value);
 	}
 
 	/**
 	 * @param {string} value
 	 */
 	renderTheme(value) {
-		super.renderTheme(value);
-
 		this.options.forEach((option) => {
-			document.documentElement.classList.remove(`${this.name}-${option}`);
-
-			if (this.iframe) {
-				this.iframe.classList.remove(`MiyagiTheme--${option}`);
+			if (this.iframeHtml) {
+				this.iframeHtml.classList.remove(`MiyagiTheme--${option}`);
 			}
 
 			this.iframes.forEach((frame) => {
@@ -34,12 +50,18 @@ class ThemeConfigSwitcher extends ConfigSwitcher {
 			});
 		});
 
-		document.documentElement.classList.add(`${this.name}-${value}`);
-
-		this.iframe.classList.add(`MiyagiTheme--${value}`);
+		this.iframeHtml.classList.add(`MiyagiTheme--${value}`);
 		this.iframes.forEach((frame) => {
 			frame.document.documentElement.classList.add(`MiyagiTheme--${value}`);
 		});
+	}
+
+	render(value) {
+		this.options.forEach((option) => {
+			document.documentElement.classList.remove(`${this.name}-${option}`);
+		});
+
+		document.documentElement.classList.add(`${this.name}-${value}`);
 
 		if (this.logoWrapper) {
 			if (value === "auto") {

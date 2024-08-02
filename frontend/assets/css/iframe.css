@@ -434,6 +434,10 @@
 		margin: 0 0.5em;
 	}
 
+	[data-mode="presentation"] .MiyagiDeveloperInformation {
+		display: none;
+	}
+
 	@media screen and (prefers-reduced-motion) {
 		.MiyagiContent *,
 		.MiyagiContent *::after,
