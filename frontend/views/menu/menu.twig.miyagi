@@ -1,11 +1,11 @@
 <div class="Menu">
-	{% include "@miyagi/menu/title.twig" %}
+	{% include "@miyagi/menu/title.twig.miyagi" %}
 	<button class="Menu-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
 	<div class="Menu-content">
 		{% if folders %}
 			<div class="Menu-nav">
-				{% include "@miyagi/menu/search.twig" %}
-				{% include "@miyagi/menu/nav.twig" with {
+				{% include "@miyagi/menu/search.twig.miyagi" %}
+				{% include "@miyagi/menu/nav.twig.miyagi" with {
 					folders: folders,
 					requestedComponent: requestedComponent,
 					requestedVariation: requestedVariation,
@@ -14,8 +14,8 @@
 			</div>
 		{% endif %}
 
-		{% include "@miyagi/menu/config-switchers.twig" %}
+		{% include "@miyagi/menu/config-switchers.twig.miyagi" %}
 	</div>
 
-	{% include "@miyagi/menu/goto.twig" %}
+	{% include "@miyagi/menu/goto.twig.miyagi" %}
 </div>
