@@ -71,6 +71,8 @@ export default {
 	namespaces: {},
 	projectName: "miyagi",
 	ui: {
+		mode: "light",
+		lang: "en",
 		reload: true,
 		reloadAfterChanges: {
 			componentAssets: false,
@@ -81,7 +83,6 @@ export default {
 			favicon: null,
 			js: null,
 			logo: null,
-			mode: "light",
 			light: {
 				logo: null,
 			},

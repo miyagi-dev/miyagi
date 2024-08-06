@@ -334,6 +334,14 @@ You can then use `$tpl: "@templates/some-template"` or `$ref: "@templates/some-m
 
 _Settings for the [web UI](/the-ui)._
 
+### `mode`
+
+default: `light`<br>
+type: `string`<br>
+values: `light|dark|auto`
+
+Defines if the _miyagi_ UI should by default be rendered in light mode, dark mode or listen to the OS setting.
+
 ### `reload`
 
 default: `true`<br>
@@ -369,7 +377,6 @@ default:
 {
 	"favicon": null, // path to a favicon
 	"logo": null, // path to a logo — can be used if the same logo should be used for light and dark mode
-	"mode": "light", // "light", "dark" or "auto" (means it uses the OS setting)
 	"light": {
 		// theming for light mode
 		"logo": null, // path to a logo

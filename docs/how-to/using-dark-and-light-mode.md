@@ -4,7 +4,7 @@ _miyagi_ comes with a light and a dark mode. By default the light mode is activa
 
 ## Changing via configuration
 
-The default mode can bet set in the configuration via `ui.theme.mode`. The available options are:
+The default mode can bet set in the configuration via `ui.mode`. The available options are:
 
 - `"light"` (default)
 - `"dark"`
