@@ -54,7 +54,7 @@
 		"@vitest/coverage-v8": "^2.0.5",
 		"cssnano": "^7.0.4",
 		"eslint": "^9.8.0",
-		"eslint-plugin-jsdoc": "^48.11.0",
+		"eslint-plugin-jsdoc": "^50.2.2",
 		"gulp": "^5.0.0",
 		"gulp-postcss": "^10.0.0",
 		"jsdoc-to-markdown": "^8.0.3",
