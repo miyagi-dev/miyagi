@@ -51,6 +51,7 @@
 	"devDependencies": {
 		"@rollup/plugin-node-resolve": "^15.3.0",
 		"@rollup/plugin-terser": "^0.4.4",
+		"@types/node": "^22.9.1",
 		"@vitest/coverage-v8": "^2.1.5",
 		"cssnano": "^7.0.6",
 		"eslint": "^9.15.0",
@@ -64,6 +65,7 @@
 		"rollup": "^4.27.2",
 		"stylelint": "^16.10.0",
 		"stylelint-config-standard": "^36.0.1",
+		"typescript-eslint": "^8.15.0",
 		"vitest": "^2.1.5"
 	},
 	"scripts": {
