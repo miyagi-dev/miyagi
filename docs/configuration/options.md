@@ -53,9 +53,9 @@ default:
 
 type: `object`
 
-This object is used to generate your automated styleguide.
+This object is used to generate your automated design token overview.
 
-[More information about automated styleguides](/automated-styleguide).
+[More information about the automated design token overview](/how-to/creating-a-design-token-overview).
 
 ### `folder`
 
