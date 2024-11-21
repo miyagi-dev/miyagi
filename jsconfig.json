@@ -1,0 +1,9 @@
+{
+	"compilerOptions": {
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"checkJs": true,
+		"skipLibCheck": true
+	},
+	"include": ["lib/build/index.js"]
+}

@@ -2,7 +2,7 @@ import globals from "globals";
 import js from "@eslint/js";
 import jsdoc from "eslint-plugin-jsdoc";
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
+/** @type {import("eslint").Linter.Config[]} */
 export default [
 	{
 		files: ["api/**", "bin/**", "lib/**", "index.js"],

@@ -12,6 +12,10 @@ import setState from "../lib/state/index.js";
 import setStatic from "../lib/init/static.js";
 import setViews from "../lib/init/views.js";
 
+/**
+ * @param {object} mergedConfig
+ * @returns {Promise<object>}
+ */
 export default async function init(mergedConfig) {
 	global.app = express();
 	global.config = mergedConfig;
