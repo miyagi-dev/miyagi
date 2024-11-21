@@ -12,7 +12,16 @@ import generateMockData from "../lib/generator/mocks.js";
 import generateComponent from "../lib/generator/component.js";
 import validateMockData from "../lib/validator/mocks.js";
 
-export const getMockData = async ({ component, variant = "default" } = {}) => {
+/**
+ * @param {object} obj
+ * @param {string|null} obj.component
+ * @param {string} obj.variant
+ * @returns {Promise<object>}
+ */
+export const getMockData = async ({
+	component = null,
+	variant = "default",
+}) => {
 	if (!component)
 		return {
 			success: false,
@@ -51,7 +60,13 @@ export const getMockData = async ({ component, variant = "default" } = {}) => {
 	return { success: true, data: result.resolved };
 };
 
-export const getHtml = async ({ component, variant } = {}) => {
+/**
+ * @param {object} obj
+ * @param {string|null} obj.component
+ * @param {string} obj.variant
+ * @returns {Promise<object>}
+ */
+export const getHtml = async ({ component = null, variant = "default" }) => {
 	if (!component)
 		return {
 			success: false,
