@@ -188,6 +188,37 @@ If you need to reference a variation from another mock file, you can do so by us
 
 _**NOTE:** You need to use the normalized variation name, so instead of using `"#Variation name"`, use `"#variation-name".`_
 
+## Using definitions
+
+You can create definitions in mock files, so mock data can be reused in multiple places:
+
+```json
+{
+	"$defs": {
+		"customDefitionName": {
+			"oneVar": "someOtherValue",
+			"anotherVar": "anotherValue"
+		}
+	}
+}
+```
+
+These definitions can then either be used in the same mock file like this:
+
+```json
+{
+	"$ref": "#/$defs/customDefitionName"
+}
+```
+
+Or you can reference definitions from other mock files:
+
+```json
+{
+	"$ref": "some/other/component/#/$defs/customDefitionName"
+}
+```
+
 ## Referencing template files
 
 By referencing a template file using `$tpl`, the object would be converted into a HTML string:
@@ -261,3 +292,5 @@ If you want to define default mock data, so your variants inherit it, but not re
 ## Global mock data
 
 You can define global mocks by creating a `data.json` (`data.js` or `data.yaml`) in your [`components.folder`](/configuration/options#components). This mock data will be merged into your components mock data. The components mock data has higher priority, hence overwrites keys with the same name.
+
+You can also add definitions (see above) to the global mock data. When referencing them, you can do this with `data/#/$defs/…`.
