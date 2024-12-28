@@ -215,7 +215,7 @@
         "noSchemaFound": "No schema file found."
       }
     },
-    "serverStarted": "Running miyagi server at http://localhost:{{port}}!",
+    "serverStarted": "Running miyagi server at http://localhost:{{port}}",
     "serverStarting": "Starting miyagi server in {{node_env}} mode…",
     "settingEngineFailed": "Setting the template engine failed. Are you sure the engine defined in your config file is correct?",
     "srcFolderNotFound": "The provided components directory '{{directory}}' does not seem to exist. You can specify this in your config file (key: 'components.folder', type: String) or as a cli argument (--components.folder=<String>).",
