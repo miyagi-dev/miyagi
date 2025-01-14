@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.4.11](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.10...core/v3.4.11) (2025-01-14)
+
+
+### Bug Fixes
+
+* **cli:** Log format for dev server URL ([77f511c](https://github.com/miyagi-dev/miyagi/commit/77f511c78eb58b59dce9cbb39235186fa2751f14))
+
 ### [3.4.10](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.9...core/v3.4.10) (2024-05-03)
 
 ### [3.4.9](https://github.com/miyagi-dev/miyagi/compare/core/v3.4.8...core/v3.4.9) (2023-09-05)
