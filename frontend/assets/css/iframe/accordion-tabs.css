@@ -31,6 +31,7 @@
 		content: "";
 		inline-size: 1em;
 		block-size: 0.5625em;
+		/* stylelint-disable-next-line declaration-property-value-no-unknown */
 		background-image: light-dark(
 			url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E"),
 			url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E")
