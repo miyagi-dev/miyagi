@@ -195,7 +195,7 @@ You can create definitions in mock files, so mock data can be reused in multiple
 ```json
 {
 	"$defs": {
-		"customDefitionName": {
+		"customDefinitionName": {
 			"oneVar": "someOtherValue",
 			"anotherVar": "anotherValue"
 		}
@@ -207,7 +207,7 @@ These definitions can then either be used in the same mock file like this:
 
 ```json
 {
-	"$ref": "#/$defs/customDefitionName"
+	"$ref": "#/$defs/customDefinitionName"
 }
 ```
 
@@ -215,7 +215,7 @@ Or you can reference definitions from other mock files:
 
 ```json
 {
-	"$ref": "some/other/component/#/$defs/customDefitionName"
+	"$ref": "some/other/component/#/$defs/customDefinitionName"
 }
 ```
 
