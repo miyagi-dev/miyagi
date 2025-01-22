@@ -212,7 +212,11 @@ var _self =
 				tokenize: function (e, n) {
 					var t = n.rest;
 					if (t) {
-						for (var r in t) n[r] = t[r];
+						for (var r in t) {
+							if (r !== '__proto__' && r !== 'constructor' && r !== 'prototype') {
+								n[r] = t[r];
+							}
+						}
 						delete n.rest;
 					}
 					var a = new i();
