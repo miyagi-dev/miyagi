@@ -18,10 +18,9 @@ import validateMockData from "../lib/validator/mocks.js";
  * @param {string} obj.variant
  * @returns {Promise<object>}
  */
-export const getMockData = async ({
-	component = null,
-	variant = "default",
-}) => {
+export const getMockData = async (
+	{ component, variant } = { component: null, variant: "default" },
+) => {
 	if (!component)
 		return {
 			success: false,
@@ -66,7 +65,9 @@ export const getMockData = async ({
  * @param {string} obj.variant
  * @returns {Promise<object>}
  */
-export const getHtml = async ({ component = null, variant = "default" }) => {
+export const getHtml = async (
+	{ component, variant } = { component: null, variant: "default" },
+) => {
 	if (!component)
 		return {
 			success: false,
@@ -117,13 +118,20 @@ export const createMockData = async ({ component }) => {
 	try {
 		global.app = await init("api");
 
-		await generateMockData(
+		const { success, message } = await generateMockData(
 			path.join(global.config.components.folder, component),
 			global.config.files,
 		);
 
+		if (success) {
+			return {
+				success: true,
+			};
+		}
+
 		return {
-			success: true,
+			success,
+			message: message.text,
 		};
 	} catch (message) {
 		return {
