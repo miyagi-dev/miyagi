@@ -4,7 +4,7 @@ import { t } from "../lib/i18n/index.js";
 import {
 	getComponentData,
 	getVariationData,
-	resolveVariationData,
+	resolveData,
 } from "../lib/mocks/index.js";
 import renderIframeVariationStandalone from "../lib/render/views/iframe/variation.standalone.js";
 import build from "../lib/build/index.js";
@@ -48,7 +48,7 @@ export const getMockData = async ({
 		};
 	}
 
-	const result = await resolveVariationData(data.extended);
+	const result = await resolveData(data.extended, componentObject);
 
 	if (!result || !result.resolved) {
 		return {
