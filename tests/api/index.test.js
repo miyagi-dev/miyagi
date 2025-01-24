@@ -261,6 +261,15 @@ describe("createMockData", () => {
 		});
 	});
 
+	describe("without component", () => {
+		test("returns success: false", async () => {
+			expect(await createMockData({})).toStrictEqual({
+				success: false,
+				message: "No directory has been defined.",
+			});
+		});
+	});
+
 	describe("with invalid component", () => {
 		test("returns success: false", async () => {
 			const component = "non-existent";
@@ -474,7 +483,7 @@ describe("createComponent", () => {
 describe("lintComponents", () => {
 	test("validates the mock data of all components against their schema files and returns an array with all errors", async () => {
 		expect(await lintComponents()).toStrictEqual({
-			success: true,
+			success: false,
 			data: [
 				// Mocks that do not match the schema
 				{
@@ -506,17 +515,17 @@ describe("lintComponent", () => {
 		});
 	});
 
-	describe("with invalid schema and mocks", () => {
-		test("returns an empty array indicating that there are no errors", async () => {
-			expect(await lintComponent({ component: "button" })).toStrictEqual({
+	describe("without schema and mocks", () => {
+		test("returns success:true and null", async () => {
+			expect(await lintComponent({ component: "anchor" })).toStrictEqual({
 				success: true,
-				data: [],
+				data: null,
 			});
 		});
 	});
 
 	describe("with valid schema and mocks", () => {
-		test("returns an empty array indicating that there are no errors", async () => {
+		test("returns success: true and an empty array indicating that there are no errors", async () => {
 			expect(await lintComponent({ component: "button" })).toStrictEqual({
 				success: true,
 				data: [],
@@ -525,27 +534,27 @@ describe("lintComponent", () => {
 	});
 
 	describe("with mocks that do not match the schema", () => {
-		test("returns an array with all errors", async () => {
+		test("returns success:false an array with all errors", async () => {
 			expect(await lintComponent({ component: "card" })).toStrictEqual({
-				success: true,
+				success: false,
 				data: RESPONSES.card,
 			});
 		});
 	});
 
 	describe("with invalid schema file while mock file exists", () => {
-		test("returns an array with all errors", async () => {
+		test("returns success:false and an array with all errors", async () => {
 			expect(await lintComponent({ component: "icon" })).toStrictEqual({
-				success: true,
+				success: false,
 				data: RESPONSES.icon,
 			});
 		});
 	});
 
 	describe("with invalid schema file while no mock file exists", () => {
-		test("returns an array with all errors", async () => {
+		test("returns success:false and an array with all errors", async () => {
 			expect(await lintComponent({ component: "image" })).toStrictEqual({
-				success: true,
+				success: false,
 				data: RESPONSES.image,
 			});
 		});

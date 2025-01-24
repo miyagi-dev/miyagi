@@ -193,9 +193,11 @@ export const lintComponents = async () => {
 
 	return await Promise.all(promises)
 		.then((res) => {
+			const errors = res.filter((result) => result?.errors?.length > 0);
+
 			return {
-				success: true,
-				data: res.filter((result) => result?.errors?.length > 0),
+				success: errors.length === 0,
+				data: errors,
 			};
 		})
 		.catch((err) => {
@@ -215,10 +217,11 @@ export const lintComponent = async ({ component }) => {
 		};
 
 	const data = await getComponentData(componentObject);
+	const errors = validateMockData(componentObject, data, true);
 
 	return {
-		success: true,
-		data: validateMockData(componentObject, data, true),
+		success: errors === null || errors?.length === 0,
+		data: errors,
 	};
 };
 
