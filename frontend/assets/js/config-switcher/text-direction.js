@@ -21,10 +21,6 @@ class TextDirectionConfigSwitcher extends ConfigSwitcher {
 	 * @param {string} value
 	 */
 	renderTheme(value) {
-		window.frames.iframe.document.documentElement
-			.querySelectorAll(".MiyagiComponent-html")
-			.forEach((el) => el.setAttribute("dir", value));
-
 		Array.from(window.frames.iframe.frames).forEach((frame) => {
 			frame.document.documentElement.setAttribute("dir", value);
 		});

@@ -13,9 +13,6 @@
 		{% endfor %}
     <script src="/{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %} type="module" {% endif %}{% if prod %}
       defer{% endif %}></script>
-    {% for file in cssFiles %}
-			<link rel="stylesheet" href="{{ file }}">
-		{% endfor %}
     <link rel="stylesheet" href="/{{ projectName }}/css/iframe-background.css">
     <link rel="stylesheet" href="/{{ projectName }}/css/iframe.css">
     {% block additionalCss %}{% endblock %}
