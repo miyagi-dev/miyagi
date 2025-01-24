@@ -6,37 +6,35 @@
 {% endblock %}
 {% block body %}
 	{% if colors %}
-		<div class="MiyagiWrapper">
-			<div class="MiyagiContent">
-				<div class="MiyagiStyleguide" data-media-queries='{{ mediaQueries }}'>
-					<h1>Colors</h1>
-					{% for color in colors %}
-						{% if color.styles is not empty %}
-							<ul class="MiyagiCustomPropsGroup MiyagiColors MiyagiColors--{{ color.type }}">
-								{% for style in color.styles %}
-									{% if style.customProp %}
-										<li class="MiyagiCustomProp MiyagiColors-item"
-											style="--color: var({{ style.customProp }});{% if style.isWhite %} --backdrop: #000;{% endif %}">
-											<button class="MiyagiCustomProp-button MiyagiColors-button"
-												aria-controls="styleguide-color-{{ style.name }}" aria-expanded="false" {% if style.type %}
-												data-type="{{ style.type }}" {% endif %}>
-												<span class="MiyagiColors-prop MiyagiCustomProp-prop">{{ style.name }}</span>
-											</button>
-											<dl class="MiyagiCustomProp-details" id="styleguide-color-{{ style.name }}" hidden>
-												<dt class="MiyagiCustomProp-detailsProperty">Name</dt>
-												<dd class="MiyagiCustomProp-detailsValue">{{ style.customProp }}</dd>
-												{% for value in style.values %}
-													<dt class="MiyagiCustomProp-detailsProperty">{{ value }}</dt>
-													<dd class="MiyagiCustomProp-detailsValue" data-value="{{ value }}"></dd>
-												{% endfor %}
-											</dl>
-										</li>
-									{% endif %}
-								{% endfor %}
-							</ul>
-						{% endif %}
-					{% endfor %}
-				</div>
+		<div class="Wrapper">
+			<div class="Styleguide" data-media-queries='{{ mediaQueries }}'>
+				<h1>Colors</h1>
+				{% for color in colors %}
+					{% if color.styles is not empty %}
+						<ul class="CustomPropsGroup Colors Colors--{{ color.type }}">
+							{% for style in color.styles %}
+								{% if style.customProp %}
+									<li class="CustomProp Colors-item"
+										style="--color: var({{ style.customProp }});{% if style.isWhite %} --backdrop: #000;{% endif %}">
+										<button class="CustomProp-button Colors-button"
+											aria-controls="styleguide-color-{{ style.name }}" aria-expanded="false" {% if style.type %}
+											data-type="{{ style.type }}" {% endif %}>
+											<span class="Colors-prop CustomProp-prop">{{ style.name }}</span>
+										</button>
+										<dl class="CustomProp-details" id="styleguide-color-{{ style.name }}" hidden>
+											<dt class="CustomProp-detailsProperty">Name</dt>
+											<dd class="CustomProp-detailsValue">{{ style.customProp }}</dd>
+											{% for value in style.values %}
+												<dt class="CustomProp-detailsProperty">{{ value }}</dt>
+												<dd class="CustomProp-detailsValue" data-value="{{ value }}"></dd>
+											{% endfor %}
+										</dl>
+									</li>
+								{% endif %}
+							{% endfor %}
+						</ul>
+					{% endif %}
+				{% endfor %}
 			</div>
 		</div>
 	{% endif %}

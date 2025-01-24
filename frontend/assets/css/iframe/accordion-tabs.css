@@ -1,79 +1,77 @@
-.MiyagiContent {
-	accordion-tabs {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-	}
+accordion-tabs {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
 
-	accordion-tabs details {
-		border-block-end: var(--divider) var(--color-outline);
-	}
+accordion-tabs details {
+	border-block-end: var(--divider) var(--color-outline);
+}
 
-	accordion-tabs details:first-child {
-		border-block-start: var(--divider) var(--color-outline);
-	}
+accordion-tabs details:first-child {
+	border-block-start: var(--divider) var(--color-outline);
+}
 
-	accordion-tabs summary {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		padding-block: 0.75em;
-		list-style: none;
-		font-weight: 600;
-	}
+accordion-tabs summary {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-block: 0.75em;
+	list-style: none;
+	font-weight: 600;
+}
 
-	accordion-tabs summary::-webkit-details-marker {
-		display: none;
-	}
+accordion-tabs summary::-webkit-details-marker {
+	display: none;
+}
 
-	accordion-tabs summary::after {
-		display: block;
-		content: "";
-		inline-size: 1em;
-		block-size: 0.5625em;
-		/* stylelint-disable-next-line declaration-property-value-no-unknown */
-		background-image: light-dark(
-			url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E"),
-			url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E")
-		);
-	}
+accordion-tabs summary::after {
+	display: block;
+	content: "";
+	inline-size: 1em;
+	block-size: 0.5625em;
+	/* stylelint-disable-next-line declaration-property-value-no-unknown */
+	background-image: light-dark(
+		url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E"),
+		url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='9' fill='none'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M15 1 8 8 1 1'/%3E%3C/svg%3E")
+	);
+}
 
-	accordion-tabs details p {
-		margin-block-start: 0;
-	}
+accordion-tabs details p {
+	margin-block-start: 0;
+}
 
-	accordion-tabs [open] > summary::after {
-		rotate: -180deg;
-	}
+accordion-tabs [open] > summary::after {
+	rotate: -180deg;
+}
 
-	accordion-tabs [role="tablist"] {
-		list-style: none;
-		display: flex;
-		margin-block: 0 -0.0625rem;
-		padding-inline: 0;
-		position: relative;
-	}
+accordion-tabs [role="tablist"] {
+	list-style: none;
+	display: flex;
+	margin-block: 0 -0.0625rem;
+	padding-inline: 0;
+	position: relative;
+}
 
-	accordion-tabs [role="tab"] {
-		border: 0.0625rem solid transparent;
-		appearance: none;
-		background: none;
-		color: inherit;
-		font: inherit;
-		padding: 0.5em 1em;
-	}
+accordion-tabs [role="tab"] {
+	border: 0.0625rem solid transparent;
+	appearance: none;
+	background: none;
+	color: inherit;
+	font: inherit;
+	padding: 0.5em 1em;
+}
 
-	accordion-tabs [role="tab"][aria-selected="true"] {
-		background: var(--Miyagi-color-Code-background);
-		border-color: var(--Miyagi-color-Outline);
-		border-block-end-color: var(--Miyagi-color-Code-background);
-	}
+accordion-tabs [role="tab"][aria-selected="true"] {
+	background: var(--color-Code-background);
+	border-color: var(--color-Outline);
+	border-block-end-color: var(--color-Code-background);
+}
 
-	accordion-tabs [role="tabpanel"] .Miyagi-code {
-		margin-block-start: 0;
-	}
+accordion-tabs [role="tabpanel"] .Code {
+	margin-block-start: 0;
+}
 
-	accordion-tabs [role="tabpanel"][hidden] {
-		display: none;
-	}
+accordion-tabs [role="tabpanel"][hidden] {
+	display: none;
 }

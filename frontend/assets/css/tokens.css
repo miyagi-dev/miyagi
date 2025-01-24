@@ -1,23 +1,117 @@
 html {
-	--Miyagi-fontFamily: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
+	--font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto",
 		"Helvetica", "Arial", sans-serif;
-	--Miyagi-fontSize: 1rem;
-	--Miyagi-lineHeight: 1.5;
-	--Miyagi-toggle-border: 0 solid var(--Miyagi-color-Icon);
-	--Miyagi-toggle-borderWidth: 0.25em;
-	--Miyagi-toggle-fontSize: 0.5em;
-	--Miyagi-toggle-height: 1em;
-	--Miyagi-toggle-transition: transform 0.15s ease;
-	--Miyagi-toggle-width: 1em;
-	--Miyagi-spacing: var(--Miyagi-spacing-y);
-}
+	--font-size: 1rem;
+	--lineHeight: 1.5;
 
-html[dir="ltr"] {
-	--Miyagi-toggle-transition-closed: translate(-75%, -50%) rotate(45deg);
-	--Miyagi-toggle-transition-opened: translate(-50%, -75%) rotate(135deg);
-}
+	/* colors */
+	--color-bg-Tooltip: light-dark(
+		var(--color-bg-Tooltip--light),
+		var(--color-bg-Tooltip--dark)
+	);
+	--color-Code-background: light-dark(
+		var(--color-Code-background--light),
+		var(--color-Code-background--dark)
+	);
+	--color-Divider: light-dark(
+		var(--color-Divider--light),
+		var(--color-Divider--dark)
+	);
+	--color-Icon: light-dark(var(--color-Icon--light), var(--color-Icon--dark));
+	--color-IframeBackground: light-dark(
+		var(--color-IframeBackground--light),
+		var(--color-IframeBackground--dark)
+	);
+	--color-IframeLink: light-dark(
+		var(--color-IframeLink--light),
+		var(--color-IframeLink--dark)
+	);
+	--color-IframeText: light-dark(
+		var(--color-IframeText--light),
+		var(--color-IframeText--dark)
+	);
+	--color-IframeTextSecondary: light-dark(
+		var(--color-IframeTextSecondary--light),
+		var(--color-IframeTextSecondary--dark)
+	);
+	--color-IframeTextTertiary: light-dark(
+		var(--color-IframeTextTertiary--light),
+		var(--color-IframeTextTertiary--dark)
+	);
+	--color-Link-active-background: light-dark(
+		var(--color-Link-active-background--light),
+		var(--color-Link-active-background--dark)
+	);
+	--color-Link: light-dark(var(--color-Link--light), var(--color-Link--dark));
+	--color-MenuBackground: light-dark(
+		var(--color-MenuBackground--light),
+		var(--color-MenuBackground--dark)
+	);
+	--color-MenuBar: light-dark(
+		var(--color-MenuBar--light),
+		var(--color-MenuBar--dark)
+	);
+	--color-Negative: light-dark(
+		var(--color-Negative--light),
+		var(--color-Negative--dark)
+	);
+	--color-outline-Tooltip: light-dark(
+		var(--color-outline-Tooltip--light),
+		var(--color-outline-Tooltip--dark)
+	);
+	--color-Outline: light-dark(
+		var(--color-Outline--light),
+		var(--color-Outline--dark)
+	);
+	--color-OverlayBackground: light-dark(
+		var(--color-OverlayBackground--light),
+		var(--color-OverlayBackground--dark)
+	);
+	--color-Positive: light-dark(
+		var(--color-Positive--light),
+		var(--color-Positive--dark)
+	);
+	--color-Text: light-dark(var(--color-Text--light), var(--color-Text--dark));
 
-html[dir="rtl"] {
-	--Miyagi-toggle-transition-closed: translate(75%, -50%) rotate(-45deg);
-	--Miyagi-toggle-transition-opened: translate(50%, -75%) rotate(-135deg);
+	/* light */
+	--color-bg-Tooltip--light: #f5f5f5;
+	--color-Code-background--light: hsl(0deg 0% 96%);
+	--color-Divider--light: rgb(0 0 0 / 10%);
+	--color-Icon--light: hsl(0deg 0% 56%);
+	--color-IframeBackground--light: #fff;
+	--color-IframeLink--light: hsl(0deg 0% 12%);
+	--color-IframeText--light: hsl(0deg 0% 12%);
+	--color-IframeTextSecondary--light: hsl(0deg 0% 36%);
+	--color-IframeTextTertiary--light: hsl(0deg 0% 56%);
+	--color-Link--light: hsl(0deg 0% 12%);
+	--color-Link-active-background--light: #fff;
+	--color-MenuBackground--light: hsl(0deg 0% 96%);
+	--color-MenuBar--light: rgb(0 0 0 / 5%);
+	--color-Negative--light: #d9173e;
+	--color-Outline--light: hsl(0deg 0% 86%);
+	--color-outline-Tooltip--light: #ddd;
+	--color-OverlayBackground--light: rgb(255 255 255 / 95%);
+	--color-Positive--light: #690;
+	--color-Text--light: hsl(0deg 0% 36%);
+
+	/* dark */
+	--color-Link--dark: hsl(0deg 0% 100%);
+	--color-bg-Tooltip--dark: #333;
+	--color-Code-background--dark: hsl(0deg 0% 16%);
+	--color-Divider--dark: rgb(255 255 255 / 5%);
+	--color-Icon--dark: hsl(0deg 0% 60%);
+	--color-IframeBackground--dark: hsl(0deg 0% 12%);
+	--color-IframeLink--dark: hsl(0deg 0% 100%);
+	--color-IframeText--dark: hsl(0deg 0% 100%);
+	--color-IframeTextSecondary--dark: hsl(0deg 0% 80%);
+	--color-IframeTextTertiary--dark: hsl(0deg 0% 60%);
+	--color-Link-active-background--dark: hsl(0deg 0% 12%);
+	--color-MenuBackground--dark: hsl(0deg 0% 16%);
+	--color-MenuBar--dark: rgb(255 255 255 / 2.5%);
+	--color-Negative--dark: #ff305a;
+	--color-Outline--dark: hsl(0deg 0% 26%);
+	--color-outline-Tooltip--dark: #444;
+	--color-OverlayBackground--dark: hsl(0deg 0% 12% / 95%);
+	--color-Positive--dark: #8dd203;
+	--color-Text--dark: hsl(0deg 0% 80%);
 }

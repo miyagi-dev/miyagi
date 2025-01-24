@@ -2,41 +2,42 @@
 
 You can customize the color scheme as well as fonts and the logo to match your current project. This can be done via `config.ui.theme`.
 
-The following options are applied to both color modes, `"light"` and `"dark"`:
-
 - `css`: string — custom CSS (not a file) you want to be added to _miyagi_
 - `favicon`: string — the path to your favicon file
+- `logo`: string|object — the path to your logo file
 - `js`: string — custom JavaScript (not a file) you want to be added to _miyagi_
-- `mode`: string — any of `"light"`, `"dark"` or `"auto"`
+- `mode`: string — any of `"light"`, `"dark"` or `"auto"`. This is the default mode in which _miyagi_ is rendered. The user can change this in the UI.
 
-The following options can be applied to both `config.ui.theme.light` and `config.ui.theme.dark`:
+## Changing colors, fonts etc
 
-- `logo`: string — the path to your logo file
-- `navigation.colorText`: string
-- `navigation.colorBackground`: string
-- `navigation.colorLinks`: string
-- `navigation.colorLinksActive`: string
-- `navigation.colorSearchBorder`: string
-- `content.colorBackground`: string
-- `content.colorText`: string
-- `content.colorHeadline1`: string
-- `content.colorHeadline2`: string
+If you want to adapt the colors, font-family etc. of _miyagi_, it is easiest to use the custom properties _miyagi_ uses internally. You can find these at https://github.com/miyagi-dev/miyagi/blob/4.0.0/frontend/assets/css/tokens.css. You can either set these directly in your config file (`theme.css`) or use a CSS file (see further below).
 
-All color options expect any kind of valid CSS color.
+Using the custom properties, you could also make sure that you do not have separate light and dark modes (in case this does not work for your project). You could do that for example like this:
 
-Note that you can apply these options also directly to `config.ui.theme` instead of `config.ui.theme.(light|dark)`. This might make sense for the logo for example, if you can use the same one for light and dark mode.
+```css
+html {
+	--color-IframeText: var(--color-IframeText--light);
+	/* … */
+}
+```
 
-Please also refer to the [configuration options](/configuration/options/#theme).
+That way, no matter which theme is applied, it would always use the custom properties for the light mode.
+
+## Setting a logo
+
+The `logo` option can either be a path that points to your logo. In this case it would be used for light as well as dark mode.
+Alternatively you can use an object with a `light` and a `dark` key, both being paths pointing to individual logos for each of the modes.
 
 ## Using external CSS and JS files
 
-If you want to use actual CSS and JS files to theme miyagi, you can do that by reading those files with `fs` and then use that result in the config:
+If you want to use actual CSS and JS files to theme _miyagi_, you can do that by reading those files using `node:fs` and then use that result in the config:
 
 ```js
-const fs = require("fs");
+import fs from "node:fs";
+
 const css = fs.readFileSync("my/custom/styles.css", "utf8");
 
-module.exports = {
+export default {
 	ui: {
 		theme: {
 			css,

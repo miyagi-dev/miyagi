@@ -6,19 +6,15 @@ class Styleguide {
 	 */
 	constructor(element) {
 		this.element = element;
-		this.items = Array.from(this.element.querySelectorAll(".MiyagiCustomProp"));
-		this.colors = Array.from(
-			this.element.querySelectorAll(".MiyagiColors-item"),
-		);
-		this.fonts = Array.from(this.element.querySelectorAll(".MiyagiFonts-item"));
-		this.spacings = Array.from(
-			this.element.querySelectorAll(".MiyagiSpacings-item"),
-		);
+		this.items = Array.from(this.element.querySelectorAll(".CustomProp"));
+		this.colors = Array.from(this.element.querySelectorAll(".Colors-item"));
+		this.fonts = Array.from(this.element.querySelectorAll(".Fonts-item"));
+		this.spacings = Array.from(this.element.querySelectorAll(".Spacings-item"));
 		this.buttons = Array.from(
-			this.element.querySelectorAll(".MiyagiCustomProp-button"),
+			this.element.querySelectorAll(".CustomProp-button"),
 		);
 		this.details = Array.from(
-			this.element.querySelectorAll(".MiyagiCustomProp-details"),
+			this.element.querySelectorAll(".CustomProp-details"),
 		);
 
 		this.renderValues();
@@ -28,9 +24,9 @@ class Styleguide {
 		});
 
 		this.element.addEventListener("click", ({ target }) => {
-			const item = target.closest(".MiyagiCustomProp");
-			const button = target.closest(".MiyagiCustomProp-button");
-			const details = target.closest(".MiyagiCustomProp-details");
+			const item = target.closest(".CustomProp");
+			const button = target.closest(".CustomProp-button");
+			const details = target.closest(".CustomProp-details");
 
 			if (button) {
 				this.items.forEach((i) => {

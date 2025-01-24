@@ -1,6 +1,6 @@
 export default (links) => {
 	if (parent.window) {
-		const linkClass = "MiyagiComponent-file";
+		const linkClass = "Component-file";
 
 		links.forEach((link) => {
 			link.addEventListener("click", (e) => {

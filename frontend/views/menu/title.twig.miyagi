@@ -1,20 +1,20 @@
 <h1 class="Title">
-	<a class="Title-link {% if theme.light.logo %} has-logo{% endif %}" href="{{ indexPath }}"
+	<a class="Title-link {% if theme.logo.light %} has-logo{% endif %}" href="{{ indexPath }}"
 		target="iframe" {% if showAll %} aria-current="page" {% endif %}>
-		{% if theme.light.logo %}
+		{% if theme.logo.light %}
 			<picture class="Title-logo">
 				{% if userUiConfig.theme == "auto" %}
-					<source srcset="{{ theme.dark.logo }}" media="(prefers-color-scheme: dark)">
-					<source srcset="{{ theme.light.logo }}" media="(prefers-color-scheme: light)">
+					<source srcset="{{ theme.logo.dark }}" media="(prefers-color-scheme: dark)">
+					<source srcset="{{ theme.logo.light }}" media="(prefers-color-scheme: light)">
 				{% endif %}
 				<img
 					src="
-						{% if userUiConfig.theme == "dark" %}{{ theme.dark.logo }}{% endif %}
-						{% if userUiConfig.theme == "light" %}{{ theme.light.logo }}{% endif %}
-						{% if userUiConfig.theme == "auto" %}{{ theme.light.logo }}{% endif %}
+						{% if userUiConfig.theme == "dark" %}{{ theme.logo.dark }}{% endif %}
+						{% if userUiConfig.theme == "light" %}{{ theme.logo.light }}{% endif %}
+						{% if userUiConfig.theme == "auto" %}{{ theme.logo.light }}{% endif %}
 					"
-					data-light="{{ theme.light.logo }}"
-					data-dark="{{ theme.dark.logo }}"
+					data-light="{{ theme.logo.light }}"
+					data-dark="{{ theme.logo.dark }}"
 					alt="{{ userProjectName }}"
 				>
 			</picture>

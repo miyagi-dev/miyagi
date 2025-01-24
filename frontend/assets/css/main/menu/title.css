@@ -4,8 +4,8 @@
 	display: flex;
 	justify-content: center;
 	margin-block: 1.5rem;
-	margin-inline-start: calc(var(--spacing) + var(--bar-size));
-	margin-inline-end: var(--spacing);
+	margin-inline-start: calc(var(--menu-spacing) + var(--bar-size));
+	margin-inline-end: var(--menu-spacing);
 }
 
 .Title-link {

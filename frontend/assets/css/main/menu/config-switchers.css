@@ -14,7 +14,7 @@
 	--size: var(--bar-size);
 
 	align-items: center;
-	color: var(--Miyagi-color-Icon);
+	color: var(--color-Icon);
 	justify-content: center;
 	display: flex;
 	inline-size: var(--size);
@@ -46,12 +46,12 @@
 }
 
 .ConfigSwitchers-container {
-	padding: var(--spacing);
+	padding: var(--menu-spacing);
 	flex: 1;
 }
 
 .ConfigSwitchers-container > * + * {
-	margin-block-start: var(--spacing);
+	margin-block-start: var(--menu-spacing);
 }
 
 .ConfigSwitchers-toggle[aria-expanded="false"] + .ConfigSwitchers-container {

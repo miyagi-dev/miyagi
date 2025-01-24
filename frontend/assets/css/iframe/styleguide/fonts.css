@@ -1,12 +1,12 @@
-.MiyagiContent .MiyagiFonts-item:not(:first-child) {
+.Fonts-item:not(:first-child) {
 	margin-top: 3em;
 }
 
-.MiyagiContent .MiyagiFonts-button {
+.Fonts-button {
 	color: inherit;
 }
 
-.MiyagiContent .MiyagiFonts-button::before {
+.Fonts-button::before {
 	content: "The quick brown fox jumps over the lazy dog";
 	font-family: var(--font-family);
 	font-feature-settings: var(--font-feature-settings);
@@ -24,13 +24,13 @@
 	text-transform: var(--text-transform);
 }
 
-.MiyagiContent .MiyagiFonts-details {
+.Fonts-details {
 	display: flex;
 	padding: 0;
 	list-style: none;
 }
 
-.MiyagiContent .MiyagiFonts-details > li:not(:last-child) {
+.Fonts-details > li:not(:last-child) {
 	margin-inline-end: 0.5em;
 	padding-inline-end: 0.5em;
 	border-inline-end: 0.0625rem solid currentcolor;

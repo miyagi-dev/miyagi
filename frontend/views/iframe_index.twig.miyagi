@@ -5,12 +5,10 @@
     {% endfor %}
   {% endblock %}
   {% block content %}
-    <div class="MiyagiWrapper">
-      <div class="MiyagiContent">
-        <div class="MiyagiDocumentation">
-          <h1>{{ userProjectName }}</h1>
-          {{ documentation }}
-        </div>
-      </div>
+    <div class="Wrapper">
+			<div class="Documentation">
+				<h1>{{ userProjectName }}</h1>
+				{{ documentation }}
+			</div>
     </div>
   {% endblock %}

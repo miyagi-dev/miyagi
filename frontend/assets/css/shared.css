@@ -1,0 +1,34 @@
+html {
+	--toggle-border: 0 solid var(--color-Icon);
+	--toggle-borderWidth: 0.25em;
+	--toggle-fontSize: 0.5em;
+	--toggle-height: 1em;
+	--toggle-transition: transform 0.15s ease;
+	--toggle-width: 1em;
+
+	color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		color-scheme: dark;
+	}
+}
+
+.theme-light {
+	color-scheme: light;
+}
+
+.theme-dark {
+	color-scheme: dark;
+}
+
+html[dir="ltr"] {
+	--toggle-transition-closed: translate(-75%, -50%) rotate(45deg);
+	--toggle-transition-opened: translate(-50%, -75%) rotate(135deg);
+}
+
+html[dir="rtl"] {
+	--toggle-transition-closed: translate(75%, -50%) rotate(-45deg);
+	--toggle-transition-opened: translate(50%, -75%) rotate(-135deg);
+}

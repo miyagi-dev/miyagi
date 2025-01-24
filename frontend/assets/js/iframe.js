@@ -14,8 +14,8 @@ if (
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-	const links = Array.from(document.querySelectorAll(".MiyagiComponent-file"));
-	const styleguide = document.querySelector(".MiyagiStyleguide");
+	const links = Array.from(document.querySelectorAll(".Component-file"));
+	const styleguide = document.querySelector(".Styleguide");
 
 	if (links.length > 0) {
 		import("./_iframe-links.js")
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			.catch((err) => console.error(err));
 	}
 
-	if (document.querySelector(".Miyagi-code")) {
+	if (document.querySelector(".Code")) {
 		import("./_prism.js");
 	}
 

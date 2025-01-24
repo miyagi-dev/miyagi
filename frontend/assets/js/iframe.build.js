@@ -18,7 +18,7 @@ if (
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-	const styleguide = document.querySelector(".MiyagiStyleguide");
+	const styleguide = document.querySelector(".Styleguide");
 
 	if (styleguide) {
 		import("./styleguide/index.js")

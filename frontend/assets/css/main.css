@@ -1,31 +1,19 @@
 @import url("./tokens.css");
-@import url("./main/tokens.css");
+@import url("./shared.css");
 @import url("./main/reset.css");
 @import url("./main/menu.css");
-@import url("./main/test.css");
-@import url("./main/results.css");
-@import url("./main/result.css");
 
 html {
 	height: 100%;
-	color-scheme: light dark;
-}
-
-.theme-light {
-	color-scheme: light;
-}
-
-.theme-dark {
-	color-scheme: dark;
 }
 
 body {
-	background: var(--Miyagi-color-Background);
-	color: var(--Miyagi-color-Text);
+	background: var(--color-MenuBackground);
+	color: var(--color-Text);
 	display: grid;
-	font-family: var(--Miyagi-fontFamily);
-	font-size: var(--Miyagi-fontSize);
-	line-height: var(--Miyagi-lineHeight);
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	line-height: var(--lineHeight);
 	min-height: 100%;
 }
 
@@ -46,8 +34,8 @@ body {
 
 @media (max-width: 40rem) {
 	html {
-		--Miyagi-spacing-x: 1rem;
-		--Miyagi-spacing-y: 1rem;
+		--spacing-x: 1rem;
+		--spacing-y: 1rem;
 	}
 
 	body {
@@ -59,8 +47,8 @@ body {
 
 @media (min-width: 40.03125rem) {
 	html {
-		--Miyagi-spacing-x: 2rem;
-		--Miyagi-spacing-y: 4rem;
+		--spacing-x: 2rem;
+		--spacing-y: 4rem;
 	}
 }
 

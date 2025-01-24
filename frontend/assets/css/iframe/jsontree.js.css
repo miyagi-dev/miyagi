@@ -54,9 +54,9 @@
 div.json-tree-js {
 	box-sizing: border-box;
 	display: inline-block;
-	background-color: var(--Miyagi-color-Code-background);
+	background-color: var(--color-Code-background);
 	color: var(--json-tree-js-color-white);
-	border: 0.0625rem solid var(--Miyagi-color-Outline);
+	border: 0.0625rem solid var(--color-Outline);
 	padding: var(--json-tree-js-spacing);
 	font-size: var(--json-tree-js-spacing-font-size);
 	font-weight: var(--json-tree-js-text-bold-weight);
@@ -109,14 +109,14 @@ div.json-tree-js :is(.down-arrow, .right-arrow) {
 
 div.json-tree-js :is(.down-arrow, .right-arrow)::after {
 	content: "";
-	border: var(--Miyagi-toggle-border);
+	border: var(--toggle-border);
 	border-color: currentcolor;
 	border-top-width: 0.25em;
 	border-inline-end-width: 0.25em;
 	display: inline-block;
 	font-size: 0.4em;
-	height: var(--Miyagi-toggle-height);
-	flex: 0 0 var(--Miyagi-toggle-width);
+	height: var(--toggle-height);
+	flex: 0 0 var(--toggle-width);
 }
 
 div.json-tree-js :is(.down-arrow, .right-arrow):hover {

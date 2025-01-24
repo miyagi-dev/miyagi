@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ lang }}" class="MiyagiTheme--{{ userUiConfig.theme }}" dir="{{ uiTextDirection }}" data-mode="{{ userUiConfig.mode }}">
+<html lang="{{ lang }}" class="theme-{{ userUiConfig.theme }}" dir="{{ uiTextDirection }}" data-mode="{{ userUiConfig.mode }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
@@ -7,36 +7,8 @@
     <title>{{ projectName }}</title>
     <script src="{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %} type="module" {% endif %}{% if prod %}
       defer{% endif %}></script>
-    <link rel="stylesheet" href="{{ projectName }}/css/iframe-background.css">
     <link rel="stylesheet" href="{{ projectName }}/css/iframe.css">
 		{% block additionalCss %}{% endblock %}
-    <style>
-      html {
-				{% for prop, value in theme.customProperties %}
-					{{ prop }}: {{ value }};
-				{% endfor %}
-				{% for prop, value in theme.light.customProperties %}
-					{{ prop }}: {{ value }};
-				{% endfor %}
-			}
-			.MiyagiTheme--light {
-				{% for prop, value in theme.light.customProperties %}
-					{{ prop }}: {{ value }};
-				{% endfor %}
-			}
-			@media (prefers-color-scheme: dark) {
-				html {
-					{% for prop, value in theme.dark.customProperties %}
-						{{ prop }}: {{ value }};
-					{% endfor %}
-				}
-			}
-			.MiyagiTheme--dark {
-				{% for prop, value in theme.dark.customProperties %}
-					{{ prop }}: {{ value }};
-				{% endfor %}
-			}
-    </style>
     <style>
       {{ theme.css }}
     </style>

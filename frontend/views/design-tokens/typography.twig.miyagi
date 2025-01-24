@@ -6,32 +6,30 @@
 {% endblock %}
 {% block body %}
 	{% if typography %}
-		<div class="MiyagiWrapper">
-			<div class="MiyagiContent">
-				<div class="MiyagiStyleguide" data-media-queries='{{ mediaQueries }}'>
-					<h1>Typography</h1>
-					<ul class="MiyagiCustomPropsGroup MiyagiFonts">
-						{% for typo in typography %}
-							{% if typo[1].customProp %}
-								<li class="MiyagiCustomProp MiyagiFonts-item"
-									style='{% for value in typo[1].values %}--{{ value.label }}: var({{ value.value }});{% endfor %}'>
-									<button class="MiyagiFonts-button MiyagiCustomProp-button"
-										aria-controls="styleguide-fonts-{{ typo[0] }}" aria-expanded="false">
-										<span class="MiyagiFonts-prop MiyagiCustomProp-prop">{{ typo[0] }}</span>
-									</button>
-									<dl class="MiyagiCustomProp-details" id="styleguide-fonts-{{ typo[0] }}" hidden>
-										<dt class="MiyagiCustomProp-detailsProperty">Name</dt>
-										<dd class="MiyagiCustomProp-detailsValue">{{ typo[1].customProp }}</dd>
-										{% for value in typo[1].values %}
-											<dt class="MiyagiCustomProp-detailsProperty">{{ value.label }}</dt>
-											<dd class="MiyagiCustomProp-detailsValue" data-value="{{ value.value }}"></dd>
-										{% endfor %}
-									</dl>
-								</li>
-							{% endif %}
-						{% endfor %}
-					</ul>
-				</div>
+		<div class="Wrapper">
+			<div class="Styleguide" data-media-queries='{{ mediaQueries }}'>
+				<h1>Typography</h1>
+				<ul class="CustomPropsGroup Fonts">
+					{% for typo in typography %}
+						{% if typo[1].customProp %}
+							<li class="CustomProp Fonts-item"
+								style='{% for value in typo[1].values %}--{{ value.label }}: var({{ value.value }});{% endfor %}'>
+								<button class="Fonts-button CustomProp-button"
+									aria-controls="styleguide-fonts-{{ typo[0] }}" aria-expanded="false">
+									<span class="Fonts-prop CustomProp-prop">{{ typo[0] }}</span>
+								</button>
+								<dl class="CustomProp-details" id="styleguide-fonts-{{ typo[0] }}" hidden>
+									<dt class="CustomProp-detailsProperty">Name</dt>
+									<dd class="CustomProp-detailsValue">{{ typo[1].customProp }}</dd>
+									{% for value in typo[1].values %}
+										<dt class="CustomProp-detailsProperty">{{ value.label }}</dt>
+										<dd class="CustomProp-detailsValue" data-value="{{ value.value }}"></dd>
+									{% endfor %}
+								</dl>
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>
 			</div>
 		</div>
 	{% endif %}

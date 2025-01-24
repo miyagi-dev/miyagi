@@ -5,7 +5,7 @@
  * @author Lea Verou
  */
 
-.Miyagi-code {
+.Code {
 	--color: light-dark(black, white);
 	--text-shadow: light-dark(white, black);
 	--background: light-dark(#f5f2f0, hsl(30deg 20% 25%));
