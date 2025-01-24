@@ -37,10 +37,6 @@ export default {
 			".miyagi.mjs",
 		],
 		lang: "en",
-		renderInIframe: {
-			default: false,
-			except: [],
-		},
 		textDirection: "ltr",
 	},
 	engine: {

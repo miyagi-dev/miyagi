@@ -94,70 +94,32 @@
 							</dialog>
 						</div>
 					</div>
-					{% if renderInIframe %}
-						<div class="MiyagiComponent-iframeWrapper" id="{{ variation.normalizedVariation }}-iframe">
-							<iframe class="MiyagiComponent-iframe" src="{{ variation.standaloneUrl }}" frameborder="0" title="{{ variation.variation }}" id="iframe"></iframe>
-						</div>
-					{% else %}
-						<div class="MiyagiComponent-html" dir="{{ userUiConfig.componentTextDirection }}" lang="{{ componentLanguage }}">
-							{{ variation.html }}
-							{% if error %}
-								<p class="MiyagiError">{{ variation.error }}</p>
-							{% endif %}
-						</div>
-					{% endif %}
+					<div class="MiyagiComponent-iframeWrapper" id="{{ variation.normalizedVariation }}-iframe">
+						<iframe class="MiyagiComponent-iframe" src="{{ variation.standaloneUrl }}" frameborder="0" title="{{ variation.variation }}" id="iframe"></iframe>
+					</div>
 				</div>
 			{% endfor %}
 		</div>
 		<script src="{{ projectName }}/js/jsontree.js"></script>
-		{% if renderInIframe %}
-			<script>
-				const eventMethod = window.addEventListener
-					? "addEventListener"
-					: "attachEvent";
-				const eventer = window[eventMethod];
-				const messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
-				const windowHeight = window.innerHeight;
+		<script>
+			const eventMethod = window.addEventListener
+				? "addEventListener"
+				: "attachEvent";
+			const eventer = window[eventMethod];
+			const messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+			const windowHeight = window.innerHeight;
 
-				eventer(
-					messageEvent,
-					function (e) {
-						const el = document.getElementById(e.data.id);
+			eventer(
+				messageEvent,
+				function (e) {
+					const el = document.getElementById(e.data.id);
 
-						if (el && e.data.height < windowHeight) {
-							el.classList.add("has-fixedHeight");
-							el.style.height = `${e.data.height}px`;
-						}
-					},
-					false
-				);
-			</script>
-		{% else %}
-			{% for file in jsFilesBody %}
-				{% set type_str = file.type ? " type=" ~ file.type ~ '"' : "" %}
-				{% set defer_str = file.defer ? "defer" : "" %}
-				{% set async_str = file.async ? "async" : "" %}
-				<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
-			{% endfor %}
-			{% if theme.js %}
-				<script>
-					{{theme.js}}
-				</script>
-			{% endif %}
-		{% endif %}
-	{% endblock %}
-	{% block componentAssets %}
-		{% if not renderInIframe %}
-			{% if assets.css %}
-			<link href="{{ assets.css }}" rel="stylesheet">
-			{% endif %}
-			{% if assets.js %}
-				<script src="{{ assets.js }}"></script>
-			{% endif %}
-			{% if theme.css %}
-				<style>
-					{{theme.css}}
-				</style>
-			{% endif %}
-		{% endif %}
+					if (el && e.data.height < windowHeight) {
+						el.classList.add("has-fixedHeight");
+						el.style.height = `${e.data.height}px`;
+					}
+				},
+				false
+			);
+		</script>
 	{% endblock %}
