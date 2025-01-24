@@ -26,6 +26,8 @@ export default {
 		},
 	},
 	schema: {
-		strict: false,
+		options: {
+			strict: false,
+		},
 	},
 };

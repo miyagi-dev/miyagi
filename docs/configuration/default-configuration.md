@@ -3,6 +3,8 @@
 Please refer to the [available options](/configuration/options/) for a full explanation and possible values.
 
 ```js
+import AJV from "ajv";
+
 export default {
 	assets: {
 		root: "",
@@ -89,6 +91,9 @@ export default {
 			},
 		},
 	},
-	schema: {},
+	schema: {
+		ajv: AJV,
+		options: {},
+	},
 };
 ```
