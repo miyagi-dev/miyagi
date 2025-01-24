@@ -201,7 +201,7 @@ var _self =
 					else o(M.util.encode(l.code));
 				},
 				highlight: function (e, n, t) {
-					var r = { code: e, grammar: n, language: t };
+					var r = { code: e, grammar: new Map(Object.entries(n)), language: t };
 					return (
 						M.hooks.run("before-tokenize", r),
 						(r.tokens = M.tokenize(r.code, r.grammar)),
@@ -210,14 +210,14 @@ var _self =
 					);
 				},
 				tokenize: function (e, n) {
-					var t = n.rest;
+					var t = n.get('rest');
 					if (t) {
 						for (var r in t) {
 							if (Object.prototype.hasOwnProperty.call(t, r) && r !== '__proto__' && r !== 'constructor' && r !== 'prototype') {
-								n[r] = t[r];
+								n.set(r, t[r]);
 							}
 						}
-						delete n.rest;
+						n.delete('rest');
 					}
 					var a = new i();
 					return (
