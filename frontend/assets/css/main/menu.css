@@ -7,16 +7,15 @@
 /** @define Menu; */
 
 .Menu {
-	--divider: 0.0625rem solid var(--Miyagi-color-Divider);
 	--bar-size: 2rem;
-	--bar-background: var(--Miyagi-color-Background)
+	--bar-background: var(--color-Menu-background)
 		linear-gradient(
 			to right,
-			var(--Miyagi-color-Bar) var(--bar-size),
+			var(--color-MenuBar-background) var(--bar-size),
 			transparent var(--bar-size)
 		);
-	--spacing: 0.5rem;
-	--outline: 0.1875rem solid var(--Miyagi-color-Text);
+	--menu-spacing: 0.5rem;
+	--outline: 0.1875rem solid var(--color-Text);
 	--outline-offset: 0.125rem;
 
 	display: flex;
@@ -34,12 +33,12 @@
 		align-items: center;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		padding: var(--Miyagi-spacing-y) var(--Miyagi-spacing-x);
+		padding: var(--spacing-y) var(--spacing-x);
 	}
 
 	.Menu-nav {
 		margin-inline-start: 1rem;
-		padding-inline: var(--Miyagi-spacing-x);
+		padding-inline: var(--spacing-x);
 	}
 
 	.Menu-search {
@@ -66,26 +65,26 @@
 	}
 
 	.Menu-toggleMobileMenu::after {
-		border: var(--Miyagi-toggle-border);
-		border-top-width: var(--Miyagi-toggle-borderWidth);
-		border-inline-end-width: var(--Miyagi-toggle-borderWidth);
+		border: var(--toggle-border);
+		border-top-width: var(--toggle-borderWidth);
+		border-inline-end-width: var(--toggle-borderWidth);
 		content: "";
 		display: block;
 		font-size: 0.75em;
-		block-size: var(--Miyagi-toggle-height);
+		block-size: var(--toggle-height);
 		position: absolute;
 		inset-block-start: 50%;
 		inset-inline-start: 50%;
-		transition: var(--Miyagi-toggle-transition);
-		inline-size: var(--Miyagi-toggle-width);
+		transition: var(--toggle-transition);
+		inline-size: var(--toggle-width);
 	}
 
 	.Menu-toggleMobileMenu[aria-expanded="false"]::after {
-		transform: var(--Miyagi-toggle-transition-closed);
+		transform: var(--toggle-transition-closed);
 	}
 
 	.Menu-toggleMobileMenu[aria-expanded="true"]::after {
-		transform: var(--Miyagi-toggle-transition-opened);
+		transform: var(--toggle-transition-opened);
 	}
 }
 

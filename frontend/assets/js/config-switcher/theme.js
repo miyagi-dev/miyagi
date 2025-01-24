@@ -39,22 +39,20 @@ class ThemeConfigSwitcher extends ConfigSwitcher {
 		this.options.forEach((option) => {
 			if (window.frames.iframe.document.documentElement) {
 				window.frames.iframe.document.documentElement.classList.remove(
-					`MiyagiTheme--${option}`,
+					`theme-${option}`,
 				);
 			}
 
 			Array.from(window.frames.iframe.frames).forEach((frame) => {
-				frame.document.documentElement.classList.remove(
-					`MiyagiTheme--${option}`,
-				);
+				frame.document.documentElement.classList.remove(`theme-${option}`);
 			});
 		});
 
 		window.frames.iframe.document.documentElement.classList.add(
-			`MiyagiTheme--${value}`,
+			`theme-${value}`,
 		);
 		Array.from(window.frames.iframe.frames).forEach((frame) => {
-			frame.document.documentElement.classList.add(`MiyagiTheme--${value}`);
+			frame.document.documentElement.classList.add(`theme-${value}`);
 		});
 	}
 

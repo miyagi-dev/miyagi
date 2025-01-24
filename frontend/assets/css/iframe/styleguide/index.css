@@ -2,41 +2,32 @@
 @import url("./fonts.css");
 @import url("./spacings.css");
 
-.MiyagiContent .MiyagiStyleguide {
+.Styleguide {
 	margin-top: 3em;
 }
 
-.MiyagiContent .MiyagiCustomPropsGroup {
+.CustomPropsGroup {
 	list-style: none;
 	margin: 3em 0;
 	padding: 0;
 }
 
-.MiyagiContent .MiyagiCustomProp {
+.CustomProp {
 	position: relative;
 	border: 0.0625rem solid transparent;
 }
 
-.MiyagiContent .MiyagiCustomProp[aria-selected="true"] {
+.CustomProp[aria-selected="true"] {
 	position: relative;
 }
 
-.MiyagiContent .MiyagiCustomProp-prop,
-.MiyagiContent .MiyagiCustomProp-value {
-	color: #767676;
+.CustomProp-prop {
 	display: block;
 	margin: 10px 0 0;
-}
-
-.MiyagiContent .MiyagiCustomProp-prop {
 	word-break: break-all;
 }
 
-.MiyagiContent .MiyagiCustomProp-value {
-	display: none;
-}
-
-.MiyagiContent .MiyagiCustomProp-button {
+.CustomProp-button {
 	background: none;
 	border: none;
 	appearance: none;
@@ -46,29 +37,25 @@
 	text-align: start;
 }
 
-.MiyagiContent .MiyagiCustomProp-button:focus {
+.CustomProp-button:focus {
 	outline: none;
 }
 
-.MiyagiContent
-	.MiyagiCustomProp-button:not([aria-expanded="true"]):hover
-	.MiyagiCustomProp-prop,
-.MiyagiContent
-	.MiyagiCustomProp-button:not([aria-expanded="true"]):focus
-	.MiyagiCustomProp-prop {
+.CustomProp-button:not([aria-expanded="true"]):hover .CustomProp-prop,
+.CustomProp-button:not([aria-expanded="true"]):focus .CustomProp-prop {
 	text-decoration: underline;
 }
 
-.MiyagiContent .MiyagiCustomProp-details {
+.CustomProp-details {
 	position: absolute;
 	bottom: calc(100% + 15px);
 	inset-inline-start: 0;
 	padding: 15px;
 	margin: 0;
 	z-index: 1;
-	background: var(--Miyagi-color-bg-Tooltip);
+	background: var(--color-Tooltip-background);
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-	outline: 0.0625rem solid var(--Miyagi-color-outline-Tooltip);
+	outline: 0.0625rem solid var(--color-Tooltip-outline);
 	box-sizing: border-box;
 	font-size: 14px;
 	display: none;
@@ -90,14 +77,14 @@
 	}
 }
 
-.MiyagiContent .MiyagiCustomProp-details:not([hidden]),
-.MiyagiContent .MiyagiCustomProp-button:hover + .MiyagiCustomProp-details {
+.CustomProp-details:not([hidden]),
+.CustomProp-button:hover + .CustomProp-details {
 	display: grid;
 	animation: fadeIn 0.15s ease;
 }
 
-.MiyagiContent .MiyagiCustomProp-details::before,
-.MiyagiContent .MiyagiCustomProp-details::after {
+.CustomProp-details::before,
+.CustomProp-details::after {
 	content: "";
 	display: block;
 	position: absolute;
@@ -107,20 +94,20 @@
 	border: 10px solid transparent;
 }
 
-.MiyagiContent .MiyagiCustomProp-details::before {
-	border-top-color: var(--Miyagi-color-outline-Tooltip);
+.CustomProp-details::before {
+	border-top-color: var(--color-Tooltip-outline);
 	top: 100%;
 }
 
-.MiyagiContent .MiyagiCustomProp-details::after {
-	border-top-color: var(--Miyagi-color-bg-Tooltip);
+.CustomProp-details::after {
+	border-top-color: var(--color-Tooltip-background);
 	top: calc(100% - 2px);
 }
 
-.MiyagiContent .MiyagiCustomProp-detailsProperty {
+.CustomProp-detailsProperty {
 	font-weight: 600;
 }
 
-.MiyagiContent .MiyagiCustomProp-detailsValue {
+.CustomProp-detailsValue {
 	margin: 0;
 }

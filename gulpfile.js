@@ -18,7 +18,6 @@ const jsFiles = [
 	"jsontree.js",
 ];
 const cssFiles = [
-	"frontend/assets/css/iframe-background.css",
 	"frontend/assets/css/iframe.css",
 	"frontend/assets/css/main.css",
 ];

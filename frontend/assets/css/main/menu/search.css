@@ -3,7 +3,7 @@
 .Search {
 	border-block: var(--divider);
 	display: flex;
-	margin-block-end: var(--Miyagi-spacing-x);
+	margin-block-end: var(--spacing-x);
 	position: relative;
 }
 
@@ -33,7 +33,7 @@
 }
 
 .Search-icon {
-	color: var(--Miyagi-color-Icon);
+	color: var(--color-Icon);
 	display: block;
 	inline-size: 50%;
 	block-size: 50%;
@@ -49,14 +49,14 @@
 }
 
 .Search-input {
-	padding: 0.35em var(--spacing);
+	padding: 0.35em var(--menu-spacing);
 	padding-inline-end: 2.5em;
 	inline-size: calc(100% - var(--bar-size));
 }
 
 .Search-input:focus {
 	outline: none;
-	background: var(--Miyagi-color-Link-active-background);
+	background: var(--color-Link-active-background);
 }
 
 .Search-clear:focus-visible {

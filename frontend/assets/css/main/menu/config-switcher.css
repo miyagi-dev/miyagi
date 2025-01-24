@@ -35,9 +35,9 @@
 .ConfigSwitcher svg {
 	block-size: 1em;
 	inline-size: 1em;
-	fill: var(--Miyagi-color-Link);
+	fill: var(--color-Link);
 }
 
 .ConfigSwitcher :checked + label svg {
-	fill: var(--Miyagi-color-Link-active, var(--Miyagi-color-Link));
+	fill: var(--color-Link-active, var(--color-Link));
 }

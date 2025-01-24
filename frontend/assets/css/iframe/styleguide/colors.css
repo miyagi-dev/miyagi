@@ -1,28 +1,28 @@
-.MiyagiContent .MiyagiColors {
+.Colors {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
 	grid-gap: 3em;
 }
 
-.MiyagiContent .MiyagiColors-button {
+.Colors-button {
 	--size: 3em;
 
 	display: flex;
 	flex-wrap: wrap;
 }
 
-.MiyagiContent .MiyagiColors-button::before,
-.MiyagiContent .MiyagiColors-button::after {
+.Colors-button::before,
+.Colors-button::after {
 	display: block;
 }
 
-.MiyagiContent .MiyagiColors--all .MiyagiColors-button::before {
+.Colors--all .Colors-button::before {
 	margin-inline-end: 10px;
 	width: var(--size);
 }
 
-.MiyagiContent .MiyagiColors--all .MiyagiColors-button::before,
-.MiyagiContent .MiyagiColors--decoration .MiyagiColors-button::before {
+.Colors--all .Colors-button::before,
+.Colors--decoration .Colors-button::before {
 	height: var(--size);
 	background: var(--color);
 	border: 1px solid var(--backdrop, transparent);
@@ -30,12 +30,12 @@
 	order: -1;
 }
 
-.MiyagiContent .MiyagiColors--decoration .MiyagiColors-button::before {
+.Colors--decoration .Colors-button::before {
 	width: 100%;
 }
 
-.MiyagiContent .MiyagiColors--all .MiyagiColors-button::after,
-.MiyagiContent .MiyagiColors--typo .MiyagiColors-button::after {
+.Colors--all .Colors-button::after,
+.Colors--typo .Colors-button::after {
 	font-size: var(--size);
 	color: var(--color);
 	font-weight: bold;
@@ -46,16 +46,16 @@
 	/* stylelint-enable */
 }
 
-.MiyagiContent .MiyagiColors--all .MiyagiColors-button::after {
+.Colors--all .Colors-button::after {
 	content: "Aa";
 }
 
-.MiyagiContent .MiyagiColors--typo .MiyagiColors-button::after {
+.Colors--typo .Colors-button::after {
 	content: "AaBbCc";
 }
 
-.MiyagiContent .MiyagiColors-prop,
-.MiyagiContent .MiyagiColors-value {
+.Colors-prop,
+.Colors-value {
 	flex: 1 0 100%;
 	margin: 10px 0 0;
 }

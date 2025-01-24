@@ -1,30 +1,30 @@
 {% extends "@miyagi/layouts/iframe_index.twig.miyagi" %}
   {% block content %}
-    <div class="MiyagiWrapper">
-      <div id="MiyagiComponent" class="MiyagiComponentView">
-        <iframe src="{{ standaloneUrl }}" frameborder="0" class="MiyagiComponentView-iframe" title="Variation" id="iframe"></iframe>
+    <div class="Wrapper">
+      <div id="Component" class="ComponentView">
+        <iframe src="{{ standaloneUrl }}" frameborder="0" class="ComponentView-iframe" title="Variation" id="iframe"></iframe>
       </div>
     </div>
-    <div class="MiyagiContent MiyagiComponent">
-      <div class="MiyagiComponent-variationHeader">
-				<div class="MiyagiDeveloperInformation">
+    <div class="Component">
+      <div class="Component-variationHeader">
+				<div class="DeveloperInformation">
 					{% if mockValidation %}
-						<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
-							<span class="MiyagiStatus MiyagiStatus--{% if mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
+						<button class="Component-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
+							<span class="Status Status--{% if mockValidation.valid %}valid{% else %}invalid{% endif %}">{% if mockValidation.valid %}Valid{% else %}Invalid{% endif %} mock data</span>
 						</button>
 					{% else %}
-						<button class="MiyagiComponent-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
+						<button class="Component-mockValidation js-openMockData" aria-controls="{{ normalizedVariation }}">
 							Mock data
 						</button>
 					{% endif %}
 				</div>
-        <a class="MiyagiIframe-newTabLink" href="{{ standaloneUrl }}" target="_blank" rel="noopener">
+        <a class="Iframe-newTabLink" href="{{ standaloneUrl }}" target="_blank" rel="noopener">
           Open
         </a>
       </div>
-			<dialog class="MiyagiComponent-mockData" hidden id="{{ normalizedVariation }}">
-				<div class="MiyagiComponent-mockDataInner">
-					<p class="MiyagiComponent-mockDataHeading"><b>{{ variation }}</b> mock data</p>
+			<dialog class="Component-mockData" id="{{ normalizedVariation }}">
+				<div class="Component-mockDataInner">
+					<p class="Component-mockDataHeading"><b>{{ variation }}</b> mock data</p>
 					<accordion-tabs breakpoint="24rem">
 						<details>
 							<summary>Raw</summary>
@@ -36,7 +36,7 @@
 						</details>
 					</accordion-tabs>
 					<form method="dialog">
-						<button class="MiyagiComponent-closeMockData">Close</button>
+						<button class="Component-closeMockData">Close</button>
 					</form>
 				</div>
 			</dialog>
