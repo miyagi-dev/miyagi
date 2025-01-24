@@ -261,6 +261,15 @@ describe("createMockData", () => {
 		});
 	});
 
+	describe("without component", () => {
+		test("returns success: false", async () => {
+			expect(await createMockData({})).toStrictEqual({
+				success: false,
+				message: "No directory has been defined.",
+			});
+		});
+	});
+
 	describe("with invalid component", () => {
 		test("returns success: false", async () => {
 			const component = "non-existent";

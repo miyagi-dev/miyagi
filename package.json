@@ -70,7 +70,7 @@
 	},
 	"scripts": {
 		"build": "gulp build",
-		"test": "vitest run",
+		"test": "vitest run --coverage --coverage.include=api --coverage.include=lib",
 		"lint": "stylelint frontend/assets/css/ && eslint lib/ && eslint frontend/assets/js/",
 		"fix": "eslint lib/ --fix && eslint frontend/assets/js/ --fix",
 		"release": "standard-version"
