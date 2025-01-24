@@ -418,6 +418,14 @@ default:
 
 ## `schema`
 
+## `ajv`
+
+default: default import of "ajv"
+
+For more information please refer to the [AJV documentation](https://ajv.js.org/guide/schema-language.html#draft-2019-09-and-draft-2020-12).
+
+### `options`
+
 default: `{}`<br>
 type: `object`
 
