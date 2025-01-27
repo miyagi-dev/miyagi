@@ -25,7 +25,7 @@
 	"files": [
 		"api",
 		"bin",
-		"dist",
+		"frontend",
 		"index.js",
 		"lib"
 	],
