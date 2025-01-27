@@ -1,11 +1,7 @@
 import path from "path";
 import init from "../lib/index.js";
 import { t } from "../lib/i18n/index.js";
-import {
-	getComponentData,
-	getVariationData,
-	resolveData,
-} from "../lib/mocks/index.js";
+import { getComponentData, getVariationData } from "../lib/mocks/index.js";
 import renderIframeVariationStandalone from "../lib/render/views/iframe/variation.standalone.js";
 import build from "../lib/build/index.js";
 import generateMockData from "../lib/generator/mocks.js";
@@ -15,11 +11,11 @@ import validateMockData from "../lib/validator/mocks.js";
 /**
  * @param {object} obj
  * @param {string|null} obj.component
- * @param {string} obj.variant
+ * @param {string} [obj.variant]
  * @returns {Promise<object>}
  */
 export const getMockData = async (
-	{ component, variant } = { component: null, variant: "default" },
+	{ component, variant = "default" } = { component: null },
 ) => {
 	if (!component)
 		return {
@@ -47,16 +43,14 @@ export const getMockData = async (
 		};
 	}
 
-	const result = await resolveData(data.extended, componentObject);
-
-	if (!result || !result.resolved) {
+	if (!data.resolved) {
 		return {
 			success: false,
 			message: "An unknown error occured.",
 		};
 	}
 
-	return { success: true, data: result.resolved };
+	return { success: true, data: data.resolved };
 };
 
 /**
