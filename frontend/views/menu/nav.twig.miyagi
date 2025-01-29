@@ -30,7 +30,7 @@
 						{% elseif item.section == "docs" %}
 							{% if item.isLink %}
 								<a
-									class="Nav-item Nav-item--link"
+									class="{% if item.type == "file" %}Nav-variant{% else %}Nav-item Nav-item--link{% endif %}"
 									href="{{ item.route.default }}"
 									{% if is_active_component(item, requestedComponent, requestedVariation) %}
 										aria-current="page"

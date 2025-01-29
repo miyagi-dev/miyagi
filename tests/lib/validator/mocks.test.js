@@ -88,8 +88,6 @@ async function getComponentsObject(component) {
 	global.app = await init("api");
 
 	return global.state.routes.find(
-		(route) =>
-			route.paths.dir.short ===
-			path.join(path.basename(global.config.components.folder), component),
+		(route) => route.paths.dir.short === component,
 	);
 }

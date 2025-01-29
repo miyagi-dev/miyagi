@@ -196,15 +196,15 @@ describe("createBuild", () => {
 
 		expect(await createBuild()).toStrictEqual({
 			success: true,
-			message: "Build done! Wrote 78 directories and files.",
+			message: "Build done! Wrote 77 directories and files.",
 		});
 
 		[
 			"component-all-embedded.html",
 			"component-all.html",
-			"component-components-anchor-embedded.html",
-			"component-components-anchor-variation-default-embedded.html",
-			"component-components-anchor-variation-default.html",
+			"component-anchor-embedded.html",
+			"component-anchor-variation-default-embedded.html",
+			"component-anchor-variation-default.html",
 			"design-tokens-colors.html",
 			"design-tokens-sizes.html",
 			"design-tokens-typography.html",
@@ -215,8 +215,8 @@ describe("createBuild", () => {
 			"iframe-design-tokens-typography-embedded.html",
 			"iframe-design-tokens-typography.html",
 			"index.html",
-			"show-components-anchor-variation-default.html",
-			"show-components-anchor.html",
+			"show-anchor-variation-default.html",
+			"show-anchor.html",
 		].forEach((fileName) =>
 			expect(
 				existsSync(

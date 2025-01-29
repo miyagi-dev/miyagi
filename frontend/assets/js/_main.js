@@ -131,10 +131,9 @@ class Main {
 		{
 			var target = this.elements.links.find(
 				(link) =>
-					query.includes(link.getAttribute("href")) ||
-					link
-						.getAttribute("href")
-						.includes(query.replace(this.paths.container, this.paths.embedded)),
+					query == link.getAttribute("href") ||
+					link.getAttribute("href") ==
+						query.replace(this.paths.container, this.paths.embedded),
 			);
 
 			if (target) {
@@ -242,7 +241,10 @@ class Main {
 		anchor.setAttribute("aria-current", "page");
 
 		this.elements.componentToggles.forEach((toggle) => {
-			toggle.setAttribute("aria-expanded", "false");
+			toggle.setAttribute(
+				"aria-expanded",
+				toggle.closest(".Nav-entry")?.classList.contains("Nav-entry--lvl0"),
+			);
 		});
 
 		this.elements.links.forEach((link) => {
@@ -250,7 +252,9 @@ class Main {
 		});
 
 		this.elements.children.forEach((list) => {
-			list.hidden = true;
+			list.hidden = !list
+				.closest(".Nav-entry")
+				?.classList.contains("Nav-entry--lvl0");
 		});
 
 		this.updateIframe(src);

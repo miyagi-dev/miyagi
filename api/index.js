@@ -225,8 +225,6 @@ export const lintComponent = async ({ component }) => {
  */
 function getComponentsObject(component) {
 	return global.state.routes.find(
-		(route) =>
-			route.paths.dir.short ===
-			path.join(path.basename(global.config.components.folder), component),
+		(route) => route.paths.dir.short === component,
 	);
 }
