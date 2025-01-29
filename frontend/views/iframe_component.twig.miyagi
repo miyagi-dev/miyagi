@@ -91,7 +91,7 @@
 						</dialog>
 					</div>
 					<div class="Component-iframeWrapper" id="{{ variation.normalizedVariation }}-iframe">
-						<iframe class="Component-iframe" src="{{ variation.standaloneUrl }}" frameborder="0" title="{{ variation.variation }}" id="iframe"></iframe>
+						<iframe class="Component-iframe" src="{{ variation.standaloneUrl }}" frameborder="0" title="{{ variation.variation }}" id="iframe" loading="lazy"></iframe>
 					</div>
 				</div>
 			{% endfor %}
