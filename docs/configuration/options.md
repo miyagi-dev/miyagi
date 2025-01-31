@@ -7,34 +7,16 @@ _Settings for assets that miyagi serves (independently from your components)._
 ### `root`
 
 default: `""`<br>
-type: `string|object`
+type: `string`
 
 This setting can be helpful if assets are located in another folder, e.g. `public/assets`, but they should actually be served from `assets/`. In that case you could set this option to `public`.
-
-It is also possible to define this for each `NODE_ENV` via an object like this:
-
-```json
-{
-	"development": "some/folder",
-	"production": ""
-}
-```
 
 ### `css`
 
 default: `null`<br>
-type: `object`
+type: `string[]`
 
-Can either be a string, an array of strings or an object with your `NODE_ENV`s as key and a string or array as values:
-
-```json
-{
-	"development": ["src/reset.css", "src/theme.css"],
-	"production": ["dist/index.css"]
-}
-```
-
-This would serve different assets based on your `NODE_ENV`.
+An array of CSS file paths.
 
 ### `customProperties`
 
@@ -60,47 +42,34 @@ This object is used to generate your automated design token overview.
 ### `folder`
 
 default: `null`<br>
-type: `string|array|object`
+type: `array`
 
 If you need _miyagi_ to serve static assets (like images, SVGs, etc.), you can define one or multiple folders here.
 
-Can either be a string, an array of strings or an object with your `NODE_ENV`s as key and a string or array as values:
-
 ```json
-{
-	"development": ["svgs", "templates"],
-	"production": ["templates"]
-}
+["images", "svgs", "templates"]
 ```
-
-This would serve different assets based on your `NODE_ENV`.
 
 ### `js`
 
 default: `null`<br>
-type: `string|array|object`
-
-This would be the most complex way to define this option:
+type: `array`
 
 ```json
-{
-  "development": [
-    {
-      "src": "src/index.js",
-      "defer": false,
-      "async": false,
-      "type": null,
-      "position": "head"
-    }
-  ],
-  "production": [{ … }]
-}
+[
+	{
+		"src": "src/index.js",
+		"defer": false,
+		"async": false,
+		"type": null,
+		"position": "head"
+	}
+]
 ```
 
-This would serve different assets based on your `NODE_ENV` (`"development"` or `"production"` in this case).
-It can be simplified to by omitting the node envs, not using an array or simply using a string (for the source file).
+`defer`, `async`, `type` and `position` are optional.
 
-Please also refer to How to: [Adding JS files](/how-to/adding-js-files/).
+Please also refer to [How to / Adding JS files](/how-to/adding-js-files/).
 
 ### `manifest`
 
