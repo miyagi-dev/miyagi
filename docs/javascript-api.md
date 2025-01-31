@@ -13,20 +13,20 @@ Returns the resolved mock data as a plain JSON object.
 
 #### Options
 
-```
+```js
 {
-	"component": String, // Required — Path to the component directory, relative from config.components.folder.
-	"variant": String // Optional — Variant name. If omitted, the default variant is used.
+	component: String, // Required — Path to the component directory, relative from config.components.folder.
+	variant: String // Optional — Variant name. If omitted, the default variant is used.
 }
 ```
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean,
-	"data": Object|Array, // The resolved mock data
-	"message": String // Error message in case that no mock data could be returned
+	success: Boolean,
+	data: null|Object|Array, // The resolved mock data
+	message: String // Optional — Error message in case that no mock data could be returned
 }>
 ```
 
@@ -36,39 +36,20 @@ Returns the rendered variant as a string of HTML.
 
 #### Options
 
-```
+```js
 {
-	"component": String, // Required — Path to the component directory, relative from config.components.folder.
-	"variant": String // Optional — Variant name. If omitted, the default variant is used.
+	component: String, // Required — Path to the component directory, relative from config.components.folder.
+	variant: String // Optional — Variant name. If omitted, the default variant is used.
 }
 ```
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean,
-	"data": String, // The HTML string
-	"message": String // Error message in case that no HTML could be returned
-}>
-```
-
-#### Options
-
-```
-{
-	"component": String, // Required — Path to the component directory, relative from config.components.folder.
-	"variant": String // Optional — Variant name. If omitted, the default variant is used.
-}
-```
-
-#### Response
-
-```
-Promise<{
-	"success": Boolean,
-	"data": HTMLElement,
-	"message": String // Error message in case that no node could be returned
+	success: Boolean,
+	data: null|String, // Optional — The HTML string
+	message: String // Optional — Error message in case that no HTML could be returned
 }>
 ```
 
@@ -78,18 +59,18 @@ Creates a mock data file based on the components schema file, same as the CLI co
 
 #### Options
 
-```
+```js
 {
-	"component": String // Required — Path to the component directory, relative from config.components.folder.
+	component: String; // Required — Path to the component directory, relative from config.components.folder.
 }
 ```
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean,
-	"message": String // Error message in case that the mock data could not be created
+	success: Boolean,
+	message: String // Optional — Error message in case that the mock data could not be created
 }>
 ```
 
@@ -103,10 +84,10 @@ _None_
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean,
-	"message": String // Error message in case that the build could not be created
+	success: Boolean,
+	message: String
 }>
 ```
 
@@ -116,11 +97,11 @@ Creates component files for a given path.
 
 #### Options
 
-```
+```js
 {
-	"component": String, // Required — Path to component directory.
-	"only": Array // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
-	"skip": Array // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
+	component: String, // Required — Path to component directory.
+	only: String[] // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
+	skip: String[] // Optional — Values can be any of "tpl", "css", js", "mocks", "schema", "docs". If omitted, all files are created.
 }
 ```
 
@@ -128,10 +109,10 @@ Please note that only either `only` or `skip` should be passed. If both are pass
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean,
-	"message": String // Error or success message
+	success: Boolean,
+	message: String
 }>
 ```
 
@@ -141,24 +122,24 @@ Validates the schema and mock data for a single component.
 
 #### Options
 
-```
+```js
 {
-	"component": String // Required — Path to component directory.
+	component: String; // Required — Path to component directory.
 }
 ```
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
-	"data": [{
-		"type": String, // Any of "mocks", "schema"
-		"data": [{
-			"message": String
+	success: Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
+	data: [{
+		type: String, // Any of "mocks", "schema"
+		data: [{
+			message: String
 		}]
 	}],
-	"message": String // Error message in case success was false
+	message: String // Optional — Error message in case success was false
 }>
 ```
 
@@ -172,19 +153,19 @@ _None_
 
 #### Response
 
-```
+```js
 Promise<{
-	"success": Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
-	"data": [{
-		"component": String, // Path to component directory.
-		"errors": [{
-			"type": String, // Any of "mocks", "schema"
-			"data": [{
-				"message": String
+	success: Boolean, // only indicates if linting in general was successful for not, not if there are errors or not
+	data: [{
+		component: String, // Path to component directory.
+		errors: [{
+			type: String, // Any of "mocks", "schema"
+			data: [{
+				message: String
 			}]
 		}]
 	}],
-	"message": String // Error message in case success was false
+	message: String // Optional — Error message in case success was false
 }>
 ```
 

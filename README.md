@@ -4,23 +4,39 @@
 
 # miyagi
 
-- [Requirements](#requirements)
-- [VS Code extension](#vs-code-extension)
-- [Sponsor](#sponsor)
+_miyagi_ is a component development tool for JavaScript templating engines.
 
-## Packages
+## Benefits
 
-### core
-
-[core](/packages/core) is the main package for _miyagi_ and should usually be sufficient. Please check out the [documentation](https://docs.miyagi.dev) for a full list of its features.
+- No overhead in your project: _miyagi_ only needs one configuration file.
+- Works with any directory structure (as long as you have one folder per component).
+- Helps you developing your components encapsulated.
+- Mock data (static or dynamic) allows developing independently from a backend.
+- Validates your mock data against your JSON schema files.
+- Documentation of your components using markdown.
+- You can customize the layout, so it fits the design of your project.
+- Use any kind of templating engine by providing your own render function.
+- Allows creating a static build.
+- Lots of functionality invokable via CLI or JavaScript API.
+- Automatically created design tokens overview based on CSS custom properties.
 
 ## Requirements
 
-- node `>=20`
+- NodeJS `20.11.0` or higher
 
-## VS Code extension
+## Demos
 
-Fynn Becker ([@mvsde@mastodon.social](https://mastodon.social/@mvsde), [fynn.be](https://fynn.be)) created a VS Code extension for _miyagi_, that can be found here: [https://marketplace.visualstudio.com/items?itemName=fynn.miyagi](https://marketplace.visualstudio.com/items?itemName=fynn.miyagi)
+### Handlebars
+
+[handlebars.demos.miyagi.dev](https://handlebars.demos.miyagi.dev) (Code: [https://github.com/miyagi-dev/demos/tree/main/handlebars](https://github.com/miyagi-dev/demos/tree/main/handlebars))
+
+### Web Components
+
+[web-components.demos.miyagi.dev](https://web-components.demos.miyagi.dev) (Code: [https://github.com/miyagi-dev/demos/tree/main/web-components](https://github.com/miyagi-dev/demos/tree/main/web-components))
+
+## Documentation
+
+[https://docs.miyagi.dev](https://docs.miyagi.dev)
 
 ## Sponsor
 
