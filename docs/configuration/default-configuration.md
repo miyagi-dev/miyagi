@@ -25,6 +25,9 @@ export default {
 		basePath: "/",
 		folder: "build",
 	},
+	docs: {
+		folder: "docs",
+	},
 	components: {
 		folder: "src",
 		ignores: [
@@ -77,12 +80,9 @@ export default {
 			css: null,
 			favicon: null,
 			js: null,
-			logo: null,
-			light: {
-				logo: null,
-			},
-			dark: {
-				logo: null,
+			logo: {
+				light: null,
+				dark: null,
 			},
 		},
 	},
