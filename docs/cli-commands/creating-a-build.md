@@ -21,14 +21,3 @@ miyagi build --folder <folder>
 ```
 
 This would overwrite the [`build.folder` value defined in your settings](/configuration/options#build).
-
-### --outputFile
-
-`miyagi` can create an `output.json` file, which contains the paths to the standalone HTML files of your components (including variants). You can e.g. use this file to run visual regression tests against those paths.
-By default, this is turned off. You can enable it via
-
-```bash
-miyagi build --outputFile true
-```
-
-This would overwrite the [`build.outputFile` value defined in your settings](/configuration/options#build).

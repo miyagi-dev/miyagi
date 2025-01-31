@@ -24,7 +24,6 @@ export default {
 	build: {
 		basePath: "/",
 		folder: "build",
-		outputFile: false,
 	},
 	components: {
 		folder: "src",

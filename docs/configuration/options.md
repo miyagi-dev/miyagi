@@ -127,13 +127,6 @@ type: `string`
 
 The folder where your build files will be saved. Use `--folder` when using as a cli argument.
 
-### `outputFile`
-
-default: `false`<br>
-type: `boolean`
-
-Defines if an `output.json` file (containing all paths to the standalone views of a component) should be created.
-
 ## `components`
 
 ### `folder`
