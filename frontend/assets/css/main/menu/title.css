@@ -3,7 +3,6 @@
 .Title {
 	display: flex;
 	justify-content: center;
-	margin-block: 1.5rem;
 	margin-inline-start: calc(var(--menu-spacing) + var(--bar-size));
 	margin-inline-end: var(--menu-spacing);
 }
@@ -28,8 +27,14 @@
 	display: none;
 }
 
-@media (max-width: 40rem) {
+@media (width <= 40rem) {
 	.Title-logo img {
 		block-size: 2rem;
+	}
+}
+
+@media (width > 40rem) {
+	.Title {
+		margin-block: 1.5rem;
 	}
 }

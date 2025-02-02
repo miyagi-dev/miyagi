@@ -13,7 +13,7 @@ class Main {
 			content: "Content",
 			iframe: "Frame",
 			frameWrapper: "FrameWrapper",
-			toggleMenu: "Nav-toggleMobileMenu",
+			toggleMenu: "Menu-toggleMobileMenu",
 			menu: {
 				rootLink: "Title-link",
 				list: "Nav-list",

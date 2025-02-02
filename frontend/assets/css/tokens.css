@@ -6,24 +6,69 @@ html {
 	--divider: 0.0625rem solid var(--color-Divider);
 
 	/* colors */
-	--color-Code-background: light-dark(var(--color-Code-background--light), var(--color-Code-background--dark));
-	--color-Divider: light-dark(var(--color-Divider--light), var(--color-Divider--dark));
+	--color-Code-background: light-dark(
+		var(--color-Code-background--light),
+		var(--color-Code-background--dark)
+	);
+	--color-Divider: light-dark(
+		var(--color-Divider--light),
+		var(--color-Divider--dark)
+	);
 	--color-Icon: light-dark(var(--color-Icon--light), var(--color-Icon--dark));
-	--color-Iframe-background: light-dark(var(--color-Iframe-background--light), var(--color-Iframe-background--dark));
-	--color-Iframe-link: light-dark(var(--color-Iframe-link--light), var(--color-Iframe-link--dark));
-	--color-Iframe-text-secondary: light-dark(var(--color-Iframe-text-secondary--light), var(--color-Iframe-text-secondary--dark));
-	--color-Iframe-text-tertiary: light-dark(var(--color-Iframe-text-tertiary--light), var(--color-Iframe-text-tertiary--dark));
-	--color-Iframe-text: light-dark(var(--color-Iframe-text--light), var(--color-Iframe-text--dark));
-	--color-Link-active-background: light-dark(var(--color-Link-active-background--light), var(--color-Link-active-background--dark));
+	--color-Iframe-background: light-dark(
+		var(--color-Iframe-background--light),
+		var(--color-Iframe-background--dark)
+	);
+	--color-Iframe-link: light-dark(
+		var(--color-Iframe-link--light),
+		var(--color-Iframe-link--dark)
+	);
+	--color-Iframe-text-secondary: light-dark(
+		var(--color-Iframe-text-secondary--light),
+		var(--color-Iframe-text-secondary--dark)
+	);
+	--color-Iframe-text-tertiary: light-dark(
+		var(--color-Iframe-text-tertiary--light),
+		var(--color-Iframe-text-tertiary--dark)
+	);
+	--color-Iframe-text: light-dark(
+		var(--color-Iframe-text--light),
+		var(--color-Iframe-text--dark)
+	);
+	--color-Link-active-background: light-dark(
+		var(--color-Link-active-background--light),
+		var(--color-Link-active-background--dark)
+	);
 	--color-Link: light-dark(var(--color-Link--light), var(--color-Link--dark));
-	--color-Menu-background: light-dark(var(--color-Menu-background--light), var(--color-Menu-background--dark));
-	--color-MenuBar-background: light-dark(var(--color-MenuBar-background--light), var(--color-MenuBar-background--dark));
-	--color-Negative: light-dark(var(--color-Negative--light), var(--color-Negative--dark));
-	--color-Outline: light-dark(var(--color-Outline--light), var(--color-Outline--dark));
-	--color-Positive: light-dark(var(--color-Positive--light), var(--color-Positive--dark));
+	--color-Menu-background: light-dark(
+		var(--color-Menu-background--light),
+		var(--color-Menu-background--dark)
+	);
+	--color-MenuBar-background: light-dark(
+		var(--color-MenuBar-background--light),
+		var(--color-MenuBar-background--dark)
+	);
+	--color-Negative: light-dark(
+		var(--color-Negative--light),
+		var(--color-Negative--dark)
+	);
+	--color-Outline: light-dark(
+		var(--color-Outline--light),
+		var(--color-Outline--dark)
+	);
+	--color-Positive: light-dark(
+		var(--color-Positive--light),
+		var(--color-Positive--dark)
+	);
 	--color-Text: light-dark(var(--color-Text--light), var(--color-Text--dark));
-	--color-Tooltip-background: light-dark(var(--color-Tooltip-background--light), var(--color-Tooltip-background--dark));
-	--color-Tooltip-outline: light-dark(var(--color-Tooltip-outline--light), var(--color-Tooltip-outline--dark));
+	--color-Tooltip-background: light-dark(
+		var(--color-Tooltip-background--light),
+		var(--color-Tooltip-background--dark)
+	);
+	--color-Tooltip-outline: light-dark(
+		var(--color-Tooltip-outline--light),
+		var(--color-Tooltip-outline--dark)
+	);
 
 	/* light */
 	--color-Code-background--light: hsl(0deg 0% 96%);

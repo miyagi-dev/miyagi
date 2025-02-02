@@ -28,17 +28,11 @@
 	outline: var(--outline);
 }
 
-@media (max-width: 40rem) {
+@media (width <= 40rem) {
 	.Menu {
 		align-items: center;
 		flex-wrap: wrap;
 		justify-content: space-between;
-		padding: var(--spacing-y) var(--spacing-x);
-	}
-
-	.Menu-nav {
-		margin-inline-start: 1rem;
-		padding-inline: var(--spacing-x);
 	}
 
 	.Menu-search {
@@ -88,7 +82,7 @@
 	}
 }
 
-@media (min-width: 40.03125rem) {
+@media (width > 40rem) {
 	.Menu {
 		flex-direction: column;
 		block-size: 100vh;

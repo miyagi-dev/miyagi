@@ -32,7 +32,7 @@ body {
 	width: 100%;
 }
 
-@media (max-width: 40rem) {
+@media (width <= 40rem) {
 	html {
 		--spacing-x: 1rem;
 		--spacing-y: 1rem;
@@ -45,14 +45,12 @@ body {
 	}
 }
 
-@media (min-width: 40.03125rem) {
+@media (width > 40rem) {
 	html {
 		--spacing-x: 2rem;
 		--spacing-y: 4rem;
 	}
-}
 
-@media (min-width: 40.03125rem) {
 	body {
 		grid-template-areas: "nav iframe";
 		grid-template-columns: 16rem 1fr;

@@ -6,7 +6,7 @@
 @import url("./iframe/styleguide/index.css") layer(miyagi);
 
 html {
-	--iframe-spacing: 2.5rem;
+	--iframe-spacing: clamp(0.75rem, 4vi, 2.5rem);
 
 	height: 100%;
 }
@@ -315,13 +315,18 @@ pre[class*="language-"] {
 }
 
 .Component-mockData {
+	background: light-dark(hsl(0deg 0% 95%), hsl(0deg 0% 12%));
 	border: none;
 	padding: var(--iframe-spacing);
-	width: 100%;
-	height: calc(100vh - 2 * var(--iframe-spacing));
+	width: calc(100vi - 2 * var(--iframe-spacing));
+	height: calc(100vb - 2 * var(--iframe-spacing));
 	max-width: 70ch;
 	box-sizing: border-box;
 	overscroll-behavior: contain;
+}
+
+.Component-mockData::backdrop {
+	background: light-dark(rgba(255 255 255 / 80%), rgba(0 0 0 / 80%));
 }
 
 .Component-mockData:not([open]) {

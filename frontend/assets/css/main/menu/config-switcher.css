@@ -41,3 +41,9 @@
 .ConfigSwitcher :checked + label svg {
 	fill: var(--color-Link-active, var(--color-Link));
 }
+
+@media (width <= 40rem) {
+	.ConfigSwitchers {
+		margin-block-start: 1rem;
+	}
+}
