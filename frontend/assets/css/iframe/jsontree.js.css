@@ -14,12 +14,12 @@
 	--json-tree-js-color-black: #3b3a3a;
 	--json-tree-js-color-white: currentcolor;
 	--json-tree-js-color-snow-white: currentcolor;
-	--json-tree-js-color-boolean: #f00;
+	--json-tree-js-color-boolean: light-dark(#d9173e, hsl(348deg 100% 68%));
 	--json-tree-js-color-decimal: #e3c868;
 	--json-tree-js-color-number: #666bf9;
-	--json-tree-js-color-string: #3d5920;
+	--json-tree-js-color-string: light-dark(hsl(80deg 100% 24%), #8dd203);
 	--json-tree-js-color-date: #a656f5;
-	--json-tree-js-color-array: #7a4613;
+	--json-tree-js-color-array: light-dark(#7a4613, hsl(30deg 73% 50%));
 	--json-tree-js-color-object: currentcolor;
 	--json-tree-js-color-null: #bbb;
 	--json-tree-js-color-function: var(--json-tree-js-color-null);

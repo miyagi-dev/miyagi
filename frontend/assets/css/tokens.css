@@ -40,7 +40,7 @@ html {
 	--color-MenuBar-background--light: rgb(0 0 0 / 5%);
 	--color-Negative--light: #d9173e;
 	--color-Outline--light: hsl(0deg 0% 86%);
-	--color-Positive--light: #690;
+	--color-Positive--light: hsl(80deg 100% 25%);
 	--color-Text--light: hsl(0deg 0% 36%);
 	--color-Tooltip-background--light: #f5f5f5;
 	--color-Tooltip-outline--light: #ddd;

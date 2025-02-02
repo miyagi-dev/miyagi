@@ -9,10 +9,10 @@
 	--color: light-dark(black, white);
 	--text-shadow: light-dark(white, black);
 	--background: light-dark(#f5f2f0, hsl(30deg 20% 25%));
-	--color-comment: light-dark(slategray, hsl(30deg 20% 50%));
-	--color-property: light-dark(#905, hsl(350deg 40% 70%));
-	--color-selector: light-dark(#690, hsl(75deg 70% 60%));
-	--color-operator: light-dark(#9a6e3a, hsl(40deg 90% 60%));
+	--color-comment: light-dark(hsl(30deg 0% 40%), hsl(30deg 0% 60%));
+	--color-property: light-dark(#d9173e, hsl(348deg 100% 68%));
+	--color-selector: light-dark(hsl(80deg 100% 24%), #8dd203);
+	--color-operator: light-dark(#7a4613, hsl(30deg 73% 50%));
 	--color-atrule: light-dark(#07a, hsl(350deg 40% 70%));
 	--color-function: #dd4a68;
 	--color-regex: #e90;

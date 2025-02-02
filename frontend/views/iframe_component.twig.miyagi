@@ -1,6 +1,6 @@
 {% extends "@miyagi/layouts/iframe_default.twig.miyagi" %}
 	{% block body %}
-		<div class="Wrapper">
+		<main class="Wrapper">
 			<div class="Documentation">
 				{% if name %}
 					<h1>{{ name }}</h1>
@@ -95,7 +95,7 @@
 					</div>
 				</div>
 			{% endfor %}
-		</div>
+		</main>
 		<script src="{{ projectName }}/js/jsontree.js"></script>
 		<script>
 			const eventMethod = window.addEventListener

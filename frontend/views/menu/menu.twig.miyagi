@@ -1,4 +1,4 @@
-<div class="Menu">
+<header class="Menu">
 	{% include "@miyagi/menu/title.twig.miyagi" %}
 	<button class="Menu-toggleMobileMenu" aria-label="Show menu" aria-expanded="false"></button>
 	<div class="Menu-content">
@@ -18,4 +18,4 @@
 	</div>
 
 	{% include "@miyagi/menu/goto.twig.miyagi" %}
-</div>
+</header>
