@@ -44,7 +44,6 @@ export default {
 	engine: {
 		render: null,
 	},
-	extensions: [],
 	files: {
 		css: {
 			name: "index",

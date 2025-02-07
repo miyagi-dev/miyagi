@@ -169,11 +169,6 @@ The render function for your templates. The function will be called with an obje
 }
 ```
 
-## `extensions`
-
-default: `[]`<br>
-type: `array`
-
 ## `projectName`
 
 default: `"miyagi"`<br>
