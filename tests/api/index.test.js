@@ -100,9 +100,10 @@ describe("getMockData", () => {
 			expect(
 				await getMockData({ component: "button", variant: "non-existent" }),
 			).toStrictEqual({
-				success: false,
+				success: true,
 				message:
 					'No mock data found for component "button", variant "non-existent".',
+				data: null,
 			});
 		});
 	});
@@ -153,13 +154,12 @@ describe("getHtml", () => {
 	});
 
 	describe("using non-existent variant", () => {
-		test("returns success: false", async () => {
+		test("returns success: true", async () => {
 			expect(
 				await getHtml({ component: "button", variant: "non-existent" }),
 			).toStrictEqual({
-				success: false,
-				message:
-					'No mock data found for component "button", variant "non-existent".',
+				success: true,
+				data: "<button></button>\n",
 			});
 		});
 	});

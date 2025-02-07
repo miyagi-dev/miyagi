@@ -38,8 +38,9 @@ export const getMockData = async (
 
 	if (!data) {
 		return {
-			success: false,
+			success: true,
 			message: `No mock data found for component "${component}", variant "${variant}".`,
+			data: null,
 		};
 	}
 
@@ -70,17 +71,22 @@ export const getHtml = async (
 
 	const { success, data, message } = await getMockData({ component, variant });
 
-	if (!success) return { success, message };
+	if (success) {
+		const result = await renderIframeVariationStandalone({
+			component: getComponentsObject(component),
+			componentData: success ? data : {},
+		});
 
-	const result = await renderIframeVariationStandalone({
-		component: getComponentsObject(component),
-		componentData: data,
-	});
-
-	return {
-		success: true,
-		data: result,
-	};
+		return {
+			success: true,
+			data: result,
+		};
+	} else {
+		return {
+			success: false,
+			message,
+		};
+	}
 };
 
 export const createBuild = async () => {
