@@ -326,7 +326,7 @@ pre[class*="language-"] {
 }
 
 .Component-mockData::backdrop {
-	background: light-dark(rgba(255 255 255 / 80%), rgba(0 0 0 / 80%));
+	background: light-dark(rgb(255 255 255 / 80%), rgb(0 0 0 / 80%));
 }
 
 .Component-mockData:not([open]) {
