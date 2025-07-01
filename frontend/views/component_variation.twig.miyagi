@@ -47,7 +47,7 @@
       <p class="Error">{{ error }}</p>
     {% endif %}
     {% for file in jsFilesBody %}
-			{% set type_str = file.type ? " type=" ~ file.type ~ '"' : "" %}
+			{% set type_str = file.type ? ' type="' ~ file.type ~ '"' : "" %}
 			{% set defer_str = file.defer ? "defer" : "" %}
 			{% set async_str = file.async ? "async" : "" %}
 			<script src="{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>

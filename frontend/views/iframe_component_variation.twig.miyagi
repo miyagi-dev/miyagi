@@ -1,5 +1,5 @@
-{% extends "@miyagi/layouts/iframe_index.twig.miyagi" %}
-  {% block content %}
+{% extends "@miyagi/layouts/iframe_default.twig.miyagi" %}
+  {% block body %}
     <div class="Wrapper">
       <div id="Component" class="ComponentView">
         <iframe src="{{ standaloneUrl }}" frameborder="0" class="ComponentView-iframe" title="Variation" id="iframe"></iframe>

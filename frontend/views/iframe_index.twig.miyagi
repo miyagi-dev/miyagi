@@ -1,10 +1,10 @@
-{% extends "@miyagi/layouts/iframe_index.twig.miyagi" %}
+{% extends "@miyagi/layouts/iframe_default.twig.miyagi" %}
 	{% block additionalCss %}
     {% for file in additionalCssFiles %}
     <link rel="stylesheet" href="{{ file }}">
     {% endfor %}
   {% endblock %}
-  {% block content %}
+  {% block body %}
     <div class="Wrapper">
 			<div class="Documentation">
 				<h1>{{ userProjectName }}</h1>

@@ -4,24 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,width=device-width">
     <meta name="color-scheme" content="dark light">
-    <title>Component</title>
-    {% for file in jsFilesHead %}
-			{% set type_str = file.type ? " type=" ~ file.type ~ '"' : "" %}
-			{% set defer_str = file.defer ? "defer" : "" %}
-			{% set async_str = file.async ? "async" : "" %}
-			<script src="/{{ file.src }}"{{ type_str ~ defer_str ~ async_str }}></script>
-		{% endfor %}
+    <title>{{ projectName }}</title>
     <script src="/{{ projectName }}/js/iframe{% if isBuild %}.build{% endif %}.js" {% if miyagiDev %} type="module" {% endif %}{% if prod %}
       defer{% endif %}></script>
     <link rel="stylesheet" href="/{{ projectName }}/css/iframe.css">
-    {% block additionalCss %}{% endblock %}
+		{% block additionalCss %}{% endblock %}
     <style>
       {{ theme.css }}
     </style>
-		{% block componentAssets %}{% endblock %}
+    <script>
+      {{ theme.js }}
+    </script>
   </head>
   <body>
-		{% block body %}{% endblock %}
-    {{ jsFilesBottom }}
+    {% block body %}{% endblock %}
   </body>
 </html>
