@@ -17,7 +17,7 @@
 							></button>
 						{% endif %}
 
-						{% if item.section == "design-tokens" %}
+						{% if item.section == "design-tokens" and item.url %}
 							<a
 								class="Nav-item Nav-item--link"
 								href="{{ item.url }}"
@@ -43,7 +43,7 @@
 									{{ item.name }}
 								</span>
 							{% endif %}
-						{% elseif item.shortPath and not item.topLevel %}
+						{% elseif item.url and item.shortPath and not item.topLevel %}
 							<a
 								class="Nav-item Nav-item--link"
 								href="{{ item.url }}"
@@ -53,7 +53,7 @@
 							>
 								{{ item.name }}
 							</a>
-						{% elseif not item.type %}
+						{% elseif item.url and not item.type %}
 							<a
 								class="Nav-variant"
 								href="{{ item.url }}"
