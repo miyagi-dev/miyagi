@@ -291,6 +291,6 @@ If you want to define default mock data, so your variants inherit it, but not re
 
 ## Global mock data
 
-You can define global mocks by creating a `data.json` (`data.js` or `data.yaml`) in your [`components.folder`](/configuration/options#components). This mock data will be merged into your components mock data. The components mock data has higher priority, hence overwrites keys with the same name.
+You can define global mock data by creating a `mocks.json` (or whatever you defined the mock files to be named like in `files.mocks`) in your [`components.folder`](/configuration/options#components). This mock data will be merged into your components mock data. The components mock data has higher priority, hence overwrites keys with the same name.
 
-You can also add definitions (see above) to the global mock data. When referencing them, you can do this with `data/#/$defs/…`.
+You can also add definitions (see above) to the global mock data. When referencing them, you can do this with `mocks/#/$defs/…`. `mocks` needs to be replaced with whatever you defined in `files.mocks.name`.
