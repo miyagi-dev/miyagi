@@ -174,5 +174,12 @@ main {
 @media (prefers-color-scheme: dark) {
 	html {
 		color-scheme: dark;
+
+		--toc-border-color: rgb(255 255 255 / 25%);
 	}
+}
+
+.TOC {
+	font-size: 0.75em;
+	margin-block-end: 4rem;
 }

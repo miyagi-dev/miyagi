@@ -1,3 +1,7 @@
+---
+toc: true
+---
+
 # Options
 
 ## `assets`
@@ -174,11 +178,6 @@ The render function for your templates. The function will be called with an obje
 default: `[]`<br>
 type: `array`
 
-## `projectName`
-
-default: `"miyagi"`<br>
-type: `string`
-
 ## `files`
 
 _This is the configuration for your actual component files._
@@ -272,6 +271,11 @@ Example:
 
 You can then use `$tpl: "@templates/some-template"` or `$ref: "@templates/some-mocks"` in your mock data.
 
+## `projectName`
+
+default: `"miyagi"`<br>
+type: `string`
+
 ## `ui`
 
 _Settings for the [web UI](/the-ui)._
@@ -360,7 +364,7 @@ default:
 
 ## `schema`
 
-## `ajv`
+### `ajv`
 
 default: default import of "ajv"
 
