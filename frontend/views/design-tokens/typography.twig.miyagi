@@ -8,7 +8,9 @@
 	{% if typography %}
 		<div class="Wrapper">
 			<div class="Styleguide" data-media-queries='{{ mediaQueries }}'>
-				<h1>Typography</h1>
+				<div class="Documentation">
+					<h1>Typography</h1>
+				</div>
 				<ul class="CustomPropsGroup Fonts">
 					{% for typo in typography %}
 						{% if typo[1].customProp %}

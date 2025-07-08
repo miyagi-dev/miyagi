@@ -8,7 +8,9 @@
 	{% if colors %}
 		<div class="Wrapper">
 			<div class="Styleguide" data-media-queries='{{ mediaQueries }}'>
-				<h1>Colors</h1>
+				<div class="Documentation">
+					<h1>Colors</h1>
+				</div>
 				{% for color in colors %}
 					{% if color.styles is not empty %}
 						<ul class="CustomPropsGroup Colors Colors--{{ color.type }}">

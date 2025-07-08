@@ -8,7 +8,9 @@
 	{% if spacings %}
 		<div class="Wrapper">
 			<div class="Styleguide" data-media-queries='{{ mediaQueries }}'>
-				<h1>Spacings</h1>
+				<div class="Documentation">
+					<h1>Spacings</h1>
+				</div>
 				<ul class="CustomPropsGroup Spacings">
 					{% for spacing in spacings %}
 						{% if spacing[1].customProp %}

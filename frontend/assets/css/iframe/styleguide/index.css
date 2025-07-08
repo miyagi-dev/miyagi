@@ -2,10 +2,6 @@
 @import url("./fonts.css");
 @import url("./spacings.css");
 
-.Styleguide {
-	margin-top: 3em;
-}
-
 .CustomPropsGroup {
 	list-style: none;
 	margin: 3em 0;
