@@ -28,11 +28,11 @@
 					<accordion-tabs breakpoint="24rem">
 						<details>
 							<summary>Raw</summary>
-							<div id="json-tree-mock" data-jsontree-js='{ data: {{ mockData }} }'></div>
+							<div id="json-tree-mock" data-jsontree-js="jsontree_{{ normalizedVariation|replace({ '-': '_' }) }}.raw"></div>
 						</details>
 						<details>
 							<summary>Resolved</summary>
-							<div id="json-tree-resolved-mockResolved" data-jsontree-js='{ data: {{ mockDataResolved }} }'></div>
+							<div id="json-tree-resolved-mockResolved" data-jsontree-js="jsontree_{{ normalizedVariation|replace({ '-': '_' }) }}.resolved"></div>
 						</details>
 					</accordion-tabs>
 					<form method="dialog">
@@ -42,4 +42,14 @@
 			</dialog>
     </div>
 		<script src="{{ projectName }}/js/jsontree.js"></script>
+		<script>
+			const jsontree_{{ normalizedVariation|replace({ '-': '_' }) }} = {
+				"raw": {
+					"data": {{ mockData|default({})|raw }}
+				},
+				"resolved": {
+					"data": {{ mockDataResolved|default({})|replace({'</script>': '<\\/script>'})|raw }}
+				}
+			};
+		</script>
   {% endblock %}

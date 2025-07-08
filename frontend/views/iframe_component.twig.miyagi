@@ -25,13 +25,13 @@
 						{% if schema %}
 							<details class="Tabs-tab">
 								<summary>Schema</summary>
-								<div id="json-tree-resolved-schema" data-jsontree-js='{ data: {{ schema }} }'></div>
+								<div id="json-tree-resolved-schema" data-jsontree-js="jsontree.schema"></div>
 							</details>
 						{% endif %}
 						{% if mocks %}
 							<details class="Tabs-tab">
 								<summary>Mocks</summary>
-								<div id="json-tree-resolved-mocks" data-jsontree-js='{ data: {{ mocks }} }'></div>
+								<div id="json-tree-resolved-mocks" data-jsontree-js="jsontree.mocks"></div>
 							</details>
 						{% endif %}
 						{% if template %}
@@ -77,11 +77,11 @@
 								<accordion-tabs breakpoint="24rem">
 									<details>
 										<summary>Raw</summary>
-										<div id="json-tree-{{ loop.index }}" data-jsontree-js='{ data: {{ variation.mockData }} }'></div>
+										<div id="json-tree-{{ loop.index }}" data-jsontree-js="jsontree_{{ variation.normalizedVariation|replace({ '-': '_' }) }}.raw"></div>
 									</details>
 									<details>
 										<summary>Resolved</summary>
-										<div id="json-tree-resolved-{{ loop.index }}" data-jsontree-js='{ data: {{ variation.mockDataResolved }} }'></div>
+										<div id="json-tree-resolved-{{ loop.index }}" data-jsontree-js="jsontree_{{ variation.normalizedVariation|replace({ '-': '_' }) }}.resolved"></div>
 									</details>
 								</accordion-tabs>
 								<form method="dialog">
@@ -94,6 +94,16 @@
 						<iframe class="Component-iframe" src="{{ variation.standaloneUrl }}" frameborder="0" title="{{ variation.variation }}" id="iframe" loading="lazy"></iframe>
 					</div>
 				</div>
+				<script>
+					const jsontree_{{ variation.normalizedVariation|replace({ '-': '_' }) }} = {
+						"raw": {
+							"data": {{ variation.mockData|default({})|raw }}
+						},
+						"resolved": {
+							"data": {{ variation.mockDataResolved|default({})|replace({'</script>': '<\\/script>'})|raw }}
+						}
+					};
+				</script>
 			{% endfor %}
 		</main>
 		<script src="{{ projectName }}/js/jsontree.js"></script>
@@ -117,5 +127,15 @@
 				},
 				false
 			);
+		</script>
+		<script>
+			const jsontree = {
+				"schema": {
+					"data": {{ schema|default({})|raw }}
+				},
+				"mocks": {
+					"data": {{ mocks|default({})|replace({'</script>': '<\\/script>'})|raw }}
+				}
+			};
 		</script>
 	{% endblock %}
