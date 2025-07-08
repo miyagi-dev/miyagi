@@ -10,7 +10,7 @@ You can customize the color scheme as well as fonts and the logo to match your c
 
 ## Changing colors, fonts etc
 
-If you want to adapt the colors, font-family etc. of _miyagi_, it is easiest to use the custom properties _miyagi_ uses internally. You can find these at https://github.com/miyagi-dev/miyagi/blob/4.0.0/frontend/assets/css/tokens.css. You can either set these directly in your config file (`theme.css`) or use a CSS file (see further below).
+If you want to adapt the colors, font-family etc. of _miyagi_, it is easiest to use the custom properties _miyagi_ uses internally. You can find these at [https://github.com/miyagi-dev/miyagi/blob/HEAD/frontend/assets/css/tokens.css](https://github.com/miyagi-dev/miyagi/blob/HEAD/frontend/assets/css/tokens.css). You can either set these directly in your config file (`theme.css`) or use a CSS file (see further below).
 
 Using the custom properties, you could also make sure that you do not have separate light and dark modes (in case this does not work for your project). You could do that for example like this:
 
