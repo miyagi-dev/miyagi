@@ -22,39 +22,54 @@
 	background: var(--bar-background);
 	grid-area: nav;
 	font-size: 0.875em;
+	position: relative;
 }
 
 .Menu :where(:focus-visible) {
 	outline: var(--outline);
 }
 
+.Menu-content {
+	display: flex;
+	flex-direction: column;
+}
+
+.Menu-nav {
+	flex: 1;
+	overflow-y: auto;
+}
+
 @media (width <= 40rem) {
 	.Menu {
+		--toggle-size: 4rem;
+
 		align-items: center;
 		flex-wrap: wrap;
 		justify-content: space-between;
+	}
+
+	.Menu-content {
+		flex: 0 0 100%;
+		block-size: calc(100dvb - var(--toggle-size));
+		position: fixed;
+		inset-block-start: var(--toggle-size);
+		inset-inline: 0;
+		background: var(--bar-background);
 	}
 
 	.Menu-search {
 		position: relative;
 	}
 
-	.Menu-content {
-		flex: 0 0 100%;
-	}
-
 	.Menu-toggleMobileMenu {
-		--size: 2rem;
-
-		box-sizing: content-box;
 		display: block;
-		block-size: var(--size);
+		block-size: var(--toggle-size);
 		padding: 1rem;
 		position: relative;
-		inline-size: var(--size);
+		inline-size: var(--toggle-size);
 	}
 
-	.Menu-toggleMobileMenu[aria-expanded="false"] + .Menu-content {
+	.Menu-toggleMobileMenu[aria-expanded="false"] ~ .Menu-content {
 		display: none;
 	}
 
@@ -93,13 +108,7 @@
 	}
 
 	.Menu-content {
-		display: flex;
 		flex: 1;
-		flex-direction: column;
-		overflow-y: auto;
-	}
-
-	.Menu-nav {
-		flex: 1;
+		overflow: hidden;
 	}
 }

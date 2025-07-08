@@ -2,12 +2,7 @@
 
 .ConfigSwitchers {
 	display: flex;
-	align-items: flex-end;
-	position: sticky;
-	inset-block-end: 0;
-	inset-inline: 0;
 	background: var(--bar-background);
-	border-block-start: var(--divider);
 }
 
 .ConfigSwitchers-toggle {
@@ -15,24 +10,27 @@
 
 	align-items: center;
 	color: var(--color-Icon);
-	justify-content: center;
 	display: flex;
-	inline-size: var(--size);
-	block-size: var(--size);
 	flex-shrink: 0;
+	gap: 0.5em;
+	cursor: pointer;
+	border-block-start: var(--divider);
+	inline-size: 100%;
+
+	svg {
+		display: block;
+		inline-size: var(--size);
+		block-size: var(--size);
+		padding: 0.45em;
+	}
 }
 
 .ConfigSwitchers-toggle:focus-visible {
 	outline-offset: calc(-1 * var(--outline-offset));
 }
 
-:is(.ConfigSwitchers-toggleOpen, .ConfigSwitchers-toggleClose) {
-	fill: currentcolor;
-	block-size: 50%;
-	inline-size: 50%;
-}
-
 .ConfigSwitchers-toggleClose {
+	fill: currentcolor;
 	block-size: 75%;
 	inline-size: 75%;
 }
@@ -46,18 +44,23 @@
 }
 
 .ConfigSwitchers-container {
-	padding: var(--menu-spacing);
+	padding: var(--bar-size);
+	padding-inline-start: calc(2 * var(--bar-size));
 	flex: 1;
+	position: absolute;
+	inset-block: 0 calc(var(--bar-size) + 0.0625rem);
+	inset-inline: 0;
+	background: var(--bar-background);
 }
 
 .ConfigSwitchers-container > * + * {
 	margin-block-start: var(--menu-spacing);
 }
 
-.ConfigSwitchers-toggle[aria-expanded="false"] + .ConfigSwitchers-container {
+.ConfigSwitchers-toggle[aria-expanded="false"] ~ .ConfigSwitchers-container {
 	display: none;
 }
 
-.ConfigSwitchers-toggle[aria-expanded="true"] + .ConfigSwitchers-container {
+.ConfigSwitchers-toggle[aria-expanded="true"] ~ .ConfigSwitchers-container {
 	display: block;
 }
