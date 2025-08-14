@@ -28,7 +28,7 @@
 	border: none;
 	appearance: none;
 	font: inherit;
-	width: 100%;
+	width: fit-content;
 	padding: 0;
 	text-align: start;
 }
