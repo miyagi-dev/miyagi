@@ -56,7 +56,7 @@
 	font-size: 14px;
 	display: none;
 	grid-template-columns: fit-content(50%) 1fr;
-	grid-gap: 0.5rem 1rem;
+	gap: 0.5rem 1rem;
 	line-height: 1.5;
 	white-space: nowrap;
 }

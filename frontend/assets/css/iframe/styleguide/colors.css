@@ -1,7 +1,7 @@
 .Colors {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(14em, 1fr));
-	grid-gap: 3em;
+	gap: 3em;
 }
 
 .Colors-button {
