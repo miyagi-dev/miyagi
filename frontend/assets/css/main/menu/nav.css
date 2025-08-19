@@ -1,5 +1,19 @@
 /** @define Nav; */
 
+.Nav-entry {
+	position: relative;
+}
+
+.Nav-entry:not(.Nav-entry--lvl0)::before {
+	content: "";
+	display: block;
+	inline-size: var(--bar-size);
+	position: absolute;
+	inset-block: 0;
+	inset-inline-start: 0;
+	background: var(--color-MenuBar-background);
+}
+
 .Nav-entry--directory {
 	border-block-start: var(--divider);
 }
@@ -15,8 +29,9 @@
 .Nav-toggle {
 	display: block;
 	position: absolute;
+	z-index: 1;
 	inset-block: 0;
-	inset-inline-start: 0;
+	inset-inline-end: 0;
 	inline-size: var(--bar-size);
 }
 
@@ -48,8 +63,7 @@
 .Nav-variant {
 	display: block;
 	padding-block: var(--menu-spacing);
-	padding-inline: calc(var(--level, 1) * 1em + var(--menu-spacing))
-		var(--menu-spacing);
+	padding-inline-start: calc(var(--level, 1) * 1em + var(--menu-spacing));
 	margin-inline-start: var(--bar-size);
 }
 
