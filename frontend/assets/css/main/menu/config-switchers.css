@@ -48,6 +48,7 @@
 	padding-inline-start: calc(2 * var(--bar-size));
 	flex: 1;
 	position: absolute;
+	z-index: 2;
 	inset-block: 0 calc(var(--bar-size) + 0.0625rem);
 	inset-inline: 0;
 	background: var(--bar-background);
