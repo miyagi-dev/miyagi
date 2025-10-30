@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.0.1](https://github.com/miyagi-dev/miyagi/compare/v4.0.0...v4.0.1) (2025-10-30)
+
+
+### Bug Fixes
+
+* **cli:** Clean exit for mock and component generator ([f6f6c19](https://github.com/miyagi-dev/miyagi/commit/f6f6c198212dda8aa1cf51e66d20d2246e4a1aa7))
+
 ### [3.3.2](https://github.com/mgrsskls/miyagi/compare/core/v3.3.1...core/v3.3.2) (2022-07-13)
 
 
