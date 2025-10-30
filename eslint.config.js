@@ -29,6 +29,7 @@ export default [
 			],
 			"jsdoc/require-param-description": "off",
 			"jsdoc/require-returns-description": "off",
+			"jsdoc/reject-function-type": "off",
 		},
 	},
 
